@@ -717,18 +717,28 @@
     "englishTitle": "Phylogenetic inference",
     "domainId": "comparative-genomics",
     "order": 4,
-    "summary": "系统发育推断的概念、方法与研究应用。",
+    "summary": "从序列比对、替换模型和树搜索理解系统发育。",
     "keyConcepts": [
-      "系统发育推断"
+      "多序列比对",
+      "最大似然",
+      "贝叶斯推断",
+      "Bootstrap",
+      "基因树"
     ],
     "methodIds": [],
-    "principleIds": [],
-    "dataIds": [],
-    "paperIds": [],
+    "principleIds": [
+      "phylogenetics"
+    ],
+    "dataIds": [
+      "proteins"
+    ],
+    "paperIds": [
+      "iqtree2-paper"
+    ],
     "tutorialIds": [],
-    "status": "planned",
+    "status": "draft",
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-11-21"
   },
   {
     "id": "m04-topic-05",
