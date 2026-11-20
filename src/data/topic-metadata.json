@@ -656,18 +656,32 @@
     "englishTitle": "Gene family evolution",
     "domainId": "comparative-genomics",
     "order": 2,
-    "summary": "基因家族聚类与扩张的概念、方法与研究应用。",
+    "summary": "从蛋白相似性、基因树和生灭模型研究家族组成变化。",
     "keyConcepts": [
-      "基因家族聚类与扩张"
+      "基因家族",
+      "orthogroup",
+      "基因复制",
+      "生灭模型"
     ],
-    "methodIds": [],
-    "principleIds": [],
-    "dataIds": [],
-    "paperIds": [],
+    "methodIds": [
+      "orthofinder"
+    ],
+    "principleIds": [
+      "phylogenetics"
+    ],
+    "dataIds": [
+      "proteins"
+    ],
+    "paperIds": [
+      "orthofinder-paper",
+      "cafe5-paper",
+      "cycas-evolution",
+      "arabidopsis-69-pangenome"
+    ],
     "tutorialIds": [],
-    "status": "planned",
+    "status": "draft",
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-11-21"
   },
   {
     "id": "m04-topic-03",
