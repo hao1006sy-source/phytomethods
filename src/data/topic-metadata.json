@@ -1015,18 +1015,26 @@
     "englishTitle": "Population history",
     "domainId": "population-genetics",
     "order": 6,
-    "summary": "群体历史动态的概念、方法与研究应用。",
+    "summary": "利用共祖模型和全基因组数据推断群体历史。",
     "keyConcepts": [
-      "群体历史动态"
+      "共祖",
+      "有效群体大小",
+      "PSMC",
+      "MSMC2",
+      "SMC++"
     ],
     "methodIds": [],
     "principleIds": [],
-    "dataIds": [],
-    "paperIds": [],
+    "dataIds": [
+      "variant-data"
+    ],
+    "paperIds": [
+      "psmc-paper"
+    ],
     "tutorialIds": [],
-    "status": "planned",
+    "status": "draft",
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-11-21"
   },
   {
     "id": "m05-topic-07",
