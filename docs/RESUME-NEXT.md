@@ -9,3 +9,5 @@
 - SyRI 隔离环境位于 WSL `/tmp/phytomethods-mamba-20261121/syri-env`，重启后可能清除；输入来自官方仓库固定提交，复现命令在教程中。Docker Linux 引擎未连接。
 
 - OrthoFinder 3.2 官方非植物示例验证记录位于 `examples/orthofinder/verified-20261121/`；运行环境位于 WSL `/tmp/phytomethods-mamba-20261121/orthofinder-env`，可能随重启清除。
+
+- 专题正文与元数据的 ID、领域、状态一致性检查已加入，两个反例测试及恢复后的完整构建通过。
