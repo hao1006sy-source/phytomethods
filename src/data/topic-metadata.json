@@ -1564,18 +1564,20 @@
     "englishTitle": "RNA-seq",
     "domainId": "regulatory-genomics-ai",
     "order": 1,
-    "summary": "常规 RNA-seq 与差异表达的概念、方法与研究应用。",
+    "summary": "RNA-seq 定量与差异表达统计分析。",
     "keyConcepts": [
-      "常规 RNA-seq 与差异表达"
+      "RNA-seq",
+      "DESeq2",
+      "差异表达"
     ],
     "methodIds": [],
     "principleIds": [],
     "dataIds": [],
     "paperIds": [],
     "tutorialIds": [],
-    "status": "planned",
+    "status": "draft",
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-11-21"
   },
   {
     "id": "m09-topic-02",
@@ -1583,18 +1585,20 @@
     "englishTitle": "Coexpression networks",
     "domainId": "regulatory-genomics-ai",
     "order": 2,
-    "summary": "共表达网络的概念、方法与研究应用。",
+    "summary": "基因表达相关、加权网络与性状关联。",
     "keyConcepts": [
-      "共表达网络"
+      "WGCNA",
+      "共表达",
+      "模块"
     ],
     "methodIds": [],
     "principleIds": [],
     "dataIds": [],
     "paperIds": [],
     "tutorialIds": [],
-    "status": "planned",
+    "status": "draft",
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-11-21"
   },
   {
     "id": "m09-topic-03",
@@ -1602,18 +1606,20 @@
     "englishTitle": "Gene regulatory networks",
     "domainId": "regulatory-genomics-ai",
     "order": 3,
-    "summary": "基因调控网络的概念、方法与研究应用。",
+    "summary": "转录因子候选调控边的推断与多证据验证。",
     "keyConcepts": [
-      "基因调控网络"
+      "GENIE3",
+      "转录因子",
+      "调控网络"
     ],
     "methodIds": [],
     "principleIds": [],
     "dataIds": [],
     "paperIds": [],
     "tutorialIds": [],
-    "status": "planned",
+    "status": "draft",
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-11-21"
   },
   {
     "id": "m09-topic-04",
