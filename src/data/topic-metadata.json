@@ -916,18 +916,24 @@
     "englishTitle": "Population structure",
     "domainId": "population-genetics",
     "order": 3,
-    "summary": "PCA、群体结构与祖先成分的概念、方法与研究应用。",
+    "summary": "用主成分和概率模型分析基因型矩阵中的群体结构。",
     "keyConcepts": [
-      "PCA、群体结构与祖先成分"
+      "PCA",
+      "群体结构",
+      "祖先成分",
+      "LD 剪枝"
     ],
     "methodIds": [],
     "principleIds": [],
     "dataIds": [],
-    "paperIds": [],
+    "paperIds": [
+      "admixture-paper",
+      "rice-3010-pangenome"
+    ],
     "tutorialIds": [],
-    "status": "planned",
+    "status": "draft",
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-11-21"
   },
   {
     "id": "m05-topic-04",
