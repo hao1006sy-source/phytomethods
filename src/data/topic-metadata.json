@@ -917,7 +917,9 @@
       "plink-paper",
       "rice-variant-comparison"
     ],
-    "tutorialIds": [],
+    "tutorialIds": [
+      "plink-synthetic"
+    ],
     "status": "draft",
     "createdAt": null,
     "updatedAt": "2026-11-21"
@@ -952,7 +954,9 @@
       "plink-paper",
       "rice-roots-population"
     ],
-    "tutorialIds": [],
+    "tutorialIds": [
+      "plink-synthetic"
+    ],
     "status": "draft",
     "createdAt": null,
     "updatedAt": "2026-11-21"

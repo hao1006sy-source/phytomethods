@@ -1,0 +1,29 @@
+PLINK v1.9.1 64-bit (11 Nov 2026)
+Options in effect:
+  --make-bed
+  --out work/plink-run-20261121/simulated
+  --vcf examples/population/simulated-genotypes.vcf
+
+Hostname: [redacted]
+Working directory: [project root]
+Start time: Sat Nov 21 05:53:55 2026
+
+Random number seed: 1795211635
+16070 MB RAM detected; reserving 8035 MB for main workspace.
+--vcf: work/plink-run-20261121/simulated-temporary.bed +
+work/plink-run-20261121/simulated-temporary.bim +
+work/plink-run-20261121/simulated-temporary.fam written.
+6 variants loaded from .bim file.
+8 people (0 males, 0 females, 8 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to work/plink-run-20261121/simulated.nosex .
+Using 1 thread (no multithreaded calculations invoked).
+Before main variant filters, 8 founders and 0 nonfounders present.
+Calculating allele frequencies... done.
+Total genotyping rate is exactly 1.
+6 variants and 8 people pass filters and QC.
+Note: No phenotypes present.
+--make-bed to work/plink-run-20261121/simulated.bed +
+work/plink-run-20261121/simulated.bim + work/plink-run-20261121/simulated.fam
+... done.
+
+End time: Sat Nov 21 05:53:55 2026
