@@ -865,18 +865,24 @@
     "englishTitle": "Population genetics",
     "domainId": "population-genetics",
     "order": 1,
-    "summary": "群体遗传学基本概念的概念、方法与研究应用。",
+    "summary": "从等位基因频率、漂变和选择理解群体遗传变化。",
     "keyConcepts": [
-      "群体遗传学基本概念"
+      "等位基因频率",
+      "Hardy–Weinberg 平衡",
+      "遗传漂变",
+      "有效群体大小",
+      "重组"
     ],
     "methodIds": [],
     "principleIds": [],
     "dataIds": [],
-    "paperIds": [],
+    "paperIds": [
+      "rice-3010-pangenome"
+    ],
     "tutorialIds": [],
-    "status": "planned",
+    "status": "draft",
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-11-21"
   },
   {
     "id": "m05-topic-02",

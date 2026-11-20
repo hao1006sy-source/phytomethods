@@ -7,7 +7,7 @@ journal: Nature
 doi: 10.1038/s41586-018-0063-9
 type: application
 methodIds: []
-domainIds: [pangenomics-structural-variation]
+domainIds: [pangenomics-structural-variation, population-genetics]
 speciesIds: [rice]
 status: draft
 updatedAt: 2026-11-21
