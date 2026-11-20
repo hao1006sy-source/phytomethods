@@ -1469,11 +1469,22 @@
       "snRNA-seq",
       "UMI"
     ],
-    "methodIds": [],
-    "principleIds": [],
-    "dataIds": [],
-    "paperIds": [],
-    "tutorialIds": [],
+    "methodIds": [
+      "scanpy"
+    ],
+    "principleIds": [
+      "single-cell-graph"
+    ],
+    "dataIds": [
+      "single-cell-matrix"
+    ],
+    "paperIds": [
+      "scanpy-paper",
+      "rice-root-single-cell-2021"
+    ],
+    "tutorialIds": [
+      "scanpy-synthetic"
+    ],
     "status": "draft",
     "createdAt": null,
     "updatedAt": "2026-11-21"
@@ -1490,11 +1501,22 @@
       "doublet",
       "批次效应"
     ],
-    "methodIds": [],
-    "principleIds": [],
-    "dataIds": [],
-    "paperIds": [],
-    "tutorialIds": [],
+    "methodIds": [
+      "scanpy"
+    ],
+    "principleIds": [
+      "single-cell-graph"
+    ],
+    "dataIds": [
+      "single-cell-matrix"
+    ],
+    "paperIds": [
+      "scanpy-paper",
+      "rice-root-single-cell-2021"
+    ],
+    "tutorialIds": [
+      "scanpy-synthetic"
+    ],
     "status": "draft",
     "createdAt": null,
     "updatedAt": "2026-11-21"
@@ -1511,11 +1533,22 @@
       "UMAP",
       "Leiden"
     ],
-    "methodIds": [],
-    "principleIds": [],
-    "dataIds": [],
-    "paperIds": [],
-    "tutorialIds": [],
+    "methodIds": [
+      "scanpy"
+    ],
+    "principleIds": [
+      "single-cell-graph"
+    ],
+    "dataIds": [
+      "single-cell-matrix"
+    ],
+    "paperIds": [
+      "scanpy-paper",
+      "rice-root-single-cell-2021"
+    ],
+    "tutorialIds": [
+      "scanpy-synthetic"
+    ],
     "status": "draft",
     "createdAt": null,
     "updatedAt": "2026-11-21"
@@ -1532,11 +1565,22 @@
       "细胞类型",
       "参考图谱"
     ],
-    "methodIds": [],
-    "principleIds": [],
-    "dataIds": [],
-    "paperIds": [],
-    "tutorialIds": [],
+    "methodIds": [
+      "scanpy"
+    ],
+    "principleIds": [
+      "single-cell-graph"
+    ],
+    "dataIds": [
+      "single-cell-matrix"
+    ],
+    "paperIds": [
+      "scanpy-paper",
+      "rice-root-single-cell-2021"
+    ],
+    "tutorialIds": [
+      "scanpy-synthetic"
+    ],
     "status": "draft",
     "createdAt": null,
     "updatedAt": "2026-11-21"
@@ -1553,11 +1597,22 @@
       "发育轨迹",
       "分叉"
     ],
-    "methodIds": [],
-    "principleIds": [],
-    "dataIds": [],
-    "paperIds": [],
-    "tutorialIds": [],
+    "methodIds": [
+      "scanpy"
+    ],
+    "principleIds": [
+      "single-cell-graph"
+    ],
+    "dataIds": [
+      "single-cell-matrix"
+    ],
+    "paperIds": [
+      "scanpy-paper",
+      "rice-root-single-cell-2021"
+    ],
+    "tutorialIds": [
+      "scanpy-synthetic"
+    ],
     "status": "draft",
     "createdAt": null,
     "updatedAt": "2026-11-21"
