@@ -2,7 +2,7 @@
 title: 同源、直系同源与旁系同源
 summary: 从物种分化、基因复制和基因树理解植物基因之间的演化关系。
 domain: comparative-genomics
-methods: []
+methods: [orthofinder]
 status: draft
 updatedAt: 2026-11-21
 ---

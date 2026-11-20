@@ -629,9 +629,15 @@
       "基因树",
       "物种树"
     ],
-    "methodIds": [],
-    "principleIds": [],
-    "dataIds": [],
+    "methodIds": [
+      "orthofinder"
+    ],
+    "principleIds": [
+      "phylogenetics"
+    ],
+    "dataIds": [
+      "proteins"
+    ],
     "paperIds": [
       "orthofinder-paper"
     ],
