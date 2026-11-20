@@ -1,0 +1,1256 @@
+[
+  {
+    "id": "sequencing-data",
+    "title": "测序技术与数据基础",
+    "englishTitle": "Sequencing technologies and raw data",
+    "domainId": "genome-assembly",
+    "order": 1,
+    "summary": "测序技术与数据基础的概念、方法与研究应用。",
+    "keyConcepts": [
+      "测序技术与数据基础"
+    ],
+    "methodIds": [
+      "hifiasm",
+      "verkko",
+      "merqury"
+    ],
+    "principleIds": [],
+    "dataIds": [
+      "hifi",
+      "ont-ul"
+    ],
+    "paperIds": [
+      "macadamia"
+    ],
+    "tutorialIds": [
+      "hifiasm-intro"
+    ],
+    "status": "published",
+    "createdAt": null,
+    "updatedAt": "2026-11-20"
+  },
+  {
+    "id": "assembly-basics",
+    "title": "基因组组装基础",
+    "englishTitle": "Genome assembly fundamentals",
+    "domainId": "genome-assembly",
+    "order": 2,
+    "summary": "基因组组装基础的概念、方法与研究应用。",
+    "keyConcepts": [
+      "基因组组装基础"
+    ],
+    "methodIds": [
+      "hifiasm",
+      "verkko",
+      "merqury"
+    ],
+    "principleIds": [],
+    "dataIds": [],
+    "paperIds": [
+      "potato"
+    ],
+    "tutorialIds": [
+      "hifiasm-intro"
+    ],
+    "status": "published",
+    "createdAt": null,
+    "updatedAt": "2026-11-20"
+  },
+  {
+    "id": "assembly-graphs",
+    "title": "组装图与核心算法",
+    "englishTitle": "Assembly graphs and algorithms",
+    "domainId": "genome-assembly",
+    "order": 3,
+    "summary": "组装图与核心算法的概念、方法与研究应用。",
+    "keyConcepts": [
+      "组装图与核心算法"
+    ],
+    "methodIds": [
+      "hifiasm",
+      "verkko"
+    ],
+    "principleIds": [
+      "overlap",
+      "debruijn"
+    ],
+    "dataIds": [],
+    "paperIds": [
+      "hifiasm",
+      "verkko"
+    ],
+    "tutorialIds": [
+      "hifiasm-intro"
+    ],
+    "status": "published",
+    "createdAt": null,
+    "updatedAt": "2026-11-20"
+  },
+  {
+    "id": "haplotype-resolution",
+    "title": "单倍型解析",
+    "englishTitle": "Haplotype-resolved assembly",
+    "domainId": "genome-assembly",
+    "order": 4,
+    "summary": "单倍型解析的概念、方法与研究应用。",
+    "keyConcepts": [
+      "单倍型解析"
+    ],
+    "methodIds": [
+      "hifiasm",
+      "verkko"
+    ],
+    "principleIds": [
+      "phasing"
+    ],
+    "dataIds": [],
+    "paperIds": [
+      "hifiasm",
+      "potato"
+    ],
+    "tutorialIds": [
+      "hifiasm-intro"
+    ],
+    "status": "published",
+    "createdAt": null,
+    "updatedAt": "2026-11-20"
+  },
+  {
+    "id": "hic-scaffolding",
+    "title": "Hi-C 辅助染色体挂载",
+    "englishTitle": "Hi-C scaffolding",
+    "domainId": "genome-assembly",
+    "order": 5,
+    "summary": "Hi-C 辅助染色体挂载的概念、方法与研究应用。",
+    "keyConcepts": [
+      "Hi-C 辅助染色体挂载"
+    ],
+    "methodIds": [],
+    "principleIds": [],
+    "dataIds": [],
+    "paperIds": [
+      "yahs"
+    ],
+    "tutorialIds": [],
+    "status": "published",
+    "createdAt": null,
+    "updatedAt": "2026-11-20"
+  },
+  {
+    "id": "complete-assembly",
+    "title": "T2T 与复杂区域组装",
+    "englishTitle": "T2T and complex regions",
+    "domainId": "genome-assembly",
+    "order": 6,
+    "summary": "T2T 与复杂区域组装的概念、方法与研究应用。",
+    "keyConcepts": [
+      "T2T 与复杂区域组装"
+    ],
+    "methodIds": [
+      "hifiasm",
+      "verkko"
+    ],
+    "principleIds": [],
+    "dataIds": [],
+    "paperIds": [
+      "verkko",
+      "xanthoceras"
+    ],
+    "tutorialIds": [],
+    "status": "published",
+    "createdAt": null,
+    "updatedAt": "2026-11-20"
+  },
+  {
+    "id": "assembly-quality",
+    "title": "组装质量评估",
+    "englishTitle": "Genome assembly quality",
+    "domainId": "genome-assembly",
+    "order": 7,
+    "summary": "组装质量评估的概念、方法与研究应用。",
+    "keyConcepts": [
+      "组装质量评估"
+    ],
+    "methodIds": [
+      "merqury"
+    ],
+    "principleIds": [
+      "kmer"
+    ],
+    "dataIds": [
+      "accurate-reads",
+      "assembly"
+    ],
+    "paperIds": [
+      "merqury"
+    ],
+    "tutorialIds": [],
+    "status": "published",
+    "createdAt": null,
+    "updatedAt": "2026-11-20"
+  },
+  {
+    "id": "m02-topic-01",
+    "title": "基因组注释基础与 GFF3/GTF",
+    "englishTitle": "Genome annotation and GFF3/GTF",
+    "domainId": "genome-annotation",
+    "order": 1,
+    "summary": "基因组注释基础与 GFF3/GTF的概念、方法与研究应用。",
+    "keyConcepts": [
+      "基因组注释基础与 GFF3/GTF"
+    ],
+    "methodIds": [],
+    "principleIds": [],
+    "dataIds": [],
+    "paperIds": [],
+    "tutorialIds": [],
+    "status": "planned",
+    "createdAt": null,
+    "updatedAt": null
+  },
+  {
+    "id": "m02-topic-02",
+    "title": "重复序列与转座子识别",
+    "englishTitle": "Repeats and transposable elements",
+    "domainId": "genome-annotation",
+    "order": 2,
+    "summary": "重复序列与转座子识别的概念、方法与研究应用。",
+    "keyConcepts": [
+      "重复序列与转座子识别"
+    ],
+    "methodIds": [],
+    "principleIds": [],
+    "dataIds": [],
+    "paperIds": [],
+    "tutorialIds": [],
+    "status": "planned",
+    "createdAt": null,
+    "updatedAt": null
+  },
+  {
+    "id": "m02-topic-03",
+    "title": "蛋白编码基因预测",
+    "englishTitle": "Protein-coding gene prediction",
+    "domainId": "genome-annotation",
+    "order": 3,
+    "summary": "蛋白编码基因预测的概念、方法与研究应用。",
+    "keyConcepts": [
+      "蛋白编码基因预测"
+    ],
+    "methodIds": [],
+    "principleIds": [],
+    "dataIds": [],
+    "paperIds": [],
+    "tutorialIds": [],
+    "status": "planned",
+    "createdAt": null,
+    "updatedAt": null
+  },
+  {
+    "id": "m02-topic-04",
+    "title": "转录本辅助注释",
+    "englishTitle": "Transcript-assisted annotation",
+    "domainId": "genome-annotation",
+    "order": 4,
+    "summary": "转录本辅助注释的概念、方法与研究应用。",
+    "keyConcepts": [
+      "转录本辅助注释"
+    ],
+    "methodIds": [],
+    "principleIds": [],
+    "dataIds": [],
+    "paperIds": [],
+    "tutorialIds": [],
+    "status": "planned",
+    "createdAt": null,
+    "updatedAt": null
+  },
+  {
+    "id": "m02-topic-05",
+    "title": "非编码 RNA 注释",
+    "englishTitle": "Non-coding RNA annotation",
+    "domainId": "genome-annotation",
+    "order": 5,
+    "summary": "非编码 RNA 注释的概念、方法与研究应用。",
+    "keyConcepts": [
+      "非编码 RNA 注释"
+    ],
+    "methodIds": [],
+    "principleIds": [],
+    "dataIds": [],
+    "paperIds": [],
+    "tutorialIds": [],
+    "status": "planned",
+    "createdAt": null,
+    "updatedAt": null
+  },
+  {
+    "id": "m02-topic-06",
+    "title": "基因功能注释",
+    "englishTitle": "Gene functional annotation",
+    "domainId": "genome-annotation",
+    "order": 6,
+    "summary": "基因功能注释的概念、方法与研究应用。",
+    "keyConcepts": [
+      "基因功能注释"
+    ],
+    "methodIds": [],
+    "principleIds": [],
+    "dataIds": [],
+    "paperIds": [],
+    "tutorialIds": [],
+    "status": "planned",
+    "createdAt": null,
+    "updatedAt": null
+  },
+  {
+    "id": "m02-topic-07",
+    "title": "注释质量评估",
+    "englishTitle": "Annotation quality",
+    "domainId": "genome-annotation",
+    "order": 7,
+    "summary": "注释质量评估的概念、方法与研究应用。",
+    "keyConcepts": [
+      "注释质量评估"
+    ],
+    "methodIds": [],
+    "principleIds": [],
+    "dataIds": [],
+    "paperIds": [],
+    "tutorialIds": [],
+    "status": "planned",
+    "createdAt": null,
+    "updatedAt": null
+  },
+  {
+    "id": "m03-topic-01",
+    "title": "泛基因组概念与核心/可变基因组",
+    "englishTitle": "Pangenome concepts",
+    "domainId": "pangenomics-structural-variation",
+    "order": 1,
+    "summary": "泛基因组概念与核心/可变基因组的概念、方法与研究应用。",
+    "keyConcepts": [
+      "泛基因组概念与核心/可变基因组"
+    ],
+    "methodIds": [],
+    "principleIds": [],
+    "dataIds": [],
+    "paperIds": [],
+    "tutorialIds": [],
+    "status": "planned",
+    "createdAt": null,
+    "updatedAt": null
+  },
+  {
+    "id": "m03-topic-02",
+    "title": "全基因组比对",
+    "englishTitle": "Whole-genome alignment",
+    "domainId": "pangenomics-structural-variation",
+    "order": 2,
+    "summary": "全基因组比对的概念、方法与研究应用。",
+    "keyConcepts": [
+      "全基因组比对"
+    ],
+    "methodIds": [],
+    "principleIds": [],
+    "dataIds": [],
+    "paperIds": [],
+    "tutorialIds": [],
+    "status": "planned",
+    "createdAt": null,
+    "updatedAt": null
+  },
+  {
+    "id": "m03-topic-03",
+    "title": "结构变异检测",
+    "englishTitle": "Structural variation detection",
+    "domainId": "pangenomics-structural-variation",
+    "order": 3,
+    "summary": "结构变异检测的概念、方法与研究应用。",
+    "keyConcepts": [
+      "结构变异检测"
+    ],
+    "methodIds": [],
+    "principleIds": [],
+    "dataIds": [],
+    "paperIds": [],
+    "tutorialIds": [],
+    "status": "planned",
+    "createdAt": null,
+    "updatedAt": null
+  },
+  {
+    "id": "m03-topic-04",
+    "title": "PAV 与基因存在缺失变异",
+    "englishTitle": "Presence absence variation",
+    "domainId": "pangenomics-structural-variation",
+    "order": 4,
+    "summary": "PAV 与基因存在缺失变异的概念、方法与研究应用。",
+    "keyConcepts": [
+      "PAV 与基因存在缺失变异"
+    ],
+    "methodIds": [],
+    "principleIds": [],
+    "dataIds": [],
+    "paperIds": [],
+    "tutorialIds": [],
+    "status": "planned",
+    "createdAt": null,
+    "updatedAt": null
+  },
+  {
+    "id": "m03-topic-05",
+    "title": "图泛基因组构建",
+    "englishTitle": "Pangenome graphs",
+    "domainId": "pangenomics-structural-variation",
+    "order": 5,
+    "summary": "图泛基因组构建的概念、方法与研究应用。",
+    "keyConcepts": [
+      "图泛基因组构建"
+    ],
+    "methodIds": [],
+    "principleIds": [],
+    "dataIds": [],
+    "paperIds": [],
+    "tutorialIds": [],
+    "status": "planned",
+    "createdAt": null,
+    "updatedAt": null
+  },
+  {
+    "id": "m03-topic-06",
+    "title": "图上的序列比对与变异分型",
+    "englishTitle": "Graph mapping and genotyping",
+    "domainId": "pangenomics-structural-variation",
+    "order": 6,
+    "summary": "图上的序列比对与变异分型的概念、方法与研究应用。",
+    "keyConcepts": [
+      "图上的序列比对与变异分型"
+    ],
+    "methodIds": [],
+    "principleIds": [],
+    "dataIds": [],
+    "paperIds": [],
+    "tutorialIds": [],
+    "status": "planned",
+    "createdAt": null,
+    "updatedAt": null
+  },
+  {
+    "id": "m03-topic-07",
+    "title": "泛基因组可视化与应用",
+    "englishTitle": "Pangenome visualization",
+    "domainId": "pangenomics-structural-variation",
+    "order": 7,
+    "summary": "泛基因组可视化与应用的概念、方法与研究应用。",
+    "keyConcepts": [
+      "泛基因组可视化与应用"
+    ],
+    "methodIds": [],
+    "principleIds": [],
+    "dataIds": [],
+    "paperIds": [],
+    "tutorialIds": [],
+    "status": "planned",
+    "createdAt": null,
+    "updatedAt": null
+  },
+  {
+    "id": "m04-topic-01",
+    "title": "同源、直系同源和旁系同源",
+    "englishTitle": "Homology and orthology",
+    "domainId": "comparative-genomics",
+    "order": 1,
+    "summary": "同源、直系同源和旁系同源的概念、方法与研究应用。",
+    "keyConcepts": [
+      "同源、直系同源和旁系同源"
+    ],
+    "methodIds": [],
+    "principleIds": [],
+    "dataIds": [],
+    "paperIds": [],
+    "tutorialIds": [],
+    "status": "planned",
+    "createdAt": null,
+    "updatedAt": null
+  },
+  {
+    "id": "m04-topic-02",
+    "title": "基因家族聚类与扩张",
+    "englishTitle": "Gene family evolution",
+    "domainId": "comparative-genomics",
+    "order": 2,
+    "summary": "基因家族聚类与扩张的概念、方法与研究应用。",
+    "keyConcepts": [
+      "基因家族聚类与扩张"
+    ],
+    "methodIds": [],
+    "principleIds": [],
+    "dataIds": [],
+    "paperIds": [],
+    "tutorialIds": [],
+    "status": "planned",
+    "createdAt": null,
+    "updatedAt": null
+  },
+  {
+    "id": "m04-topic-03",
+    "title": "共线性与染色体演化",
+    "englishTitle": "Synteny and chromosome evolution",
+    "domainId": "comparative-genomics",
+    "order": 3,
+    "summary": "共线性与染色体演化的概念、方法与研究应用。",
+    "keyConcepts": [
+      "共线性与染色体演化"
+    ],
+    "methodIds": [],
+    "principleIds": [],
+    "dataIds": [],
+    "paperIds": [],
+    "tutorialIds": [],
+    "status": "planned",
+    "createdAt": null,
+    "updatedAt": null
+  },
+  {
+    "id": "m04-topic-04",
+    "title": "系统发育推断",
+    "englishTitle": "Phylogenetic inference",
+    "domainId": "comparative-genomics",
+    "order": 4,
+    "summary": "系统发育推断的概念、方法与研究应用。",
+    "keyConcepts": [
+      "系统发育推断"
+    ],
+    "methodIds": [],
+    "principleIds": [],
+    "dataIds": [],
+    "paperIds": [],
+    "tutorialIds": [],
+    "status": "planned",
+    "createdAt": null,
+    "updatedAt": null
+  },
+  {
+    "id": "m04-topic-05",
+    "title": "物种分化时间",
+    "englishTitle": "Divergence time",
+    "domainId": "comparative-genomics",
+    "order": 5,
+    "summary": "物种分化时间的概念、方法与研究应用。",
+    "keyConcepts": [
+      "物种分化时间"
+    ],
+    "methodIds": [],
+    "principleIds": [],
+    "dataIds": [],
+    "paperIds": [],
+    "tutorialIds": [],
+    "status": "planned",
+    "createdAt": null,
+    "updatedAt": null
+  },
+  {
+    "id": "m04-topic-06",
+    "title": "WGD 与古多倍化",
+    "englishTitle": "Whole genome duplication",
+    "domainId": "comparative-genomics",
+    "order": 6,
+    "summary": "WGD 与古多倍化的概念、方法与研究应用。",
+    "keyConcepts": [
+      "WGD 与古多倍化"
+    ],
+    "methodIds": [],
+    "principleIds": [],
+    "dataIds": [],
+    "paperIds": [],
+    "tutorialIds": [],
+    "status": "planned",
+    "createdAt": null,
+    "updatedAt": null
+  },
+  {
+    "id": "m04-topic-07",
+    "title": "选择压力与分子进化",
+    "englishTitle": "Molecular selection",
+    "domainId": "comparative-genomics",
+    "order": 7,
+    "summary": "选择压力与分子进化的概念、方法与研究应用。",
+    "keyConcepts": [
+      "选择压力与分子进化"
+    ],
+    "methodIds": [],
+    "principleIds": [],
+    "dataIds": [],
+    "paperIds": [],
+    "tutorialIds": [],
+    "status": "planned",
+    "createdAt": null,
+    "updatedAt": null
+  },
+  {
+    "id": "m05-topic-01",
+    "title": "群体遗传学基本概念",
+    "englishTitle": "Population genetics",
+    "domainId": "population-genetics",
+    "order": 1,
+    "summary": "群体遗传学基本概念的概念、方法与研究应用。",
+    "keyConcepts": [
+      "群体遗传学基本概念"
+    ],
+    "methodIds": [],
+    "principleIds": [],
+    "dataIds": [],
+    "paperIds": [],
+    "tutorialIds": [],
+    "status": "planned",
+    "createdAt": null,
+    "updatedAt": null
+  },
+  {
+    "id": "m05-topic-02",
+    "title": "SNP 检测、过滤与 VCF",
+    "englishTitle": "SNP and VCF",
+    "domainId": "population-genetics",
+    "order": 2,
+    "summary": "SNP 检测、过滤与 VCF的概念、方法与研究应用。",
+    "keyConcepts": [
+      "SNP 检测、过滤与 VCF"
+    ],
+    "methodIds": [],
+    "principleIds": [],
+    "dataIds": [],
+    "paperIds": [],
+    "tutorialIds": [],
+    "status": "planned",
+    "createdAt": null,
+    "updatedAt": null
+  },
+  {
+    "id": "m05-topic-03",
+    "title": "PCA、群体结构与祖先成分",
+    "englishTitle": "Population structure",
+    "domainId": "population-genetics",
+    "order": 3,
+    "summary": "PCA、群体结构与祖先成分的概念、方法与研究应用。",
+    "keyConcepts": [
+      "PCA、群体结构与祖先成分"
+    ],
+    "methodIds": [],
+    "principleIds": [],
+    "dataIds": [],
+    "paperIds": [],
+    "tutorialIds": [],
+    "status": "planned",
+    "createdAt": null,
+    "updatedAt": null
+  },
+  {
+    "id": "m05-topic-04",
+    "title": "多样性、分化、LD",
+    "englishTitle": "Diversity differentiation and LD",
+    "domainId": "population-genetics",
+    "order": 4,
+    "summary": "多样性、分化、LD的概念、方法与研究应用。",
+    "keyConcepts": [
+      "多样性、分化、LD"
+    ],
+    "methodIds": [],
+    "principleIds": [],
+    "dataIds": [],
+    "paperIds": [],
+    "tutorialIds": [],
+    "status": "planned",
+    "createdAt": null,
+    "updatedAt": null
+  },
+  {
+    "id": "m05-topic-05",
+    "title": "选择性清除",
+    "englishTitle": "Selective sweeps",
+    "domainId": "population-genetics",
+    "order": 5,
+    "summary": "选择性清除的概念、方法与研究应用。",
+    "keyConcepts": [
+      "选择性清除"
+    ],
+    "methodIds": [],
+    "principleIds": [],
+    "dataIds": [],
+    "paperIds": [],
+    "tutorialIds": [],
+    "status": "planned",
+    "createdAt": null,
+    "updatedAt": null
+  },
+  {
+    "id": "m05-topic-06",
+    "title": "群体历史动态",
+    "englishTitle": "Population history",
+    "domainId": "population-genetics",
+    "order": 6,
+    "summary": "群体历史动态的概念、方法与研究应用。",
+    "keyConcepts": [
+      "群体历史动态"
+    ],
+    "methodIds": [],
+    "principleIds": [],
+    "dataIds": [],
+    "paperIds": [],
+    "tutorialIds": [],
+    "status": "planned",
+    "createdAt": null,
+    "updatedAt": null
+  },
+  {
+    "id": "m05-topic-07",
+    "title": "驯化与环境适应案例",
+    "englishTitle": "Domestication",
+    "domainId": "population-genetics",
+    "order": 7,
+    "summary": "驯化与环境适应案例的概念、方法与研究应用。",
+    "keyConcepts": [
+      "驯化与环境适应案例"
+    ],
+    "methodIds": [],
+    "principleIds": [],
+    "dataIds": [],
+    "paperIds": [],
+    "tutorialIds": [],
+    "status": "planned",
+    "createdAt": null,
+    "updatedAt": null
+  },
+  {
+    "id": "m06-topic-01",
+    "title": "数量遗传学与遗传力",
+    "englishTitle": "Quantitative genetics",
+    "domainId": "gwas-breeding",
+    "order": 1,
+    "summary": "数量遗传学与遗传力的概念、方法与研究应用。",
+    "keyConcepts": [
+      "数量遗传学与遗传力"
+    ],
+    "methodIds": [],
+    "principleIds": [],
+    "dataIds": [],
+    "paperIds": [],
+    "tutorialIds": [],
+    "status": "planned",
+    "createdAt": null,
+    "updatedAt": null
+  },
+  {
+    "id": "m06-topic-02",
+    "title": "QTL 定位与遗传连锁",
+    "englishTitle": "QTL mapping",
+    "domainId": "gwas-breeding",
+    "order": 2,
+    "summary": "QTL 定位与遗传连锁的概念、方法与研究应用。",
+    "keyConcepts": [
+      "QTL 定位与遗传连锁"
+    ],
+    "methodIds": [],
+    "principleIds": [],
+    "dataIds": [],
+    "paperIds": [],
+    "tutorialIds": [],
+    "status": "planned",
+    "createdAt": null,
+    "updatedAt": null
+  },
+  {
+    "id": "m06-topic-03",
+    "title": "GWAS 关联检验基础",
+    "englishTitle": "GWAS",
+    "domainId": "gwas-breeding",
+    "order": 3,
+    "summary": "GWAS 关联检验基础的概念、方法与研究应用。",
+    "keyConcepts": [
+      "GWAS 关联检验基础"
+    ],
+    "methodIds": [],
+    "principleIds": [],
+    "dataIds": [],
+    "paperIds": [],
+    "tutorialIds": [],
+    "status": "planned",
+    "createdAt": null,
+    "updatedAt": null
+  },
+  {
+    "id": "m06-topic-04",
+    "title": "GWAS 模型",
+    "englishTitle": "GWAS models",
+    "domainId": "gwas-breeding",
+    "order": 4,
+    "summary": "GWAS 模型的概念、方法与研究应用。",
+    "keyConcepts": [
+      "GWAS 模型"
+    ],
+    "methodIds": [],
+    "principleIds": [],
+    "dataIds": [],
+    "paperIds": [],
+    "tutorialIds": [],
+    "status": "planned",
+    "createdAt": null,
+    "updatedAt": null
+  },
+  {
+    "id": "m06-topic-05",
+    "title": "Manhattan、QQ、LD、候选基因",
+    "englishTitle": "GWAS interpretation",
+    "domainId": "gwas-breeding",
+    "order": 5,
+    "summary": "Manhattan、QQ、LD、候选基因的概念、方法与研究应用。",
+    "keyConcepts": [
+      "Manhattan、QQ、LD、候选基因"
+    ],
+    "methodIds": [],
+    "principleIds": [],
+    "dataIds": [],
+    "paperIds": [],
+    "tutorialIds": [],
+    "status": "planned",
+    "createdAt": null,
+    "updatedAt": null
+  },
+  {
+    "id": "m06-topic-06",
+    "title": "基因组选择",
+    "englishTitle": "Genomic selection",
+    "domainId": "gwas-breeding",
+    "order": 6,
+    "summary": "基因组选择的概念、方法与研究应用。",
+    "keyConcepts": [
+      "基因组选择"
+    ],
+    "methodIds": [],
+    "principleIds": [],
+    "dataIds": [],
+    "paperIds": [],
+    "tutorialIds": [],
+    "status": "planned",
+    "createdAt": null,
+    "updatedAt": null
+  },
+  {
+    "id": "m06-topic-07",
+    "title": "机器学习预测与 G×E",
+    "englishTitle": "Machine learning and GxE",
+    "domainId": "gwas-breeding",
+    "order": 7,
+    "summary": "机器学习预测与 G×E的概念、方法与研究应用。",
+    "keyConcepts": [
+      "机器学习预测与 G×E"
+    ],
+    "methodIds": [],
+    "principleIds": [],
+    "dataIds": [],
+    "paperIds": [],
+    "tutorialIds": [],
+    "status": "planned",
+    "createdAt": null,
+    "updatedAt": null
+  },
+  {
+    "id": "m07-topic-01",
+    "title": "表观遗传基础",
+    "englishTitle": "Epigenetics",
+    "domainId": "epigenomics-3d-genome",
+    "order": 1,
+    "summary": "表观遗传基础的概念、方法与研究应用。",
+    "keyConcepts": [
+      "表观遗传基础"
+    ],
+    "methodIds": [],
+    "principleIds": [],
+    "dataIds": [],
+    "paperIds": [],
+    "tutorialIds": [],
+    "status": "planned",
+    "createdAt": null,
+    "updatedAt": null
+  },
+  {
+    "id": "m07-topic-02",
+    "title": "DNA 甲基化检测",
+    "englishTitle": "DNA methylation",
+    "domainId": "epigenomics-3d-genome",
+    "order": 2,
+    "summary": "DNA 甲基化检测的概念、方法与研究应用。",
+    "keyConcepts": [
+      "DNA 甲基化检测"
+    ],
+    "methodIds": [],
+    "principleIds": [],
+    "dataIds": [],
+    "paperIds": [],
+    "tutorialIds": [],
+    "status": "planned",
+    "createdAt": null,
+    "updatedAt": null
+  },
+  {
+    "id": "m07-topic-03",
+    "title": "DMR 分析",
+    "englishTitle": "Differential methylation",
+    "domainId": "epigenomics-3d-genome",
+    "order": 3,
+    "summary": "DMR 分析的概念、方法与研究应用。",
+    "keyConcepts": [
+      "DMR 分析"
+    ],
+    "methodIds": [],
+    "principleIds": [],
+    "dataIds": [],
+    "paperIds": [],
+    "tutorialIds": [],
+    "status": "planned",
+    "createdAt": null,
+    "updatedAt": null
+  },
+  {
+    "id": "m07-topic-04",
+    "title": "ATAC-seq 与开放染色质",
+    "englishTitle": "Chromatin accessibility",
+    "domainId": "epigenomics-3d-genome",
+    "order": 4,
+    "summary": "ATAC-seq 与开放染色质的概念、方法与研究应用。",
+    "keyConcepts": [
+      "ATAC-seq 与开放染色质"
+    ],
+    "methodIds": [],
+    "principleIds": [],
+    "dataIds": [],
+    "paperIds": [],
+    "tutorialIds": [],
+    "status": "planned",
+    "createdAt": null,
+    "updatedAt": null
+  },
+  {
+    "id": "m07-topic-05",
+    "title": "ChIP-seq、CUT&Tag 与 Motif",
+    "englishTitle": "ChIP-seq and motifs",
+    "domainId": "epigenomics-3d-genome",
+    "order": 5,
+    "summary": "ChIP-seq、CUT&Tag 与 Motif的概念、方法与研究应用。",
+    "keyConcepts": [
+      "ChIP-seq、CUT&Tag 与 Motif"
+    ],
+    "methodIds": [],
+    "principleIds": [],
+    "dataIds": [],
+    "paperIds": [],
+    "tutorialIds": [],
+    "status": "planned",
+    "createdAt": null,
+    "updatedAt": null
+  },
+  {
+    "id": "m07-topic-06",
+    "title": "Hi-C、Compartment、TAD、互作",
+    "englishTitle": "Three-dimensional genome",
+    "domainId": "epigenomics-3d-genome",
+    "order": 6,
+    "summary": "Hi-C、Compartment、TAD、互作的概念、方法与研究应用。",
+    "keyConcepts": [
+      "Hi-C、Compartment、TAD、互作"
+    ],
+    "methodIds": [],
+    "principleIds": [],
+    "dataIds": [],
+    "paperIds": [],
+    "tutorialIds": [],
+    "status": "planned",
+    "createdAt": null,
+    "updatedAt": null
+  },
+  {
+    "id": "m07-topic-07",
+    "title": "表观调控与植物响应案例",
+    "englishTitle": "Plant epigenetic response",
+    "domainId": "epigenomics-3d-genome",
+    "order": 7,
+    "summary": "表观调控与植物响应案例的概念、方法与研究应用。",
+    "keyConcepts": [
+      "表观调控与植物响应案例"
+    ],
+    "methodIds": [],
+    "principleIds": [],
+    "dataIds": [],
+    "paperIds": [],
+    "tutorialIds": [],
+    "status": "planned",
+    "createdAt": null,
+    "updatedAt": null
+  },
+  {
+    "id": "m08-topic-01",
+    "title": "scRNA-seq 与 snRNA-seq 基础",
+    "englishTitle": "Single-cell RNA sequencing",
+    "domainId": "single-cell-spatial-omics",
+    "order": 1,
+    "summary": "scRNA-seq 与 snRNA-seq 基础的概念、方法与研究应用。",
+    "keyConcepts": [
+      "scRNA-seq 与 snRNA-seq 基础"
+    ],
+    "methodIds": [],
+    "principleIds": [],
+    "dataIds": [],
+    "paperIds": [],
+    "tutorialIds": [],
+    "status": "planned",
+    "createdAt": null,
+    "updatedAt": null
+  },
+  {
+    "id": "m08-topic-02",
+    "title": "质控、归一化、批次校正",
+    "englishTitle": "Single-cell preprocessing",
+    "domainId": "single-cell-spatial-omics",
+    "order": 2,
+    "summary": "质控、归一化、批次校正的概念、方法与研究应用。",
+    "keyConcepts": [
+      "质控、归一化、批次校正"
+    ],
+    "methodIds": [],
+    "principleIds": [],
+    "dataIds": [],
+    "paperIds": [],
+    "tutorialIds": [],
+    "status": "planned",
+    "createdAt": null,
+    "updatedAt": null
+  },
+  {
+    "id": "m08-topic-03",
+    "title": "PCA/UMAP/t-SNE/聚类",
+    "englishTitle": "Dimensionality reduction",
+    "domainId": "single-cell-spatial-omics",
+    "order": 3,
+    "summary": "PCA/UMAP/t-SNE/聚类的概念、方法与研究应用。",
+    "keyConcepts": [
+      "PCA/UMAP/t-SNE/聚类"
+    ],
+    "methodIds": [],
+    "principleIds": [],
+    "dataIds": [],
+    "paperIds": [],
+    "tutorialIds": [],
+    "status": "planned",
+    "createdAt": null,
+    "updatedAt": null
+  },
+  {
+    "id": "m08-topic-04",
+    "title": "Marker Gene 与细胞类型注释",
+    "englishTitle": "Cell type annotation",
+    "domainId": "single-cell-spatial-omics",
+    "order": 4,
+    "summary": "Marker Gene 与细胞类型注释的概念、方法与研究应用。",
+    "keyConcepts": [
+      "Marker Gene 与细胞类型注释"
+    ],
+    "methodIds": [],
+    "principleIds": [],
+    "dataIds": [],
+    "paperIds": [],
+    "tutorialIds": [],
+    "status": "planned",
+    "createdAt": null,
+    "updatedAt": null
+  },
+  {
+    "id": "m08-topic-05",
+    "title": "拟时序",
+    "englishTitle": "Pseudotime",
+    "domainId": "single-cell-spatial-omics",
+    "order": 5,
+    "summary": "拟时序的概念、方法与研究应用。",
+    "keyConcepts": [
+      "拟时序"
+    ],
+    "methodIds": [],
+    "principleIds": [],
+    "dataIds": [],
+    "paperIds": [],
+    "tutorialIds": [],
+    "status": "planned",
+    "createdAt": null,
+    "updatedAt": null
+  },
+  {
+    "id": "m08-topic-06",
+    "title": "空间转录组与反卷积",
+    "englishTitle": "Spatial transcriptomics",
+    "domainId": "single-cell-spatial-omics",
+    "order": 6,
+    "summary": "空间转录组与反卷积的概念、方法与研究应用。",
+    "keyConcepts": [
+      "空间转录组与反卷积"
+    ],
+    "methodIds": [],
+    "principleIds": [],
+    "dataIds": [],
+    "paperIds": [],
+    "tutorialIds": [],
+    "status": "planned",
+    "createdAt": null,
+    "updatedAt": null
+  },
+  {
+    "id": "m08-topic-07",
+    "title": "单细胞多组学",
+    "englishTitle": "Single-cell multiomics",
+    "domainId": "single-cell-spatial-omics",
+    "order": 7,
+    "summary": "单细胞多组学的概念、方法与研究应用。",
+    "keyConcepts": [
+      "单细胞多组学"
+    ],
+    "methodIds": [],
+    "principleIds": [],
+    "dataIds": [],
+    "paperIds": [],
+    "tutorialIds": [],
+    "status": "planned",
+    "createdAt": null,
+    "updatedAt": null
+  },
+  {
+    "id": "m09-topic-01",
+    "title": "常规 RNA-seq 与差异表达",
+    "englishTitle": "RNA-seq",
+    "domainId": "regulatory-genomics-ai",
+    "order": 1,
+    "summary": "常规 RNA-seq 与差异表达的概念、方法与研究应用。",
+    "keyConcepts": [
+      "常规 RNA-seq 与差异表达"
+    ],
+    "methodIds": [],
+    "principleIds": [],
+    "dataIds": [],
+    "paperIds": [],
+    "tutorialIds": [],
+    "status": "planned",
+    "createdAt": null,
+    "updatedAt": null
+  },
+  {
+    "id": "m09-topic-02",
+    "title": "共表达网络",
+    "englishTitle": "Coexpression networks",
+    "domainId": "regulatory-genomics-ai",
+    "order": 2,
+    "summary": "共表达网络的概念、方法与研究应用。",
+    "keyConcepts": [
+      "共表达网络"
+    ],
+    "methodIds": [],
+    "principleIds": [],
+    "dataIds": [],
+    "paperIds": [],
+    "tutorialIds": [],
+    "status": "planned",
+    "createdAt": null,
+    "updatedAt": null
+  },
+  {
+    "id": "m09-topic-03",
+    "title": "基因调控网络",
+    "englishTitle": "Gene regulatory networks",
+    "domainId": "regulatory-genomics-ai",
+    "order": 3,
+    "summary": "基因调控网络的概念、方法与研究应用。",
+    "keyConcepts": [
+      "基因调控网络"
+    ],
+    "methodIds": [],
+    "principleIds": [],
+    "dataIds": [],
+    "paperIds": [],
+    "tutorialIds": [],
+    "status": "planned",
+    "createdAt": null,
+    "updatedAt": null
+  },
+  {
+    "id": "m09-topic-04",
+    "title": "顺式调控元件与 Motif",
+    "englishTitle": "Cis-regulatory motifs",
+    "domainId": "regulatory-genomics-ai",
+    "order": 4,
+    "summary": "顺式调控元件与 Motif的概念、方法与研究应用。",
+    "keyConcepts": [
+      "顺式调控元件与 Motif"
+    ],
+    "methodIds": [],
+    "principleIds": [],
+    "dataIds": [],
+    "paperIds": [],
+    "tutorialIds": [],
+    "status": "planned",
+    "createdAt": null,
+    "updatedAt": null
+  },
+  {
+    "id": "m09-topic-05",
+    "title": "多组学整合",
+    "englishTitle": "Multiomics integration",
+    "domainId": "regulatory-genomics-ai",
+    "order": 5,
+    "summary": "多组学整合的概念、方法与研究应用。",
+    "keyConcepts": [
+      "多组学整合"
+    ],
+    "methodIds": [],
+    "principleIds": [],
+    "dataIds": [],
+    "paperIds": [],
+    "tutorialIds": [],
+    "status": "planned",
+    "createdAt": null,
+    "updatedAt": null
+  },
+  {
+    "id": "m09-topic-06",
+    "title": "DNA/蛋白质基础模型",
+    "englishTitle": "Sequence foundation models",
+    "domainId": "regulatory-genomics-ai",
+    "order": 6,
+    "summary": "DNA/蛋白质基础模型的概念、方法与研究应用。",
+    "keyConcepts": [
+      "DNA/蛋白质基础模型"
+    ],
+    "methodIds": [],
+    "principleIds": [],
+    "dataIds": [],
+    "paperIds": [],
+    "tutorialIds": [],
+    "status": "planned",
+    "createdAt": null,
+    "updatedAt": null
+  },
+  {
+    "id": "m09-topic-07",
+    "title": "AI 功能预测、表达与变异效应",
+    "englishTitle": "AI functional prediction",
+    "domainId": "regulatory-genomics-ai",
+    "order": 7,
+    "summary": "AI 功能预测、表达与变异效应的概念、方法与研究应用。",
+    "keyConcepts": [
+      "AI 功能预测、表达与变异效应"
+    ],
+    "methodIds": [],
+    "principleIds": [],
+    "dataIds": [],
+    "paperIds": [],
+    "tutorialIds": [],
+    "status": "planned",
+    "createdAt": null,
+    "updatedAt": null
+  }
+]

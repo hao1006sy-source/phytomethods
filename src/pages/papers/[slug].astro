@@ -1,0 +1,5 @@
+---
+import Base from '../../layouts/Base.astro';import {getCollection,render} from 'astro:content';
+export async function getStaticPaths(){return (await getCollection('papers',({data})=>data.status==='published')).map(entry=>({params:{slug:entry.id},props:{entry}}));}const {entry}=Astro.props;const {Content}=await render(entry);const base=import.meta.env.BASE_URL;
+---
+<Base title={entry.data.title}><p><a href={`${base}papers/`}>文献索引</a></p><h1>{entry.data.title}</h1><p>{entry.data.authors} · {entry.data.journal} · {entry.data.year}</p><p>{entry.data.type==='method'?'方法论文':'研究案例'} · <a href={`https://doi.org/${entry.data.doi}`}>DOI: {entry.data.doi}</a></p><Content/>{entry.data.methodIds.length>0 && <p>相关方法：{entry.data.methodIds.map(id=><a href={`${base}methods/${id}/`}>{id}　</a>)}</p>}</Base>

@@ -1,0 +1,4 @@
+---
+import Base from '../../layouts/Base.astro';import {getCollection} from 'astro:content';const entries=await getCollection('tutorials',({data})=>data.status==='published');const base=import.meta.env.BASE_URL;
+---
+<Base title="分析教程"><h1>分析教程</h1>{entries.map(e=><article class="card"><h2><a href={`${base}tutorials/${e.id}/`}>{e.data.title}</a></h2><p>{e.data.summary}</p><p>命令模板，未执行</p></article>)}</Base>

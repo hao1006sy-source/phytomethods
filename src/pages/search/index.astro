@@ -1,0 +1,6 @@
+---
+import Base from '../../layouts/Base.astro';const base=import.meta.env.BASE_URL;
+---
+<Base title="全站搜索"><h1>全站搜索</h1><div id="search"></div><link href={`${base}pagefind/pagefind-ui.css`} rel="stylesheet"/><script is:inline define:vars={{base}}>
+const s=document.createElement('script');s.src=base+'pagefind/pagefind-ui.js';s.onload=()=>{new PagefindUI({element:'#search',showSubResults:true,translations:{placeholder:'搜索方法、专题或文献',zero_results:'未找到结果'}});const q=new URLSearchParams(location.search).get('q');if(q){const input=document.querySelector('.pagefind-ui__search-input');input.value=q;input.dispatchEvent(new Event('input',{bubbles:true}));}};document.body.appendChild(s);
+</script></Base>

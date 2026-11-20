@@ -1,0 +1,14 @@
+---
+const { kind = 'assembly' } = Astro.props;
+const figures: Record<string,{title:string, lines:string[], note:string}> = {
+ assembly:{title:'从测序到染色体级组装',lines:['样本 DNA｜质量与倍性','测序 reads｜HiFi / ONT / Illumina','组装图与路径｜contig','Hi-C 等长程证据｜scaffold','染色体级序列｜独立质量评估'],note:'原理示意：scaffold 的排列和定向需要长程证据与人工或计算复核。'},
+ graphs:{title:'三类组装图思路',lines:['OLC｜reads 重叠 → 布局 → 一致序列','de Bruijn｜切分 k-mer → 邻接图 → 路径','String graph｜重叠关系 → 去除传递边 → 路径'],note:'原理示意：实际软件使用图清理、纠错和多种附加证据。'},
+ haplotypes:{title:'杂合位点与单倍型路径',lines:['共同序列 A → 杂合位点 B₁ → C₁ → 共同序列 D','共同序列 A → 杂合位点 B₂ → C₂ → 共同序列 D','跨位点 reads / 亲本 k-mer / Hi-C → 支持路径连接'],note:'原理示意：两条路径是教学例子，不代表真实样本。'},
+ hifiasm:{title:'Hifiasm 基本流程',lines:['HiFi reads → 纠错与重叠','构建相位感知组装图 → 分析分叉','图清理与路径选择 → GFA / contig','可选 Hi-C 或亲本数据 → 辅助相位'],note:'原理示意：不同版本与运行模式的实际流程和输出有所不同。'},
+ verkko:{title:'Verkko 基本流程',lines:['高准确度长 reads → 纠错 → 多重 de Bruijn 图','ONT 超长 reads → 比对到图','逐步解析重复和复杂连接 → 路径','一致序列 → 组装 FASTA 与 GFA'],note:'原理示意：相位信息可由亲本或 Hi-C 数据提供。'},
+ merqury:{title:'Merqury 的 k-mer 评估',lines:['高准确度 reads → k-mer 计数与过滤','组装 FASTA → k-mer 计数','比较集合 → reads 特有 / 组装共有 / 组装特有','拷贝数频谱 → 完整度与 QV 估计'],note:'原理示意：频谱结果受 reads 质量、覆盖度与 k 的选择影响。'}
+};
+const f=figures[kind];
+---
+<figure class="diagram"><svg viewBox={`0 0 760 ${f.lines.length*60+35}`} role="img" aria-label={f.title}><title>{f.title}</title>{f.lines.map((line,i)=><g><rect x="12" y={10+i*60} width="736" height="46" rx="7" fill={i%2?'#e8f3f0':'#edf3f7'} stroke="#a9c7c4"/><text x="28" y={40+i*60} fill="#153b54" font-size="17">{line}</text></g>)}</svg><figcaption>{f.title}。{f.note}</figcaption></figure>
+<style>.diagram{margin:1.5rem 0;padding:1rem;background:white;border:1px solid #dce5e8;border-radius:8px}.diagram svg{display:block;width:100%;height:auto}.diagram figcaption{font-size:.9rem;color:#4d626d;margin-top:.5rem}@media(max-width:600px){.diagram{overflow-x:auto}.diagram svg{min-width:650px}}</style>

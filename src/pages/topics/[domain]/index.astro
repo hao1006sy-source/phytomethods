@@ -1,0 +1,10 @@
+---
+import Base from '../../../layouts/Base.astro';
+import AssemblyOverview from '../../../components/AssemblyOverview.astro';
+import Diagram from '../../../components/Diagram.astro';
+import { domains } from '../../../data/domains';
+import { topicLists, publishedTopics } from '../../../data/topics';
+export function getStaticPaths() { return domains.map(d => ({ params:{domain:d[1]}, props:{domain:d} })); }
+const {domain} = Astro.props; const [id,slug,title,summary] = domain; const base=import.meta.env.BASE_URL;
+---
+<Base title={title}><p><a href={`${base}topics/`}>研究领域</a> / {title}</p><p class="id">{id}</p><h1>{title}</h1><p>{summary}。</p><p>本领域围绕植物基因组研究中的数据获取、计算分析与结果解释展开。研究者需要依据生物学问题选择数据类型，了解分析方法的假设，并通过独立证据评估结果。</p>{id==='M01' && <><Diagram kind="assembly"/><AssemblyOverview/></>}<h2>专题目录</h2><div class="grid">{topicLists[slug].map((t,i)=><article class="card"><span class="id">{id}.{String(i+1).padStart(2,'0')}</span><h2>{t}</h2>{slug==='genome-assembly' && publishedTopics[i] ? <a href={`${base}topics/${slug}/${publishedTopics[i]}/`}>阅读专题 →</a> : <span>筹备中</span>}</article>)}</div>{id==='M01' && <p><a href={`${base}methods/`}>查看组装工具</a> · <a href={`${base}papers/`}>查看方法文献</a> · <a href={`${base}tutorials/`}>查看教程</a></p>}</Base>
