@@ -1139,10 +1139,12 @@
       "多重检验"
     ],
     "methodIds": [
-      "gapit"
+      "gapit",
+      "scipy"
     ],
     "principleIds": [
-      "gwas-mixed-model"
+      "gwas-mixed-model",
+      "linear-regression"
     ],
     "dataIds": [
       "variant-data",
@@ -1152,9 +1154,12 @@
       "gwas-mlm-paper",
       "rice-gwas-2010",
       "gapit3-paper",
-      "rice-gapit-2023"
+      "rice-gapit-2023",
+      "scipy-paper"
     ],
-    "tutorialIds": [],
+    "tutorialIds": [
+      "gwas-synthetic"
+    ],
     "status": "draft",
     "createdAt": null,
     "updatedAt": "2026-11-21"
@@ -1209,10 +1214,12 @@
       "候选基因"
     ],
     "methodIds": [
-      "gapit"
+      "gapit",
+      "scipy"
     ],
     "principleIds": [
-      "gwas-mixed-model"
+      "gwas-mixed-model",
+      "linear-regression"
     ],
     "dataIds": [
       "variant-data",
@@ -1222,9 +1229,12 @@
       "rice-gwas-2010",
       "gwas-mlm-paper",
       "gapit3-paper",
-      "rice-gapit-2023"
+      "rice-gapit-2023",
+      "scipy-paper"
     ],
-    "tutorialIds": [],
+    "tutorialIds": [
+      "gwas-synthetic"
+    ],
     "status": "draft",
     "createdAt": null,
     "updatedAt": "2026-11-21"

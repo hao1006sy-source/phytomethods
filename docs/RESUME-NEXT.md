@@ -17,3 +17,5 @@
 - Scanpy 1.13.0 的模拟单细胞示例与教程已完成同环境两次运行；输出和依赖记录在 xamples/single-cell/，植物数据仍待执行。
 
 - M08 单细胞散点图由已验证的模拟 Scanpy 结果生成；运行 python scripts/generate-single-cell-demo.py --check 检查图表数据一致性。
+
+- M06 模拟 GWAS 教程已运行，输入、输出和版本在 xamples/gwas/verified-20261121/；运行 python scripts/check-gwas-example.py 复算。GAPIT 本身和真实植物 GWAS 尚未执行。
