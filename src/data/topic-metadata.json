@@ -1269,18 +1269,20 @@
     "englishTitle": "Epigenetics",
     "domainId": "epigenomics-3d-genome",
     "order": 1,
-    "summary": "表观遗传基础的概念、方法与研究应用。",
+    "summary": "植物染色质、DNA 甲基化及组蛋白标记的研究基础。",
     "keyConcepts": [
-      "表观遗传基础"
+      "DNA甲基化",
+      "组蛋白修饰",
+      "染色质"
     ],
     "methodIds": [],
     "principleIds": [],
     "dataIds": [],
     "paperIds": [],
     "tutorialIds": [],
-    "status": "planned",
+    "status": "draft",
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-11-21"
   },
   {
     "id": "m07-topic-02",
@@ -1288,18 +1290,21 @@
     "englishTitle": "DNA methylation",
     "domainId": "epigenomics-3d-genome",
     "order": 2,
-    "summary": "DNA 甲基化检测的概念、方法与研究应用。",
+    "summary": "WGBS 比对、甲基化计数及不同序列背景的质量控制。",
     "keyConcepts": [
-      "DNA 甲基化检测"
+      "WGBS",
+      "CG",
+      "CHG",
+      "CHH"
     ],
     "methodIds": [],
     "principleIds": [],
     "dataIds": [],
     "paperIds": [],
     "tutorialIds": [],
-    "status": "planned",
+    "status": "draft",
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-11-21"
   },
   {
     "id": "m07-topic-03",
@@ -1307,18 +1312,20 @@
     "englishTitle": "Differential methylation",
     "domainId": "epigenomics-3d-genome",
     "order": 3,
-    "summary": "DMR 分析的概念、方法与研究应用。",
+    "summary": "甲基化计数统计建模与差异区域的生物学解释。",
     "keyConcepts": [
-      "DMR 分析"
+      "DMR",
+      "beta-binomial",
+      "生物学重复"
     ],
     "methodIds": [],
     "principleIds": [],
     "dataIds": [],
     "paperIds": [],
     "tutorialIds": [],
-    "status": "planned",
+    "status": "draft",
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-11-21"
   },
   {
     "id": "m07-topic-04",
