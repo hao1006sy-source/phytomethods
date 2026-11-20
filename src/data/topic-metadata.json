@@ -890,18 +890,25 @@
     "englishTitle": "SNP and VCF",
     "domainId": "population-genetics",
     "order": 2,
-    "summary": "SNP 检测、过滤与 VCF的概念、方法与研究应用。",
+    "summary": "从测序比对到 VCF 理解小变异检测和基因型过滤。",
     "keyConcepts": [
-      "SNP 检测、过滤与 VCF"
+      "SNP",
+      "InDel",
+      "VCF",
+      "基因型质量",
+      "缺失率"
     ],
     "methodIds": [],
     "principleIds": [],
     "dataIds": [],
-    "paperIds": [],
+    "paperIds": [
+      "bcftools-paper",
+      "rice-3010-pangenome"
+    ],
     "tutorialIds": [],
-    "status": "planned",
+    "status": "draft",
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-11-21"
   },
   {
     "id": "m05-topic-03",
