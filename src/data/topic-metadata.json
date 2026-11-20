@@ -195,18 +195,30 @@
     "englishTitle": "Genome annotation and GFF3/GTF",
     "domainId": "genome-annotation",
     "order": 1,
-    "summary": "基因组注释基础与 GFF3/GTF的概念、方法与研究应用。",
+    "summary": "区分结构与功能注释，理解基因模型及常用文件格式。",
     "keyConcepts": [
-      "基因组注释基础与 GFF3/GTF"
+      "FASTA",
+      "GFF3",
+      "CDS",
+      "UTR"
     ],
-    "methodIds": [],
-    "principleIds": [],
-    "dataIds": [],
-    "paperIds": [],
+    "methodIds": [
+      "braker3",
+      "interproscan"
+    ],
+    "principleIds": [
+      "annotation"
+    ],
+    "dataIds": [
+      "annotation-input"
+    ],
+    "paperIds": [
+      "braker3-paper"
+    ],
     "tutorialIds": [],
-    "status": "planned",
+    "status": "published",
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-11-20"
   },
   {
     "id": "m02-topic-02",
@@ -214,18 +226,32 @@
     "englishTitle": "Repeats and transposable elements",
     "domainId": "genome-annotation",
     "order": 2,
-    "summary": "重复序列与转座子识别的概念、方法与研究应用。",
+    "summary": "认识转座子分类、结构识别、同源搜索和重复屏蔽。",
     "keyConcepts": [
-      "重复序列与转座子识别"
+      "LTR",
+      "LINE",
+      "SINE",
+      "TIR"
     ],
-    "methodIds": [],
-    "principleIds": [],
-    "dataIds": [],
-    "paperIds": [],
-    "tutorialIds": [],
-    "status": "planned",
+    "methodIds": [
+      "edta"
+    ],
+    "principleIds": [
+      "annotation"
+    ],
+    "dataIds": [
+      "annotation-input"
+    ],
+    "paperIds": [
+      "edta-paper",
+      "repeatmodeler2-paper"
+    ],
+    "tutorialIds": [
+      "edta-tutorial"
+    ],
+    "status": "published",
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-11-20"
   },
   {
     "id": "m02-topic-03",
@@ -233,18 +259,28 @@
     "englishTitle": "Protein-coding gene prediction",
     "domainId": "genome-annotation",
     "order": 3,
-    "summary": "蛋白编码基因预测的概念、方法与研究应用。",
+    "summary": "结合统计模型、RNA-seq 与蛋白证据预测基因结构。",
     "keyConcepts": [
-      "蛋白编码基因预测"
+      "HMM",
+      "外显子",
+      "内含子"
     ],
-    "methodIds": [],
-    "principleIds": [],
-    "dataIds": [],
-    "paperIds": [],
+    "methodIds": [
+      "braker3"
+    ],
+    "principleIds": [
+      "annotation"
+    ],
+    "dataIds": [
+      "annotation-input"
+    ],
+    "paperIds": [
+      "braker3-paper"
+    ],
     "tutorialIds": [],
-    "status": "planned",
+    "status": "published",
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-11-20"
   },
   {
     "id": "m02-topic-04",
@@ -252,18 +288,27 @@
     "englishTitle": "Transcript-assisted annotation",
     "domainId": "genome-annotation",
     "order": 4,
-    "summary": "转录本辅助注释的概念、方法与研究应用。",
+    "summary": "使用转录本和剪接证据支持基因模型。",
     "keyConcepts": [
-      "转录本辅助注释"
+      "RNA-seq",
+      "可变剪接"
     ],
-    "methodIds": [],
-    "principleIds": [],
-    "dataIds": [],
-    "paperIds": [],
+    "methodIds": [
+      "braker3"
+    ],
+    "principleIds": [
+      "annotation"
+    ],
+    "dataIds": [
+      "annotation-input"
+    ],
+    "paperIds": [
+      "braker3-paper"
+    ],
     "tutorialIds": [],
-    "status": "planned",
+    "status": "published",
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-11-20"
   },
   {
     "id": "m02-topic-05",
@@ -271,18 +316,26 @@
     "englishTitle": "Non-coding RNA annotation",
     "domainId": "genome-annotation",
     "order": 5,
-    "summary": "非编码 RNA 注释的概念、方法与研究应用。",
+    "summary": "结合序列与二级结构识别不同非编码 RNA。",
     "keyConcepts": [
-      "非编码 RNA 注释"
+      "tRNA",
+      "协方差模型"
     ],
     "methodIds": [],
-    "principleIds": [],
-    "dataIds": [],
-    "paperIds": [],
+    "principleIds": [
+      "annotation"
+    ],
+    "dataIds": [
+      "annotation-input"
+    ],
+    "paperIds": [
+      "infernal-paper",
+      "trnascan-paper"
+    ],
     "tutorialIds": [],
-    "status": "planned",
+    "status": "published",
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-11-20"
   },
   {
     "id": "m02-topic-06",
@@ -290,18 +343,29 @@
     "englishTitle": "Gene functional annotation",
     "domainId": "genome-annotation",
     "order": 6,
-    "summary": "基因功能注释的概念、方法与研究应用。",
+    "summary": "通过序列同源和蛋白结构域解释基因功能。",
     "keyConcepts": [
-      "基因功能注释"
+      "蛋白结构域",
+      "GO",
+      "InterPro"
     ],
-    "methodIds": [],
-    "principleIds": [],
-    "dataIds": [],
-    "paperIds": [],
+    "methodIds": [
+      "interproscan"
+    ],
+    "principleIds": [
+      "annotation"
+    ],
+    "dataIds": [
+      "annotation-input"
+    ],
+    "paperIds": [
+      "interproscan-paper",
+      "mango-annotation"
+    ],
     "tutorialIds": [],
-    "status": "planned",
+    "status": "published",
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-11-20"
   },
   {
     "id": "m02-topic-07",
@@ -309,18 +373,25 @@
     "englishTitle": "Annotation quality",
     "domainId": "genome-annotation",
     "order": 7,
-    "summary": "注释质量评估的概念、方法与研究应用。",
+    "summary": "综合保守基因和证据支持评估注释质量。",
     "keyConcepts": [
-      "注释质量评估"
+      "BUSCO",
+      "OMArk"
     ],
     "methodIds": [],
-    "principleIds": [],
-    "dataIds": [],
-    "paperIds": [],
+    "principleIds": [
+      "annotation"
+    ],
+    "dataIds": [
+      "annotation-input"
+    ],
+    "paperIds": [
+      "braker3-paper"
+    ],
     "tutorialIds": [],
-    "status": "planned",
+    "status": "published",
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-11-20"
   },
   {
     "id": "m03-topic-01",
