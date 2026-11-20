@@ -746,18 +746,27 @@
     "englishTitle": "Divergence time",
     "domainId": "comparative-genomics",
     "order": 5,
-    "summary": "物种分化时间的概念、方法与研究应用。",
+    "summary": "结合分子钟、化石校准与系统树估计谱系分化时间。",
     "keyConcepts": [
-      "物种分化时间"
+      "分子钟",
+      "化石校准",
+      "时间树",
+      "MCMC"
     ],
     "methodIds": [],
-    "principleIds": [],
-    "dataIds": [],
-    "paperIds": [],
+    "principleIds": [
+      "phylogenetics"
+    ],
+    "dataIds": [
+      "proteins"
+    ],
+    "paperIds": [
+      "paml-paper"
+    ],
     "tutorialIds": [],
-    "status": "planned",
+    "status": "draft",
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-11-21"
   },
   {
     "id": "m04-topic-06",
