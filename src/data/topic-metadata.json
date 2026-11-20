@@ -1609,10 +1609,19 @@
       "共表达",
       "模块"
     ],
-    "methodIds": [],
-    "principleIds": [],
-    "dataIds": [],
-    "paperIds": [],
+    "methodIds": [
+      "wgcna"
+    ],
+    "principleIds": [
+      "coexpression"
+    ],
+    "dataIds": [
+      "expression-matrix"
+    ],
+    "paperIds": [
+      "wgcna-paper",
+      "purple-rice-wgcna"
+    ],
     "tutorialIds": [],
     "status": "draft",
     "createdAt": null,
