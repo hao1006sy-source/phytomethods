@@ -15,3 +15,6 @@ M01 的已发布记录应有同名 Markdown 正文，网页根据专题关系反
 新增专题时，将 Markdown 放入 `src/content/topics/`，设置 `domain` 和稳定 ID，并更新 `src/data/topic-metadata.json` 中对应记录为 `published`。动态路由按领域生成文章与侧栏；`src/lib/validate-content.ts` 负责构建期领域、专题、工具、论文、教程及受控标签校验。方法的 `topicIds` 和专题元数据的 `methodIds` 表示关联；论文使用 `methodIds` 数组，旧 `method` 字段仍可读取。添加经过论文证据确认的关系，并同时核对过滤和导航显示。
 
 开发参考：Kassis T, Agarwal V, He Y, Patel D, Brueckner AM. Scientific Agent Skills: A Library of Procedural Knowledge for Research Agents. 2026. https://doi.org/10.48550/arXiv.2609.00065 （本次用于科学写作流程；科学事实以各文章列示的原始来源为准）。
+
+## 发布前统一验证
+`npm run validate` 运行 Astro 类型检查、静态构建、Pagefind 和 `scripts/check-links.py`；GitHub Pages 工作流使用该命令。`status: draft` 的条目不会生成公开文章或进入搜索，科研文字、图解和教程需完成来源核查与浏览器测试后再发布。
