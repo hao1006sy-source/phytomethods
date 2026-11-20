@@ -1,0 +1,15 @@
+{
+  "status": "verified simulated example",
+  "input": "simulated-genotypes.tsv",
+  "samples": 8,
+  "loci": 6,
+  "pca": "column-centred genotype counts; no allele-frequency scaling",
+  "explained_variance": [
+    0.72265677,
+    0.17190119
+  ],
+  "python": "3.13.9",
+  "numpy": "2.5.2",
+  "matplotlib": "3.11.1",
+  "scope": "synthetic biallelic diploid genotypes; not real population data"
+}
