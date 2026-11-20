@@ -2,7 +2,7 @@
 title: SNP 检测、过滤与 VCF
 summary: 从测序比对到基因型矩阵，理解植物群体小变异检测和质量过滤。
 domain: population-genetics
-methods: []
+methods: [bcftools, plink]
 status: draft
 updatedAt: 2026-11-21
 ---

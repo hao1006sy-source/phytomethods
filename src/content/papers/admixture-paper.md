@@ -6,7 +6,7 @@ year: 2009
 journal: Genome Research
 doi: 10.1101/gr.094052.109
 type: method
-methodIds: []
+methodIds: [admixture]
 domainIds: [population-genetics]
 speciesIds: []
 status: draft

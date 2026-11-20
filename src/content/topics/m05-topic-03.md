@@ -2,7 +2,7 @@
 title: PCA、群体结构与祖先成分
 summary: 从基因型矩阵理解主成分、模型聚类和群体结构的解释。
 domain: population-genetics
-methods: []
+methods: [plink, admixture]
 status: draft
 updatedAt: 2026-11-21
 ---

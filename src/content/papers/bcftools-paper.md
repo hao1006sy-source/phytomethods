@@ -6,7 +6,7 @@ year: 2021
 journal: GigaScience
 doi: 10.1093/gigascience/giab008
 type: method
-methodIds: []
+methodIds: [bcftools]
 domainIds: [population-genetics]
 speciesIds: []
 status: draft

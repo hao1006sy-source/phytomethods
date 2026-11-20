@@ -898,12 +898,22 @@
       "基因型质量",
       "缺失率"
     ],
-    "methodIds": [],
-    "principleIds": [],
-    "dataIds": [],
+    "methodIds": [
+      "bcftools",
+      "plink"
+    ],
+    "principleIds": [
+      "variant-calling",
+      "genotype-statistics"
+    ],
+    "dataIds": [
+      "variant-data"
+    ],
     "paperIds": [
       "bcftools-paper",
-      "rice-3010-pangenome"
+      "rice-3010-pangenome",
+      "plink-paper",
+      "rice-variant-comparison"
     ],
     "tutorialIds": [],
     "status": "draft",
@@ -923,12 +933,22 @@
       "祖先成分",
       "LD 剪枝"
     ],
-    "methodIds": [],
-    "principleIds": [],
-    "dataIds": [],
+    "methodIds": [
+      "plink",
+      "admixture"
+    ],
+    "principleIds": [
+      "genotype-statistics",
+      "ancestry-model"
+    ],
+    "dataIds": [
+      "variant-data"
+    ],
     "paperIds": [
       "admixture-paper",
-      "rice-3010-pangenome"
+      "rice-3010-pangenome",
+      "plink-paper",
+      "rice-roots-population"
     ],
     "tutorialIds": [],
     "status": "draft",
