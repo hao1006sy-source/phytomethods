@@ -1241,18 +1241,27 @@
     "englishTitle": "Machine learning and GxE",
     "domainId": "gwas-breeding",
     "order": 7,
-    "summary": "机器学习预测与 G×E的概念、方法与研究应用。",
+    "summary": "比较机器学习、基因组预测及环境互作建模。",
     "keyConcepts": [
-      "机器学习预测与 G×E"
+      "G×E",
+      "随机森林",
+      "神经网络",
+      "外部验证",
+      "数据泄漏"
     ],
     "methodIds": [],
     "principleIds": [],
-    "dataIds": [],
-    "paperIds": [],
+    "dataIds": [
+      "variant-data"
+    ],
+    "paperIds": [
+      "dnngp-paper",
+      "rrblup-paper"
+    ],
     "tutorialIds": [],
-    "status": "planned",
+    "status": "draft",
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-11-21"
   },
   {
     "id": "m07-topic-01",
