@@ -1627,18 +1627,20 @@
     "englishTitle": "Cis-regulatory motifs",
     "domainId": "regulatory-genomics-ai",
     "order": 4,
-    "summary": "顺式调控元件与 Motif的概念、方法与研究应用。",
+    "summary": "基序、位置权重矩阵与候选调控序列扫描。",
     "keyConcepts": [
-      "顺式调控元件与 Motif"
+      "motif",
+      "PWM",
+      "FIMO"
     ],
     "methodIds": [],
     "principleIds": [],
     "dataIds": [],
     "paperIds": [],
     "tutorialIds": [],
-    "status": "planned",
+    "status": "draft",
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-11-21"
   },
   {
     "id": "m09-topic-05",
@@ -1646,18 +1648,20 @@
     "englishTitle": "Multiomics integration",
     "domainId": "regulatory-genomics-ai",
     "order": 5,
-    "summary": "多组学整合的概念、方法与研究应用。",
+    "summary": "多视图数据、潜在因子与植物多组学整合。",
     "keyConcepts": [
-      "多组学整合"
+      "多组学",
+      "MOFA+",
+      "潜在因子"
     ],
     "methodIds": [],
     "principleIds": [],
     "dataIds": [],
     "paperIds": [],
     "tutorialIds": [],
-    "status": "planned",
+    "status": "draft",
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-11-21"
   },
   {
     "id": "m09-topic-06",
@@ -1665,18 +1669,20 @@
     "englishTitle": "Sequence foundation models",
     "domainId": "regulatory-genomics-ai",
     "order": 6,
-    "summary": "DNA/蛋白质基础模型的概念、方法与研究应用。",
+    "summary": "植物 DNA 与蛋白序列模型的预训练和迁移。",
     "keyConcepts": [
-      "DNA/蛋白质基础模型"
+      "AgroNT",
+      "PlantCAD",
+      "embedding"
     ],
     "methodIds": [],
     "principleIds": [],
     "dataIds": [],
     "paperIds": [],
     "tutorialIds": [],
-    "status": "planned",
+    "status": "draft",
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-11-21"
   },
   {
     "id": "m09-topic-07",
@@ -1684,17 +1690,19 @@
     "englishTitle": "AI functional prediction",
     "domainId": "regulatory-genomics-ai",
     "order": 7,
-    "summary": "AI 功能预测、表达与变异效应的概念、方法与研究应用。",
+    "summary": "序列功能和变异效应预测的评估及实验验证。",
     "keyConcepts": [
-      "AI 功能预测、表达与变异效应"
+      "变异效应",
+      "泛化",
+      "模型评估"
     ],
     "methodIds": [],
     "principleIds": [],
     "dataIds": [],
     "paperIds": [],
     "tutorialIds": [],
-    "status": "planned",
+    "status": "draft",
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-11-21"
   }
 ]
