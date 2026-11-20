@@ -1100,18 +1100,27 @@
     "englishTitle": "QTL mapping",
     "domainId": "gwas-breeding",
     "order": 2,
-    "summary": "QTL 定位与遗传连锁的概念、方法与研究应用。",
+    "summary": "利用遗传连锁和重组信息定位数量性状区域。",
     "keyConcepts": [
-      "QTL 定位与遗传连锁"
+      "QTL",
+      "遗传连锁",
+      "重组率",
+      "LOD",
+      "区间定位"
     ],
     "methodIds": [],
     "principleIds": [],
-    "dataIds": [],
-    "paperIds": [],
+    "dataIds": [
+      "variant-data"
+    ],
+    "paperIds": [
+      "rqtl2-paper",
+      "rice-roots-population"
+    ],
     "tutorialIds": [],
-    "status": "planned",
+    "status": "draft",
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-11-21"
   },
   {
     "id": "m06-topic-03",
