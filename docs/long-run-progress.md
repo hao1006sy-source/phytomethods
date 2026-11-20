@@ -10,7 +10,7 @@
 - 七个 M03 专题的元数据已改为草稿，并填入关键概念、原理、数据类型及相关工具、论文和教程 ID；构建引用检查通过。
 - 添加 7 篇 M03 正文草稿 `src/content/topics/m03-topic-01.md` 至 `m03-topic-07.md`；内容仍需逐篇加深、科学复核和按验收标准补充。
 - 已补充 AnchorWave、Minigraph-Cactus、PGGB、ODGI 的计算步骤、数据边界与官方来源；工具仍需完成版本、参数和关联审查。
-- 新增 6 项工具草稿（AnchorWave、SyRI、Minigraph-Cactus、PGGB、vg、ODGI）和 8 条论文草稿（含水稻和高粱案例），以及 SyRI 教程草稿；全部 `status: draft`，未进入公开目录或搜索。
+- 新增 6 项工具草稿（AnchorWave、SyRI、Minigraph-Cactus、PGGB、vg、ODGI）和 9 条论文草稿（含水稻和高粱案例），以及 SyRI 教程草稿；全部 `status: draft`，未进入公开目录或搜索。
 - 新增图参考 reads 定位演示，精确核对教学序列的子串关系，支持切换和重置。
 - 新增全基因组比对锚点链的逐步交互演示，支持前进、后退和重置；这是简化模型，不执行实际比对。
 - 新增核心基因矩阵、结构变异、PAV 状态和研究流程四幅原创 SVG 原理示意图；已在临时预览检查图注与放大功能。

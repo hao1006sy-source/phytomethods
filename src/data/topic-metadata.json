@@ -412,7 +412,8 @@
       "assembly"
     ],
     "paperIds": [
-      "rice-pangenome-paper"
+      "rice-pangenome-paper",
+      "rice-3010-pangenome"
     ],
     "tutorialIds": [],
     "status": "draft",
@@ -477,7 +478,8 @@
       "assembly"
     ],
     "paperIds": [
-      "syri-paper"
+      "syri-paper",
+      "rice-3010-pangenome"
     ],
     "tutorialIds": [
       "syri-intro"
@@ -507,7 +509,8 @@
       "assembly"
     ],
     "paperIds": [
-      "rice-pangenome-paper"
+      "rice-pangenome-paper",
+      "rice-3010-pangenome"
     ],
     "tutorialIds": [],
     "status": "draft",
