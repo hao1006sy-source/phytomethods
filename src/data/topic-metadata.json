@@ -1042,18 +1042,29 @@
     "englishTitle": "Domestication",
     "domainId": "population-genetics",
     "order": 7,
-    "summary": "驯化与环境适应案例的概念、方法与研究应用。",
+    "summary": "比较水稻、玉米和大豆驯化研究中的群体遗传证据。",
     "keyConcepts": [
-      "驯化与环境适应案例"
+      "驯化",
+      "野生祖先",
+      "选择",
+      "群体结构",
+      "环境适应"
     ],
     "methodIds": [],
     "principleIds": [],
-    "dataIds": [],
-    "paperIds": [],
+    "dataIds": [
+      "variant-data"
+    ],
+    "paperIds": [
+      "rice-domestication-huang",
+      "rice-3010-pangenome",
+      "maize-domestication",
+      "soybean-resequencing"
+    ],
     "tutorialIds": [],
-    "status": "planned",
+    "status": "draft",
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-11-21"
   },
   {
     "id": "m06-topic-01",
