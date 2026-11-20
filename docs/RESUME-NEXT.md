@@ -7,4 +7,4 @@
 - 源码：`src/content/topics/m03-topic-*.md`、`src/content/methods/` 对应 M03 文件、`src/content/papers/` 对应草稿、`src/content/tutorials/syri-intro.md`、`src/components/PangenomeDemo.astro`。
 - 立即执行：`git status --short`，读取 `docs/long-run-progress.md`；核对 M03 各草稿与原始论文、完善图解和教程，使用安全的开发预览测试草稿页面，完成后再修改 `src/data/topic-metadata.json` 的 published 状态。
 - 每次验证：`$env:ASTRO_TELEMETRY_DISABLED='1'; npm run validate; node scripts/browser-test-v1.3.mjs`。
-- 未解决：M03 内容与交互未完成发布态验证，教程未执行真实数据；M04～M09、完整知识图谱和最终验收尚未开始。不得把草稿合并为已完成内容。
+- 未解决：M03 路径与三幅图解已在临时预览通过四种宽度检查，M03 尚未完成发布态验证，教程未执行真实数据；M04～M09、完整知识图谱和最终验收尚未开始。不得把草稿合并为已完成内容。
