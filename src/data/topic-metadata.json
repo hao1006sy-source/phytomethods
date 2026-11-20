@@ -1156,18 +1156,28 @@
     "englishTitle": "GWAS models",
     "domainId": "gwas-breeding",
     "order": 4,
-    "summary": "GWAS 模型的概念、方法与研究应用。",
+    "summary": "比较固定效应、亲缘混合模型与多位点迭代方法。",
     "keyConcepts": [
-      "GWAS 模型"
+      "GLM",
+      "MLM",
+      "亲缘矩阵",
+      "FarmCPU",
+      "BLINK"
     ],
     "methodIds": [],
     "principleIds": [],
-    "dataIds": [],
-    "paperIds": [],
+    "dataIds": [
+      "variant-data"
+    ],
+    "paperIds": [
+      "gwas-mlm-paper",
+      "gapit3-paper",
+      "rice-gwas-2010"
+    ],
     "tutorialIds": [],
-    "status": "planned",
+    "status": "draft",
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-11-21"
   },
   {
     "id": "m06-topic-05",
