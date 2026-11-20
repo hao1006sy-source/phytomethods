@@ -1128,18 +1128,27 @@
     "englishTitle": "GWAS",
     "domainId": "gwas-breeding",
     "order": 3,
-    "summary": "GWAS 关联检验基础的概念、方法与研究应用。",
+    "summary": "从标记与表型关联理解群体结构、亲缘及多重检验。",
     "keyConcepts": [
-      "GWAS 关联检验基础"
+      "GWAS",
+      "关联检验",
+      "群体结构",
+      "亲缘关系",
+      "多重检验"
     ],
     "methodIds": [],
     "principleIds": [],
-    "dataIds": [],
-    "paperIds": [],
+    "dataIds": [
+      "variant-data"
+    ],
+    "paperIds": [
+      "gwas-mlm-paper",
+      "rice-gwas-2010"
+    ],
     "tutorialIds": [],
-    "status": "planned",
+    "status": "draft",
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-11-21"
   },
   {
     "id": "m06-topic-04",
