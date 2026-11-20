@@ -1136,14 +1136,21 @@
       "亲缘关系",
       "多重检验"
     ],
-    "methodIds": [],
-    "principleIds": [],
+    "methodIds": [
+      "gapit"
+    ],
+    "principleIds": [
+      "gwas-mixed-model"
+    ],
     "dataIds": [
-      "variant-data"
+      "variant-data",
+      "phenotype"
     ],
     "paperIds": [
       "gwas-mlm-paper",
-      "rice-gwas-2010"
+      "rice-gwas-2010",
+      "gapit3-paper",
+      "rice-gapit-2023"
     ],
     "tutorialIds": [],
     "status": "draft",
@@ -1164,15 +1171,21 @@
       "FarmCPU",
       "BLINK"
     ],
-    "methodIds": [],
-    "principleIds": [],
+    "methodIds": [
+      "gapit"
+    ],
+    "principleIds": [
+      "gwas-mixed-model"
+    ],
     "dataIds": [
-      "variant-data"
+      "variant-data",
+      "phenotype"
     ],
     "paperIds": [
       "gwas-mlm-paper",
       "gapit3-paper",
-      "rice-gwas-2010"
+      "rice-gwas-2010",
+      "rice-gapit-2023"
     ],
     "tutorialIds": [],
     "status": "draft",
@@ -1193,15 +1206,21 @@
       "LD",
       "候选基因"
     ],
-    "methodIds": [],
-    "principleIds": [],
+    "methodIds": [
+      "gapit"
+    ],
+    "principleIds": [
+      "gwas-mixed-model"
+    ],
     "dataIds": [
-      "variant-data"
+      "variant-data",
+      "phenotype"
     ],
     "paperIds": [
       "rice-gwas-2010",
       "gwas-mlm-paper",
-      "gapit3-paper"
+      "gapit3-paper",
+      "rice-gapit-2023"
     ],
     "tutorialIds": [],
     "status": "draft",
@@ -1222,13 +1241,20 @@
       "rrBLUP",
       "交叉验证"
     ],
-    "methodIds": [],
-    "principleIds": [],
+    "methodIds": [
+      "gapit"
+    ],
+    "principleIds": [
+      "gwas-mixed-model"
+    ],
     "dataIds": [
-      "variant-data"
+      "variant-data",
+      "phenotype"
     ],
     "paperIds": [
-      "rrblup-paper"
+      "rrblup-paper",
+      "gapit3-paper",
+      "rice-gapit-2023"
     ],
     "tutorialIds": [],
     "status": "draft",

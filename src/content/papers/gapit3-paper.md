@@ -6,7 +6,7 @@ year: 2021
 journal: Genomics Proteomics Bioinformatics
 doi: 10.1016/j.gpb.2021.08.005
 type: method
-methodIds: []
+methodIds: [gapit]
 domainIds: [gwas-breeding]
 speciesIds: []
 status: draft
