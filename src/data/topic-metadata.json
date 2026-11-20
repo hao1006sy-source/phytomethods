@@ -574,15 +574,18 @@
       "odgi"
     ],
     "principleIds": [
-      "graph-genomics"
+      "graph-genomics",
+      "minimizer"
     ],
     "dataIds": [
-      "graph"
+      "graph",
+      "short-reads"
     ],
     "paperIds": [
       "vg-paper",
       "odgi-paper",
-      "sorghum-graph-benchmark"
+      "sorghum-graph-benchmark",
+      "giraffe-paper"
     ],
     "tutorialIds": [],
     "status": "draft",

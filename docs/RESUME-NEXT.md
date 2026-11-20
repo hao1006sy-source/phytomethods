@@ -25,3 +25,5 @@
 - Bismark Rust 3.3.0 模拟甲基化教程已运行，python scripts/check-bismark-example.py 检查覆盖正链位点真值；真实植物数据仍待执行。
 
 - WGCNA 1.74 模拟表达教程已在 R 4.5.1 独立库运行两次，结果在 `examples/coexpression/verified-20261121/`。七个新增领域现各有至少一篇运行过的示例教程；其中仅 SyRI 使用拟南芥真实测试数据。
+
+- M03 的 vg 已补充 Giraffe 论文、索引及植物案例证据范围；vg 本身尚未运行。

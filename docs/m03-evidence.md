@@ -18,3 +18,5 @@
 
 ## 版本来源快照
 2026-11-21 查阅官方发布页：AnchorWave [v1.3.0](https://github.com/baoxingsong/AnchorWave/releases)、SyRI [v1.8.2](https://github.com/schneebergerlab/syri/releases)、PGGB [v0.7.4](https://github.com/pangenome/pggb/releases)、ODGI [v0.9.4](https://github.com/pangenome/odgi/releases)、vg [v1.78.0](https://github.com/vgteam/vg/releases)及 Cactus [v4.0.0](https://github.com/ComparativeGenomicsToolkit/cactus/releases)。这是发布页信息；其中 SyRI 1.8.2 已在隔离环境运行，其他工具的版本快照不代表本机安装；实际使用时应核对版本配套文档。高粱论文采用的是论文方法部分记录的历史版本，不能用此表替换。
+
+- vg 补充 [Giraffe 短读段方法论文](https://doi.org/10.1126/science.abg8871)、[当前索引说明](https://github.com/vgteam/vg/wiki/Index-Construction)与[许可](https://github.com/vgteam/vg/blob/master/LICENSE)。高粱对比中图来自真实组装，reads 为模拟；vg 本机未运行。
