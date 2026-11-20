@@ -1,0 +1,38 @@
+---
+import Base from '../../layouts/Base.astro';
+import {getCollection} from 'astro:content';
+import {domains} from '../../data/domains';
+import {topicMetadata} from '../../data/topics';
+import {principleLabels} from '../../data/tags';
+const base=import.meta.env.BASE_URL;
+const methods=await getCollection('methods',({data})=>data.status==='published');
+const papers=await getCollection('papers',({data})=>data.status==='published');
+const tutorials=await getCollection('tutorials',({data})=>data.status==='published');
+const topics=topicMetadata.filter(t=>t.status==='published');
+const records=methods.map(method=>({method,domain:domains.find(d=>d[1]===method.data.domainIds[0]),topics:topics.filter(t=>t.methodIds.includes(method.id)),papers:papers.filter(p=>p.data.methodIds.includes(method.id)),tutorials:tutorials.filter(t=>t.data.method===method.id)}));
+---
+<Base title="算法原理与知识关联">
+  <p class="breadcrumb"><a href={base}>首页</a> / 算法原理与知识关联</p>
+  <h1>算法原理与知识关联</h1>
+  <p class="page-lead">从计算思想或研究领域出发，查找已发布的工具，以及它们关联的专题、文献和教程。关联来自本站内容记录。</p>
+  <form id="knowledge-filters" class="filters">
+    <label>研究领域 <select name="domain"><option value="">全部领域</option>{domains.map(d=><option value={d[1]}>{d[2]}</option>)}</select></label>
+    <label>算法原理 <select name="principle"><option value="">全部原理</option>{Object.entries(principleLabels).map(([id,label])=><option value={id}>{label}</option>)}</select></label>
+    <button type="reset">重置筛选</button>
+  </form>
+  <p id="knowledge-count" aria-live="polite"></p>
+  <div class="knowledge-list">{records.map(({method,domain,topics,papers,tutorials})=><article class="knowledge-row" data-knowledge-domain={method.data.domainIds.join('|')} data-knowledge-principle={method.data.principleIds.join('|')}>
+    <div><span class="knowledge-label">{domain?.[2] ?? '研究领域'}</span><h2><a href={`${base}methods/${method.id}/`}>{method.data.name}</a></h2><p>{method.data.summary}</p><p><strong>算法原理：</strong>{method.data.principleIds.map(id=>principleLabels[id] ?? id).join('、')}</p></div>
+    <div class="knowledge-links"><p><strong>所属专题</strong> {topics.length ? topics.map(t=><a href={`${base}topics/${t.domainId}/${t.id}/`}>{t.title}</a>) : '暂无'}</p><p><strong>相关文献</strong> {papers.length ? papers.map(p=><a href={`${base}papers/${p.id}/`}>{p.data.title}</a>) : '暂无'}</p><p><strong>分析教程</strong> {tutorials.length ? tutorials.map(t=><a href={`${base}tutorials/${t.id}/`}>{t.data.title}</a>) : '暂无'}</p></div>
+  </article>)}</div>
+</Base>
+<script>
+  const form=document.querySelector<HTMLFormElement>('#knowledge-filters');
+  const rows=[...document.querySelectorAll<HTMLElement>('[data-knowledge-domain]')];
+  const count=document.querySelector<HTMLElement>('#knowledge-count');
+  const update=()=>{if(!form)return;const data=new FormData(form);const domain=String(data.get('domain') || '');const principle=String(data.get('principle') || '');let visible=0;for(const row of rows){const match=(!domain||row.dataset.knowledgeDomain?.split('|').includes(domain))&&(!principle||row.dataset.knowledgePrinciple?.split('|').includes(principle));row.hidden=!match;if(match)visible++;}if(count)count.textContent=visible?`找到 ${visible} 项工具`:'没有符合条件的工具，请调整筛选条件。';};
+  form?.addEventListener('change',update);form?.addEventListener('reset',()=>setTimeout(update,0));update();
+</script>
+<style>
+.knowledge-list{border-top:1px solid var(--border)}.knowledge-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;padding:24px 0;border-bottom:1px solid var(--border)}.knowledge-row[hidden]{display:none}.knowledge-row h2{margin:4px 0 8px;font-size:1.2rem}.knowledge-row p{margin:8px 0;font-size:.9rem}.knowledge-label{color:var(--teal);font-size:.8rem;font-weight:700}.knowledge-links p{display:flex;flex-wrap:wrap;gap:6px 12px}.knowledge-links strong{flex-basis:100%;color:var(--navy)}@media(max-width:700px){.knowledge-row{grid-template-columns:1fr;gap:8px}}
+</style>
