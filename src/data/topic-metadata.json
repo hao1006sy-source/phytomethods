@@ -1297,10 +1297,19 @@
       "CHG",
       "CHH"
     ],
-    "methodIds": [],
-    "principleIds": [],
-    "dataIds": [],
-    "paperIds": [],
+    "methodIds": [
+      "bismark"
+    ],
+    "principleIds": [
+      "bisulfite-mapping"
+    ],
+    "dataIds": [
+      "bisulfite-reads"
+    ],
+    "paperIds": [
+      "bismark-paper",
+      "wheat-methylome-2015"
+    ],
     "tutorialIds": [],
     "status": "draft",
     "createdAt": null,
@@ -1318,10 +1327,19 @@
       "beta-binomial",
       "生物学重复"
     ],
-    "methodIds": [],
-    "principleIds": [],
-    "dataIds": [],
-    "paperIds": [],
+    "methodIds": [
+      "bismark"
+    ],
+    "principleIds": [
+      "bisulfite-mapping"
+    ],
+    "dataIds": [
+      "bisulfite-reads"
+    ],
+    "paperIds": [
+      "bismark-paper",
+      "wheat-methylome-2015"
+    ],
     "tutorialIds": [],
     "status": "draft",
     "createdAt": null,
