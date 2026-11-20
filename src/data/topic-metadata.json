@@ -786,7 +786,8 @@
       "共线性"
     ],
     "methodIds": [
-      "mcscanx"
+      "mcscanx",
+      "wgd"
     ],
     "principleIds": [
       "phylogenetics",

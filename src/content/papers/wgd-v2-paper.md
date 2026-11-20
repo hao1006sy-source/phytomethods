@@ -6,7 +6,7 @@ year: 2024
 journal: Bioinformatics
 doi: 10.1093/bioinformatics/btae272
 type: method
-methodIds: []
+methodIds: [wgd]
 domainIds: [comparative-genomics]
 speciesIds: []
 status: draft
