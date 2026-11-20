@@ -15,3 +15,6 @@
 | 高粱图比较 | [Kopalli 等，2025](https://doi.org/10.1093/gigascience/giaf121) | 高粱材料、PGGB、Minigraph-Cactus、Giraffe、ODGI 使用 | 将软件版本和具体评价条件补充到相应页面 |
 
 图中的样本和序列均为教学模型，未作为真实实验结果。教程 `syri-intro` 是官方示例命令的草稿整理，当前没有实际运行记录。原论文中出现的工具和本网站工具之间的关联，应逐项依据方法部分确认。
+
+## 版本来源快照
+2026-11-21 查阅官方发布页：AnchorWave [v1.3.0](https://github.com/baoxingsong/AnchorWave/releases)、SyRI [v1.8.2](https://github.com/schneebergerlab/syri/releases)、PGGB [v0.7.4](https://github.com/pangenome/pggb/releases)、ODGI [v0.9.4](https://github.com/pangenome/odgi/releases)、vg [v1.78.0](https://github.com/vgteam/vg/releases)及 Cactus [v4.0.0](https://github.com/ComparativeGenomicsToolkit/cactus/releases)。这是发布页信息，不代表本机安装或教程已在这些版本运行；实际使用时应核对版本配套文档。高粱论文采用的是论文方法部分记录的历史版本，不能用此表替换。

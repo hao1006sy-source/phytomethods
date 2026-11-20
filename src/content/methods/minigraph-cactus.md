@@ -30,3 +30,7 @@ Kopalli 等将 Minigraph-Cactus 应用于高粱染色体组装，和其他图构
 
 ## 与 PGGB 的差异
 Minigraph-Cactus 使用 minigraph 引导分区，再通过 Cactus 完成碱基级多序列比对；PGGB 通常先做序列全对全比对，再诱导和规范化图。前者的参考与分区设置、后者的比对阈值与序列范围均会影响表示和资源开销。研究者应依据目标区域、样本集合、可用资源及独立评价结果比较，不能只依据工具名称推断某图更完整。
+
+
+## 官方发布版本记录
+2026-11-21 查看[官方发布页](https://github.com/ComparativeGenomicsToolkit/cactus/releases)，页面列出 Cactus v4.0.0。这是一项来源快照，软件更新后应重新核对；本机并未安装和运行该版本。
