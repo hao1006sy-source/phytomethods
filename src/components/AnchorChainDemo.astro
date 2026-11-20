@@ -1,0 +1,15 @@
+<section class="chain-demo" aria-labelledby="chain-title">
+  <h2 id="chain-title">锚点与共线链：逐步示意</h2>
+  <p>虚构序列的教学模型。横轴和纵轴分别表示参考与查询序列的位置；点代表候选锚点，并非真实比对数据。</p>
+  <div class="stage"><svg viewBox="0 0 720 330" role="img" aria-labelledby="chain-svg-title chain-desc"><title id="chain-svg-title">锚点按序连接形成候选共线链</title><desc id="chain-desc">五个示意锚点，其中四个按坐标递增组成一条候选共线链，一个点与该链不一致。</desc><path d="M95 40V265H650" stroke="#849ba6" stroke-width="2" fill="none"/><text x="335" y="310" fill="#17324d" font-size="17">参考序列位置 →</text><text x="24" y="150" fill="#17324d" font-size="17" transform="rotate(-90 24 150)">查询序列位置 →</text><path id="chain-path" d="M165 225 L270 190 L390 135 L540 75" fill="none" stroke="#197b73" stroke-width="4" opacity="0"/><g fill="#197b73"><circle cx="165" cy="225" r="9"/><circle cx="270" cy="190" r="9"/><circle cx="390" cy="135" r="9"/><circle cx="540" cy="75" r="9"/></g><circle id="chain-other" cx="470" cy="215" r="9" fill="#aa7440"/><g fill="#17324d" font-size="16"><text x="147" y="247">A</text><text x="252" y="212">B</text><text x="372" y="157">C</text><text x="522" y="97">D</text><text x="480" y="237">E</text></g></svg></div>
+  <p id="chain-explanation" aria-live="polite"></p>
+  <div><button type="button" id="chain-previous">上一步</button> <button type="button" id="chain-next">下一步</button> <button type="button" id="chain-reset">重置</button></div>
+  <p>示意链只说明顺序一致的一个候选，真实方法还需评估序列相似性、间距、方向、重复拷贝和多条竞争链，不能仅靠图中的几何连线确定同源关系。</p>
+</section>
+<script>
+let step=0;
+const explanations=['第 1 步：识别候选锚点 A–E；重复序列可能产生多个候选位置。','第 2 步：检查锚点在两条序列上的顺序；A、B、C、D 形成一条递增的候选链。','第 3 步：以链条作为后续比对的候选框架；E 与这条链不一致，还需核查其是否属于其他重复拷贝或重排。'];
+const update=()=>{const label=document.querySelector('#chain-explanation');if(label)label.textContent=explanations[step];document.querySelector('#chain-path')?.setAttribute('opacity',step>=1?'1':'0');document.querySelector('#chain-other')?.setAttribute('opacity',step===2?'1':'0.55');const previous=document.querySelector<HTMLButtonElement>('#chain-previous');const next=document.querySelector<HTMLButtonElement>('#chain-next');if(previous)previous.disabled=step===0;if(next)next.disabled=step===explanations.length-1;};
+document.querySelector('#chain-previous')?.addEventListener('click',()=>{step=Math.max(0,step-1);update();});document.querySelector('#chain-next')?.addEventListener('click',()=>{step=Math.min(explanations.length-1,step+1);update();});document.querySelector('#chain-reset')?.addEventListener('click',()=>{step=0;update();});update();
+</script>
+<style>.chain-demo{padding:24px;border:1px solid var(--border);background:#f8fbfa;border-radius:12px;margin:32px 0}.stage{overflow-x:auto}.stage svg{width:100%;min-width:620px;height:auto}.chain-demo p{font-size:.9rem}.chain-demo button{margin:4px}</style>
