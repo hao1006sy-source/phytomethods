@@ -961,18 +961,26 @@
     "englishTitle": "Diversity differentiation and LD",
     "domainId": "population-genetics",
     "order": 4,
-    "summary": "多样性、分化、LD的概念、方法与研究应用。",
+    "summary": "比较群体多样性、分化和连锁不平衡。",
     "keyConcepts": [
-      "多样性、分化、LD"
+      "π",
+      "Tajima’s D",
+      "FST",
+      "LD",
+      "滑动窗口"
     ],
     "methodIds": [],
     "principleIds": [],
-    "dataIds": [],
-    "paperIds": [],
+    "dataIds": [
+      "variant-data"
+    ],
+    "paperIds": [
+      "rice-3010-pangenome"
+    ],
     "tutorialIds": [],
-    "status": "planned",
+    "status": "draft",
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-11-21"
   },
   {
     "id": "m05-topic-05",
