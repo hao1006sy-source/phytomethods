@@ -34,3 +34,6 @@ show-coords -THrd out_m_i90_l100.delta > out_m_i90_l100.coords
 ```bash
 syri -c out_m_i90_l100.coords -r refgenome -q qrygenome -d out_m_i90_l100.delta
 ```
+
+## 环境可用性记录
+当前开发环境中未发现 `syri`、`nucmer` 或 `conda` 命令；Docker 客户端可见，Linux 引擎当前无法连接。因此本教程的命令仅依据官方示例整理，尚未产生实际分析输出。正式运行时应保存 `syri -h`、`nucmer --version` 或对应版本信息、软件安装来源、输入文件校验和、命令和日志。两份组装中同源染色体的整体方向也应按照[官方限制说明](https://github.com/schneebergerlab/syri#current-limitations)检查。
