@@ -20,4 +20,7 @@ Minigraph-Cactus 是从多个组装构建序列图的流程。它结合 minigrap
 需要多套经质量控制的组装及流程所需配置；具体准备、计算资源、索引和输出格式请参考[官方文档](https://github.com/ComparativeGenomicsToolkit/cactus/blob/master/doc/pangenome.md)。运行大型植物多倍体数据前应按同源区域、样本数量和算力规划。
 
 ## 论文与对比
-[原论文](https://doi.org/10.1038/s41587-023-01793-w)以人类和果蝇数据展示方法；它与 PGGB 的输入组织和图构建过程不同，比较应基于相同输入及下游任务。此处尚未添加经核实的植物应用案例。
+[原论文](https://doi.org/10.1038/s41587-023-01793-w)以人类和果蝇数据展示方法；它与 PGGB 的输入组织和图构建过程不同，比较应基于相同输入及下游任务。植物应用案例见下节。
+
+## 已核实的植物案例
+Kopalli 等将 Minigraph-Cactus 应用于高粱染色体组装，和其他图构建方法比较，并报告图比对评估结果。[GigaScience 原文](https://doi.org/10.1093/gigascience/giaf121)。研究采用的工具版本和具体参数见原文方法部分。
