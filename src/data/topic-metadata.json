@@ -649,7 +649,9 @@
       "arabidopsis-69-pangenome",
       "arabidopsis-adaptation"
     ],
-    "tutorialIds": [],
+    "tutorialIds": [
+      "orthofinder-intro"
+    ],
     "status": "draft",
     "createdAt": null,
     "updatedAt": "2026-11-21"
@@ -686,7 +688,9 @@
       "arabidopsis-69-pangenome",
       "tea-comparative"
     ],
-    "tutorialIds": [],
+    "tutorialIds": [
+      "orthofinder-intro"
+    ],
     "status": "draft",
     "createdAt": null,
     "updatedAt": "2026-11-21"

@@ -29,3 +29,6 @@ OrthoFinder 由 David Emms、Steven Kelly 等开发，针对多物种蛋白序�
 上游是物种选取、蛋白编码基因预测和序列质控；下游可结合基因树、共线性、家族大小及功能验证分析。软件版本 3 增加大规模分析的 `--core` 与 `--assign` 流程，具体条件以[官方说明](https://github.com/OrthoFinder/OrthoFinder)为准。本条目及示例命令尚未在本机执行验证。
 ## 植物应用案例
 攀枝花苏铁基因组研究使用 OrthoFinder 将苏铁与其他植物基因组的蛋白序列组织为基因家族，再结合系统发育等证据研究种子植物演化。[Liu 等，2022](https://doi.org/10.1038/s41477-022-01129-7)。69 份拟南芥组装的研究使用 OrthoFinder 定义基因家族，再以重复抽样研究泛基因组和核心基因组。[Lian 等，2024](https://doi.org/10.1038/s41588-024-01715-9)。
+
+
+2026-11-21 查阅[官方发布页](https://github.com/OrthoFinder/OrthoFinder/releases)，列出 v3.2。该记录不代表本机已安装或运行此版本。
