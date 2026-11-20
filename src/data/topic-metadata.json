@@ -621,18 +621,24 @@
     "englishTitle": "Homology and orthology",
     "domainId": "comparative-genomics",
     "order": 1,
-    "summary": "同源、直系同源和旁系同源的概念、方法与研究应用。",
+    "summary": "从物种分化和基因复制理解基因间的演化关系。",
     "keyConcepts": [
-      "同源、直系同源和旁系同源"
+      "同源",
+      "直系同源",
+      "旁系同源",
+      "基因树",
+      "物种树"
     ],
     "methodIds": [],
     "principleIds": [],
     "dataIds": [],
-    "paperIds": [],
+    "paperIds": [
+      "orthofinder-paper"
+    ],
     "tutorialIds": [],
-    "status": "planned",
+    "status": "draft",
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-11-21"
   },
   {
     "id": "m04-topic-02",
