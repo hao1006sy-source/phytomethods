@@ -2,7 +2,7 @@
 title: 植物全基因组比对
 summary: 从种子、链与共线区块理解植物基因组之间的序列比较。
 domain: pangenomics-structural-variation
-methods: []
+methods: [anchorwave, syri]
 status: draft
 updatedAt: 2026-11-20
 ---

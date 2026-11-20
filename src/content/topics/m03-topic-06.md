@@ -2,7 +2,7 @@
 title: 图上的序列比对与变异分型
 summary: 理解图索引、候选路径、reads 比对和图上分型。
 domain: pangenomics-structural-variation
-methods: []
+methods: [vg, odgi]
 status: draft
 updatedAt: 2026-11-20
 ---

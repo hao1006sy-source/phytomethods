@@ -2,7 +2,7 @@
 title: 图泛基因组构建
 summary: 利用序列图表示多个组装的共享序列、变异及样本路径。
 domain: pangenomics-structural-variation
-methods: []
+methods: [minigraph-cactus, pggb]
 status: draft
 updatedAt: 2026-11-20
 ---

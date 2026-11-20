@@ -2,7 +2,7 @@
 title: 植物基因组结构变异检测
 summary: 比较基于 reads 与组装的结构变异检测策略。
 domain: pangenomics-structural-variation
-methods: []
+methods: [syri]
 status: draft
 updatedAt: 2026-11-20
 ---

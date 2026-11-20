@@ -399,18 +399,25 @@
     "englishTitle": "Pangenome concepts",
     "domainId": "pangenomics-structural-variation",
     "order": 1,
-    "summary": "泛基因组概念与核心/可变基因组的概念、方法与研究应用。",
+    "summary": "从多样本观察核心、可变和特异基因，理解泛基因组与样本选择的关系。",
     "keyConcepts": [
-      "泛基因组概念与核心/可变基因组"
+      "泛基因组",
+      "核心基因",
+      "可变基因",
+      "参考偏倚"
     ],
     "methodIds": [],
     "principleIds": [],
-    "dataIds": [],
-    "paperIds": [],
+    "dataIds": [
+      "assembly"
+    ],
+    "paperIds": [
+      "rice-pangenome-paper"
+    ],
     "tutorialIds": [],
-    "status": "planned",
+    "status": "draft",
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-11-21"
   },
   {
     "id": "m03-topic-02",
@@ -418,18 +425,33 @@
     "englishTitle": "Whole-genome alignment",
     "domainId": "pangenomics-structural-variation",
     "order": 2,
-    "summary": "全基因组比对的概念、方法与研究应用。",
+    "summary": "以序列锚点、共线链和碱基比对比较不同组装。",
     "keyConcepts": [
-      "全基因组比对"
+      "种子",
+      "锚点",
+      "共线性",
+      "动态规划"
     ],
-    "methodIds": [],
-    "principleIds": [],
-    "dataIds": [],
-    "paperIds": [],
-    "tutorialIds": [],
-    "status": "planned",
+    "methodIds": [
+      "anchorwave",
+      "syri"
+    ],
+    "principleIds": [
+      "alignment"
+    ],
+    "dataIds": [
+      "assembly"
+    ],
+    "paperIds": [
+      "anchorwave-paper",
+      "syri-paper"
+    ],
+    "tutorialIds": [
+      "syri-intro"
+    ],
+    "status": "draft",
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-11-21"
   },
   {
     "id": "m03-topic-03",
@@ -437,18 +459,32 @@
     "englishTitle": "Structural variation detection",
     "domainId": "pangenomics-structural-variation",
     "order": 3,
-    "summary": "结构变异检测的概念、方法与研究应用。",
+    "summary": "比较读段与组装两类结构变异检测策略。",
     "keyConcepts": [
-      "结构变异检测"
+      "插入",
+      "缺失",
+      "倒位",
+      "易位",
+      "断点"
     ],
-    "methodIds": [],
-    "principleIds": [],
-    "dataIds": [],
-    "paperIds": [],
-    "tutorialIds": [],
-    "status": "planned",
+    "methodIds": [
+      "syri"
+    ],
+    "principleIds": [
+      "alignment"
+    ],
+    "dataIds": [
+      "assembly"
+    ],
+    "paperIds": [
+      "syri-paper"
+    ],
+    "tutorialIds": [
+      "syri-intro"
+    ],
+    "status": "draft",
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-11-21"
   },
   {
     "id": "m03-topic-04",
@@ -456,18 +492,27 @@
     "englishTitle": "Presence absence variation",
     "domainId": "pangenomics-structural-variation",
     "order": 4,
-    "summary": "PAV 与基因存在缺失变异的概念、方法与研究应用。",
+    "summary": "用可比较的基因座与三态矩阵描述基因存在缺失。",
     "keyConcepts": [
-      "PAV 与基因存在缺失变异"
+      "PAV",
+      "基因座",
+      "未知状态",
+      "参考偏倚"
     ],
     "methodIds": [],
-    "principleIds": [],
-    "dataIds": [],
-    "paperIds": [],
+    "principleIds": [
+      "alignment"
+    ],
+    "dataIds": [
+      "assembly"
+    ],
+    "paperIds": [
+      "rice-pangenome-paper"
+    ],
     "tutorialIds": [],
-    "status": "planned",
+    "status": "draft",
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-11-21"
   },
   {
     "id": "m03-topic-05",
@@ -475,18 +520,33 @@
     "englishTitle": "Pangenome graphs",
     "domainId": "pangenomics-structural-variation",
     "order": 5,
-    "summary": "图泛基因组构建的概念、方法与研究应用。",
+    "summary": "从多套组装构建包含样本路径的泛基因组图。",
     "keyConcepts": [
-      "图泛基因组构建"
+      "变异图",
+      "节点",
+      "边",
+      "样本路径"
     ],
-    "methodIds": [],
-    "principleIds": [],
-    "dataIds": [],
-    "paperIds": [],
+    "methodIds": [
+      "minigraph-cactus",
+      "pggb"
+    ],
+    "principleIds": [
+      "graph-genomics"
+    ],
+    "dataIds": [
+      "assembly",
+      "graph"
+    ],
+    "paperIds": [
+      "minigraph-cactus-paper",
+      "pggb-paper",
+      "sorghum-graph-benchmark"
+    ],
     "tutorialIds": [],
-    "status": "planned",
+    "status": "draft",
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-11-21"
   },
   {
     "id": "m03-topic-06",
@@ -494,18 +554,32 @@
     "englishTitle": "Graph mapping and genotyping",
     "domainId": "pangenomics-structural-variation",
     "order": 6,
-    "summary": "图上的序列比对与变异分型的概念、方法与研究应用。",
+    "summary": "理解图索引、读段路径定位和图上变异分型。",
     "keyConcepts": [
-      "图上的序列比对与变异分型"
+      "图索引",
+      "图比对",
+      "路径",
+      "基因型"
     ],
-    "methodIds": [],
-    "principleIds": [],
-    "dataIds": [],
-    "paperIds": [],
+    "methodIds": [
+      "vg",
+      "odgi"
+    ],
+    "principleIds": [
+      "graph-genomics"
+    ],
+    "dataIds": [
+      "graph"
+    ],
+    "paperIds": [
+      "vg-paper",
+      "odgi-paper",
+      "sorghum-graph-benchmark"
+    ],
     "tutorialIds": [],
-    "status": "planned",
+    "status": "draft",
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-11-21"
   },
   {
     "id": "m03-topic-07",
@@ -513,18 +587,30 @@
     "englishTitle": "Pangenome visualization",
     "domainId": "pangenomics-structural-variation",
     "order": 7,
-    "summary": "泛基因组可视化与应用的概念、方法与研究应用。",
+    "summary": "用图路径、共线图和 PAV 矩阵解释植物泛基因组。",
     "keyConcepts": [
-      "泛基因组可视化与应用"
+      "路径可视化",
+      "共线图",
+      "PAV 矩阵"
     ],
-    "methodIds": [],
-    "principleIds": [],
-    "dataIds": [],
-    "paperIds": [],
+    "methodIds": [
+      "odgi"
+    ],
+    "principleIds": [
+      "graph-genomics"
+    ],
+    "dataIds": [
+      "graph"
+    ],
+    "paperIds": [
+      "odgi-paper",
+      "rice-pangenome-paper",
+      "sorghum-graph-benchmark"
+    ],
     "tutorialIds": [],
-    "status": "planned",
+    "status": "draft",
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-11-21"
   },
   {
     "id": "m04-topic-01",
