@@ -32,3 +32,6 @@ OrthoFinder 由 David Emms、Steven Kelly 等开发，针对多物种蛋白序�
 
 
 2026-11-21 查阅[官方发布页](https://github.com/OrthoFinder/OrthoFinder/releases)，列出 v3.2。该记录不代表本机已安装或运行此版本。
+
+## 示例运行验证
+2026-11-21 在 WSL 隔离环境运行 OrthoFinder 3.2 官方四物种支原体示例；日志及实际输出摘要见关联教程，植物数据尚未运行。[2026 版本方法论文](https://doi.org/10.1038/s41592-026-03126-6)。

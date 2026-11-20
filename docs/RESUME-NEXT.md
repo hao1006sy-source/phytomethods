@@ -4,6 +4,8 @@
 - M03～M09 共 49 篇专题已有初稿，尚需逐页深化及科学审核；M03、M04、M05 已有部分工具和论文，M06 新增 GAPIT，M07 新增 Bismark，M09 新增 WGCNA。已添加多个交互图和科研示意图。
 - SyRI 1.8.2 与 MUMmer 3.23 已在 WSL 隔离环境对官方拟南芥测试数据运行完整教程；`src/content/tutorials/syri-intro.md` 仍是草稿，验证日志及摘要在 `examples/syri/verified-20261121/`。
 - 最近成功检查：`npm run validate`（Astro 0 错误、链接 1178 条通过）；49 篇草稿正文在临时动态预览下做过 375、768、1280、1440 px 渲染和溢出检查。部分图解独立完成浏览器交互检查；这不代表正式发布态和科学审查已完成。
-- 待处理：优先完成 M03 逐篇科学核查、工具版本与植物案例关联、所有图解和专题页面的发布态测试；再逐领域补齐其余工具、教程、图解及论文，完善跨领域知识图谱、全站性能及最终报告。OrthoFinder、WGCNA 等教程尚未实跑。
+- 待处理：优先完成 M03 逐篇科学核查、工具版本与植物案例关联、所有图解和专题页面的发布态测试；再逐领域补齐其余工具、教程、图解及论文，完善跨领域知识图谱、全站性能及最终报告。OrthoFinder 已实跑官方支原体示例，植物数据未运行；WGCNA 教程尚未实跑。
 - 下一步先运行 `git status --short`，读取 `docs/long-run-progress.md` 与 `docs/m03-evidence.md`；每轮运行 `npm run validate` 和相关浏览器测试，核查完成后才将草稿改为发布。
 - SyRI 隔离环境位于 WSL `/tmp/phytomethods-mamba-20261121/syri-env`，重启后可能清除；输入来自官方仓库固定提交，复现命令在教程中。Docker Linux 引擎未连接。
+
+- OrthoFinder 3.2 官方非植物示例验证记录位于 `examples/orthofinder/verified-20261121/`；运行环境位于 WSL `/tmp/phytomethods-mamba-20261121/orthofinder-env`，可能随重启清除。

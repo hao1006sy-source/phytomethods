@@ -647,7 +647,8 @@
       "orthofinder-paper",
       "cycas-evolution",
       "arabidopsis-69-pangenome",
-      "arabidopsis-adaptation"
+      "arabidopsis-adaptation",
+      "orthofinder-2026"
     ],
     "tutorialIds": [
       "orthofinder-intro"
@@ -686,7 +687,8 @@
       "cafe5-paper",
       "cycas-evolution",
       "arabidopsis-69-pangenome",
-      "tea-comparative"
+      "tea-comparative",
+      "orthofinder-2026"
     ],
     "tutorialIds": [
       "orthofinder-intro"

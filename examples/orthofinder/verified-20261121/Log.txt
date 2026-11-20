@@ -1,0 +1,21 @@
+2026-11-21 05:26:43 : Started OrthoFinder version 3.2
+Command Line: /tmp/phytomethods-mamba-20261121/orthofinder-env/bin/orthofinder -f ExampleData -t 2 -a 2
+
+Search program: diamond
+MSA program: famsa
+Tree program: fasttree
+Scoring matrix: BLOSUM62
+Gap extend: 1
+Gap open: 11
+
+WorkingDirectory_Base: /tmp/phytomethods-mamba-20261121/orthofinder-run-20261121/ExampleData/OrthoFinder/Results_Nov21/WorkingDirectory/
+
+Species used: 
+0: Mycoplasma_agalactiae.faa
+1: Mycoplasma_gallisepticum.faa
+2: Mycoplasma_genitalium.faa
+3: Mycoplasma_hyopneumoniae.faa
+
+FN_Orthogroups: /tmp/phytomethods-mamba-20261121/orthofinder-run-20261121/ExampleData/OrthoFinder/Results_Nov21/WorkingDirectory/clusters_OrthoFinder_I1.2.txt_id_pairs.txt
+WorkingDirectory_Trees: /tmp/phytomethods-mamba-20261121/orthofinder-run-20261121/ExampleData/OrthoFinder/Results_Nov21/WorkingDirectory/
+2026-11-21 05:27:14 : OrthoFinder run completed

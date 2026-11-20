@@ -1,42 +1,50 @@
 ---
 title: 从蛋白序列到同源基因家族入门
-summary: 基于 OrthoFinder 官方示例理解蛋白输入、家族和系统树输出。
+summary: 使用 OrthoFinder 官方小型蛋白示例理解同源组和物种树输出。
 method: orthofinder
-tested: template
+tested: verified
 status: draft
 updatedAt: 2026-11-21
 ---
 ## 目的与验证状态
-本教程通过 OrthoFinder 官方示例，说明多物种蛋白序列如何进入家族和系统发育分析。命令结构根据[官方仓库](https://github.com/OrthoFinder/OrthoFinder)整理；当前环境未安装并执行 OrthoFinder，以下没有本机实际输出。官方发布页在 2026-11-21 列出 v3.2；运行前应核对实际安装版本及其文档。
+本教程说明多物种蛋白 FASTA 如何进入 OrthoFinder 的同源组与系统发育分析。2026 年 11 月 21 日已在 WSL Ubuntu 中运行 OrthoFinder 3.2 官方示例，生成同源组、物种树和统计文件。官方示例是四种支原体的蛋白质数据，属于非植物教学数据；植物蛋白集仍需按自己的组装、注释和物种选择进行独立分析。
 
-## 环境和示例数据
-建议在 Linux 环境或配置好的兼容环境中安装 OrthoFinder 及对应依赖，遵循[官方安装说明](https://github.com/OrthoFinder/OrthoFinder#installation)。仓库的 `ExampleData` 目录提供示例蛋白 FASTA；可下载官方版本或克隆仓库，记录版本、下载日期和许可证。教学示例用于理解流程，不应将其结果描述成新的植物研究数据。
+## 环境与数据来源
+实际环境使用 Python 3.12.16、OrthoFinder 3.2。以 micromamba 和公开 conda-forge、bioconda 渠道建立隔离环境：
 
 ```bash
-git clone https://github.com/OrthoFinder/OrthoFinder.git
-cd OrthoFinder
+micromamba create -n orthofinder-demo -c conda-forge -c bioconda \
+  python=3.12 orthofinder=3.2
+micromamba activate orthofinder-demo
 orthofinder --version
-orthofinder --help
 ```
 
-运行前确认命令可调用、依赖已满足，并检查 `ExampleData` 内的 FASTA 文件。每个物种应使用单独文件，每条序列应有清楚的唯一标识；自建植物蛋白集需要记录物种、基因组与注释版本，并说明可变剪接代表序列的选择方法。
+本次环境中的 ETE4 导入提示缺少 `brotli`，安装 `python -m pip install brotli==1.2.1` 后运行成功。不同渠道和安装时间的依赖可能不同；先查看实际错误与[官方安装说明](https://github.com/OrthoFinder/OrthoFinder#installation)。
 
-## 运行命令
-官方示例的基础命令如下。计算时间与序列数量、依赖和机器配置有关；运行前确认当前目录含 `ExampleData`，且有可写的输出空间。
+官方示例是 [v3.2 发布文件](https://github.com/OrthoFinder/OrthoFinder/releases/download/v3.2/ExampleData.tar.gz)，并非仓库根目录自带数据。下载并解压到独立工作目录：
 
 ```bash
-orthofinder -f ExampleData
+curl -L https://github.com/OrthoFinder/OrthoFinder/releases/download/v3.2/ExampleData.tar.gz -o ExampleData.tar.gz
+sha256sum ExampleData.tar.gz
+tar -xzf ExampleData.tar.gz
 ```
 
-`-f` 指向包含蛋白序列文件的目录。线程、搜索程序与树推断方法等设置应使用当前版本的 `--help` 查询；保存完整命令、版本及日志。正式比较植物物种时，应对蛋白完整度、重复 ID、污染和样本倍性进行检查。
+本次下载的压缩包 SHA-256 为 `60024e9590ebdf48e89e6a7b564c803f93affa76238bd32dc7f16ebad5c7245f`，四个主输入文件的校验和见 `examples/orthofinder/verified-20261121/input-sha256.txt`。输入目录中的 `AdditionalSpecies` 是额外示例子目录，本次主要运行使用根目录的四个 `.faa` 文件。
 
-## 预期输出与解释
-官方文档描述完整分析可输出 orthogroup、直系同源关系、基因树、物种树和复制统计。自 v3.1 起，根节点的家族结果位于 `Orthogroups/Orthogroups.tsv`；v3.2 起默认直系同源结果文件的组织方式也有变化，应以实际版本文档为准。检查结果时区分家族成员和成对直系同源关系；同一家族内可有复制产生的旁系同源。
+## 运行
 
-## 常见问题
-- 命令找不到：检查安装环境、PATH 及官方依赖说明。
-- 输入解析失败：检查文件扩展名、FASTA 标识、空序列和物种文件划分。
-- 结果缺少预期基因：检查注释质量、截短序列、输入文件版本和家族判定。
-- 数量异常：检查转录本是否被重复计作基因、基因模型和物种树设置。
+```bash
+orthofinder -f ExampleData -t 2 -a 2
+```
 
-进一步阅读 [OrthoFinder 论文](https://doi.org/10.1186/s13059-019-1832-y)及[官方结果说明](https://github.com/OrthoFinder/OrthoFinder#output-files)。
+`-f` 指向蛋白 FASTA 目录；`-t 2`、`-a 2` 分别控制序列搜索和分析步骤的线程数。运行前确认输入文件和物种标识，保留软件版本、命令及日志；实际可用参数以当前版本 `orthofinder -h` 为准。正式植物数据应记录基因组和注释版本、倍性、蛋白质量及每基因代表转录本的选择规则。
+
+## 输出和解释
+结果保存在 `ExampleData/OrthoFinder/Results_日期/`。本次产生 `Orthogroups/Orthogroups.tsv`、`Species_Tree/SpeciesTree_rooted.txt`、基因树和 `Comparative_Genomics_Statistics/Statistics_Overall.tsv`。实际统计包含 4 个物种、2733 条输入基因、599 个 orthogroup 和 250 个单拷贝 orthogroup；这是示例数据和参数下的程序输出，不代表植物数据的预期数量。
+
+Orthogroup 描述从共同祖先基因衍生的基因集合；集合成员可能包含复制产生的旁系同源基因，不能把组内所有成员都当成一对一直系同源。应结合基因树、物种树、重复事件及注释质量解释。
+
+## 常见问题与阅读
+命令找不到时检查环境及 PATH；导入失败时查看缺失 Python 模块及安装渠道；输入异常时检查 FASTA 格式、空序列和同一物种内重复 ID；结果异常时核查重复转录本、蛋白截短和物种取样。本次真实日志、输入哈希、统计和物种树保存在 `examples/orthofinder/verified-20261121/`。
+
+参考 [OrthoFinder 2019 方法论文](https://doi.org/10.1186/s13059-019-1832-y)、[2026 版本改进论文](https://doi.org/10.1038/s41592-026-03126-6)与[官方文档](https://github.com/OrthoFinder/OrthoFinder)。
