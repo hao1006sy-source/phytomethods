@@ -1723,7 +1723,9 @@
       "wgcna-paper",
       "purple-rice-wgcna"
     ],
-    "tutorialIds": [],
+    "tutorialIds": [
+      "wgcna-synthetic"
+    ],
     "status": "draft",
     "createdAt": null,
     "updatedAt": "2026-11-21"
