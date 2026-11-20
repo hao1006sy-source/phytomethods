@@ -11,3 +11,5 @@
 - OrthoFinder 3.2 官方非植物示例验证记录位于 `examples/orthofinder/verified-20261121/`；运行环境位于 WSL `/tmp/phytomethods-mamba-20261121/orthofinder-env`，可能随重启清除。
 
 - 专题正文与元数据的 ID、领域、状态一致性检查已加入，两个反例测试及恢复后的完整构建通过。
+
+- M08 拟时序预设分支交互已通过四宽度步骤和重置测试，仍需单细胞工具、真实分析教程及内容审核。
