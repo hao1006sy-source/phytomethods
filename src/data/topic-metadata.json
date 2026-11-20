@@ -1072,18 +1072,27 @@
     "englishTitle": "Quantitative genetics",
     "domainId": "gwas-breeding",
     "order": 1,
-    "summary": "数量遗传学与遗传力的概念、方法与研究应用。",
+    "summary": "从遗传与环境方差理解数量性状和遗传力。",
     "keyConcepts": [
-      "数量遗传学与遗传力"
+      "数量性状",
+      "加性遗传方差",
+      "广义遗传力",
+      "狭义遗传力",
+      "基因型与环境互作"
     ],
     "methodIds": [],
     "principleIds": [],
-    "dataIds": [],
-    "paperIds": [],
+    "dataIds": [
+      "variant-data"
+    ],
+    "paperIds": [
+      "rice-roots-population",
+      "rice-gwas-2010"
+    ],
     "tutorialIds": [],
-    "status": "planned",
+    "status": "draft",
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-11-21"
   },
   {
     "id": "m06-topic-02",
