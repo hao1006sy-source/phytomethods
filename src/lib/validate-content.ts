@@ -27,4 +27,12 @@ const meta=z.array(topicMetaSchema).length(63).parse(topicMetadata);if(new Set(m
 for(const d of domainIds){const entries=meta.filter(t=>t.domainId===d);if(entries.length!==7 || new Set(entries.map(t=>t.order)).size!==7)throw Error(`专题排序无效 ${d}`);}
 for(const t of meta){if(!domainIds.has(t.domainId as never))throw Error(`无效专题领域 ${t.id}`);for(const id of t.methodIds)if(!methodIds.has(id))throw Error(`无效工具 ${id}`);for(const id of t.paperIds)if(!paperIds.has(id))throw Error(`无效论文 ${id}`);for(const id of t.tutorialIds)if(!tutorials.some(x=>x.id===id))throw Error(`无效教程 ${id}`);for(const id of t.principleIds)if(!(id in principleLabels))throw Error(`无效原理 ${id}`);for(const id of t.dataIds)if(!(id in dataLabels))throw Error(`无效数据 ${id}`);if(t.status==='published'&&!topics.some(x=>x.id===t.id&&x.data.status==='published'))throw Error(`缺少专题正文 ${t.id}`);}
 
+// Published metadata feeds links in topic pages; never emit links to drafts.
+for (const t of meta.filter(t=>t.status==='published')) {
+ for (const id of t.methodIds) if (!methods.some(m=>m.id===id && m.data.status==='published')) throw Error(`已发布专题元数据引用未发布工具：${t.id} → ${id}`);
+ for (const id of t.paperIds) if (!papers.some(p=>p.id===id && p.data.status==='published')) throw Error(`已发布专题元数据引用未发布论文：${t.id} → ${id}`);
+ for (const id of t.tutorialIds) if (!tutorials.some(x=>x.id===id && x.data.status==='published')) throw Error(`已发布专题元数据引用未发布教程：${t.id} → ${id}`);
+}
+for (const t of topics.filter(t=>t.data.status==='published')) if (!meta.some(m=>m.id===t.id && m.status==='published' && m.domainId===t.data.domain)) throw Error(`已发布专题缺少对应的发布元数据：${t.id}`);
+
 }
