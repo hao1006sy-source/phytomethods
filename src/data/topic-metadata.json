@@ -988,18 +988,26 @@
     "englishTitle": "Selective sweeps",
     "domainId": "population-genetics",
     "order": 5,
-    "summary": "选择性清除的概念、方法与研究应用。",
+    "summary": "以频率谱、多样性和单倍型信号研究选择性清除。",
     "keyConcepts": [
-      "选择性清除"
+      "硬清除",
+      "软清除",
+      "频率谱",
+      "单倍型",
+      "群体对照"
     ],
     "methodIds": [],
     "principleIds": [],
-    "dataIds": [],
-    "paperIds": [],
+    "dataIds": [
+      "variant-data"
+    ],
+    "paperIds": [
+      "rice-domestication-huang"
+    ],
     "tutorialIds": [],
-    "status": "planned",
+    "status": "draft",
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-11-21"
   },
   {
     "id": "m05-topic-06",
