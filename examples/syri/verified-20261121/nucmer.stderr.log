@@ -1,0 +1,15 @@
+1: PREPARING DATA
+2,3: RUNNING mummer AND CREATING CLUSTERS
+# reading input file "out.ntref" of length 18585057
+# construct suffix tree for sequence of length 18585057
+# (maximum reference length is 2305843009213693948)
+# (maximum query length is 18446744073709551615)
+# process 185850 characters per dot
+#....................................................................................................
+# CONSTRUCTIONTIME /tmp/phytomethods-mamba-20261121/syri-env/opt/mummer-3.23/mummer out.ntref 9.80
+# reading input file "/tmp/phytomethods-mamba-20261121/syri-mummer-run-20261121/query.fa" of length 22700724
+# matching query-file "/tmp/phytomethods-mamba-20261121/syri-mummer-run-20261121/query.fa"
+# against subject-file "out.ntref"
+# COMPLETETIME /tmp/phytomethods-mamba-20261121/syri-env/opt/mummer-3.23/mummer out.ntref 31.44
+# SPACE /tmp/phytomethods-mamba-20261121/syri-env/opt/mummer-3.23/mummer out.ntref 40.03
+4: FINISHING DATA

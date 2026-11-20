@@ -1,0 +1,4 @@
+SyRI 1.8.2
+nucmer 
+NUCmer (NUCleotide MUMmer) version 3.1
+    

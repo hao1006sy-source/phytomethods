@@ -36,4 +36,4 @@ SyRI 由 Schneeberger 团队发布，仓库采用 MIT 许可证。官方仓库�
 
 
 ## 官方发布版本记录
-2026-11-21 查看[官方发布页](https://github.com/schneebergerlab/syri/releases)，页面列出 v1.8.2。这是一项来源快照，软件更新后应重新核对；本机并未安装和运行该版本。
+2026-11-21 查看[官方发布页](https://github.com/schneebergerlab/syri/releases)，页面列出 v1.8.2。这是一项来源快照，软件更新后应重新核对；已在 WSL 隔离环境中运行该版本，拟南芥官方测试数据和验证记录见关联教程。

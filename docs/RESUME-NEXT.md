@@ -1,32 +1,9 @@
 # PhytoMethods 下一次恢复入口
 
-- 当前分支：`feat/long-run-m03-v2`。发布基点 `91f24bd`；最新提交请运行 `git log -1 --oneline` 确认。
-- 正在执行：阶段 B，M03 泛基因组与结构变异；阶段 C 已完成 M04 七个专题正文初稿，阶段 D 已有 M05 七个专题正文草稿，阶段 E 已有 M06 七个专题正文草稿；七篇专题、六项工具、十一条 M03 相关论文及一篇教程为草稿，尚未发布。
-- 最近通过：`npm run validate`，Astro 类型检查 0 错误/警告，1178 条内部链接通过；`node scripts/browser-test-v1.3.mjs` 通过现有页面回归；`npm audit` 0 项漏洞。
-- 知识关联列表已加入，`node scripts/browser-test-knowledge.mjs` 在四种宽度下通过；工具及教程的领域名称已改为从数据推导。
-- 源码：`src/content/topics/m03-topic-*.md`、`src/content/methods/` 对应 M03 文件、`src/content/papers/` 对应草稿、`src/content/tutorials/syri-intro.md`、`src/components/PangenomeDemo.astro`。
-- 立即执行：`git status --short`，读取 `docs/long-run-progress.md`；核对 M03 各草稿与原始论文、完善图解和教程，使用安全的开发预览测试草稿页面，完成后再修改 `src/data/topic-metadata.json` 的 published 状态。
-- 每次验证：`$env:ASTRO_TELEMETRY_DISABLED='1'; npm run validate; node scripts/browser-test-v1.3.mjs`。
-- 未解决：M03 读段定位、锚点链、样本路径与三幅图解已在临时预览通过四种宽度检查，M03 尚未完成发布态验证，教程未执行真实数据；M04 工具与教程、逐篇复核及 M05 工具和教程审查、M06 工具和教程、M07～M09、完整知识图谱和最终验收尚未开始。不得把草稿合并为已完成内容。
-
-- 阶段 F 已新增 M07 前三个专题草稿（m07-topic-01～03）；继续 ATAC-seq、ChIP/CUT&Tag、Hi-C 与表观响应，核验工具和植物论文。最新 npm run validate 通过。
-
-- M07 七篇专题正文草稿齐备，工具、图解、教程和草稿浏览器检查仍待完成。接下来可独立推进 M08 内容，同时保留 M03～M07 草稿状态。
-
-- 阶段 G 已新增 M08-01～03 草稿，继续 marker、拟时序、空间组学及多组学；阶段 F 的工具与图解仍待补充。最近一次 npm run validate 通过。
-
-- M08 七篇专题初稿均已写入，最新 npm run validate 通过；继续 M09 与各领域工具、图解、教程及浏览器审查。自动审批曾因额度限制未能执行 Git 提交，检查 git status 确认保存情况。
-
-- 阶段 H 新增 M09-01～03 草稿；M08 七篇初稿已提交。继续 motif、多组学、植物基础模型和预测评估，再补齐工具、图解及逐页审查。
-
-- M03～M09 共 49 篇专题已有草稿；这些不是正式发布页面。最新 npm run validate 通过。下一步逐领域补齐工具及论文关系、交互图、可执行教程，深化正文并逐页审核，随后分阶段发布。
-
-- 49 篇草稿在临时动态预览下完成 196 次正文渲染与宽度检查；这不代表科学内容、交互和链接已完成验收。临时预览路由已删除。
-
-- 新增 M07 甲基化背景 SVG，四种宽度的临时预览通过；其他 M07 图解及工具仍待完成。
-
-- M07 新增 Bismark、方法论文和六倍体小麦案例草稿；继续其他工具、图解和验证。
-
-- M09 增加 WGCNA 与紫米应用草稿；Rscript 当前不可用，教程执行待解决。
-
-- 新增共表达阈值交互图并通过 NumPy 复算及四宽度按钮测试；下一步完善图表的自动回归脚本和其余 M09 内容审核。
+- 分支：`feat/long-run-m03-v2`；最新提交以 `git log -1 --oneline` 为准；已发布 main 基点 `91f24bd`。新领域均为草稿，尚未合并部署。
+- M03～M09 共 49 篇专题已有初稿，尚需逐页深化及科学审核；M03、M04、M05 已有部分工具和论文，M06 新增 GAPIT，M07 新增 Bismark，M09 新增 WGCNA。已添加多个交互图和科研示意图。
+- SyRI 1.8.2 与 MUMmer 3.23 已在 WSL 隔离环境对官方拟南芥测试数据运行完整教程；`src/content/tutorials/syri-intro.md` 仍是草稿，验证日志及摘要在 `examples/syri/verified-20261121/`。
+- 最近成功检查：`npm run validate`（Astro 0 错误、链接 1178 条通过）；49 篇草稿正文在临时动态预览下做过 375、768、1280、1440 px 渲染和溢出检查。部分图解独立完成浏览器交互检查；这不代表正式发布态和科学审查已完成。
+- 待处理：优先完成 M03 逐篇科学核查、工具版本与植物案例关联、所有图解和专题页面的发布态测试；再逐领域补齐其余工具、教程、图解及论文，完善跨领域知识图谱、全站性能及最终报告。OrthoFinder、WGCNA 等教程尚未实跑。
+- 下一步先运行 `git status --short`，读取 `docs/long-run-progress.md` 与 `docs/m03-evidence.md`；每轮运行 `npm run validate` 和相关浏览器测试，核查完成后才将草稿改为发布。
+- SyRI 隔离环境位于 WSL `/tmp/phytomethods-mamba-20261121/syri-env`，重启后可能清除；输入来自官方仓库固定提交，复现命令在教程中。Docker Linux 引擎未连接。
