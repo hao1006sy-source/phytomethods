@@ -1214,18 +1214,26 @@
     "englishTitle": "Genomic selection",
     "domainId": "gwas-breeding",
     "order": 6,
-    "summary": "基因组选择的概念、方法与研究应用。",
+    "summary": "基于全基因组标记预测育种材料的遗传表现。",
     "keyConcepts": [
-      "基因组选择"
+      "基因组选择",
+      "GEBV",
+      "GBLUP",
+      "rrBLUP",
+      "交叉验证"
     ],
     "methodIds": [],
     "principleIds": [],
-    "dataIds": [],
-    "paperIds": [],
+    "dataIds": [
+      "variant-data"
+    ],
+    "paperIds": [
+      "rrblup-paper"
+    ],
     "tutorialIds": [],
-    "status": "planned",
+    "status": "draft",
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-11-21"
   },
   {
     "id": "m06-topic-07",
