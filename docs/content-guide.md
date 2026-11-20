@@ -10,3 +10,8 @@
 `src/data/topic-metadata.json` 包含 63 条独立记录。`id` 是持久英文标识；`title` 与 `englishTitle` 分别是中英文名称；`domainId` 和 `order` 控制领域及顺序；`summary` 和 `keyConcepts` 描述主题。`methodIds`、`paperIds`、`tutorialIds` 是指向对应内容的稳定 ID 数组；`principleIds` 和 `dataIds` 来自 `src/data/tags.ts`。`status` 为 `published`、`draft` 或 `planned`；未核实的 `createdAt`、`updatedAt` 为 null，不推定历史日期。
 
 M01 的已发布记录应有同名 Markdown 正文，网页根据专题关系反查工具、论文及教程；工具页面反查专题与论文。论文的 `methodIds` 是多对多关系，只有经原论文证实的工具关系才能写入。构建时验证 63 条记录的 ID、领域、顺序、标签、正文及各类关系，并检查已发布内容、DOI 和重复项。已知 `method` 是历史兼容字段，新论文使用 `methodIds`。
+
+## 通用专题发布
+新增专题时，将 Markdown 放入 `src/content/topics/`，设置 `domain` 和稳定 ID，并更新 `src/data/topic-metadata.json` 中对应记录为 `published`。动态路由按领域生成文章与侧栏；`src/lib/validate-content.ts` 负责构建期领域、专题、工具、论文、教程及受控标签校验。方法的 `topicIds` 和专题元数据的 `methodIds` 表示关联；论文使用 `methodIds` 数组，旧 `method` 字段仍可读取。添加经过论文证据确认的关系，并同时核对过滤和导航显示。
+
+开发参考：Kassis T, Agarwal V, He Y, Patel D, Brueckner AM. Scientific Agent Skills: A Library of Procedural Knowledge for Research Agents. 2026. https://doi.org/10.48550/arXiv.2609.00065 （本次用于科学写作流程；科学事实以各文章列示的原始来源为准）。
