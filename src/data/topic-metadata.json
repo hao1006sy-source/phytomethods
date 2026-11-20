@@ -1333,18 +1333,20 @@
     "englishTitle": "Chromatin accessibility",
     "domainId": "epigenomics-3d-genome",
     "order": 4,
-    "summary": "ATAC-seq 与开放染色质的概念、方法与研究应用。",
+    "summary": "ATAC-seq 信号、峰识别及植物染色质可及性。",
     "keyConcepts": [
-      "ATAC-seq 与开放染色质"
+      "ATAC-seq",
+      "Tn5",
+      "开放染色质"
     ],
     "methodIds": [],
     "principleIds": [],
     "dataIds": [],
     "paperIds": [],
     "tutorialIds": [],
-    "status": "planned",
+    "status": "draft",
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-11-21"
   },
   {
     "id": "m07-topic-05",
@@ -1352,18 +1354,20 @@
     "englishTitle": "ChIP-seq and motifs",
     "domainId": "epigenomics-3d-genome",
     "order": 5,
-    "summary": "ChIP-seq、CUT&Tag 与 Motif的概念、方法与研究应用。",
+    "summary": "ChIP-seq 与 CUT&Tag 测量及序列 motif 分析。",
     "keyConcepts": [
-      "ChIP-seq、CUT&Tag 与 Motif"
+      "ChIP-seq",
+      "CUT&Tag",
+      "motif"
     ],
     "methodIds": [],
     "principleIds": [],
     "dataIds": [],
     "paperIds": [],
     "tutorialIds": [],
-    "status": "planned",
+    "status": "draft",
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-11-21"
   },
   {
     "id": "m07-topic-06",
@@ -1371,18 +1375,20 @@
     "englishTitle": "Three-dimensional genome",
     "domainId": "epigenomics-3d-genome",
     "order": 6,
-    "summary": "Hi-C、Compartment、TAD、互作的概念、方法与研究应用。",
+    "summary": "Hi-C 接触矩阵及植物染色质空间结构分析。",
     "keyConcepts": [
-      "Hi-C、Compartment、TAD、互作"
+      "Hi-C",
+      "接触矩阵",
+      "TAD"
     ],
     "methodIds": [],
     "principleIds": [],
     "dataIds": [],
     "paperIds": [],
     "tutorialIds": [],
-    "status": "planned",
+    "status": "draft",
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-11-21"
   },
   {
     "id": "m07-topic-07",
@@ -1390,18 +1396,20 @@
     "englishTitle": "Plant epigenetic response",
     "domainId": "epigenomics-3d-genome",
     "order": 7,
-    "summary": "表观调控与植物响应案例的概念、方法与研究应用。",
+    "summary": "结合多组学和实验设计研究植物发育与胁迫响应。",
     "keyConcepts": [
-      "表观调控与植物响应案例"
+      "胁迫记忆",
+      "转座子沉默",
+      "多组学整合"
     ],
     "methodIds": [],
     "principleIds": [],
     "dataIds": [],
     "paperIds": [],
     "tutorialIds": [],
-    "status": "planned",
+    "status": "draft",
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-11-21"
   },
   {
     "id": "m08-topic-01",
