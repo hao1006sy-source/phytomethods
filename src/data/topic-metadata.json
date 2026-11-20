@@ -804,18 +804,28 @@
     "englishTitle": "Molecular selection",
     "domainId": "comparative-genomics",
     "order": 7,
-    "summary": "选择压力与分子进化的概念、方法与研究应用。",
+    "summary": "用密码子模型与系统树分析蛋白编码序列的演化。",
     "keyConcepts": [
-      "选择压力与分子进化"
+      "同义替换",
+      "非同义替换",
+      "dN/dS",
+      "密码子模型",
+      "选择"
     ],
     "methodIds": [],
-    "principleIds": [],
-    "dataIds": [],
-    "paperIds": [],
+    "principleIds": [
+      "phylogenetics"
+    ],
+    "dataIds": [
+      "proteins"
+    ],
+    "paperIds": [
+      "paml-paper"
+    ],
     "tutorialIds": [],
-    "status": "planned",
+    "status": "draft",
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-11-21"
   },
   {
     "id": "m05-topic-01",
