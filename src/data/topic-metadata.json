@@ -755,18 +755,29 @@
     "englishTitle": "Whole genome duplication",
     "domainId": "comparative-genomics",
     "order": 6,
-    "summary": "WGD 与古多倍化的概念、方法与研究应用。",
+    "summary": "综合 Ks、共线性和系统发育证据分析古多倍化。",
     "keyConcepts": [
-      "WGD 与古多倍化"
+      "全基因组复制",
+      "古多倍化",
+      "Ks",
+      "共线性"
     ],
     "methodIds": [],
-    "principleIds": [],
-    "dataIds": [],
-    "paperIds": [],
+    "principleIds": [
+      "phylogenetics"
+    ],
+    "dataIds": [
+      "assembly",
+      "proteins"
+    ],
+    "paperIds": [
+      "wgd-v2-paper",
+      "mcscanx-paper"
+    ],
     "tutorialIds": [],
-    "status": "planned",
+    "status": "draft",
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-11-21"
   },
   {
     "id": "m04-topic-07",
