@@ -1417,18 +1417,20 @@
     "englishTitle": "Single-cell RNA sequencing",
     "domainId": "single-cell-spatial-omics",
     "order": 1,
-    "summary": "scRNA-seq 与 snRNA-seq 基础的概念、方法与研究应用。",
+    "summary": "植物单细胞与单核数据来源、UMI 和表达矩阵。",
     "keyConcepts": [
-      "scRNA-seq 与 snRNA-seq 基础"
+      "scRNA-seq",
+      "snRNA-seq",
+      "UMI"
     ],
     "methodIds": [],
     "principleIds": [],
     "dataIds": [],
     "paperIds": [],
     "tutorialIds": [],
-    "status": "planned",
+    "status": "draft",
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-11-21"
   },
   {
     "id": "m08-topic-02",
@@ -1436,18 +1438,20 @@
     "englishTitle": "Single-cell preprocessing",
     "domainId": "single-cell-spatial-omics",
     "order": 2,
-    "summary": "质控、归一化、批次校正的概念、方法与研究应用。",
+    "summary": "按样本进行细胞质控、归一化与批次整合。",
     "keyConcepts": [
-      "质控、归一化、批次校正"
+      "质控",
+      "doublet",
+      "批次效应"
     ],
     "methodIds": [],
     "principleIds": [],
     "dataIds": [],
     "paperIds": [],
     "tutorialIds": [],
-    "status": "planned",
+    "status": "draft",
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-11-21"
   },
   {
     "id": "m08-topic-03",
@@ -1455,18 +1459,20 @@
     "englishTitle": "Dimensionality reduction",
     "domainId": "single-cell-spatial-omics",
     "order": 3,
-    "summary": "PCA/UMAP/t-SNE/聚类的概念、方法与研究应用。",
+    "summary": "高变基因、PCA、邻近图、UMAP 和图聚类。",
     "keyConcepts": [
-      "PCA/UMAP/t-SNE/聚类"
+      "PCA",
+      "UMAP",
+      "Leiden"
     ],
     "methodIds": [],
     "principleIds": [],
     "dataIds": [],
     "paperIds": [],
     "tutorialIds": [],
-    "status": "planned",
+    "status": "draft",
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-11-21"
   },
   {
     "id": "m08-topic-04",
@@ -1474,18 +1480,20 @@
     "englishTitle": "Cell type annotation",
     "domainId": "single-cell-spatial-omics",
     "order": 4,
-    "summary": "Marker Gene 与细胞类型注释的概念、方法与研究应用。",
+    "summary": "多标记、参考图谱与植物组织证据支持细胞类型注释。",
     "keyConcepts": [
-      "Marker Gene 与细胞类型注释"
+      "marker",
+      "细胞类型",
+      "参考图谱"
     ],
     "methodIds": [],
     "principleIds": [],
     "dataIds": [],
     "paperIds": [],
     "tutorialIds": [],
-    "status": "planned",
+    "status": "draft",
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-11-21"
   },
   {
     "id": "m08-topic-05",
@@ -1493,18 +1501,20 @@
     "englishTitle": "Pseudotime",
     "domainId": "single-cell-spatial-omics",
     "order": 5,
-    "summary": "拟时序的概念、方法与研究应用。",
+    "summary": "从连续状态推断轨迹、根节点与拟时序。",
     "keyConcepts": [
-      "拟时序"
+      "拟时序",
+      "发育轨迹",
+      "分叉"
     ],
     "methodIds": [],
     "principleIds": [],
     "dataIds": [],
     "paperIds": [],
     "tutorialIds": [],
-    "status": "planned",
+    "status": "draft",
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-11-21"
   },
   {
     "id": "m08-topic-06",
@@ -1512,18 +1522,20 @@
     "englishTitle": "Spatial transcriptomics",
     "domainId": "single-cell-spatial-omics",
     "order": 6,
-    "summary": "空间转录组与反卷积的概念、方法与研究应用。",
+    "summary": "结合空间坐标和参考单细胞数据推断组织表达。",
     "keyConcepts": [
-      "空间转录组与反卷积"
+      "空间转录组",
+      "spot",
+      "反卷积"
     ],
     "methodIds": [],
     "principleIds": [],
     "dataIds": [],
     "paperIds": [],
     "tutorialIds": [],
-    "status": "planned",
+    "status": "draft",
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-11-21"
   },
   {
     "id": "m08-topic-07",
@@ -1531,18 +1543,20 @@
     "englishTitle": "Single-cell multiomics",
     "domainId": "single-cell-spatial-omics",
     "order": 7,
-    "summary": "单细胞多组学的概念、方法与研究应用。",
+    "summary": "单细胞 RNA 与染色质可及性的跨模态整合。",
     "keyConcepts": [
-      "单细胞多组学"
+      "scATAC-seq",
+      "跨模态",
+      "调控网络"
     ],
     "methodIds": [],
     "principleIds": [],
     "dataIds": [],
     "paperIds": [],
     "tutorialIds": [],
-    "status": "planned",
+    "status": "draft",
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-11-21"
   },
   {
     "id": "m09-topic-01",
