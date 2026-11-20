@@ -413,7 +413,8 @@
     ],
     "paperIds": [
       "rice-pangenome-paper",
-      "rice-3010-pangenome"
+      "rice-3010-pangenome",
+      "arabidopsis-69-pangenome"
     ],
     "tutorialIds": [],
     "status": "draft",
@@ -510,7 +511,8 @@
     ],
     "paperIds": [
       "rice-pangenome-paper",
-      "rice-3010-pangenome"
+      "rice-3010-pangenome",
+      "arabidopsis-69-pangenome"
     ],
     "tutorialIds": [],
     "status": "draft",
@@ -639,7 +641,9 @@
       "proteins"
     ],
     "paperIds": [
-      "orthofinder-paper"
+      "orthofinder-paper",
+      "cycas-evolution",
+      "arabidopsis-69-pangenome"
     ],
     "tutorialIds": [],
     "status": "draft",
