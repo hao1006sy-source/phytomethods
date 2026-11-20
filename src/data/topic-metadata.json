@@ -689,18 +689,27 @@
     "englishTitle": "Synteny and chromosome evolution",
     "domainId": "comparative-genomics",
     "order": 3,
-    "summary": "共线性与染色体演化的概念、方法与研究应用。",
+    "summary": "以同源锚点与共线区块研究植物染色体演化。",
     "keyConcepts": [
-      "共线性与染色体演化"
+      "共线性",
+      "基因锚点",
+      "点图",
+      "染色体重排"
     ],
     "methodIds": [],
     "principleIds": [],
-    "dataIds": [],
-    "paperIds": [],
+    "dataIds": [
+      "assembly",
+      "proteins"
+    ],
+    "paperIds": [
+      "mcscanx-paper",
+      "macadamia"
+    ],
     "tutorialIds": [],
-    "status": "planned",
+    "status": "draft",
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-11-21"
   },
   {
     "id": "m04-topic-04",
