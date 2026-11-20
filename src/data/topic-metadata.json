@@ -1352,7 +1352,9 @@
       "bismark-paper",
       "wheat-methylome-2015"
     ],
-    "tutorialIds": [],
+    "tutorialIds": [
+      "bismark-synthetic"
+    ],
     "status": "draft",
     "createdAt": null,
     "updatedAt": "2026-11-21"
@@ -1382,7 +1384,9 @@
       "bismark-paper",
       "wheat-methylome-2015"
     ],
-    "tutorialIds": [],
+    "tutorialIds": [
+      "bismark-synthetic"
+    ],
     "status": "draft",
     "createdAt": null,
     "updatedAt": "2026-11-21"

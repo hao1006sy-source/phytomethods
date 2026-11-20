@@ -83,3 +83,5 @@
 - 2026-11-21：新增 SciPy 单标记回归工具与模拟 GWAS 教程；实际运行生成 80 样本、60 标记输入及 Manhattan/QQ 图。独立按相关系数 t 检验复算 60 个 P 值，并与网站 GWAS 图数据一致；不将模拟结果称为真实植物 GWAS。npm run validate 通过。
 
 - 2026-11-21：PLINK 1.9.1 官方 Windows 版实际运行模拟 VCF 转换、频率、缺失和 PCA；8 个样本、6 个位点，频率与独立复算一致。保存输入、日志（主机名/路径已去除）、结果及图，教程为验证过的模拟数据草稿，真实植物与 ADMIXTURE 尚未运行。npm run validate 通过。
+
+- 2026-11-21：Bismark Rust 3.3.0 / Bowtie2 2.5.5 / Samtools 1.25 在 WSL 对虚构甲基化数据实际运行索引、比对与全背景提取；90 条 reads 唯一比对，覆盖区 239 个正链 C 的 CG/CHG/CHH 状态与模拟真值一致。首次末端 read 缺少上下文已修正并记录；数据、BAM、报告与日志保存，植物实验数据未验证。npm run validate 通过。

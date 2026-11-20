@@ -21,3 +21,5 @@
 - M06 模拟 GWAS 教程已运行，输入、输出和版本在 xamples/gwas/verified-20261121/；运行 python scripts/check-gwas-example.py 复算。GAPIT 本身和真实植物 GWAS 尚未执行。
 
 - PLINK 1.9.1 的模拟 VCF、频率、缺失与 PCA 已运行，执行 python scripts/check-plink-example.py 验证；真实植物数据和 ADMIXTURE 尚未执行。
+
+- Bismark Rust 3.3.0 模拟甲基化教程已运行，python scripts/check-bismark-example.py 检查覆盖正链位点真值；真实植物数据仍待执行。
