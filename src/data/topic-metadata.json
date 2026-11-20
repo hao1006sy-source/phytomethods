@@ -1185,18 +1185,28 @@
     "englishTitle": "GWAS interpretation",
     "domainId": "gwas-breeding",
     "order": 5,
-    "summary": "Manhattan、QQ、LD、候选基因的概念、方法与研究应用。",
+    "summary": "结合关联统计图、LD 和独立证据解释候选区域。",
     "keyConcepts": [
-      "Manhattan、QQ、LD、候选基因"
+      "Manhattan 图",
+      "QQ 图",
+      "P 值",
+      "LD",
+      "候选基因"
     ],
     "methodIds": [],
     "principleIds": [],
-    "dataIds": [],
-    "paperIds": [],
+    "dataIds": [
+      "variant-data"
+    ],
+    "paperIds": [
+      "rice-gwas-2010",
+      "gwas-mlm-paper",
+      "gapit3-paper"
+    ],
     "tutorialIds": [],
-    "status": "planned",
+    "status": "draft",
     "createdAt": null,
-    "updatedAt": null
+    "updatedAt": "2026-11-21"
   },
   {
     "id": "m06-topic-06",
