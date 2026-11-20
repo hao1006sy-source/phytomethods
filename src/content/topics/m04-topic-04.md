@@ -2,7 +2,7 @@
 title: 系统发育推断
 summary: 从同源序列、替换模型和树搜索理解植物系统发育分析。
 domain: comparative-genomics
-methods: []
+methods: [iqtree2]
 status: draft
 updatedAt: 2026-11-21
 ---

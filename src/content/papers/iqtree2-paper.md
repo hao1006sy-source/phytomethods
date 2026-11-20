@@ -6,7 +6,7 @@ year: 2020
 journal: Molecular Biology and Evolution
 doi: 10.1093/molbev/msaa015
 type: method
-methodIds: []
+methodIds: [iqtree2]
 domainIds: [comparative-genomics]
 speciesIds: []
 status: draft

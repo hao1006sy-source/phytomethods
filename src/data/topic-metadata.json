@@ -414,7 +414,8 @@
     "paperIds": [
       "rice-pangenome-paper",
       "rice-3010-pangenome",
-      "arabidopsis-69-pangenome"
+      "arabidopsis-69-pangenome",
+      "arabidopsis-adaptation"
     ],
     "tutorialIds": [],
     "status": "draft",
@@ -480,7 +481,8 @@
     ],
     "paperIds": [
       "syri-paper",
-      "rice-3010-pangenome"
+      "rice-3010-pangenome",
+      "arabidopsis-adaptation"
     ],
     "tutorialIds": [
       "syri-intro"
@@ -546,7 +548,8 @@
     "paperIds": [
       "minigraph-cactus-paper",
       "pggb-paper",
-      "sorghum-graph-benchmark"
+      "sorghum-graph-benchmark",
+      "arabidopsis-adaptation"
     ],
     "tutorialIds": [],
     "status": "draft",
@@ -643,7 +646,8 @@
     "paperIds": [
       "orthofinder-paper",
       "cycas-evolution",
-      "arabidopsis-69-pangenome"
+      "arabidopsis-69-pangenome",
+      "arabidopsis-adaptation"
     ],
     "tutorialIds": [],
     "status": "draft",
@@ -664,19 +668,23 @@
       "生灭模型"
     ],
     "methodIds": [
-      "orthofinder"
+      "orthofinder",
+      "cafe5"
     ],
     "principleIds": [
-      "phylogenetics"
+      "phylogenetics",
+      "birth-death"
     ],
     "dataIds": [
-      "proteins"
+      "proteins",
+      "gene-counts"
     ],
     "paperIds": [
       "orthofinder-paper",
       "cafe5-paper",
       "cycas-evolution",
-      "arabidopsis-69-pangenome"
+      "arabidopsis-69-pangenome",
+      "tea-comparative"
     ],
     "tutorialIds": [],
     "status": "draft",
@@ -708,7 +716,8 @@
     ],
     "paperIds": [
       "mcscanx-paper",
-      "macadamia"
+      "macadamia",
+      "tea-comparative"
     ],
     "tutorialIds": [],
     "status": "draft",
@@ -729,15 +738,19 @@
       "Bootstrap",
       "基因树"
     ],
-    "methodIds": [],
+    "methodIds": [
+      "iqtree2"
+    ],
     "principleIds": [
       "phylogenetics"
     ],
     "dataIds": [
-      "proteins"
+      "proteins",
+      "coding-sequences"
     ],
     "paperIds": [
-      "iqtree2-paper"
+      "iqtree2-paper",
+      "arabidopsis-adaptation"
     ],
     "tutorialIds": [],
     "status": "draft",
@@ -757,15 +770,19 @@
       "时间树",
       "MCMC"
     ],
-    "methodIds": [],
+    "methodIds": [
+      "paml"
+    ],
     "principleIds": [
       "phylogenetics"
     ],
     "dataIds": [
-      "proteins"
+      "proteins",
+      "coding-sequences"
     ],
     "paperIds": [
-      "paml-paper"
+      "paml-paper",
+      "tea-comparative"
     ],
     "tutorialIds": [],
     "status": "draft",
@@ -820,12 +837,15 @@
       "密码子模型",
       "选择"
     ],
-    "methodIds": [],
+    "methodIds": [
+      "paml"
+    ],
     "principleIds": [
       "phylogenetics"
     ],
     "dataIds": [
-      "proteins"
+      "proteins",
+      "coding-sequences"
     ],
     "paperIds": [
       "paml-paper"

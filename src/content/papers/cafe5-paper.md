@@ -6,7 +6,7 @@ year: 2020
 journal: Bioinformatics
 doi: 10.1093/bioinformatics/btaa1022
 type: method
-methodIds: []
+methodIds: [cafe5]
 domainIds: [comparative-genomics]
 speciesIds: []
 status: draft

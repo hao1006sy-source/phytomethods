@@ -2,7 +2,7 @@
 title: 物种分化时间与分子钟
 summary: 结合替换速率、化石校准和系统树估计植物谱系的分化时间。
 domain: comparative-genomics
-methods: []
+methods: [paml]
 status: draft
 updatedAt: 2026-11-21
 ---

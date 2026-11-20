@@ -2,7 +2,7 @@
 title: 基因家族聚类与扩张
 summary: 从序列相似性、基因树和随机模型分析植物基因家族的演化。
 domain: comparative-genomics
-methods: [orthofinder]
+methods: [orthofinder, cafe5]
 status: draft
 updatedAt: 2026-11-21
 ---

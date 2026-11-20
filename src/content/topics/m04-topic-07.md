@@ -2,7 +2,7 @@
 title: 选择压力与分子进化
 summary: 通过密码子模型、dN/dS 和系统发育比较研究蛋白编码序列的选择。
 domain: comparative-genomics
-methods: []
+methods: [paml]
 status: draft
 updatedAt: 2026-11-21
 ---

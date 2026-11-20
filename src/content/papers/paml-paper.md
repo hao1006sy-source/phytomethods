@@ -6,7 +6,7 @@ year: 2007
 journal: Molecular Biology and Evolution
 doi: 10.1093/molbev/msm088
 type: method
-methodIds: []
+methodIds: [paml]
 domainIds: [comparative-genomics]
 speciesIds: []
 status: draft
