@@ -2,7 +2,7 @@
 title: 全基因组复制与古多倍化
 summary: 综合 Ks、共线性和系统发育证据研究植物基因组复制历史。
 domain: comparative-genomics
-methods: []
+methods: [mcscanx]
 status: draft
 updatedAt: 2026-11-21
 ---

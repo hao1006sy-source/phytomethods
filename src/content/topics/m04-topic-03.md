@@ -2,7 +2,7 @@
 title: 共线性与染色体演化
 summary: 利用同源基因顺序、区块和点图研究植物染色体演化。
 domain: comparative-genomics
-methods: []
+methods: [mcscanx]
 status: draft
 updatedAt: 2026-11-21
 ---

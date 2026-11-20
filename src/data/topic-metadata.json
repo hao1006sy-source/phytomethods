@@ -696,8 +696,12 @@
       "点图",
       "染色体重排"
     ],
-    "methodIds": [],
-    "principleIds": [],
+    "methodIds": [
+      "mcscanx"
+    ],
+    "principleIds": [
+      "collinearity"
+    ],
     "dataIds": [
       "assembly",
       "proteins"
@@ -781,9 +785,12 @@
       "Ks",
       "共线性"
     ],
-    "methodIds": [],
+    "methodIds": [
+      "mcscanx"
+    ],
     "principleIds": [
-      "phylogenetics"
+      "phylogenetics",
+      "collinearity"
     ],
     "dataIds": [
       "assembly",
