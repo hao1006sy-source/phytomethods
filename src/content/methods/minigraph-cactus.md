@@ -24,3 +24,9 @@ Minigraph-Cactus 是从多个组装构建序列图的流程。它结合 minigrap
 
 ## 已核实的植物案例
 Kopalli 等将 Minigraph-Cactus 应用于高粱染色体组装，和其他图构建方法比较，并报告图比对评估结果。[GigaScience 原文](https://doi.org/10.1093/gigascience/giaf121)。研究采用的工具版本和具体参数见原文方法部分。
+
+## 流程及参数含义
+官方 `cactus-pangenome` 流程的序列清单包含样本名和 FASTA 地址；工具先以 minigraph 构造和映射图，再进行分区与 Cactus 碱基级比对，并汇总各部分结果。`--reference` 指定参考样本，`--outDir` 和 `--outName` 控制输出位置和名称；`--gfa`、`--gbz` 等选项请求相应图输出。输出选项及格式需按具体版本官方帮助检查，图裁剪、参考路径选择和过滤也会影响下游内容。[官方流程文档](https://github.com/ComparativeGenomicsToolkit/cactus/blob/master/doc/pangenome.md)。
+
+## 与 PGGB 的差异
+Minigraph-Cactus 使用 minigraph 引导分区，再通过 Cactus 完成碱基级多序列比对；PGGB 通常先做序列全对全比对，再诱导和规范化图。前者的参考与分区设置、后者的比对阈值与序列范围均会影响表示和资源开销。研究者应依据目标区域、样本集合、可用资源及独立评价结果比较，不能只依据工具名称推断某图更完整。
