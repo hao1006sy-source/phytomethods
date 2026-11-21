@@ -2,7 +2,7 @@
 title: 遗传多样性、群体分化与连锁不平衡
 summary: 用 π、Tajima’s D、FST 和 LD 比较植物群体的遗传变异。
 domain: population-genetics
-methods: []
+methods: [plink]
 status: draft
 updatedAt: 2026-11-21
 ---
@@ -29,6 +29,8 @@ $$r^2=\frac{(p_{AB}-p_Ap_B)^2}{p_A(1-p_A)p_B(1-p_B)}.$$
 
 其中 $p_{AB}$ 为单倍型频率，分母非零时该表达式适用。样本有限、相位未知、多等位位点和低频等位基因需要采用相应估计方法。绘制不同物理距离区间的平均或中位 LD 可观察衰减；重组、样本结构、自交、选择和位点筛选均影响曲线。
 
+软件定义需和统计量名称同时记录。PLINK 1.9 的 `--r2` 计算等位基因计数相关系数的平方；`--indep-pairwise` 以滑动窗口中的基因型相关贪心剪枝，未用单倍型相位。针对一个指定 SNP 对，`--ld` 可从估计的单倍型频率给出 haplotype $r^2$ 和 $D'$。这两种 $r^2$ 的数据基础不同，计算结果不应在不核对定义时直接混为同一曲线。[PLINK 1.9 LD 手册](https://www.cog-genomics.org/plink/1.9/ld)。
+
 ## 工作流程与植物应用
 1. 确定群体、倍性、参考与样本来源，检查位点质量和可检测区域。
 2. 在相同过滤规则下计算每群体 π、Tajima’s D，说明窗口和有效位点。
@@ -36,7 +38,11 @@ $$r^2=\frac{(p_{AB}-p_Ap_B)^2}{p_A(1-p_A)p_B(1-p_B)}.$$
 4. 在各群体内估计 LD 与距离关系，说明位点频率、缺失和相位处理。
 5. 结合群体历史、基因注释及独立数据复核候选区域。
 
+PLINK 1.9 可用 `--fst` 依据 Weir–Cockerham 估计量计算常染色体二倍体位点的逐位点和全局 FST；输入群体标签通过 `--within` 提供。PLINK 2.0 支持 Hudson 与 Weir–Cockerham 两类估计，默认 Hudson，输出群体对汇总，并可用区块 jackknife 估计标准误。PLINK 不提供本页所有统计量的统一实现：π 与 Tajima’s D 需选用具有相应估计定义的软件和参数，并将不同工具的可检测区域、缺失与窗口规则统一。 [PLINK 1.9 统计文档](https://www.cog-genomics.org/plink/1.9/basic_stats#fst)；[PLINK 2.0 统计文档](https://www.cog-genomics.org/plink/2.0/basic_stats#fst)；[PLINK 工具页](../../../methods/plink/)。
+
 3,010 水稻材料研究比较群体结构和遗传多样性，并展示与驯化相关区域的窗口分析。[原论文](https://doi.org/10.1038/s41586-018-0063-9)。研究设计、具体窗口和材料范围应按照原文解释。
 
+该论文在群体结构步骤中使用 PLINK 完成 SNP/LD 处理，继而以 ADMIXTURE 比较候选成分数。本站工具关联对应论文明确报告的 LD 工作，不表示 π、FST、Tajima’s D 等每个指标都由 PLINK 计算。[3,010 水稻案例页](../../../papers/rice-3010-pangenome/)；[PLINK 工具页](../../../methods/plink/)。
+
 ## 延伸阅读
-[Tajima 的原始论文](https://pubmed.ncbi.nlm.nih.gov/2513255/)、[F 统计量估计](https://doi.org/10.1111/j.1558-5646.1984.tb05657.x)及[水稻群体研究](https://doi.org/10.1038/s41586-018-0063-9)。不同软件对缺失、窗口与倍性的处理需要在实际分析前核对。
+[Tajima 的原始论文](https://pubmed.ncbi.nlm.nih.gov/2513255/)、[F 统计量估计](https://doi.org/10.1111/j.1558-5646.1984.tb05657.x)、[PLINK LD 与 FST 文档](https://www.cog-genomics.org/plink/1.9/)及[水稻群体研究](https://doi.org/10.1038/s41586-018-0063-9)。不同软件对缺失、窗口与倍性的处理应写入分析记录。

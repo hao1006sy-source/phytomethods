@@ -119,6 +119,12 @@
 
 本轮 `npm run validate` 通过：Astro 60 文件零诊断、54 页静态构建、Pagefind 54 页/5932 词、1276 条本地链接无错误。Pagefind 首次在受限环境重写已有本地索引时返回 PermissionDenied，在授权环境重跑成功。`npm run coverage` 通过，M05 七专题、4 工具、11 篇论文、1 教程保持草稿。Edge DEV 预览检查 PLINK、GAPIT、M05-03 和根系案例四个页面在 375、768、1280、1440px 共 16 个视口状态；HTTP 200、草稿标记、文档宽度及脚本错误检查通过。专题→GAPIT→案例→PLINK 导航通过。该检查覆盖开发预览，不代表发布依赖闭包或线上发布完成。
 
+### 2026-11-21：M05-04 的 PLINK FST 与 LD 关系
+
+依据 PLINK 1.9/2.0 官方手册补充工具页：1.9 `--fst` 按 Weir–Cockerham 对常染色体二倍体变异计算 FST；2.0 可用 Hudson（默认）或 Weir–Cockerham，并能输出群体对与区块 jackknife 标准误。LD 页面分清 `--indep-pairwise` 对 genotype-count 相关的剪枝、`--r2` 基因型相关及 `--ld` 单个位点对的单倍型频率统计，并记载 1.9 默认 founder 样本范围。M05-04 的专题正文、稳定元数据与 PLINK 双向专题关系已更新；论文应用关系限定为 PLINK 实际执行的 LD 筛选，不把 π/Tajima’s D 指标误归到 PLINK。版本与方法边界见 `docs/m05-evidence.md`。
+
+`npm run validate` 通过：60 个 Astro 文件零诊断、54 个静态页面、54 页/5932 词 Pagefind 索引、1276 条本地链接。`npm run coverage` 显示 M05 七专题、4 个工具、11 篇论文与一篇教程均保持草稿，17 个草稿专题仍待补足工具关联。Edge DEV 在 375、768、1280、1440 px 检查 PLINK 与 M05-04 共 8 个页面状态；HTTP 200、草稿标识、页面宽度及脚本错误通过。M05-04 → PLINK 导航通过；FST 正文可见。示例 FST/LD 命令未实跑。
+
 ### 2026-11-21：AgroNT 模型草稿
 
 新增 AgroNT 模型页面，依据原论文说明 6-mer 分词、遮盖预测、植物基准及木薯计算应用，并关联 M09 两个专题和论文；标明预训练代码与本机运行状态。`npm run validate` 通过，1222 条站内链接无错误。

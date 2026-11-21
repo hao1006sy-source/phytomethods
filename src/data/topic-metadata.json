@@ -1004,8 +1004,12 @@
       "LD",
       "滑动窗口"
     ],
-    "methodIds": [],
-    "principleIds": [],
+    "methodIds": [
+      "plink"
+    ],
+    "principleIds": [
+      "genotype-statistics"
+    ],
     "dataIds": [
       "variant-data"
     ],
