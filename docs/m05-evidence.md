@@ -55,3 +55,23 @@ PLINK 工具页、M05-03 和 GAPIT 互相关联已据此分清软件任务：在
 `npm run validate` 在授权环境下通过：Astro 60 个文件零错误/警告/提示，静态构建 54 页，Pagefind 收录 54 页、5932 词，1276 条本地链接无错误。第一次受限运行在 Pagefind 覆写既有本地索引时遇到 Windows PermissionDenied；相同命令在授权环境重跑完成。`npm run coverage` 通过：M05 七个专题、4 个工具、11 篇论文和 1 篇教程均保持草稿。Edge DEV 预览对 PLINK、GAPIT、M05-03 与水稻根系案例在 375、768、1280、1440 px 共 16 个页面状态检查 HTTP 200、草稿标记、页面宽度和浏览器脚本错误；另验证 M05-03 → GAPIT → 水稻根系案例 → PLINK 导航通过。DEV 草稿检查不构成发布态验收。
 
 M05-04 增补后再次运行 `npm run validate`，Astro 60 个文件零诊断、静态构建 54 页、Pagefind 54 页/5932 词、1276 条本地链接通过；`npm run coverage` 确认 7 篇专题、4 个工具、11 篇论文和 1 篇教程继续为草稿，未关联工具的草稿专题由 18 篇降至 17 篇。Edge DEV 对 PLINK 与 M05-04 在 375、768、1280、1440 px 检查，共 8 个页面视口状态通过；M05-04 → PLINK 导航和 FST 正文检查通过，页面脚本错误为 0。PLINK FST/LD 命令依据官方文档整理，尚未在本机实跑。
+
+## M05-05 选择性清除：方法、实现和植物案例
+
+| 记录项 | 已核事实 | 来源 |
+| --- | --- | --- |
+| XP-CLR 方法 | Chen、Patterson 与 Reich 于 2010 年提出跨群体复合似然方法；中性模型以漂变描述两群体频率变化，选择模型描述连锁邻域的多位点频率差异，按 LD 相关性降低冗余位点贡献。书目信息为 Genome Research 20(3):393–402。 | [PubMed](https://pubmed.ncbi.nlm.nih.gov/20086244/)；[PMC 原文](https://pmc.ncbi.nlm.nih.gov/articles/PMC2840981/) |
+| XP-CLR 实现边界 | `hardingnj/xpclr` README 将其列为独立 Python 重写，称其源于原始程序存在的问题；输入包括 VCF/HDF5/文本，含双群体样本、地图、窗口和 LD 权重参数。其输出和归一化分数属于该实现，不能视为原始程序版本互换。 | [仓库 README](https://github.com/hardingnj/xpclr)；[David Reich Lab 软件目录](https://reich.hms.harvard.edu/software) |
+| XP-EHH 方法 | Sabeti 等 2007 年在 HapMap 群体扫描中提出 XP-EHH，用两群体延伸单倍型纯合性积分比较识别一群体中接近固定的长单倍型信号；目标/参照输入顺序决定结果方向。 | [Nature 原文](https://www.nature.com/articles/nature06250)；[PubMed](https://pubmed.ncbi.nlm.nih.gov/17943131/) |
+| selscan 软件 | 本轮核查时 GitHub 主分支 README 显示 v3.1.0，要求 C++17 与 zlib，XP-EHH 接收群体 VCF、参考 VCF 和地图选项，并说明该输入模式不接受缺失基因型。XP-EHH 方法论文与 selscan 软件论文分别记录。 | [官方仓库与手册](https://github.com/szpiech/selscan)；[2014 软件论文](https://doi.org/10.1093/molbev/msu211) |
+| SweepFinder2 方法与输入 | 单群体频率谱 CLR 扫描；官方手册的频率文件含 `position/x/n/folded`，经验中性频谱用 `-f` 生成，`-lr/-lrg` 可加入重组率图。B 值模式具有额外人口参数和群体单系假设。开发者源码库标 GPL-3.0，手册程序版本为 1.0。 | [开发者手册](https://degiorgiogroup.fau.edu/Manual_SweepFinder2_v1.0.pdf)；[源码仓库](https://github.com/mdegiorgio/SweepFinder2)；[方法论文](https://doi.org/10.1093/bioinformatics/btw051) |
+| 韩国杂草稻案例 | 30 份杂草稻、30 份地方稻和 10 份野生稻；论文报告 ROD、FST、XP-CLR、iHS 和 XP-EHH，按各自分布最高 2.5%筛选窗口/位点，并将至少两类扫描支持的 537 个基因作为候选集合。论文使用的 XP-CLR 程序与本站 Python 重写不作等同。 | [全文](https://pmc.ncbi.nlm.nih.gov/articles/PMC5316921/)；[DOI](https://doi.org/10.1111/pbi.12630) |
+| 亚洲栽培稻有害变异案例 | 论文对部分 3K 数据使用 XP-CLR 与 SweeD，前 5%作为该研究扫描阈值；indica 子集不同方法识别到的区域数和重叠程度不同。 | [出版方原文](https://academic.oup.com/mbe/article/34/4/908/2897207)；[DOI](https://doi.org/10.1093/molbev/msw296) |
+| 水稻 TE 标记案例 | Yan 等在 176 份材料中对 SNP/TE 标记运行 SweepFinder2，使用 10 kb 网格和最高 1%窗口阈值，合并相邻高分段。 | [全文方法](https://pmc.ncbi.nlm.nih.gov/articles/PMC9251385/)；[DOI](https://doi.org/10.1016/j.xplc.2021.100270) |
+| Huang 水稻驯化案例 | 446 份野生稻与 1,083 份籼/粳稻，报告 55 个驯化扫荡区；主扫描使用 100 kb 窗口的 π 比值并结合置换校准，XP-EHH 为另行测试。 | [全文方法](https://pmc.ncbi.nlm.nih.gov/articles/PMC7518720/)；[补充材料](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fnature11532/MediaObjects/41586_2012_BFnature11532_MOESM59_ESM.pdf) |
+
+M05-05 新增 XP-CLR、selscan、SweepFinder2 工具记录，四篇方法/软件论文和三篇植物应用论文记录。专题、工具、论文和受控标签使用稳定 ID 互联。新工具命令依据各自手册/README 核对，未在本机以真实植物数据实跑；相关页面保持草稿。方法学局部核源不代表 M05 全域审核结束。
+
+### 2026-11-21：M05-05 构建回归
+
+`npm run coverage` 通过：M05 七专题、七工具、18 篇论文、一篇教程仍为草稿；全站无工具关联草稿专题由 17 篇降至 16 篇。`npm run validate` 在授权环境通过：Astro 60 文件零诊断、54 个已发布页面、Pagefind 54 页/5937 词、1276 条本地链接无错误。Edge 对专题、三个工具与四篇相关论文在 375、768、1280、1440 px 共检查 32 个页面视口，HTTP 200、草稿标记、标题、页面宽度与脚本错误检查通过；专题→XP-CLR→方法论文、SweepFinder2→方法论文导航通过。新增工具和论文为草稿，未进入静态发布集合；浏览器检查只覆盖本地 DEV 预览。

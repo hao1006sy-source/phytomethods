@@ -1027,21 +1027,41 @@
     "englishTitle": "Selective sweeps",
     "domainId": "population-genetics",
     "order": 5,
-    "summary": "以频率谱、多样性和单倍型信号研究选择性清除。",
+    "summary": "比较群体内多样性、位点频率谱、多位点频率分化和延伸单倍型信号，评估选择性清除候选区。",
     "keyConcepts": [
       "硬清除",
       "软清除",
+      "未完成清除",
       "频率谱",
+      "复合似然",
+      "背景选择",
       "单倍型",
       "群体对照"
     ],
-    "methodIds": [],
-    "principleIds": [],
+    "methodIds": [
+      "xpclr",
+      "selscan",
+      "sweepfinder2"
+    ],
+    "principleIds": [
+      "allele-frequency-differentiation",
+      "site-frequency-spectrum-scan",
+      "extended-haplotype-homozygosity",
+      "composite-likelihood-selection",
+      "population-differentiation"
+    ],
     "dataIds": [
       "variant-data"
     ],
     "paperIds": [
-      "rice-domestication-huang"
+      "rice-domestication-huang",
+      "xpclr-paper",
+      "xpehh-paper",
+      "sweepfinder2-paper",
+      "selscan-paper",
+      "rice-weedy-selection",
+      "rice-deleterious-domestication",
+      "rice-temarker-sweeps"
     ],
     "tutorialIds": [],
     "status": "draft",
