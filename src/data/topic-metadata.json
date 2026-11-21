@@ -1074,21 +1074,40 @@
     "englishTitle": "Population history",
     "domainId": "population-genetics",
     "order": 6,
-    "summary": "利用共祖模型和全基因组数据推断群体历史。",
+    "summary": "以 PSMC、MSMC2 和 SMC++ 等共祖模型推断有效群体大小历史、分化过程与尺度不确定性。",
     "keyConcepts": [
       "共祖",
       "有效群体大小",
+      "局部共祖时间",
+      "可调用区域",
+      "突变率与世代时间",
       "PSMC",
       "MSMC2",
       "SMC++"
     ],
-    "methodIds": [],
-    "principleIds": [],
+    "methodIds": [
+      "psmc",
+      "msmc2",
+      "smcpp"
+    ],
+    "principleIds": [
+      "sequentially-markovian-coalescent",
+      "coalescent-hidden-markov-model",
+      "conditional-site-frequency-spectrum"
+    ],
     "dataIds": [
-      "variant-data"
+      "variant-data",
+      "diploid-consensus-sequence",
+      "callable-region-mask"
     ],
     "paperIds": [
-      "psmc-paper"
+      "psmc-paper",
+      "msmc-paper",
+      "msmc2-protocol",
+      "smcpp-paper",
+      "african-rice-246-genomes",
+      "populus-repeats-demography",
+      "populus-euphratica-demography"
     ],
     "tutorialIds": [],
     "status": "draft",

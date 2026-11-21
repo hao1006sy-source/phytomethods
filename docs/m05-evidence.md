@@ -75,3 +75,16 @@ M05-05 新增 XP-CLR、selscan、SweepFinder2 工具记录，四篇方法/软件
 ### 2026-11-21：M05-05 构建回归
 
 `npm run coverage` 通过：M05 七专题、七工具、18 篇论文、一篇教程仍为草稿；全站无工具关联草稿专题由 17 篇降至 16 篇。`npm run validate` 在授权环境通过：Astro 60 文件零诊断、54 个已发布页面、Pagefind 54 页/5937 词、1276 条本地链接无错误。Edge 对专题、三个工具与四篇相关论文在 375、768、1280、1440 px 共检查 32 个页面视口，HTTP 200、草稿标记、标题、页面宽度与脚本错误检查通过；专题→XP-CLR→方法论文、SweepFinder2→方法论文导航通过。新增工具和论文为草稿，未进入静态发布集合；浏览器检查只覆盖本地 DEV 预览。
+
+## M05-06 群体历史动态：方法与植物案例
+
+| 记录项 | 已核事实 | 来源 |
+| --- | --- | --- |
+| PSMC 方法与格式 | Li 与 Durbin 2011 年方法论文；官方 README 提供 `fq2psmcfa`、`psmc`、`splitfa`、bootstrap 与 `psmc_plot.pl` 示例，默认 PSMCFA bin size 为 100 bp。命令页未把人类示例时间分段当作植物通用参数。 | [Nature 方法论文](https://doi.org/10.1038/nature10231)；[官方 README](https://github.com/lh3/psmc) |
+| MSMC/MSMC2 | MSMC 原方法论文为 Schiffels 与 Durbin 2014；MSMC2 官方 README 更新了时间分段和样本对选择，并提供 multihetsep 输入、`-I/-p/-t` 控制项与跨群体三类配对运行示例。2020 年章节提供 MSMC/MSMC2 分析协议。 | [Nature Genetics 原文](https://doi.org/10.1038/ng.3015)；[MSMC2 仓库](https://github.com/stschiff/msmc2)；[协议 DOI](https://doi.org/10.1007/978-1-0716-0199-0_7)；[msmc-tools](https://github.com/stschiff/msmc-tools) |
+| SMC++ 方法与实现 | Terhorst、Kamm 与 Song 2017 方法论文报告未定相样本、条件频率谱、扩展样本处理与样条正则化；`split` 模型假定 clean split。官方仓库列 `vcf2smc`、`estimate`、`plot`、`split` 输入输出，`vcf2smc` 假设双等位二倍体 VCF、参考等位基因为祖先，并需通过 mask 处理未调用区域。 | [Nature Genetics 原文](https://doi.org/10.1038/ng.3748)；[PMC全文](https://pmc.ncbi.nlm.nih.gov/articles/PMC5470542/)；[官方仓库](https://github.com/popgenmethods/smcpp) |
+| 非洲稻案例 | Cubry 等 246 份基因组研究分别描述 PSMC、MSMC/MSMC2 和 SMC++。PSMC/MSMC 使用 16 条栽培稻单倍型组合的 8 个伪二倍体并有 6 次 MSMC bootstrap；SMC++ 使用 79 个伪二倍体、5 条区分谱系、$6.5\times10^{-9}$ 每代每位点突变率、100,000 代上界和 25 个 spline knots。原文总体人口曲线在约 3,400 BP 低点与约 1,847 BP 增加信号；该设计依赖伪二倍体方法和一年世代时间。 | [Current Biology全文与STAR Methods](https://rbca.africarice.org/files/doc/journal/10.1016j.cub.2018.05.066.pdf)；[PubMed](https://pubmed.ncbi.nlm.nih.gov/29983312/) |
+| 杨树重复序列研究 | Patil 与 Vijay 以 *Populus trichocarpa* 比较 repeat masking 对 PSMC/MSMC/SMC++/Stairway Plot 的影响；在该植物数据中，屏蔽重复区域后远古时期估计下降、近期估计上升，强调 mask 方案会影响历史估计。 | [Heredity原文](https://doi.org/10.1038/s41437-021-00443-8)；[PMC](https://pmc.ncbi.nlm.nih.gov/articles/PMC8322061/) |
+| 胡杨研究 | Jia 等全基因组重测序研究报告约 3.15 million SNP 和四个具有地理结构的支系；PSMC 用于支系规模历史，fastsimcoal26 单独用于多群体模型/迁移参数，页面不把迁移率归于 PSMC。 | [PubMed与DOI](https://pubmed.ncbi.nlm.nih.gov/32242238/)；[PMC全文](https://pmc.ncbi.nlm.nih.gov/articles/PMC7475257/) |
+
+M05-06 新增 PSMC、MSMC2 和 SMC++ 工具页，新增 MSMC 方法论文、MSMC2 协议、SMC++ 方法论文及三篇植物案例；方法关系和标签通过稳定 ID 管理。新增共祖状态流程 SVG 标明为原理示意。`npm run validate` 通过：Astro 61 文件零诊断、54 个已发布页、Pagefind 54 页/5948 词、1276 条站内链接无错误。`npm run coverage` 确认 M05 七专题、10 工具、24 篇论文和一篇教程均为草稿；无工具关联草稿专题由 16 降为 15。Edge 对 M05-06 专题、三工具与七论文共 11 个路由在 375、768、1280、1440 px 检查 HTTP 200、标题、草稿预览状态和页面溢出；专题—工具—案例链接存在，375px 下流程 SVG 处于内部横向滚动容器，页面整体宽度未溢出。新增工具命令依据官方材料核对，未在本机真实植物基因组上运行。

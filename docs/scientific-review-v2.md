@@ -120,3 +120,7 @@
 ### 2026-11-21：M05-05 选择性清除局部审核
 
 新增 XP-CLR、selscan/XP-EHH 与 SweepFinder2 的方法原理、数据需求、实现差异和植物案例说明。XP-CLR 书目信息依据 PubMed/PMC 原文核对；XP-EHH 统计方法与 selscan 软件论文分别记录；SweepFinder2 输入格式、网格、重组率和 B 值条件依据开发者手册核对。XP-CLR Python 仓库明确标作独立实现，水稻案例使用的软件未与该重写程序混同。核查三篇植物应用：Huang 等野生/栽培水稻 55 个扫荡区及 π 比值主扫描；He 等 70 份韩国稻材料的五类统计及前 2.5%筛选；Yan 等水稻 SNP/TE 标记的 SweepFinder2 10 kb 网格和前 1%经验窗口；并登记 Liu 等 3K 数据 XP-CLR/SweeD 比较。工具页、方法论文、案例和专题关系采用稳定 ID。`npm run validate` 和 `npm run coverage` 通过；Edge 在四种视口检查八个 M05-05 页面共 32 个页面状态，并通过专题→XP-CLR→方法论文及 SweepFinder2→方法论文导航。命令未使用本机真实植物数据运行，M05-05 与关联实体保持草稿，专题全文审核未关闭。
+
+### 2026-11-21：M05-06 群体历史方法与植物案例局部审核
+
+核对 PSMC 原始方法论文及官方命令/文件格式；MSMC 2014 方法论文、MSMC2 软件仓库和 2020 协议分别记录；SMC++ 方法论文与官方 VCF、mask、estimate、split 文档核查。新增非洲稻 246 份基因组、*Populus trichocarpa* 重复序列敏感性、胡杨重测序三项植物应用条目。对照非洲稻 STAR Methods 区分 PSMC/MSMC 的 8 个伪二倍体、6 次 MSMC bootstrap 与 SMC++ 的 79 个伪二倍体、5 条区分谱系及突变率/世代时间；胡杨案例将 PSMC 历史曲线和 fastsimcoal26 迁移模型分开说明；杨树案例记载 mask 对远古和近期 $N_e$ 估计方向不同的结果。新增 SVG 是共祖状态概念示意，不对应实测曲线。`npm run validate` 及 `npm run coverage` 通过；Edge 四视口检查新增 11 路由与专题/工具/论文关联。工具命令按官方文档核对，未在本机真实植物数据上执行；M05-06 与关联资源保持草稿，局部审核不关闭整个 M05 的科学审查。

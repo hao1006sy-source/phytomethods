@@ -6,7 +6,7 @@ year: 2011
 journal: Nature
 doi: 10.1038/nature10231
 type: method
-methodIds: []
+methodIds: [psmc]
 domainIds: [population-genetics]
 speciesIds: []
 status: draft
