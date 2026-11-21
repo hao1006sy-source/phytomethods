@@ -20,16 +20,20 @@ SyRI（Synteny and Rearrangement Identifier）比较两个组装基因组。输�
 根据比对坐标构建候选对应关系，寻找共线路径，进一步识别倒位、易位、重复等重排及其边界。对于每类结构区域，软件检查位于其中的局部差异。重复序列可能产生多个匹配，过滤时保留哪些比对会影响可识别的重复与重排。
 
 ## 输入、输出与重要参数
-官方示例先使用 NUCmer 进行全基因组比对，再用 `delta-filter` 和 `show-coords` 生成坐标文件；运行 SyRI 时提供参考、查询序列及比对文件。`-c` 指定坐标输入，`-r` 和 `-q` 分别指参考与查询。根据比对格式和短变异分析目标，还可能需要 `.delta` 或包含 CIGAR 的文件，具体以[官方示例](https://schneebergerlab.github.io/syri/example.html)和版本帮助为准。输出涵盖共线和重排等区域及相关变异，解释时保留参考/查询方向和坐标体系。
+官方 MUMmer 流程先对参考与查询组装进行 NUCmer 全基因组比对，再通过 `delta-filter` 和 `show-coords` 整理输入。PAF 输入使用另一套格式路径。常用参数包括 `-c` 坐标/比对输入、`-r` 参考 FASTA、`-q` 查询 FASTA、`-d` MUMmer delta（使用相应流程时）及 `--prefix` 输出前缀。不同比对格式需要配套格式选项；实际运行以[官方示例](https://schneebergerlab.github.io/syri/example.html)和版本帮助为准。
+
+输出以 `.out` 主结果、`.vcf` 变异记录、`.summary` 汇总和日志为主，具体文件由运行方式决定；在 `.out` 中区分共线、倒位、易位和局部差异类别，VCF 表示亦需核对参考与查询坐标、方向、变异类型和缺失值。官方示例自动映射染色体时会产生 mapids 文件，应人工确认参考与查询的染色体对应关系。
 
 ## 植物应用与限制
 原论文比较两份拟南芥组装，对部分预测易位进行了实验验证。高度重复或不完整组装会使多个位置产生可竞争的匹配；应检查组装质量、比对过滤和候选断点的独立证据。[原始论文](https://doi.org/10.1186/s13059-019-1911-0)。
+
+高粱图构建基准使用 SyRI 1.6.3 比较染色体级组装，并与 SVIM-asm、图变异流程对照；研究在含已知真值的模拟组装中计算 SV 检测表现，也在真实组装中比较变异结果的区域重叠。模拟真值 F1 与真实组装重叠检验回答不同问题，需按各自数据和指标解读。[高粱方法比较](https://doi.org/10.1093/gigascience/giaf121)。
 
 ## 上下游
 上游为经过质量控制的两套组装和适合数据的全基因组比对；下游可结合浏览器、reads 回贴及基因注释解释候选重排。不同工具、参数和参考选择得到的变异集合需要按相同坐标体系比较。
 
 ## 软件来源与版本记录
-SyRI 由 Schneeberger 团队发布，仓库采用 MIT 许可证。官方仓库的更新记录列出 1.6 版及后续源码更新，具体分析应以安装版本的 `syri -h` 与对应发布记录为准；不把仓库分支日期当成当前安装版本。[项目仓库与安装说明](https://github.com/schneebergerlab/syri)。
+SyRI 由 Schneeberger 团队发布，仓库采用 MIT 许可证。2026-11-21 官方 release 页面列出 v1.8.2；本项目实跑使用 SyRI 1.8.2 与 MUMmer 3.23，官方拟南芥测试集输入、版本、命令、日志、摘要和哈希见 `examples/syri/verified-20261121/`。[项目仓库](https://github.com/schneebergerlab/syri)、[发布页](https://github.com/schneebergerlab/syri/releases)、[许可证](https://github.com/schneebergerlab/syri/blob/master/LICENSE)。该运行验证的是固定测试数据的命令链，不是其中所有预测变异的独立验证。
 
 ## 运行前方向检查
 官方说明要求比较的同源染色体采用一致的方向；如果两条对应染色体的大部分比对方向相反，应先检查染色体方向，必要时对查询染色体做反向互补，再重新进行全基因组比对。不能仅凭单个局部倒位决定整条染色体方向。对于大型易位或重复，候选比对会增加时间和内存消耗，需要结合比对过滤、染色体分组和资源监控处理。[官方限制说明](https://github.com/schneebergerlab/syri#current-limitations)。

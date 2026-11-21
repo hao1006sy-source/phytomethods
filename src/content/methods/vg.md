@@ -29,7 +29,13 @@ updatedAt: 2026-11-21
 ## 软件、论文与植物案例
 vg 原始论文描述变异图框架；Sirén 等的 Giraffe 论文主要基于人类数据阐述单倍型感知短读段比对。后续长读段功能应以相应版本与论文为准，不能把原始短读段方法的评估直接套用到长读段。
 
-Kopalli 等的高粱泛基因组比较使用 Giraffe 将模拟 reads 比对到不同构建方法得到的图，并在设定的映射质量阈值及真值条件下评价结果。[植物应用论文](https://doi.org/10.1093/gigascience/giaf121)。该例使用高粱组装生成的模拟 reads，不能描述成对真实测序 reads 的同一项验证。不同图的覆盖内容和评价条件直接影响比较。
+Kopalli 等的高粱泛基因组比较分别评估模拟 reads 与公开真实 paired-end reads。模拟 reads 由泛基因组图生成，Giraffe 将其映射到 Minigraph 或 Minigraph-Cactus 图，再与 Minimap2 的线性参考映射及模拟真值比较。真实 paired-end reads 也映射到 Minigraph、Minigraph-Cactus 图和线性参考，论文分别报告总比对率与完美比对比例。PGGB 图因索引生成所需计算和内存未纳入 read-mapping 比较；模拟数据的真值准确率不能与真实 reads 的比对率合并解释。[植物应用论文](https://doi.org/10.1093/gigascience/giaf121)。
+
+该论文的公开真实 reads 结果中，Minimap2、Minigraph-Cactus 和 Minigraph 的总比对率分别为 82.47%、73.44% 和 73.27%；完美比对比例分别为 68.77%、82.77% 和 78.13%。这组结果呈现“总比对数量”和“完美比对比例”之间的差异，不能只看其中一个指标，也只适用于论文的数据集及评估定义。[出版方图 9](https://academic.oup.com/gigascience/article/doi/10.1093/gigascience/giaf121/8364989)。
 
 ## 上下游、版本和许可
 上游包括样本组装、图构建与质量评估；下游可开展参考路径投影、已知变异分型和独立验证。vg 自身使用 MIT 许可，子模块及附带工具可能有各自许可。[许可证](https://github.com/vgteam/vg/blob/master/LICENSE)。2026-11-21 查看官方发布页列出 v1.78.0，该记录是来源快照，未在本机安装或执行。[发布页](https://github.com/vgteam/vg/releases)。
+
+`vg giraffe` 的映射记录应与后续变异表示/分型分开交付。使用 VCF 或其他坐标输出时，要固定参考路径、图版本和图到线性坐标的转换；若任务需要新结构变异发现，Giraffe 的 mapping 结果不能单独作为 caller 结论。vg 项目自身 MIT 许可不延伸覆盖所有贡献目录、子模块或随流程使用的外部工具，须按实际发布和依赖单独检查。[vg 许可证](https://github.com/vgteam/vg/blob/master/LICENSE)、[官方索引指南](https://github.com/vgteam/vg/wiki/Index-Construction)。
+
+高粱基准以真实组装构建 pangenome 图，并分别使用模拟 reads 和公开真实 paired-end reads 评估映射。模拟数据有生成位置真值，可用于该实验设定内的定位正确性比较；真实数据用于对比总映射和完美映射结果，不具备同一套模拟位置真值。PGGB 图未参与 mapping benchmark，因其索引生成计算和内存需求超出该研究可执行范围。[高粱基准论文](https://doi.org/10.1093/gigascience/giaf121)。

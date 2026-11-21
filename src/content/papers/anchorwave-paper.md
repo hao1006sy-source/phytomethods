@@ -1,7 +1,7 @@
 ---
 title: "AnchorWave: Sensitive alignment of genomes with high sequence diversity, extensive structural polymorphism, and whole-genome duplication"
 summary: "植物基因组共线锚点识别与碱基级比对。"
-authors: "Song B et al."
+authors: "Song B, Marco-Sola S, Moreto M, Johnson L, Buckler ES, Stitzer MC"
 year: 2022
 journal: PNAS
 doi: 10.1073/pnas.2113075119
@@ -10,7 +10,7 @@ methodIds: [anchorwave]
 domainIds: [pangenomics-structural-variation]
 speciesIds: []
 status: draft
-updatedAt: 2026-11-20
+updatedAt: 2026-11-21
 ---
 ## 方法贡献
 植物基因组共线锚点识别与碱基级比对。 方法细节与研究数据以[原始论文](https://doi.org/10.1073/pnas.2113075119)为准。

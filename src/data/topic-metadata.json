@@ -535,6 +535,7 @@
       "样本路径"
     ],
     "methodIds": [
+      "minigraph",
       "minigraph-cactus",
       "pggb"
     ],
@@ -546,6 +547,7 @@
       "graph"
     ],
     "paperIds": [
+      "minigraph-paper",
       "minigraph-cactus-paper",
       "pggb-paper",
       "sorghum-graph-benchmark",
@@ -585,7 +587,8 @@
       "vg-paper",
       "odgi-paper",
       "sorghum-graph-benchmark",
-      "giraffe-paper"
+      "giraffe-paper",
+      "arabidopsis-adaptation"
     ],
     "tutorialIds": [],
     "status": "draft",

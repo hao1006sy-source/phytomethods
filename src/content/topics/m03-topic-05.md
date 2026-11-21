@@ -2,7 +2,7 @@
 title: 图泛基因组构建
 summary: 利用序列图表示多个组装的共享序列、变异及样本路径。
 domain: pangenomics-structural-variation
-methods: [minigraph-cactus, pggb]
+methods: [minigraph, minigraph-cactus, pggb]
 status: draft
 updatedAt: 2026-11-21
 ---
@@ -24,6 +24,8 @@ updatedAt: 2026-11-21
 ## Minigraph-Cactus 与 PGGB
 Minigraph-Cactus 将 minigraph 的组装到图映射与 Cactus 的碱基级比对结合，构建可供下游映射和分型的泛基因组图。[原始论文](https://doi.org/10.1038/s41587-023-01793-w)展示了该流程。PGGB 使用多输入序列的全对全比对、图诱导与规范化构建图；[官方项目](https://github.com/pangenome/pggb)记录其组成工具与使用方式。
 
+独立的 **Minigraph** 是上述组合流程中的图映射和增量构图软件，也可单独运行。它以参考序列或现有图为骨架，逐份加入完整组装，官方教程可输出 rGFA/GFA、GAF 及 bubble 的 BED 类描述；不将 raw reads 当成逐样本组装输入。2020 年方法论文描述的是 Minigraph 本身，Minigraph-Cactus 则另有 Cactus 比对与图整理阶段。[Minigraph 方法论文](https://doi.org/10.1186/s13059-020-02168-z)、[官方使用说明](https://github.com/lh3/minigraph#graph-generation)。
+
 两种流程对输入组织、参考选择、重复、计算资源和输出表示的处理不同。比较时需使用同一组输入与可复现的参数，并以研究任务相关的指标评估，不宜从图形外观推断哪一种图普遍更好。
 
 ## 对齐、图诱导和局部规范化
@@ -42,3 +44,17 @@ GFA 是常见的图交换格式；图文件中的片段、连接与路径字段�
 多倍体、近期全基因组复制、大规模转座子和不等长的组装使一对一定位困难；应避免将高度相似的同源拷贝无条件合并。样本数量增加时，全对全比对和图处理的计算资源也会增加。建议先在能够定义同源边界的区域验证流程，再逐步扩大规模，并记录任何过滤、拆分或缺失样本。
 
 [水稻泛基因组研究](https://doi.org/10.1038/s41588-018-0041-z)展示多个材料共同分析基因组变异的生物学动机；该文献在此作为植物案例，不表示其使用上述构图软件。阅读工具原始论文和官方仓库，分别核对算法、数据和输入格式。
+
+## 植物基准中的方法比较
+Kopalli 等以六份真实高粱组装比较 Minigraph、PGGB 与 Minigraph-Cactus，并将构图与部分评估扩展到大豆、大麦和油菜。在该论文的真实高粱数据设置中，Minigraph 图约 0.92 Gb，PGGB 与 Minigraph-Cactus 图分别约 4.7 Gb 和 4.2 Gb；其中 Minigraph 只纳入大于 50 bp 的变异，另两套图流程未采用同一长度过滤。结构变异真值比较与 Giraffe mapping 均包括模拟数据；读段映射还单独使用公开 paired-end reads 比较 Minigraph、Minigraph-Cactus 与线性参考。PGGB 因索引生成所需计算和内存未进入 mapping benchmark。图的总碱基量、BUSCO 结果、路径覆盖、变异真值和资源消耗需结合输入与阈值共同解读。[原始基准研究](https://doi.org/10.1093/gigascience/giaf121)。
+
+## 计算表示与质量检查
+可将路径图写作 $G=(V,E,\sigma,\mathcal{P})$：$V$ 为节点集合，$E$ 为带方向的端点连接，$\sigma(v)$ 是节点 $v$ 上的序列，$\mathcal{P}$ 是参考、样本或单倍型路径集合。一个路径对应沿边连续遍历的有向节点序列。图构建至少要评估：输入组装路径能否恢复；各样本是否被正确标名；节点/边和路径覆盖是否符合目标；重复区域是否被错误合并；相同输入和版本是否能复现结果。GFA 文件允许图结构与样本路径共存；其可走通路径不自动等于真实群体观察到的单倍型。
+
+### 方法流程的取舍
+
+| 流程 | 关系建立方式 | 主要表示特点 | 核查重点 |
+| --- | --- | --- | --- |
+| Minigraph | 按顺序将组装比对到参考骨架/现有图，再增量加入结构差异 | 参考锚定、构图高效；图内容受纳入顺序、输入和结构变异过滤影响 | 参考偏倚、路径完整性及变异长度阈值 |
+| Minigraph-Cactus | Minigraph 建初始图/分区，Cactus 对同源片段进一步多序列比对与整理 | 包含碱基级序列差异的整合流程 | 参考、分区、Cactus 输出和运行资源 |
+| PGGB | 全对全比对、由比对关系诱导图、平滑和规范化 | 不以单一线性骨架定义所有关系；规模大时资源消耗显著 | wfmash 阈值、重复区误配、路径恢复与索引成本 |

@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro check && astro build && pagefind --site dist",
+    "build": "astro check && astro build && pagefind --site dist --output-subdir pagefind-search",
     "preview": "astro preview",
     "check": "astro check",
     "validate": "npm run build && python scripts/check-links.py",

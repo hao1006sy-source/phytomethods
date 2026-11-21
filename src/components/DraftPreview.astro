@@ -1,0 +1,30 @@
+---
+interface Props {
+  status: string;
+}
+
+const { status } = Astro.props;
+---
+
+{import.meta.env.DEV && status === 'draft' && (
+  <aside class="draft-preview" role="status">
+    本地草稿预览 · 此页面不会进入正式构建或公开搜索索引
+  </aside>
+)}
+
+<style>
+  .draft-preview {
+    max-width: 1320px;
+    margin: 12px auto;
+    padding: 10px 16px;
+    border: 1px solid #d8c59a;
+    border-radius: 8px;
+    background: #fff9e9;
+    color: #5f4a1e;
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 1360px) {
+    .draft-preview { margin-inline: 20px; }
+  }
+</style>
