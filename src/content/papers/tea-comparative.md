@@ -9,7 +9,7 @@ type: application
 methodIds: [orthofinder, mcscanx, cafe5, paml]
 domainIds: [comparative-genomics]
 speciesIds: [tea]
-status: draft
+status: published
 updatedAt: 2026-11-21
 ---
 ## 研究流程与方法

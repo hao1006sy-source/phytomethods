@@ -701,7 +701,7 @@
   },
   {
     "id": "m04-topic-01",
-    "title": "同源、直系同源和旁系同源",
+    "title": "同源、直系同源与旁系同源",
     "englishTitle": "Homology and orthology",
     "domainId": "comparative-genomics",
     "order": 1,
@@ -723,18 +723,17 @@
       "proteins"
     ],
     "paperIds": [
-      "orthofinder-paper",
       "cycas-evolution",
       "arabidopsis-69-pangenome",
-      "arabidopsis-adaptation",
+      "orthofinder-paper",
       "orthofinder-2026"
     ],
     "tutorialIds": [
       "orthofinder-intro"
     ],
-    "status": "draft",
+    "status": "published",
     "createdAt": null,
-    "updatedAt": "2026-11-21"
+    "updatedAt": "2026-11-22"
   },
   {
     "id": "m04-topic-02",
@@ -762,19 +761,20 @@
       "gene-counts"
     ],
     "paperIds": [
-      "orthofinder-paper",
       "cafe5-paper",
       "cycas-evolution",
       "arabidopsis-69-pangenome",
       "tea-comparative",
+      "orthofinder-paper",
       "orthofinder-2026"
     ],
     "tutorialIds": [
-      "orthofinder-intro"
+      "orthofinder-intro",
+      "cafe5-intro"
     ],
-    "status": "draft",
+    "status": "published",
     "createdAt": null,
-    "updatedAt": "2026-11-21"
+    "updatedAt": "2026-11-22"
   },
   {
     "id": "m04-topic-03",
@@ -801,13 +801,13 @@
     ],
     "paperIds": [
       "mcscanx-paper",
-      "macadamia",
+      "macadamia-mcscanx",
       "tea-comparative"
     ],
     "tutorialIds": [],
-    "status": "draft",
+    "status": "published",
     "createdAt": null,
-    "updatedAt": "2026-11-21"
+    "updatedAt": "2026-11-22"
   },
   {
     "id": "m04-topic-04",
@@ -835,16 +835,17 @@
     ],
     "paperIds": [
       "iqtree2-paper",
+      "angiosperm-phylogenomics-2024",
       "arabidopsis-adaptation"
     ],
     "tutorialIds": [],
-    "status": "draft",
+    "status": "published",
     "createdAt": null,
-    "updatedAt": "2026-11-21"
+    "updatedAt": "2026-11-22"
   },
   {
     "id": "m04-topic-05",
-    "title": "物种分化时间",
+    "title": "物种分化时间与分子钟",
     "englishTitle": "Divergence time",
     "domainId": "comparative-genomics",
     "order": 5,
@@ -867,16 +868,17 @@
     ],
     "paperIds": [
       "paml-paper",
+      "plant-wgd-timing-2017",
       "tea-comparative"
     ],
     "tutorialIds": [],
-    "status": "draft",
+    "status": "published",
     "createdAt": null,
-    "updatedAt": "2026-11-21"
+    "updatedAt": "2026-11-22"
   },
   {
     "id": "m04-topic-06",
-    "title": "WGD 与古多倍化",
+    "title": "全基因组复制与古多倍化",
     "englishTitle": "Whole genome duplication",
     "domainId": "comparative-genomics",
     "order": 6,
@@ -901,12 +903,14 @@
     ],
     "paperIds": [
       "wgd-v2-paper",
+      "mungbean-evolution-2014",
+      "tea-comparative",
       "mcscanx-paper"
     ],
     "tutorialIds": [],
-    "status": "draft",
+    "status": "published",
     "createdAt": null,
-    "updatedAt": "2026-11-21"
+    "updatedAt": "2026-11-22"
   },
   {
     "id": "m04-topic-07",
@@ -933,12 +937,14 @@
       "coding-sequences"
     ],
     "paperIds": [
-      "paml-paper"
+      "paml-paper",
+      "mam-positive-selection-2006",
+      "tea-comparative"
     ],
     "tutorialIds": [],
-    "status": "draft",
+    "status": "published",
     "createdAt": null,
-    "updatedAt": "2026-11-21"
+    "updatedAt": "2026-11-22"
   },
   {
     "id": "m05-topic-01",

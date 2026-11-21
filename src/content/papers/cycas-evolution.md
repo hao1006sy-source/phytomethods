@@ -9,7 +9,7 @@ type: application
 methodIds: [orthofinder]
 domainIds: [comparative-genomics]
 speciesIds: [cycas]
-status: draft
+status: published
 updatedAt: 2026-11-21
 ---
 ## 研究问题与方法
