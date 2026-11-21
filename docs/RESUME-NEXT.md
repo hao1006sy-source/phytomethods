@@ -1,5 +1,15 @@
 # PhytoMethods 下一次恢复入口
 
+## 当前状态快照（2026-11-22）
+
+- M03–M09 内容建设、逐领域科学审核记录、教程/工具/论文关系和本地发布闭包均已完成；M09 已提交本地提交 `8f6936e`。全站 `npm run validate` 通过：276 页、Pagefind 276 页/34,436 词、7,749 条站内链接零错误；关系审计 63 专题、58 方法、127 论文，差异为零。
+- 本地分支比远程跟踪分支领先 51 个提交。远程 `main` 仍为 M02，远程长周期分支未包含本地 M03–M09。本地推送遇到 GitHub 443 网络连接失败；GitHub MCP 的树与内容写接口均返回 403，尚无 v2.0 PR、CI 或 Pages 发布。
+- M09 Edge 浏览器三视口、搜索和交互回归未完成。`npm audit` 尚无当前完整报告。远程 PR 合并、线上部署和线上页面检查仍待 GitHub 写入通道恢复。
+- `npm audit --offline` 使用本机缓存结果为 0 vulnerabilities；在线审计因 `registry.npmjs.org` DNS 失败未返回报告。
+- 下一步按 `docs/release-checklist-v2.md` 执行远程同步、PR/Actions/合并和 Pages 验收。此前的阶段日志保留为开发过程记录，不作为当前状态。
+
+### 历史恢复记录（当前状态以快照和发布核对表为准）
+
 - 分支：`feat/long-run-m03-v2`；本地分支领先远程跟踪分支，最新 HEAD 与提交数以 `git log -1` 和 `git status -sb` 为准。2026-11-21 推送因无法连接 GitHub 443 超时；当前未推送。已发布 main 基点为 `91f24bd`；M03–M09 新增内容仍为草稿，尚未合并部署。网络写入恢复后推送并依既有流程创建/更新 PR。
 - M03～M09 共 49 篇专题已有正文初稿；仍需逐篇深化、科学审核和正式发布态验收。M03、M04、M05 已有部分工具及论文，M06 新增 GAPIT 与 SciPy，M07 新增 Bismark，M08 新增 Scanpy，M09 新增 WGCNA。
 - 七个新增领域各有一篇已实际运行的教程草稿：SyRI 使用官方拟南芥染色体测试数据；OrthoFinder 使用官方支原体示例；PLINK、GWAS、Bismark、Scanpy 和 WGCNA 使用模拟数据。后六者没有声称在本机运行真实植物数据。
