@@ -2,12 +2,13 @@
 title: vg
 name: vg
 summary: 使用序列变异图、路径和图索引进行读段比对与变异分析。
+version: 1.78.0
 dataType: 变异图 / FASTQ reads
 principle: 图索引、种子匹配和单倍型感知比对
 domainIds: [pangenomics-structural-variation]
 topicIds: [m03-topic-06]
 principleIds: [graph-genomics, minimizer]
-dataIds: [graph, short-reads]
+dataIds: [graph, short-reads, long-reads, hifi]
 paper: vg-paper
 repository: https://github.com/vgteam/vg
 status: draft
@@ -22,7 +23,7 @@ updatedAt: 2026-11-21
 图比对输出可记录读段相对于图节点和路径的位置。将它投影到线性参考需要指定图中相应参考路径，并核查路径名称、版本、方向和坐标；重复区域、缺失于图的序列、图结构和读段质量都可能影响映射质量。图上比对、已知变异分型和新的结构变异发现是不同分析任务，不能把某个图比对结果直接当作所有变异的完整集合。
 
 ## 输入、索引与输出
-输入通常包括带有样本路径的图及 FASTQ reads。官方索引说明中，Giraffe 工作流使用包含单倍型索引和图结构的 GBZ、距离索引，以及带距离信息的 minimizer 索引；当前版本的短读长和长读长模式可使用不同索引文件。`vg autoindex` 可以为指定工作流构建配套索引；索引必须与图、工作流和软件版本一致。[官方索引说明](https://github.com/vgteam/vg/wiki/Index-Construction)。
+输入通常包括带有样本路径的图及 FASTQ reads。官方索引说明中，Giraffe 工作流使用包含单倍型索引和图结构的 GBZ、距离索引，以及带距离信息的 minimizer 索引；短读长和长读长模式可使用不同索引文件。长读段模式自 vg 1.63.0 起提供；官方流程要求按平台选择 `hifi`（PacBio HiFi）或 `r10`（ONT R10）预设。`vg autoindex` 可以为指定工作流构建配套索引；索引必须与图、工作流和软件版本一致。[官方索引说明](https://github.com/vgteam/vg/wiki/Index-Construction)、[长读段比对说明](https://github.com/vgteam/vg/wiki/Mapping-long-reads-with-Giraffe)。
 
 根据工作流，`vg giraffe` 的 `-Z` 用于指定 GBZ，`-f` 指定 FASTQ，`-t` 控制线程；可按版本设置输出格式，例如图比对 GAM 或 GAF。[官方长读长说明](https://github.com/vgteam/vg/wiki/Mapping-long-reads-with-Giraffe)。索引名称、参数和支持模式会随版本变化，运行前需核对版本帮助。本机尚未运行 vg；上述参数是依据官方文档整理，不是已验证教程。
 

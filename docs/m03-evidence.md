@@ -163,3 +163,5 @@ Edge 开发态检查 M03-03 在 375、768、1280、1440 px 的 HTTP 200、正文
 `npm run validate` 通过，内容覆盖显示 M03 共 10 个草稿工具、20 篇草稿论文；Astro 63 文件零诊断、55 页静态发布、Pagefind 55 页/6482 词、1320 条站内链接无错误。Edge 在 375、768、1280、1440 px 检查专题、MUMmer4、minimap2 和两篇方法论文，共 20 个路由/视口状态，HTTP 200 且无页面横向溢出。M03-02 的全文科学审核仍进行中，新增工具尚未在本机运行。
 
 2026-11-21 对 M03 领域、七专题、9 个工具及 10 篇论文执行 Edge 浏览器回归，四视口共 108 个路由状态全部返回 HTTP 200、具有页面标题且无文档级横向溢出；点击验证 M03-05 → Minigraph → 水稻图泛基因组案例路径可达。该测试只核对本地草稿预览路由和布局。
+
+2026-11-21 对照 vg 官方长读段 Giraffe 说明确认：长读段支持自 vg 1.63.0 起提供；PacBio HiFi 与 ONT R10 分别使用 `hifi`、`r10` 预设，并使用相应长读段索引。由此为受控数据类型新增通用 `long-reads`，更新 minimap2、vg 与 M03-02/M03-06 标签；vg 工具页补版本快照 1.78.0。来源：[vg 官方长读段指南](https://github.com/vgteam/vg/wiki/Mapping-long-reads-with-Giraffe)、[minimap2 官方使用说明](https://github.com/lh3/minimap2)。`npm run validate` 通过，标签引用通过构建检查。

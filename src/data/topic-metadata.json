@@ -475,7 +475,8 @@
     "dataIds": [
       "assembly",
       "annotation-input",
-      "dna-sequence"
+      "dna-sequence",
+      "long-reads"
     ],
     "paperIds": [
       "mummer4-paper",
@@ -647,7 +648,9 @@
     ],
     "dataIds": [
       "graph",
-      "short-reads"
+      "short-reads",
+      "long-reads",
+      "hifi"
     ],
     "paperIds": [
       "vg-paper",

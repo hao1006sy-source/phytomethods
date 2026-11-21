@@ -8,7 +8,7 @@ principle: minimizer 索引与锚点链化
 domainIds: [pangenomics-structural-variation]
 topicIds: [m03-topic-02]
 principleIds: [alignment, minimizer]
-dataIds: [assembly, dna-sequence, short-reads, hifi]
+dataIds: [assembly, dna-sequence, short-reads, long-reads, hifi]
 paper: minimap2-paper
 repository: https://github.com/lh3/minimap2
 status: draft
