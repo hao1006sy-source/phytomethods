@@ -106,3 +106,7 @@ ode scripts/browser-test-knowledge-graph.mjs 通过，1222 条链接通过。当
 ### 2026-11-21：DESeq2 工具草稿
 
 新增 DESeq2 计算原理、输入输出及玉米干旱转录组应用，关联方法论文和 Jin 等 2019 年原始研究；对应专题、论文、工具关系采用稳定 ID。已依据 Bioconductor 官方文档与期刊原文核查，尚无本机 DESeq2 教程运行记录。`npm run validate` 通过，1222 条站内链接无错误。
+
+### 2026-11-21：AgroNT 模型草稿
+
+新增 AgroNT 模型页面，依据原论文说明 6-mer 分词、遮盖预测、植物基准及木薯计算应用，并关联 M09 两个专题和论文；标明预训练代码与本机运行状态。`npm run validate` 通过，1222 条站内链接无错误。

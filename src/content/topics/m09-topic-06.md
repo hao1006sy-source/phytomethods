@@ -2,7 +2,7 @@
 title: DNA 与蛋白质序列基础模型
 summary: 理解序列分词、表示学习、预训练及植物模型的架构差异。
 domain: regulatory-genomics-ai
-methods: []
+methods: [agront]
 status: draft
 updatedAt: 2026-11-21
 ---

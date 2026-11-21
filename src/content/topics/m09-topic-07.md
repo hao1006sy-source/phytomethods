@@ -2,7 +2,7 @@
 title: AI 序列功能与变异效应预测
 summary: 评估植物 DNA 功能、表达和变异预测中的任务定义与数据泄漏。
 domain: regulatory-genomics-ai
-methods: []
+methods: [agront]
 status: draft
 updatedAt: 2026-11-21
 ---

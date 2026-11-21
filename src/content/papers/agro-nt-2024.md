@@ -6,7 +6,7 @@ year: 2024
 journal: Communications Biology
 doi: 10.1038/s42003-024-06465-2
 type: application
-methodIds: []
+methodIds: [agront]
 domainIds: [regulatory-genomics-ai]
 speciesIds: []
 status: draft

@@ -1833,7 +1833,9 @@
       "PlantCAD",
       "embedding"
     ],
-    "methodIds": [],
+    "methodIds": [
+      "agront"
+    ],
     "principleIds": [],
     "dataIds": [],
     "paperIds": [
@@ -1856,7 +1858,9 @@
       "泛化",
       "模型评估"
     ],
-    "methodIds": [],
+    "methodIds": [
+      "agront"
+    ],
     "principleIds": [],
     "dataIds": [],
     "paperIds": [
