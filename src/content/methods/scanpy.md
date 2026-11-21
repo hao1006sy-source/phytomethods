@@ -10,7 +10,8 @@ principleIds: [single-cell-graph]
 dataIds: [single-cell-matrix]
 paper: scanpy-paper
 repository: https://github.com/scverse/scanpy
-status: draft
+version: "1.13.0 (模拟教程本地验证版本)"
+status: published
 updatedAt: 2026-11-21
 ---
 ## 研究问题和定位

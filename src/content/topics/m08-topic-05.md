@@ -2,9 +2,9 @@
 title: 单细胞拟时序与发育轨迹
 summary: 理解连续细胞状态、轨迹推断、根节点和分叉的解释。
 domain: single-cell-spatial-omics
-methods: [scanpy]
-status: draft
-updatedAt: 2026-11-21
+methods: [scanpy, cellrank]
+status: published
+updatedAt: 2026-11-22
 ---
 ## 研究问题
 发育中的细胞可能处于连续或分叉的状态。拟时序（pseudotime）方法基于表达相似性对细胞排序，试图重建与某种变化相关的相对位置。一次测序得到的是不同细胞的快照，推断顺序并非每个细胞真实经历的测量时间。
@@ -26,3 +26,8 @@ updatedAt: 2026-11-21
 
 ## 方法比较与阅读
 拟时序排序提供相对状态序列，真实采样时间提供外部时间约束；二者互相补充。Monocle 的早期方法论文阐述了基于单细胞表达排序的动机，[Trapnell 等，2014](https://doi.org/10.1038/nbt.2859)；不同 Monocle 版本的具体算法应分别查阅。
+
+## 路径、概率和时间的区别
+基于图最短距离的拟时序、基于扩散算子的 DPT、RNA velocity 转移以及含真实采样时点的动力学模型采用不同假设，输出不可直接互换。轨迹方法通常先估计细胞间相似或转移关系，再估计分支、终末状态或命运概率；根节点、特征、图结构及状态覆盖不足都会影响方向。拟时序相邻不证明谱系祖先关系，分支不证明细胞命运已被实验验证。
+
+水稻根发育研究使用 Palantir 从指定起始细胞推断细胞排序和分支概率；拟南芥 110,427 细胞图谱展示植物数据上的 StationaryOT 最优传输轨迹分析。两者都以静态细胞快照作推断，空间、采样时间和突变体证据提供独立约束。[水稻研究](../../../papers/rice-root-single-cell-2021/)、[拟南芥根图谱](../../../papers/arabidopsis-root-atlas-2022/)。CellRank 2 可将 pseudotime、RNA velocity、实验时间等构造的 transition kernel 输入统一命运估计框架；其方法论文展示的是动物系统，本知识库不据此声称其已用于上述植物论文。[CellRank 2 方法论文](../../../papers/cellrank2-paper/)与[工具页](../../../methods/cellrank/)。

@@ -1,0 +1,26 @@
+# M08 单细胞与空间组学证据记录
+
+核查日期：2026-11-22。文献书目优先对照 PubMed、期刊原文和 PMC；软件算法与输入输出对照官方文档。植物论文中的软件关联仅在 Methods 或代码/数据声明明确时建立。
+
+## 单细胞 RNA 与植物案例
+
+- Zhang TQ, Chen Y, Liu Y, Lin WH, Wang JW. 2021. “Single-cell transcriptome atlas and chromatin accessibility landscape reveal differentiation trajectories in the rice root.” *Nature Communications* 12:2053. DOI [10.1038/s41467-021-22352-4](https://doi.org/10.1038/s41467-021-22352-4)；[PubMed](https://pubmed.ncbi.nlm.nih.gov/33824350/)；[PMC](https://pmc.ncbi.nlm.nih.gov/articles/PMC8024345/)。原文记录 Scanpy 1.4.5.1 的 ComBat、PCA、neighbors、Diffusion Map 与 ForceAtlas2；Palantir 0.2.2 执行 pseudotime，velocyto 计算 RNA velocity。scRNA-seq 与 scATAC-seq 为不同实验数据，不归作逐细胞配对 multiome。
+- Shahan R, Hsu CW, Nolan TM, et al. 2022. “A single-cell Arabidopsis root atlas reveals developmental trajectories in wild-type and cell identity mutants.” *Developmental Cell* 57:543–560.e9. DOI [10.1016/j.devcel.2022.01.008](https://doi.org/10.1016/j.devcel.2022.01.008)；[PubMed](https://pubmed.ncbi.nlm.nih.gov/35134336/)；[PMC](https://pmc.ncbi.nlm.nih.gov/articles/PMC9014886/)。原文整合 110,427 个细胞；结合 marker、参考表达谱、空间几何映射、SEMITONES/ICI 等方法进行注释，并用 StationaryOT 研究轨迹。几何映射是计算定位，非单细胞原位测量。
+- Han X, Zhang Y, Lou Z, et al. 2023. “Time series single-cell transcriptional atlases reveal cell fate differentiation driven by light in Arabidopsis seedlings.” *Nature Plants* 9:2095–2109. DOI [10.1038/s41477-023-01544-4](https://doi.org/10.1038/s41477-023-01544-4)。原文报告 92,861 个有效细胞，研究暗生、去黄化和光生幼苗地上部与根的状态及细胞分化变化。
+- Liew LC, You Y, Auroux L, et al. 2024. “Establishment of single-cell transcriptional states during seed germination.” *Nature Plants* 10:1418–1434. DOI [10.1038/s41477-024-01771-3](https://doi.org/10.1038/s41477-024-01771-3)。原文比较整胚、原生质体和单细胞样本，支持将解离诱导效应作为质控与解释因素。
+- Zhu M, Hsu CW, Peralta Ogorek LL, et al. 2025. “Single-cell transcriptomics reveal how root tissues adapt to soil stress.” *Nature* 642:721–729. DOI [10.1038/s41586-025-08941-z](https://doi.org/10.1038/s41586-025-08941-z)；[PMC](https://pmc.ncbi.nlm.nih.gov/articles/PMC12176638/)。原文以 COPILOT/kallisto/bustools 处理 scRNA-seq、DoubletFinder 去除候选 doublet，并用 Resolve Molecular Cartography 定位靶向 mRNA。Molecular Cartography 结果不描述为 cell2location 输出或全转录组 spot 反卷积；原文对压实土样本的固定/探针检测效率限制作出讨论。
+
+## 空间、多组学与方法论文
+
+- Wang X, Huang H, Jiang S, et al. 2025. “A single-cell multi-omics atlas of rice.” *Nature* 644:722–730. DOI [10.1038/s41586-025-09251-0](https://doi.org/10.1038/s41586-025-09251-0)；[PubMed](https://pubmed.ncbi.nlm.nih.gov/40634611/)。摘要报告在 8 个器官 116,564 个细胞中同步测量 RNA 与染色质可及性；数据 GEO accession 为 GSE232863、GSE273875、GSE245410，单细胞分析和 RSCA 代码存于论文列出的 Zenodo DOI。本站不将该论文归为 Scanpy 或 ArchR 用户案例。
+- Kleshchevnikov V, Shmatko A, Dann E, et al. 2022. “Cell2location maps fine-grained cell types in spatial transcriptomics.” *Nature Biotechnology* 40:661–671. DOI [10.1038/s41587-021-01139-4](https://doi.org/10.1038/s41587-021-01139-4)。论文介绍单细胞参考签名与空间 counts 的贝叶斯映射；原始应用为人/鼠组织，不是植物应用。
+- Palla G, Spitzer H, Klein M, et al. 2022. “Squidpy: a scalable framework for spatial omics analysis.” *Nature Methods* 19:171–178. DOI [10.1038/s41592-021-01358-2](https://doi.org/10.1038/s41592-021-01358-2)；[官方文档](https://squidpy.readthedocs.io/en/stable/)。方法包括坐标邻居图、邻域置换统计、共现、Moran’s I 和图像分析，软件功能与反卷积区分。
+- Weiler P, Lange M, Klein M, et al. 2024. “CellRank 2: unified fate mapping in multiview single-cell data.” *Nature Methods* 21:1196–1205. DOI [10.1038/s41592-024-02303-9](https://doi.org/10.1038/s41592-024-02303-9)；[官方文档](https://cellrank.readthedocs.io/en/stable/)。论文应用为人类/动物系统；本站没有将其误作植物论文的软件。
+- Granja JM, Corces MR, Pierce SE, et al. 2021. “ArchR is a scalable software package for integrative single-cell chromatin accessibility analysis.” *Nature Genetics* 53:403–411. DOI [10.1038/s41588-021-00790-6](https://doi.org/10.1038/s41588-021-00790-6)；[PubMed](https://pubmed.ncbi.nlm.nih.gov/33633365/)；[官方用户指南](https://www.archrproject.com/bookdown/index.html)。ArchR 通用方法内容不构成植物应用声明。
+- Hsu CW, Shahan R, Nolan TM, Benfey PN, Ohler U. 2022. “Protocol for fast scRNA-seq raw data processing using scKB and non-arbitrary quality control with COPILOT.” *STAR Protocols* 3:101729. DOI [10.1016/j.xpro.2022.101729](https://doi.org/10.1016/j.xpro.2022.101729)；[PMC 全文](https://pmc.ncbi.nlm.nih.gov/articles/PMC9530667/)。scKB 以 kallisto/bustools 生成 spliced/unspliced gene×cell matrices；COPILOT 按低质量背景和高质量细胞分布进行条形码过滤。官方仓库：[scKB](https://github.com/Hsu-Che-Wei/scKB)、[COPILOT](https://github.com/ohlerlab/COPILOT)。
+- McGinnis CS, Murrow LM, Gartner ZJ. 2019. “DoubletFinder: Doublet Detection in Single-Cell RNA Sequencing Data Using Artificial Nearest Neighbors.” *Cell Systems* 8:329–337.e4. DOI [10.1016/j.cels.2019.03.003](https://doi.org/10.1016/j.cels.2019.03.003)；[PMC 全文](https://pmc.ncbi.nlm.nih.gov/articles/PMC6853612/)。水稻土壤胁迫研究在方法段报告 DoubletFinder 去除 putative doublets。
+- Scanpy 方法论文：Wolf FA, Angerer P, Theis FJ. 2018. *Genome Biology* 19:15. DOI [10.1186/s13059-017-1382-0](https://doi.org/10.1186/s13059-017-1382-0)；[官方文档](https://scanpy.readthedocs.io/en/stable/index.html)。2021 水稻根论文中 Scanpy 的实际使用版本为 1.4.5.1；本站教程在模拟数据上单独验证 Scanpy 1.13.0。
+
+## 软件运行状态
+
+Scanpy 教程只在固定种子的模拟矩阵上运行验证，未运行植物实验数据。CellRank、Squidpy、cell2location 和 ArchR 页面据官方方法论文、文档说明，未在本站环境执行。空间/Multiome 的植物案例均以原论文实测为依据，模拟流程不冒充研究复现。

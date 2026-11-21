@@ -2,9 +2,9 @@
 title: 空间转录组与细胞组成推断
 summary: 理解空间坐标、spot 分辨率和基于单细胞参考的反卷积。
 domain: single-cell-spatial-omics
-methods: []
-status: draft
-updatedAt: 2026-11-21
+methods: [cell2location, squidpy]
+status: published
+updatedAt: 2026-11-22
 ---
 ## 研究问题
 单细胞转录组常在分离过程中失去原始空间位置。空间转录组将表达测量与组织坐标结合，用于研究细胞在组织中的分布及邻域。不同平台的检测单位和空间分辨率不同；一个 spot 可能覆盖多个细胞，也有分子原位成像方案直接记录部分转录本位置。
@@ -22,3 +22,8 @@ Squidpy 提供空间邻域、组织图像和统计分析等工具；其分析功
 
 ## 延伸阅读
 [cell2location 方法](https://doi.org/10.1038/s41587-021-01139-4)、[空间整合方法基准研究](https://doi.org/10.1038/s41592-022-01480-9)、[水稻根空间研究](https://doi.org/10.1038/s41586-025-08941-z)。
+
+## 平台类型与分析对象
+阵列 spot 平台的一个空间单位可能混合多细胞；单细胞/亚细胞分辨平台可以产生逐细胞或单分子坐标，但检测基因、灵敏度、组织透化和成像范围各异。Molecular Cartography 通过多轮成像检测设计探针对应的转录本，是靶向原位分子定位方法；它与全转录组捕获 spot 的数据结构不同。水稻土壤研究用该技术定位 marker mRNA，并报告压实土样本的信号受到固定和组织结构影响，故不能直接将不同条件的信号强度等同于测序深度校正后的表达差异。[原文方法与局限](../../../papers/rice-root-soil-single-cell-2025/)。
+
+Squidpy 构建空间邻居图，并计算邻域富集、共现和 Moran’s I 等空间统计；cell2location 则用单细胞参考表达与空间 counts 建立贝叶斯模型，估计每个位置的参考细胞类型丰度。它们分析对象和输出不同。cell2location 结果依赖参考覆盖、标记基因、每个位置细胞数先验与平台技术效应；预测丰度不等于直接细胞计数。该软件方法论文示范的是人/鼠数据，水稻土壤论文没有报告使用这两种软件。[Squidpy](../../../methods/squidpy/)、[cell2location](../../../methods/cell2location/)。

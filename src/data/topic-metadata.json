@@ -1727,24 +1727,31 @@
       "UMI"
     ],
     "methodIds": [
-      "scanpy"
+      "scanpy",
+      "sc-kb-copilot"
     ],
     "principleIds": [
-      "single-cell-graph"
+      "single-cell-graph",
+      "barcode-filtering"
     ],
     "dataIds": [
-      "single-cell-matrix"
+      "single-cell-matrix",
+      "short-reads"
     ],
     "paperIds": [
       "scanpy-paper",
-      "rice-root-single-cell-2021"
+      "rice-root-single-cell-2021",
+      "arabidopsis-root-atlas-2022",
+      "arabidopsis-protoplast-germination-2024",
+      "rice-single-cell-multiomics-2025",
+      "sc-kb-copilot-paper"
     ],
     "tutorialIds": [
       "scanpy-synthetic"
     ],
-    "status": "draft",
+    "status": "published",
     "createdAt": null,
-    "updatedAt": "2026-11-21"
+    "updatedAt": "2026-11-22"
   },
   {
     "id": "m08-topic-02",
@@ -1759,24 +1766,34 @@
       "批次效应"
     ],
     "methodIds": [
-      "scanpy"
+      "scanpy",
+      "sc-kb-copilot",
+      "doubletfinder"
     ],
     "principleIds": [
-      "single-cell-graph"
+      "single-cell-graph",
+      "barcode-filtering",
+      "doublet-detection"
     ],
     "dataIds": [
-      "single-cell-matrix"
+      "single-cell-matrix",
+      "short-reads"
     ],
     "paperIds": [
       "scanpy-paper",
-      "rice-root-single-cell-2021"
+      "rice-root-single-cell-2021",
+      "rice-root-soil-single-cell-2025",
+      "arabidopsis-light-atlas-2023",
+      "arabidopsis-protoplast-germination-2024",
+      "sc-kb-copilot-paper",
+      "doubletfinder-paper"
     ],
     "tutorialIds": [
       "scanpy-synthetic"
     ],
-    "status": "draft",
+    "status": "published",
     "createdAt": null,
-    "updatedAt": "2026-11-21"
+    "updatedAt": "2026-11-22"
   },
   {
     "id": "m08-topic-03",
@@ -1801,14 +1818,16 @@
     ],
     "paperIds": [
       "scanpy-paper",
-      "rice-root-single-cell-2021"
+      "rice-root-single-cell-2021",
+      "arabidopsis-root-atlas-2022",
+      "arabidopsis-light-atlas-2023"
     ],
     "tutorialIds": [
       "scanpy-synthetic"
     ],
-    "status": "draft",
+    "status": "published",
     "createdAt": null,
-    "updatedAt": "2026-11-21"
+    "updatedAt": "2026-11-22"
   },
   {
     "id": "m08-topic-04",
@@ -1833,14 +1852,16 @@
     ],
     "paperIds": [
       "scanpy-paper",
-      "rice-root-single-cell-2021"
+      "rice-root-single-cell-2021",
+      "arabidopsis-root-atlas-2022",
+      "rice-root-soil-single-cell-2025"
     ],
     "tutorialIds": [
       "scanpy-synthetic"
     ],
-    "status": "draft",
+    "status": "published",
     "createdAt": null,
-    "updatedAt": "2026-11-21"
+    "updatedAt": "2026-11-22"
   },
   {
     "id": "m08-topic-05",
@@ -1855,24 +1876,30 @@
       "分叉"
     ],
     "methodIds": [
-      "scanpy"
+      "scanpy",
+      "cellrank"
     ],
     "principleIds": [
-      "single-cell-graph"
+      "single-cell-graph",
+      "pseudotime",
+      "transition-probability"
     ],
     "dataIds": [
       "single-cell-matrix"
     ],
     "paperIds": [
       "scanpy-paper",
-      "rice-root-single-cell-2021"
+      "cellrank2-paper",
+      "rice-root-single-cell-2021",
+      "arabidopsis-root-atlas-2022",
+      "arabidopsis-light-atlas-2023"
     ],
     "tutorialIds": [
       "scanpy-synthetic"
     ],
-    "status": "draft",
+    "status": "published",
     "createdAt": null,
-    "updatedAt": "2026-11-21"
+    "updatedAt": "2026-11-22"
   },
   {
     "id": "m08-topic-06",
@@ -1886,16 +1913,29 @@
       "spot",
       "反卷积"
     ],
-    "methodIds": [],
-    "principleIds": [],
-    "dataIds": [],
+    "methodIds": [
+      "cell2location",
+      "squidpy"
+    ],
+    "principleIds": [
+      "bayesian-deconvolution",
+      "spatial-neighborhood"
+    ],
+    "dataIds": [
+      "single-cell-matrix",
+      "spatial-coordinates",
+      "spatial-count-matrix",
+      "tissue-image"
+    ],
     "paperIds": [
+      "cell2location-paper",
+      "squidpy-paper",
       "rice-root-soil-single-cell-2025"
     ],
     "tutorialIds": [],
-    "status": "draft",
+    "status": "published",
     "createdAt": null,
-    "updatedAt": "2026-11-21"
+    "updatedAt": "2026-11-22"
   },
   {
     "id": "m08-topic-07",
@@ -1909,16 +1949,28 @@
       "跨模态",
       "调控网络"
     ],
-    "methodIds": [],
-    "principleIds": [],
-    "dataIds": [],
+    "methodIds": [
+      "archr"
+    ],
+    "principleIds": [
+      "chromatin-accessibility",
+      "multi-omics-integration"
+    ],
+    "dataIds": [
+      "single-cell-matrix",
+      "atac-fragments",
+      "multiome-matrix"
+    ],
     "paperIds": [
-      "rice-root-single-cell-2021"
+      "archr-paper",
+      "arabidopsis-atac-root-2021",
+      "rice-root-single-cell-2021",
+      "rice-single-cell-multiomics-2025"
     ],
     "tutorialIds": [],
-    "status": "draft",
+    "status": "published",
     "createdAt": null,
-    "updatedAt": "2026-11-21"
+    "updatedAt": "2026-11-22"
   },
   {
     "id": "m09-topic-01",

@@ -3,7 +3,7 @@ title: 使用 Scanpy 分析模拟单细胞表达矩阵
 summary: 以可重复生成的模拟数据练习质控、PCA、邻近图、聚类和 UMAP。
 method: scanpy
 tested: verified
-status: draft
+status: published
 updatedAt: 2026-11-21
 ---
 ## 目标与验证状态

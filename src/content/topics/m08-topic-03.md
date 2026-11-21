@@ -3,8 +3,8 @@ title: 单细胞降维与聚类
 summary: 从高变基因、PCA、邻近图到 UMAP 和图聚类的分析逻辑。
 domain: single-cell-spatial-omics
 methods: [scanpy]
-status: draft
-updatedAt: 2026-11-21
+status: published
+updatedAt: 2026-11-22
 ---
 ## 研究问题
 单细胞矩阵的基因维度很高、数据稀疏，研究者希望在保留主要生物变化的同时识别相近细胞群。降维、图构建、聚类和二维展示是相互关联的步骤，参数会改变结果；二维图上的距离和簇间空隙不能直接当作细胞命运距离。
@@ -27,3 +27,8 @@ UMAP 和 t-SNE 将高维邻近关系映射到低维以供可视化。它们使�
 
 ## 植物案例与阅读
 水稻根研究通过单细胞表达图谱识别主要细胞群并研究分化轨迹，[原论文](https://doi.org/10.1038/s41467-021-22352-4)。可参考 [Scanpy](https://doi.org/10.1186/s13059-017-1382-0) 的数据处理框架；具体可视化和聚类参数应按实验设计和软件版本报告。
+
+Scanpy 并不等于单一聚类算法：常用流程先形成表达表示和细胞邻近图，再分别选用 Leiden/Louvain 社区检测；UMAP、Diffusion Map 或 ForceAtlas2 是不同的图布局/降维工具。水稻根 2021 论文在其表达分析中记录 Scanpy 1.4.5.1 的 ComBat、PCA、neighbors、Diffusion Map 与 ForceAtlas2；该研究的 pseudotime 使用 Palantir，不能把所有分析步骤归给 Scanpy。[原文方法段](https://www.nature.com/articles/s41467-021-22352-4)。
+
+## 稳定性与结果报告
+比较聚类方案时可检查不同邻居数、分辨率和随机种子下的簇稳定性，按独立样本着色检查是否由单一批次驱动，并比较多个 marker 和组织已知结构。PCA 主要用于表达空间的线性压缩；KNN 图编码局部相似关系；Leiden 在加权图上优化社区划分；UMAP 是面向邻近结构的非线性布局。报告应包括输入矩阵层、基因选择、尺度变换、主成分、距离度量、k、聚类算法和分辨率，以及绘图种子。二维团块面积或间距不对应组织大小、细胞数量或发育时间。

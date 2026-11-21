@@ -9,7 +9,7 @@ type: method
 methodIds: [scanpy]
 domainIds: [single-cell-spatial-omics]
 speciesIds: []
-status: draft
+status: published
 updatedAt: 2026-11-21
 ---
 ## 方法价值
