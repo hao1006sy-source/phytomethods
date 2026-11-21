@@ -2,7 +2,7 @@
 title: PCA、群体结构与祖先成分
 summary: 从基因型矩阵理解主成分、模型聚类和群体结构的解释。
 domain: population-genetics
-methods: [plink, admixture]
+methods: [plink, admixture, gapit]
 status: draft
 updatedAt: 2026-11-21
 ---
@@ -10,7 +10,7 @@ updatedAt: 2026-11-21
 群体样本可能来自不同地区、品种或育种背景，其基因型频率并不完全一致。群体结构分析用于概括样本间遗传差异、识别亲缘或批次异常，并为群体历史和关联分析提供背景。PCA 和祖先成分模型采用不同假设，图形都不能直接代替完整的历史重建。
 
 ## 基因型矩阵与 PCA
-将样本作为行、变异位点作为列，二倍体双等位 SNP 可按备选等位基因数量记为 0、1、2。经过适当的缺失处理、中心化和必要的标准化后，主成分分析（principal component analysis，PCA）寻找解释数据变异的正交方向；样本在前几个方向上的投影形成散点图。不同标准化、缺失处理和位点集合会改变结果。
+将样本作为行、变异位点作为列，二倍体双等位 SNP 可按备选等位基因数量记为 0、1、2。经过频率标准化后，可计算样本间关系矩阵并对其做特征分解；特征向量给出样本在主成分分析（principal component analysis，PCA）轴上的坐标，特征值表示对应方向的矩阵变异。常用示意式为 $z_{ij}=(g_{ij}-2p_j)/\sqrt{2p_j(1-p_j)}$，其中 $g_{ij}$ 表示剂量、$p_j$ 表示等位基因频率。实际软件在变异筛选、频率估计和缺失处理上存在版本差异，分析记录需注明工具与参数。PCA 坐标的正负方向可整体翻转；轴向本身不指定地理或历史方向。
 
 相近样本在所选主成分上具有相近的遗传数据摘要；PC1 与 PC2 只展示部分变异，坐标轴的正负方向本身没有固定生物学含义。近亲、异常样本、强连锁区域、群体样本数不均和批次效应都可能主导某些主成分，需要检查贡献位点与数据质量。[群体结构与特征分析](https://doi.org/10.1371/journal.pgen.0020190)。
 
@@ -28,10 +28,12 @@ ADMIXTURE 使用基因型数据、指定的成分数 $K$ 和概率模型，联�
 4. 在多个有依据的 $K$ 上运行 ADMIXTURE CV，并进行独立重复；检查收敛、预测误差和不同运行的成分标签对齐情况。官方发布页当前记录版本为 1.4.0，运行时保存软件版本与完整参数。
 5. 结合地理、材料、样本分组和其他独立证据解释；用于 GWAS 时，评估群体结构及亲缘关系对关联检验的影响。
 
-PCA 为连续投影，适合探索主要差异与异常；ADMIXTURE 用指定 $K$ 的概率模型得到比例，适合比较模型下的成分模式。PCA 坐标不是祖先百分比；柱状图中的比例也不能单独确定杂交时间或方向。
+PCA 为连续投影，适合探索主要差异与异常；ADMIXTURE 用指定 $K$ 的概率模型得到比例，适合比较模型下的成分模式。PLINK 1.9 默认输出 20 个主成分，PLINK 2.0 默认输出 10 个；两者均可显式设定数量，PLINK 2.0 另提供 `approx` 随机化计算模式。PLINK 官方建议 PCA 前处理极低频变异，并指出 LD 剪枝能降低少数基因组区域主导主成分的风险。PCA 坐标不是祖先百分比；柱状图中的比例也不能单独确定杂交时间或方向。[PLINK 1.9 文档](https://www.cog-genomics.org/plink/1.9/strat#pca)；[PLINK 2.0 文档](https://www.cog-genomics.org/plink/2.0/strat)；[PLINK 工具页](../../../methods/plink/)。
 
 ## 水稻案例
 3,010 份亚洲栽培稻材料的研究使用 PLINK 进行 SNP/LD 处理，针对候选 $K$ 重复运行 ADMIXTURE，最终以 $K=9$ 描述该研究样本的结构，并通过 CLUMPP 对齐 $Q$ 矩阵。这里的九个成分取决于论文的材料、位点筛选和分析设计，不能直接套用于其他栽培稻或野生稻采样集合。[原始研究](https://doi.org/10.1038/s41586-018-0063-9)；[本站案例页](../../../papers/rice-3010-pangenome/)；[ADMIXTURE 工具页](../../../methods/admixture/)。
 
+水稻根系适应研究在 795 份栽培稻中分开处理群体结构与 GWAS 协变量：PLINK 从 3.3 百万个未填补 SNP 中提取 154,516 个满足论文 LD 条件的位点；ADMIXTURE 对 $K=1$–10 拟合并将 $K=8$ 作为一个模型选择；PCA 的前三个主成分和亲缘矩阵由 GAPIT 基于 3.3 百万个未填补 SNP 计算。[本站案例页](../../../papers/rice-roots-population/)；[GAPIT 工具页](../../../methods/gapit/)；[出版方全文](https://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1007521)。
+
 ## 延伸阅读
-[ADMIXTURE 方法论文](https://doi.org/10.1101/gr.094052.109)、[交叉验证与监督/惩罚估计扩展论文](../../../papers/admixture-enhancements/)、[ADMIXTURE 官方手册](https://dalexander.github.io/admixture/admixture-manual.pdf)、[群体结构特征分析](https://doi.org/10.1371/journal.pgen.0020190)和[水稻群体研究](https://pubmed.ncbi.nlm.nih.gov/29695866/)。
+[ADMIXTURE 方法论文](https://doi.org/10.1101/gr.094052.109)、[交叉验证与监督/惩罚估计扩展论文](../../../papers/admixture-enhancements/)、[ADMIXTURE 官方手册](https://dalexander.github.io/admixture/admixture-manual.pdf)、[群体结构特征分析](https://doi.org/10.1371/journal.pgen.0020190)、[Price 等人的 PCA 群体分层研究](https://doi.org/10.1038/ng1847)和[水稻群体研究](https://pubmed.ncbi.nlm.nih.gov/29695866/)。

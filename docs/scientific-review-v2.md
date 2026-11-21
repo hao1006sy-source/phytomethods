@@ -105,6 +105,10 @@
 
 本轮记录只覆盖上述局部。M05 其余专题与工具、真实植物案例引用、教程及跨领域发布依赖仍待审核；ADMIXTURE、相关论文、专题和水稻案例保持草稿。
 
+### 2026-11-21：PLINK/PCA 与水稻根系案例方法分工
+
+依据 PLINK 1.9/2.0 官方群体分层、版本与文件格式文档补充关系矩阵 PCA 原理、两代默认 PC 数、PLINK 2.0 `approx` 缺失均值填补语义和 `.eigenvec`/`.eigenval` 解析差异；官方页于 2026-11-21 显示 PLINK 2.0 Beta 1.4（2026-11-07）。检查原 PLINK 模拟日志，确认 1.9.1（2026-11-11 构建）实际运行 8 个模拟二倍体样本、6 个 SNP，校验频率及缺失率与输入一致。依据 PLOS Genetics 出版方全文更正 795 份水稻根系适应论文的方法归属：PLINK 生成 154,516 个 LD 剪枝 SNP 集，ADMIXTURE 拟合 K=1–10 并报告 K=8 结构选择，GAPIT 以 3.3 百万个未填补 SNP 计算 PCA/kinship 并将前三 PC 用于关联模型。更新 PLINK、GAPIT、M05-03 与案例页的稳定关系和内容。PLINK 2.0、真实植物数据均未在本机运行；相关页面保持草稿。详细论断、来源及日志位置见 `docs/m05-evidence.md`。
+
 ### 2026-11-21：高粱泛基因组图评测案例结果审核
 
 依据 GigaScience 出版方全文与 PMC 正文审核 `sorghum-graph-benchmark`。补齐五位作者和卷号/文章编号；区分六份真实高粱组装、带 SV 真值的模拟组装、模拟 reads 与公开真实 paired-end reads。核对图构建版本、模拟/真实图规模、BUSCO 完整度与重复率、图中输入组装覆盖、SV F1、真实数据置换检验、小变异结果及重复序列相似性。正文分别列示 Minigraph-Cactus、PGGB、Minigraph 与线性 Minimap2 结果，注明 Minigraph 的 >50 bp 变异过滤设置、PGGB 索引未生成、min_mapQ 阈值及模拟真值定义；公开真实 reads 的总比对率与完美比对率分开呈现。高粱之外仅按主文范围概述大豆、大麦和油菜分析，详细跨物种数值保留在补充材料。Edge 在 375、768、1280、1440px 检查该案例、Hifiasm 文献和 EDTA 文献共 12 个页面状态，标题、方法链接和页面宽度通过；`npm run validate` 零 Astro 诊断、54 页静态构建、Pagefind 54 页/5932 词、1276 条本地链接通过。论文及 M03 资源仍为草稿，跨领域发布依赖待闭合。来源：[出版方全文](https://academic.oup.com/gigascience/article/doi/10.1093/gigascience/giaf121/8364989)、[PMC 正文](https://pmc.ncbi.nlm.nih.gov/articles/PMC12676463/)；论断和指标明细见 `docs/m03-evidence.md`。

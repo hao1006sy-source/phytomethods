@@ -4,8 +4,8 @@ name: GAPIT
 summary: 整合多种 GWAS 与基因组预测方法的 R 工具。
 dataType: 基因型、表型与样本协变量
 principle: 混合模型与多位点关联分析
-domainIds: [gwas-breeding]
-topicIds: [m06-topic-03, m06-topic-04, m06-topic-05, m06-topic-06]
+domainIds: [gwas-breeding, population-genetics]
+topicIds: [m05-topic-03, m06-topic-03, m06-topic-04, m06-topic-05, m06-topic-06]
 principleIds: [gwas-mixed-model]
 dataIds: [variant-data, phenotype]
 paper: gapit3-paper
@@ -24,6 +24,8 @@ GAPIT（Genome Association and Prediction Integrated Tool）是面向全基因�
 
 ## 植物案例
 水稻籽粒相关研究使用 GAPIT 的 MLM 和 FarmCPU 等方法分析基因相关标记，并比较基因组预测模型。[Anilkumar 等，2023](https://doi.org/10.1038/s41437-023-00599-5)。论文中的不同模型和数据筛选应按其方法部分区分，不将全部分析归因于某一个算法。
+
+水稻根系群体研究在 795 份材料中用 GAPIT 计算前三个主成分及亲缘矩阵，并把这些协变量用于 CMLM/GLM；相同论文中的 PLINK 负责另一个步骤，即生成 LD 剪枝 SNP 集。[原始案例](../../papers/rice-roots-population/)；[出版方全文](https://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1007521)。
 
 ## 版本及上下游
 2026-11-21 查阅[官方 DESCRIPTION](https://github.com/jiabowang/GAPIT/blob/master/DESCRIPTION)，开发分支声明版本 4.1.0、GPL（≥2）与 R ≥4.3.0；版本 3 方法论文描述的是对应历史版本。此环境未运行 GAPIT。上游为基因型过滤和表型质控，下游为候选位点、连锁不平衡及独立验证。

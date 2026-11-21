@@ -966,7 +966,8 @@
     ],
     "methodIds": [
       "plink",
-      "admixture"
+      "admixture",
+      "gapit"
     ],
     "principleIds": [
       "genotype-statistics",
