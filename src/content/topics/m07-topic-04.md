@@ -2,9 +2,9 @@
 title: ATAC-seq 与开放染色质
 summary: 理解 Tn5 可及性测量、开放区域识别与植物样本质量控制。
 domain: epigenomics-3d-genome
-methods: []
-status: draft
-updatedAt: 2026-11-21
+methods: [macs3]
+status: published
+updatedAt: 2026-11-22
 ---
 ## 研究问题
 染色质可及性是 DNA 区域对分子接触的可及程度。开放区域可能包含启动子和远端调控元件，但开放信号本身不能确定具体转录因子的结合或调控方向。ATAC-seq 通过转座酶在可及区域插入接头，并测序推断开放区域；方法原理见 [Buenrostro 等，2013](https://doi.org/10.1038/nmeth.2688)。
@@ -30,3 +30,8 @@ Peak calling 把局部富集与背景模型比较，输出候选开放区域及�
 
 ## 延伸阅读
 [ATAC-seq 方法论文](https://doi.org/10.1038/nmeth.2688)、[拟南芥 bZIP11 数据集](https://doi.org/10.1038/s41597-023-02395-6)。
+
+## 峰集合、重复与计算工具
+单样本 peak calling 用于发现候选可及区域；条件差异分析应将样本计数汇总到共同 peak 集合，再根据重复结构建模。把两组各自 peak 列表做交集或差集会忽略计数深度及样本间变异。输入格式应与 single-end/paired-end 文库相符；MACS3 的 `BAMPE` 模式把 read pair 当作片段，[官方参数说明](../../../methods/macs3/)列出 ATAC-seq 示例。参考有效基因组大小必须按物种和组装估计，不能照搬人类 `-g hs`。重复相关质量控制、峰注释、motif 和表达整合对应不同计算阶段。
+
+拟南芥 bZIP11 数据论文提供处理、时间点及 ATAC-seq 数据链接，可按[论文记录](../../../papers/arabidopsis-bzip11-atac-2023/)追踪；现有论文记录没有将其工具版本误写为 MACS3。分析候选调控序列可继续读[ChIP-seq、CUT&Tag 与 motif](../m07-topic-05/)，细胞内三维互作见[Hi-C 专题](../m07-topic-06/)。

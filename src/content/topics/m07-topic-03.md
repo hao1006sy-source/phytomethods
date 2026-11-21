@@ -2,9 +2,9 @@
 title: 差异甲基化区域分析
 summary: 从位点计数、统计模型与生物学重复识别和解释差异甲基化区域。
 domain: epigenomics-3d-genome
-methods: [bismark]
-status: draft
-updatedAt: 2026-11-21
+methods: [bismark, dss]
+status: published
+updatedAt: 2026-11-22
 ---
 ## 研究问题
 差异甲基化区域（differentially methylated region，DMR）指根据预先定义的统计规则，在比较条件间表现出甲基化差异的连续基因组区间。DMR 是统计发现；区域与基因重叠或靠近并不足以证明其调控了该基因。
@@ -30,3 +30,8 @@ updatedAt: 2026-11-21
 
 ## 延伸阅读
 [DSS 统计模型](https://doi.org/10.1093/nar/gku154)、[methylKit 方法论文](https://doi.org/10.1186/gb-2012-13-10-r87)、[小麦表观基因组研究](https://doi.org/10.1186/s13059-015-0838-3)。
+
+## 计数矩阵、模型与区域报告
+DSS 以每个样本、每个胞嘧啶的甲基化 reads 数和总覆盖为输入；beta-binomial 结构将覆盖抽样误差与生物样本间变异分开，经验贝叶斯收缩通过相邻/跨位点信息稳定离散度估计。[DSS 方法页](../../../methods/dss/)与[原论文记录](../../../papers/dss-paper/)说明统计模块；[Bismark](../../../methods/bismark/)是上游比对和胞嘧啶提取模块。方法不可互换：Bismark 输出 methylation calls，DSS 执行差异检验与区域归并。
+
+报告应给出每组生物学重复数、过滤前后位点数、背景类别、最小覆盖、缺失处理、差异比例阈值、区域合并方式、FDR 控制和效应方向。若一个样本整批处理而另一组使用不同批次，条件效应与批次将难以区分；若区域靠近基因，也需要表达或扰动等独立证据检验其功能关联。小麦案例采用 methylKit，见[原始记录](../../../papers/wheat-methylome-2015/)；该案例不作为 DSS 的软件使用实例。

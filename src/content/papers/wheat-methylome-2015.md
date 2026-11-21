@@ -9,7 +9,7 @@ type: application
 methodIds: [bismark]
 domainIds: [epigenomics-3d-genome]
 speciesIds: [wheat]
-status: draft
+status: published
 updatedAt: 2026-11-21
 ---
 ## 研究与方法

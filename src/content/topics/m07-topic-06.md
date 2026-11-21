@@ -2,9 +2,9 @@
 title: Hi-C 与三维基因组
 summary: 从接触矩阵理解染色质分区、局部结构与植物三维基因组分析。
 domain: epigenomics-3d-genome
-methods: []
-status: draft
-updatedAt: 2026-11-21
+methods: [hicexplorer]
+status: published
+updatedAt: 2026-11-22
 ---
 ## 研究问题
 染色体在细胞核内折叠，不同 DNA 区域可能在空间上接近。Hi-C 捕获大量细胞中交联、连接后的 DNA 片段对，通过测序统计基因组位置之间的接触频率。接触图是群体及实验处理条件下的统计汇总，并非某一个细胞的三维实景。
@@ -31,3 +31,8 @@ Juicer 提供 Hi-C 数据处理与矩阵分析相关工具；cooltools 和 HiCEx
 
 ## 延伸阅读
 [拟南芥 PDS5 与染色质结构](https://doi.org/10.1038/s41467-024-53760-x)、[高分辨率植物染色质组织研究](https://doi.org/10.1038/s41467-023-44347-z)。
+
+## 质量控制、分辨率与结构解释
+接触频率矩阵可经 coverage balancing 或迭代校正削弱可比对性、GC、限制性片段密度和局部覆盖差异；归一化不能恢复未测到的真实互作。重复相关、cis/trans 比例、距离衰减、有效接触数、低覆盖 bin 和矩阵平衡收敛情况均应审查。HiCExplorer 的 [hicBuildMatrix、hicCorrectMatrix、hicPCA 与 hicFindTADs](../../../methods/hicexplorer/)各自处理不同环节，输出差异要结合软件版本与窗口/分辨率参数解释。
+
+A/B compartment 通常在较粗尺度从接触模式与特征向量推断，正负方向需用基因密度或表达等数据定向；TAD-like 边界取决于 bin 大小、分离分数及阈值；loop 检测取决于局部背景和深度。单个热图亮点不是独立实验验证，跨重复及正交 assay 复现更能支持候选结论。拟南芥 PDS5 案例见[论文记录](../../../papers/arabidopsis-pds5-hic-2024/)，该研究用 HiCExplorer 工具处理接触数据，不把结构域解释成物理实体的直接成像。

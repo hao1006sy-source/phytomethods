@@ -3,8 +3,8 @@ title: 表观遗传基础
 summary: 从植物 DNA 甲基化、组蛋白修饰与染色质状态理解基因调控及测量证据。
 domain: epigenomics-3d-genome
 methods: []
-status: draft
-updatedAt: 2026-11-21
+status: published
+updatedAt: 2026-11-22
 ---
 ## 研究问题
 同一植物的不同细胞具有近似相同的 DNA 序列，却表现出不同的基因表达状态。表观遗传学研究 DNA 甲基化、组蛋白修饰和染色质组织等状态如何与基因调控及其维持相关。表观状态可以随细胞类型、发育与环境变化；检测到状态差异本身并不能证明跨代遗传或因果调控。
@@ -24,3 +24,11 @@ Cokus 等使用亚硫酸氢盐测序建立拟南芥基因组单碱基分辨率�
 
 ## 方法选择与延伸阅读
 研究碱基甲基化位置可阅读“DNA 甲基化检测”和 DMR 专题；研究开放区域可阅读 ATAC-seq；研究蛋白结合和染色质空间组织可阅读 ChIP-seq、CUT&Tag 与 Hi-C 专题。可查阅[拟南芥甲基化图谱](https://doi.org/10.1038/nature06745)及[植物染色质可及性研究](https://doi.org/10.1038/ncomms2259)。
+
+## 甲基化维持与染色质状态
+植物 CG、CHG、CHH 三类背景的建立和维持机制不同，测量时应分别报告。CG 可由 MET1 相关路径维持；CHG 与组蛋白 H3K9 甲基化及 CMT3 路径存在互作；CHH 常由 CMT2 或 RNA-directed DNA methylation（RdDM）途径维持，作用区域随染色质背景而异。不同组织和物种中的路径贡献不一，甲基化状态与转录表达的对应关系也随位置和生物学背景改变。[植物 DNA 甲基化综述](../../../papers/plant-dna-methylation-review-2021/)介绍相关路径；[拟南芥甲基化图谱](../../../papers/arabidopsis-methylome-cokus-2008/)提供序列背景基线。
+
+组蛋白标记由 writer、eraser 和 reader 蛋白添加、去除或识别；单一标记与激活/抑制的关联不能视为充分机制证据。实验应明确目标抗体、细胞类型和对照；时间序列与遗传扰动可区分状态相关和调控作用。胁迫后同一植株的响应记忆可见[脱水重复处理研究](../../../papers/arabidopsis-drought-memory-2012/)与[热胁迫记忆研究](../../../papers/arabidopsis-heat-memory-2021/)。
+
+## 技术路线与互补测量
+WGBS、ATAC-seq、ChIP-seq/CUT&Tag 与 Hi-C 分别测量碱基甲基化、转座酶可及性、抗体靶标富集和跨位点接触频率。联合分析之前先各自完成实验质量控制，再统一参考版本、样本 ID、组织和处理时间；不同技术的原始计数尺度不可直接比较。点击专题可进入[甲基化检测](../m07-topic-02/)、[DMR](../m07-topic-03/)、[ATAC-seq](../m07-topic-04/)、[ChIP-seq 与 motif](../m07-topic-05/)及[Hi-C](../m07-topic-06/)。

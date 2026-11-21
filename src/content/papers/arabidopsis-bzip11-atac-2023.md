@@ -9,7 +9,7 @@ type: application
 methodIds: []
 domainIds: [epigenomics-3d-genome]
 speciesIds: [arabidopsis]
-status: draft
+status: published
 updatedAt: 2026-11-21
 ---
 ## 研究价值

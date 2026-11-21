@@ -3,7 +3,7 @@ title: 使用 Bismark 分析模拟甲基化数据
 summary: 从已知状态的模拟 reads 进行亚硫酸氢盐感知比对和胞嘧啶提取。
 method: bismark
 tested: verified
-status: draft
+status: published
 updatedAt: 2026-11-21
 ---
 ## 目标与验证范围

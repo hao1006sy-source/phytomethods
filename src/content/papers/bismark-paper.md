@@ -9,7 +9,7 @@ type: method
 methodIds: [bismark]
 domainIds: [epigenomics-3d-genome]
 speciesIds: []
-status: draft
+status: published
 updatedAt: 2026-11-21
 ---
 ## 方法价值

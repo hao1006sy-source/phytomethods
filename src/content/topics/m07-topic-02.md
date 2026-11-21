@@ -3,8 +3,8 @@ title: DNA 甲基化检测
 summary: 理解亚硫酸氢盐测序、甲基化计数和植物不同序列背景的解释。
 domain: epigenomics-3d-genome
 methods: [bismark]
-status: draft
-updatedAt: 2026-11-21
+status: published
+updatedAt: 2026-11-22
 ---
 ## 研究问题与序列背景
 DNA 甲基化分析要确定哪些胞嘧啶发生修饰、不同样本中甲基化比例如何变化。植物的 CG、CHG 和 CHH 背景均具有研究价值，H 为 A、C 或 T。对于胞嘧啶密度不同的区域，按背景与有效覆盖度分别汇总能避免混淆不同位点集合。
@@ -28,3 +28,8 @@ DNA 甲基化分析要确定哪些胞嘧啶发生修饰、不同样本中甲基�
 
 ## 植物案例与阅读
 拟南芥单碱基甲基化图谱使用全基因组亚硫酸氢盐测序研究甲基化分布；原始论文见 [Cokus 等，2008](https://doi.org/10.1038/nature06745)。方法详见 [Bismark 原始论文](https://doi.org/10.1093/bioinformatics/btr167)。多个样本比较请继续阅读 DMR 专题。
+
+## 可复现的数据准备与结果检查
+除文库类型和参考版本外，应记录建索引的参考序列哈希、软件版本、比对方向、转换效率对照、重复处理、双端重叠策略和甲基化提取选项。报告每样本 mapped reads、唯一比对率、转换率、覆盖分布、CG/CHG/CHH 位点数和测序深度；对多倍体或高重复植物还应说明同源序列可区分性和比对过滤。coverage bedGraph 与 cytosine report 的汇总规则不同，分析流程应保存逐样本计数以供复核。
+
+模拟教学数据仅能验证格式、转换和计数程序路径，不能估计真实组织的甲基化水平。现有[Bismark 教程](../../../tutorials/bismark-synthetic/)用已知模拟状态在本机通过，真实植物数据仍未验证；真实植物实例见[小麦靶向甲基化研究](../../../papers/wheat-methylome-2015/)和[拟南芥甲基化图谱](../../../papers/arabidopsis-methylome-cokus-2008/)。后续统计分析转入[DSS 差异甲基化工具](../../../methods/dss/)与[DMR 专题](../m07-topic-03/)。

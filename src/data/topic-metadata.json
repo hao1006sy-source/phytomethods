@@ -1500,15 +1500,22 @@
       "染色质"
     ],
     "methodIds": [],
-    "principleIds": [],
-    "dataIds": [],
+    "principleIds": [
+      "chromatin-regulation"
+    ],
+    "dataIds": [
+      "dna-sequence"
+    ],
     "paperIds": [
-      "arabidopsis-methylome-cokus-2008"
+      "arabidopsis-methylome-cokus-2008",
+      "plant-dna-methylation-review-2021",
+      "arabidopsis-drought-memory-2012",
+      "arabidopsis-heat-memory-2021"
     ],
     "tutorialIds": [],
-    "status": "draft",
+    "status": "published",
     "createdAt": null,
-    "updatedAt": "2026-11-21"
+    "updatedAt": "2026-11-22"
   },
   {
     "id": "m07-topic-02",
@@ -1530,18 +1537,20 @@
       "bisulfite-mapping"
     ],
     "dataIds": [
-      "bisulfite-reads"
+      "bisulfite-reads",
+      "methylation-counts"
     ],
     "paperIds": [
       "bismark-paper",
-      "wheat-methylome-2015"
+      "wheat-methylome-2015",
+      "arabidopsis-methylome-cokus-2008"
     ],
     "tutorialIds": [
       "bismark-synthetic"
     ],
-    "status": "draft",
+    "status": "published",
     "createdAt": null,
-    "updatedAt": "2026-11-21"
+    "updatedAt": "2026-11-22"
   },
   {
     "id": "m07-topic-03",
@@ -1556,24 +1565,28 @@
       "生物学重复"
     ],
     "methodIds": [
-      "bismark"
+      "bismark",
+      "dss"
     ],
     "principleIds": [
-      "bisulfite-mapping"
+      "bisulfite-mapping",
+      "beta-binomial"
     ],
     "dataIds": [
+      "methylation-counts",
       "bisulfite-reads"
     ],
     "paperIds": [
       "bismark-paper",
+      "dss-paper",
       "wheat-methylome-2015"
     ],
     "tutorialIds": [
       "bismark-synthetic"
     ],
-    "status": "draft",
+    "status": "published",
     "createdAt": null,
-    "updatedAt": "2026-11-21"
+    "updatedAt": "2026-11-22"
   },
   {
     "id": "m07-topic-04",
@@ -1587,16 +1600,24 @@
       "Tn5",
       "开放染色质"
     ],
-    "methodIds": [],
-    "principleIds": [],
-    "dataIds": [],
+    "methodIds": [
+      "macs3"
+    ],
+    "principleIds": [
+      "chromatin-accessibility",
+      "peak-calling"
+    ],
+    "dataIds": [
+      "atac-fragments"
+    ],
     "paperIds": [
+      "macs-paper",
       "arabidopsis-bzip11-atac-2023"
     ],
     "tutorialIds": [],
-    "status": "draft",
+    "status": "published",
     "createdAt": null,
-    "updatedAt": "2026-11-21"
+    "updatedAt": "2026-11-22"
   },
   {
     "id": "m07-topic-05",
@@ -1610,16 +1631,29 @@
       "CUT&Tag",
       "motif"
     ],
-    "methodIds": [],
-    "principleIds": [],
-    "dataIds": [],
+    "methodIds": [
+      "macs3",
+      "meme-suite"
+    ],
+    "principleIds": [
+      "peak-calling",
+      "motif-analysis"
+    ],
+    "dataIds": [
+      "chip-seq",
+      "dna-sequence"
+    ],
     "paperIds": [
+      "macs-paper",
+      "arabidopsis-bzip11-chromatin-2014",
+      "meme-suite-paper",
+      "cutntag-paper",
       "arabidopsis-bzip11-atac-2023"
     ],
     "tutorialIds": [],
-    "status": "draft",
+    "status": "published",
     "createdAt": null,
-    "updatedAt": "2026-11-21"
+    "updatedAt": "2026-11-22"
   },
   {
     "id": "m07-topic-06",
@@ -1633,16 +1667,24 @@
       "接触矩阵",
       "TAD"
     ],
-    "methodIds": [],
-    "principleIds": [],
-    "dataIds": [],
+    "methodIds": [
+      "hicexplorer"
+    ],
+    "principleIds": [
+      "hic-contact-matrix"
+    ],
+    "dataIds": [
+      "hic-contact-matrix"
+    ],
     "paperIds": [
+      "arabidopsis-heat-hic-2020",
+      "hicexplorer-paper",
       "arabidopsis-pds5-hic-2024"
     ],
     "tutorialIds": [],
-    "status": "draft",
+    "status": "published",
     "createdAt": null,
-    "updatedAt": "2026-11-21"
+    "updatedAt": "2026-11-22"
   },
   {
     "id": "m07-topic-07",
@@ -1657,15 +1699,20 @@
       "多组学整合"
     ],
     "methodIds": [],
-    "principleIds": [],
-    "dataIds": [],
+    "principleIds": [
+      "chromatin-regulation"
+    ],
+    "dataIds": [
+      "expression-matrix"
+    ],
     "paperIds": [
-      "arabidopsis-drought-memory-2012"
+      "arabidopsis-drought-memory-2012",
+      "arabidopsis-heat-memory-2021"
     ],
     "tutorialIds": [],
-    "status": "draft",
+    "status": "published",
     "createdAt": null,
-    "updatedAt": "2026-11-21"
+    "updatedAt": "2026-11-22"
   },
   {
     "id": "m08-topic-01",

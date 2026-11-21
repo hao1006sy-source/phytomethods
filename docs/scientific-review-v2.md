@@ -198,3 +198,7 @@ M05-01 对照 3,010 水稻研究的样本、SNP/InDel 数、GATK 调用与 PLINK
 ### M06-02 QTL 定位与 R/qtl2 关系审核（2026-11-22）
 
 依据 R/qtl2 2019 Genetics 方法论文、官方用户/开发者指南和 GitHub releases 核对两阶段计算：多点标记数据推断潜在 QTL 基因型概率，随后用这些概率扫描表型；版本快照为 v0.46（2026-07-21）。专题扩展 F2、回交、RIL、DH 和多亲本群体设计差异、遗传图谱、HMM 概念流程、LOD 似然比、置换阈值、精细定位与验证层次。Lou 等水稻深根论文依据 Journal of Experimental Botany、PubMed 与 PMC 原文核对 180 条 F8 RIL、237 份关联材料、六个 RDR QTL、1,019,883 SNP、48 个关联 SNP 与 7/9 个候选 SNP 的极端组验证；清楚区分该研究的软件流程和后发布的 R/qtl2。新增 stable ID `rqtl2` 工具与 `rice-deep-rooting-qtl` 应用论文，修正 M06-02、M06-03 关系，将根系关联论文置于 GWAS 专题范围。工具未在本机执行，相关专题和资源保持草稿。
+
+### M07 七专题科学审核与发布闭包（2026-11-22）
+
+完成表观遗传与三维基因组七专题、5 个工具、15 篇论文和 Bismark 模拟教程的关系检查与状态发布。重点检查胞嘧啶 CG/CHG/CHH 甲基化路径、WGBS/ATAC/ChIP/CUT&Tag/Hi-C 的测量边界、DSS beta-binomial 计数模型、MACS3 peak calling、MEME Suite motif discovery/enrichment/scanning 区分，以及 Hi-C 矩阵和结构分析工具分工。原文复核拟南芥热胁迫 Hi-C 论文：HiC-Pro 负责 read/valid-pair 与矩阵，HiCExplorer 负责矩阵转换与部分分析，HOMER 负责 compartment PCA；拟南芥 PDS5 论文使用 HiTC、Juicer、Arrowhead，因此未关联 HiCExplorer。植物小麦甲基化案例保留其靶向基因富集实验范围，没有描述为均匀覆盖 WGBS；DSS、MACS3、MEME Suite、HiCExplorer 页面明确标注未在本机运行。Bismark 教程仅报告固定参考和模拟 reads 的可重复运行结果，不声称真实植物样本复现。来源与原文软件分工见 `docs/m07-evidence.md`。`node work/audit-metadata-relations.mjs` 检查 63 个专题、48 个工具、112 篇论文，0 双向关系不一致；`npm run coverage` 显示 M07 七专题、5 工具、15 论文和 1 教程均已发布；`npm run validate` 通过，Astro 63 个内容文件 0 错误/警告/提示，生成 220 页面，Pagefind zh-cn 索引 220 页/31,135 词，6,212 条站内链接 0 错误。专题与工具通过构建和关系审计；当前记录未包含浏览器回归或真实植物样本软件运行。

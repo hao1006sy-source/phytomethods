@@ -10,7 +10,7 @@ principleIds: [bisulfite-mapping]
 dataIds: [bisulfite-reads]
 paper: bismark-paper
 repository: https://github.com/FelixKrueger/Bismark
-status: draft
+status: published
 updatedAt: 2026-11-21
 ---
 ## 研究问题与开发背景
