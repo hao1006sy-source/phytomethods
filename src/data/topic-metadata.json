@@ -688,7 +688,8 @@
     "paperIds": [
       "odgi-paper",
       "rice-pangenome-paper",
-      "sorghum-graph-benchmark"
+      "sorghum-graph-benchmark",
+      "arabidopsis-69-pangenome"
     ],
     "tutorialIds": [],
     "status": "draft",
