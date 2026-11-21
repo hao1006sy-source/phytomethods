@@ -19,6 +19,12 @@ updatedAt: 2026-11-20
 ## 软件职责与方法差异
 vg 提供图参考构建、索引、映射及变异分析等工具，具体子命令和格式随版本变化。[vg 官方仓库](https://github.com/vgteam/vg)和[方法论文](https://doi.org/10.1038/nbt.4227)列出适用流程。ODGI 侧重泛基因组图的存储、操作、统计和可视化，不应把它的每项功能都描述为 reads 比对器；[ODGI 方法论文](https://doi.org/10.1093/bioinformatics/btac308)说明支持的操作。
 
+### Giraffe 的单倍型感知映射
+
+Giraffe 是 vg 中用于图上 reads 比对的组件；其方法论文重点介绍短读段映射，当前索引文档区分短读段和长读段模式。它用图 Burrows–Wheeler 变换（Graph Burrows–Wheeler Transform，GBWT）索引已知单倍型路径；先以最小化器（minimizer）索引寻找候选种子，再按图距离聚类种子，沿单倍型路径延伸为无缺口局部比对，剩余缺口由带 gap 的比对处理。把搜索限制在已知或构造的单倍型路径，可缩小图中组合路径的搜索空间。[Giraffe 原始论文](https://doi.org/10.1126/science.abg8871)给出该流程；[vg 索引文档](https://github.com/vgteam/vg/wiki/Index-Construction)说明工作流需要 GBZ 图（含 GBWT 单倍型索引与 GBWTGraph）、距离索引（distance index）和 minimizer 索引，短读段和长读段索引参数不同。
+
+上述步骤描述读段映射，输出的是对图路径的比对证据。基因型判定还要整合覆盖、变异表示和适配倍性的 caller 或下游统计模型。Giraffe 方法论文中的 5,202 份个体及 167,000 个结构变异为人类短读段评估，不作为植物应用案例；植物研究中的 vg 映射也应与后续 SV 分型步骤分开记录。
+
 线性比对对成熟流程和指定坐标体系有优势；包含合适替代序列的图可能帮助部分非参考 reads 的定位。图是否改善某个样本的准确性需要在输入组装、比较数据、算法及评价标准相同的条件下验证。没有纳入图中的新序列依然可能无法得到良好表示。
 
 ## 植物研究与质量控制

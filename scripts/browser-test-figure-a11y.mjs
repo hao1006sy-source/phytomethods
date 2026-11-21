@@ -55,6 +55,38 @@ try {
     await keyboardPage.keyboard.press('ArrowLeft');
     if (await region.evaluate(element => element.scrollLeft) >= end) throw new Error(`${topic} ${selector} did not respond to ArrowLeft`);
   }
+  await keyboardPage.goto(topicUrl('m03-topic-06'));
+  const mappingA = keyboardPage.locator('#mapping-a');
+  const mappingB = keyboardPage.locator('#mapping-b');
+  await keyboardPage.getByRole('button', { name: '读段 CGTT' }).click();
+  if (await keyboardPage.getByRole('button', { name: '读段 CGTT' }).getAttribute('aria-pressed') !== 'true') {
+    throw new Error('Graph mapping demo did not mark the selected path button');
+  }
+  if (!(await mappingA.isVisible()) || await mappingA.evaluate(element => element.classList.contains('muted'))) {
+    throw new Error('Graph mapping demo did not retain the matching path');
+  }
+  if (!await mappingB.evaluate(element => element.classList.contains('muted'))) {
+    throw new Error('Graph mapping demo did not distinguish the unsupported path');
+  }
+  if (!(await keyboardPage.locator('#mapping-explanation').innerText()).includes('没有该精确子串')) {
+    throw new Error('Graph mapping demo did not explain the exact-substring teaching rule');
+  }
+  await keyboardPage.getByRole('button', { name: '读段 CCAT' }).click();
+  if (await keyboardPage.getByRole('button', { name: '读段 CCAT' }).getAttribute('aria-pressed') !== 'true') {
+    throw new Error('Graph mapping demo did not update selected path state');
+  }
+  if (!await mappingA.evaluate(element => element.classList.contains('muted')) || await mappingB.evaluate(element => element.classList.contains('muted'))) {
+    throw new Error('Graph mapping demo did not distinguish the alternate path');
+  }
+  await keyboardPage.getByRole('button', { name: '读段 AC' }).click();
+  if (await mappingA.evaluate(element => element.classList.contains('muted')) || await mappingB.evaluate(element => element.classList.contains('muted'))) {
+    throw new Error('Graph mapping demo did not show the shared read on both paths');
+  }
+  await keyboardPage.getByRole('button', { name: '重置', exact: true }).click();
+  if (await mappingA.evaluate(element => element.classList.contains('muted')) || await mappingB.evaluate(element => element.classList.contains('muted'))) {
+    throw new Error('Graph mapping demo reset did not restore both paths');
+  }
+  console.log('375px: M03-06 exact-substring path support and reset passed');
   await keyboardPage.goto(topicUrl('m03-topic-02'));
   const resizeRegion = keyboardPage.locator('.stage');
   await resizeRegion.waitFor();
@@ -78,9 +110,26 @@ try {
     const errors = [];
     page.on('pageerror', error => errors.push(error.message));
 
-    for (const topic of ['m03-topic-01', 'm03-topic-07']) {
+    for (const topic of ['m03-topic-01', 'm03-topic-05', 'm03-topic-07']) {
       const response = await page.goto(topicUrl(topic));
       if (response?.status() !== 200) throw new Error(`${topic} returned ${response?.status()}`);
+
+      if (topic === 'm03-topic-05') {
+        const sampleA = page.locator('#sample-a');
+        const sampleB = page.locator('#sample-b');
+        await page.getByRole('button', { name: '样本甲', exact: true }).click();
+        if (await sampleA.getAttribute('opacity') !== '1' || await sampleB.getAttribute('opacity') !== '0.08') {
+          throw new Error('Pangenome demo did not isolate sample A');
+        }
+        if (await page.locator('#graph-explanation').innerText() !== '样本甲路径：A–B–D。B 是该路径中的示意序列片段。') {
+          throw new Error('Pangenome demo did not explain sample A');
+        }
+        await page.getByRole('button', { name: '重置', exact: true }).click();
+        if (await sampleA.getAttribute('opacity') !== '1' || await sampleB.getAttribute('opacity') !== '1') {
+          throw new Error('Pangenome demo reset did not restore both sample paths');
+        }
+        console.log(`${width}px: M03-05 sample selection, explanation and reset passed`);
+      }
 
       const trigger = page.getByRole('button', { name: '放大图解' }).first();
       const expectedDialogName = (await page.locator('figure svg title').first().textContent())?.trim();

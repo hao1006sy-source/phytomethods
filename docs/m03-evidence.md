@@ -23,6 +23,8 @@
 
 图中的样本和序列均为教学模型，未作为真实实验结果。教程 `syri-intro` 已使用 SyRI 1.8.2 和官方拟南芥测试数据执行 NUCmer 到 SyRI 的流程；记录见 `examples/syri/verified-20261121/`。原论文中出现的工具和本网站工具之间的关联，应逐项依据方法部分确认。
 
+2026-11-21 对照 [GFA v1 格式规范](https://github.com/GFA-spec/GFA-spec/blob/master/GFA1.md)复核 M03-05 的交互路径图：segment 表示连续序列片段，link 包含连接端方向和重叠长度，path 是按顺序排列的有向片段。图中 A–D 仅为教学占位符，正向路径和连线省略了节点方向、碱基长度、重叠及坐标；两条预设路径分别为 A–B–D、A–C–D。图注明确该图为原理示意，未模拟 GFA 文件或真实变异输出。该边界与 Minigraph 官方说明中“图可包含输入样本未实际出现的 bubble 遍历路径”一致。Minigraph 的图构建输入是逐份完整组装并增量映射至已有图；PGGB 则以 wfmash 全对全比对、seqwish 图诱导和 smoothxg/gfaffix 规范化为主流程。来源：[Minigraph 官方 README](https://github.com/lh3/minigraph/blob/master/README.md)、[PGGB 官方 README](https://github.com/pangenome/pggb/blob/master/README.md)。`npm run test:figure-a11y` 已覆盖四种视口下的路径选择、文字说明、重置和放大弹窗；科学审查结论仅覆盖上述图意和流程区分，专题其他生物学论断仍需逐条审核。
+
 ## 版本来源快照
 2026-11-21 查阅官方发布页：AnchorWave [v1.3.0](https://github.com/baoxingsong/AnchorWave/releases)、SyRI [v1.8.2](https://github.com/schneebergerlab/syri/releases)、Minigraph [v0.21/r606](https://github.com/lh3/minigraph/releases)、PGGB [v0.7.4](https://github.com/pangenome/pggb/releases)、ODGI [v0.9.4](https://github.com/pangenome/odgi/releases)、vg [v1.78.0](https://github.com/vgteam/vg/releases)及 Cactus [v4.0.0](https://github.com/ComparativeGenomicsToolkit/cactus/releases)。这是发布页信息；仅 SyRI 1.8.2 已在隔离环境运行，其他版本快照不表示本机安装。高粱论文使用历史软件版本，版本快照不可取代论文方法部分。
 
@@ -43,3 +45,9 @@
 2026-11-21 对照 Wang 等 3,010 水稻论文 PMC 全文核对测序和分析范围：PLINK 用于 LD 剪枝和 SNP 距离分析，ADMIXTURE 选择 K=9 并配合 CLUMPP 对齐重复运行矩阵；定制 novoBreak-germline 检测 SV。pan-genome 由 Nipponbare RefSeq 与 3,010 份组装产生的非冗余新序列组合，Map-to-pan 读取覆盖用于 PAV；SV/PAV 重点分析限于测序深度 >20× 且参考比对深度 >15× 的 453 份样本，基因存在判定阈值为 CDS >95%、gene body >85%。代码说明把基因及基因家族 PAV 分析纳入 EUPAN。
 
 依据 EUPAN PubMed 方法论文及官方安装页/SOP 新增工具和方法论文草稿。官方文档记录依赖 Perl、R、C++，QUAST 使用旧版 Python 2 环境；工具页列出多样本 FASTQ、参考 FASTA、GFF/GTF 输入、PAV 矩阵和覆盖结果。官方示例 PAV 阈值与 Wang 等论文阈值分别注明，未混作软件全局默认值。页面与案例关系在 375、768、1280、1440 px 下通过浏览器检查；软件没有在本机运行，继续保持草稿。
+
+2026-11-21 对照 [Giraffe 原始论文](https://pmc.ncbi.nlm.nih.gov/articles/PMC9365333/)核查 M03-06 的方法说明：GBWT 表示及查询图中的单倍型路径，minimizer 产生候选种子，按图距离聚类后沿路径延伸无缺口比对，再对剩余 gap 执行带缺口比对。vg 团队的[官方索引文档](https://github.com/vgteam/vg/wiki/Index-Construction)说明 Giraffe 使用 GBZ 图（包含 GBWT 和 GBWTGraph）、distance index、minimizer index，并区分短读段和长读段模式。原始论文中的 5,202 个体、167,000 个结构变异属于人类评估，页面明确未作为植物应用。交互模型的片段拼接为甲 ACGTTG、乙 ACCATG；AC 为共享子串，CGTT 只出现在甲，CCAT 只出现在乙。按钮仅做预设路径的精确子串筛选，不复现 Giraffe 的种子检索或 caller。`npm run test:figure-a11y` 已检查三个读段选择按钮、aria-pressed 状态及重置。
+
+## M03-06 图上比对教学模型复核
+
+2026-11-21 对照 [Giraffe 原始论文](https://pmc.ncbi.nlm.nih.gov/articles/PMC9365333/)核查方法页：Giraffe 使用 GBWT 表示及查询图中的单倍型路径，以 minimizer 建立种子，按图距离对候选种子聚类，沿单倍型路径延伸无缺口匹配，剩余位置才进入带缺口比对。论文案例为人类基因组；正文将 5,202 份个体和约 167,000 个已知 SV 明确标为人类方法评估。对照 [vg 官方索引文档](https://github.com/vgteam/vg/wiki/Index-Construction)，Giraffe 的索引组合包括 GBZ/GBWT、distance 和 minimizer，短读段与长读段索引参数区分。M03-06 的交互教学字符串拼接为甲 ACGTTG、乙 ACCATG；读段 AC 同时是共享子串，CGTT 仅匹配甲，CCAT 仅匹配乙，按钮只模拟精确子串筛选，不模拟 Giraffe 的种子评分或基因型调用。`npm run test:figure-a11y` 已检查三种读段选择和重置。专题其他原理、公式及植物案例仍需继续审核。
