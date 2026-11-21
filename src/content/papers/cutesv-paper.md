@@ -6,6 +6,7 @@ year: 2020
 journal: "Genome Biology 21(1):189"
 doi: 10.1186/s13059-020-02107-y
 type: method
+methodIds: [cutesv]
 domainIds: [pangenomics-structural-variation]
 speciesIds: []
 status: draft

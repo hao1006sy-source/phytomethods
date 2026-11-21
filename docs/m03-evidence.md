@@ -175,3 +175,14 @@ Edge 开发态检查 M03-03 在 375、768、1280、1440 px 的 HTTP 200、正文
 2026-11-21 `npm audit` 重试未能连接 npm 官方安全审计端点（`registry.npmjs.org`，ETIMEDOUT），因此当前没有可判定的依赖漏洞报告；部署前需在网络可用时重试。
 
 2026-11-21 更新 M03-07 的案例导航：高粱图构建比较、水稻多材料研究及拟南芥 69 份材料研究现链接到本站对应论文详情，并把拟南芥论文 ID 补入专题元数据。ODGI 或具体构图软件的实际使用仍严格按各原论文的方法记载，不将仅有植物背景的论文标为工具应用。`npm run validate` 通过（Astro 63 文件零诊断、55 页、Pagefind 55 页/6482 词、1320 条已发布页面本地链接无错误）；`npm run coverage` 通过且检查 M03 论文 ID 存在。
+## M03-03 长读长 caller 工具页与植物证据（2026-11-21）
+
+补建 Sniffles2 与 cuteSV 工具详情，并将 stable IDs 加入 M03-03 专题正文、topic metadata、工具主方法论文及论文方法关联。Sniffles2 v2.8.1 的 BAM/CRAM 输入、SNF 多样本流程、VCF、mosaic 和 force-genotyping 模式依据官方 README；cuteSV v2.1.4 的 BAM/FASTA 输入、VCF/工作目录、support/size/mapQ 与平台特异聚类参数依据官方 README 和 release 页。工具页面明确区分研究算法、软件实现和执行流程，未标注本机安装或实跑。
+
+新建拟南芥 cuteSV 植物应用条目，依据 Bechen 等 PLOS Genetics 2025 全文记录 Nanopore→Col-CEN v1.2 比对→cuteSV 调用，论文报告 12 个候选 SV，并对部分事件实施 PCR/遗传分析。新建 Zhang 等 2026 Genome Biology 在线早期论文，记录十种被子植物、91 个 HiFi caller pipeline 及插入/缺失性能差异；此文为出版方标记可引用的早期版本。Sniffles2 与 cuteSV 的植物适用范围链接至该基准，cuteSV 另关联拟南芥案例。来源：Sniffles2 官方仓库 https://github.com/fritzsedlazeck/Sniffles、cuteSV 官方仓库与发布页 https://github.com/tjiangHIT/cuteSV、拟南芥应用原文 https://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1011977、2026 植物基准原文 https://link.springer.com/article/10.1186/s13059-026-04300-x。
+
+构建检查：Astro 63 个内容文件零诊断，55 个公开静态页、Pagefind 55 页/6482 词，1319 条站内链接零错误；关系审计检查 63 个专题、41 个工具和 95 篇论文，0 个关系差异。npm run coverage 后通过，M03 当前为 13 个草稿工具、22 篇草稿论文、7 篇草稿专题。新增工具未在本机真实数据上运行。
+
+## M03-03 结构变异专题全文科学审核关闭（2026-11-21）
+
+逐节复核 SV 类型和参考方向、短/长读段/组装/图路线区别、SyRI 的共线 DAG 与冲突候选处理、基准指标定义、基因型与独立验证层级。再次检查植物案例的工具归属：SyRI 的拟南芥组装案例、3K 水稻 novaBreak 流程、高粱模拟真值与真实组装指标、拟南芥 Minigraph/vg 图分型、拟南芥 Nanopore/cuteSV 诱导变异案例，以及 2026 十种被子植物 HiFi caller benchmark 均按来源论文拆分。Sniffles2/cuteSV 详情页加入原理、输入输出、参数、方法论文和相应植物应用；当前版本快照来自官方 README/release。M03-03 正文、专题工具元数据、论文与工具双向 ID 关系检查通过。`npm run validate`：Astro 63 文件零诊断，55 页 Pagefind/6482 词，1319 条站内链接零错误；`npm run coverage` 通过；关系审计 63 专题、41 工具、95 论文，零差异。交互组件前期四视口回归通过；新增正文改变内容，未声称本轮重新运行任何新增 caller。M03-03 专题审核完成并继续保持草稿，整域发布闭包尚未关闭。

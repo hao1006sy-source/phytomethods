@@ -2,9 +2,9 @@
 title: 植物基因组结构变异检测
 summary: 比较基于 reads 与组装的结构变异检测策略。
 domain: pangenomics-structural-variation
-methods: [syri, minigraph, minigraph-cactus, pggb, vg]
+methods: [syri, minigraph, minigraph-cactus, pggb, vg, sniffles2, cutesv]
 status: draft
-updatedAt: 2026-11-20
+updatedAt: 2026-11-21
 ---
 ## 研究背景
 植物个体间的遗传差异既包括单个碱基替换，也包括较短的插入缺失和大尺度结构变化。结构变异（structural variation，SV）常指涉及较长序列的插入、缺失、倒位、重复或易位；长度界限取决于研究定义和检测方法，应在结果中说明。拷贝数变异（copy-number variation，CNV）关注某区域拷贝数量的差异，可以与重复、缺失等结构事件相关，但属于不同的描述角度。
@@ -23,7 +23,7 @@ updatedAt: 2026-11-20
 | 数据路线 | 主要观测信号 | 代表方法 | 适用问题与输入边界 |
 | --- | --- | --- | --- |
 | 短读段比对 | 分裂比对、配对方向或插入片段异常、窗口覆盖变化 | LUMPY 等 | 需要参考基因组和成对读段比对；短读段对长重复、复杂断点和新插入序列的解析受限 |
-| 长读段比对 | 长读段跨越断点、软剪切片段、比对方向和插入序列 | Sniffles2、cuteSV | 接收 PacBio 或 ONT 长读段比对；可利用跨断点读段，但仍受重复序列、嵌合读段和比对策略影响。Sniffles2 官方流程以 BAM/CRAM 比对为输入，cuteSV 使用长读段特征收集、聚类与细化 |
+| 长读段比对 | 长读段跨越断点、软剪切片段、比对方向和插入序列 | [Sniffles2](../../../methods/sniffles2/)、[cuteSV](../../../methods/cutesv/) | 接收 PacBio 或 ONT 长读段比对；可利用跨断点读段，但仍受重复序列、嵌合读段和比对策略影响。Sniffles2 官方流程以 BAM/CRAM 比对为输入，cuteSV 使用长读段特征收集、聚类与细化 |
 | 两组装比较 | 全基因组局部比对区块的顺序、方向、间距和重叠 | SyRI、SVIM-asm | 适用于具有足够连续性的参考与查询组装；SyRI 以全基因组比对为输入，按共线和重排结构分类，并解析其内部局部差异 |
 | 多组装图与路径 | 多个组装路径在图中的分叉、替代序列和路径间差异 | Minigraph、PGGB、Minigraph-Cactus 与 VG 工具链 | 适合保留多个样本的序列路径并在图坐标下提取变异；构图软件、图格式与变异导出步骤共同决定可比较的事件集合 |
 
@@ -57,6 +57,10 @@ SyRI 论文描述的主要步骤如下：
 **高粱图基准。** 一项比较六份真实高粱组装及模拟变异数据的研究，将 SyRI、SVIM-asm 与 Minigraph-Cactus、PGGB 等图方法用于结构变异任务。在该研究的模拟真值与参数下，SVIM-asm、SyRI、Minigraph-Cactus 和 PGGB 的总体 F1 分别为 0.93、0.91、0.89 和 0.83。该数值是特定模拟基准的结果；论文另以真实高粱组装进行变异重叠分析，评价目标与模拟真值 F1 不同。[高粱图基准论文](../../../papers/sorghum-graph-benchmark/)。
 
 **拟南芥图变异。** 32 份生态型研究使用 Minigraph 构建参考引导图，并以 vg 对短读段进行图上映射和结构变异分型；该路径适合解释多材料图路径与群体读段分型的衔接，与 SyRI 的两组装比较任务不同。[拟南芥泛基因组案例](../../../papers/arabidopsis-adaptation/)。
+
+**拟南芥诱导变异。** Bechen 等将 Nanopore reads 比对至 Col-CEN v1.2，并使用 cuteSV 检测依托泊苷处理材料中的结构变异；研究报告 12 个候选事件，部分经 PCR 验证，另结合表达与互补实验分析特定表型位点。[论文详情](../../../papers/plant-induced-sv-2025/)。
+
+**被子植物跨物种基准。** 2026 年研究从十种被子植物建立 assembly-based SV truth sets，并比较 91 种 HiFi pipeline。研究中 NGMLR/Sniffles2 在缺失检测稳定性方面表现较好，Minimap2/cuteSV2 在插入检测的跨物种稳定性方面表现较好；性能受事件类型、重复内容及覆盖度影响。[基准论文](../../../papers/plant-sv-benchmark-2026/)。
 
 延伸阅读：[SyRI 官方示例](https://schneebergerlab.github.io/syri/example.html)、[Sniffles2 方法论文](../../../papers/sniffles2-paper/)及[官方仓库](https://github.com/fritzsedlazeck/Sniffles)、[cuteSV 方法论文](../../../papers/cutesv-paper/)及[官方仓库](https://github.com/tjiangHIT/cuteSV)。Sniffles2 论文包含家系、群体与嵌合变异模式；cuteSV 原始论文以人类长读段数据为评估对象。二者在本专题作为长读段方法实例，不代表已验证其植物数据表现。
 

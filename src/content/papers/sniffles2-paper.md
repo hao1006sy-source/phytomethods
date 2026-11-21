@@ -6,6 +6,7 @@ year: 2024
 journal: "Nature Biotechnology 42(10):1571–1580"
 doi: 10.1038/s41587-023-02024-y
 type: method
+methodIds: [sniffles2]
 domainIds: [pangenomics-structural-variation]
 speciesIds: []
 status: draft

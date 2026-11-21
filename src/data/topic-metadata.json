@@ -507,7 +507,9 @@
       "minigraph",
       "minigraph-cactus",
       "pggb",
-      "vg"
+      "vg",
+      "sniffles2",
+      "cutesv"
     ],
     "principleIds": [
       "alignment",
@@ -516,6 +518,7 @@
     "dataIds": [
       "assembly",
       "short-reads",
+      "long-reads",
       "hifi",
       "ont-ul",
       "graph"
@@ -528,7 +531,9 @@
       "sorghum-graph-benchmark",
       "wild-rice-pangenome-2025",
       "sniffles2-paper",
-      "cutesv-paper"
+      "cutesv-paper",
+      "plant-induced-sv-2025",
+      "plant-sv-benchmark-2026"
     ],
     "tutorialIds": [
       "syri-intro"
