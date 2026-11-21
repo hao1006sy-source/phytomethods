@@ -5,7 +5,7 @@ summary: 面向基因型数据的质量控制、遗传统计、群体结构概�
 dataType: VCF / BCF / PLINK 基因型文件
 principle: 基因型统计与关联分析
 domainIds: [population-genetics]
-topicIds: [m05-topic-02, m05-topic-03, m05-topic-04, m05-topic-07]
+topicIds: [m05-topic-01, m05-topic-02, m05-topic-03, m05-topic-04, m05-topic-07]
 principleIds: [genotype-statistics]
 dataIds: [variant-data]
 paper: plink-paper
@@ -106,6 +106,6 @@ Wang 等的 3,010 份亚洲栽培稻研究将 PLINK 用于 SNP/LD 处理，之�
 
 本站 [PLINK 模拟数据教程](../../tutorials/plink-synthetic/)实际使用 PLINK 1.9.1（2026-11-11 构建）处理 8 个虚构二倍体样本和 6 个虚构 SNP，核对了频率、缺失率和 PCA 文件。示例不代表真实植物数据运行。命令、输入文件、实际输出、校验脚本和日志见教程及 `examples/population/verified-plink-20261121/`。
 
-PLINK 1.9 方法与格式见[原始论文](../../papers/plink-paper/)；PCA 的群体结构解释可继续读 Price 等人的[主成分校正研究](https://doi.org/10.1038/ng1847)和 Patterson 等人的[群体结构特征值分析](https://doi.org/10.1371/journal.pgen.0020190)。本页重点连接[M05-02 SNP/VCF 专题](../../topics/population-genetics/m05-topic-02/)、[M05-03 群体结构专题](../../topics/population-genetics/m05-topic-03/)和[M05-04 多样性、分化与 LD 专题](../../topics/population-genetics/m05-topic-04/)；上游为变异调用、参考和样本信息，下游包括 ADMIXTURE、GWAS 和亲缘相关分析。
+PLINK 1.9 方法与格式见[原始论文](../../papers/plink-paper/)；PCA 的群体结构解释可继续读 Price 等人的[主成分校正研究](https://doi.org/10.1038/ng1847)和 Patterson 等人的[群体结构特征值分析](https://doi.org/10.1371/journal.pgen.0020190)。本页连接[群体遗传学基本概念](../../topics/population-genetics/m05-topic-01/)、[M05-02 SNP/VCF 专题](../../topics/population-genetics/m05-topic-02/)、[M05-03 群体结构专题](../../topics/population-genetics/m05-topic-03/)和[M05-04 多样性、分化与 LD 专题](../../topics/population-genetics/m05-topic-04/)；上游为变异调用、参考和样本信息，下游包括 ADMIXTURE、GWAS 和亲缘相关分析。
 
 本机 PLINK 1.9.1 模拟数据分析已经执行；真实植物数据分析尚未在本机运行。PLINK 2.0 页面及参数在 2026-11-21 核对，未安装 PLINK 2.0 或本机实跑上面的 PLINK 2.0 命令。PLINK 1.9 原始方法论文记录 GNU GPL v3；PLINK 2.0 官方文档标注 Beta 并声明 GPL v3。[PLINK 1.9 原始论文](https://doi.org/10.1093/gigascience/giv023)；[PLINK 2.0 官方文档](https://www.cog-genomics.org/plink/2.0/)。

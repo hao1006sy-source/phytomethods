@@ -891,20 +891,33 @@
   {
     "id": "m05-topic-01",
     "title": "群体遗传学基本概念",
-    "englishTitle": "Population genetics",
+    "englishTitle": "Population genetics fundamentals in plant genomics",
     "domainId": "population-genetics",
     "order": 1,
-    "summary": "从等位基因频率、漂变和选择理解群体遗传变化。",
+    "summary": "从等位基因频率、遗传漂变、选择与群体结构理解植物基因组变异。",
     "keyConcepts": [
       "等位基因频率",
       "Hardy–Weinberg 平衡",
       "遗传漂变",
       "有效群体大小",
-      "重组"
+      "自然与人工选择",
+      "基因流",
+      "群体结构",
+      "连锁不平衡",
+      "植物交配系统"
     ],
-    "methodIds": [],
-    "principleIds": [],
-    "dataIds": [],
+    "methodIds": [
+      "plink",
+      "admixture"
+    ],
+    "principleIds": [
+      "genotype-statistics",
+      "ancestry-model",
+      "population-differentiation"
+    ],
+    "dataIds": [
+      "variant-data"
+    ],
     "paperIds": [
       "rice-3010-pangenome"
     ],
@@ -916,16 +929,20 @@
   {
     "id": "m05-topic-02",
     "title": "SNP 检测、过滤与 VCF",
-    "englishTitle": "SNP and VCF",
+    "englishTitle": "Variant calling, genotyping, and VCF",
     "domainId": "population-genetics",
     "order": 2,
-    "summary": "从测序比对到 VCF 理解小变异检测和基因型过滤。",
+    "summary": "从测序比对证据到标准化变异记录和群体基因型矩阵，理解植物 SNP 与 InDel 流程。",
     "keyConcepts": [
       "SNP",
+      "SNV",
       "InDel",
       "VCF",
+      "BCF",
+      "基因型似然",
       "基因型质量",
-      "缺失率"
+      "缺失率",
+      "多倍体剂量"
     ],
     "methodIds": [
       "bcftools",
@@ -936,6 +953,7 @@
       "genotype-statistics"
     ],
     "dataIds": [
+      "short-reads",
       "variant-data"
     ],
     "paperIds": [

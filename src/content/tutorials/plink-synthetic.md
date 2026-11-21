@@ -19,7 +19,11 @@ python examples/population/generate_vcf.py --output simulated.vcf
 plink --version
 ```
 
-本次官方 Windows 压缩包 SHA-256 为 `03c83d4a6bb457f2b4f0bf02d2fde821faba06aaf38cff10577d9d5c23378f14`；下载链接和版本可能更新，需重新核对。示例命令应在专用工作目录执行，避免覆盖已有文件。
+本次官方 Windows 压缩包 SHA-256 如下；下载链接和版本可能更新，需重新核对。示例命令应在专用工作目录执行，避免覆盖已有文件。
+
+```text
+03c83d4a6bb457f2b4f0bf02d2fde821faba06aaf38cff10577d9d5c23378f14
+```
 
 ## 格式转换和统计
 

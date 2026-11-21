@@ -99,3 +99,15 @@ M05-06 新增 PSMC、MSMC2 和 SMC++ 工具页，新增 MSMC 方法论文、MSMC
 | Lam 大豆重测序 | 17 份野生与 14 份栽培大豆，Illumina Genome Analyzer II，平均约 5×深度且 >90% 覆盖。PubMed 摘要报告野生材料等位基因多样性更高、LD 较高，并提供 205,614 个 tag SNP。 | [PubMed 摘要](https://pubmed.ncbi.nlm.nih.gov/21076406/)；[DOI](https://doi.org/10.1038/ng.715) |
 
 M05-07 补入驯化、改良与地方适应的分组设计、统计方法和解释框架；新增玉米地方适应及水稻驯化模型比较记录，完善 Huang、Hufford 和 Lam 案例。专题、PLINK、ADMIXTURE、XP-CLR 与论文关联使用稳定 ID。新增 SVG 标明为原理示意。全部新增页面及相关资源保持草稿；案例分析未在本机真实植物数据上复现。
+
+## M05-01/02 群体基础与 SNP/VCF 记录（2026-11-21）
+
+| 记录项 | 核查事实与页面边界 | 来源 |
+| --- | --- | --- |
+| 3,010 份亚洲栽培稻群体数据 | 原文报告 3,010 份材料、29,399,875 个 SNP（27,024,796 个双等位 SNP）和 2,467,043 个小于 40 bp 的 InDel。比对使用 BWA-MEM 0.7.10，短变异调用用 GATK 3.2-2；PLINK 用于两轮 LD 剪枝，ADMIXTURE 比较候选 K 并以 K=9 描述样本结构。本文将变异调用与下游结构/剪枝步骤分开。 | [Nature 原文与方法](https://doi.org/10.1038/s41586-018-0063-9)；[PubMed](https://pubmed.ncbi.nlm.nih.gov/29695866/)；[PMC](https://pmc.ncbi.nlm.nih.gov/articles/PMC6784863/) |
+| VCF 字段与等位基因表示 | 按 HTS 规范梳理 8 个固定列、INFO/FORMAT 元信息、从 1 开始的 POS、GT 等位基因编号及相位符号。常用 DP/GQ/AD/PL 的具体声明以单个文件头和调用软件为准。 | [HTS VCF 规范](https://samtools.github.io/hts-specs/)；[VCFv4.5 源文件](https://github.com/samtools/hts-specs/blob/master/VCFv4.5.tex) |
+| BCFtools 官方流程 | 官方流程将 mpileup 读段证据与基因型似然计算、call 基因型推断、norm 规范化及过滤作为不同步骤；官方说明 `mpileup` 默认单个位点每 BAM 最多考虑 250 条 reads，并说明 QUAL 不能单独排除系统性比对伪影。多样本 FORMAT 表达式存在按样本与按记录的逻辑差异。 | [变异调用](https://samtools.github.io/bcftools/howtos/variant-calling.html)；[过滤说明](https://samtools.github.io/bcftools/howtos/filtering.html)；[`norm` 手册](https://samtools.github.io/bcftools/bcftools-man.html#norm) |
+| PLINK 2 的 VCF 及倍性处理 | 官方输入页记载 VCF/BCF 转入 PGEN 的 `--make-pgen` 方式；每调用 DP/质量字段不一定保留，适合的过滤需在转换前完成。PLINK 2 文件格式不支持大于二倍体调用；polyploid-mode 可报错或转缺失，不能保留其剂量意义。 | [PLINK 2 标准输入](https://www.cog-genomics.org/plink/2.0/input)；[PLINK 2 项目页](https://www.cog-genomics.org/plink/2.0/) |
+| 水稻杂合变异检测比较 | 原文比较 Bowtie2/BWA-MEM2 与 GATK4.3 HaplotypeCaller/BCFtools mpileup 的组合。其同 DNA 独立测序比较中，最终选定的 BWA-MEM2+GATK 组合四项相似度为 99.74%、99.63%、99.02%、99.37%；BWA-MEM2+BCFtools 对应为 71.52%、71.43%、70.97%、66.51%。这是该数据及筛选设计下的结果，页面明确不推广为通用软件排名。 | [Plant Methods 出版方全文](https://doi.org/10.1186/s13007-025-01437-x)；[网页全文](https://link.springer.com/article/10.1186/s13007-025-01437-x) |
+
+M05-01 重写为植物群体遗传基础专题，包含等位基因频率、HWE、繁殖系统、漂变、有效群体大小、选择、基因流、LD、群体结构与分析设计。M05-02 扩展为 VCF 字段、基因型证据、调用、规范化、过滤语义、多倍体导入边界和真实水稻案例。方法关联由 M05-01 双向连接 PLINK 与 ADMIXTURE；M05-02 连接 BCFtools 与 PLINK。PLINK 模拟教程只验证虚构二倍体数据，不代表真实植物材料实跑。

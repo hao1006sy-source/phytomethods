@@ -5,7 +5,7 @@ summary: 在给定成分数 K 下，以最大似然估计个体祖先成分比�
 dataType: 多位点双等位 SNP 基因型
 principle: 最大似然祖先成分模型
 domainIds: [population-genetics]
-topicIds: [m05-topic-03, m05-topic-07]
+topicIds: [m05-topic-01, m05-topic-03, m05-topic-07]
 principleIds: [ancestry-model]
 dataIds: [variant-data]
 paper: admixture-paper
@@ -103,4 +103,4 @@ Lian 等对拟南芥群体材料的研究将 72 份材料用于群体 SNP 分析
 - **版本快照：**官方发布页于本轮核查时标为 1.4.0；官方新闻记载 2026-04-26 发布，属于性能更新。
 - **软件分发：**2011 年算法增强论文及 2016 年软件使用论文的资源可用性记录均注明二进制可获取、源代码为 proprietary；该论文记录没有列出非学术使用限制。官方当前下载页提供 Linux x86/x86_64 二进制和手册，未提供标准 SPDX 开源许可文件。[2016 年软件说明](https://pmc.ncbi.nlm.nih.gov/articles/PMC4877806/)。
 - **本机运行：**本项目尚未在真实水稻或拟南芥基因型数据上运行 ADMIXTURE；本页的流程和命令依据官方手册核对，不标记为教程实跑。
-- **关联资源：**[原始方法论文记录](../../papers/admixture-paper/)、[算法增强论文记录](../../papers/admixture-enhancements/)、[官方主页](https://dalexander.github.io/admixture/)、[下载与手册](https://dalexander.github.io/admixture/download.html)、[版本记录](https://dalexander.github.io/admixture/news.html)、[M05-03 群体结构专题](../../topics/population-genetics/m05-topic-03/)、[PLINK 工具](../plink/)。
+- **关联资源：**[原始方法论文记录](../../papers/admixture-paper/)、[算法增强论文记录](../../papers/admixture-enhancements/)、[官方主页](https://dalexander.github.io/admixture/)、[下载与手册](https://dalexander.github.io/admixture/download.html)、[版本记录](https://dalexander.github.io/admixture/news.html)、[群体遗传学基本概念](../../topics/population-genetics/m05-topic-01/)、[M05-03 群体结构专题](../../topics/population-genetics/m05-topic-03/)、[PLINK 工具](../plink/)。
