@@ -11,7 +11,7 @@ principleIds: [graph-genomics, minimizer]
 dataIds: [graph, short-reads, long-reads, hifi]
 paper: vg-paper
 repository: https://github.com/vgteam/vg
-status: draft
+status: published
 updatedAt: 2026-11-21
 ---
 ## 研究问题与方法定位

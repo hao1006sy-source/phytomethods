@@ -3,7 +3,7 @@ title: 基于组装比对的 SyRI 结构变异分析入门
 summary: 使用官方拟南芥测试数据运行 NUCmer、坐标过滤与 SyRI，并检查结构变异输出。
 method: syri
 tested: verified
-status: draft
+status: published
 updatedAt: 2026-11-21
 ---
 ## 目的与验证状态

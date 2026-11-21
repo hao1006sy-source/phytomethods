@@ -3,7 +3,7 @@ title: 从蛋白序列到同源基因家族入门
 summary: 使用 OrthoFinder 官方小型蛋白示例理解同源组和物种树输出。
 method: orthofinder
 tested: verified
-status: draft
+status: published
 updatedAt: 2026-11-21
 ---
 ## 目的与验证状态

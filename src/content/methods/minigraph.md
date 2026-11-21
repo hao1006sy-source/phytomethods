@@ -10,7 +10,7 @@ principleIds: [graph-genomics]
 dataIds: [assembly, graph]
 paper: minigraph-paper
 repository: https://github.com/lh3/minigraph
-status: draft
+status: published
 updatedAt: 2026-11-21
 ---
 ## 一句话简介与开发背景
@@ -51,7 +51,7 @@ Kang 等拟南芥泛基因组研究也报告使用独立 Minigraph 构图，并�
 ## 质量检查、教程和关联资源
 至少检查：每个输入样本是否有且仅有预期路径；抽取路径与原 FASTA 的长度、序列和方向是否一致；参考骨架中新增片段和 bubble 是否有组装支持；图构建前后的样本列表、过滤规则和软件版本是否可复现。Minigraph 是图构建与序列到图映射工具，不代替 Hi-C 染色体挂载、基于读段的独立 SV 验证或统计关联分析。
 
-本项目当前没有 Minigraph 实跑教程；官方 README 提供的示例命令可作为学习入口。相关专题为[图泛基因组构建](../topics/pangenomics-structural-variation/m03-topic-05/)；关联论文包括[Minigraph 方法论文](../papers/minigraph-paper/)、[拟南芥泛基因组应用](../papers/arabidopsis-adaptation/)和[作物图构建基准](../papers/sorghum-graph-benchmark/)。
+本项目当前没有 Minigraph 实跑教程；官方 README 提供的示例命令可作为学习入口。相关专题为[图泛基因组构建](../../topics/pangenomics-structural-variation/m03-topic-05/)；关联论文包括[Minigraph 方法论文](../../papers/minigraph-paper/)、[拟南芥泛基因组应用](../../papers/arabidopsis-adaptation/)和[作物图构建基准](../../papers/sorghum-graph-benchmark/)。
 
 ## 来源快照
 2026-11-21 核对官方 v0.21（r606）发布页与仓库 MIT 许可证。未在当前工作站安装或运行 Minigraph；上述流程和命令依据官方 README，植物应用细节依据对应论文。

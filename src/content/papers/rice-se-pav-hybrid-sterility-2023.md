@@ -9,7 +9,7 @@ type: application
 methodIds: []
 domainIds: [pangenomics-structural-variation]
 speciesIds: [rice]
-status: draft
+status: published
 updatedAt: 2026-11-21
 ---
 ## 研究问题与关键发现

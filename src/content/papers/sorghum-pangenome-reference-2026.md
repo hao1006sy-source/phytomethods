@@ -9,7 +9,7 @@ type: application
 methodIds: [minigraph-cactus, vg, odgi]
 domainIds: [pangenomics-structural-variation]
 speciesIds: [sorghum]
-status: draft
+status: published
 updatedAt: 2026-11-22
 ---
 

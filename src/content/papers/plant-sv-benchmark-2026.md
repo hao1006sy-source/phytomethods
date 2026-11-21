@@ -9,7 +9,7 @@ type: application
 methodIds: [sniffles2, cutesv]
 domainIds: [pangenomics-structural-variation]
 speciesIds: []
-status: draft
+status: published
 updatedAt: 2026-11-21
 ---
 ## 研究问题与数据

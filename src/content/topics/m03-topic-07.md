@@ -3,7 +3,7 @@ title: 泛基因组可视化与植物研究应用
 summary: 选择图结构、共线、PAV 和结构变异可视化方式。
 domain: pangenomics-structural-variation
 methods: [odgi]
-status: draft
+status: published
 updatedAt: 2026-11-22
 ---
 ## 可视化要回答什么问题

@@ -182,3 +182,7 @@ M05-01 对照 3,010 水稻研究的样本、SNP/InDel 数、GATK 调用与 PLINK
 ### M03-07 泛基因组可视化专题全文科学审核关闭（2026-11-22）
 
 逐节核查 PAV 矩阵、共线性点图、图路径视图、变异分布与覆盖轨道各自支持的科学问题及必要图例，核对 ODGI 的排序、布局、路径坐标/映射与 Bandage 的 assembly-graph viewer 功能边界。对照 ODGI 方法论文和官方 layout 文档确认二维布局由 path-guided SGD 计算，显示坐标不等于碱基距离或染色体位置；对照高粱图基准与图形输出，保持真实组装统计、模拟 read/SV 结果和示意图来源分开。新增 Morris 等 2026 年高粱泛基因组案例：书目据 Nature 与 PubMed 核对，33 个基因组与 1,984 份材料的范围以及 Minigraph-Cactus v2.9.3、vg v1.59.0、ODGI v0.9.0、sequenceTubeMap v0.1.0 的方法分工据出版方全文/PMC 方法段核对。论文案例及 M03-05、M03-07、Minigraph-Cactus、vg、ODGI 的 stable ID 关系检查通过。专题全文审核关闭，仍保持草稿直到 M03 发布闭包完成。来源：[ODGI 方法论文](https://doi.org/10.1093/bioinformatics/btac308)、[ODGI layout 文档](https://odgi.readthedocs.io/en/latest/rst/commands/odgi_layout.html)、[Kopalli et al. 2025](https://doi.org/10.1093/gigascience/giaf121)、[Morris et al. 2026](https://doi.org/10.1038/s41586-026-10229-9)。
+
+### M03 发布闭包与静态站点验收关闭（2026-11-22）
+
+完成 M03 七专题、13 个工具、24 篇论文与两篇教程的状态和关联审计。教程记录 OrthoFinder 官方非植物示例及 SyRI 官方植物示例均已运行；教程适用范围按实际数据标注。发现 OrthoFinder 工具引用 M04 草稿专题会阻断已发布内容构建，先将跨域方法页的本次关联限制在已发布专题，待 M04 发布审核完成后补回。补齐工具页与专题页的相对链接层级；全站 `npm run validate` 通过，Astro 63 个文件 0 错误/警告，静态生成 101 页，Pagefind zh-cn 索引 101 页/17,929 词，2,753 条本地链接 0 错误。发布依赖检查为 0 发现项。来源及专题逐条证据见 `docs/m03-evidence.md`。该检查点尚未推送远端。

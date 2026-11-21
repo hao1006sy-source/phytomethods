@@ -9,7 +9,7 @@ type: method
 methodIds: [mummer4]
 domainIds: [pangenomics-structural-variation]
 speciesIds: []
-status: draft
+status: published
 updatedAt: 2026-11-21
 ---
 MUMmer4 原论文描述了基于 suffix array 的索引改进以及序列匹配、聚类和延伸架构。`nucmer` 面向核苷酸序列比较，delta 文件及其后处理工具构成组装比对分析的可追溯中间结果。该论文为方法论文，不是特定植物应用案例。[PubMed](https://pubmed.ncbi.nlm.nih.gov/29373581/)；[出版方全文](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005944)。

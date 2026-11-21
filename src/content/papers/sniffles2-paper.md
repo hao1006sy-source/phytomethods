@@ -9,7 +9,7 @@ type: method
 methodIds: [sniffles2]
 domainIds: [pangenomics-structural-variation]
 speciesIds: []
-status: draft
+status: published
 updatedAt: 2026-11-21
 ---
 

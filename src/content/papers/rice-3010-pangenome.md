@@ -6,11 +6,11 @@ year: 2018
 journal: Nature
 doi: 10.1038/s41586-018-0063-9
 type: application
-methodIds: [admixture, plink, eupan]
+methodIds: [eupan]
 domainIds: [pangenomics-structural-variation, population-genetics]
 speciesIds: [rice]
-status: draft
-updatedAt: 2026-11-21
+status: published
+updatedAt: 2026-11-22
 ---
 ## 研究问题与方法价值
 Wang 等分析 3,010 份亚洲栽培稻的序列变异、群体结构和遗传多样性，并将短读段重测序与新增序列整合为水稻泛基因组，以减少单一 Nipponbare 参考基因组造成的变异遗漏。原文报告 29,399,875 个 SNP（其中 27,024,796 个为双等位 SNP）和 2,467,043 个长度小于 40 bp 的 indel。论文对 3,010 份材料进行了结构变异调用，并在 453 份高测序深度样本中报告 93,683 个 SV；该子集与全群体 SNP/indel 统计及后续 PAV 分析的样本范围不同。3,010 份组装产生 268 Mb 非冗余新序列，并预测 12,465 个新全长基因。

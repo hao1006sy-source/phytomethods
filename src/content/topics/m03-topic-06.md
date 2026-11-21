@@ -3,7 +3,7 @@ title: 图上的序列比对与变异分型
 summary: 理解图索引、候选路径、reads 比对和图上分型。
 domain: pangenomics-structural-variation
 methods: [vg, odgi]
-status: draft
+status: published
 updatedAt: 2026-11-20
 ---
 ## 问题与数据结构
@@ -66,4 +66,4 @@ GAM、GAF 等文件承载 read 在图节点或路径上的比对；VCF 等变异
 ## 主要方法之间的功能边界
 `vg giraffe` 是使用图和单倍型索引进行 read 映射的组件；vg 工具集还包含图转换、索引和下游变异操作。ODGI 读取、转换、统计和可视化已有图，不替代 mapping caller。Minigraph 构造参考引导的图，也可将序列映射到图；Minigraph-Cactus 与 PGGB 是构图流程。工作流要把“构图、索引、映射、基因型推断、可视化”作为独立步骤记录版本和输入输出，避免把功能名称相近的工具视为同一个算法。
 
-相关专题：[图泛基因组构建](./m03-topic-05/)、[结构变异检测](./m03-topic-03/)、[PAV 分析](./m03-topic-04/)。
+相关专题：[图泛基因组构建](../m03-topic-05/)、[结构变异检测](../m03-topic-03/)、[PAV 分析](../m03-topic-04/)。

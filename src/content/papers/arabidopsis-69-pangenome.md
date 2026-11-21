@@ -6,11 +6,11 @@ year: 2024
 journal: Nature Genetics
 doi: 10.1038/s41588-024-01715-9
 type: application
-methodIds: [hifiasm, orthofinder, syri, merqury, edta, interproscan, iqtree2, plink, admixture]
+methodIds: [hifiasm, orthofinder, syri, merqury, edta, interproscan]
 domainIds: [pangenomics-structural-variation, comparative-genomics]
 speciesIds: [arabidopsis]
-status: draft
-updatedAt: 2026-11-21
+status: published
+updatedAt: 2026-11-22
 ---
 ## 研究问题与材料范围
 

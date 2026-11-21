@@ -9,7 +9,7 @@ type: method
 methodIds: [syri]
 domainIds: [pangenomics-structural-variation]
 speciesIds: [arabidopsis]
-status: draft
+status: published
 updatedAt: 2026-11-21
 ---
 ## 方法贡献与植物数据

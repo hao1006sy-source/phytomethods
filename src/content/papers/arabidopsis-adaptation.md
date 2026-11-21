@@ -6,11 +6,11 @@ year: 2023
 journal: Nature Communications
 doi: 10.1038/s41467-023-42029-4
 type: application
-methodIds: [hifiasm, orthofinder, iqtree2, edta, minigraph, vg, plink, mcscanx]
+methodIds: [hifiasm, orthofinder, edta, minigraph, vg]
 domainIds: [pangenomics-structural-variation, comparative-genomics]
 speciesIds: [arabidopsis]
-status: draft
-updatedAt: 2026-11-21
+status: published
+updatedAt: 2026-11-22
 ---
 ## 研究问题与基因组材料
 

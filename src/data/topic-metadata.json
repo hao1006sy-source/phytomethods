@@ -442,7 +442,7 @@
       "wild-rice-pangenome-2025"
     ],
     "tutorialIds": [],
-    "status": "draft",
+    "status": "published",
     "createdAt": null,
     "updatedAt": "2026-11-21"
   },
@@ -484,7 +484,7 @@
     "tutorialIds": [
       "syri-intro"
     ],
-    "status": "draft",
+    "status": "published",
     "createdAt": null,
     "updatedAt": "2026-11-21"
   },
@@ -538,7 +538,7 @@
     "tutorialIds": [
       "syri-intro"
     ],
-    "status": "draft",
+    "status": "published",
     "createdAt": null,
     "updatedAt": "2026-11-21"
   },
@@ -584,7 +584,7 @@
       "rice-se-pav-hybrid-sterility-2023"
     ],
     "tutorialIds": [],
-    "status": "draft",
+    "status": "published",
     "createdAt": null,
     "updatedAt": "2026-11-21"
   },
@@ -623,7 +623,7 @@
       "wild-rice-pangenome-2025"
     ],
     "tutorialIds": [],
-    "status": "draft",
+    "status": "published",
     "createdAt": null,
     "updatedAt": "2026-11-22"
   },
@@ -662,7 +662,7 @@
       "arabidopsis-adaptation"
     ],
     "tutorialIds": [],
-    "status": "draft",
+    "status": "published",
     "createdAt": null,
     "updatedAt": "2026-11-21"
   },
@@ -695,7 +695,7 @@
       "arabidopsis-69-pangenome"
     ],
     "tutorialIds": [],
-    "status": "draft",
+    "status": "published",
     "createdAt": null,
     "updatedAt": "2026-11-22"
   },

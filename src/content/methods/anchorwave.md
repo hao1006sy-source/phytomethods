@@ -10,7 +10,7 @@ principleIds: [alignment, collinearity]
 dataIds: [assembly, annotation-input]
 paper: anchorwave-paper
 repository: https://github.com/baoxingsong/AnchorWave
-status: draft
+status: published
 updatedAt: 2026-11-21
 ---
 ## 简介与开发背景
@@ -80,4 +80,4 @@ AnchorWave 依赖基因注释和可靠锚点；若 GFF/GTF 质量差、材料之
 ## 实战教程与上下游资源
 本项目当前没有经实跑验证的 AnchorWave 教程。开始实践时，先用小型同源染色体检查注释版本、锚点数量、方向、共线链和 fragment MAF；再按预期重排/WGD 选择 `genoAli` 或 `proali`。官方另提供 [植物流程教程](https://github.com/baoxingsong/AnchorWave/blob/master/README.md)、[安装说明](https://github.com/baoxingsong/AnchorWave/blob/master/installation.md)和[命令参数](https://github.com/baoxingsong/AnchorWave)。
 
-相关专题为[全基因组比对](../topics/pangenomics-structural-variation/m03-topic-02/)，相关论文为[AnchorWave 方法论文](../papers/anchorwave-paper/)；上游需要高质量组装和一致基因注释，下游可用 SyRI 解析重排，也可用共线图、组装图和原始 reads 检查候选区段。
+相关专题为[全基因组比对](../../topics/pangenomics-structural-variation/m03-topic-02/)，相关论文为[AnchorWave 方法论文](../../papers/anchorwave-paper/)；上游需要高质量组装和一致基因注释，下游可用 SyRI 解析重排，也可用共线图、组装图和原始 reads 检查候选区段。

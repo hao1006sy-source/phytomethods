@@ -5,12 +5,12 @@ summary: 结合基因家族、基因树和物种树推断直系同源及基因�
 dataType: 蛋白序列 FASTA
 principle: 序列相似性聚类与系统发育
 domainIds: [comparative-genomics, pangenomics-structural-variation]
-topicIds: [m03-topic-01, m03-topic-04, m04-topic-01, m04-topic-02]
+topicIds: [m03-topic-01, m03-topic-04]
 principleIds: [phylogenetics]
 dataIds: [proteins]
 paper: orthofinder-paper
 repository: https://github.com/OrthoFinder/OrthoFinder
-status: draft
+status: published
 updatedAt: 2026-11-21
 ---
 ## 生物学问题与定位

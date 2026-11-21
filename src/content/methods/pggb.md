@@ -10,7 +10,7 @@ principleIds: [graph-genomics]
 dataIds: [assembly]
 paper: pggb-paper
 repository: https://github.com/pangenome/pggb
-status: draft
+status: published
 updatedAt: 2026-11-20
 ---
 ## 研究问题与流程

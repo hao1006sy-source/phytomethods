@@ -10,7 +10,7 @@ principleIds: [alignment, pav-calling]
 dataIds: [short-reads, assembly, annotation-input]
 paper: eupan-paper
 repository: https://cgm.sjtu.edu.cn/eupan/index.html
-status: draft
+status: published
 updatedAt: 2026-11-21
 ---
 ## 研究问题与开发背景

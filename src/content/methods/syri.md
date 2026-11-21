@@ -10,7 +10,7 @@ principleIds: [alignment]
 dataIds: [assembly]
 paper: syri-paper
 repository: https://github.com/schneebergerlab/syri
-status: draft
+status: published
 updatedAt: 2026-11-20
 ---
 ## 研究问题与方法定位

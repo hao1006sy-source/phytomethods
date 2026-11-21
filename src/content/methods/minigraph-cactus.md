@@ -10,7 +10,7 @@ principleIds: [graph-genomics]
 dataIds: [assembly]
 paper: minigraph-cactus-paper
 repository: https://github.com/ComparativeGenomicsToolkit/cactus
-status: draft
+status: published
 updatedAt: 2026-11-21
 ---
 ## 研究问题与原理

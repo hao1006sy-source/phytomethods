@@ -9,7 +9,7 @@ type: application
 methodIds: [cutesv]
 domainIds: [pangenomics-structural-variation]
 speciesIds: [arabidopsis]
-status: draft
+status: published
 updatedAt: 2026-11-21
 ---
 ## 研究问题与数据

@@ -9,7 +9,7 @@ type: application
 methodIds: [hifiasm, yahs, syri, minigraph, minigraph-cactus, vg, mummer4, minimap2]
 domainIds: [pangenomics-structural-variation]
 speciesIds: [rice]
-status: draft
+status: published
 updatedAt: 2026-11-21
 ---
 
