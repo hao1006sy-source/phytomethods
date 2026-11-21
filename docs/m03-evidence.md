@@ -166,6 +166,8 @@ Edge 开发态检查 M03-03 在 375、768、1280、1440 px 的 HTTP 200、正文
 
 2026-11-21 对照 vg 官方长读段 Giraffe 说明确认：长读段支持自 vg 1.63.0 起提供；PacBio HiFi 与 ONT R10 分别使用 `hifi`、`r10` 预设，并使用相应长读段索引。由此为受控数据类型新增通用 `long-reads`，更新 minimap2、vg 与 M03-02/M03-06 标签；vg 工具页补版本快照 1.78.0。来源：[vg 官方长读段指南](https://github.com/vgteam/vg/wiki/Mapping-long-reads-with-Giraffe)、[minimap2 官方使用说明](https://github.com/lh3/minimap2)。`npm run validate` 通过，标签引用通过构建检查。
 
+2026-11-21 复核 vg 官方索引和长读段投射说明：Giraffe 索引需包括 GBZ（含 GBWT 与图结构）、distance index，以及带 distance 信息的 minimizer index；长、短读段 minimizer/zipcode 索引文件不同。官方指南标注 `vg surject --read-length long` 自 vg 1.73.0 起支持长读段低复杂度剪枝，投射到线性 BAM 时应显式指定与图路径一致的 `--ref-paths`，保留源 GAM/GAF 以追溯图路径信息。[Index Construction](https://github.com/vgteam/vg/wiki/Index-Construction)、[Mapping long reads with Giraffe](https://github.com/vgteam/vg/wiki/Mapping-long-reads-with-Giraffe)。该项是官方文档核对，未运行 vg。
+
 2026-11-21 `npm audit` 重试未能连接 npm 官方安全审计端点（`registry.npmjs.org`，ETIMEDOUT），因此当前没有可判定的依赖漏洞报告；部署前需在网络可用时重试。
 
 2026-11-21 更新 M03-07 的案例导航：高粱图构建比较、水稻多材料研究及拟南芥 69 份材料研究现链接到本站对应论文详情，并把拟南芥论文 ID 补入专题元数据。ODGI 或具体构图软件的实际使用仍严格按各原论文的方法记载，不将仅有植物背景的论文标为工具应用。`npm run validate` 通过（Astro 63 文件零诊断、55 页、Pagefind 55 页/6482 词、1320 条已发布页面本地链接无错误）；`npm run coverage` 通过且检查 M03 论文 ID 存在。

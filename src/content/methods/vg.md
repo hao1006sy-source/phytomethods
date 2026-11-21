@@ -27,6 +27,8 @@ updatedAt: 2026-11-21
 
 根据工作流，`vg giraffe` 的 `-Z` 用于指定 GBZ，`-f` 指定 FASTQ，`-t` 控制线程；可按版本设置输出格式，例如图比对 GAM 或 GAF。[官方长读长说明](https://github.com/vgteam/vg/wiki/Mapping-long-reads-with-Giraffe)。索引名称、参数和支持模式会随版本变化，运行前需核对版本帮助。本机尚未运行 vg；上述参数是依据官方文档整理，不是已验证教程。
 
+若需要线性参考 BAM，可使用 `vg surject` 并通过 `--ref-paths` 指定图中的目标参考路径。对长读段，`--read-length long` 自 vg 1.73.0 起可用，用于启动长读段投射时的低复杂度剪枝；使用旧版时应按对应版本的官方说明确认等效处理。PanSN 路径名称必须与清单和目标参考一致；投射 BAM 供线性工具使用时，仍应保留原始 GAM/GAF 及图，便于复查无法在单一线性坐标中完整表达的图路径信息。[官方长读段投射说明](https://github.com/vgteam/vg/wiki/Mapping-long-reads-with-Giraffe)。
+
 ## 软件、论文与植物案例
 vg 原始论文描述变异图框架；Sirén 等的 Giraffe 论文主要基于人类数据阐述单倍型感知短读段比对。后续长读段功能应以相应版本与论文为准，不能把原始短读段方法的评估直接套用到长读段。
 

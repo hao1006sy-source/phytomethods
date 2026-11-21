@@ -59,6 +59,8 @@ $$
 ## 比对输出、分型输出和植物基准
 GAM、GAF 等文件承载 read 在图节点或路径上的比对；VCF 等变异表则汇总候选位点和样本基因型。二者之间还要经过变异表示、样本路径投影和基因型判定步骤。读取比对率、MAPQ、read-depth 或单个位点的 call count 时，应说明是图比对统计还是分型结果，以及采用的图、样本路径和参考坐标。
 
+若下游工具需要线性参考 BAM，可用 `vg surject` 将图比对投射到明确指定的参考路径。长读段宜使用 vg 1.73.0 及之后版本提供的 `--read-length long`，或按当前官方说明使用低复杂度剪枝选项；这会在低复杂度区段重新对线性目标序列计算比对。必须指定与图路径命名相匹配的参考路径清单，并检查投射后 BAM 的染色体名称、方向和低复杂度区间。GAM/GAF 到 BAM 的投射会丢失部分图路径信息，因此保留原始图比对和图版本以供追溯。[vg 长读段映射与投射说明](https://github.com/vgteam/vg/wiki/Mapping-long-reads-with-Giraffe)。
+
 高粱图基准中，作者用真实组装和模拟组装构建图，并分别评估模拟 reads 与公开真实 paired-end reads。模拟 reads 由泛基因组图生成，Giraffe 将其映射至 Minigraph 与 Minigraph-Cactus 图，再与 Minimap2 线性参考映射及生成真值比较；真实 paired-end reads 也映射到这两类图和线性参考。PGGB 因图索引所需计算和内存未进入 read-mapping 比较。真实 reads 部分报告总比对率和完美比对比例，不能与模拟真值定位准确率混为一类指标。[基准论文](https://doi.org/10.1093/gigascience/giaf121)。
 
 ## 主要方法之间的功能边界

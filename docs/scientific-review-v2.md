@@ -150,3 +150,5 @@ M05-01 对照 3,010 水稻研究的样本、SNP/InDel 数、GATK 调用与 PLINK
 2026-11-21：浏览器路由回归覆盖 M03 领域、七专题、9 个工具及 10 篇论文，四视口共 108 个页面状态通过 HTTP、H1 和文档宽度检查；另验证 M03-05 → Minigraph → 水稻图泛基因组案例点击路径。内容仍为草稿，发布态验收未执行。
 
 2026-11-21 对照 vg 官方长读段指南及 minimap2 README，确认 Giraffe 的 HiFi/R10 预设与 vg 1.63 起始支持版本；为数据模型补通用 `long-reads` 受控标签，更新 minimap2、vg 工具及 M03-02/M03-06 相关数据标签。vg 页记录 v1.78.0 快照。构建与内容关系检查通过；工具未在本机运行。
+
+2026-11-21 补充核对 vg 长读段投射：官方索引文档列出 Giraffe 的 GBZ/GBWT、distance index 与 minimizer index 组成；官方长读段指南将 `.longread.withzip.min` 和 `.longread.zipcodes` 与短读段索引区分，并注明 `vg surject --read-length long` 自 1.73.0 起可用于长读段 BAM 投射的低复杂度剪枝。正文补入 `--ref-paths` 与图路径名称的一致性要求，区分图比对与线性投射。vg 未在本机运行，M03-06 全文科学审读仍未关闭。

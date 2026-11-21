@@ -1,16 +1,16 @@
 # PhytoMethods 下一次恢复入口
 
-- 分支：`feat/long-run-m03-v2`；本地分支从远程跟踪点 `58c339f` 继续开发，新增 M03 工作已分批提交；当前 HEAD 与领先提交数以 `git status -sb` 和 `git log` 为准。HTTPS 推送最新尝试因 GitHub 443 超时失败，内容尚未推送。已发布 main 基点为 `91f24bd`；M03–M09 新增内容仍为草稿，尚未合并部署。网络写入恢复后推送并依既有流程创建/更新 PR。
+- 分支：`feat/long-run-m03-v2`；本地分支领先远程跟踪分支，最新 HEAD 与提交数以 `git log -1` 和 `git status -sb` 为准。2026-11-21 推送因无法连接 GitHub 443 超时；当前未推送。已发布 main 基点为 `91f24bd`；M03–M09 新增内容仍为草稿，尚未合并部署。网络写入恢复后推送并依既有流程创建/更新 PR。
 - M03～M09 共 49 篇专题已有正文初稿；仍需逐篇深化、科学审核和正式发布态验收。M03、M04、M05 已有部分工具及论文，M06 新增 GAPIT 与 SciPy，M07 新增 Bismark，M08 新增 Scanpy，M09 新增 WGCNA。
 - 七个新增领域各有一篇已实际运行的教程草稿：SyRI 使用官方拟南芥染色体测试数据；OrthoFinder 使用官方支原体示例；PLINK、GWAS、Bismark、Scanpy 和 WGCNA 使用模拟数据。后六者没有声称在本机运行真实植物数据。
 - `examples/syri/verified-20261121/`、`examples/orthofinder/verified-20261121/` 及其余 `examples/` 子目录保存实际运行日志、输入说明、版本和摘要。M03 相关资料见 `docs/m03-evidence.md`。
 - 最近核心页面回归：`node scripts/browser-test-v1.3.mjs`、`node scripts/browser-test-knowledge.mjs`、`node scripts/browser-test-knowledge-graph.mjs` 的桌面和移动端测试通过。M03 七篇草稿在仅开发环境的预览路由中按 375、768、1280、1440 px 检查，HTTP 200、正文标题、预览标识和横向溢出检查通过；AnchorChain、图路径和读段映射交互通过。该检查不等同于正式发布态构建或科学审核关闭。
-- 最近完整构建：2026-11-21 `npm run validate` 通过，Astro 检查 0 错误/警告/提示，静态生成 55 页，Pagefind 索引 55 页/6482 词，1320 条内部链接通过。`npm run coverage` 通过：M01/M02 各七篇已发布专题；M03–M09 各七篇为草稿。M03 目前 11 个工具条目（1 已发布、10 草稿）、20 篇草稿论文与 1 篇草稿教程；M03 交互图与四视口检查有测试记录。Edge 四视口路由测试覆盖 27 个 M03 页面（共 108 个页面状态）；M03-05 → Minigraph → 水稻案例点击路径通过。Pagefind 索引输出位于 `pagefind-search/`。`npm audit` 当前失败于连接 `registry.npmjs.org` 超时，尚无审计报告。
+- 最近完整构建：2026-11-21 `npm run validate` 通过，Astro 检查 0 错误/警告/提示，静态生成 55 页，Pagefind 索引 55 页/6482 词，1319 条内部链接通过。`npm run coverage` 通过：M01/M02 各七篇已发布专题；M03–M09 各七篇为草稿。M03 目前 11 个工具条目（1 已发布、10 草稿）、20 篇草稿论文与 1 篇草稿教程；M03 交互图与四视口检查有测试记录。Edge 四视口路由测试覆盖 27 个 M03 页面（共 108 个页面状态）；M03-05 → Minigraph → 水稻案例点击路径通过。Pagefind 索引输出位于 `pagefind-search/`。`npm audit` 当前失败于连接 `registry.npmjs.org` 超时，尚无审计报告。
 - 数据可复核命令：`python scripts/check-plink-example.py`、`python scripts/check-gwas-example.py`、`python scripts/check-bismark-example.py`、`python scripts/generate-single-cell-demo.py --check`、`python scripts/test-pca-demo.py`、`python scripts/generate-gwas-demo.py --check`、`node scripts/test-phylogeny-demo.mjs`。
 - 知识关联页已增加基于已发布内容的工具中心图，支持领域及原理筛选；上下游等关系仍待建模。新增单细胞、拟时序、共表达、GWAS 和甲基化示意图，其中模拟数据均标注。
 - 已保存阶段截图至 `outputs/long-run/checkpoint-20261121-0625/`；截图反映开发分支本地构建，M03 专题仍显示筹备状态，不能当作线上发布截图。
 - SyRI、OrthoFinder 和 Bismark 曾在 WSL `/tmp/phytomethods-mamba-20261121/` 隔离环境运行；当前 WSL 状态检查返回 `E_ACCESSDENIED`，暂时无法确认该环境是否仍可用，既有运行日志和摘要保存在项目验证目录。当前 Windows PATH 未发现 AnchorWave、Minigraph、ODGI、vg、PGGB、Cactus 或 EUPAN。R 独立包库和 Scanpy 虚拟环境位于项目 `work/`，属于临时环境，不应提交。
-- 下一步：完成 M03-01 至 M03-07 逐篇科学审核及相关 11 个工具、20 篇论文、SyRI 教程的发布依赖闭包；完善 M03 预览测试与发布记录。随后按任务书依次审核 M04→M09，复核教程、工具、论文、图示和真实植物案例，逐领域分阶段发布。当前本地工作领先远程 34 个提交，网络写入恢复后同步至既有 GitHub 分支；科学事实和教程状态继续逐项依据证据记录。
+- 下一步：完成 M03-01 至 M03-07 逐篇科学审核及相关 11 个工具、20 篇论文、SyRI 教程的发布依赖闭包；完善 M03 预览测试与发布记录。随后按任务书依次审核 M04→M09，复核教程、工具、论文、图示和真实植物案例，逐领域分阶段发布。网络写入恢复后同步至既有 GitHub 分支；科学事实和教程状态继续逐项依据证据记录。
 - 发布前需处理跨领域关联的状态依赖：已发布专题关联的工具、论文和教程必须同时为已发布状态，论文引用的工具及工具引用的专题也必须可访问。不得删除准确的关联以绕过检查。
 - 最终仍需整体科学审核、性能与可访问性检查、完整知识网络、阶段报告、合并及线上部署；当前没有声称完成或上线 v2.0。
 
