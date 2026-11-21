@@ -9,8 +9,8 @@ type: application
 methodIds: [plink, admixture, gapit]
 domainIds: [population-genetics, gwas-breeding]
 speciesIds: [rice]
-status: draft
-updatedAt: 2026-11-21
+status: published
+updatedAt: 2026-11-22
 ---
 ## 研究问题与数据
 

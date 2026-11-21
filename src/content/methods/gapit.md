@@ -10,8 +10,8 @@ principleIds: [gwas-mixed-model]
 dataIds: [variant-data, phenotype]
 paper: gapit3-paper
 repository: https://github.com/jiabowang/GAPIT
-status: draft
-updatedAt: 2026-11-21
+status: published
+updatedAt: 2026-11-22
 ---
 ## 研究问题和软件定位
 GAPIT（Genome Association and Prediction Integrated Tool）是面向全基因组关联和基因组预测的 R 工具。GAPIT 3 方法论文介绍其数据处理、质量控制、多种模型及结果展示。[Wang 与 Zhang，2021](https://doi.org/10.1016/j.gpb.2021.08.005)。同一软件支持多个统计模型，报告结果时必须指明实际选择的模型。

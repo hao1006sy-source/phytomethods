@@ -2,9 +2,9 @@
 title: 机器学习预测与基因型×环境互作
 summary: 比较非线性预测、多环境建模及植物育种中的验证策略。
 domain: gwas-breeding
-methods: []
-status: draft
-updatedAt: 2026-11-21
+methods: [dnngp, rrblup]
+status: published
+updatedAt: 2026-11-22
 ---
 ## 研究问题
 植物品种在不同地点、年份或管理条件下的表现可能不同。基因型×环境互作（genotype-by-environment interaction，G×E）描述基因型差异随环境改变的现象；育种预测希望估计材料在目标环境中的表现，并区分模型对已见与未见环境的适用范围。
@@ -36,3 +36,6 @@ DNNGP 原论文在植物多组学数据上比较多种预测模型，展示整�
 
 ## 延伸阅读
 [DNNGP 原始论文](https://doi.org/10.1016/j.molp.2022.11.004)、[基因组选择与交叉验证](https://pmc.ncbi.nlm.nih.gov/articles/PMC7772221/)及[植物环境预测综述](https://pmc.ncbi.nlm.nih.gov/articles/PMC9871498/)。
+
+## 工具、复现和延伸路径
+DNNGP 的方法页整理了官方版本、依赖提示、数据要求与复现状态；当前项目未运行该软件。[DNNGP 工具页](../../../methods/dnngp/)与[论文记录](../../../papers/dnngp-paper/)支持查阅方法来源。线性基线可参考[rrBLUP](../../../methods/rrblup/)；需要量化全基因组预测时返回[基因组选择专题](../m06-topic-06/)，关联定位则见[GWAS 模型专题](../m06-topic-04/)。选择验证拆分方式时，应将群体、年份、环境和部署目标写入分析计划，不以同一随机划分的单一指标决定模型。

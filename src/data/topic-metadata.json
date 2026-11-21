@@ -1237,35 +1237,41 @@
   {
     "id": "m06-topic-01",
     "title": "数量遗传学与遗传力",
-    "englishTitle": "Quantitative genetics",
+    "englishTitle": "Quantitative genetics and heritability",
     "domainId": "gwas-breeding",
     "order": 1,
-    "summary": "从遗传与环境方差理解数量性状和遗传力。",
+    "summary": "从植物育种试验、遗传方差与基因型×环境互作理解数量性状和遗传力。",
     "keyConcepts": [
       "数量性状",
+      "基因型值",
       "加性遗传方差",
       "广义遗传力",
       "狭义遗传力",
-      "基因型与环境互作"
+      "entry-mean",
+      "genotype-difference",
+      "基因型×环境互作"
     ],
     "methodIds": [],
-    "principleIds": [],
+    "principleIds": [
+      "heritability-estimation"
+    ],
     "dataIds": [
+      "phenotype",
       "variant-data"
     ],
     "paperIds": [
-      "rice-roots-population",
+      "heritability-genotype-difference",
       "rice-gwas-2010"
     ],
     "tutorialIds": [],
-    "status": "draft",
+    "status": "published",
     "createdAt": null,
-    "updatedAt": "2026-11-21"
+    "updatedAt": "2026-11-22"
   },
   {
     "id": "m06-topic-02",
     "title": "QTL 定位与遗传连锁",
-    "englishTitle": "QTL mapping",
+    "englishTitle": "QTL linkage mapping",
     "domainId": "gwas-breeding",
     "order": 2,
     "summary": "利用遗传连锁和重组信息定位数量性状区域。",
@@ -1276,19 +1282,24 @@
       "LOD",
       "区间定位"
     ],
-    "methodIds": [],
-    "principleIds": [],
+    "methodIds": [
+      "rqtl2"
+    ],
+    "principleIds": [
+      "qtl-linkage-mapping"
+    ],
     "dataIds": [
-      "variant-data"
+      "variant-data",
+      "phenotype"
     ],
     "paperIds": [
       "rqtl2-paper",
-      "rice-roots-population"
+      "rice-deep-rooting-qtl"
     ],
     "tutorialIds": [],
-    "status": "draft",
+    "status": "published",
     "createdAt": null,
-    "updatedAt": "2026-11-21"
+    "updatedAt": "2026-11-22"
   },
   {
     "id": "m06-topic-03",
@@ -1321,14 +1332,15 @@
       "rice-gwas-2010",
       "gapit3-paper",
       "rice-gapit-2023",
-      "scipy-paper"
+      "scipy-paper",
+      "rice-roots-population"
     ],
     "tutorialIds": [
       "gwas-synthetic"
     ],
-    "status": "draft",
+    "status": "published",
     "createdAt": null,
-    "updatedAt": "2026-11-21"
+    "updatedAt": "2026-11-22"
   },
   {
     "id": "m06-topic-04",
@@ -1361,9 +1373,9 @@
       "rice-gapit-2023"
     ],
     "tutorialIds": [],
-    "status": "draft",
+    "status": "published",
     "createdAt": null,
-    "updatedAt": "2026-11-21"
+    "updatedAt": "2026-11-22"
   },
   {
     "id": "m06-topic-05",
@@ -1401,9 +1413,9 @@
     "tutorialIds": [
       "gwas-synthetic"
     ],
-    "status": "draft",
+    "status": "published",
     "createdAt": null,
-    "updatedAt": "2026-11-21"
+    "updatedAt": "2026-11-22"
   },
   {
     "id": "m06-topic-06",
@@ -1420,7 +1432,8 @@
       "交叉验证"
     ],
     "methodIds": [
-      "gapit"
+      "gapit",
+      "rrblup"
     ],
     "principleIds": [
       "gwas-mixed-model"
@@ -1435,9 +1448,9 @@
       "rice-gapit-2023"
     ],
     "tutorialIds": [],
-    "status": "draft",
+    "status": "published",
     "createdAt": null,
-    "updatedAt": "2026-11-21"
+    "updatedAt": "2026-11-22"
   },
   {
     "id": "m06-topic-07",
@@ -1453,19 +1466,26 @@
       "外部验证",
       "数据泄漏"
     ],
-    "methodIds": [],
-    "principleIds": [],
+    "methodIds": [
+      "dnngp",
+      "rrblup"
+    ],
+    "principleIds": [
+      "gwas-mixed-model"
+    ],
     "dataIds": [
-      "variant-data"
+      "variant-data",
+      "phenotype",
+      "expression-matrix"
     ],
     "paperIds": [
       "dnngp-paper",
       "rrblup-paper"
     ],
     "tutorialIds": [],
-    "status": "draft",
+    "status": "published",
     "createdAt": null,
-    "updatedAt": "2026-11-21"
+    "updatedAt": "2026-11-22"
   },
   {
     "id": "m07-topic-01",

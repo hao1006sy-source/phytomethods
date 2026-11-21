@@ -9,8 +9,8 @@ type: application
 methodIds: [gapit]
 domainIds: [gwas-breeding]
 speciesIds: [rice]
-status: draft
-updatedAt: 2026-11-21
+status: published
+updatedAt: 2026-11-22
 ---
 ## 植物研究
 研究利用多种模型比较水稻籽粒性状关联及基因组预测，其中 MLM 与 FarmCPU 等关联分析使用 GAPIT。[原论文](https://doi.org/10.1038/s41437-023-00599-5)、[PubMed](https://pubmed.ncbi.nlm.nih.gov/36792661/)。

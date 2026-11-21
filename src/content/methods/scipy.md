@@ -10,8 +10,8 @@ principleIds: [linear-regression]
 dataIds: [variant-data, phenotype]
 paper: scipy-paper
 repository: https://github.com/scipy/scipy
-status: draft
-updatedAt: 2026-11-21
+status: published
+updatedAt: 2026-11-22
 ---
 ## 定位与计算
 SciPy 是通用 Python 科学计算库，`scipy.stats.linregress` 可对一组数值自变量与因变量拟合一元线性回归，并返回斜率、截距和斜率检验 P 值。[SciPy 方法论文](https://doi.org/10.1038/s41592-019-0686-2)、[函数文档](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.linregress.html)。它不是专用 GWAS 软件；本页面使用其统计函数说明单标记模型的基本计算。

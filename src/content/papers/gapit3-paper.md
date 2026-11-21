@@ -9,8 +9,8 @@ type: method
 methodIds: [gapit]
 domainIds: [gwas-breeding]
 speciesIds: []
-status: draft
-updatedAt: 2026-11-21
+status: published
+updatedAt: 2026-11-22
 ---
 ## 方法价值
-GAPIT 3 整合多种关联分析与基因组预测方法，并提供数据整理、质量控制和结果展示功能。[原始论文](https://doi.org/10.1016/j.gpb.2021.08.005)。具体软件版本与本站教程待补充。
+GAPIT 3 整合多种关联分析与基因组预测方法，并提供数据整理、质量控制和结果展示功能。[原始论文](https://doi.org/10.1016/j.gpb.2021.08.005)；[工具说明](../../methods/gapit/)列出本项目查阅的当前官方软件资料。工具页所述开发版本与 2021 年论文版本分别标注。

@@ -3,8 +3,8 @@ title: 使用模拟基因型和表型理解 GWAS
 summary: 用 SciPy 单标记线性回归生成 Manhattan 图和 QQ 图。
 method: scipy
 tested: verified
-status: draft
-updatedAt: 2026-11-21
+status: published
+updatedAt: 2026-11-22
 ---
 ## 目标与验证范围
 本教程使用模拟基因型和连续表型，解释单标记回归、P 值、多重检验及 Manhattan/QQ 图。2026 年 11 月 21 日已实际运行示例，并对全部 60 个 P 值独立复算。数据不来自真实植物，模型没有群体结构、亲缘或协变量调整；实际植物 GWAS 应结合实验设计使用适当的专业模型。

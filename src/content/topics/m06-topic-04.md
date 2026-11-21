@@ -3,8 +3,8 @@ title: GWAS 模型：GLM、混合模型与多位点方法
 summary: 理解固定效应、亲缘关系及 FarmCPU、BLINK 的模型定位。
 domain: gwas-breeding
 methods: [gapit]
-status: draft
-updatedAt: 2026-11-21
+status: published
+updatedAt: 2026-11-22
 ---
 ## 研究问题
 植物自然群体中的个体常具有复杂亲缘、群体结构和多基因性状背景。GWAS 模型需要在控制混杂、保留统计功效和计算成本之间作出明确选择。模型比较应在相同数据、表型处理与评价标准下进行，不能仅凭某次分析产生的显著位点数判断优劣。
@@ -44,3 +44,6 @@ GAPIT 是包含多种 GWAS 和基因组预测方法的 R 工具，版本 3 论�
 
 ## 延伸阅读
 [统一混合模型](https://doi.org/10.1038/ng1702)、[FarmCPU](https://doi.org/10.1371/journal.pgen.1005767)、[BLINK](https://doi.org/10.1093/gigascience/giy154)和[GAPIT 3](https://doi.org/10.1016/j.gpb.2021.08.005)。
+
+## 研究案例与关联入口
+在水稻地方品种研究中，关联结果应回到原文的群体、性状和当时可用方法解读；发表时间晚于该研究的算法不能追溯性地归为其分析工具。[Huang 等，2010](../../../papers/rice-gwas-2010/)提供 GWAS 设计背景；GAPIT 的后续软件实现见[工具页](../../../methods/gapit/)及[2021 方法论文](../../../papers/gapit3-paper/)。关联结果进一步解释见[GWAS 结果专题](../m06-topic-05/)，预测育种目标见[基因组选择专题](../m06-topic-06/)。

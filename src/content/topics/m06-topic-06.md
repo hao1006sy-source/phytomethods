@@ -2,9 +2,9 @@
 title: 基因组选择
 summary: 利用全基因组标记和训练群体预测植物材料的遗传表现。
 domain: gwas-breeding
-methods: [gapit]
-status: draft
-updatedAt: 2026-11-21
+methods: [gapit, rrblup]
+status: published
+updatedAt: 2026-11-22
 ---
 ## 研究问题
 基因组选择（genomic selection，GS）利用覆盖全基因组的标记和已有表型训练预测模型，再为尚未完成表型测量的候选材料估计遗传表现。它面向育种决策；预测依赖训练材料、目标群体和环境，不自动揭示每个标记的因果机制。
@@ -33,3 +33,6 @@ GBLUP 用标记构造基因组关系矩阵，估计样本间遗传相似性及�
 
 ## 延伸阅读
 [基因组选择奠基论文](https://doi.org/10.1093/genetics/157.4.1819)、[rrBLUP 论文](https://doi.org/10.3835/plantgenome2011.08.0024)及[植物群体验证研究](https://pmc.ncbi.nlm.nih.gov/articles/PMC7772221/)。
+
+## 评价设计与工具入口
+预测相关性应说明其计算对象和验证层级；还应报告 RMSE 或其他适合应用的误差指标、回归斜率、训练材料与目标材料的亲缘关系，以及跨环境时的表型定义。训练集内拟合的预处理与调参过程应复现于每个训练折，测试数据只用于最终评估。rrBLUP 的岭回归和核方法见[工具说明](../../../methods/rrblup/)与[方法论文记录](../../../papers/rrblup-paper/)；GAPIT 的相关预测功能见[GAPIT 工具页](../../../methods/gapit/)。涉及新家系、年份或环境时，继续阅读[机器学习与 G×E](../m06-topic-07/)；统计关联目标见[GWAS 模型专题](../m06-topic-04/)。

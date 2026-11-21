@@ -190,3 +190,11 @@ M05-01 对照 3,010 水稻研究的样本、SNP/InDel 数、GATK 调用与 PLINK
 ### M05 七专题科学审核与发布状态（2026-11-22）
 
 基于本轮逐节复核和 `docs/m05-evidence.md` 中的来源记录，M05 七专题涉及的群体遗传基础、变异调用与 VCF、群体结构、遗传多样性/分化/LD、选择扫描、共祖人口历史、驯化与环境适应案例已完成内容审查。工具页明确区分 PLINK/ADMIXTURE 的群体基因型处理与结构推断、BCFtools 变异调用、XP-CLR/EHH/SFS 选择扫描以及 PSMC/MSMC2/SMC++ 共祖历史模型；植物应用结果按论文的样本数、过滤策略、对照群体及阈值解释。关系审计通过后，七专题、九个工具、25 篇论文和 PLINK 合成数据教程进入发布状态。水稻根系论文保留为草稿案例记录，关联 GAPIT 的 M06 GWAS 任务，待 M06 审核闭包时一并发布。教程仅验证合成二倍体输入，未声称重现植物研究数据。
+
+### M06-01 数量遗传学与遗传力方法深化（2026-11-22）
+
+对照 Schmidt 等 Genetics 出版方记录与 PMC 全文核对 genotype-difference basis 方法及 DOI 10.1534/genetics.119.302134；区分 entry-mean 与 genotype-difference 的估计目标。依据 Smith、Lim 与 Cullis 的 Cambridge 原文核对多阶段植物育种试验混合模型的题名、作者、年份和 DOI 10.1017/S0021859606006319，并依据 Huang 等 Nature Genetics/PubMed 记录核对 517 份水稻地方品种、约 360 万 SNP 与 14 个农艺性状 GWAS。专题扩充遗传/环境/G×E 方差、单环境平衡重复下 entry-mean 公式的假设范围、非平衡和多环境模型、BLUE/BLUP 目标差异及 QTL/GWAS/基因组选择边界。新增稳定论文 ID `heritability-genotype-difference`，在 M06-01 关联其方法和水稻应用文献，并加入受控原理标签 `heritability-estimation`。页面仍为草稿；M06 专题整体文献、工具及发布依赖审核尚未完成。
+
+### M06-02 QTL 定位与 R/qtl2 关系审核（2026-11-22）
+
+依据 R/qtl2 2019 Genetics 方法论文、官方用户/开发者指南和 GitHub releases 核对两阶段计算：多点标记数据推断潜在 QTL 基因型概率，随后用这些概率扫描表型；版本快照为 v0.46（2026-07-21）。专题扩展 F2、回交、RIL、DH 和多亲本群体设计差异、遗传图谱、HMM 概念流程、LOD 似然比、置换阈值、精细定位与验证层次。Lou 等水稻深根论文依据 Journal of Experimental Botany、PubMed 与 PMC 原文核对 180 条 F8 RIL、237 份关联材料、六个 RDR QTL、1,019,883 SNP、48 个关联 SNP 与 7/9 个候选 SNP 的极端组验证；清楚区分该研究的软件流程和后发布的 R/qtl2。新增 stable ID `rqtl2` 工具与 `rice-deep-rooting-qtl` 应用论文，修正 M06-02、M06-03 关系，将根系关联论文置于 GWAS 专题范围。工具未在本机执行，相关专题和资源保持草稿。
