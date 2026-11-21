@@ -186,3 +186,17 @@ Edge 开发态检查 M03-03 在 375、768、1280、1440 px 的 HTTP 200、正文
 ## M03-03 结构变异专题全文科学审核关闭（2026-11-21）
 
 逐节复核 SV 类型和参考方向、短/长读段/组装/图路线区别、SyRI 的共线 DAG 与冲突候选处理、基准指标定义、基因型与独立验证层级。再次检查植物案例的工具归属：SyRI 的拟南芥组装案例、3K 水稻 novaBreak 流程、高粱模拟真值与真实组装指标、拟南芥 Minigraph/vg 图分型、拟南芥 Nanopore/cuteSV 诱导变异案例，以及 2026 十种被子植物 HiFi caller benchmark 均按来源论文拆分。Sniffles2/cuteSV 详情页加入原理、输入输出、参数、方法论文和相应植物应用；当前版本快照来自官方 README/release。M03-03 正文、专题工具元数据、论文与工具双向 ID 关系检查通过。`npm run validate`：Astro 63 文件零诊断，55 页 Pagefind/6482 词，1319 条站内链接零错误；`npm run coverage` 通过；关系审计 63 专题、41 工具、95 论文，零差异。交互组件前期四视口回归通过；新增正文改变内容，未声称本轮重新运行任何新增 caller。M03-03 专题审核完成并继续保持草稿，整域发布闭包尚未关闭。
+
+## M03-04 PAV 全文证据核查（2026-11-21）
+
+- Zhao et al. 2018, *Nature Genetics*, DOI [10.1038/s41588-018-0041-z](https://doi.org/10.1038/s41588-018-0041-z): 66 个 de novo 组装加 Nipponbare，共 67 个基因组；42,580 个至少在一个样本中注释到的非 TE 编码基因；≥60/67 为核心，26,372 个核心与 16,208 个可变基因；10,872 个相对 Nipponbare 至少部分缺失，其中约 9.5% 可在独立 Nipponbare Illumina 组装中找到。此项支持 reference physical gap 作为部分信号来源，不把全部候选判为生物缺失。
+- Wang et al. 2018, *Nature*, DOI [10.1038/s41586-018-0063-9](https://doi.org/10.1038/s41586-018-0063-9): 3,010 是总体材料数量，3,010 个组装的非冗余新序列与 Nipponbare RefSeq 合并构建 pan-genome；PAV 主分析使用 453 个高覆盖材料。全体类别为 23,876 gene families：12,770 (53.5%) 在 453 个材料全部存在，2,056 (8.6%) 是 major groups 中没有显著 >1% gene loss 的 candidate core，9,050 (37.9%) 为 distributed。该研究用 >95% CDS coverage 且 >85% gene-body coverage 作为 gene presence 证据阈值，保留原论文的样本及方法限定。
+- Wang et al. 2023, *Nature Communications* 14:4531, DOI [10.1038/s41467-023-40189-x](https://doi.org/10.1038/s41467-023-40189-x), PMID 37507369, PMCID PMC10382596: Se PAV 区域含相邻 ORF3/ORF4；论文以 787 份、14 个稻属物种的材料进行区域变异调查，并通过 PCR、转基因互补、基因编辑与花粉实验分析生殖隔离。正文不把基因家族同源或统计关联本身写成缺失证据/功能因果结论。
+
+核查来源：[Zhao et al. 原文](https://www.nature.com/articles/s41588-018-0041-z)、[Wang et al. PMC 全文](https://pmc.ncbi.nlm.nih.gov/articles/PMC6784863/)、[Se 位点 PMC 全文](https://pmc.ncbi.nlm.nih.gov/articles/PMC10382596/)、[EUPAN 方法论文](https://doi.org/10.1093/bioinformatics/btx363)、[OrthoFinder 方法论文](https://doi.org/10.1186/s13059-019-1832-y)。本次为原文与工具职责核查，不包含本机重新运行 EUPAN 或 OrthoFinder。
+
+## M03-05 图泛基因组流程与案例证据核查（2026-11-21）
+
+依据 Minigraph、Minigraph-Cactus、PGGB 和 seqwish 的原始论文/官方工作流，核对构图输入、图诱导和整理阶段：Minigraph 是参考引导的组装映射与增量构图，Minigraph-Cactus 在其流程基础上引入 Cactus 碱基级序列比对，PGGB 的示例流程包含 wfmash、seqwish、smoothxg/abPOA 和 GFAffix 等阶段。GFA 的节点/连接/路径含义与路径恢复用于表达输入序列来源；图中可遍历组合、布局距离和节点编号不作为已经观测的群体单倍型、物理坐标或稳定跨版本 ID。
+
+Guo 等 2025 水稻案例报告 Minigraph v0.19-r551 与 Cactus v2.2.1；基因家族分析 145 份、合并图 144 份，3.87 Gb 指非参考图节点序列总长。Kopalli 等高粱基准以六个真实组装构图，并另行构造模拟 assembly/read 数据；真实图长度为 PGGB 4.7 Gb、Minigraph-Cactus 4.2 Gb、Minigraph 920 Mb，方法间过滤条件不同：Minigraph 排除 ≤50 bp 变异，另两种流程不使用同样长度过滤。真实 paired-end mapping、模拟 reads 定位真值、SV F1 和图/输入组装 BUSCO 指标分别解释。PGGB 未进入该论文 read-mapping benchmark 的原因是索引所需资源。来源：[Minigraph](https://doi.org/10.1186/s13059-020-02168-z)、[Minigraph-Cactus](https://pmc.ncbi.nlm.nih.gov/articles/PMC10638906/)、[seqwish](https://doi.org/10.1093/bioinformatics/btac743)、[水稻原文](https://pmc.ncbi.nlm.nih.gov/articles/PMC12176639/)、[高粱原文](https://academic.oup.com/gigascience/article/doi/10.1093/gigascience/giaf121/8364989)。本项为来源核查，不代表本机重新构建图。

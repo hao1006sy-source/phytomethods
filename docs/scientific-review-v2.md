@@ -166,3 +166,11 @@ M05-01 对照 3,010 水稻研究的样本、SNP/InDel 数、GATK 调用与 PLINK
 ### M03-03 全文科学审核完成（2026-11-21）
 
 确认结构变异坐标与事件类型、reads/组装/图路线差异、SyRI DAG 共线路径的概念表达、候选 SV 基因型与验证证据分层，以及 precision/recall/F1 定义和不同基准的适用边界。逐条检查 SyRI 拟南芥案例、水稻 3K custom novoBreak、六组装高粱图基准、拟南芥 Minigraph/vg、拟南芥 cuteSV 应用和 2026 十种被子植物 caller 基准。新建 Sniffles2、cuteSV 工具页并以官方文档核查输入输出、population/mosaic/force-genotyping 模式、平台相关参数及版本快照；方法页的植物应用分别链接至真实论文。build、coverage、内部链接及关系审计通过；此轮未安装或运行新工具。专题与依赖均保持草稿，M03 全域发布审核及 M04—M09 扩展继续进行。
+
+### M03-04 PAV 与基因存在缺失专题全文科学审核关闭（2026-11-21）
+
+逐节核对基因座与家族层级、存在/缺失/未知三态、参考偏倚、同源聚类、侧翼与 reads 证据、多倍体剂量、群体频率及 PAV 与性状关联的推断边界。以 Zhao 等 2018 年水稻泛基因组原文核对 66 份材料加 Nipponbare 的 67 个基因组、42,580 个非转座子蛋白编码基因、至少 60/67 的核心阈值、10,872 个相对参考部分缺失基因及约 9.5% 可在独立 Nipponbare 组装中找到的比例。以 Wang 等 2018 年 3,010 水稻论文核对 3,010 群体与 453 份高覆盖 PAV 集合、23,876 个基因家族、12,770 个全体材料共有家族、2,056 个候选核心和 9,050 个分布型家族；CDS >95% 且 gene-body >85% 是该研究的 reads 覆盖判定条件，不推广为通用标准。Se 位点论文的书目、ORF3/ORF4 互补模型、787 份稻属材料调查及 PCR、转基因与编辑验证依据 Nature Communications、PubMed 与 PMC 核对。核查 OrthoFinder 家族聚类与基因座 PAV 判定的职责差异，以及序列图路径不能替代原始组装、注释和 reads 证据。专题方法、数据、论文和案例关联均通过现有稳定 ID 审计；M03-04 正文审核关闭，所关联内容仍按全域发布门槛保持草稿。来源：[Zhao et al. 2018](https://doi.org/10.1038/s41588-018-0041-z)、[Wang et al. 2018](https://doi.org/10.1038/s41586-018-0063-9)、[Se 位点研究](https://doi.org/10.1038/s41467-023-40189-x)。
+
+### M03-05 图泛基因组专题全文科学审核关闭（2026-11-21）
+
+逐节核对序列图节点、边、方向和路径含义，GFA 路径恢复、节点坐标和图嵌入的解释边界，以及图允许的连接组合不等同于实际观察到的样本单倍型。对照 Minigraph 方法论文和官方工作流，区分参考引导的增量构图与基于 reads 的变异调用；对照 Minigraph-Cactus 方法论文，区分 Minigraph 组装映射/初始结构图与 Cactus 碱基级比对整理；对照 PGGB 论文与官方工作流，复核 wfmash 全对全比对、seqwish 图诱导和 smoothxg/abPOA/GFAffix 图规范化步骤，并标明组件及参数随版本变化。依据 Guo 等水稻研究核对 Minigraph v0.19-r551、Cactus v2.2.1、145 份基因家族集合和 144 份合并图之间的分母，以及 3.87 Gb 非参考节点序列统计对象。依据高粱基准原文区分 6 份真实组装与模拟组装、图总长度与非参考序列/变异真值、Minigraph >50 bp 过滤与 PGGB/Minigraph-Cactus 无同类长度过滤；模拟 reads 真值评估、真实 paired-end 映射率和 PGGB 因资源限制未进入映射比较分别表述。专题正文、交互路径图、论文和工具元数据关系均检查通过；审核关闭，专题继续保持草稿以待 M03 全域发布闭包。来源：[Minigraph 论文](https://doi.org/10.1186/s13059-020-02168-z)、[Minigraph-Cactus 论文](https://doi.org/10.1038/s41587-023-01793-w)、[seqwish 论文](https://doi.org/10.1093/bioinformatics/btac743)、[水稻泛基因组论文](https://pmc.ncbi.nlm.nih.gov/articles/PMC12176639/)、[高粱基准](https://doi.org/10.1093/gigascience/giaf121)。
