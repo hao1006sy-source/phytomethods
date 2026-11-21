@@ -618,13 +618,14 @@
       "minigraph-cactus-paper",
       "pggb-paper",
       "sorghum-graph-benchmark",
+      "sorghum-pangenome-reference-2026",
       "arabidopsis-adaptation",
       "wild-rice-pangenome-2025"
     ],
     "tutorialIds": [],
     "status": "draft",
     "createdAt": null,
-    "updatedAt": "2026-11-21"
+    "updatedAt": "2026-11-22"
   },
   {
     "id": "m03-topic-06",
@@ -690,12 +691,13 @@
       "odgi-paper",
       "rice-pangenome-paper",
       "sorghum-graph-benchmark",
+      "sorghum-pangenome-reference-2026",
       "arabidopsis-69-pangenome"
     ],
     "tutorialIds": [],
     "status": "draft",
     "createdAt": null,
-    "updatedAt": "2026-11-21"
+    "updatedAt": "2026-11-22"
   },
   {
     "id": "m04-topic-01",

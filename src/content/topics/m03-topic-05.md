@@ -4,7 +4,7 @@ summary: 利用序列图表示多个组装的共享序列、变异及样本路�
 domain: pangenomics-structural-variation
 methods: [minigraph, minigraph-cactus, pggb]
 status: draft
-updatedAt: 2026-11-21
+updatedAt: 2026-11-22
 ---
 ## 生物学问题
 研究多个植物品种时，线性参考方便建立坐标，但每个样本都被投影到一个选定的序列上。缺失于参考的序列、复杂重排和不同单倍型的路径可能需要额外表示。图泛基因组以共享片段和替代连接组织多个输入基因组，研究者可在同一结构中探索样本之间的差异。
@@ -51,6 +51,8 @@ Guo 等 2025 年水稻研究将多组装图构建应用于野生稻与栽培稻�
 
 ## 植物基准中的方法比较
 Kopalli 等以六份真实高粱组装比较 Minigraph、PGGB 与 Minigraph-Cactus，并将构图与部分评估扩展到大豆、大麦和油菜。在该论文的真实高粱数据设置中，Minigraph 图约 0.92 Gb，PGGB 与 Minigraph-Cactus 图分别约 4.7 Gb 和 4.2 Gb；其中 Minigraph 只纳入大于 50 bp 的变异，另两套图流程未采用同一长度过滤。结构变异真值比较与 Giraffe mapping 均包括模拟数据；读段映射还单独使用公开 paired-end reads 比较 Minigraph、Minigraph-Cactus 与线性参考。PGGB 因索引生成所需计算和内存未进入 mapping benchmark。图的总碱基量、BUSCO 结果、路径覆盖、变异真值和资源消耗需结合输入与阈值共同解读。[原始基准研究](https://doi.org/10.1093/gigascience/giaf121)。
+
+另一项 2026 年高粱应用以 33 个基因组构建 Minigraph-Cactus 泛基因组图，并以 1,984 份材料形成多样性面板。作者使用 ODGI 检查各基因组在图中的表示，另用 sequenceTubeMap 查看 dhurrin 生物合成基因簇与 SH1 等目标区域的变异。此案例将图构建、图处理、样本路径检查和区域可视化分配给不同工具。[论文详情](../../../papers/sorghum-pangenome-reference-2026/)。
 
 ## 计算表示与质量检查
 可将路径图写作 $G=(V,E,\sigma,\mathcal{P})$：$V$ 为节点集合，$E$ 为带方向的端点连接，$\sigma(v)$ 是节点 $v$ 上的序列，$\mathcal{P}$ 是参考、样本或单倍型路径集合。一个路径对应沿边连续遍历的有向节点序列。图构建至少要评估：输入组装路径能否恢复；各样本是否被正确标名；节点/边和路径覆盖是否符合目标；重复区域是否被错误合并；相同输入和版本是否能复现结果。GFA 文件允许图结构与样本路径共存；其可走通路径不自动等于真实群体观察到的单倍型。

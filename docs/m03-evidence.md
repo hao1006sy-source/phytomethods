@@ -200,3 +200,20 @@ Edge 开发态检查 M03-03 在 375、768、1280、1440 px 的 HTTP 200、正文
 依据 Minigraph、Minigraph-Cactus、PGGB 和 seqwish 的原始论文/官方工作流，核对构图输入、图诱导和整理阶段：Minigraph 是参考引导的组装映射与增量构图，Minigraph-Cactus 在其流程基础上引入 Cactus 碱基级序列比对，PGGB 的示例流程包含 wfmash、seqwish、smoothxg/abPOA 和 GFAffix 等阶段。GFA 的节点/连接/路径含义与路径恢复用于表达输入序列来源；图中可遍历组合、布局距离和节点编号不作为已经观测的群体单倍型、物理坐标或稳定跨版本 ID。
 
 Guo 等 2025 水稻案例报告 Minigraph v0.19-r551 与 Cactus v2.2.1；基因家族分析 145 份、合并图 144 份，3.87 Gb 指非参考图节点序列总长。Kopalli 等高粱基准以六个真实组装构图，并另行构造模拟 assembly/read 数据；真实图长度为 PGGB 4.7 Gb、Minigraph-Cactus 4.2 Gb、Minigraph 920 Mb，方法间过滤条件不同：Minigraph 排除 ≤50 bp 变异，另两种流程不使用同样长度过滤。真实 paired-end mapping、模拟 reads 定位真值、SV F1 和图/输入组装 BUSCO 指标分别解释。PGGB 未进入该论文 read-mapping benchmark 的原因是索引所需资源。来源：[Minigraph](https://doi.org/10.1186/s13059-020-02168-z)、[Minigraph-Cactus](https://pmc.ncbi.nlm.nih.gov/articles/PMC10638906/)、[seqwish](https://doi.org/10.1093/bioinformatics/btac743)、[水稻原文](https://pmc.ncbi.nlm.nih.gov/articles/PMC12176639/)、[高粱原文](https://academic.oup.com/gigascience/article/doi/10.1093/gigascience/giaf121/8364989)。本项为来源核查，不代表本机重新构建图。
+
+## M03-06 图比对和植物分型案例（2026-11-21）
+
+- Giraffe 原始方法论文 *Science* 2021, DOI [10.1126/science.abg8871](https://doi.org/10.1126/science.abg8871)：短读段图映射使用已知图上单倍型、minimizer 种子、基于最小图距离的种子聚类、单倍型路径扩展及剩余带 gap 比对。其 5,202 人、167,000 SV 是人类短读段评价，未作为植物应用条目。
+- vg 官方索引构建文档列出 Giraffe 所需 GBZ/GBWTGraph、distance index、带 distance 注释的 minimizer index；官方 long-read guide 使用 `hifi` 和 `r10` preset，并说明 GAF/GAM/BAM 输出及 long-read BAM 投射注意事项。页面另引用当前文档记录的 vg 版本边界；官方文档核查不表示本机软件运行。
+- Kang et al. 2023, *Nature Communications*, DOI [10.1038/s41467-023-42029-4](https://doi.org/10.1038/s41467-023-42029-4)：32 份高质量拟南芥组装基于 Minigraph 构图，以 gfatools 提取 bubble SV；1,135 份重测序样本（含本研究新增 Tibet-0、Yilong-0）使用 vg v1.40.0 图比对/分型，再按缺失率 >0.5 或 MAF >0.05 筛除，保留 1,073 份与 20,326 个 SV，后续 Beagle 插补。图构建、vg 图分析、PLINK 筛选、Beagle 插补分别关联，不把全部流程归于 vg。
+- Kopalli et al. 高粱基准：[出版方全文](https://doi.org/10.1093/gigascience/giaf121)。模拟读取位置真值、真实 paired-end mapped/perfect mapping 比例、SV F1 和图输入组装 BUSCO 属于不同评价，不合并成一个“准确率”。
+
+专题中概念分型似然仅作教学解释；本机没有运行 vg 实际数据。科学正文审核关闭，资源待全域发布闭包及公开状态检查。
+
+## M03-07 图形解释及 2026 高粱植物案例（2026-11-22）
+
+- 研究问题按图类型区分：基因/家族×样本 PAV 状态、线性坐标间的共线区段、图节点与样本路径、变异窗口分布、read 覆盖/可比对性轨道。节点 ID、绘图位置和节点间几何距离不替代稳定坐标，图注要给出来源组装、路径、尺度、图例与缺失值定义。
+- ODGI 方法论文 DOI [10.1093/bioinformatics/btac308](https://doi.org/10.1093/bioinformatics/btac308) 与官方 `odgi layout` 说明核实其 PG-SGD 2D 布局；排序/布局属于 graph representation 操作，输出坐标是可视化布局而非碱基坐标。官方文档：[odgi layout](https://odgi.readthedocs.io/en/latest/rst/commands/odgi_layout.html)、[sort/layout tutorial](https://odgi.readthedocs.io/en/latest/rst/tutorials/sort_layout.html)。
+- Morris et al. *Nature* 2026, DOI [10.1038/s41586-026-10229-9](https://doi.org/10.1038/s41586-026-10229-9), PMID 41813899, PMCID PMC13128447：33 个高粱基因组构成泛基因组，1,984 个栽培种及地方品种组成多样性面板。按 Nature/PMC 方法段记录 Minigraph-Cactus v2.9.3 构图（BTx623 V5 主参考），vg v1.59.0 合并/准备染色体图，ODGI v0.9.0 检查各材料在图中的表示，sequenceTubeMap v0.1.0 显示目标位点变异；dhurrin 基因簇和 SH1 的后续等位处理另使用 vg 与 vcfwave。此项是论文方法对照，非本机流程实跑。
+
+据此将该来源建为独立应用论文记录，并关联 M03-05、M03-07 与实际参与的工具；ODGI 在此为路径/图表示巡览工具，不替代 sequenceTubeMap 的区域变异展示功能。M03-07 正文审核关闭，专题及相关论文保持草稿，等待 M03 全域闭包验收。
