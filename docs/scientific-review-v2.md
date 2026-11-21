@@ -51,6 +51,10 @@
 
 首轮查看并持续复核 M03 植物案例与方法论文记录；当前 M03 关联 14 条论文草稿，其中包括新增 EUPAN 方法论文。AnchorWave PubMed 记录确认作者与 2022 年正式出版信息；SyRI PubMed 记录确认作者、期刊、年份和 DOI。Giraffe、ODGI、Minigraph 等方法论文依据 PubMed/PMC 或出版方核对书目和方法范围。高粱原文确认构图方法、模拟和真实 paired-end read mapping 任务，PGGB 因索引资源需求未参与映射比较。水稻 66 份材料和 3,010 份材料论文的测序、组装、变异和 PAV 流程已逐条核对，页面仍为草稿。
 
+2026-11-21 按 PMC 全文重核 3,010 水稻论文的结果数字与样本范围，并更正页面精度：29,399,875 SNP（27,024,796 双等位）及 2,467,043 个 <40 bp indel 属于 3,010 样本全群体；93,683 个 SV、23,876 个 PAV 家族和其核心/候选核心/可变划分来自 453 份高覆盖分析集合。补入新基因 reads 支持比例和组装片段化关联，关联关系继续指向论文原文实际使用的工具。案例仍草稿，不能以局部结果审核替代跨领域发布依赖检查。
+
+2026-11-21 复核 66 份水稻组装论文：作者列表及 DOI 与 PubMed/出版方一致，组装选择、测序、Fermi/SOAPdenovo2/GapCloser/REPLACE、contig N50 和 MUMmer/EMBOSS 变异流程与作者 PDF 相符。补明 BAC 与 cDNA 验证数据仅支持其对应材料和局部指标；PAV 以 67 个基因组（含 Nipponbare）及 ≥60/67（约89.6%，论文概称约90%）存在阈值定义核心基因。论文未采用 Minigraph、PGGB 或 Minigraph-Cactus，工具关联保持空值。两篇水稻案例的 Edge 四视口测试验证了正文标题、关键结果数字、工具关系和无横向溢出。
+
 2026-11-21 对照出版方与 PMC 方法段复核两篇拟南芥应用论文，并按论文实际使用情况更新稳定工具关系：2024 年 69 份组装研究关联 OrthoFinder、PLINK、ADMIXTURE；2023 年 32 份组装研究关联 Hifiasm、OrthoFinder、IQ-TREE、Minigraph、vg、PLINK 和 MCScanX。M03 与 M04/M05 工具记录之间的关系保留在草稿内容数据中，发布闭包尚未完成。
 
 2026-11-21 对照 PubMed/PMC 原文更正 Giraffe 方法论文题名为 “Pangenomics enables genotyping known structural variants in 5,202 diverse genomes”，并注明其 5,202 份人类数据评估不属于植物应用案例；核对 167,000 个已知 SV 的分型范围。补全 ODGI 论文五位作者。书目及适用范围证据已加入 M03 台账。
