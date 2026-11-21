@@ -125,3 +125,17 @@ Edge/Playwright 于 375、768、1280、1440 px 检查专题标题、草稿状态
 方法页区分 Hi-C reads 比对（上游）、contig scaffold 构建（YaHS）和接触图人工检查（Juicebox Assembly Tools）。按原论文记录 YaHS 的单倍型输入假设、冗余 haplotig 清理要求、窗口接触计数标准化、四种方向评分、加权 scaffold 图剪枝与多轮遍历；比较结果限定于论文测试的 SALSA2、pin_hic、数据及评价指标。官方 README 核实 FASTA 与 Hi-C BAM/BED/BIN/PA5 输入、AGP/FASTA 输出及常用参数。该工具未在本机运行。
 
 `src/content.config.ts` 的方法 schema 新增可选 `version` 字段，工具详情页仅在有核实值时显示；内容维护说明已同步。构建和链接检查通过后，Edge DEV 预览在 375、768、1280、1440 px 核对 M03-01、野生稻案例、M01 Hi-C 专题及 YaHS 工具页，共 16 个页面/视口状态；页面标题、草稿标识、关系链接、无横向溢出与无页面错误通过。静态预览中 Pagefind 对“YaHS”“组装”“单倍型”各返回结果，搜索资源路径包含 `/phytomethods/` 基路径。M03 论文和专题仍保持草稿。
+
+## M03-03 结构变异检测方法与植物案例审核（2026-11-21）
+
+依据 Goel 等 SyRI 原始论文全文重核方法流程：输入为两组装全基因组局部比对；正向匹配按同源染色体构成 DAG，并通过动态规划寻找高分、非矛盾共线路径；倒位候选通过反向互补坐标思路筛选；剩余匹配区块用于识别易位/转位和复制；随后从区块间隙、重叠及局部比对中解析序列差异。正文的 $P^*=\arg\max_{P\in\mathcal C}\sum s_i$ 仅表示高分兼容路径的概念目标，不对应 SyRI 完整评分实现。来源：[Genome Biology 出版方全文](https://link.springer.com/article/10.1186/s13059-019-1911-0)。
+
+核对拟南芥 Col-0/Ler 应用：原文使用 50 份 F2 重组后代及约 500,000 SNP 标记重建亲本单倍型，对 117 个大于 1 kb 的易位候选进行三类验证，其中 108 个（92.3%）至少通过一类判据；其余 9 个未通过判据的候选经人工查看仍有支持读段。核对原文中结构变异与共线区 SNP/indel 的层级关系，避免把局部变异与重排事件视作互斥类别。
+
+核对 3,010 份亚洲栽培稻研究：结构变异由定制 novoBreak-germline 流程检测，93,683 个 SV 的报告集合来自 453 份高覆盖样本；未把该流程关联到 SyRI。核对 2025 高粱图基准：模拟真值任务中 SVIM-asm、SyRI、Minigraph-Cactus、PGGB F1 为 0.93、0.91、0.89、0.83；真实组装另做已发表 SV 区域重叠的 100 次随机置换检验，这两类结果分别报告。来源：[3,010 水稻论文全文](https://pmc.ncbi.nlm.nih.gov/articles/PMC6784863/)；[GigaScience 出版方全文](https://academic.oup.com/gigascience/article/doi/10.1093/gigascience/giaf121/8364989)。
+
+检查 `PangenomeFigure` 的 M03-03 图：字母代表有序片段，撇号表示反向方向，展示参考相对缺失、重复、倒位和插入；图注明确易位未绘制，未呈现实测数据。当前版本图示语义与图注一致。
+
+新增方法路线比较和算法说明，更新 M03-03 与 SyRI、Minigraph、Minigraph-Cactus、PGGB、VG 的稳定工具关系，补入高粱基准与 2025 野生—栽培稻案例关系。按 PubMed 和软件原始仓库核对 Sniffles2、cuteSV 长读段使用范围及算法概述，并新建两篇方法论文记录：Smolka 等 2024 年 *Nature Biotechnology* 42(10):1571–1580, DOI `10.1038/s41587-023-02024-y`；Jiang 等 2020 年 *Genome Biology* 21(1):189, DOI `10.1186/s13059-020-02107-y`。两篇原论文以人类数据和基准为主，正文说明为方法示例，不作为植物实证。
+
+Edge 开发态检查 M03-03 在 375、768、1280、1440 px 的 HTTP 200、正文标题、公式渲染、结构变异 SVG 标题和文档宽度；四视口均无横向溢出。点击 SyRI 方法论文后页面正常跳转；另以 HTTP 检查 SyRI、Minigraph、Minigraph-Cactus、PGGB、VG 及六篇案例/方法论文共 13 个关联路由，全部返回 200。`npm run test:figure-a11y` 指向开发服务器运行通过，覆盖 375、768、1280、1440 px 的 SVG 放大弹窗、键盘、焦点恢复、唯一 ID 与横向滚动行为。公开静态构建只包含已发布页；M03 页面与新增论文仍为草稿。M03-03 的局部审核通过，全文审核与整域发布闭包仍未完成。

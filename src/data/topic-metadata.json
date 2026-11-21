@@ -485,7 +485,7 @@
     "englishTitle": "Structural variation detection",
     "domainId": "pangenomics-structural-variation",
     "order": 3,
-    "summary": "比较读段与组装两类结构变异检测策略。",
+    "summary": "按测序读段、组装比较和图路径理解植物结构变异检测及证据验证。",
     "keyConcepts": [
       "插入",
       "缺失",
@@ -494,19 +494,32 @@
       "断点"
     ],
     "methodIds": [
-      "syri"
+      "syri",
+      "minigraph",
+      "minigraph-cactus",
+      "pggb",
+      "vg"
     ],
     "principleIds": [
-      "alignment"
+      "alignment",
+      "variant-calling"
     ],
     "dataIds": [
-      "assembly"
+      "assembly",
+      "short-reads",
+      "hifi",
+      "ont-ul",
+      "graph"
     ],
     "paperIds": [
       "syri-paper",
       "rice-3010-pangenome",
       "arabidopsis-adaptation",
-      "rice-pangenome-paper"
+      "rice-pangenome-paper",
+      "sorghum-graph-benchmark",
+      "wild-rice-pangenome-2025",
+      "sniffles2-paper",
+      "cutesv-paper"
     ],
     "tutorialIds": [
       "syri-intro"
