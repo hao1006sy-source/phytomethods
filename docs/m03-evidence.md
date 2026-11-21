@@ -28,6 +28,8 @@
 
 2026-11-21 对照上游发布页及仓库许可记录更新 M03-02 两个新工具的版本快照：MUMmer4 v4.0.1、Artistic-2.0；minimap2 v2.31 (r1302)、MIT。版本字段与工具页正文一致，许可链接指向项目发布/许可文件；页面将版本作为核查时的快照，复现既有研究仍以论文记载的软件版本和参数为准。未安装或运行这两个软件。来源：[MUMmer4 releases](https://github.com/mummer4/mummer/releases)、[MUMmer4 项目](https://github.com/mummer4)、[minimap2 releases](https://github.com/lh3/minimap2/releases)、[minimap2 MIT License](https://github.com/lh3/minimap2/blob/master/LICENSE.txt)。
 
+2026-11-21 为 M03-05 补入可核查的植物图构建实例，依 Guo 等水稻泛基因组 PMC 原文区分 145 份基因家族集合与 144 份合并图；栽培、野生及合并图分别使用 15、129、144 份材料。补记 Minigraph v0.19-r551 初始结构变异图与 Cactus v2.2.1 后续碱基级比对流程，并将论文 `methodIds` 关系补上独立 Minigraph。3.87 Gb 描述该论文所报非参考图节点序列总长。来源：[PMC 原文](https://pmc.ncbi.nlm.nih.gov/articles/PMC12176639/)、[PubMed 记录](https://pubmed.ncbi.nlm.nih.gov/40240605/)。`npm run validate` 构建/引用检查通过；M03-05 路径交互及图放大在四个视口通过 `npm run test:figure-a11y`。此次仅审核该植物案例和方法关系，专题其他论断仍需继续审阅。
+
 ## 版本来源快照
 2026-11-21 查阅官方发布页：AnchorWave [v1.3.0](https://github.com/baoxingsong/AnchorWave/releases)、SyRI [v1.8.2](https://github.com/schneebergerlab/syri/releases)、Minigraph [v0.21/r606](https://github.com/lh3/minigraph/releases)、PGGB [v0.7.4](https://github.com/pangenome/pggb/releases)、ODGI [v0.9.4](https://github.com/pangenome/odgi/releases)、vg [v1.78.0](https://github.com/vgteam/vg/releases)及 Cactus [v4.0.0](https://github.com/ComparativeGenomicsToolkit/cactus/releases)。EUPAN 官方工具页的最新版本记录为 [v0.44（2017-10-23）](https://cgm.sjtu.edu.cn/eupan/index.html)，许可为非商业使用 CC BY-NC 4.0。版本来源快照不代表本机安装。仅 SyRI 1.8.2 已在隔离环境运行；高粱论文使用历史软件版本，版本快照不可取代论文方法部分。
 

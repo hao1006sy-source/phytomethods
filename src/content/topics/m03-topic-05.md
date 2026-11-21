@@ -45,6 +45,10 @@ GFA 是常见的图交换格式；图文件中的片段、连接与路径字段�
 
 [水稻泛基因组研究](https://doi.org/10.1038/s41588-018-0041-z)展示多个材料共同分析基因组变异的生物学动机；该文献在此作为植物案例，不表示其使用上述构图软件。阅读工具原始论文和官方仓库，分别核对算法、数据和输入格式。
 
+### 植物图泛基因组的真实应用
+
+Guo 等 2025 年水稻研究将多组装图构建应用于野生稻与栽培稻比较。研究先以独立 [Minigraph](../../../methods/minigraph/) v0.19-r551 建立结构变异图，再用 [Minigraph-Cactus](../../../methods/minigraph-cactus/) 和 Cactus v2.2.1 完成碱基级图流程。基因家族分析集合为 145 份材料；栽培稻图、野生稻图和合并图分别使用 15、129 和 144 份材料。作者报告合并图非参考节点序列总长为 3.87 Gb。该值统计图中的非参考节点序列，不等同于新基因数量或去冗余的新序列长度。[论文详情与方法分工](../../../papers/wild-rice-pangenome-2025/)；[原文全文](https://pmc.ncbi.nlm.nih.gov/articles/PMC12176639/)。这一案例展示了图泛基因组在植物多组装数据中的实际使用；样本集合和统计对象须依各自分析步骤解释。
+
 ## 植物基准中的方法比较
 Kopalli 等以六份真实高粱组装比较 Minigraph、PGGB 与 Minigraph-Cactus，并将构图与部分评估扩展到大豆、大麦和油菜。在该论文的真实高粱数据设置中，Minigraph 图约 0.92 Gb，PGGB 与 Minigraph-Cactus 图分别约 4.7 Gb 和 4.2 Gb；其中 Minigraph 只纳入大于 50 bp 的变异，另两套图流程未采用同一长度过滤。结构变异真值比较与 Giraffe mapping 均包括模拟数据；读段映射还单独使用公开 paired-end reads 比较 Minigraph、Minigraph-Cactus 与线性参考。PGGB 因索引生成所需计算和内存未进入 mapping benchmark。图的总碱基量、BUSCO 结果、路径覆盖、变异真值和资源消耗需结合输入与阈值共同解读。[原始基准研究](https://doi.org/10.1093/gigascience/giaf121)。
 
