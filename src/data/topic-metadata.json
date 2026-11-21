@@ -550,18 +550,24 @@
     ],
     "principleIds": [
       "alignment",
+      "pav-calling",
       "graph-genomics"
     ],
     "dataIds": [
       "assembly",
-      "graph"
+      "annotation-input",
+      "coding-sequences",
+      "graph",
+      "proteins",
+      "short-reads"
     ],
     "paperIds": [
       "eupan-paper",
       "rice-pangenome-paper",
       "rice-3010-pangenome",
       "arabidopsis-69-pangenome",
-      "wild-rice-pangenome-2025"
+      "wild-rice-pangenome-2025",
+      "rice-se-pav-hybrid-sterility-2023"
     ],
     "tutorialIds": [],
     "status": "draft",

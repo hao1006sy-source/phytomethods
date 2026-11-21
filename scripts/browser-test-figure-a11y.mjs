@@ -110,9 +110,34 @@ try {
     const errors = [];
     page.on('pageerror', error => errors.push(error.message));
 
-    for (const topic of ['m03-topic-01', 'm03-topic-05', 'm03-topic-07']) {
+    for (const topic of ['m03-topic-01', 'm03-topic-04', 'm03-topic-05', 'm03-topic-07']) {
       const response = await page.goto(topicUrl(topic));
       if (response?.status() !== 200) throw new Error(`${topic} returned ${response?.status()}`);
+
+      if (topic === 'm03-topic-04') {
+        const diagram = page.locator('svg[aria-labelledby="pav-evidence-title pav-evidence-desc"]');
+        if (await diagram.count() !== 1) throw new Error('M03-04 PAV evidence diagram is missing');
+        if (!(await page.locator('#pav-evidence-desc').textContent()).includes('跨缺失区 reads')) {
+          throw new Error('M03-04 PAV figure does not describe read evidence for supported absence');
+        }
+        if (!(await page.locator('.pav-evidence figcaption').innerText()).includes('均为模拟')) {
+          throw new Error('M03-04 PAV figure does not identify its schematic data');
+        }
+        const pageWidth = await page.evaluate(() => document.documentElement.scrollWidth);
+        if (pageWidth > width + 1) throw new Error(`M03-04 causes document horizontal overflow at ${width}px (${pageWidth}px)`);
+        if (width === 375) {
+          const region = page.locator('.pav-evidence__scroll');
+          const sizes = await region.evaluate(element => ({client:element.clientWidth,scroll:element.scrollWidth,tabindex:element.getAttribute('tabindex'),label:element.getAttribute('aria-label')}));
+          if (sizes.scroll <= sizes.client + 1 || sizes.tabindex !== '0' || !sizes.label?.includes('方向键')) {
+            throw new Error(`M03-04 PAV diagram is not keyboard-scrollable at 375px: ${JSON.stringify(sizes)}`);
+          }
+          await region.focus();
+          await page.keyboard.press('End');
+          if (await region.evaluate(element => element.scrollLeft) <= 0) throw new Error('M03-04 PAV diagram did not respond to End');
+          await page.keyboard.press('Home');
+          if (await region.evaluate(element => element.scrollLeft) !== 0) throw new Error('M03-04 PAV diagram did not respond to Home');
+        }
+      }
 
       if (topic === 'm03-topic-07') {
         const route = page.locator('svg[aria-labelledby="workflow-title workflow-desc"]');
