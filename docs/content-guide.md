@@ -2,7 +2,7 @@
 
 内容位于 `src/content`，Markdown 文件名是稳定的英文 ID。每个条目使用 `src/content.config.ts` 的字段与状态，`published` 显示在目录和搜索中。`updatedAt` 仅在内容有实际修改时更新。
 
-方法条目的 `domainIds`、`topicIds`、`principleIds`、`dataIds` 使用稳定 ID，标签名称维护于 `src/data/tags.ts`。新增群体扫描受控原理标签时，应先在 `principleLabels` 建立中文标签；相位单倍型等新数据类型则同步维护在 `dataLabels`。`paper` 指向方法论文的文件 ID。论文填写不带 URL 前缀的 DOI、类别、领域、物种及有证据的 `methodIds`；物种 ID 维护于 `speciesLabels`，新增物种时先建立受控标签；植物应用与工具的关联应核对论文方法部分。教程的 `method` 与 `tested` 指定关联工具及验证状态。
+方法条目的 `domainIds`、`topicIds`、`principleIds`、`dataIds` 使用稳定 ID，标签名称维护于 `src/data/tags.ts`。新增群体扫描或 Hi-C scaffold 受控原理标签时，应先在 `principleLabels` 建立中文标签；Hi-C 联系数据、相位单倍型等新数据类型则同步维护在 `dataLabels`。`paper` 指向方法论文的文件 ID；可选 `version` 记录官方发布页核实的软件版本，`updatedAt` 记录本条目的核对日期。已发布方法的 `topicIds` 只能引用已发布专题；草稿专题可在 `topic-metadata.json` 保留指向已发布方法的关系，开发预览按状态反查显示。论文填写不带 URL 前缀的 DOI、类别、领域、物种及有证据的 `methodIds`；物种 ID 维护于 `speciesLabels`，新增物种时先建立受控标签；植物应用与工具的关联应核对论文方法部分。教程的 `method` 与 `tested` 指定关联工具及验证状态。
 
 添加内容后运行 `npm run build`。Schema 检查字段类型；首页构建期间检查关联、受控标签与 DOI 唯一性。修改目录元数据或新增领域时同步检查 `src/data/domains.ts` 与 `src/data/topics.ts`。之后运行 `python scripts/check-links.py` 与 `node scripts/browser-test.mjs`；浏览器测试需要运行预览服务器。
 

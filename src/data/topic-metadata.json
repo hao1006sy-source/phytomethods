@@ -125,9 +125,16 @@
     "keyConcepts": [
       "Hi-C 辅助染色体挂载"
     ],
-    "methodIds": [],
-    "principleIds": [],
-    "dataIds": [],
+    "methodIds": [
+      "yahs"
+    ],
+    "principleIds": [
+      "hic-scaffolding"
+    ],
+    "dataIds": [
+      "assembly",
+      "hic-contact-data"
+    ],
     "paperIds": [
       "yahs"
     ],
@@ -411,7 +418,11 @@
       "orthofinder",
       "minigraph",
       "pggb",
-      "minigraph-cactus"
+      "minigraph-cactus",
+      "hifiasm",
+      "yahs",
+      "syri",
+      "vg"
     ],
     "principleIds": [
       "graph-genomics"
@@ -425,7 +436,8 @@
       "rice-pangenome-paper",
       "rice-3010-pangenome",
       "arabidopsis-69-pangenome",
-      "arabidopsis-adaptation"
+      "arabidopsis-adaptation",
+      "wild-rice-pangenome-2025"
     ],
     "tutorialIds": [],
     "status": "draft",
@@ -535,7 +547,8 @@
       "eupan-paper",
       "rice-pangenome-paper",
       "rice-3010-pangenome",
-      "arabidopsis-69-pangenome"
+      "arabidopsis-69-pangenome",
+      "wild-rice-pangenome-2025"
     ],
     "tutorialIds": [],
     "status": "draft",
@@ -572,7 +585,8 @@
       "minigraph-cactus-paper",
       "pggb-paper",
       "sorghum-graph-benchmark",
-      "arabidopsis-adaptation"
+      "arabidopsis-adaptation",
+      "wild-rice-pangenome-2025"
     ],
     "tutorialIds": [],
     "status": "draft",

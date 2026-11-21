@@ -11,6 +11,7 @@
 | PGGB | [原论文](https://doi.org/10.1038/s41592-024-02430-3)、[官方仓库](https://github.com/pangenome/pggb) | wfmash 全对全比对→seqwish 图诱导→smoothxg/gfaffix 规范化；MIT；v0.7.4 快照与 `-i/-o/-n/-t/-p/-s` 用途已核 | 依赖组件版本与具体参数未实跑；需逐步核对工作流输出 |
 | vg / Giraffe | [vg 原论文](https://doi.org/10.1038/nbt.4227)、[Giraffe 原论文](https://doi.org/10.1126/science.abg8871)、[Giraffe PubMed/PMC 全文](https://pmc.ncbi.nlm.nih.gov/articles/PMC9365333/)、[官方索引文档](https://github.com/vgteam/vg/wiki/Index-Construction)、[许可证](https://github.com/vgteam/vg/blob/master/LICENSE) | Giraffe 原论文题名、年份和 DOI 已核；其评估为 5,202 个人类基因组与 167,000 个 SV，不标为植物案例。vg 索引文档列出 GBZ、distance 和 minimizer 索引；核心仓库 MIT；v1.78.0 快照 | 未本机运行；高粱论文同时含模拟与真实 reads，PGGB 图未进入 mapping benchmark |
 | ODGI | [原论文](https://doi.org/10.1093/bioinformatics/btac308)、[官方仓库](https://github.com/pangenome/odgi) | 图、路径的存储、统计和可视化；MIT；v0.9.4 快照与 `build/stats/sort/viz/draw` 职责已核 | 未本机运行；图布局不能作为线性距离，格式兼容按版本确认 |
+| YaHS（共享 M01 工具） | [原始方法论文](https://pmc.ncbi.nlm.nih.gov/articles/PMC9848053/)、[官方仓库](https://github.com/c-zhou/yahs)、[v1.2.2 发布页](https://github.com/c-zhou/yahs/releases/tag/v1.2.2) | Chenxi Zhou、Shane A. McCarthy、Richard Durbin；*Bioinformatics* 39(1):btac808；MIT；官方版本 v1.2.2，水稻案例使用 v1.1；FASTA 与 Hi-C BAM/BED/BIN/PA5 输入、AGP/FASTA 输出及主要参数已核 | 未本机运行；连接至 M01 已发布 Hi-C 专题和 M03 草稿主题 |
 | EUPAN | [PubMed 方法论文](https://pubmed.ncbi.nlm.nih.gov/28369371/)、[官方工具页](https://cgm.sjtu.edu.cn/eupan/index.html)、[官方安装说明](https://cgm.sjtu.edu.cn/eupan/installation.html)、[官方 SOP](https://cgm.sjtu.edu.cn/eupan/sop.html) | Map-to-pan、参考与新序列整合、reads 覆盖度及 gene/gene-family PAV 流程；方法论文列出 Perl/R/C++、Linux/集群及 CC BY-NC 4.0 非商业使用 | 未本机安装运行；官方旧版依赖需隔离环境评估；草稿页已完成四视口浏览器检查 |
 | 水稻多组装 | [Zhao 等 PubMed](https://pubmed.ncbi.nlm.nih.gov/29335547/)、[作者论文 PDF](https://xhhuanglab.cn/uploads/publications/Rice_Pangenome_NG2018.pdf)、[DOI](https://doi.org/10.1038/s41588-018-0041-z) | 题名、24 位作者、年份、期刊及 DOI；66 份材料、115× Illumina、SOAPdenovo2/Fermi/GapCloser、MUMmer 与 EMBOSS `diffseq`；BAC/cDNA 验证、变异统计及 67 个基因组 PAV 图示 | 结果和方法已按原文逐项复核；图形解释、历史软件条目与跨领域发布关系仍待检查 |
 | 3,010 水稻材料 | [PubMed](https://pubmed.ncbi.nlm.nih.gov/29695866/)、[PMC 原文与方法](https://pmc.ncbi.nlm.nih.gov/articles/PMC6784863/)、[DOI](https://doi.org/10.1038/s41586-018-0063-9) | 3,010 总群体与 453 份高覆盖 SV/PAV 子集的界限；29,399,875 个 SNP、2,467,043 个 <40 bp indel、93,683 个子集 SV；PAV 家族分类及新基因覆盖核验；PLINK、ADMIXTURE、定制 novoBreak、EUPAN/Map-to-pan 关系及阈值 | 结果摘要与方法关系已按 PMC 正文复核；案例仍为草稿，跨领域发布依赖未闭合 |
@@ -30,7 +31,7 @@
 
 ### M03 工具页的许可、参数与运行状态复核
 
-2026-11-21 对照各项目官方仓库、发布页或安装页复核八个工具的许可陈述、版本记录、输入输出和常用参数。逐项状态如下：
+2026-11-21 对照各项目官方仓库、发布页或安装页复核八个 M03 专属工具及共享工具 YaHS，共九个工具实体的许可陈述、版本记录、输入输出和常用参数。逐项状态如下：
 
 | 工具 | 官方许可记录 | 官方版本来源快照 | 输入输出与参数页检查 | 本机运行状态 |
 | --- | --- | --- | --- | --- |
@@ -42,6 +43,7 @@
 | ODGI | MIT | v0.9.4 | GFA 导入、图统计、排序、可视化输入输出及路径解释已对照官方仓库与手册 | 未运行 |
 | vg / Giraffe | vg 核心仓库 MIT；贡献目录和子模块具有各自许可 | v1.78.0 | GBZ、distance、minimizer 索引，短/长读段映射和 GAM/GAF 输出已对照官方索引与长读段说明 | 未运行 |
 | EUPAN | 非商业使用 CC BY-NC 4.0 | v0.44（官方页标示 2017-10-23） | FASTQ、参考 FASTA、注释和外部依赖；PAV 覆盖阈值、覆盖文件和矩阵输出已对照官方安装页与 SOP | 未安装或运行 |
+| YaHS（共享 M01 工具） | MIT | v1.2.2 | contig FASTA、Hi-C 比对格式、AGP/FASTA 结果和核心参数已核 | 未运行；野生—栽培稻论文方法段记录 v1.1 |
 
 版本表示对照日能在官方页面找到的版本或发布快照。论文中使用的历史版本单独按原文方法部分记录。运行状态严格区分官方文档核对和本机执行；除 SyRI 外，其余工具没有本机运行记录。EUPAN 的旧依赖需评估隔离环境；许可文本应结合官方页面中非商业用途条款理解。该表只覆盖工具页所述流程，不构成所有命令、依赖和许可文件的全量代码审计。
 
@@ -51,7 +53,7 @@
 
 稳定 ID 和反向导航已对照论文、工具页、专题正文与 63 条专题元数据核查：`rice-3010-pangenome.methodIds` 包含 `admixture`、`plink`、`eupan`；`admixture.topicIds` 包含 `m05-topic-03`，其方法论文为 `admixture-paper`；`m05-topic-03` 的正文 `methods` 与专题元数据 `methodIds` 同为 PLINK 和 ADMIXTURE，`paperIds` 包含 `rice-3010-pangenome`，并列出 PLINK 教学教程和相关方法论文。M05-03 内的主题关系完整，双向工具—专题—论文关系由现有动态关联页面呈现。
 
-发布状态依赖链继续向外扩展：公开 3,010 份水稻论文需要先公开其三个关联工具及各自的方法论文和专题；其中 EUPAN 还要求 M03-01 与 M03-04，PLINK 还要求 M05-02。M03-01/M03-04 又关联 OrthoFinder、Minigraph、PGGB、Minigraph-Cactus 等方法及多篇植物案例，M05-02 关联 bcftools、PLINK 与相应文献。依照 `src/lib/validate-content.ts` 中已发布资源需关联已发布资源的规则，正式发布范围会继续扩展至这些专题和工具引用的论文、工具与教程。M03 与 M05 的相关专题、方法和论文均维持草稿，并保留经论文方法核实的工具关联。`npm run coverage` 确认 M03 为 7 篇草稿专题、8 个草稿工具、14 篇草稿论文和 1 篇草稿教程；M05 为 7 篇草稿专题、3 个草稿工具、10 篇草稿论文和 1 篇草稿教程。下一步按完整关联范围完成专题和资源的科学内容审核，再安排发布批次。
+发布状态依赖链继续向外扩展：公开 3,010 份水稻论文需要先公开其三个关联工具及各自的方法论文和专题；其中 EUPAN 还要求 M03-01 与 M03-04，PLINK 还要求 M05-02。M03-01/M03-04 又关联 OrthoFinder、Minigraph、PGGB、Minigraph-Cactus 等方法及多篇植物案例，M05-02 关联 bcftools、PLINK 与相应文献。依照 `src/lib/validate-content.ts` 中已发布资源需关联已发布资源的规则，正式发布范围会继续扩展至这些专题和工具引用的论文、工具与教程。M03 与 M05 的相关专题、方法和论文均维持草稿，并保留经论文方法核实的工具关联。`npm run coverage` 确认 M03 为 7 篇草稿专题、8 个草稿工具、15 篇草稿论文、1 个已发布共享工具 YaHS 和 1 篇草稿教程；M05 为 7 篇草稿专题、3 个草稿工具、10 篇草稿论文和 1 篇草稿教程。下一步按完整关联范围完成专题和资源的科学内容审核，再安排发布批次。
 
 - vg 补充 [Giraffe 短读段方法论文](https://doi.org/10.1126/science.abg8871)、[当前索引说明](https://github.com/vgteam/vg/wiki/Index-Construction)与[许可](https://github.com/vgteam/vg/blob/master/LICENSE)。高粱论文以模拟 reads 评估有真值的映射准确度，也以公开真实 paired-end reads 比较图和线性参考映射；PGGB 因索引所需计算和内存未参与映射比较。vg 本机未运行。
 - AnchorWave 官方 README v1.3.0 列出 `gff2seq`、`genoAli`、`proali` 和 `ali`；`genoAli` 主要覆盖同名染色体全局比对并可选 `-IV`，`proali` 处理重定位、融合或 WGD 深度差异，`-R/-Q` 需用户根据生物学背景选择。默认 `-w 100000` 对应常规预算约 9.3 GiB，但不构成硬 RSS 上限；`-fa3` 默认值在 1.3.0 中由旧阈值 100000 改为 50000。
@@ -101,3 +103,25 @@
 2026-11-21 逐项复核 3,010 水稻论文 PMC 正文及方法段：全群体报告 29,399,875 个 SNP（27,024,796 个双等位）和 2,467,043 个小于 40 bp 的 indel；SV 对 3,010 份材料调用，正文结果集中报告 453 份高测序/参考映射深度样本中的 93,683 个 SV。论文从 3,010 份组装产生 268 Mb 非冗余新序列，并预测 12,465 个新全长基因；453 份样本的 23,876 个家族分为 12,770 个核心、2,056 个候选核心和 9,050 个可变家族，模拟提示可变家族可能低估。11,792 个新基因（94.6%）在至少两份材料的映射 reads 中达到 CDS >95%、gene-body >85% 的阈值；原文指出约 25% 新基因预测偏短与组装片段化有关。依据方法与代码可用性部分确认 PLINK、ADMIXTURE、EUPAN 和定制 novoBreak 的任务边界。页面结果已按原文样本范围和阈值重写；该案例及跨 M05 关联继续保持草稿。来源：[PMC 全文方法和结果](https://pmc.ncbi.nlm.nih.gov/articles/PMC6784863/)；[Nature DOI](https://doi.org/10.1038/s41586-018-0063-9)。
 
 2026-11-21 对照 Zhao 等 2018 年作者 PDF、出版方页面和 PubMed 复核 66 份材料案例。验证其 57 份代表性材料加 9 个栽培品种、Illumina 115×、3.1 Tb、Fermi/SOAPdenovo2 并行 contig、GapCloser 与 REPLACE 合并、21–75 kb contig N50；MUMmer/IRGSP build 4 锚定与 EMBOSS `diffseq` v4.0、`-wordsize 10` 变异流程也与方法段相符。按 PDF 原文补录 GLA4 273 BAC/约 22 Mb 局部对照和 GLA4、W1943 全长 cDNA >98% identity 近完全匹配比例 90.25%、96.77%。变异定义及 67 基因组的 42,580 非 TE 基因、≥60/67（约89.6%，论文概称约90%）核心阈值、26,372 核心/16,208 可变基因和 InterPro 77.6%/35.8% 对比已与正文核对。Edge 对两篇水稻案例在 375、768、1280、1440px 的标题、结果文字、工具关联及文档宽度检查通过。该研究为短读段、多组装及线性参考锚定，不关联图泛基因组工具。来源：[作者 PDF](https://xhhuanglab.cn/uploads/publications/Rice_Pangenome_NG2018.pdf)、[出版方页面](https://www.nature.com/articles/s41588-018-0041-z)、[PubMed](https://pubmed.ncbi.nlm.nih.gov/29335547/)。
+
+## 野生与栽培稻泛基因组资源核查（2026-11-21）
+
+依据 Guo 等发表于 *Nature* 的原文与 PMC 全文核对新建案例。研究初始选择 149 份稻属材料，叶绿体复核将 3 份归为 *O. longistaminata*、1 份归为 *O. meridionalis* 外群；基因家族分析使用 129 份 *O. rufipogon* 与 16 份 *O. sativa*，合计 145 份。图泛基因组的合并集合为 129 份野生稻加 15 份栽培稻，合计 144 份。Hifiasm v0.16.0 用于 133 份 HiFi 材料并生成 p-contigs/a-contigs；其余 16 份 ONT 材料由 NECAT 与 NextDenovo 处理。30 份代表材料另用 Hi-C、Chromap、YaHS 和 JuiceBox Assembly Tools 进行挂载与人工检查，其余材料使用 ALLMAPS 锚定流程。
+
+论文报告 69,531 个 pan-genes、28,907 个全样本核心基因、5,181 个 private genes 和 13,728 个野生稻特异基因；基因分类按 145 份材料及原文 CDS 一致性/覆盖率规则定义。Minigraph-Cactus 使用 Minigraph v0.19-r551 与 Cactus v2.2.1 构图，合并图报告 3.87 Gb 非参考节点总长。研究另用 vg Giraffe v1.43.0 映射短读段、DeepVariant v1.6.1 调用及 GLnexus v1.4.1 合并变异；该群体包含 142 份本研究材料与 407 份外部材料。图节点总长、基因家族数与变异调用样本集代表不同分析对象，页面不混用其分母。完整方法、版本、指标与资源链接见 `src/content/papers/wild-rice-pangenome-2025.md`。
+
+来源：[Nature/PMC 全文与方法](https://pmc.ncbi.nlm.nih.gov/articles/PMC12176639/)、[PubMed 记录](https://pubmed.ncbi.nlm.nih.gov/40240605/)、[DOI](https://doi.org/10.1038/s41586-025-08883-6)。该论文开放许可为 CC BY-NC-ND；本知识库以文字复述并链接原文，未复用论文图片。案例、专题和工具关联维持草稿状态。
+
+## M03-02 组装间比对方法与输入格式核查（2026-11-21）
+
+依据 [MUMmer4 官方仓库](https://github.com/mummer4/mummer)核对 `nucmer` 用于多 FASTA 核苷酸比较、以最大精确匹配为锚点聚类并延伸，输出 `.delta`；该项目说明其适用场景包含较相近且可能带大片段重排的组装。依据 [minimap2 官方 README](https://github.com/lh3/minimap2/blob/master/README.md)核对 minimizer 索引、种子链化和后续碱基级比对，`-cx asm5` 可用于组装间比对并生成 PAF。依据 [SyRI 官方首页](https://schneebergerlab.github.io/syri/)与[输入要求](https://schneebergerlab.github.io/syri/install.html)核对它接收外部组装比对、寻找最长共线路径并对非共线比对分类；输入可为 SAM/BAM、带 CIGAR 的表格或 MUMmer `.delta`。与已审阅的 AnchorWave 注释锚点方法共同构成正文四行比较表。
+
+Edge/Playwright 于 375、768、1280、1440 px 检查专题标题、草稿状态、AnchorWave/SyRI 关联、方法表、页面宽度及无脚本错误；四种宽度均执行 AnchorChain 下一步和重置。该回归覆盖新增表格与既有交互，不表示本机运行了 MUMmer4、minimap2、AnchorWave 或 SyRI 流程；M03-02 全文仍待后续审核并保持草稿。
+
+## YaHS 工具与书目核查（2026-11-21）
+
+依据 [YaHS 方法论文全文](https://pmc.ncbi.nlm.nih.gov/articles/PMC9848053/)、[官方仓库](https://github.com/c-zhou/yahs) 与 [官方 v1.2.2 发布页](https://github.com/c-zhou/yahs/releases/tag/v1.2.2)新增独立工具实体。论文书目核对为 Chenxi Zhou、Shane A. McCarthy、Richard Durbin，*Bioinformatics* 39(1):btac808（2023 卷期；2022-12-16 在线发布），DOI `10.1093/bioinformatics/btac808`；论文说明软件以 C 实现并使用 MIT License。官方发布页目前列出 v1.2.2，发布说明涉及 v1.2.1 的 `juicer post` 缺陷；Guo 等 2025 水稻研究的方法段报告使用 v1.1。
+
+方法页区分 Hi-C reads 比对（上游）、contig scaffold 构建（YaHS）和接触图人工检查（Juicebox Assembly Tools）。按原论文记录 YaHS 的单倍型输入假设、冗余 haplotig 清理要求、窗口接触计数标准化、四种方向评分、加权 scaffold 图剪枝与多轮遍历；比较结果限定于论文测试的 SALSA2、pin_hic、数据及评价指标。官方 README 核实 FASTA 与 Hi-C BAM/BED/BIN/PA5 输入、AGP/FASTA 输出及常用参数。该工具未在本机运行。
+
+`src/content.config.ts` 的方法 schema 新增可选 `version` 字段，工具详情页仅在有核实值时显示；内容维护说明已同步。构建和链接检查通过后，Edge DEV 预览在 375、768、1280、1440 px 核对 M03-01、野生稻案例、M01 Hi-C 专题及 YaHS 工具页，共 16 个页面/视口状态；页面标题、草稿标识、关系链接、无横向溢出与无页面错误通过。静态预览中 Pagefind 对“YaHS”“组装”“单倍型”各返回结果，搜索资源路径包含 `/phytomethods/` 基路径。M03 论文和专题仍保持草稿。
