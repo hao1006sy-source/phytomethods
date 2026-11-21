@@ -79,6 +79,10 @@
 
 2026-11-21 对照 Wang 等 3,010 水稻论文 PMC 全文核对测序和分析范围：PLINK 用于 LD 剪枝和 SNP 距离分析，ADMIXTURE 选择 K=9 并配合 CLUMPP 对齐重复运行矩阵；定制 novoBreak-germline 检测 SV。pan-genome 由 Nipponbare RefSeq 与 3,010 份组装产生的非冗余新序列组合，Map-to-pan 读取覆盖用于 PAV；SV/PAV 重点分析限于测序深度 >20× 且参考比对深度 >15× 的 453 份样本，基因存在判定阈值为 CDS >95%、gene body >85%。代码说明把基因及基因家族 PAV 分析纳入 EUPAN。
 
+2026-11-21 再次对照两篇水稻论文全文复核 M03-04 新增案例段。Zhao 等 2018 年研究以 66 份材料加 Nipponbare 共 67 个组装为统计集合，报告 42,580 个非 TE 蛋白编码基因、≥60/67 的核心阈值及 10,872 个相对 Nipponbare 至少部分缺失的基因；约 9.5% 的新识别基因也出现在独立 Illumina Nipponbare 组装中。Wang 等 2018 年研究区分全体 3,010 份材料与用于高覆盖 PAV 的 453 份子集；复核 23,876 个基因家族、12,770 个严格核心、2,056 个候选核心、9,050 个分布型家族及基于主群体缺失率的判定规则。出处：[Nature Genetics 原文](https://doi.org/10.1038/s41588-018-0041-z)、[Nature 论文 PMC 全文](https://pmc.ncbi.nlm.nih.gov/articles/PMC6784863/)。
+
+2026-11-21 对照 BCFtools 官方变异检测说明与代码仓库复核 M05-02 及 BCFtools 页面：`mpileup` 生成有覆盖位置的基因型似然，`call -m` 进行多等位基因调用，`-v` 输出变异位点，`-Ou`/`-Ob` 分别用于未压缩 BCF 管道与压缩 BCF 文件；文档记录每 BAM 每个位点默认深度上限为 250，并提示按数据评估 `--max-depth`。官方许可证提供 MIT/Expat 或 GPL 选项，启用可选 GSL 构建时适用 GPL；官方 release 当前列出 v1.25。页面示例是官方命令语法，不是本机运行结果。[BCFtools 官方变异检测](https://samtools.github.io/bcftools/howtos/variant-calling.html)、[发布页](https://github.com/samtools/bcftools/releases/)、[许可证](https://github.com/samtools/bcftools/blob/develop/LICENSE)。
+
 依据 EUPAN PubMed 方法论文及官方安装页/SOP 新增工具和方法论文草稿。官方文档记录依赖 Perl、R、C++，QUAST 使用旧版 Python 2 环境；工具页列出多样本 FASTQ、参考 FASTA、GFF/GTF 输入、PAV 矩阵和覆盖结果。官方示例 PAV 阈值与 Wang 等论文阈值分别注明，未混作软件全局默认值。页面与案例关系在 375、768、1280、1440 px 下通过浏览器检查；软件没有在本机运行，继续保持草稿。
 
 2026-11-21 对照 [Giraffe 原始论文](https://pmc.ncbi.nlm.nih.gov/articles/PMC9365333/)核查 M03-06 的方法说明：GBWT 表示及查询图中的单倍型路径，minimizer 产生候选种子，按图距离聚类后沿路径延伸无缺口比对，再对剩余 gap 执行带缺口比对。vg 团队的[官方索引文档](https://github.com/vgteam/vg/wiki/Index-Construction)说明 Giraffe 使用 GBZ 图（包含 GBWT 和 GBWTGraph）、distance index、minimizer index，并区分短读段和长读段模式。原始论文中的 5,202 个体、167,000 个结构变异属于人类评估，页面明确未作为植物应用。交互模型的片段拼接为甲 ACGTTG、乙 ACCATG；AC 为共享子串，CGTT 只出现在甲，CCAT 只出现在乙。按钮仅做预设路径的精确子串筛选，不复现 Giraffe 的种子检索或 caller。`npm run test:figure-a11y` 已检查三个读段选择按钮、aria-pressed 状态及重置。

@@ -16,6 +16,14 @@ updatedAt: 2026-11-21
 
 BCFtools 的官方流程用 `mpileup` 汇集比对信息，再通过 `call` 生成候选基因型；这一过程与后续过滤、标准化和群体分析属于不同步骤。[BCFtools 方法论文](https://doi.org/10.1093/gigascience/giab008)；[官方示例](https://samtools.github.io/bcftools/howtos/variant-calling.html)。GATK 也提供变异检测与过滤相关工具；PLINK 侧重基因型数据管理、质量控制和统计分析，不等同于从原始 reads 进行比对。
 
+官方文档给出的 BCFtools 基础命令如下，作为流程语法示例：
+
+```bash
+bcftools mpileup -Ou -f reference.fa sample.bam | bcftools call -mv -Ob -o calls.bcf
+```
+
+`mpileup` 根据有覆盖的位置生成基因型似然；`-Ou` 以未压缩 BCF 在管道中传递。`call -m` 使用多等位基因调用模型，`-v` 仅输出变异位点，`-Ob` 写出压缩 BCF。实际分析还需匹配排序索引、参考序列、倍性、样本列表和深度设置；示例命令不含通用质量阈值。[官方变异检测说明](https://samtools.github.io/bcftools/howtos/variant-calling.html)。
+
 ## VCF 的主要字段
 VCF（Variant Call Format）是描述变异与样本基因型的文本格式。以示意记录为例：
 
