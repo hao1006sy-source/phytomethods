@@ -4,3 +4,4 @@
 .breadcrumb{color:#536779}.breadcrumb a{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
 .reading-main .table-scroll{max-width:100%;overflow-x:auto}.reading-main .table-scroll table{display:table;width:100%;min-width:100%;max-width:none;overflow:visible}.reading-main .table-scroll--wide table{min-width:640px}
 @media(max-width:700px){.reading-main .table-scroll--wide::before{content:'表格可横向滑动查看';display:block;color:var(--muted);font-size:.75rem;margin:0 0 8px}}
+.reading-main .prose .katex-display{max-width:100%;overflow-x:auto;overflow-y:hidden;padding:.45rem .25rem .7rem;margin:1.2rem 0}
