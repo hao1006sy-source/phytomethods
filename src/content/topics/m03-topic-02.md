@@ -2,9 +2,9 @@
 title: 植物全基因组比对
 summary: 从种子、链与共线区块理解植物基因组之间的序列比较。
 domain: pangenomics-structural-variation
-methods: [anchorwave, syri]
+methods: [mummer4, minimap2, anchorwave, syri]
 status: draft
-updatedAt: 2026-11-20
+updatedAt: 2026-11-21
 ---
 ## 研究问题
 全基因组比对（whole-genome alignment，WGA）寻找两个或多个基因组之间可比较的序列区段。研究者可以利用这些对应关系检查组装、比较基因顺序、寻找倒位或其他重排，并为后续变异注释建立坐标映射。参考基因组与查询基因组的选择、方向和质量会影响可比较区域。
@@ -31,8 +31,8 @@ AnchorWave 的目标是获得可用于比较的区块及其内部比对；SyRI �
 
 | 方法 | 计算入口与结果 | 适用问题和注意点 |
 | --- | --- | --- |
-| MUMmer4 `nucmer` | 多 FASTA 输入；以最大精确匹配为锚点，聚类并延伸得到核苷酸比对，输出 `.delta` | 适合较相近、可能含大片段重排的组装比较；重复区域会产生多重匹配，需检查过滤策略与一对一映射假设。[官方说明](https://github.com/mummer4/mummer) |
-| minimap2 | minimizer 种子与动态规划链化，按 `-cx asm5` 等组装预设生成 PAF；也可请求 SAM/CIGAR | 可用于组装间比对和长序列映射；预设、比对方向和多重映射处理需按物种差异与下游输入要求选择。[官方算法与命令](https://github.com/lh3/minimap2/blob/master/README.md) |
+| [MUMmer4 `nucmer`](../../../methods/mummer4/) | 多 FASTA 输入；以最大精确匹配为锚点，聚类并延伸得到核苷酸比对，输出 `.delta` | 适合较相近、可能含大片段重排的组装比较；重复区域会产生多重匹配，需检查过滤策略与一对一映射假设。[官方说明](https://github.com/mummer4/mummer) |
+| [minimap2](../../../methods/minimap2/) | minimizer 种子与动态规划链化，按 `-cx asm5` 等组装预设生成 PAF；也可请求 SAM/CIGAR | 可用于组装间比对和长序列映射；预设、比对方向和多重映射处理需按物种差异与下游输入要求选择。[官方算法与命令](https://github.com/lh3/minimap2/blob/master/README.md) |
 | AnchorWave | 基因结构锚点组织共线块，对锚点间区块执行碱基级比对，输出 MAF 等结果 | 面向基因锚点充分、基因组复制历史复杂的植物组装；需要可信注释及对 `genoAli`/`proali` 模式的生物学设定。 |
 | SyRI | 读取已有组装比对，寻找最长共线路径，再分类非共线区段并提取局部变异 | 用于解释两组装间的结构差异；自身不是比对器，输入格式需与实际版本匹配。[官方输入说明](https://schneebergerlab.github.io/syri/install.html) |
 
@@ -44,7 +44,7 @@ AnchorWave 原始研究针对序列多样性、结构多态性和全基因组复
 应检查输入序列命名和坐标、组装质量、未比对区段、锚点覆盖及重复拷贝的一对多匹配。可用全基因组点图检查大尺度方向和顺序，再用独立 reads 回贴或其他技术复核关键候选区域。组装缺口或折叠可能造成假断点；研究结论应明确可检测范围。
 
 ## 后续阅读
-[MUMmer4 原始方法](https://doi.org/10.1371/journal.pcbi.1005944)、[minimap2 原始方法](https://doi.org/10.1093/bioinformatics/bty191)；[SyRI 官方示例](https://schneebergerlab.github.io/syri/example.html)。进行 PAV 或结构变异分析前，应先检查比较双方的坐标、文件格式和比对过滤方式。
+[MUMmer4 原始方法论文](../../../papers/mummer4-paper/)、[minimap2 原始方法论文](../../../papers/minimap2-paper/)；[SyRI 官方示例](https://schneebergerlab.github.io/syri/example.html)。进行 PAV 或结构变异分析前，应先检查比较双方的坐标、文件格式和比对过滤方式。
 
 ## 共线锚点链与区块切分
 把每个候选匹配视为一项锚点 $a_i=(x_i,y_i,w_i,s_i)$，其中 $x_i$、$y_i$ 是参考和查询坐标，$w_i$ 表示匹配权重，$s_i$ 是方向。若两锚点方向相同、坐标顺序兼容且间距合理，可以连接成候选链。一般化的最大分数链可写作

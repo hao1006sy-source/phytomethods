@@ -464,6 +464,8 @@
       "动态规划"
     ],
     "methodIds": [
+      "mummer4",
+      "minimap2",
       "anchorwave",
       "syri"
     ],
@@ -471,9 +473,13 @@
       "alignment"
     ],
     "dataIds": [
-      "assembly"
+      "assembly",
+      "annotation-input",
+      "dna-sequence"
     ],
     "paperIds": [
+      "mummer4-paper",
+      "minimap2-paper",
       "anchorwave-paper",
       "syri-paper",
       "rice-pangenome-paper"

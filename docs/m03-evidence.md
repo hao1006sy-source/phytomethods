@@ -151,3 +151,9 @@ Edge 开发态检查 M03-03 在 375、768、1280、1440 px 的 HTTP 200、正文
 对照专题正文、M03-04 三态 PAV 定义及 `topic-metadata.json`，将基因家族频率写为在可判定样本集合 $C_g$ 上计算，未知单元不进入分子或分母；同时记录不同家族可判定样本集不同时需检查缺失机制与样本组成。为累计家族稀释期望式补充条件：矩阵单元可判定、抽样顺序随机且样本集合固定；有未知值时先定义可分析样本或采用明示缺失处理的抽样设计，不把未知编码为 0 后套用该式。结构化专题标签补齐 `alignment`、`pav-calling`、`graph-genomics` 与蛋白、CDS、注释、短读段、组装和图数据类型，均来自该专题正文及已关联方法/案例的分析对象。
 
 `npm run validate` 通过：Astro 63 文件零诊断、静态发布 55 页、Pagefind 55 页/6482 词、1320 条内部链接无错误；`npm run coverage` 通过，M03 七专题仍为草稿。Edge/Playwright 于 375、768、1280、1440 px 检查 M03-01 HTTP 200、13 个 KaTeX 节点及页面宽度无横向溢出。该轮只覆盖频率定义、稀释式前提、受控标签和响应式公式，不构成专题全文科学审核关闭。
+
+## M03-02 MUMmer4 与 minimap2 工具及论文关系（2026-11-21）
+
+新增 MUMmer4 与 minimap2 工具详情及各自的原始方法论文记录，并将稳定 ID 关联至全基因组比对专题。MUMmer4 的 suffix array 索引、最大精确匹配、匹配聚类/Smith–Waterman 延伸及 delta 输出，按 [Marçais 等原文](https://doi.org/10.1371/journal.pcbi.1005944)、[PubMed](https://pubmed.ncbi.nlm.nih.gov/29373581/)和[官方仓库说明](https://github.com/mummer4/mummer)核对。minimap2 的 minimizer 锚点、链化、相邻锚点间动态规划、`asm5` 组装预设及 PAF 输出按 [Li 原文](https://doi.org/10.1093/bioinformatics/bty191)、[PMC 全文](https://pmc.ncbi.nlm.nih.gov/articles/PMC6137996/)和[官方 README](https://github.com/lh3/minimap2)核对。两条新增引用作为方法论文，不标作植物实证案例；专题原有 66 份水稻组装应用关系保留其 MUMmer 参考锚定与 EMBOSS `diffseq` 范围。
+
+`npm run validate` 通过，内容覆盖显示 M03 共 10 个草稿工具、20 篇草稿论文；Astro 63 文件零诊断、55 页静态发布、Pagefind 55 页/6482 词、1320 条站内链接无错误。Edge 在 375、768、1280、1440 px 检查专题、MUMmer4、minimap2 和两篇方法论文，共 20 个路由/视口状态，HTTP 200 且无页面横向溢出。M03-02 的全文科学审核仍进行中，新增工具尚未在本机运行。
