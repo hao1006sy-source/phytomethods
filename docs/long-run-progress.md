@@ -287,3 +287,6 @@ M03 七专题整体科学审核、工具/论文/教程发布依赖、发布态�
 ### 2026-11-21：M03-02 全文与植物应用关系审核
 
 复核全基因组比对专题的种子、链化、区块精化、重复区与结构解释，检查抽象动态规划公式的边界说明及 MUMmer4、minimap2、AnchorWave、SyRI 的职责区别。依据 Nature 2025 野生—栽培稻研究方法段，将 MUMmer v4.0.0beta2 和 minimap2 v2.21-r1071 与真实植物案例双向关联：前者用于细胞器 contig 筛查、代表材料共线比对及组装比对 SNP 识别；后者用于长读段比对，为 Longshot SNP calling 和 PAV 流程提供输入。工具页、专题和论文页分别说明程序责任及相应版本；未报告的 minimap2 preset 保持未声明。MUMmer4 官方 README 的默认匹配行为、delta 格式、过滤工具及方法论文信息完成对照。来源：Nature 原文 https://www.nature.com/articles/s41586-025-08883-6、MUMmer4 官方 README https://github.com/mummer4/mummer、AnchorWave 官方 README https://github.com/baoxingsong/AnchorWave/blob/master/README.md、minimap2 官方 README https://github.com/lh3/minimap2/blob/master/README.md、SyRI 官方输入说明 https://schneebergerlab.github.io/syri/install.html。npm run validate 通过：63 个 Astro 内容文件零诊断、55 个静态页与 Pagefind 索引、1319 条内部链接零错误；npm run coverage 与关系审计通过，63 个专题中无悬空文献或关联 ID，关系审计零不一致。M03-02 专题复核完成；下一步回到 M03-01 完成全文审核，再关闭 M03 全域发布依赖。
+### 2026-11-21：M03-01 泛基因组专题全文审核完成
+
+复核基因家族矩阵、序列泛基因组图的研究对象区分，核心/可变/私有类别的样本范围，PAV 未知状态，开放/封闭曲线条件及抽样分母公式。逐项检查 66 份水稻材料、3,010 份亚洲栽培稻、69 份拟南芥和 2025 野生—栽培稻案例，保持不同论文的组装、群体与图构建集合和软件流程彼此区分。2025 案例数据量与 2018 水稻组装间比较、3K 水稻高覆盖子集、拟南芥基因家族分箱均按原文对应的样本集描述。工具关联限于原始方法明确记录的软件；2018 水稻研究的 MUMmer 版本未指认为 MUMmer4。专题与四视口既有浏览回归、构建、关系检查均通过。方法条目和应用论文维持草稿，发布依赖闭包继续逐项检查。
