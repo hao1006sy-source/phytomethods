@@ -1,6 +1,6 @@
 # PhytoMethods 下一次恢复入口
 
-- 分支：`feat/long-run-m03-v2`；当前本地 HEAD `b1e89c0`，远程跟踪分支为 `58c339f`，本地领先 34 个提交；本轮新增 M03 内容已分批提交。HTTPS 推送此前因 GitHub 443 超时失败，GitHub API 写入返回 403，内容尚未推送。已发布 main 基点为 `91f24bd`；M03–M09 新增内容仍为草稿，尚未合并部署。待网络写入恢复后推送并依既有流程创建/更新 PR。
+- 分支：`feat/long-run-m03-v2`；本地分支从远程跟踪点 `58c339f` 继续开发，新增 M03 工作已分批提交；当前 HEAD 与领先提交数以 `git status -sb` 和 `git log` 为准。HTTPS 推送最新尝试因 GitHub 443 超时失败，内容尚未推送。已发布 main 基点为 `91f24bd`；M03–M09 新增内容仍为草稿，尚未合并部署。网络写入恢复后推送并依既有流程创建/更新 PR。
 - M03～M09 共 49 篇专题已有正文初稿；仍需逐篇深化、科学审核和正式发布态验收。M03、M04、M05 已有部分工具及论文，M06 新增 GAPIT 与 SciPy，M07 新增 Bismark，M08 新增 Scanpy，M09 新增 WGCNA。
 - 七个新增领域各有一篇已实际运行的教程草稿：SyRI 使用官方拟南芥染色体测试数据；OrthoFinder 使用官方支原体示例；PLINK、GWAS、Bismark、Scanpy 和 WGCNA 使用模拟数据。后六者没有声称在本机运行真实植物数据。
 - `examples/syri/verified-20261121/`、`examples/orthofinder/verified-20261121/` 及其余 `examples/` 子目录保存实际运行日志、输入说明、版本和摘要。M03 相关资料见 `docs/m03-evidence.md`。
