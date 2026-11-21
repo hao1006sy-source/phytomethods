@@ -161,3 +161,5 @@ Edge 开发态检查 M03-03 在 375、768、1280、1440 px 的 HTTP 200、正文
 新增 MUMmer4 与 minimap2 工具详情及各自的原始方法论文记录，并将稳定 ID 关联至全基因组比对专题。MUMmer4 的 suffix array 索引、最大精确匹配、匹配聚类/Smith–Waterman 延伸及 delta 输出，按 [Marçais 等原文](https://doi.org/10.1371/journal.pcbi.1005944)、[PubMed](https://pubmed.ncbi.nlm.nih.gov/29373581/)和[官方仓库说明](https://github.com/mummer4/mummer)核对。minimap2 的 minimizer 锚点、链化、相邻锚点间动态规划、`asm5` 组装预设及 PAF 输出按 [Li 原文](https://doi.org/10.1093/bioinformatics/bty191)、[PMC 全文](https://pmc.ncbi.nlm.nih.gov/articles/PMC6137996/)和[官方 README](https://github.com/lh3/minimap2)核对。两条新增引用作为方法论文，不标作植物实证案例；专题原有 66 份水稻组装应用关系保留其 MUMmer 参考锚定与 EMBOSS `diffseq` 范围。
 
 `npm run validate` 通过，内容覆盖显示 M03 共 10 个草稿工具、20 篇草稿论文；Astro 63 文件零诊断、55 页静态发布、Pagefind 55 页/6482 词、1320 条站内链接无错误。Edge 在 375、768、1280、1440 px 检查专题、MUMmer4、minimap2 和两篇方法论文，共 20 个路由/视口状态，HTTP 200 且无页面横向溢出。M03-02 的全文科学审核仍进行中，新增工具尚未在本机运行。
+
+2026-11-21 对 M03 领域、七专题、9 个工具及 10 篇论文执行 Edge 浏览器回归，四视口共 108 个路由状态全部返回 HTTP 200、具有页面标题且无文档级横向溢出；点击验证 M03-05 → Minigraph → 水稻图泛基因组案例路径可达。该测试只核对本地草稿预览路由和布局。
