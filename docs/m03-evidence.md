@@ -26,7 +26,32 @@
 2026-11-21 对照 [GFA v1 格式规范](https://github.com/GFA-spec/GFA-spec/blob/master/GFA1.md)复核 M03-05 的交互路径图：segment 表示连续序列片段，link 包含连接端方向和重叠长度，path 是按顺序排列的有向片段。图中 A–D 仅为教学占位符，正向路径和连线省略了节点方向、碱基长度、重叠及坐标；两条预设路径分别为 A–B–D、A–C–D。图注明确该图为原理示意，未模拟 GFA 文件或真实变异输出。该边界与 Minigraph 官方说明中“图可包含输入样本未实际出现的 bubble 遍历路径”一致。Minigraph 的图构建输入是逐份完整组装并增量映射至已有图；PGGB 则以 wfmash 全对全比对、seqwish 图诱导和 smoothxg/gfaffix 规范化为主流程。来源：[Minigraph 官方 README](https://github.com/lh3/minigraph/blob/master/README.md)、[PGGB 官方 README](https://github.com/pangenome/pggb/blob/master/README.md)。`npm run test:figure-a11y` 已覆盖四种视口下的路径选择、文字说明、重置和放大弹窗；科学审查结论仅覆盖上述图意和流程区分，专题其他生物学论断仍需逐条审核。
 
 ## 版本来源快照
-2026-11-21 查阅官方发布页：AnchorWave [v1.3.0](https://github.com/baoxingsong/AnchorWave/releases)、SyRI [v1.8.2](https://github.com/schneebergerlab/syri/releases)、Minigraph [v0.21/r606](https://github.com/lh3/minigraph/releases)、PGGB [v0.7.4](https://github.com/pangenome/pggb/releases)、ODGI [v0.9.4](https://github.com/pangenome/odgi/releases)、vg [v1.78.0](https://github.com/vgteam/vg/releases)及 Cactus [v4.0.0](https://github.com/ComparativeGenomicsToolkit/cactus/releases)。这是发布页信息；仅 SyRI 1.8.2 已在隔离环境运行，其他版本快照不表示本机安装。高粱论文使用历史软件版本，版本快照不可取代论文方法部分。
+2026-11-21 查阅官方发布页：AnchorWave [v1.3.0](https://github.com/baoxingsong/AnchorWave/releases)、SyRI [v1.8.2](https://github.com/schneebergerlab/syri/releases)、Minigraph [v0.21/r606](https://github.com/lh3/minigraph/releases)、PGGB [v0.7.4](https://github.com/pangenome/pggb/releases)、ODGI [v0.9.4](https://github.com/pangenome/odgi/releases)、vg [v1.78.0](https://github.com/vgteam/vg/releases)及 Cactus [v4.0.0](https://github.com/ComparativeGenomicsToolkit/cactus/releases)。EUPAN 官方工具页的最新版本记录为 [v0.44（2017-10-23）](https://cgm.sjtu.edu.cn/eupan/index.html)，许可为非商业使用 CC BY-NC 4.0。版本来源快照不代表本机安装。仅 SyRI 1.8.2 已在隔离环境运行；高粱论文使用历史软件版本，版本快照不可取代论文方法部分。
+
+### M03 工具页的许可、参数与运行状态复核
+
+2026-11-21 对照各项目官方仓库、发布页或安装页复核八个工具的许可陈述、版本记录、输入输出和常用参数。逐项状态如下：
+
+| 工具 | 官方许可记录 | 官方版本来源快照 | 输入输出与参数页检查 | 本机运行状态 |
+| --- | --- | --- | --- | --- |
+| AnchorWave | MIT | v1.3.0 | GFF/GTF、FASTA、锚点映射 SAM；`gff2seq`、`genoAli`、`proali` 与主要参数已逐项对照 README | 未运行 |
+| SyRI | MIT | v1.8.2 | MUMmer delta/PAF 流程、参考/查询组装、`.out`、VCF、summary 和常见选项已对照官方示例 | v1.8.2 + MUMmer 3.23 已使用官方拟南芥测试数据运行，日志见 `examples/syri/verified-20261121/` |
+| Minigraph | MIT | v0.21 / r606 | 参考引导逐组装构图、GFA/rGFA、GAF、bubble 类结果及示例命令已对照 README | 未运行 |
+| Minigraph-Cactus | 主仓库 MIT 文本，排除 `externalTools` 中部分文件 | v4.0.0（2026-11-09） | seqfile、jobStore、`cactus-pangenome`、GFA/GBZ/Giraffe/VCF 开关、裁剪统计及主要并行参数已对照官方流程文档；Cactus 4.0 默认配置变化已记录 | 未运行 |
+| PGGB | 主仓库 MIT；组成工具和运行镜像依赖须独立核对 | v0.7.4 | FASTA/PanSN 输入、wfmash/seqwish/图规范化流程、`-i/-o/-n/-t/-p/-s` 和 GFA/VCF 输出已对照官方 README | 未运行 |
+| ODGI | MIT | v0.9.4 | GFA 导入、图统计、排序、可视化输入输出及路径解释已对照官方仓库与手册 | 未运行 |
+| vg / Giraffe | vg 核心仓库 MIT；贡献目录和子模块具有各自许可 | v1.78.0 | GBZ、distance、minimizer 索引，短/长读段映射和 GAM/GAF 输出已对照官方索引与长读段说明 | 未运行 |
+| EUPAN | 非商业使用 CC BY-NC 4.0 | v0.44（官方页标示 2017-10-23） | FASTQ、参考 FASTA、注释和外部依赖；PAV 覆盖阈值、覆盖文件和矩阵输出已对照官方安装页与 SOP | 未安装或运行 |
+
+版本表示对照日能在官方页面找到的版本或发布快照。论文中使用的历史版本单独按原文方法部分记录。运行状态严格区分官方文档核对和本机执行；除 SyRI 外，其余工具没有本机运行记录。EUPAN 的旧依赖需评估隔离环境；许可文本应结合官方页面中非商业用途条款理解。该表只覆盖工具页所述流程，不构成所有命令、依赖和许可文件的全量代码审计。
+
+本轮加深 Minigraph-Cactus 页面，按官方 v4.0.0 文档区分 Minigraph 阶段 `.sv.gfa.gz`、最终图、请求生成的 GBZ/Giraffe/VCF 索引和 `.stats/` 裁剪报告；补充常用参数、参考染色体分区影响、配置快照要求和 v4.0 的输出复现特性。EUPAN 页面加入官方版本日期快照，并将非商业 CC BY-NC 4.0 许可与当前机器未安装状态分开记录。Cactus 官方来源：[pangenome 工作流和输出](https://github.com/ComparativeGenomicsToolkit/cactus/blob/master/doc/pangenome.md)、[v4.0.0 发布记录](https://github.com/ComparativeGenomicsToolkit/cactus/releases/tag/v4.0.0)、[主仓库许可证](https://github.com/ComparativeGenomicsToolkit/cactus/blob/master/LICENSE.txt)；EUPAN 官方来源：[工具主页、版本与许可](https://cgm.sjtu.edu.cn/eupan/index.html)、[安装说明](https://cgm.sjtu.edu.cn/eupan/installation.html)、[SOP](https://cgm.sjtu.edu.cn/eupan/sop.html)。
+
+### 3,010 份水稻论文至 ADMIXTURE 和 M05-03 的发布关联
+
+稳定 ID 和反向导航已对照论文、工具页、专题正文与 63 条专题元数据核查：`rice-3010-pangenome.methodIds` 包含 `admixture`、`plink`、`eupan`；`admixture.topicIds` 包含 `m05-topic-03`，其方法论文为 `admixture-paper`；`m05-topic-03` 的正文 `methods` 与专题元数据 `methodIds` 同为 PLINK 和 ADMIXTURE，`paperIds` 包含 `rice-3010-pangenome`，并列出 PLINK 教学教程和相关方法论文。M05-03 内的主题关系完整，双向工具—专题—论文关系由现有动态关联页面呈现。
+
+发布状态依赖链继续向外扩展：公开 3,010 份水稻论文需要先公开其三个关联工具及各自的方法论文和专题；其中 EUPAN 还要求 M03-01 与 M03-04，PLINK 还要求 M05-02。M03-01/M03-04 又关联 OrthoFinder、Minigraph、PGGB、Minigraph-Cactus 等方法及多篇植物案例，M05-02 关联 bcftools、PLINK 与相应文献。依照 `src/lib/validate-content.ts` 中已发布资源需关联已发布资源的规则，正式发布范围会继续扩展至这些专题和工具引用的论文、工具与教程。M03 与 M05 的相关专题、方法和论文均维持草稿，并保留经论文方法核实的工具关联。`npm run coverage` 确认 M03 为 7 篇草稿专题、8 个草稿工具、14 篇草稿论文和 1 篇草稿教程；M05 为 7 篇草稿专题、3 个草稿工具、10 篇草稿论文和 1 篇草稿教程。下一步按完整关联范围完成专题和资源的科学内容审核，再安排发布批次。
 
 - vg 补充 [Giraffe 短读段方法论文](https://doi.org/10.1126/science.abg8871)、[当前索引说明](https://github.com/vgteam/vg/wiki/Index-Construction)与[许可](https://github.com/vgteam/vg/blob/master/LICENSE)。高粱论文以模拟 reads 评估有真值的映射准确度，也以公开真实 paired-end reads 比较图和线性参考映射；PGGB 因索引所需计算和内存未参与映射比较。vg 本机未运行。
 - AnchorWave 官方 README v1.3.0 列出 `gff2seq`、`genoAli`、`proali` 和 `ali`；`genoAli` 主要覆盖同名染色体全局比对并可选 `-IV`，`proali` 处理重定位、融合或 WGD 深度差异，`-R/-Q` 需用户根据生物学背景选择。默认 `-w 100000` 对应常规预算约 9.3 GiB，但不构成硬 RSS 上限；`-fa3` 默认值在 1.3.0 中由旧阈值 100000 改为 50000。

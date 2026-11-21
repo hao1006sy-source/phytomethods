@@ -34,4 +34,4 @@ EUPAN 的这一 Map-to-pan 工作流使用线性序列集合，不负责构建 M
 EUPAN 的方法论文报告其应用于 453 份水稻材料；Wang 等的 3,010 份亚洲栽培稻研究也在代码说明中将基因及基因家族 PAV 分析代码与 EUPAN 关联。3,010 份样本是群体 SNP 分析规模，论文的 SV 与 PAV 分析进一步聚焦 453 份高覆盖样本。Map-to-pan 结果依赖短读段覆盖度、pan-genome 序列代表性、基因模型及阈值；低深度或高分化区域可能造成存在状态不确定，不能把单一二元矩阵当作无误差真值。[水稻应用论文](https://doi.org/10.1038/s41586-018-0063-9)。
 
 ## 官方资源与验证状态
-官方资源提供软件包下载、安装说明和逐步 SOP；本地尚未安装或执行 EUPAN，页面命令用于方法解释，不能视为本机运行记录。方法论文指出软件由 Perl、R 和 C++ 实现，面向 Linux，可在 LSF/SLURM 集群或单机运行，并以 CC BY-NC 4.0 提供非商业使用。官方安装页还列出 R 3.1+、Perl、g++ 及供 QUAST 使用的 Python 2.5–2.7 依赖，实际复现应先评估隔离环境兼容性。[官方工具页](https://cgm.sjtu.edu.cn/eupan/index.html)、[官方安装说明](https://cgm.sjtu.edu.cn/eupan/installation.html)、[官方 SOP](https://cgm.sjtu.edu.cn/eupan/sop.html)。
+官方工具页列出的最新版本记录为 EUPAN v0.44，发布日期为 2017-10-23；该页将软件说明为面向非商业使用，许可为 CC BY-NC 4.0。版本快照及许可信息来自项目维护的官方页面，不代表本机安装状态。方法论文指出软件由 Perl、R 和 C++ 实现，面向 Linux，可在 LSF/SLURM 集群或单机运行。官方安装页还列出 R 3.1+、Perl、g++ 及供 QUAST 使用的 Python 2.5–2.7 依赖；复现前需准备隔离环境并核对各外部依赖的兼容版本。[官方工具页与版本记录](https://cgm.sjtu.edu.cn/eupan/index.html)、[官方安装说明](https://cgm.sjtu.edu.cn/eupan/installation.html)、[官方 SOP](https://cgm.sjtu.edu.cn/eupan/sop.html)。本机尚未安装或执行 EUPAN。
