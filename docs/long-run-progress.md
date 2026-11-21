@@ -169,3 +169,7 @@ M03-05 的路径示意改为带 `<figure>` 与图注的交互图，明确 segmen
 ### 2026-11-21：32 份拟南芥适应泛基因组案例审核
 
 对照 PMC 原文扩写适应案例记录，补录 32 份 HiFi 组装、参考引导 scaffold、基因家族泛基因组和 Minigraph 图泛基因组两个层次、基于 graph bubble 的 SV 提取、群体短读段图映射/过滤及性状分析。逐项记录 Hifiasm、OrthoFinder、IQ-TREE、EDTA、Minigraph、vg、PLINK、MCScanX 实际任务；补充 61 项性状结果和 KNAT3、WH1、HPCA1 的表达及功能实验。原文摘要/结果 SV 数及方法段/结果段基因家族数存在差异，页面依结果段统计并留档。链接到 GSA、Figshare 与 SRA 数据。Edge/Playwright 在 375、768、1280、1440px 检查正文标题、关键结果、八个工具关联、页面宽度和浏览器错误通过；`npm run validate` 通过，Astro 60 文件零诊断、54 个发布页面、Pagefind 54 页/5932 词、1276 条本地链接；`npm run coverage` 通过。案例继续保持草稿。
+
+### 2026-11-21：高粱泛基因组图评测结果审核
+
+对照 GigaScience 出版方全文和 PMC 正文扩写高粱图基准案例，补齐作者信息、构图与评价版本、模拟和真实组装指标、BUSCO/k-mer 与图覆盖结果、变异 F1/置换检验以及模拟/真实 reads 映射分层。说明图规模受变异长度阈值影响，模拟 min_mapQ 正确映射指标和真实 reads 总映射率/完美比对率分别列示；PGGB 因 mapping index 资源需求未进入映射测试。Edge 在 375、768、1280、1440px 检查高粱案例和两个已发布文献页共 12 个页面状态，标题、方法关系、表格滚动和页面宽度通过；发现并修复论文详情模板的窄屏表格溢出。`npm run validate` 与 `npm run coverage` 通过。案例状态保持草稿；细节见 `docs/m03-evidence.md`。

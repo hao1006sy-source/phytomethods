@@ -15,7 +15,7 @@
 | 水稻多组装 | [Zhao 等 PubMed](https://pubmed.ncbi.nlm.nih.gov/29335547/)、[作者论文 PDF](https://xhhuanglab.cn/uploads/publications/Rice_Pangenome_NG2018.pdf)、[DOI](https://doi.org/10.1038/s41588-018-0041-z) | 题名、24 位作者、年份、期刊及 DOI；66 份材料、115× Illumina、SOAPdenovo2/Fermi/GapCloser、MUMmer 与 EMBOSS `diffseq`；BAC/cDNA 验证、变异统计及 67 个基因组 PAV 图示 | 结果和方法已按原文逐项复核；图形解释、历史软件条目与跨领域发布关系仍待检查 |
 | 3,010 水稻材料 | [PubMed](https://pubmed.ncbi.nlm.nih.gov/29695866/)、[PMC 原文与方法](https://pmc.ncbi.nlm.nih.gov/articles/PMC6784863/)、[DOI](https://doi.org/10.1038/s41586-018-0063-9) | 3,010 总群体与 453 份高覆盖 SV/PAV 子集的界限；29,399,875 个 SNP、2,467,043 个 <40 bp indel、93,683 个子集 SV；PAV 家族分类及新基因覆盖核验；PLINK、ADMIXTURE、定制 novoBreak、EUPAN/Map-to-pan 关系及阈值 | 结果摘要与方法关系已按 PMC 正文复核；案例仍为草稿，跨领域发布依赖未闭合 |
 | 拟南芥 69 份材料 | [Lian 等，2024 出版方原文](https://www.nature.com/articles/s41588-024-01715-9)、[作者开放版 PDF](https://www.mpipz.mpg.de/5602936/lian_nat_gen_2024_OA.pdf)、[PubMed](https://pubmed.ncbi.nlm.nih.gov/38605175/) | 九位作者、卷页与 DOI；72 份用于群体分析、3 份杂合材料排除后 69 份用于组装/泛基因组；核心、softcore、可变、私有家族计数；着丝粒和染色体结构结论；Hifiasm、SyRI、Merqury、EDTA、InterProScan、IQ-TREE、OrthoFinder、PLINK、ADMIXTURE 方法范围 | 案例仍为草稿；跨 M05 关联发布闭包与整站发布验收 |
-| 高粱图比较 | [Kopalli 等，2025](https://doi.org/10.1093/gigascience/giaf121)、[出版方全文](https://academic.oup.com/gigascience/article/doi/10.1093/gigascience/giaf121/8364989) | 六份真实高粱组装；Minigraph 0.21、PGGB 0.5.4、Minigraph-Cactus 2.7.2；ODGI 0.8.6、VG Giraffe 1.58.0、SyRI 1.6.3；模拟与真实读段映射任务已分开核 | 方法细节及页面关联已补；结果解释仍待逐项复审 |
+| 高粱图比较 | [Kopalli 等，2025](https://doi.org/10.1093/gigascience/giaf121)、[出版方全文](https://academic.oup.com/gigascience/article/doi/10.1093/gigascience/giaf121/8364989)、[PMC 全文](https://pmc.ncbi.nlm.nih.gov/articles/PMC12676463/) | 五位作者、书目、六份高粱组装；Minigraph 0.21、PGGB 0.5.4、Minigraph-Cactus 2.7.2；ODGI 0.8.6、VG Giraffe 1.58.0、SyRI 1.6.3；模拟/真实组装、BUSCO 与 21-mer、图覆盖、F1/置换检验及两类 reads mapping 已逐项对照 | 跨作物补充材料数字仍待逐表录入；页面保持草稿，发布依赖待闭合 |
 | Minigraph 方法论文 | [Li、Feng、Chu，2020](https://pubmed.ncbi.nlm.nih.gov/33066802/) | 标题、作者、期刊卷页、DOI；方法论文以人类组装方法为主 | 未作为植物应用论文使用 |
 | 拟南芥适应泛基因组 | [原文](https://doi.org/10.1038/s41467-023-42029-4)、[PubMed](https://pubmed.ncbi.nlm.nih.gov/37802986/)、[PMC 全文](https://pmc.ncbi.nlm.nih.gov/articles/PMC10558531/) | 32 份 HiFi 组装、Hifiasm/RagTag；OrthoFinder 家族与 17,183 单拷贝基因树；EDTA；独立 Minigraph 图构建、gfatools 变异提取、vg v1.40.0 图上映射、PLINK 筛选、MCScanX 共线性；20,326 个 SV / 1,073 个体；61 项性状、候选功能实验；完整作者、卷页、数据资源 | 摘要与结果段的 SV 总数及方法段与结果段的基因家族总数有内部差异，页面依结果段数字展示；跨领域发布闭包 |
 
@@ -39,6 +39,14 @@
 ## 高粱基准方法细节复核
 
 2026-11-21 对照出版方全文及 PMC 全文复核：论文题名、五位作者、GigaScience 2025;14:giaf121 与 DOI 一致。图构建版本为 Minigraph 0.21、PGGB 0.5.4、Minigraph-Cactus 2.7.2；图处理使用 ODGI 0.8.6；Giraffe 1.58.0；SyRI 1.6.3。六个高粱组装用于真实构图比较；另用已知结构变异构建模拟组装和读段。PGGB 图的 VG mapping index 未能生成，故 mapping comparison 只包括 Minigraph、Minigraph-Cactus 与线性 Minimap2。公开真实 paired-end reads 的比较报告总映射率与完美映射比例：Minimap2 82.47% / 68.77%，Minigraph-Cactus 73.44% / 82.77%，Minigraph 73.27% / 78.13%。这些数值描述论文指定数据及判定方式，不作为跨物种通用性能结论。[出版方方法与结果](https://academic.oup.com/gigascience/article/doi/10.1093/gigascience/giaf121/8364989)。
+
+2026-11-21 继续对照出版方全文与 PMC 结果段核验高粱基准。模拟组装中，SVIM-asm、SyRI、Minigraph-Cactus、PGGB 的 SV F1 分别为 0.93、0.91、0.89、0.83；Minigraph 检出数量不足，未获得可解释 F1。模拟图规模为 PGGB 851 Mb、Minigraph-Cactus 795 Mb、Minigraph 878 Mb；对应平均节点数约 19 万、22 万和 950。真实组装图规模为 4.7、4.2、0.92 Gb；Minigraph 仅纳入 >50 bp 变异，另两流程无相同长度过滤，因此正文将图大小作为该设置的结果并列呈现，不作同过滤条件排名。真实组装平均 BUSCO 为 95.4% 完整、2.0% duplicated；三种图展平序列依次为 Minigraph-Cactus 94.5%/16.5%、PGGB 98.7%/16.0%、Minigraph 99.4%/2.7%。PGGB 与 Minigraph-Cactus 的各输入组装图覆盖均超过 94%，Minigraph 平均约 83%。
+
+模拟 reads 由含六份输入组装及参考的图生成，论文报告 min_mapQ 60 下 Minigraph-Cactus/Giraffe 映射率 38.27%、正确映射率 99.68%，Minigraph/Giraffe 为 74.62%/95.08%；Minimap2 对线性参考为 48.67%/58.18%。min_mapQ 1 下总读段正确映射比例分别报告为 79.60%、91.91% 和 35.49%。方法段说明模拟集 100 万条、150 bp，错误率 0.24%、indel 率 0.029%。页面将 min_mapQ、模拟/真实 reads 和不同映射指标分列，并保留真实 reads 的总映射率/完美比对率：Minimap2 82.47%/68.77%、Minigraph-Cactus 73.44%/82.77%、Minigraph 73.27%/78.13%。论文未得到 PGGB 图索引，PGGB 映射性能无本研究实测结果。
+
+变异结果的证据边界亦已补入页面：模拟真值提供逐调用集 F1；真实数据的 100 次 `regioneR` 区域置换重叠检验报告 *P*=0.0099，回答已发表变异区域重叠是否高于随机背景。小变异数量和重复序列相似度按论文结果段分别归属具体流程。方法和结果摘录来源为[PMC 正文](https://pmc.ncbi.nlm.nih.gov/articles/PMC12676463/)与[出版方全文](https://academic.oup.com/gigascience/article/doi/10.1093/gigascience/giaf121/8364989)。
+
+论文页共用模板检查发现 Markdown 表格未进入文章横向滚动容器，375px 下高粱页面文档宽度为 419px。模板为全部论文详情页增加 `article.prose` 阅读容器后，Base 布局自动为宽表提供可访问的横向滚动。Edge 对高粱案例、Hifiasm 方法论文、EDTA 方法论文在 375、768、1280、1440px 检查均通过：HTTP 200、正文标题和方法链接可见、无页面级横向溢出、无页面异常；高粱页三张表均进入滚动容器。`npm run validate`、`npm run coverage` 和 `git diff --check` 通过。
 
 ## 水稻泛基因组论文与 EUPAN 核查
 

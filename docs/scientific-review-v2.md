@@ -93,3 +93,7 @@
 3. 七个专题的 SVG/交互图在 375/1280px 的 axe 审计、放大弹窗键盘与焦点、横向溢出区按键滚动已完成；下一轮对照图示对应的科学论断、图中标签和引用来源做逐项内容复核，并保留 axe 标记的 KaTeX/SVG 对比度人工检查记录。
 4. 更新公开链接过滤和关系校验，重算工具/论文/专题/教程的发布闭包并做发布态验收。
 5. 仅将满足科学审查、页面检查及依赖检查的记录改为 published。
+
+### 2026-11-21：高粱泛基因组图评测案例结果审核
+
+依据 GigaScience 出版方全文与 PMC 正文审核 `sorghum-graph-benchmark`。补齐五位作者和卷号/文章编号；区分六份真实高粱组装、带 SV 真值的模拟组装、模拟 reads 与公开真实 paired-end reads。核对图构建版本、模拟/真实图规模、BUSCO 完整度与重复率、图中输入组装覆盖、SV F1、真实数据置换检验、小变异结果及重复序列相似性。正文分别列示 Minigraph-Cactus、PGGB、Minigraph 与线性 Minimap2 结果，注明 Minigraph 的 >50 bp 变异过滤设置、PGGB 索引未生成、min_mapQ 阈值及模拟真值定义；公开真实 reads 的总比对率与完美比对率分开呈现。高粱之外仅按主文范围概述大豆、大麦和油菜分析，详细跨物种数值保留在补充材料。Edge 在 375、768、1280、1440px 检查该案例、Hifiasm 文献和 EDTA 文献共 12 个页面状态，标题、方法链接和页面宽度通过；`npm run validate` 零 Astro 诊断、54 页静态构建、Pagefind 54 页/5932 词、1276 条本地链接通过。论文及 M03 资源仍为草稿，跨领域发布依赖待闭合。来源：[出版方全文](https://academic.oup.com/gigascience/article/doi/10.1093/gigascience/giaf121/8364989)、[PMC 正文](https://pmc.ncbi.nlm.nih.gov/articles/PMC12676463/)；论断和指标明细见 `docs/m03-evidence.md`。
