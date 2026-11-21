@@ -5,7 +5,7 @@
 | 条目 | 来源 | 已核对范围 | 仍待检查 |
 | --- | --- | --- | --- |
 | AnchorWave | [原论文](https://doi.org/10.1073/pnas.2113075119)、[PubMed 书目信息](https://pubmed.ncbi.nlm.nih.gov/34934012/)、[官方仓库](https://github.com/baoxingsong/AnchorWave) | 全长 CDS/外显子锚点、最长路径组织、两段仿射 gap、玉米等植物评估；MIT；v1.3.0 命令和参数已核 | 未本机运行；用真实材料验证参数前不得宣称运行通过 |
-| SyRI | [原论文](https://doi.org/10.1186/s13059-019-1911-0)、[官方示例](https://schneebergerlab.github.io/syri/example.html) | 组装比对、共线路径和结构分类、拟南芥个案；MIT；v1.8.2 | 官方拟南芥测试集命令链已实跑；预测事件需独立验证；浏览器页面待验收 |
+| SyRI | [原论文](https://doi.org/10.1186/s13059-019-1911-0)、[PubMed 书目](https://pubmed.ncbi.nlm.nih.gov/31842948/)、[官方示例](https://schneebergerlab.github.io/syri/example.html) | 完整作者 Manish Goel、Hequan Sun、Wen-Biao Jiao、Korbinian Schneeberger；组装比对、共线路径和结构分类、拟南芥个案；MIT；v1.8.2 | 官方拟南芥测试集命令链已实跑；预测事件需独立验证；浏览器页面待验收 |
 | Minigraph | [方法论文](https://doi.org/10.1186/s13059-020-02168-z)、[官方仓库](https://github.com/lh3/minigraph) | 参考骨架增量构图、rGFA/GAF 与 bubble 接口；v0.21（r606）；MIT；官方命令已核 | 未本机运行；植物应用与 Minigraph-Cactus 已拆开建立关系 |
 | Minigraph-Cactus | [原论文](https://doi.org/10.1038/s41587-023-01793-w)、[官方文档](https://github.com/ComparativeGenomicsToolkit/cactus/blob/master/doc/pangenome.md)、[许可证](https://github.com/ComparativeGenomicsToolkit/cactus/blob/master/LICENSE.txt) | minigraph 图映射/分区与 Cactus 序列级对齐；v4.0.0 快照；主仓库 MIT 文本排除部分 externalTools | 未本机运行；各外部工具需独立检查许可证与资源需求 |
 | PGGB | [原论文](https://doi.org/10.1038/s41592-024-02430-3)、[官方仓库](https://github.com/pangenome/pggb) | wfmash 全对全比对→seqwish 图诱导→smoothxg/gfaffix 规范化；MIT；v0.7.4 快照与 `-i/-o/-n/-t/-p/-s` 用途已核 | 依赖组件版本与具体参数未实跑；需逐步核对工作流输出 |
