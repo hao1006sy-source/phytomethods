@@ -2,7 +2,7 @@
 title: 基因组选择
 summary: 利用全基因组标记和训练群体预测植物材料的遗传表现。
 domain: gwas-breeding
-methods: []
+methods: [gapit]
 status: draft
 updatedAt: 2026-11-21
 ---

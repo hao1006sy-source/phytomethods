@@ -5,7 +5,7 @@ summary: 基于全对全序列比对构建泛基因组变异图。
 dataType: 多样本序列 FASTA
 principle: 全对全比对与图规范化
 domainIds: [pangenomics-structural-variation]
-topicIds: [m03-topic-05]
+topicIds: [m03-topic-01, m03-topic-03, m03-topic-04, m03-topic-05]
 principleIds: [graph-genomics]
 dataIds: [assembly]
 paper: pggb-paper

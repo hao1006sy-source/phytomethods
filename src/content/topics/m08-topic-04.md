@@ -2,7 +2,7 @@
 title: 标记基因与细胞类型注释
 summary: 利用多个标记基因、参考图谱和组织证据解释植物单细胞群。
 domain: single-cell-spatial-omics
-methods: []
+methods: [scanpy]
 status: draft
 updatedAt: 2026-11-21
 ---

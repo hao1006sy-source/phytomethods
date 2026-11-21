@@ -2,7 +2,7 @@
 title: GWAS 结果解读：Manhattan、QQ 与候选基因
 summary: 从关联统计图、连锁不平衡和独立证据解释候选区域。
 domain: gwas-breeding
-methods: []
+methods: [gapit, scipy]
 status: draft
 updatedAt: 2026-11-21
 ---

@@ -2,7 +2,7 @@
 title: 单细胞质控、归一化与批次校正
 summary: 基于样本分布、实验重复和原始计数开展质控及批次整合。
 domain: single-cell-spatial-omics
-methods: []
+methods: [scanpy]
 status: draft
 updatedAt: 2026-11-21
 ---

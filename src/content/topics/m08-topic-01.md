@@ -2,7 +2,7 @@
 title: 单细胞与单核测序基础
 summary: 从植物细胞与细胞核制备、UMI 和表达矩阵理解单细胞数据。
 domain: single-cell-spatial-omics
-methods: []
+methods: [scanpy]
 status: draft
 updatedAt: 2026-11-21
 ---

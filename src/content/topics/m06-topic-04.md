@@ -2,7 +2,7 @@
 title: GWAS 模型：GLM、混合模型与多位点方法
 summary: 理解固定效应、亲缘关系及 FarmCPU、BLINK 的模型定位。
 domain: gwas-breeding
-methods: []
+methods: [gapit]
 status: draft
 updatedAt: 2026-11-21
 ---

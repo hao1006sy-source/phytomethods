@@ -2,7 +2,7 @@
 title: 基因共表达网络
 summary: 理解表达相关、加权网络、模块和模块与性状之间的关系。
 domain: regulatory-genomics-ai
-methods: []
+methods: [wgcna]
 status: draft
 updatedAt: 2026-11-21
 ---

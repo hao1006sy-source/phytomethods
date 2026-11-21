@@ -2,7 +2,7 @@
 title: 单细胞降维与聚类
 summary: 从高变基因、PCA、邻近图到 UMAP 和图聚类的分析逻辑。
 domain: single-cell-spatial-omics
-methods: []
+methods: [scanpy]
 status: draft
 updatedAt: 2026-11-21
 ---

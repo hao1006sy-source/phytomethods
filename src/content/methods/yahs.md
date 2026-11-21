@@ -4,7 +4,7 @@ name: YaHS
 summary: 使用 Hi-C 配对联系将单倍型组装 contig 排序、定向并连接为染色体级 scaffold。
 dataType: contig FASTA 与 Hi-C BAM、BED、PA5 或 BIN 比对数据
 principle: 基于多分辨率 Hi-C 接触矩阵和加权连接图的 scaffold 构建
-domainIds: [genome-assembly, pangenomics-structural-variation]
+domainIds: [genome-assembly]
 topicIds: [hic-scaffolding]
 principleIds: [hic-scaffolding]
 dataIds: [assembly, hic-contact-data]

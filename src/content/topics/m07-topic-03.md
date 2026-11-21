@@ -2,7 +2,7 @@
 title: 差异甲基化区域分析
 summary: 从位点计数、统计模型与生物学重复识别和解释差异甲基化区域。
 domain: epigenomics-3d-genome
-methods: []
+methods: [bismark]
 status: draft
 updatedAt: 2026-11-21
 ---

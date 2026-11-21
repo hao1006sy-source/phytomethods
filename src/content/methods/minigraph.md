@@ -5,7 +5,7 @@ summary: 以参考骨架引导组装序列逐步加入泛基因组图，并支�
 dataType: 参考基因组或 rGFA 图 / 单样本组装 FASTA
 principle: 参考引导的序列到图映射与增量构图
 domainIds: [pangenomics-structural-variation]
-topicIds: [m03-topic-05]
+topicIds: [m03-topic-01, m03-topic-03, m03-topic-04, m03-topic-05]
 principleIds: [graph-genomics]
 dataIds: [assembly, graph]
 paper: minigraph-paper

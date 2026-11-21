@@ -2,7 +2,7 @@
 title: GWAS 关联检验基础
 summary: 从基因型、表型与统计检验理解全基因组关联分析。
 domain: gwas-breeding
-methods: []
+methods: [gapit, scipy]
 status: draft
 updatedAt: 2026-11-21
 ---

@@ -5,7 +5,7 @@ summary: 结合组装比对与碱基级对齐构建泛基因组图。
 dataType: 多个组装 FASTA
 principle: 泛基因组图构建
 domainIds: [pangenomics-structural-variation]
-topicIds: [m03-topic-05]
+topicIds: [m03-topic-01, m03-topic-03, m03-topic-04, m03-topic-05]
 principleIds: [graph-genomics]
 dataIds: [assembly]
 paper: minigraph-cactus-paper

@@ -6,7 +6,7 @@ version: 1.78.0
 dataType: 变异图 / FASTQ reads
 principle: 图索引、种子匹配和单倍型感知比对
 domainIds: [pangenomics-structural-variation]
-topicIds: [m03-topic-06]
+topicIds: [m03-topic-03, m03-topic-06]
 principleIds: [graph-genomics, minimizer]
 dataIds: [graph, short-reads, long-reads, hifi]
 paper: vg-paper

@@ -418,11 +418,7 @@
       "orthofinder",
       "minigraph",
       "pggb",
-      "minigraph-cactus",
-      "hifiasm",
-      "yahs",
-      "syri",
-      "vg"
+      "minigraph-cactus"
     ],
     "principleIds": [
       "alignment",

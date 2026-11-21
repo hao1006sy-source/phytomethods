@@ -2,7 +2,7 @@
 title: 单细胞拟时序与发育轨迹
 summary: 理解连续细胞状态、轨迹推断、根节点和分叉的解释。
 domain: single-cell-spatial-omics
-methods: []
+methods: [scanpy]
 status: draft
 updatedAt: 2026-11-21
 ---

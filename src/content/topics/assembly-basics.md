@@ -2,7 +2,7 @@
 title: 基因组组装基础
 summary: 从序列片段理解连续组装与染色体挂载。
 domain: genome-assembly
-methods: [hifiasm, verkko]
+methods: [hifiasm, verkko, merqury]
 updatedAt: 2026-11-20
 ---
 ## 研究背景和生物学问题

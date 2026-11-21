@@ -2,7 +2,7 @@
 title: DNA 甲基化检测
 summary: 理解亚硫酸氢盐测序、甲基化计数和植物不同序列背景的解释。
 domain: epigenomics-3d-genome
-methods: []
+methods: [bismark]
 status: draft
 updatedAt: 2026-11-21
 ---
