@@ -13,7 +13,7 @@ try {
   for (const [topic, selector] of [
     ['m03-topic-02', '.katex-display'],
     ['m03-topic-02', '.stage'],
-    ['m03-topic-05', 'table'],
+    ['m03-topic-05', '.table-scroll'],
     ['m03-topic-05', '.graph-stage'],
     ['m03-topic-06', '.katex-display'],
   ]) {
@@ -126,6 +126,29 @@ try {
         if (arrowheads !== 4) throw new Error(`M03-07 workflow expected 4 arrowheads; received ${arrowheads}`);
         if (!(await page.locator('#workflow-desc').textContent()).includes('分支或迭代')) {
           throw new Error('M03-07 workflow does not explain that study designs can branch or iterate');
+        }
+        if (width === 375) {
+          const tableRegion = page.locator('.table-scroll--wide');
+          const tableMetrics = await tableRegion.evaluate(element => ({client:element.clientWidth,scroll:element.scrollWidth,tabindex:element.getAttribute('tabindex'),label:element.getAttribute('aria-label')}));
+          if (tableMetrics.scroll <= tableMetrics.client + 1 || tableMetrics.tabindex !== '0') {
+            throw new Error(`M03-07 wide table is not keyboard-scrollable at 375px: ${JSON.stringify(tableMetrics)}`);
+          }
+          if (!tableMetrics.label?.includes('可使用方向键横向滚动查看')) {
+            throw new Error(`M03-07 table scroll region has no useful accessible label: ${JSON.stringify(tableMetrics)}`);
+          }
+          const visualCue = await tableRegion.evaluate(element => getComputedStyle(element, '::before').content);
+          if (!visualCue.includes('表格可横向滑动查看')) {
+            throw new Error(`M03-07 wide table has no visible mobile scroll cue: ${visualCue}`);
+          }
+          await tableRegion.focus();
+          await page.keyboard.press('End');
+          if (await tableRegion.evaluate(element => element.scrollLeft) <= 0) {
+            throw new Error('M03-07 wide table did not respond to End at 375px');
+          }
+          await page.keyboard.press('Home');
+          if (await tableRegion.evaluate(element => element.scrollLeft) !== 0) {
+            throw new Error('M03-07 wide table did not respond to Home at 375px');
+          }
         }
       }
 

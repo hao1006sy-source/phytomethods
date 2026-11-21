@@ -119,6 +119,12 @@ const nav=[['首页',''],['研究领域','topics/'],['算法与工具','methods/
 
   function getScrollRegionLabel(element: HTMLElement) {
     if (element.matches('.katex-display')) return '数学公式，可使用方向键横向滚动查看';
+    if (element.matches('.table-scroll')) {
+      const table = element.querySelector('table');
+      const caption = table?.caption?.textContent?.trim();
+      const headings = [...(table?.querySelectorAll('th') ?? [])].map(cell => cell.textContent?.trim()).filter(Boolean).join('、');
+      return `${caption || headings || '文章数据表'}，可使用方向键横向滚动查看`;
+    }
     if (element instanceof HTMLTableElement) {
       return element.caption?.textContent?.trim() || '数据表，可使用方向键横向滚动查看';
     }
@@ -171,6 +177,16 @@ const nav=[['首页',''],['研究领域','topics/'],['算法与工具','methods/
       }
     });
   }
+
+  document.querySelectorAll<HTMLTableElement>('main article.prose table').forEach(table => {
+    if (table.closest('.table-scroll')) return;
+    const wrapper = document.createElement('div');
+    wrapper.className = 'table-scroll';
+    const columnCount = table.querySelector('tr')?.children.length ?? 0;
+    if (columnCount >= 4) wrapper.classList.add('table-scroll--wide');
+    table.before(wrapper);
+    wrapper.append(table);
+  });
 
   updateScrollableRegionAccessibility();
   window.addEventListener('resize', updateScrollableRegionAccessibility, {passive: true});
