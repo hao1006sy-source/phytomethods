@@ -118,3 +118,7 @@
 ### 2026-11-21：SyRI 书目核对补充
 
 依据 PubMed 原始论文记录补全 SyRI 四位作者，并核对 2019 年、Genome Biology 与 DOI 10.1186/s13059-019-1911-0；同步更新证据台账和科学审核记录。授权环境下 `npm run validate` 通过，Astro 检查 0 错误/警告，54 页静态站点、54 页 Pagefind 中文索引和 1222 条内部链接通过。记录仍保持草稿状态。
+
+### 2026-11-21：拟南芥泛基因组案例方法关系核查
+
+对照 Nature Genetics 原文与 PubMed、Nature Communications/PMC 全文复核两篇 M03 植物案例的方法步骤。69 份材料研究核对 OrthoFinder v2.5.4、PLINK、ADMIXTURE v1.3.0；32 份材料适应研究核对 Hifiasm、OrthoFinder、IQ-TREE v2.0.3、独立 Minigraph、vg v1.40.0、PLINK、MCScanX。更新两篇论文的 `methodIds` 与方法说明，保留跨 M04/M05 关系；仍为草稿，等待完整发布依赖闭包和全篇审核。`npm run validate`、`npm run coverage` 与 M03 七专题及交互图四视口 Edge 检查通过；测试使用本地开发预览，不代表正式发布态验收。

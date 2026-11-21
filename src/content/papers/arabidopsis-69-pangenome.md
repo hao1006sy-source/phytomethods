@@ -6,11 +6,11 @@ year: 2024
 journal: Nature Genetics
 doi: 10.1038/s41588-024-01715-9
 type: application
-methodIds: [orthofinder]
+methodIds: [orthofinder, plink, admixture]
 domainIds: [pangenomics-structural-variation, comparative-genomics]
 speciesIds: [arabidopsis]
 status: draft
 updatedAt: 2026-11-21
 ---
 ## 研究与方法
-研究比较 69 份拟南芥组装，分析基因组结构和基因家族。方法部分说明利用 OrthoFinder 定义基因家族，并通过重复抽样估计泛基因组与核心基因组大小。[论文原文](https://doi.org/10.1038/s41588-024-01715-9)；[PubMed](https://pubmed.ncbi.nlm.nih.gov/38605175/)。
+研究比较 69 份拟南芥组装，分析基因组结构和基因家族。OrthoFinder v2.5.4 用于定义基因家族；PLINK 用于连锁不平衡剪枝和 PCA；ADMIXTURE v1.3.0 用于 K=2–5 的群体结构推断。泛基因组和核心基因组大小则通过对不同样本数进行重复抽样估计。[论文原文及方法](https://doi.org/10.1038/s41588-024-01715-9)；[PubMed](https://pubmed.ncbi.nlm.nih.gov/38605175/)。

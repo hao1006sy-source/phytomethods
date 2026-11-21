@@ -13,9 +13,10 @@
 | ODGI | [原论文](https://doi.org/10.1093/bioinformatics/btac308)、[官方仓库](https://github.com/pangenome/odgi) | 图、路径的存储、统计和可视化；MIT；v0.9.4 快照与 `build/stats/sort/viz/draw` 职责已核 | 未本机运行；图布局不能作为线性距离，格式兼容按版本确认 |
 | 水稻多组装 | [Zhao 等，2018](https://doi.org/10.1038/s41588-018-0041-z) | 栽培和野生水稻材料、基因内容与序列变异 | 个别定量结果和完整分析链 |
 | 3,010 水稻材料 | [Wang 等，2018](https://pubmed.ncbi.nlm.nih.gov/29695866/) | 文章标题、年份、期刊、泛基因组与 PAV | 按正文逐项检查分析流程 |
+| 拟南芥 69 份材料 | [Lian 等，2024 原文](https://www.nature.com/articles/s41588-024-01715-9)、[PubMed](https://pubmed.ncbi.nlm.nih.gov/38605175/) | DOI、年份、期刊、9 位作者；OrthoFinder v2.5.4 基因家族、PLINK 连锁剪枝/PCA、ADMIXTURE v1.3.0 群体结构及对应关系已核 | 结果页面逐句复核及跨 M05 关联发布闭包 |
 | 高粱图比较 | [Kopalli 等，2025](https://doi.org/10.1093/gigascience/giaf121)、[出版方全文](https://academic.oup.com/gigascience/article/doi/10.1093/gigascience/giaf121/8364989) | 六份真实高粱组装；Minigraph 0.21、PGGB 0.5.4、Minigraph-Cactus 2.7.2；ODGI 0.8.6、VG Giraffe 1.58.0、SyRI 1.6.3；模拟与真实读段映射任务已分开核 | 方法细节及页面关联已补；结果解释仍待逐项复审 |
 | Minigraph 方法论文 | [Li、Feng、Chu，2020](https://pubmed.ncbi.nlm.nih.gov/33066802/) | 标题、作者、期刊卷页、DOI；方法论文以人类组装方法为主 | 未作为植物应用论文使用 |
-| 拟南芥适应泛基因组 | [原文](https://doi.org/10.1038/s41467-023-42029-4) | 方法部分明确使用 OrthoFinder、IQ-TREE v2.0.3 和独立 Minigraph | 工具关联与 Minigraph-Cactus 区分；论文页已补 Minigraph ID |
+| 拟南芥适应泛基因组 | [原文](https://doi.org/10.1038/s41467-023-42029-4)、[PubMed/PMC 全文](https://pmc.ncbi.nlm.nih.gov/articles/PMC10558531/) | 方法部分确认 Hifiasm、OrthoFinder、IQ-TREE v2.0.3、独立 Minigraph、vg v1.40.0、PLINK、MCScanX 的用途；32 份 HiFi 组装，图上映射 1,135 份个体 reads，过滤后保留 1,073 个体及 20,326 个 SV 位点 | 结果页面逐句复核和跨领域发布闭包 |
 
 图中的样本和序列均为教学模型，未作为真实实验结果。教程 `syri-intro` 已使用 SyRI 1.8.2 和官方拟南芥测试数据执行 NUCmer 到 SyRI 的流程；记录见 `examples/syri/verified-20261121/`。原论文中出现的工具和本网站工具之间的关联，应逐项依据方法部分确认。
 
@@ -25,6 +26,7 @@
 - vg 补充 [Giraffe 短读段方法论文](https://doi.org/10.1126/science.abg8871)、[当前索引说明](https://github.com/vgteam/vg/wiki/Index-Construction)与[许可](https://github.com/vgteam/vg/blob/master/LICENSE)。高粱论文以模拟 reads 评估有真值的映射准确度，也以公开真实 paired-end reads 比较图和线性参考映射；PGGB 因索引所需计算和内存未参与映射比较。vg 本机未运行。
 - AnchorWave 官方 README v1.3.0 列出 `gff2seq`、`genoAli`、`proali` 和 `ali`；`genoAli` 主要覆盖同名染色体全局比对并可选 `-IV`，`proali` 处理重定位、融合或 WGD 深度差异，`-R/-Q` 需用户根据生物学背景选择。默认 `-w 100000` 对应常规预算约 9.3 GiB，但不构成硬 RSS 上限；`-fa3` 默认值在 1.3.0 中由旧阈值 100000 改为 50000。
 - Minigraph 官方 v0.21/r606 README 说明参考引导图构建输入应按完整组装逐样本提供，示例包含 GFA/rGFA、GAF 与 bubble BED 类输出；MIT 许可已核对。独立 Minigraph 的关系补入拟南芥 2023 应用论文，未将其归到 Minigraph-Cactus。
+- 2026-11-21 对照 Nature Genetics 出版方方法和 PubMed 书目信息核对拟南芥 69 份材料论文：OrthoFinder v2.5.4 定义基因家族，PLINK 执行 LD pruning/PCA，ADMIXTURE v1.3.0 推断 K=2–5 群体结构。对照 PMC 全文核对拟南芥 2023 适应研究：Hifiasm 组装 32 份 HiFi 材料；OrthoFinder 与 IQ-TREE v2.0.3 用于基因家族和系统树；独立 Minigraph 构图、vg v1.40.0 对 1,135 份个体短读段进行图映射；PLINK 过滤变异，MCScanX 分析共线性。论文元数据关系已按这些方法步骤补齐；这些草稿的跨领域依赖仍未关闭。
 - 高粱基准在六份真实组装设置中报告 Minigraph、PGGB、Minigraph-Cactus 图大小约 0.92、4.7、4.2 Gb；Minigraph 只纳入 >50 bp 变异，而另两流程没有相同长度过滤。Giraffe mapping evaluation 同时包含由图生成的模拟 reads 和公开真实 paired-end reads；PGGB 未纳入映射比较。图大小不代表普遍质量排序；模拟定位真值指标与真实样本映射比例分别解释。
 
 ## 高粱基准方法细节复核

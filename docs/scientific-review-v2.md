@@ -50,6 +50,8 @@
 
 首轮查看 M03 相关 12 条论文记录、工具页和专题元数据，并新增独立 Minigraph 方法论文。AnchorWave PubMed 记录确认完整作者为 Baoxing Song、Santiago Marco-Sola、Miquel Moreto、Lynn Johnson、Edward S. Buckler、Michelle C. Stitzer；正式出版年为 2022。SyRI PubMed 记录确认完整作者为 Manish Goel、Hequan Sun、Wen-Biao Jiao、Korbinian Schneeberger，期刊为 Genome Biology，年份为 2019，DOI 为 10.1186/s13059-019-1911-0。Minigraph 方法论文作者、题名、卷/文章号和 DOI 已在 PubMed/期刊页核实。高粱 GigaScience 原文确认 Minigraph、PGGB、Minigraph-Cactus 三种构图方法、SyRI/SVIM-asm 组装变异比较、Giraffe 模拟与真实 paired-end read mapping 及不同任务所用数据；PGGB 因索引资源需求未参与映射比较，图大小比较受 >50 bp 过滤差异影响。其他 M03 文献元数据和案例仍需逐篇核对后关闭。
 
+2026-11-21 对照出版方与 PMC 方法段复核两篇拟南芥应用论文，并按论文实际使用情况更新稳定工具关系：2024 年 69 份组装研究关联 OrthoFinder、PLINK、ADMIXTURE；2023 年 32 份组装研究关联 Hifiasm、OrthoFinder、IQ-TREE、Minigraph、vg、PLINK 和 MCScanX。M03 与 M04/M05 工具记录之间的关系保留在草稿内容数据中，发布闭包尚未完成。
+
 已修正 AnchorWave 作者字段并更新 `docs/m03-evidence.md`；M03 工具页和主题页已区分独立 Minigraph、Minigraph-Cactus、PGGB 与 vg 的职责；SyRI 输出数量标为固定测试输入和参数下的运行摘要，不是独立生物学验证。其余论文元数据和案例关系逐条完成出版社或 PubMed 复核前继续保留草稿。
 
 当前结构化关系保留跨领域真实工具关系（例如 OrthoFinder、IQ-TREE、ADMIXTURE）。这会影响发布闭包。公开页面必须仅链接已发布目标；关系数据库中的草稿边继续保存，后续领域通过分阶段发布补齐。
