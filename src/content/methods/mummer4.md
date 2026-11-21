@@ -2,6 +2,7 @@
 title: MUMmer4
 name: MUMmer4
 summary: 通过最大精确匹配锚点、聚类和局部延伸比较近缘基因组及组装序列。
+version: 4.0.1
 dataType: 组装 FASTA；一个或多个核苷酸序列集合
 principle: 精确匹配锚点与局部比对
 domainIds: [pangenomics-structural-variation]
@@ -21,6 +22,9 @@ MUMmer4 使用后缀数组索引参考序列以搜索最大精确匹配（maxima
 
 ## 输入、输出与使用注意
 典型组装间比较输入为参考与查询 FASTA；`nucmer` 产生 `.delta`，可进一步用 `show-coords` 生成坐标表，或通过 `delta-filter` 得到筛选后的 delta。输出包含局部比对区间，不会自动给出经过生物学验证的共线块或结构变异结论。参考/查询顺序、FASTA 序列 ID、反向方向、重复过滤和下游工具需要的格式都应记录。MUMmer4 原论文验证其在大规模基因组序列比较中的计算性能，专题中的植物分析步骤属于方法应用说明，本站未将其描述为某一特定植物案例。
+
+## 版本与许可
+对照官方发布页记录，当前版本快照为 MUMmer4 v4.0.1；上游项目标注 Artistic-2.0 许可。版本和许可应以具体下载的发布包及其附带文本为准。[官方发布页](https://github.com/mummer4/mummer/releases)；[项目许可标识](https://github.com/mummer4)。
 
 ## 相关资源
 - 原始方法论文：[Marçais 等，2018](../../../papers/mummer4-paper/)

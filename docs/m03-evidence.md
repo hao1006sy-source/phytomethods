@@ -26,6 +26,8 @@
 
 2026-11-21 对照 [GFA v1 格式规范](https://github.com/GFA-spec/GFA-spec/blob/master/GFA1.md)复核 M03-05 的交互路径图：segment 表示连续序列片段，link 包含连接端方向和重叠长度，path 是按顺序排列的有向片段。图中 A–D 仅为教学占位符，正向路径和连线省略了节点方向、碱基长度、重叠及坐标；两条预设路径分别为 A–B–D、A–C–D。图注明确该图为原理示意，未模拟 GFA 文件或真实变异输出。该边界与 Minigraph 官方说明中“图可包含输入样本未实际出现的 bubble 遍历路径”一致。Minigraph 的图构建输入是逐份完整组装并增量映射至已有图；PGGB 则以 wfmash 全对全比对、seqwish 图诱导和 smoothxg/gfaffix 规范化为主流程。来源：[Minigraph 官方 README](https://github.com/lh3/minigraph/blob/master/README.md)、[PGGB 官方 README](https://github.com/pangenome/pggb/blob/master/README.md)。`npm run test:figure-a11y` 已覆盖四种视口下的路径选择、文字说明、重置和放大弹窗；科学审查结论仅覆盖上述图意和流程区分，专题其他生物学论断仍需逐条审核。
 
+2026-11-21 对照上游发布页及仓库许可记录更新 M03-02 两个新工具的版本快照：MUMmer4 v4.0.1、Artistic-2.0；minimap2 v2.31 (r1302)、MIT。版本字段与工具页正文一致，许可链接指向项目发布/许可文件；页面将版本作为核查时的快照，复现既有研究仍以论文记载的软件版本和参数为准。未安装或运行这两个软件。来源：[MUMmer4 releases](https://github.com/mummer4/mummer/releases)、[MUMmer4 项目](https://github.com/mummer4)、[minimap2 releases](https://github.com/lh3/minimap2/releases)、[minimap2 MIT License](https://github.com/lh3/minimap2/blob/master/LICENSE.txt)。
+
 ## 版本来源快照
 2026-11-21 查阅官方发布页：AnchorWave [v1.3.0](https://github.com/baoxingsong/AnchorWave/releases)、SyRI [v1.8.2](https://github.com/schneebergerlab/syri/releases)、Minigraph [v0.21/r606](https://github.com/lh3/minigraph/releases)、PGGB [v0.7.4](https://github.com/pangenome/pggb/releases)、ODGI [v0.9.4](https://github.com/pangenome/odgi/releases)、vg [v1.78.0](https://github.com/vgteam/vg/releases)及 Cactus [v4.0.0](https://github.com/ComparativeGenomicsToolkit/cactus/releases)。EUPAN 官方工具页的最新版本记录为 [v0.44（2017-10-23）](https://cgm.sjtu.edu.cn/eupan/index.html)，许可为非商业使用 CC BY-NC 4.0。版本来源快照不代表本机安装。仅 SyRI 1.8.2 已在隔离环境运行；高粱论文使用历史软件版本，版本快照不可取代论文方法部分。
 

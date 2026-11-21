@@ -2,12 +2,13 @@
 title: minimap2
 name: minimap2
 summary: 以 minimizer 种子、链化和局部碱基比对高效比对长序列、reads 与组装。
+version: 2.31 (r1302)
 dataType: 长序列 FASTA/FASTQ；组装 FASTA；依预设支持短 reads 或转录本
 principle: minimizer 索引与锚点链化
 domainIds: [pangenomics-structural-variation]
 topicIds: [m03-topic-02]
 principleIds: [alignment, minimizer]
-dataIds: [assembly, dna-sequence, short-reads, hifi, ont-ul]
+dataIds: [assembly, dna-sequence, short-reads, hifi]
 paper: minimap2-paper
 repository: https://github.com/lh3/minimap2
 status: draft
@@ -24,6 +25,9 @@ minimap2 是面向多类核苷酸序列比对的通用程序，支持长读段�
 
 ## 植物应用边界
 minimap2 可作为植物组装间比较和长读段映射的通用比对器；具体案例应以原论文方法段记录的软件版本、预设和数据类型为准。M03-02 中的植物案例展示其与 AnchorWave、SyRI 等工具的流程关系，未将人类/细菌 benchmark 当作植物验证。
+
+## 版本与许可
+以官方发布页为版本快照，记录 minimap2 v2.31（r1302）；官方仓库附 MIT License。复现已有论文时仍应使用论文方法部分记载的历史版本及预设。[官方发布页](https://github.com/lh3/minimap2/releases)；[MIT License](https://github.com/lh3/minimap2/blob/master/LICENSE.txt)。
 
 ## 相关资源
 - 原始方法论文：[Li，2018](../../../papers/minimap2-paper/)
