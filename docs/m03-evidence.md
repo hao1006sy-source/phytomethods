@@ -51,3 +51,7 @@
 ## M03-06 图上比对教学模型复核
 
 2026-11-21 对照 [Giraffe 原始论文](https://pmc.ncbi.nlm.nih.gov/articles/PMC9365333/)核查方法页：Giraffe 使用 GBWT 表示及查询图中的单倍型路径，以 minimizer 建立种子，按图距离对候选种子聚类，沿单倍型路径延伸无缺口匹配，剩余位置才进入带缺口比对。论文案例为人类基因组；正文将 5,202 份个体和约 167,000 个已知 SV 明确标为人类方法评估。对照 [vg 官方索引文档](https://github.com/vgteam/vg/wiki/Index-Construction)，Giraffe 的索引组合包括 GBZ/GBWT、distance 和 minimizer，短读段与长读段索引参数区分。M03-06 的交互教学字符串拼接为甲 ACGTTG、乙 ACCATG；读段 AC 同时是共享子串，CGTT 仅匹配甲，CCAT 仅匹配乙，按钮只模拟精确子串筛选，不模拟 Giraffe 的种子评分或基因型调用。`npm run test:figure-a11y` 已检查三种读段选择和重置。专题其他原理、公式及植物案例仍需继续审核。
+
+## M03-07 泛基因组研究路线示意复核
+
+2026-11-21 检查 M03-07 的原创路线图：五个阶段按常见信息推进顺序排列，新增箭头以区分步骤方向；SVG 替代文本及图注均说明研究设计可按数据和问题分支或迭代。图是通用原理示意，不代表 ODGI、Minigraph、PGGB 或其他软件的特定输出，也不主张所有植物项目遵循固定线性流水线。对照 [ODGI 官方 Sort and Layout 教程](https://odgi.readthedocs.io/en/latest/rst/tutorials/sort_layout.html)和 [`odgi viz` 命令文档](https://github.com/pangenome/odgi/blob/master/docs/rst/commands/odgi_viz.rst)：图节点排序与一维/二维布局服务于图结构的呈现；一维视图按节点次序显示路径片段及图连接。该图与软件生成的路径布局分开说明。Edge/Playwright 回归在 375、768、1280、1440 px 检查了四个方向箭头、分支/迭代替代文本、图放大与横向溢出；静态构建产物的标题、图注和四个箭头几何断言通过。此条仅审核图的语义和说明，不代表 M03-07 正文已完成全面科学审核。

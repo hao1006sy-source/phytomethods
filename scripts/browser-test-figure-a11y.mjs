@@ -114,6 +114,21 @@ try {
       const response = await page.goto(topicUrl(topic));
       if (response?.status() !== 200) throw new Error(`${topic} returned ${response?.status()}`);
 
+      if (topic === 'm03-topic-07') {
+        const route = page.locator('svg[aria-labelledby="workflow-title workflow-desc"]');
+        if (await route.locator('[data-arrowhead="workflow"]').count() !== 1) {
+          throw new Error('M03-07 workflow does not expose its four directional arrowheads');
+        }
+        const arrowheads = await route.locator('[data-arrowhead="workflow"]').evaluate(element => {
+          const path = element;
+          return path.getAttribute('d')?.match(/z/gi)?.length ?? 0;
+        });
+        if (arrowheads !== 4) throw new Error(`M03-07 workflow expected 4 arrowheads; received ${arrowheads}`);
+        if (!(await page.locator('#workflow-desc').textContent()).includes('分支或迭代')) {
+          throw new Error('M03-07 workflow does not explain that study designs can branch or iterate');
+        }
+      }
+
       if (topic === 'm03-topic-05') {
         const sampleA = page.locator('#sample-a');
         const sampleB = page.locator('#sample-b');
