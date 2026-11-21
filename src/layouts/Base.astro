@@ -8,6 +8,172 @@ const nav=[['首页',''],['研究领域','topics/'],['算法与工具','methods/
 ---
 <!doctype html><html lang="zh-CN"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width"/><meta name="description" content="植物基因组学与生物信息学方法知识库"/><title>{title} | PhytoMethods</title></head><body><header class="site-header"><div class="wrap header-inner"><a href={base} class="brand-lockup" aria-label="PhytoMethods 首页"><span class="brand-mark"><svg viewBox="0 0 32 32" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M16 27V14M16 20C8 20 5 15 5 9c7 0 11 3 11 9M16 15C17 8 22 5 27 5c0 7-4 11-11 12"/></svg></span><span><span class="brand-name">PhytoMethods</span><span class="brand-sub">植物基因组学与生物信息学方法知识库</span></span></a><nav class="site-nav" aria-label="主导航">{nav.map(([label,href])=><a href={`${base}${href}`} class={href==='search/'?'nav-search':undefined} aria-current={(href?path.startsWith(`${base}${href}`):path===base)?'page':undefined}>{label}</a>)}</nav></div></header><main class:list={['wrap',{'home-main':home}]} data-pagefind-body><slot /></main><footer class="site-footer"><div class="wrap footer-inner"><div><div class="footer-brand">PhytoMethods</div><div class="footer-note">植物基因组学与生物信息学方法知识库</div></div><div><a href={`${base}about/`}>关于本站</a>　 <a href={`${base}papers/`}>内容来源</a>　 <a href="https://github.com/hao1006sy-source/phytomethods">GitHub ↗</a></div></div></footer></body></html>
 <script>
-  document.querySelectorAll<HTMLElement>('figure').forEach(figure => {const svg=figure.querySelector('svg');if(!svg)return;const button=document.createElement('button');button.type='button';button.textContent='放大图解';button.addEventListener('click',()=>{const dialog=document.createElement('dialog');dialog.className='figure-dialog';const close=document.createElement('button');close.textContent='关闭';close.addEventListener('click',()=>dialog.close());dialog.addEventListener('close',()=>dialog.remove());dialog.append(close,svg.cloneNode(true));document.body.append(dialog);dialog.showModal()});figure.append(button)});
+  let figureDialogSequence = 0;
+
+  function enableHorizontalKeyboardScroll(element: HTMLElement) {
+    if (element.dataset.pmScrollKeyboard === 'true') return;
+    element.dataset.pmScrollKeyboard = 'true';
+    element.addEventListener('keydown', event => {
+      if (element.scrollWidth <= element.clientWidth + 1) return;
+      const distance = Math.max(40, Math.round(element.clientWidth * 0.15));
+      const key = (event as KeyboardEvent).key;
+      if (key === 'ArrowRight') {
+        event.preventDefault();
+        element.scrollLeft = Math.min(element.scrollWidth - element.clientWidth, element.scrollLeft + distance);
+      } else if (key === 'ArrowLeft') {
+        event.preventDefault();
+        element.scrollLeft = Math.max(0, element.scrollLeft - distance);
+      } else if (key === 'Home') {
+        event.preventDefault();
+        element.scrollLeft = 0;
+      } else if (key === 'End') {
+        event.preventDefault();
+        element.scrollLeft = element.scrollWidth - element.clientWidth;
+      }
+    });
+  }
+
+  function makeUniqueSvgIds(svg: SVGSVGElement, suffix: string) {
+    const elements = [svg, ...svg.querySelectorAll<SVGElement>('*')];
+    const replacements = new Map<string, string>();
+
+    for (const element of elements) {
+      if (element.id) replacements.set(element.id, `${element.id}-${suffix}`);
+    }
+
+    for (const element of elements) {
+      const previousId = element.id;
+      if (previousId) element.id = replacements.get(previousId) ?? previousId;
+
+      for (const attribute of element.getAttributeNames()) {
+        const value = element.getAttribute(attribute);
+        if (!value) continue;
+        const updated = value
+          .replace(/url\(#([^)]+)\)/g, (_match, id: string) => `url(#${replacements.get(id) ?? id})`)
+          .replace(/#([A-Za-z_][\w:.-]*)/g, (_match, id: string) => `#${replacements.get(id) ?? id}`)
+          .split(/\s+/)
+          .map(token => replacements.get(token) ?? token)
+          .join(' ');
+        if (updated !== value) element.setAttribute(attribute, updated);
+      }
+    }
+  }
+
+  document.querySelectorAll<HTMLElement>('figure').forEach(figure => {
+    const svg = figure.querySelector<SVGSVGElement>('svg');
+    if (!svg) return;
+
+    const trigger = document.createElement('button');
+    trigger.type = 'button';
+    trigger.textContent = '放大图解';
+    trigger.setAttribute('aria-haspopup', 'dialog');
+    trigger.addEventListener('click', () => {
+      figureDialogSequence += 1;
+      const suffix = `zoom-${figureDialogSequence}`;
+      const dialog = document.createElement('dialog');
+      dialog.className = 'figure-dialog';
+      dialog.setAttribute('aria-labelledby', `${suffix}-title`);
+
+      const title = document.createElement('h2');
+      title.id = `${suffix}-title`;
+      title.textContent = svg.querySelector('title')?.textContent?.trim()
+        || figure.querySelector('figcaption')?.textContent?.trim()
+        || '图解放大查看';
+
+      const captionText = figure.querySelector('figcaption')?.textContent?.trim();
+      const caption = captionText ? document.createElement('p') : null;
+      if (caption) {
+        caption.id = `${suffix}-description`;
+        caption.textContent = captionText ?? '';
+        dialog.setAttribute('aria-describedby', caption.id);
+      }
+
+      const close = document.createElement('button');
+      close.type = 'button';
+      close.textContent = '关闭';
+      close.setAttribute('aria-label', '关闭放大图解');
+      close.addEventListener('click', () => dialog.close());
+
+      const enlargedSvg = svg.cloneNode(true) as SVGSVGElement;
+      makeUniqueSvgIds(enlargedSvg, suffix);
+      const visual = document.createElement('div');
+      visual.className = 'figure-dialog-visual';
+      visual.setAttribute('role', 'region');
+      visual.setAttribute('aria-label', `${title.textContent}，可横向滚动查看`);
+      visual.tabIndex = 0;
+      enableHorizontalKeyboardScroll(visual);
+      visual.append(enlargedSvg);
+      dialog.append(title);
+      if (caption) dialog.append(caption);
+      dialog.append(close, visual);
+      dialog.addEventListener('close', () => {
+        dialog.remove();
+        trigger.focus({preventScroll: true});
+      }, {once: true});
+      document.body.append(dialog);
+      dialog.showModal();
+      close.focus();
+    });
+    figure.append(trigger);
+  });
+
+  function getScrollRegionLabel(element: HTMLElement) {
+    if (element.matches('.katex-display')) return '数学公式，可使用方向键横向滚动查看';
+    if (element instanceof HTMLTableElement) {
+      return element.caption?.textContent?.trim() || '数据表，可使用方向键横向滚动查看';
+    }
+    if (element instanceof HTMLPreElement) return '代码块，可使用方向键横向滚动查看';
+    if (element instanceof HTMLElement && element.tagName === 'FIGURE') {
+      return element.querySelector('figcaption')?.textContent?.trim() || '图表，可使用方向键横向滚动查看';
+    }
+    const heading = element.closest('section')?.querySelector('h2, h3')?.textContent?.trim();
+    return heading ? `${heading}，可使用方向键横向滚动查看` : '内容区域，可使用方向键横向滚动查看';
+  }
+
+  function updateScrollableRegionAccessibility() {
+    document.querySelectorAll<HTMLElement>('main *').forEach(element => {
+      const overflowX = getComputedStyle(element).overflowX;
+      const scrollable = (overflowX === 'auto' || overflowX === 'scroll')
+        && element.scrollWidth > element.clientWidth + 1;
+
+      if (!scrollable) {
+        if (element.dataset.pmScrollTabindex === 'true') {
+          element.removeAttribute('tabindex');
+          delete element.dataset.pmScrollTabindex;
+        }
+        if (element.dataset.pmScrollRole === 'true') {
+          element.removeAttribute('role');
+          delete element.dataset.pmScrollRole;
+        }
+        if (element.dataset.pmScrollLabel === 'true') {
+          element.removeAttribute('aria-label');
+          delete element.dataset.pmScrollLabel;
+        }
+        return;
+      }
+
+      if (element.tabIndex < 0) {
+        element.tabIndex = 0;
+        element.dataset.pmScrollTabindex = 'true';
+      }
+      enableHorizontalKeyboardScroll(element);
+      if (element.tagName === 'DIV' && !element.hasAttribute('role')) {
+        element.setAttribute('role', 'region');
+        element.dataset.pmScrollRole = 'true';
+      }
+      if (element.matches('.katex-display') && !element.hasAttribute('role')) {
+        element.setAttribute('role', 'group');
+        element.dataset.pmScrollRole = 'true';
+      }
+      if (!element.hasAttribute('aria-label') && !element.hasAttribute('aria-labelledby')) {
+        element.setAttribute('aria-label', getScrollRegionLabel(element));
+        element.dataset.pmScrollLabel = 'true';
+      }
+    });
+  }
+
+  updateScrollableRegionAccessibility();
+  window.addEventListener('resize', updateScrollableRegionAccessibility, {passive: true});
+
   document.querySelectorAll('pre').forEach(pre=>{const toolbar=document.createElement('div');toolbar.className='code-toolbar';const label=document.createElement('span');label.textContent=pre.querySelector('code')?.className.match(/language-([\w-]+)/)?.[1]?.toUpperCase()??'代码';const button=document.createElement('button');button.textContent='复制代码';button.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(pre.querySelector('code')?.textContent??'');button.textContent='已复制'}catch{button.textContent='复制失败，请手动选择'}});toolbar.append(label,button);pre.before(toolbar)});
 </script>

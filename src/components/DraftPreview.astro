@@ -7,9 +7,9 @@ const { status } = Astro.props;
 ---
 
 {import.meta.env.DEV && status === 'draft' && (
-  <aside class="draft-preview" role="status">
+  <div class="draft-preview" role="status">
     本地草稿预览 · 此页面不会进入正式构建或公开搜索索引
-  </aside>
+  </div>
 )}
 
 <style>
