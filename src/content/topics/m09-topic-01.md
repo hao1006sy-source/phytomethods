@@ -2,7 +2,7 @@
 title: RNA-seq 与差异表达分析
 summary: 从 RNA 测序、基因计数到差异表达统计检验及植物研究解释。
 domain: regulatory-genomics-ai
-methods: []
+methods: [deseq2]
 status: draft
 updatedAt: 2026-11-21
 ---
