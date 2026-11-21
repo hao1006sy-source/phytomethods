@@ -162,6 +162,10 @@ Edge 开发态检查 M03-03 在 375、768、1280、1440 px 的 HTTP 200、正文
 
 `npm run validate` 通过，内容覆盖显示 M03 共 10 个草稿工具、20 篇草稿论文；Astro 63 文件零诊断、55 页静态发布、Pagefind 55 页/6482 词、1320 条站内链接无错误。Edge 在 375、768、1280、1440 px 检查专题、MUMmer4、minimap2 和两篇方法论文，共 20 个路由/视口状态，HTTP 200 且无页面横向溢出。M03-02 的全文科学审核仍进行中，新增工具尚未在本机运行。
 
+## M03-02 野生稻 MUMmer4 案例关系补录（2026-11-21）
+
+复核 Guo 等《A pangenome reference of wild and cultivated rice》出版方全文方法段，确认使用 MUMmer v4.0.0beta2：叶绿体与线粒体参考序列用于候选细胞器 contig 筛查；`nucmer` 用于 Nipponbare 与四个代表材料的共线比较；组装 contig 对参考的比对经 `delta-filter` 一对一筛选，再用 `show-snps -C -I` 识别 SNP；另有长读段组装集合的 MUMmer 组装比对变异分析。论文同样报告 minimap2 v2.21-r1071 用于长读段比对，支持 Longshot SNP calling 与 PAV 分析；其补充方法未指出相应 preset。两工具与论文、M03-02 专题建立稳定关联。来源：[Nature 原文与方法](https://www.nature.com/articles/s41586-025-08883-6)、[DOI](https://doi.org/10.1038/s41586-025-08883-6)。MUMmer 说明同时提示匹配策略和重复处理需按目标检查，`nucmer` 输出本身不等于经验证的结构变异结论。此项为文献核查，未在本机运行 MUMmer 或 minimap2。
+
 2026-11-21 对 M03 领域、七专题、9 个工具及 10 篇论文执行 Edge 浏览器回归，四视口共 108 个路由状态全部返回 HTTP 200、具有页面标题且无文档级横向溢出；点击验证 M03-05 → Minigraph → 水稻图泛基因组案例路径可达。该测试只核对本地草稿预览路由和布局。
 
 2026-11-21 对照 vg 官方长读段 Giraffe 说明确认：长读段支持自 vg 1.63.0 起提供；PacBio HiFi 与 ONT R10 分别使用 `hifi`、`r10` 预设，并使用相应长读段索引。由此为受控数据类型新增通用 `long-reads`，更新 minimap2、vg 与 M03-02/M03-06 标签；vg 工具页补版本快照 1.78.0。来源：[vg 官方长读段指南](https://github.com/vgteam/vg/wiki/Mapping-long-reads-with-Giraffe)、[minimap2 官方使用说明](https://github.com/lh3/minimap2)。`npm run validate` 通过，标签引用通过构建检查。

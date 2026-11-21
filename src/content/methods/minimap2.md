@@ -23,8 +23,8 @@ minimap2 是面向多类核苷酸序列比对的通用程序，支持长读段�
 ## 输入、输出与主要选项
 输入可为 FASTA/FASTQ 序列；组装间比对常用 `minimap2 -cx asm5 ref.fa query.fa > aln.paf`，输出 PAF。`asm5` 是面向较近缘组装差异范围的预设之一，物种分化程度更高时应按官方文档选择其他组装预设并检查比对覆盖。`-a` 可请求 SAM 格式，`-x` 选择任务预设，`-t` 指定线程数。需记录序列方向、主/次比对、软剪切与下游格式转换。PAF 的坐标与映射质量字段不等同于核苷酸级别的变异真值。
 
-## 植物应用边界
-minimap2 可作为植物组装间比较和长读段映射的通用比对器；具体案例应以原论文方法段记录的软件版本、预设和数据类型为准。M03-02 中的植物案例展示其与 AnchorWave、SyRI 等工具的流程关系，未将人类/细菌 benchmark 当作植物验证。
+## 植物应用案例
+Guo 等的野生—栽培稻研究在长读段 SNP calling 流程中，将 minimap2 v2.21-r1071 的比对结果交给 Longshot；文中还在 PAV 分析的长读段映射步骤使用 minimap2。这里的软件职责是产生 reads-to-reference 比对，Longshot 才负责后续变异识别；这项案例不能据此将 minimap2 描述为组装间比对或 PAV 分类器。[研究全文与方法](../../../papers/wild-rice-pangenome-2025/)。论文未报告对应 minimap2 preset，复现时应查阅其分析脚本并按 HiFi 或 ONT 数据选择相应配置。
 
 ## 版本与许可
 以官方发布页为版本快照，记录 minimap2 v2.31（r1302）；官方仓库附 MIT License。复现已有论文时仍应使用论文方法部分记载的历史版本及预设。[官方发布页](https://github.com/lh3/minimap2/releases)；[MIT License](https://github.com/lh3/minimap2/blob/master/LICENSE.txt)。

@@ -152,3 +152,6 @@ M05-01 对照 3,010 水稻研究的样本、SNP/InDel 数、GATK 调用与 PLINK
 2026-11-21 对照 vg 官方长读段指南及 minimap2 README，确认 Giraffe 的 HiFi/R10 预设与 vg 1.63 起始支持版本；为数据模型补通用 `long-reads` 受控标签，更新 minimap2、vg 工具及 M03-02/M03-06 相关数据标签。vg 页记录 v1.78.0 快照。构建与内容关系检查通过；工具未在本机运行。
 
 2026-11-21 补充核对 vg 长读段投射：官方索引文档列出 Giraffe 的 GBZ/GBWT、distance index 与 minimizer index 组成；官方长读段指南将 `.longread.withzip.min` 和 `.longread.zipcodes` 与短读段索引区分，并注明 `vg surject --read-length long` 自 1.73.0 起可用于长读段 BAM 投射的低复杂度剪枝。正文补入 `--ref-paths` 与图路径名称的一致性要求，区分图比对与线性投射。vg 未在本机运行，M03-06 全文科学审读仍未关闭。
+### M03-02 全文科学审核完成（2026-11-21）
+
+复核专题正文中的局部/全局比对、种子和锚点、锚点链、共线区块、重复与备选匹配，以及 AnchorWave 两段仿射 gap 和概念链式动态规划表达；公式均标记为一般性教学抽象或论文方法表达。对照 AnchorWave 官方当前流程、SyRI 输入要求和 MUMmer4/minimap2 官方说明检查各工具的输入输出与分析边界。依 Nature 原文核对 2025 水稻案例：MUMmer v4.0.0beta2 的细胞器筛查、代表材料共线比较与 assembly-based SNP calling；minimap2 v2.21-r1071 的 read mapping 输入及 Longshot/PAV 流程职责。新增论文与工具双向关系后，npm run validate、npm run coverage、关系审计和 git diff --check 通过；Edge 的四视口专题/工具/案例关系回归沿用本轮之前已通过的路由验证，最近正文变化未改变页面组件或交互。相关软件未在此轮本机运行，M03-02 正文及引用关系审核完成，整域发布闭包仍待完成。

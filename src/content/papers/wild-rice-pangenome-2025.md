@@ -6,7 +6,7 @@ year: 2025
 journal: Nature
 doi: 10.1038/s41586-025-08883-6
 type: application
-methodIds: [hifiasm, yahs, syri, minigraph, minigraph-cactus, vg]
+methodIds: [hifiasm, yahs, syri, minigraph, minigraph-cactus, vg, mummer4, minimap2]
 domainIds: [pangenomics-structural-variation]
 speciesIds: [rice]
 status: draft
@@ -45,6 +45,8 @@ Guo 等构建野生稻（*Oryza rufipogon*）与栽培稻（*O. sativa*）的高
 | --- | --- |
 | Hifiasm v0.16.0 | 组装 133 份 HiFi 材料，生成 p-contigs 与 a-contigs |
 | YaHS v1.1 | 将 Hi-C 联系用于 30 份代表材料的染色体级 scaffold |
+| MUMmer v4.0.0beta2 | 过滤候选细胞器 contig；用 `nucmer` 比较 Nipponbare 与四个代表材料的基因组共线性；将组装 contig 比对参考，经 `delta-filter` 和 `show-snps` 完成组装比对变异识别 |
+| minimap2 v2.21-r1071 | 作为长读段比对步骤的比对器，为 Longshot SNP calling 及 PAV 分析流程提供比对结果；论文方法未给出该流程的 preset |
 | SyRI v1.4 | 比较 Hi-C 与 ALLMAPS 染色体组装并识别结构差异 |
 | Minigraph v0.19-r551 与 Cactus v2.2.1（Minigraph-Cactus 流程） | 先建立含结构变异的初始图，再进行碱基级比对及整理；分别用于栽培、野生和合并材料的图构建 |
 | vg Giraffe v1.43.0 | 将短读段映射到合并图，为后续变异调用提供比对 |
