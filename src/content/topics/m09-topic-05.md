@@ -2,9 +2,9 @@
 title: 植物多组学数据整合
 summary: 整合转录、蛋白、代谢和表观数据，识别共享变化及可检验关联。
 domain: regulatory-genomics-ai
-methods: []
-status: draft
-updatedAt: 2026-11-21
+methods: [mofa-plus]
+status: published
+updatedAt: 2026-11-22
 ---
 ## 研究问题
 植物表型由基因组、表达、蛋白质、代谢及环境共同影响。多组学整合希望结合这些测量描述共同变化并提出机制假设；每种组学的检测范围、误差、时间尺度及生物学含义不同。

@@ -2,9 +2,9 @@
 title: 顺式调控元件与序列基序
 summary: 理解启动子、结合位点、位置权重矩阵及 motif 扫描。
 domain: regulatory-genomics-ai
-methods: []
-status: draft
-updatedAt: 2026-11-21
+methods: [meme-suite]
+status: published
+updatedAt: 2026-11-22
 ---
 ## 研究问题
 植物基因在不同细胞和环境下的表达受到多种 DNA 序列及转录因子调控。顺式调控元件（cis-regulatory element）是与靶基因位于同一 DNA 分子上的调控序列；启动子附近或远端均可能包含功能元件。序列中的候选模式需要通过染色质、结合和功能实验确定具体作用。
@@ -26,4 +26,4 @@ updatedAt: 2026-11-21
 拟南芥气孔细胞命运研究结合染色质可及性和 DAP-seq 获得的 motif，使用 FIMO 在开放区域中搜索候选结合模式。[原始研究](https://doi.org/10.1038/s41477-022-01304-w)。这一流程结合序列和可及性，后续仍需要针对具体候选进行功能检验。
 
 ## 资源与阅读
-[MEME Suite 官方文档](https://meme-suite.org/meme/)、[拟南芥气孔调控研究](https://doi.org/10.1038/s41477-022-01304-w)。
+[MEME Suite 官方文档](https://meme-suite.org/meme/)、[拟南芥气孔调控研究](https://doi.org/10.1038/s41477-022-01304-w)。该研究使用 FIMO 在开放区域中扫描候选 motif；motif 与染色质可及性共同提供候选证据，结合和因果功能仍由相应实验验证。

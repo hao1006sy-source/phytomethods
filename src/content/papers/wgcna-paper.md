@@ -9,8 +9,8 @@ type: method
 methodIds: [wgcna]
 domainIds: [regulatory-genomics-ai]
 speciesIds: []
-status: draft
-updatedAt: 2026-11-21
+status: published
+updatedAt: 2026-11-22
 ---
 ## 方法价值
 WGCNA 提供加权相关网络构建、模块识别和模块—性状关系分析的 R 函数。[原始论文](https://doi.org/10.1186/1471-2105-9-559)。

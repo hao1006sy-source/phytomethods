@@ -10,8 +10,8 @@ principleIds: [sequence-transformer]
 dataIds: [dna-sequence]
 paper: agro-nt-2024
 repository: https://github.com/instadeepai/nucleotide-transformer
-status: draft
-updatedAt: 2026-11-21
+status: published
+updatedAt: 2026-11-22
 ---
 ## 模型定位
 AgroNT 是基于 Transformer 的 DNA 序列基础模型，论文使用 48 种植物参考基因组进行预训练，评估调控注释、启动子与终止子强度、表达及变异优先排序等任务。[方法与应用论文](https://doi.org/10.1038/s42003-024-06465-2)。

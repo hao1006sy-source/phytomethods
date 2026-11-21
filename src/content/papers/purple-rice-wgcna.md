@@ -9,8 +9,8 @@ type: application
 methodIds: [wgcna]
 domainIds: [regulatory-genomics-ai]
 speciesIds: [rice]
-status: draft
-updatedAt: 2026-11-21
+status: published
+updatedAt: 2026-11-22
 ---
 ## 植物研究
 研究利用 WGCNA 将表达网络与紫米灌浆过程的抗氧化相关性状相联系。[原始论文](https://doi.org/10.1038/s41598-024-73698-w)、[PubMed](https://pubmed.ncbi.nlm.nih.gov/39349620/)。

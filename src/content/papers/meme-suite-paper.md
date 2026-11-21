@@ -7,7 +7,7 @@ journal: Nucleic Acids Research
 doi: 10.1093/nar/gkv416
 type: method
 methodIds: [meme-suite]
-domainIds: [epigenomics-3d-genome]
+domainIds: [epigenomics-3d-genome, regulatory-genomics-ai]
 speciesIds: []
 status: published
 updatedAt: 2026-11-22

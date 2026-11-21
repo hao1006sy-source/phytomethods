@@ -2,9 +2,9 @@
 title: DNA 与蛋白质序列基础模型
 summary: 理解序列分词、表示学习、预训练及植物模型的架构差异。
 domain: regulatory-genomics-ai
-methods: [agront]
-status: draft
-updatedAt: 2026-11-21
+methods: [agront, plantcad2]
+status: published
+updatedAt: 2026-11-22
 ---
 ## 研究问题
 大量植物基因组序列具有丰富但尚未完全标注的模式。序列基础模型利用大量序列进行自监督预训练，学习可迁移的序列表示，再用于启动子、染色质或变异等特定任务。预训练能利用无标签序列，模型性能仍取决于训练物种、输入上下文、标注质量和评估设计。
@@ -19,6 +19,8 @@ AgroNT（Agronomic Nucleotide Transformer）是基于 Transformer 的植物 DNA 
 
 PlantCaduceus（PlantCAD）系列以植物跨物种序列建模为目标；其模型系列和版本应按[项目官方仓库](https://github.com/plantcad/plantcad)区分。PlantCAD 与 AgroNT 采用不同架构，不能把所有序列基础模型都称为 Transformer。具体模型权重、许可证、预训练物种、输入长度和下游模型应分别核对。
 
+PlantCAD2 已于 2026 年发表，采用 Caduceus/Mamba2 状态空间架构，使用单碱基分辨率及 8192 bp 上下文，并在 65 个被子植物基因组上预训练。论文报告其 676M 参数模型在特定跨物种基准中表现；该模型并非 Transformer。[PlantCAD2 论文](https://doi.org/10.1016/j.xgen.2026.101329)、[官方仓库](https://github.com/plantcad/plantcad)。
+
 ## 应用与评估步骤
 1. 根据任务确定 DNA 或蛋白质序列、物种及坐标来源。
 2. 记录模型名称、权重版本、输入长度、分词与许可证。
@@ -27,4 +29,4 @@ PlantCaduceus（PlantCAD）系列以植物跨物种序列建模为目标；其�
 5. 针对候选序列或变异进行独立实验验证。
 
 ## 延伸阅读
-[AgroNT 原论文](https://doi.org/10.1038/s42003-024-06465-2)、[PlantCAD 官方项目](https://plantcad.github.io/)。
+[AgroNT 原论文](https://doi.org/10.1038/s42003-024-06465-2)、[PlantCAD2 原论文](https://doi.org/10.1016/j.xgen.2026.101329)、[PlantCAD 官方项目](https://plantcad.github.io/)。

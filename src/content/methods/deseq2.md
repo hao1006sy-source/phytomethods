@@ -10,8 +10,8 @@ principleIds: [negative-binomial]
 dataIds: [expression-matrix]
 paper: deseq2-2014
 repository: https://github.com/thelovelab/DESeq2
-status: draft
-updatedAt: 2026-11-21
+status: published
+updatedAt: 2026-11-22
 ---
 ## 研究问题与软件定位
 DESeq2 是 Bioconductor 中用于高通量测序计数数据差异分析的 R 包。它根据实验设计比较样本条件，并结合基因间信息估计离散度；统计结果依赖生物学重复、数据质量及模型设计。[方法论文](https://doi.org/10.1186/s13059-014-0550-8)。

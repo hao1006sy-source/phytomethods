@@ -4,8 +4,8 @@ name: MEME Suite
 summary: 执行 DNA、RNA 或蛋白序列基序发现、富集检验与 motif 扫描。
 dataType: 峰区或候选调控区序列与 motif 矩阵
 principle: 位置权重矩阵与序列基序统计
-domainIds: [epigenomics-3d-genome]
-topicIds: [m07-topic-05]
+domainIds: [epigenomics-3d-genome, regulatory-genomics-ai]
+topicIds: [m07-topic-05, m09-topic-04]
 principleIds: [motif-analysis]
 dataIds: [dna-sequence]
 paper: meme-suite-paper

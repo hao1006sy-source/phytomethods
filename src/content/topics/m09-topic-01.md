@@ -3,8 +3,8 @@ title: RNA-seq 与差异表达分析
 summary: 从 RNA 测序、基因计数到差异表达统计检验及植物研究解释。
 domain: regulatory-genomics-ai
 methods: [deseq2]
-status: draft
-updatedAt: 2026-11-21
+status: published
+updatedAt: 2026-11-22
 ---
 ## 研究问题
 RNA-seq 测量样本中转录本丰度，为比较植物组织、处理和发育阶段的表达变化提供数据。差异表达分析比较定义明确的实验条件，识别与条件相关的基因；结果依赖取样、实验设计和统计模型。

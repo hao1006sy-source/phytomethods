@@ -337,3 +337,9 @@ M07 七专题、5 个工具详情页、15 篇论文和一篇 Bismark 模拟教�
 ### M08 发布检查点（2026-11-22）
 
 七专题内容和关联闭包通过原文核对，发布 7 个工具、14 篇论文及 Scanpy 模拟教程。新增细胞预处理/DoubletFinder、空间图和反卷积、多模态轨迹与 scATAC 工具页；植物案例来自水稻根、拟南芥时序/根图谱及水稻同细胞 RNA+ATAC 图谱。Build 生成 249 页，Pagefind 索引 249 页/33,026 词，7,036 条内部链接通过；内容关系审计 63 topics/54 methods/123 papers，0 inconsistencies。Scanpy 仅模拟矩阵完成运行验证，其他新增工具未在本站环境运行。来源见 `docs/m08-evidence.md`。进入 M09。
+
+### M09 调控基因组学与 AI 发布检查点（2026-11-22）
+
+完成七个专题发布闭包，补充并发布 GENIE3、GRNBoost2/Arboreto、MOFA+、PlantCAD2，并复用 DESeq2、WGCNA、MEME Suite、AgroNT 页面。新建 GENIE3、GRNBoost2、MOFA+、PlantCAD2 方法论文记录；M09 关联 13 篇方法/应用论文，植物应用与方法归属按原论文区分。更新 63 条专题元数据中的 M09 关联、受控算法/数据标签和更新日期；7/7 专题、8/8 工具、13/13 论文及 1 篇 WGCNA 模拟教程进入发布状态。PlantCAD2 更新为 2026 Cell Genomics 正式论文，说明其 65 个被子植物基因组、676M 参数、8192 bp 上下文与 Caduceus/Mamba2 状态空间架构，并把论文具体 benchmark 结果限定在原论文任务内。证据和论文来源见 `docs/m09-evidence.md`。
+
+验收结果：Astro 类型检查 63 内容文件零错误/警告/提示；构建 276 页；Pagefind 中文索引 276 页、34,436 词；站内链接 7,749 条、0 错误；关系审计 63 个专题、58 个工具、127 篇论文、0 双向关联差异。`npm run coverage` 显示 M09 七专题、八工具、13 篇相关论文及一篇教程已发布。WGCNA 教程在 R 4.5.1、WGCNA 1.74 的模拟数据运行验证通过，未使用植物实测数据。浏览器自动化因本机 Edge 无法在受限环境启动、agent-browser 会话目录不可写，M09 三视口布局、交互及在线 Pagefind 输入测试未完成；站内链接检查通过。

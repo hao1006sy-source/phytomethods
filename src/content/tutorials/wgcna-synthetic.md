@@ -3,8 +3,8 @@ title: 使用 WGCNA 分析模拟基因表达网络
 summary: 从模拟表达矩阵构建加权网络、识别模块并查看相关热图。
 method: wgcna
 tested: verified
-status: draft
-updatedAt: 2026-11-21
+status: published
+updatedAt: 2026-11-22
 ---
 ## 目标与验证范围
 本教程使用虚构表达矩阵练习 WGCNA 模块识别与结果检查。2026 年 11 月 21 日在 Windows、R 4.5.1、WGCNA 1.74 环境实际运行两次，表达矩阵、模块、模块特征基因和相关系数表一致。数据不是植物实验，模拟模块不是已验证的生物学通路。

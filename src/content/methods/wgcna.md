@@ -10,8 +10,8 @@ principleIds: [coexpression]
 dataIds: [expression-matrix]
 paper: wgcna-paper
 repository: https://cran.r-project.org/package=WGCNA
-status: draft
-updatedAt: 2026-11-21
+status: published
+updatedAt: 2026-11-22
 ---
 ## 软件定位
 WGCNA 是 Peter Langfelder、Steve Horvath 等开发的 R 包，用于加权相关网络、模块识别、模块汇总以及模块与样本性状的关联。[原始论文](https://doi.org/10.1186/1471-2105-9-559)。它提供网络构建工具；网络分析是依据实验数据设计和参数选择形成的统计推断。

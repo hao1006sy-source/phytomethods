@@ -1984,9 +1984,7 @@
       "DESeq2",
       "差异表达"
     ],
-    "methodIds": [
-      "deseq2"
-    ],
+    "methodIds": ["deseq2"],
     "principleIds": [],
     "dataIds": [],
     "paperIds": [
@@ -1994,9 +1992,9 @@
       "maize-drought-deseq2-2019"
     ],
     "tutorialIds": [],
-    "status": "draft",
+    "status": "published",
     "createdAt": null,
-    "updatedAt": "2026-11-21"
+    "updatedAt": "2026-11-22"
   },
   {
     "id": "m09-topic-02",
@@ -2026,9 +2024,9 @@
     "tutorialIds": [
       "wgcna-synthetic"
     ],
-    "status": "draft",
+    "status": "published",
     "createdAt": null,
-    "updatedAt": "2026-11-21"
+    "updatedAt": "2026-11-22"
   },
   {
     "id": "m09-topic-03",
@@ -2039,19 +2037,22 @@
     "summary": "转录因子候选调控边的推断与多证据验证。",
     "keyConcepts": [
       "GENIE3",
+      "GRNBoost2",
       "转录因子",
       "调控网络"
     ],
-    "methodIds": [],
-    "principleIds": [],
-    "dataIds": [],
+    "methodIds": ["genie3", "grnboost2"],
+    "principleIds": ["tree-ensemble-regression"],
+    "dataIds": ["expression-matrix"],
     "paperIds": [
+      "genie3-paper",
+      "grnboost2-paper",
       "arabidopsis-integrated-grn-2021"
     ],
     "tutorialIds": [],
-    "status": "draft",
+    "status": "published",
     "createdAt": null,
-    "updatedAt": "2026-11-21"
+    "updatedAt": "2026-11-22"
   },
   {
     "id": "m09-topic-04",
@@ -2065,16 +2066,17 @@
       "PWM",
       "FIMO"
     ],
-    "methodIds": [],
-    "principleIds": [],
-    "dataIds": [],
+    "methodIds": ["meme-suite"],
+    "principleIds": ["motif-analysis"],
+    "dataIds": ["dna-sequence", "atac-fragments"],
     "paperIds": [
+      "meme-suite-paper",
       "arabidopsis-stomata-accessibility-2022"
     ],
     "tutorialIds": [],
-    "status": "draft",
+    "status": "published",
     "createdAt": null,
-    "updatedAt": "2026-11-21"
+    "updatedAt": "2026-11-22"
   },
   {
     "id": "m09-topic-05",
@@ -2088,41 +2090,46 @@
       "MOFA+",
       "潜在因子"
     ],
-    "methodIds": [],
-    "principleIds": [],
-    "dataIds": [],
+    "methodIds": ["mofa-plus"],
+    "principleIds": ["latent-factor-integration"],
+    "dataIds": ["multi-omics-view-matrix"],
     "paperIds": [
+      "mofa-plus-paper",
       "maize-multiomics-network-2023"
     ],
     "tutorialIds": [],
-    "status": "draft",
+    "status": "published",
     "createdAt": null,
-    "updatedAt": "2026-11-21"
+    "updatedAt": "2026-11-22"
   },
   {
     "id": "m09-topic-06",
-    "title": "DNA/蛋白质基础模型",
+    "title": "植物 DNA 基础模型",
     "englishTitle": "Sequence foundation models",
     "domainId": "regulatory-genomics-ai",
     "order": 6,
-    "summary": "植物 DNA 与蛋白序列模型的预训练和迁移。",
+    "summary": "比较植物 DNA Transformer 与状态空间模型的预训练和跨物种迁移。",
     "keyConcepts": [
       "AgroNT",
       "PlantCAD",
+      "PlantCAD2",
+      "Mamba2",
       "embedding"
     ],
     "methodIds": [
-      "agront"
+      "agront",
+      "plantcad2"
     ],
-    "principleIds": [],
-    "dataIds": [],
+    "principleIds": ["sequence-transformer", "bidirectional-state-space-model"],
+    "dataIds": ["dna-sequence"],
     "paperIds": [
-      "agro-nt-2024"
+      "agro-nt-2024",
+      "plantcad2-paper"
     ],
     "tutorialIds": [],
-    "status": "draft",
+    "status": "published",
     "createdAt": null,
-    "updatedAt": "2026-11-21"
+    "updatedAt": "2026-11-22"
   },
   {
     "id": "m09-topic-07",
@@ -2137,16 +2144,18 @@
       "模型评估"
     ],
     "methodIds": [
-      "agront"
+      "agront",
+      "plantcad2"
     ],
-    "principleIds": [],
-    "dataIds": [],
+    "principleIds": ["sequence-transformer", "bidirectional-state-space-model"],
+    "dataIds": ["dna-sequence"],
     "paperIds": [
-      "agro-nt-2024"
+      "agro-nt-2024",
+      "plantcad2-paper"
     ],
     "tutorialIds": [],
-    "status": "draft",
+    "status": "published",
     "createdAt": null,
-    "updatedAt": "2026-11-21"
+    "updatedAt": "2026-11-22"
   }
 ]

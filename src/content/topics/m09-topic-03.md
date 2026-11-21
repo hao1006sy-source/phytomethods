@@ -2,9 +2,9 @@
 title: 基因调控网络推断
 summary: 从表达数据与结合证据构建可验证的转录因子—靶基因假设。
 domain: regulatory-genomics-ai
-methods: []
-status: draft
-updatedAt: 2026-11-21
+methods: [genie3, grnboost2]
+status: published
+updatedAt: 2026-11-22
 ---
 ## 研究问题
 基因调控网络（gene regulatory network，GRN）用节点表示基因或调控因子，边表示候选调控关系。研究植物胁迫、发育和养分响应时，目标是找出哪些转录因子可能影响哪些靶基因，并通过实验检验方向与机制。

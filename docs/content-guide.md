@@ -19,6 +19,8 @@ M01 的已发布记录应有同名 Markdown 正文，网页根据专题关系反
 ## 发布前统一验证
 `npm run validate` 运行 Astro 类型检查、静态构建、Pagefind 和 `scripts/check-links.py`；GitHub Pages 工作流使用该命令。`status: draft` 的条目不会生成公开文章或进入搜索，科研文字、图解和教程需完成来源核查与浏览器测试后再发布。
 
+M09 的序列模型需分别标注模型架构和具体模型版本：AgroNT 为 Transformer，PlantCAD2 为 Caduceus/Mamba2 双向状态空间架构。按论文原文区分方法模型论文和独立植物应用案例；没有在植物应用论文方法部分核实到的软件，不填写在案例论文的 `methodIds`。本领域来源核验与关键主张记录在 `docs/m09-evidence.md`。
+
 
 ## 内容覆盖率
 

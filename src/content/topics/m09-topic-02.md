@@ -3,8 +3,8 @@ title: 基因共表达网络
 summary: 理解表达相关、加权网络、模块和模块与性状之间的关系。
 domain: regulatory-genomics-ai
 methods: [wgcna]
-status: draft
-updatedAt: 2026-11-21
+status: published
+updatedAt: 2026-11-22
 ---
 ## 研究问题
 共表达网络使用多个样本中的基因表达变化，寻找具有相似表达模式的基因集合，并研究这些模块与组织、处理或性状的关系。相关反映共同变化，可能来自共同调控、细胞组成、环境或批次；共表达边本身不提供调控方向。

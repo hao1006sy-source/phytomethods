@@ -6,11 +6,11 @@ year: 2022
 journal: Nature Plants
 doi: 10.1038/s41477-022-01304-w
 type: application
-methodIds: []
-domainIds: [regulatory-genomics-ai]
+methodIds: [meme-suite]
+domainIds: [regulatory-genomics-ai, epigenomics-3d-genome]
 speciesIds: [arabidopsis]
-status: draft
-updatedAt: 2026-11-21
+status: published
+updatedAt: 2026-11-22
 ---
 ## 研究价值
 研究气孔细胞命运决定过程中的动态染色质可及性与顺反调控因子。 [期刊原文](https://doi.org/10.1038/s41477-022-01304-w)。
