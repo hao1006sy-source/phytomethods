@@ -3,8 +3,8 @@ title: 群体历史动态
 summary: 通过共祖模型和全基因组序列推断有效群体大小变化、谱系分化与时间尺度。
 domain: population-genetics
 methods: [psmc, msmc2, smcpp]
-status: draft
-updatedAt: 2026-11-21
+status: published
+updatedAt: 2026-11-22
 ---
 
 ## 研究背景与生物学问题
@@ -31,19 +31,19 @@ updatedAt: 2026-11-21
 
 ### PSMC：一个二倍体基因组的成对共祖历史
 
-成对顺序马尔可夫共祖（Pairwise SMC，PSMC）从一个二倍体个体的两条同源染色体推断局部 TMRCA 分布。基因组沿位置被归入一系列时间间隔；杂合位点密度为较近共祖状态提供较高发射概率，较长的纯合间隔则与较深的局部共祖相容；重组决定隐藏时间状态沿染色体转移的概率。算法通过迭代优化分段有效群体大小参数，输出经突变率和代数校准的历史曲线。[Li 与 Durbin，2011](../../papers/psmc-paper/)；[PSMC 工具页](../../methods/psmc/)。
+成对顺序马尔可夫共祖（Pairwise SMC，PSMC）从一个二倍体个体的两条同源染色体推断局部 TMRCA 分布。基因组沿位置被归入一系列时间间隔；杂合位点密度为较近共祖状态提供较高发射概率，较长的纯合间隔则与较深的局部共祖相容；重组决定隐藏时间状态沿染色体转移的概率。算法通过迭代优化分段有效群体大小参数，输出经突变率和代数校准的历史曲线。[Li 与 Durbin，2011](../../../papers/psmc-paper/)；[PSMC 工具页](../../../methods/psmc/)。
 
 PSMC 所需的样本数量少，适合先用高质量二倍体全基因组建立单个材料的共祖历史概况。单个样本不能代表种群间全部差异，近期时间段可用信息有限，杂合位点与掩蔽质量会影响结果。参数模式的时间分段不应为追求视觉平滑而过拟合。
 
 ### MSMC2：多条同源序列的共祖率历史
 
-MSMC 方法在 SMC 型状态转移框架中估计多个序列的共祖过程。MSMC2 是其软件实现更新，支持选择输入单倍型对，分别估计群体内或群体间成对共祖率。跨群体分析通常需要准备群体内与群体间的配对运行，再依据输出计算相对跨群体共祖率等摘要；该相对值依赖具体配对和时间区间，不是脱离样本设计的固定分化时钟。[Schiffels 与 Durbin，2014](../../papers/msmc-paper/)；[MSMC2 实现与协议](../../papers/msmc2-protocol/)；[MSMC2 工具页](../../methods/msmc2/)。
+MSMC 方法在 SMC 型状态转移框架中估计多个序列的共祖过程。MSMC2 是其软件实现更新，支持选择输入单倍型对，分别估计群体内或群体间成对共祖率。跨群体分析通常需要准备群体内与群体间的配对运行，再依据输出计算相对跨群体共祖率等摘要；该相对值依赖具体配对和时间区间，不是脱离样本设计的固定分化时钟。[Schiffels 与 Durbin，2014](../../../papers/msmc-paper/)；[MSMC2 实现与协议](../../../papers/msmc2-protocol/)；[MSMC2 工具页](../../../methods/msmc2/)。
 
 MSMC2 接收已整理的多位点异质性输入及可调用区域信息。相位错误会影响多单倍型关系；小样本分析、不同时间离散方式和过滤边界也会改变曲线。软件文档提供 `-I` 选择单倍型对、`-p` 时间分段模式、`-t` 线程等控制项，最终用法须按固定的软件版本核对。
 
 ### SMC++：未定相样本的条件频率谱与共祖信息
 
-SMC++ 将顺序共祖信息与条件样本频率谱（conditional site frequency spectrum，CSFS）结合。模型以一个“区分样本”中的二倍体序列提供局部连锁/TMRCA 信息，以同一群体额外的未定相样本提供条件等位基因计数，从而扩大样本利用范围且不要求对所有个体进行全基因组相位。样条正则化（spline regularization）用于表示连续群体规模函数并控制估计波动。其 `split` 模块可拟合两群体的清洁分裂（clean split）模型，该实现假设分裂后没有基因流。[Terhorst 等，2017](../../papers/smcpp-paper/)；[SMC++ 工具页](../../methods/smcpp/)。
+SMC++ 将顺序共祖信息与条件样本频率谱（conditional site frequency spectrum，CSFS）结合。模型以一个“区分样本”中的二倍体序列提供局部连锁/TMRCA 信息，以同一群体额外的未定相样本提供条件等位基因计数，从而扩大样本利用范围且不要求对所有个体进行全基因组相位。样条正则化（spline regularization）用于表示连续群体规模函数并控制估计波动。其 `split` 模块可拟合两群体的清洁分裂（clean split）模型，该实现假设分裂后没有基因流。[Terhorst 等，2017](../../../papers/smcpp-paper/)；[SMC++ 工具页](../../../methods/smcpp/)。
 
 官方实现通过 `vcf2smc` 把双等位、二倍体 VCF 转为 SMC 数据文件，再由 `estimate` 估计人口规模模型；每条独立 contig 单独转换。输入转换的参考等位基因、VCF 过滤字段、缺失区域和 BED 掩蔽方式都影响可用序列的含义。SMC++ 输出 JSON 模型，可由 `plot` 导出 PDF、PNG 或 CSV；解释时需同时保留突变率、世代时间、遮罩、样本构成和程序版本。[官方仓库与命令说明](https://github.com/popgenmethods/smcpp)。
 
@@ -79,20 +79,20 @@ SMC++ 将顺序共祖信息与条件样本频率谱（conditional site frequency
 
 ### 非洲稻：同一研究比较 PSMC、MSMC 与 SMC++
 
-Cubry 等分析 246 份非洲栽培稻 *Oryza glaberrima* 与野生祖先 *O. barthii* 基因组，以 PSMC、MSMC 和 SMC++ 比较人口规模历史。栽培稻分析中作者将 16 条单倍型组合成 8 个伪二倍体用于独立 PSMC；MSMC 另对这些材料联合分析并进行 6 次 bootstrap。SMC++ 则使用 79 个伪二倍体构建输入，选取 5 条区分谱系，设定每代突变率 $6.5\times10^{-9}$，并采用一年世代时间换算。论文报告栽培稻与野生稻均有始于一万年前以上的规模下降；栽培稻约在 3,400 年前达到低点，并在约 1,847 年前出现规模增加信号。该研究同时采用地理、单倍型和其他群体统计解释结果。伪二倍体构造、突变率和世代时间均为该论文的设计，引用案例时应保留原文上下文。[原始论文与方法细节](../../papers/african-rice-246-genomes/)；[PSMC](../../methods/psmc/)、[MSMC2](../../methods/msmc2/)、[SMC++](../../methods/smcpp/)。
+Cubry 等分析 246 份非洲栽培稻 *Oryza glaberrima* 与野生祖先 *O. barthii* 基因组，以 PSMC、MSMC 和 SMC++ 比较人口规模历史。栽培稻分析中作者将 16 条单倍型组合成 8 个伪二倍体用于独立 PSMC；MSMC 另对这些材料联合分析并进行 6 次 bootstrap。SMC++ 则使用 79 个伪二倍体构建输入，选取 5 条区分谱系，设定每代突变率 $6.5\times10^{-9}$，并采用一年世代时间换算。论文报告栽培稻与野生稻均有始于一万年前以上的规模下降；栽培稻约在 3,400 年前达到低点，并在约 1,847 年前出现规模增加信号。该研究同时采用地理、单倍型和其他群体统计解释结果。伪二倍体构造、突变率和世代时间均为该论文的设计，引用案例时应保留原文上下文。[原始论文与方法细节](../../../papers/african-rice-246-genomes/)；[PSMC](../../../methods/psmc/)、[MSMC2](../../../methods/msmc2/)、[SMC++](../../../methods/smcpp/)。
 
 ### 杨树：重复序列遮罩改变历史估计
 
-Patil 与 Vijay 使用美洲黑杨 *Populus trichocarpa* 参考基因组比较重复序列屏蔽与否对人口历史推断的影响，并运行 PSMC、MSMC、SMC++ 和 Stairway Plot。研究显示，在该杨树数据中，屏蔽重复区后远古时期 $N_e$ 估计降低，而近期估计上升；重复类型、丰度和染色体分布与变化相关。该结果说明可调用区域策略是统计模型的一部分，应在植物项目中进行敏感性比较，不能直接将“全屏蔽”或“完全保留”当成通用规则。[原始研究](../../papers/populus-repeats-demography/)；[论文全文](https://pmc.ncbi.nlm.nih.gov/articles/PMC8322061/)。
+Patil 与 Vijay 使用美洲黑杨 *Populus trichocarpa* 参考基因组比较重复序列屏蔽与否对人口历史推断的影响，并运行 PSMC、MSMC、SMC++ 和 Stairway Plot。研究显示，在该杨树数据中，屏蔽重复区后远古时期 $N_e$ 估计降低，而近期估计上升；重复类型、丰度和染色体分布与变化相关。该结果说明可调用区域策略是统计模型的一部分，应在植物项目中进行敏感性比较，不能直接将“全屏蔽”或“完全保留”当成通用规则。[原始研究](../../../papers/populus-repeats-demography/)；[论文全文](https://pmc.ncbi.nlm.nih.gov/articles/PMC8322061/)。
 
 ### 胡杨：PSMC 曲线与多群体模型互补
 
-Jia 等对胡杨 *Populus euphratica* 群体开展重测序，使用 PSMC 描述四个群体支系的历史有效群体大小，并使用 fastsimcoal26 拟合包含支系间迁移的群体模型。论文还报告 3.15 million SNP、四个具有地理分布模式的遗传支系及盐胁迫关联分析。该设计将单样本共祖历史与显式群体模型分开使用；PSMC 曲线本身不提供论文中迁移率的估计。[原始研究](../../papers/populus-euphratica-demography/)；[PubMed 书目与摘要](https://pubmed.ncbi.nlm.nih.gov/32242238/)。
+Jia 等对胡杨 *Populus euphratica* 群体开展重测序，使用 PSMC 描述四个群体支系的历史有效群体大小，并使用 fastsimcoal26 拟合包含支系间迁移的群体模型。论文还报告 3.15 million SNP、四个具有地理分布模式的遗传支系及盐胁迫关联分析。该设计将单样本共祖历史与显式群体模型分开使用；PSMC 曲线本身不提供论文中迁移率的估计。[原始研究](../../../papers/populus-euphratica-demography/)；[PubMed 书目与摘要](https://pubmed.ncbi.nlm.nih.gov/32242238/)。
 
 ## 主要工具和延伸阅读
 
-- [PSMC 工具页](../../methods/psmc/)：一个二倍体个体的成对共祖历史。
-- [MSMC2 工具页](../../methods/msmc2/)：多条序列对的群体内/群体间共祖率。
-- [SMC++ 工具页](../../methods/smcpp/)：未定相样本的条件频率谱与共祖模型。
-- [PSMC 原始方法论文](../../papers/psmc-paper/)、[MSMC 方法论文](../../papers/msmc-paper/)、[MSMC2 协议](../../papers/msmc2-protocol/)与[SMC++ 方法论文](../../papers/smcpp-paper/)。
-- [非洲稻群体历史案例](../../papers/african-rice-246-genomes/)、[杨树重复序列敏感性研究](../../papers/populus-repeats-demography/)与[胡杨重测序研究](../../papers/populus-euphratica-demography/)。
+- [PSMC 工具页](../../../methods/psmc/)：一个二倍体个体的成对共祖历史。
+- [MSMC2 工具页](../../../methods/msmc2/)：多条序列对的群体内/群体间共祖率。
+- [SMC++ 工具页](../../../methods/smcpp/)：未定相样本的条件频率谱与共祖模型。
+- [PSMC 原始方法论文](../../../papers/psmc-paper/)、[MSMC 方法论文](../../../papers/msmc-paper/)、[MSMC2 协议](../../../papers/msmc2-protocol/)与[SMC++ 方法论文](../../../papers/smcpp-paper/)。
+- [非洲稻群体历史案例](../../../papers/african-rice-246-genomes/)、[杨树重复序列敏感性研究](../../../papers/populus-repeats-demography/)与[胡杨重测序研究](../../../papers/populus-euphratica-demography/)。

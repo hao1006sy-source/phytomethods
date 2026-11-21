@@ -9,8 +9,8 @@ type: method
 methodIds: [admixture]
 domainIds: [population-genetics]
 speciesIds: []
-status: draft
-updatedAt: 2026-11-21
+status: published
+updatedAt: 2026-11-22
 ---
 ## 方法价值
 Alexander、Novembre 和 Lange 提出 ADMIXTURE，用于从多位点基因型估计相互独立个体在指定 $K$ 下的模型祖先比例及成分等位基因频率。论文说明该软件使用与 STRUCTURE 相同的似然模型，以最大似然点估计代替 MCMC 后验抽样，并通过交替块优化、序列二次规划和准牛顿加速提高计算效率。该推断的输出是给定数据及模型条件下的参数估计，不能单独确定真实人口史。

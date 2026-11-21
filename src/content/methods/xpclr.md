@@ -10,8 +10,8 @@ principleIds: [allele-frequency-differentiation, composite-likelihood-selection]
 dataIds: [variant-data]
 paper: xpclr-paper
 repository: https://github.com/hardingnj/xpclr
-status: draft
-updatedAt: 2026-11-21
+status: published
+updatedAt: 2026-11-22
 ---
 ## 一句话简介与来源
 

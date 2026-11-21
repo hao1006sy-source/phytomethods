@@ -10,8 +10,8 @@ principleIds: [extended-haplotype-homozygosity]
 dataIds: [phased-haplotype-data, variant-data]
 paper: selscan-paper
 repository: https://github.com/szpiech/selscan
-status: draft
-updatedAt: 2026-11-21
+status: published
+updatedAt: 2026-11-22
 ---
 ## 一句话简介与开发背景
 

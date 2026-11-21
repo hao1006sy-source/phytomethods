@@ -10,8 +10,8 @@ principleIds: [sequentially-markovian-coalescent, coalescent-hidden-markov-model
 dataIds: [diploid-consensus-sequence, callable-region-mask]
 paper: psmc-paper
 repository: https://github.com/lh3/psmc
-status: draft
-updatedAt: 2026-11-21
+status: published
+updatedAt: 2026-11-22
 ---
 
 ## 一句话简介与开发背景

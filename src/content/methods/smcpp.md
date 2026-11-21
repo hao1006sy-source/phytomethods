@@ -10,8 +10,8 @@ principleIds: [sequentially-markovian-coalescent, conditional-site-frequency-spe
 dataIds: [variant-data, callable-region-mask]
 paper: smcpp-paper
 repository: https://github.com/popgenmethods/smcpp
-status: draft
-updatedAt: 2026-11-21
+status: published
+updatedAt: 2026-11-22
 ---
 
 ## 一句话简介与开发背景

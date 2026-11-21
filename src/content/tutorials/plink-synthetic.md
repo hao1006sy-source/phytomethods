@@ -3,8 +3,8 @@ title: 使用 PLINK 分析模拟群体 SNP
 summary: 将模拟 VCF 转换为 PLINK 文件并计算频率、缺失率和 PCA。
 method: plink
 tested: verified
-status: draft
-updatedAt: 2026-11-21
+status: published
+updatedAt: 2026-11-22
 ---
 ## 目的与验证状态
 本教程使用 8 个虚构二倍体样本和 6 个虚构 SNP 演示 PLINK 数据转换、频率、缺失率和 PCA。2026 年 11 月 21 日已在 Windows 使用 PLINK 1.9.1（11 Nov 2026）实际运行；输入不是植物测序数据，结果仅用于教学。真实植物数据还需要检查倍性、参考版本、缺失、亲缘和连锁不平衡。

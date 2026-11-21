@@ -9,8 +9,8 @@ type: method
 methodIds: [plink]
 domainIds: [population-genetics]
 speciesIds: []
-status: draft
-updatedAt: 2026-11-21
+status: published
+updatedAt: 2026-11-22
 ---
 ## 方法价值
 PLINK 提供基因型数据管理、群体统计和关联分析等功能。[方法论文](https://doi.org/10.1086/519795)。版本和适用数据类型应依据当前文档核对。

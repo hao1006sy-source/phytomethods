@@ -979,10 +979,12 @@
     "paperIds": [
       "rice-3010-pangenome"
     ],
-    "tutorialIds": [],
-    "status": "draft",
+    "tutorialIds": [
+      "plink-synthetic"
+    ],
+    "status": "published",
     "createdAt": null,
-    "updatedAt": "2026-11-21"
+    "updatedAt": "2026-11-22"
   },
   {
     "id": "m05-topic-02",
@@ -1023,9 +1025,9 @@
     "tutorialIds": [
       "plink-synthetic"
     ],
-    "status": "draft",
+    "status": "published",
     "createdAt": null,
-    "updatedAt": "2026-11-21"
+    "updatedAt": "2026-11-22"
   },
   {
     "id": "m05-topic-03",
@@ -1042,8 +1044,7 @@
     ],
     "methodIds": [
       "plink",
-      "admixture",
-      "gapit"
+      "admixture"
     ],
     "principleIds": [
       "genotype-statistics",
@@ -1056,15 +1057,14 @@
       "admixture-paper",
       "admixture-enhancements",
       "rice-3010-pangenome",
-      "plink-paper",
-      "rice-roots-population"
+      "plink-paper"
     ],
     "tutorialIds": [
       "plink-synthetic"
     ],
-    "status": "draft",
+    "status": "published",
     "createdAt": null,
-    "updatedAt": "2026-11-21"
+    "updatedAt": "2026-11-22"
   },
   {
     "id": "m05-topic-04",
@@ -1093,9 +1093,9 @@
       "rice-3010-pangenome"
     ],
     "tutorialIds": [],
-    "status": "draft",
+    "status": "published",
     "createdAt": null,
-    "updatedAt": "2026-11-21"
+    "updatedAt": "2026-11-22"
   },
   {
     "id": "m05-topic-05",
@@ -1140,9 +1140,9 @@
       "rice-temarker-sweeps"
     ],
     "tutorialIds": [],
-    "status": "draft",
+    "status": "published",
     "createdAt": null,
-    "updatedAt": "2026-11-21"
+    "updatedAt": "2026-11-22"
   },
   {
     "id": "m05-topic-06",
@@ -1186,9 +1186,9 @@
       "populus-euphratica-demography"
     ],
     "tutorialIds": [],
-    "status": "draft",
+    "status": "published",
     "createdAt": null,
-    "updatedAt": "2026-11-21"
+    "updatedAt": "2026-11-22"
   },
   {
     "id": "m05-topic-07",
@@ -1230,9 +1230,9 @@
       "soybean-resequencing"
     ],
     "tutorialIds": [],
-    "status": "draft",
+    "status": "published",
     "createdAt": null,
-    "updatedAt": "2026-11-21"
+    "updatedAt": "2026-11-22"
   },
   {
     "id": "m06-topic-01",

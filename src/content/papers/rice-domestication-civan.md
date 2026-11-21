@@ -9,8 +9,8 @@ type: application
 methodIds: []
 domainIds: [population-genetics]
 speciesIds: [rice]
-status: draft
-updatedAt: 2026-11-21
+status: published
+updatedAt: 2026-11-22
 ---
 
 ## 研究问题与解释框架

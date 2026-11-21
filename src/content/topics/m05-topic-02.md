@@ -3,8 +3,8 @@ title: SNP 检测、过滤与 VCF
 summary: 从测序比对证据到标准化变异记录和群体基因型矩阵，理解植物 SNP 与 InDel 流程。
 domain: population-genetics
 methods: [bcftools, plink]
-status: draft
-updatedAt: 2026-11-21
+status: published
+updatedAt: 2026-11-22
 ---
 
 ## 研究问题与流程边界
@@ -91,13 +91,13 @@ plink2 --vcf cohort.norm.vcf.gz --make-pgen --out cohort
 
 ## 水稻植物案例与方法比较
 
-Wang 等的 3,010 份亚洲栽培稻研究以 BWA-MEM 0.7.10 比对，使用 GATK 3.2-2 进行 SNP/InDel 检测，并对 3,010 份材料识别约 2,939.99 万个 SNP 与 246.70 万个短 InDel。PLINK 用于 LD 剪枝和核心 SNP 集构建，ADMIXTURE 用于群体结构分析；这些下游软件不是其变异调用器。[原始论文与步骤记录](../../papers/rice-3010-pangenome/)
+Wang 等的 3,010 份亚洲栽培稻研究以 BWA-MEM 0.7.10 比对，使用 GATK 3.2-2 进行 SNP/InDel 检测，并对 3,010 份材料识别约 2,939.99 万个 SNP 与 246.70 万个短 InDel。PLINK 用于 LD 剪枝和核心 SNP 集构建，ADMIXTURE 用于群体结构分析；这些下游软件不是其变异调用器。[原始论文与步骤记录](../../../papers/rice-3010-pangenome/)
 
-Balimponya 等对水稻杂合变异检测比较了 Bowtie2 或 BWA-MEM2 与 GATK4.3 HaplotypeCaller 或 BCFtools mpileup 的组合，并以相同 DNA 的独立测序结果评估一致性。该研究选定 BWA-MEM2 + GATK4.3 HaplotypeCaller：四项实验报告的相似度为 99.74%、99.63%、99.02% 和 99.37%；BWA-MEM2 + BCFtools mpileup 对应为 71.52%、71.43%、70.97% 和 66.51%。这是该研究材料、过滤和验证设定下的比较，不构成跨物种或跨数据集的调用器排名。[论文记录](../../papers/rice-variant-comparison/)；[Plant Methods 原文](https://doi.org/10.1186/s13007-025-01437-x)
+Balimponya 等对水稻杂合变异检测比较了 Bowtie2 或 BWA-MEM2 与 GATK4.3 HaplotypeCaller 或 BCFtools mpileup 的组合，并以相同 DNA 的独立测序结果评估一致性。该研究选定 BWA-MEM2 + GATK4.3 HaplotypeCaller：四项实验报告的相似度为 99.74%、99.63%、99.02% 和 99.37%；BWA-MEM2 + BCFtools mpileup 对应为 71.52%、71.43%、70.97% 和 66.51%。这是该研究材料、过滤和验证设定下的比较，不构成跨物种或跨数据集的调用器排名。[论文记录](../../../papers/rice-variant-comparison/)；[Plant Methods 原文](https://doi.org/10.1186/s13007-025-01437-x)
 
 ## 延伸阅读与关联资源
 
-- 工具：[BCFtools](../../methods/bcftools/)负责变异数据处理与基于比对的调用；[PLINK](../../methods/plink/)处理已调用的基因型数据。
-- 案例：[3,010 份栽培稻变异与群体分析](../../papers/rice-3010-pangenome/)；[水稻杂合 SNP 调用组合比较](../../papers/rice-variant-comparison/)。
-- 教程：[PLINK 模拟数据分析](../../tutorials/plink-synthetic/)实际使用虚构二倍体样本验证格式转换和统计输出；不代表真实植物数据复现。
+- 工具：[BCFtools](../../../methods/bcftools/)负责变异数据处理与基于比对的调用；[PLINK](../../../methods/plink/)处理已调用的基因型数据。
+- 案例：[3,010 份栽培稻变异与群体分析](../../../papers/rice-3010-pangenome/)；[水稻杂合 SNP 调用组合比较](../../../papers/rice-variant-comparison/)。
+- 教程：[PLINK 模拟数据分析](../../../tutorials/plink-synthetic/)实际使用虚构二倍体样本验证格式转换和统计输出；不代表真实植物数据复现。
 - 延伸专题：[群体遗传学基本概念](../m05-topic-01/)、[PCA 与群体结构](../m05-topic-03/)、[多样性、分化与 LD](../m05-topic-04/)和[驯化与环境适应案例](../m05-topic-07/)。

@@ -10,8 +10,8 @@ principleIds: [variant-calling]
 dataIds: [variant-data]
 paper: bcftools-paper
 repository: https://github.com/samtools/bcftools
-status: draft
-updatedAt: 2026-11-21
+status: published
+updatedAt: 2026-11-22
 ---
 ## 研究问题与计算过程
 BCFtools 是处理变异数据的一组工具。常见检测流程先用 `mpileup` 汇总参考位置的比对证据及基因型似然，再用 `call` 按所选模型推断候选变异；格式转换、规范化、过滤与统计是后续独立步骤。[方法论文](https://doi.org/10.1093/gigascience/giab008)。

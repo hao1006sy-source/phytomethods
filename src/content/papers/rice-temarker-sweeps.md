@@ -9,8 +9,8 @@ type: application
 methodIds: [sweepfinder2]
 domainIds: [population-genetics]
 speciesIds: [rice]
-status: draft
-updatedAt: 2026-11-21
+status: published
+updatedAt: 2026-11-22
 ---
 ## 研究设计与软件任务
 

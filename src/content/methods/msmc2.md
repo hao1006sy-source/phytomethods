@@ -10,8 +10,8 @@ principleIds: [sequentially-markovian-coalescent, coalescent-hidden-markov-model
 dataIds: [variant-data, phased-haplotype-data, callable-region-mask]
 paper: msmc-paper
 repository: https://github.com/stschiff/msmc2
-status: draft
-updatedAt: 2026-11-21
+status: published
+updatedAt: 2026-11-22
 ---
 
 ## 一句话简介与开发背景

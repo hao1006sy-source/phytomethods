@@ -3,8 +3,8 @@ title: 群体遗传学基本概念
 summary: 从等位基因频率、遗传漂变、选择与群体结构理解植物基因组变异。
 domain: population-genetics
 methods: [plink, admixture]
-status: draft
-updatedAt: 2026-11-21
+status: published
+updatedAt: 2026-11-22
 ---
 
 ## 研究问题与分析对象
@@ -55,7 +55,7 @@ Hardy–Weinberg 平衡（HWE）描述理想化随机交配条件下的基因型
 
 ## 植物案例：3,010 份亚洲栽培稻
 
-Wang 等对 3,010 份亚洲栽培稻材料分析群体变异、结构和多样性，报告 29,399,875 个 SNP（其中 27,024,796 个为双等位 SNP）和 2,467,043 个小型 InDel。短变异以 Nipponbare 参考序列为基础，由 BWA-MEM 与 GATK 3.2-2 流程检测；论文随后构建不同目的的 SNP 子集，并以 PLINK 进行两轮 LD 剪枝生成核心标记集合。ADMIXTURE 用于比较候选 $K$ 下的群体结构，论文以 $K=9$ 描述其采样集合中的结构。变异检测、LD 剪枝和祖先成分拟合是不同分析步骤，PLINK 和 ADMIXTURE 不负责该研究的变异调用。[研究正文与方法](../../papers/rice-3010-pangenome/)；[Nature 原文](https://doi.org/10.1038/s41586-018-0063-9)。
+Wang 等对 3,010 份亚洲栽培稻材料分析群体变异、结构和多样性，报告 29,399,875 个 SNP（其中 27,024,796 个为双等位 SNP）和 2,467,043 个小型 InDel。短变异以 Nipponbare 参考序列为基础，由 BWA-MEM 与 GATK 3.2-2 流程检测；论文随后构建不同目的的 SNP 子集，并以 PLINK 进行两轮 LD 剪枝生成核心标记集合。ADMIXTURE 用于比较候选 $K$ 下的群体结构，论文以 $K=9$ 描述其采样集合中的结构。变异检测、LD 剪枝和祖先成分拟合是不同分析步骤，PLINK 和 ADMIXTURE 不负责该研究的变异调用。[研究正文与方法](../../../papers/rice-3010-pangenome/)；[Nature 原文](https://doi.org/10.1038/s41586-018-0063-9)。
 
 这个案例也展示了分析集合的定义会随问题改变：高质量双等位变异、缺失与频率过滤集合以及 LD 剪枝后的核心 SNP 集并不相同。论文关于栽培稻亚群的结论来自栽培材料设计，不能单独解决野生祖先、独立驯化次数等历史问题。
 
@@ -63,5 +63,5 @@ Wang 等对 3,010 份亚洲栽培稻材料分析群体变异、结构和多样�
 
 - 先读[变异检测、过滤与 VCF](../m05-topic-02/)，了解群体分析所用基因型矩阵的来源。
 - 再读[PCA 与群体结构](../m05-topic-03/)、[多样性、分化与 LD](../m05-topic-04/)、[选择性清除](../m05-topic-05/)、[群体历史动态](../m05-topic-06/)和[驯化与环境适应案例](../m05-topic-07/)。
-- 相关工具：[PLINK](../../methods/plink/)处理基因型数据质量控制、群体统计与 LD；[ADMIXTURE](../../methods/admixture/)拟合指定 $K$ 下的祖先成分模型。两者在 3,010 水稻研究中的用途和分析边界见工具页及原始研究。
-- 代表文献：[3,010 份水稻群体基因组研究](../../papers/rice-3010-pangenome/)、[PLINK 方法论文](../../papers/plink-paper/)及[ADMIXTURE 方法论文](../../papers/admixture-paper/)。
+- 相关工具：[PLINK](../../../methods/plink/)处理基因型数据质量控制、群体统计与 LD；[ADMIXTURE](../../../methods/admixture/)拟合指定 $K$ 下的祖先成分模型。两者在 3,010 水稻研究中的用途和分析边界见工具页及原始研究。
+- 代表文献：[3,010 份水稻群体基因组研究](../../../papers/rice-3010-pangenome/)、[PLINK 方法论文](../../../papers/plink-paper/)及[ADMIXTURE 方法论文](../../../papers/admixture-paper/)。

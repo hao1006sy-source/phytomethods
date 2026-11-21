@@ -9,8 +9,8 @@ type: application
 methodIds: [admixture, xpclr]
 domainIds: [population-genetics]
 speciesIds: [maize]
-status: draft
-updatedAt: 2026-11-21
+status: published
+updatedAt: 2026-11-22
 ---
 
 ## 研究问题与材料

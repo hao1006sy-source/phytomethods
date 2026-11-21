@@ -2,9 +2,9 @@
 title: PCA、群体结构与祖先成分
 summary: 从基因型矩阵理解主成分、模型聚类和群体结构的解释。
 domain: population-genetics
-methods: [plink, admixture, gapit]
-status: draft
-updatedAt: 2026-11-21
+methods: [plink, admixture]
+status: published
+updatedAt: 2026-11-22
 ---
 ## 研究背景
 群体样本可能来自不同地区、品种或育种背景，其基因型频率并不完全一致。群体结构分析用于概括样本间遗传差异、识别亲缘或批次异常，并为群体历史和关联分析提供背景。PCA 和祖先成分模型采用不同假设，图形都不能直接代替完整的历史重建。
@@ -33,7 +33,7 @@ PCA 为连续投影，适合探索主要差异与异常；ADMIXTURE 用指定 $K
 ## 水稻案例
 3,010 份亚洲栽培稻材料的研究使用 PLINK 进行 SNP/LD 处理，针对候选 $K$ 重复运行 ADMIXTURE，最终以 $K=9$ 描述该研究样本的结构，并通过 CLUMPP 对齐 $Q$ 矩阵。这里的九个成分取决于论文的材料、位点筛选和分析设计，不能直接套用于其他栽培稻或野生稻采样集合。[原始研究](https://doi.org/10.1038/s41586-018-0063-9)；[本站案例页](../../../papers/rice-3010-pangenome/)；[ADMIXTURE 工具页](../../../methods/admixture/)。
 
-水稻根系适应研究在 795 份栽培稻中分开处理群体结构与 GWAS 协变量：PLINK 从 3.3 百万个未填补 SNP 中提取 154,516 个满足论文 LD 条件的位点；ADMIXTURE 对 $K=1$–10 拟合并将 $K=8$ 作为一个模型选择；PCA 的前三个主成分和亲缘矩阵由 GAPIT 基于 3.3 百万个未填补 SNP 计算。[本站案例页](../../../papers/rice-roots-population/)；[GAPIT 工具页](../../../methods/gapit/)；[出版方全文](https://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1007521)。
+水稻根系适应研究在 795 份栽培稻中分开处理群体结构与 GWAS 协变量：PLINK 从 3.3 百万个未填补 SNP 中提取 154,516 个满足论文 LD 条件的位点；ADMIXTURE 对 $K=1$–10 拟合并将 $K=8$ 作为一个模型选择；PCA 的前三个主成分和亲缘矩阵由 GAPIT 基于 3.3 百万个未填补 SNP 计算。该论文的 GAPIT 步骤服务于 GWAS 协变量，本站将其归入 M06 的关联分析工具；群体结构分析的 PLINK 与 ADMIXTURE 步骤见[出版方全文](https://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1007521)。
 
 ## 延伸阅读
 [ADMIXTURE 方法论文](https://doi.org/10.1101/gr.094052.109)、[交叉验证与监督/惩罚估计扩展论文](../../../papers/admixture-enhancements/)、[ADMIXTURE 官方手册](https://dalexander.github.io/admixture/admixture-manual.pdf)、[群体结构特征分析](https://doi.org/10.1371/journal.pgen.0020190)、[Price 等人的 PCA 群体分层研究](https://doi.org/10.1038/ng1847)和[水稻群体研究](https://pubmed.ncbi.nlm.nih.gov/29695866/)。

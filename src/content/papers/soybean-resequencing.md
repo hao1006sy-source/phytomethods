@@ -9,8 +9,8 @@ type: application
 methodIds: []
 domainIds: [population-genetics]
 speciesIds: [soybean]
-status: draft
-updatedAt: 2026-11-21
+status: published
+updatedAt: 2026-11-22
 ---
 ## 样本与测序设计
 

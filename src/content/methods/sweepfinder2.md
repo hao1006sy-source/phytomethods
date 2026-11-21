@@ -10,8 +10,8 @@ principleIds: [site-frequency-spectrum-scan, composite-likelihood-selection]
 dataIds: [variant-data]
 paper: sweepfinder2-paper
 repository: https://github.com/mdegiorgio/SweepFinder2
-status: draft
-updatedAt: 2026-11-21
+status: published
+updatedAt: 2026-11-22
 ---
 ## 一句话简介与开发背景
 

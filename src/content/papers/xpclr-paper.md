@@ -9,8 +9,8 @@ type: method
 methodIds: [xpclr]
 domainIds: [population-genetics]
 speciesIds: []
-status: draft
-updatedAt: 2026-11-21
+status: published
+updatedAt: 2026-11-22
 ---
 ## 方法贡献
 

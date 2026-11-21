@@ -10,8 +10,8 @@ principleIds: [ancestry-model]
 dataIds: [variant-data]
 paper: admixture-paper
 repository: https://dalexander.github.io/admixture/
-status: draft
-updatedAt: 2026-11-21
+status: published
+updatedAt: 2026-11-22
 ---
 ## 一句话简介与开发背景
 

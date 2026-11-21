@@ -10,8 +10,8 @@ principleIds: [genotype-statistics]
 dataIds: [variant-data]
 paper: plink-paper
 repository: https://github.com/chrchang/plink-ng
-status: draft
-updatedAt: 2026-11-21
+status: published
+updatedAt: 2026-11-22
 ---
 ## 一句话简介与开发背景
 
@@ -92,7 +92,7 @@ plink --bfile cohort --r2 gz --ld-window 50 --ld-window-kb 500 --ld-window-r2 0 
 
 Wang 等的 3,010 份亚洲栽培稻研究将 PLINK 用于 SNP/LD 处理，之后运行 ADMIXTURE 比较候选 $K$，并用 CLUMPP 对齐成分矩阵。论文把重点结构变异和 PAV 分析限定在 453 份高覆盖材料。该案例中 PLINK 对应标记筛选与 LD 步骤，不能据此把论文的所有 PCA、变异检测或泛基因组分析归给 PLINK。[原始论文](../../papers/rice-3010-pangenome/)；[研究原文](https://doi.org/10.1038/s41586-018-0063-9)。
 
-水稻根系适应研究中，PLINK 从 3.3 百万个未填补 SNP 中筛选出 154,516 个满足论文 LD 阈值的标记；ADMIXTURE 运行 $K=1$–10 并把 $K=8$ 作为一个模型选择；PCA 和亲缘矩阵则由 GAPIT 使用 3.3 百万个未填补 SNP 计算。页面分别关联 PLINK、ADMIXTURE 与 GAPIT，保留每项方法的原文任务边界。[原始研究](../../papers/rice-roots-population/)；[出版方全文](https://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1007521)。
+水稻根系适应研究中，PLINK 从 3.3 百万个未填补 SNP 中筛选出 154,516 个满足论文 LD 阈值的标记；ADMIXTURE 运行 $K=1$–10 并把 $K=8$ 作为一个模型选择；PCA 和亲缘矩阵则由 GAPIT 使用 3.3 百万个未填补 SNP 计算。页面分别关联 PLINK、ADMIXTURE 与 GAPIT，保留每项方法的原文任务边界。[PLOS Genetics 原文](https://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1007521)。
 
 ## 结果判读与适用边界
 
@@ -109,3 +109,4 @@ Wang 等的 3,010 份亚洲栽培稻研究将 PLINK 用于 SNP/LD 处理，之�
 PLINK 1.9 方法与格式见[原始论文](../../papers/plink-paper/)；PCA 的群体结构解释可继续读 Price 等人的[主成分校正研究](https://doi.org/10.1038/ng1847)和 Patterson 等人的[群体结构特征值分析](https://doi.org/10.1371/journal.pgen.0020190)。本页连接[群体遗传学基本概念](../../topics/population-genetics/m05-topic-01/)、[M05-02 SNP/VCF 专题](../../topics/population-genetics/m05-topic-02/)、[M05-03 群体结构专题](../../topics/population-genetics/m05-topic-03/)和[M05-04 多样性、分化与 LD 专题](../../topics/population-genetics/m05-topic-04/)；上游为变异调用、参考和样本信息，下游包括 ADMIXTURE、GWAS 和亲缘相关分析。
 
 本机 PLINK 1.9.1 模拟数据分析已经执行；真实植物数据分析尚未在本机运行。PLINK 2.0 页面及参数在 2026-11-21 核对，未安装 PLINK 2.0 或本机实跑上面的 PLINK 2.0 命令。PLINK 1.9 原始方法论文记录 GNU GPL v3；PLINK 2.0 官方文档标注 Beta 并声明 GPL v3。[PLINK 1.9 原始论文](https://doi.org/10.1093/gigascience/giv023)；[PLINK 2.0 官方文档](https://www.cog-genomics.org/plink/2.0/)。
+

@@ -4,8 +4,8 @@ name: GAPIT
 summary: 整合多种 GWAS 与基因组预测方法的 R 工具。
 dataType: 基因型、表型与样本协变量
 principle: 混合模型与多位点关联分析
-domainIds: [gwas-breeding, population-genetics]
-topicIds: [m05-topic-03, m06-topic-03, m06-topic-04, m06-topic-05, m06-topic-06]
+domainIds: [gwas-breeding]
+topicIds: [m06-topic-03, m06-topic-04, m06-topic-05, m06-topic-06]
 principleIds: [gwas-mixed-model]
 dataIds: [variant-data, phenotype]
 paper: gapit3-paper

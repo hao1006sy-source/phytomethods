@@ -3,8 +3,8 @@ title: 选择性清除
 summary: 比较群体内多样性、位点频率谱、多位点频率分化和延伸单倍型信号，评估选择性清除候选区。
 domain: population-genetics
 methods: [xpclr, selscan, sweepfinder2]
-status: draft
-updatedAt: 2026-11-21
+status: published
+updatedAt: 2026-11-22
 ---
 ## 研究背景与生物学问题
 
@@ -24,17 +24,17 @@ updatedAt: 2026-11-21
 
 核苷酸多样性 $π$ 衡量群体内两条随机序列的平均差异；窗口内 $π$ 下降可能符合近期清除，也可能由瓶颈、自交或低重组造成。Tajima’s $D$ 比较基于成对差异和分离位点数的估计量；负值表示相对于所选中性模型，低频变异偏多的模式。它不专属于清除，也受群体扩张及结构影响。
 
-SweepFinder2 在位置网格上计算经验中性 SFS 与清除模型下局部 SFS 的复合似然比。SweepFinder2 可将局部重组率纳入信号空间衰减，并支持以外部 B 值调整背景选择造成的频谱变化；使用 B 值需要符合其人口参数和外群单系假设。[方法论文](../../papers/sweepfinder2-paper/)；[官方手册](https://degiorgiogroup.fau.edu/Manual_SweepFinder2_v1.0.pdf)。
+SweepFinder2 在位置网格上计算经验中性 SFS 与清除模型下局部 SFS 的复合似然比。SweepFinder2 可将局部重组率纳入信号空间衰减，并支持以外部 B 值调整背景选择造成的频谱变化；使用 B 值需要符合其人口参数和外群单系假设。[方法论文](../../../papers/sweepfinder2-paper/)；[官方手册](https://degiorgiogroup.fau.edu/Manual_SweepFinder2_v1.0.pdf)。
 
 ### 两群体的频率分化
 
-XP-CLR（cross-population composite likelihood ratio）在目标群体和参照群体间比较一组连锁 SNP 的等位基因频率变化，以中性遗传漂变模型和受选择频率变化模型组成窗口复合似然。原方法通过对连锁相关标记作权重控制，减少相邻 SNP 对证据的冗余计数。该值排序候选窗口，不能直接转换成通用显著性阈值或精确选择系数。[Chen 等，2010](../../papers/xpclr-paper/)；[实现与输入说明](../../methods/xpclr/)。
+XP-CLR（cross-population composite likelihood ratio）在目标群体和参照群体间比较一组连锁 SNP 的等位基因频率变化，以中性遗传漂变模型和受选择频率变化模型组成窗口复合似然。原方法通过对连锁相关标记作权重控制，减少相邻 SNP 对证据的冗余计数。该值排序候选窗口，不能直接转换成通用显著性阈值或精确选择系数。[Chen 等，2010](../../../papers/xpclr-paper/)；[实现与输入说明](../../../methods/xpclr/)。
 
 $F_{ST}$ 概括不同群体的频率分化程度，是常用的总体统计，不等同于 XP-CLR 的连锁选择模型。研究通常需要在同一材料中结合群体内多样性、经验或模拟背景以及选择假设来解释分化峰。
 
 ### 延伸单倍型统计
 
-XP-EHH（cross-population extended haplotype homozygosity）分别计算两群体的 EHH 延伸积分，并比较其对数比；方向取决于目标和参照群体的输入顺序。它特别用于寻找某群体出现较长高频单倍型、另一个群体未呈现相同模式的候选位点，需要质量合格的相位单倍型数据和密集标记。[Sabeti 等，2007](../../papers/xpehh-paper/)。`selscan` 是计算 XP-EHH、iHS 和其他 EHH 类统计量的软件实现；计算值还需依据版本和距离窗口运行相应标准化程序。[`selscan` 软件论文](../../papers/selscan-paper/)；[工具页](../../methods/selscan/)。
+XP-EHH（cross-population extended haplotype homozygosity）分别计算两群体的 EHH 延伸积分，并比较其对数比；方向取决于目标和参照群体的输入顺序。它特别用于寻找某群体出现较长高频单倍型、另一个群体未呈现相同模式的候选位点，需要质量合格的相位单倍型数据和密集标记。[Sabeti 等，2007](../../../papers/xpehh-paper/)。`selscan` 是计算 XP-EHH、iHS 和其他 EHH 类统计量的软件实现；计算值还需依据版本和距离窗口运行相应标准化程序。[`selscan` 软件论文](../../../papers/selscan-paper/)；[工具页](../../../methods/selscan/)。
 
 ## 方法比较
 
@@ -64,21 +64,21 @@ Huang 等对 446 份野生稻（*Oryza rufipogon*）和 1,083 份栽培籼、粳
 
 ### 韩国杂草稻的适应扫描
 
-He 等对 30 份韩国杂草稻、30 份地方稻和 10 份野生稻分析 100 kb 窗口或位点级的多种扫描，并将前 2.5%作为各自方法的经验离群区。文章分别报告 ROD、$F_{ST}$、XP-EHH、iHS 和 XP-CLR 的命中数量；在至少两种方法支持的集合中得到 537 个候选基因。[植物应用论文](../../papers/rice-weedy-selection/)；[原文](https://doi.org/10.1111/pbi.12630)。
+He 等对 30 份韩国杂草稻、30 份地方稻和 10 份野生稻分析 100 kb 窗口或位点级的多种扫描，并将前 2.5%作为各自方法的经验离群区。文章分别报告 ROD、$F_{ST}$、XP-EHH、iHS 和 XP-CLR 的命中数量；在至少两种方法支持的集合中得到 537 个候选基因。[植物应用论文](../../../papers/rice-weedy-selection/)；[原文](https://doi.org/10.1111/pbi.12630)。
 
 ### 水稻 SNP 与 TE 标记的频谱扫描
 
-Yan 等在 176 份日本稻材料中对 SNP 和转座子插入标记分别运行 SweepFinder2，扫描网格约 10 kb，以各类标记最高 1%窗口作为候选，再合并相邻高分窗口。该案例展示 TE 基因型可作为群体标记进入 SFS 扫描；插入调用准确性、缺失处理和标记过滤仍决定输入质量。[原始论文](../../papers/rice-temarker-sweeps/)；[全文方法](https://pmc.ncbi.nlm.nih.gov/articles/PMC9251385/)。
+Yan 等在 176 份日本稻材料中对 SNP 和转座子插入标记分别运行 SweepFinder2，扫描网格约 10 kb，以各类标记最高 1%窗口作为候选，再合并相邻高分窗口。该案例展示 TE 基因型可作为群体标记进入 SFS 扫描；插入调用准确性、缺失处理和标记过滤仍决定输入质量。[原始论文](../../../papers/rice-temarker-sweeps/)；[全文方法](https://pmc.ncbi.nlm.nih.gov/articles/PMC9251385/)。
 
 ### 不同清除统计量给出不同候选区域
 
-Liu 等研究栽培与野生亚洲稻的有害变异，并使用 SweeD 与 XP-CLR 重新扫描部分 3K 水稻数据；以论文设定的 5%阈值比较结果时，各方法得到的区域数和基因重叠不同。[论文记录](../../papers/rice-deleterious-domestication/)；[出版方原文](https://doi.org/10.1093/molbev/msw296)。候选区不应脱离方法、群体与阈值单独比较。
+Liu 等研究栽培与野生亚洲稻的有害变异，并使用 SweeD 与 XP-CLR 重新扫描部分 3K 水稻数据；以论文设定的 5%阈值比较结果时，各方法得到的区域数和基因重叠不同。[论文记录](../../../papers/rice-deleterious-domestication/)；[出版方原文](https://doi.org/10.1093/molbev/msw296)。候选区不应脱离方法、群体与阈值单独比较。
 
 ## 方法工具与延伸阅读
 
-- [XP-CLR 工具与实现边界](../../methods/xpclr/)：跨群体多位点频率差异。
-- [selscan 工具](../../methods/selscan/)：XP-EHH、iHS 与 EHH 类统计量。
-- [SweepFinder2 工具](../../methods/sweepfinder2/)：单群体 SFS 复合似然扫描。
-- [PLINK](../../methods/plink/)：基因型质控、LD 和总体分化外围分析；不替代 XP-CLR 或 EHH 算法。
+- [XP-CLR 工具与实现边界](../../../methods/xpclr/)：跨群体多位点频率差异。
+- [selscan 工具](../../../methods/selscan/)：XP-EHH、iHS 与 EHH 类统计量。
+- [SweepFinder2 工具](../../../methods/sweepfinder2/)：单群体 SFS 复合似然扫描。
+- [PLINK](../../../methods/plink/)：基因型质控、LD 和总体分化外围分析；不替代 XP-CLR 或 EHH 算法。
 
-进一步阅读：[XP-CLR 方法论文](../../papers/xpclr-paper/)、[XP-EHH 方法论文](../../papers/xpehh-paper/)、[SweepFinder2 方法论文](../../papers/sweepfinder2-paper/)、[`selscan` 软件论文](../../papers/selscan-paper/)、[Huang 等水稻驯化研究](../../papers/rice-domestication-huang/)以及[本专题方法证据记录](../../../docs/m05-evidence.md)。
+进一步阅读：[XP-CLR 方法论文](../../../papers/xpclr-paper/)、[XP-EHH 方法论文](../../../papers/xpehh-paper/)、[SweepFinder2 方法论文](../../../papers/sweepfinder2-paper/)、[`selscan` 软件论文](../../../papers/selscan-paper/)、[Huang 等水稻驯化研究](../../../papers/rice-domestication-huang/)以及本专题方法证据记录见项目维护文档。。

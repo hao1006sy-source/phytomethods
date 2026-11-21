@@ -3,8 +3,8 @@ title: 遗传多样性、群体分化与连锁不平衡
 summary: 用 π、Tajima’s D、FST 和 LD 比较植物群体的遗传变异。
 domain: population-genetics
 methods: [plink]
-status: draft
-updatedAt: 2026-11-21
+status: published
+updatedAt: 2026-11-22
 ---
 ## 研究问题
 植物不同群体的遗传变异水平、等位基因频率及位点间关联可以反映共同演化历史。多样性和分化统计量常用于比较野生与栽培材料、不同地理群体和育种群体；选择、人口历史、交配系统、重组和技术偏差可能产生相似的统计信号，因此需要多个指标及合适对照。
