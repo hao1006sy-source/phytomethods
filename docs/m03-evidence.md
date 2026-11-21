@@ -11,8 +11,9 @@
 | PGGB | [原论文](https://doi.org/10.1038/s41592-024-02430-3)、[官方仓库](https://github.com/pangenome/pggb) | wfmash 全对全比对→seqwish 图诱导→smoothxg/gfaffix 规范化；MIT；v0.7.4 快照与 `-i/-o/-n/-t/-p/-s` 用途已核 | 依赖组件版本与具体参数未实跑；需逐步核对工作流输出 |
 | vg / Giraffe | [vg 原论文](https://doi.org/10.1038/nbt.4227)、[Giraffe 原论文](https://doi.org/10.1126/science.abg8871)、[Giraffe PubMed/PMC 全文](https://pmc.ncbi.nlm.nih.gov/articles/PMC9365333/)、[官方索引文档](https://github.com/vgteam/vg/wiki/Index-Construction)、[许可证](https://github.com/vgteam/vg/blob/master/LICENSE) | Giraffe 原论文题名、年份和 DOI 已核；其评估为 5,202 个人类基因组与 167,000 个 SV，不标为植物案例。vg 索引文档列出 GBZ、distance 和 minimizer 索引；核心仓库 MIT；v1.78.0 快照 | 未本机运行；高粱论文同时含模拟与真实 reads，PGGB 图未进入 mapping benchmark |
 | ODGI | [原论文](https://doi.org/10.1093/bioinformatics/btac308)、[官方仓库](https://github.com/pangenome/odgi) | 图、路径的存储、统计和可视化；MIT；v0.9.4 快照与 `build/stats/sort/viz/draw` 职责已核 | 未本机运行；图布局不能作为线性距离，格式兼容按版本确认 |
-| 水稻多组装 | [Zhao 等，2018](https://doi.org/10.1038/s41588-018-0041-z) | 栽培和野生水稻材料、基因内容与序列变异 | 个别定量结果和完整分析链 |
-| 3,010 水稻材料 | [Wang 等，2018](https://pubmed.ncbi.nlm.nih.gov/29695866/) | 文章标题、年份、期刊、泛基因组与 PAV | 按正文逐项检查分析流程 |
+| EUPAN | [PubMed 方法论文](https://pubmed.ncbi.nlm.nih.gov/28369371/)、[官方工具页](https://cgm.sjtu.edu.cn/eupan/index.html)、[官方安装说明](https://cgm.sjtu.edu.cn/eupan/installation.html)、[官方 SOP](https://cgm.sjtu.edu.cn/eupan/sop.html) | Map-to-pan、参考与新序列整合、reads 覆盖度及 gene/gene-family PAV 流程；方法论文列出 Perl/R/C++、Linux/集群及 CC BY-NC 4.0 非商业使用 | 未本机安装运行；官方旧版依赖需隔离环境评估；草稿页已完成四视口浏览器检查 |
+| 水稻多组装 | [Zhao 等 PubMed](https://pubmed.ncbi.nlm.nih.gov/29335547/)、[作者论文 PDF](https://xhhuanglab.cn/uploads/publications/Rice_Pangenome_NG2018.pdf)、[DOI](https://doi.org/10.1038/s41588-018-0041-z) | 题名、作者、年份、期刊及 DOI；66 份材料、115× Illumina、SOAPdenovo2/Fermi/GapCloser、MUMmer 与 EMBOSS `diffseq`；变异统计及 67 个基因组 PAV 图示 | 页面结果及图表解释待逐项复核；历史工具尚未在本站分别建档 |
+| 3,010 水稻材料 | [PubMed](https://pubmed.ncbi.nlm.nih.gov/29695866/)、[PMC 原文与方法](https://pmc.ncbi.nlm.nih.gov/articles/PMC6784863/)、[DOI](https://doi.org/10.1038/s41586-018-0063-9) | 3,010 总群体与 453 份高覆盖 SV/PAV 子集的界限；PLINK、ADMIXTURE、定制 novoBreak、EUPAN/Map-to-pan 关系及研究采用的覆盖阈值 | 全文结果与页面表达仍待继续审核；四视口预览及 M03 专题关系已通过 |
 | 拟南芥 69 份材料 | [Lian 等，2024 原文](https://www.nature.com/articles/s41588-024-01715-9)、[PubMed](https://pubmed.ncbi.nlm.nih.gov/38605175/) | DOI、年份、期刊、9 位作者；OrthoFinder v2.5.4 基因家族、PLINK 连锁剪枝/PCA、ADMIXTURE v1.3.0 群体结构及对应关系已核 | 结果页面逐句复核及跨 M05 关联发布闭包 |
 | 高粱图比较 | [Kopalli 等，2025](https://doi.org/10.1093/gigascience/giaf121)、[出版方全文](https://academic.oup.com/gigascience/article/doi/10.1093/gigascience/giaf121/8364989) | 六份真实高粱组装；Minigraph 0.21、PGGB 0.5.4、Minigraph-Cactus 2.7.2；ODGI 0.8.6、VG Giraffe 1.58.0、SyRI 1.6.3；模拟与真实读段映射任务已分开核 | 方法细节及页面关联已补；结果解释仍待逐项复审 |
 | Minigraph 方法论文 | [Li、Feng、Chu，2020](https://pubmed.ncbi.nlm.nih.gov/33066802/) | 标题、作者、期刊卷页、DOI；方法论文以人类组装方法为主 | 未作为植物应用论文使用 |
@@ -34,3 +35,11 @@
 ## 高粱基准方法细节复核
 
 2026-11-21 对照出版方全文及 PMC 全文复核：论文题名、五位作者、GigaScience 2025;14:giaf121 与 DOI 一致。图构建版本为 Minigraph 0.21、PGGB 0.5.4、Minigraph-Cactus 2.7.2；图处理使用 ODGI 0.8.6；Giraffe 1.58.0；SyRI 1.6.3。六个高粱组装用于真实构图比较；另用已知结构变异构建模拟组装和读段。PGGB 图的 VG mapping index 未能生成，故 mapping comparison 只包括 Minigraph、Minigraph-Cactus 与线性 Minimap2。公开真实 paired-end reads 的比较报告总映射率与完美映射比例：Minimap2 82.47% / 68.77%，Minigraph-Cactus 73.44% / 82.77%，Minigraph 73.27% / 78.13%。这些数值描述论文指定数据及判定方式，不作为跨物种通用性能结论。[出版方方法与结果](https://academic.oup.com/gigascience/article/doi/10.1093/gigascience/giaf121/8364989)。
+
+## 水稻泛基因组论文与 EUPAN 核查
+
+2026-11-21 对照 Nature 原文、PubMed 与作者提供的 PDF 核对 Zhao 等 2018 年多组装研究：书目记录为 Nature Genetics 50(2):278–284，DOI 10.1038/s41588-018-0041-z；作者为 Qiang Zhao、Qi Feng、Hengyun Lu、Yan Li、Ahong Wang、Qilin Tian、Qilin Zhan、Yiqi Lu、Lei Zhang、Tao Huang、Yongchun Wang、Danlin Fan、Yan Zhao、Ziqun Wang、Congcong Zhou、Jiaying Chen、Chuanrang Zhu、Wenjun Li、Qijun Weng、Qun Xu、Zi-Xuan Wang、Xinghua Wei、Bin Han 和 Xuehui Huang。研究比较 66 份栽培与野生稻材料，平均测序深度约 115×，并使用 Fermi、SOAPdenovo2、GapCloser、MUMmer 与 EMBOSS `diffseq`；变异结果及对 67 个基因组编码基因的 PAV 分析在论文页面中说明。此研究属于线性参考锚定的多组装分析，不标记为图泛基因组软件应用。
+
+2026-11-21 对照 Wang 等 3,010 水稻论文 PMC 全文核对测序和分析范围：PLINK 用于 LD 剪枝和 SNP 距离分析，ADMIXTURE 选择 K=9 并配合 CLUMPP 对齐重复运行矩阵；定制 novoBreak-germline 检测 SV。pan-genome 由 Nipponbare RefSeq 与 3,010 份组装产生的非冗余新序列组合，Map-to-pan 读取覆盖用于 PAV；SV/PAV 重点分析限于测序深度 >20× 且参考比对深度 >15× 的 453 份样本，基因存在判定阈值为 CDS >95%、gene body >85%。代码说明把基因及基因家族 PAV 分析纳入 EUPAN。
+
+依据 EUPAN PubMed 方法论文及官方安装页/SOP 新增工具和方法论文草稿。官方文档记录依赖 Perl、R、C++，QUAST 使用旧版 Python 2 环境；工具页列出多样本 FASTQ、参考 FASTA、GFF/GTF 输入、PAV 矩阵和覆盖结果。官方示例 PAV 阈值与 Wang 等论文阈值分别注明，未混作软件全局默认值。页面与案例关系在 375、768、1280、1440 px 下通过浏览器检查；软件没有在本机运行，继续保持草稿。

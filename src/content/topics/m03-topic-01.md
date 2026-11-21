@@ -2,7 +2,7 @@
 title: 泛基因组与核心、可变基因组
 summary: 理解多个植物个体的基因内容、序列变异及其表示方式。
 domain: pangenomics-structural-variation
-methods: [orthofinder, minigraph, pggb, minigraph-cactus]
+methods: [eupan, orthofinder, minigraph, pggb, minigraph-cactus]
 status: draft
 updatedAt: 2026-11-21
 ---

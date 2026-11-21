@@ -2,7 +2,7 @@
 title: 基因存在缺失变异（PAV）
 summary: 用一致的基因座定义和样本矩阵分析植物基因内容差异。
 domain: pangenomics-structural-variation
-methods: [orthofinder, minigraph, minigraph-cactus, pggb]
+methods: [eupan, orthofinder, minigraph, minigraph-cactus, pggb]
 status: draft
 updatedAt: 2026-11-21
 ---

@@ -407,6 +407,7 @@
       "参考偏倚"
     ],
     "methodIds": [
+      "eupan",
       "orthofinder",
       "minigraph",
       "pggb",
@@ -420,6 +421,7 @@
       "graph"
     ],
     "paperIds": [
+      "eupan-paper",
       "rice-pangenome-paper",
       "rice-3010-pangenome",
       "arabidopsis-69-pangenome",
@@ -455,7 +457,8 @@
     ],
     "paperIds": [
       "anchorwave-paper",
-      "syri-paper"
+      "syri-paper",
+      "rice-pangenome-paper"
     ],
     "tutorialIds": [
       "syri-intro"
@@ -490,7 +493,8 @@
     "paperIds": [
       "syri-paper",
       "rice-3010-pangenome",
-      "arabidopsis-adaptation"
+      "arabidopsis-adaptation",
+      "rice-pangenome-paper"
     ],
     "tutorialIds": [
       "syri-intro"
@@ -513,6 +517,7 @@
       "参考偏倚"
     ],
     "methodIds": [
+      "eupan",
       "orthofinder",
       "minigraph",
       "minigraph-cactus",
@@ -527,6 +532,7 @@
       "graph"
     ],
     "paperIds": [
+      "eupan-paper",
       "rice-pangenome-paper",
       "rice-3010-pangenome",
       "arabidopsis-69-pangenome"
