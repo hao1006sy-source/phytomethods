@@ -122,3 +122,15 @@
 ### 2026-11-21：拟南芥泛基因组案例方法关系核查
 
 对照 Nature Genetics 原文与 PubMed、Nature Communications/PMC 全文复核两篇 M03 植物案例的方法步骤。69 份材料研究核对 OrthoFinder v2.5.4、PLINK、ADMIXTURE v1.3.0；32 份材料适应研究核对 Hifiasm、OrthoFinder、IQ-TREE v2.0.3、独立 Minigraph、vg v1.40.0、PLINK、MCScanX。更新两篇论文的 `methodIds` 与方法说明，保留跨 M04/M05 关系；仍为草稿，等待完整发布依赖闭包和全篇审核。`npm run validate`、`npm run coverage` 与 M03 七专题及交互图四视口 Edge 检查通过；测试使用本地开发预览，不代表正式发布态验收。
+
+### 2026-11-21：M03 方法论文书目更正
+
+对照 Giraffe 的 PubMed/PMC 原文修正正式题名格式和文本，明确 5,202 份人类基因组与 167,000 个结构变异为方法论文评估范围；该研究不标记为植物案例。依据 PubMed 补全 ODGI 五位作者。M03 草稿浏览器复测、`npm run validate` 和 `npm run coverage` 通过；发布状态保持草稿。
+
+### 2026-11-21：M03 方法论文内容复核
+
+依据 PNAS、Nature Biotechnology、Nature Methods、Bioinformatics、PubMed 与 PMC 原文扩写 AnchorWave、Minigraph、Minigraph-Cactus、ODGI、PGGB、vg 和 Giraffe 方法论文记录，分别交代算法贡献、评估对象与应用范围。Minigraph-Cactus 在线发表年份与期刊卷期引用年份分别记录；图上映射与基因型调用、方法论文与植物案例分开描述。内容仍保留草稿，等待剩余方法论文及跨领域发布闭包复核。
+
+### 2026-11-21：M03 方法论文和专题关系回归
+
+完成 M03 七篇专题及八篇方法论文的 Edge 草稿预览回归。四种宽度下七专题导航、工具关联、交互图、预览标识及横向溢出检查通过；八篇方法论文共 32 次页面渲染通过，并核对 Giraffe 正式题名。`npm run validate` 通过：Astro 检查 0 错误/警告，54 页静态构建，Pagefind 索引 54 页、5913 词，1222 条内部链接通过。`npm run coverage` 显示 M03 七专题、七工具、13 篇论文和一篇教程仍为草稿；M03 专题缺少工具关联数为 0。跨领域发布依赖、剩余论文审核和教程/工具实运行状态仍未关闭，不满足发布验收。

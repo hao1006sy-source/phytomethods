@@ -406,10 +406,18 @@
       "可变基因",
       "参考偏倚"
     ],
-    "methodIds": [],
-    "principleIds": [],
+    "methodIds": [
+      "orthofinder",
+      "minigraph",
+      "pggb",
+      "minigraph-cactus"
+    ],
+    "principleIds": [
+      "graph-genomics"
+    ],
     "dataIds": [
-      "assembly"
+      "assembly",
+      "graph"
     ],
     "paperIds": [
       "rice-pangenome-paper",
@@ -504,12 +512,19 @@
       "未知状态",
       "参考偏倚"
     ],
-    "methodIds": [],
+    "methodIds": [
+      "orthofinder",
+      "minigraph",
+      "minigraph-cactus",
+      "pggb"
+    ],
     "principleIds": [
-      "alignment"
+      "alignment",
+      "graph-genomics"
     ],
     "dataIds": [
-      "assembly"
+      "assembly",
+      "graph"
     ],
     "paperIds": [
       "rice-pangenome-paper",

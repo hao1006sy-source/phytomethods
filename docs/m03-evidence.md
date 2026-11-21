@@ -9,7 +9,7 @@
 | Minigraph | [方法论文](https://doi.org/10.1186/s13059-020-02168-z)、[官方仓库](https://github.com/lh3/minigraph) | 参考骨架增量构图、rGFA/GAF 与 bubble 接口；v0.21（r606）；MIT；官方命令已核 | 未本机运行；植物应用与 Minigraph-Cactus 已拆开建立关系 |
 | Minigraph-Cactus | [原论文](https://doi.org/10.1038/s41587-023-01793-w)、[官方文档](https://github.com/ComparativeGenomicsToolkit/cactus/blob/master/doc/pangenome.md)、[许可证](https://github.com/ComparativeGenomicsToolkit/cactus/blob/master/LICENSE.txt) | minigraph 图映射/分区与 Cactus 序列级对齐；v4.0.0 快照；主仓库 MIT 文本排除部分 externalTools | 未本机运行；各外部工具需独立检查许可证与资源需求 |
 | PGGB | [原论文](https://doi.org/10.1038/s41592-024-02430-3)、[官方仓库](https://github.com/pangenome/pggb) | wfmash 全对全比对→seqwish 图诱导→smoothxg/gfaffix 规范化；MIT；v0.7.4 快照与 `-i/-o/-n/-t/-p/-s` 用途已核 | 依赖组件版本与具体参数未实跑；需逐步核对工作流输出 |
-| vg / Giraffe | [vg 原论文](https://doi.org/10.1038/nbt.4227)、[Giraffe 原论文](https://doi.org/10.1126/science.abg8871)、[官方索引文档](https://github.com/vgteam/vg/wiki/Index-Construction)、[许可证](https://github.com/vgteam/vg/blob/master/LICENSE) | GBZ、distance 和 minimizer 索引；核心仓库 MIT；v1.78.0 快照；Mapping 与 genotyping 已区分 | 未本机运行；高粱论文同时含模拟与真实 reads，PGGB 图未进入 mapping benchmark |
+| vg / Giraffe | [vg 原论文](https://doi.org/10.1038/nbt.4227)、[Giraffe 原论文](https://doi.org/10.1126/science.abg8871)、[Giraffe PubMed/PMC 全文](https://pmc.ncbi.nlm.nih.gov/articles/PMC9365333/)、[官方索引文档](https://github.com/vgteam/vg/wiki/Index-Construction)、[许可证](https://github.com/vgteam/vg/blob/master/LICENSE) | Giraffe 原论文题名、年份和 DOI 已核；其评估为 5,202 个人类基因组与 167,000 个 SV，不标为植物案例。vg 索引文档列出 GBZ、distance 和 minimizer 索引；核心仓库 MIT；v1.78.0 快照 | 未本机运行；高粱论文同时含模拟与真实 reads，PGGB 图未进入 mapping benchmark |
 | ODGI | [原论文](https://doi.org/10.1093/bioinformatics/btac308)、[官方仓库](https://github.com/pangenome/odgi) | 图、路径的存储、统计和可视化；MIT；v0.9.4 快照与 `build/stats/sort/viz/draw` 职责已核 | 未本机运行；图布局不能作为线性距离，格式兼容按版本确认 |
 | 水稻多组装 | [Zhao 等，2018](https://doi.org/10.1038/s41588-018-0041-z) | 栽培和野生水稻材料、基因内容与序列变异 | 个别定量结果和完整分析链 |
 | 3,010 水稻材料 | [Wang 等，2018](https://pubmed.ncbi.nlm.nih.gov/29695866/) | 文章标题、年份、期刊、泛基因组与 PAV | 按正文逐项检查分析流程 |
@@ -17,6 +17,8 @@
 | 高粱图比较 | [Kopalli 等，2025](https://doi.org/10.1093/gigascience/giaf121)、[出版方全文](https://academic.oup.com/gigascience/article/doi/10.1093/gigascience/giaf121/8364989) | 六份真实高粱组装；Minigraph 0.21、PGGB 0.5.4、Minigraph-Cactus 2.7.2；ODGI 0.8.6、VG Giraffe 1.58.0、SyRI 1.6.3；模拟与真实读段映射任务已分开核 | 方法细节及页面关联已补；结果解释仍待逐项复审 |
 | Minigraph 方法论文 | [Li、Feng、Chu，2020](https://pubmed.ncbi.nlm.nih.gov/33066802/) | 标题、作者、期刊卷页、DOI；方法论文以人类组装方法为主 | 未作为植物应用论文使用 |
 | 拟南芥适应泛基因组 | [原文](https://doi.org/10.1038/s41467-023-42029-4)、[PubMed/PMC 全文](https://pmc.ncbi.nlm.nih.gov/articles/PMC10558531/) | 方法部分确认 Hifiasm、OrthoFinder、IQ-TREE v2.0.3、独立 Minigraph、vg v1.40.0、PLINK、MCScanX 的用途；32 份 HiFi 组装，图上映射 1,135 份个体 reads，过滤后保留 1,073 个体及 20,326 个 SV 位点 | 结果页面逐句复核和跨领域发布闭包 |
+
+2026-11-21 对照出版方、PubMed 和 PMC 方法论文记录：AnchorWave 原文支持基因结构锚点、最长路径与两段仿射 gap cost；Minigraph-Cactus 从 FASTA 组装经 Minigraph 结构变异图和 Cactus 碱基级多序列比对构图，论文展示 90 条人类单倍型；ODGI PubMed 确认作者、卷期页码与 DOI，摘要描述 GFA 图处理、分析、验证及可视化；VG 原文区分图上映射与独立基因型调用；PGGB 论文说明全对全比对构图与其方法定位；Giraffe 正式题名不含 “of”，5,202 人类基因组和 167,000 个 SV 是方法论文的人类评估数据。上述方法论文均不当作植物应用案例。
 
 图中的样本和序列均为教学模型，未作为真实实验结果。教程 `syri-intro` 已使用 SyRI 1.8.2 和官方拟南芥测试数据执行 NUCmer 到 SyRI 的流程；记录见 `examples/syri/verified-20261121/`。原论文中出现的工具和本网站工具之间的关联，应逐项依据方法部分确认。
 

@@ -2,7 +2,7 @@
 title: 基因存在缺失变异（PAV）
 summary: 用一致的基因座定义和样本矩阵分析植物基因内容差异。
 domain: pangenomics-structural-variation
-methods: []
+methods: [orthofinder, minigraph, minigraph-cactus, pggb]
 status: draft
 updatedAt: 2026-11-21
 ---
@@ -56,6 +56,8 @@ $$
 
 ## 同源聚类、投影和证据错误
 蛋白聚类通常用于家族级比较；它会受序列覆盖长度、相似度截断和基因模型完整性影响。基因座级比较可将同源关系投影到参考坐标，再结合邻近基因顺序和方向；大重排后局部坐标可能不再保持共线，需用图路径或断点两侧序列辅助确认。reads 回贴可以检查覆盖和等位支持，但多拷贝区域的多重比对会降低判别力。
+
+[OrthoFinder](../../../methods/orthofinder/)可将多个注释蛋白集归为 orthogroup，为家族层面的样本存在矩阵提供分组基础；它不直接判定某一基因座是真实缺失。对包含基因间区和结构替代路径的序列级证据，可用 [Minigraph](../../../methods/minigraph/)、[Minigraph-Cactus](../../../methods/minigraph-cactus/) 或 [PGGB](../../../methods/pggb/)构图并检查各组装路径；从路径推断基因座 PAV 仍需将图序列与基因注释、侧翼共线性和原始 reads 结合。
 
 主要错误来源包括：把注释失败当作生物学缺失；把参考缺口当作样本缺失；把同家族旁系拷贝错配到同一位置；忽略两个单倍型的剂量差异；或以不一致的注释版本产生批次效应。可为每个矩阵单元保留样本 ID、组装/注释版本、证据类别、判定置信度和判定脚本，以便追踪后续更正。
 

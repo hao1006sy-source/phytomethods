@@ -52,6 +52,10 @@
 
 2026-11-21 对照出版方与 PMC 方法段复核两篇拟南芥应用论文，并按论文实际使用情况更新稳定工具关系：2024 年 69 份组装研究关联 OrthoFinder、PLINK、ADMIXTURE；2023 年 32 份组装研究关联 Hifiasm、OrthoFinder、IQ-TREE、Minigraph、vg、PLINK 和 MCScanX。M03 与 M04/M05 工具记录之间的关系保留在草稿内容数据中，发布闭包尚未完成。
 
+2026-11-21 对照 PubMed/PMC 原文更正 Giraffe 方法论文题名为 “Pangenomics enables genotyping known structural variants in 5,202 diverse genomes”，并注明其 5,202 份人类数据评估不属于植物应用案例；核对 167,000 个已知 SV 的分型范围。补全 ODGI 论文五位作者。书目及适用范围证据已加入 M03 台账。
+
+2026-11-21 扩写并复核 AnchorWave、Minigraph、Minigraph-Cactus、ODGI、PGGB、vg、Giraffe 七篇方法论文记录。Minigraph-Cactus 记为 2024 卷期出版并注明 2023 年在线发表；VG 论文的图上映射能力与下游分型步骤分开描述。方法原理和人类基准不转换为植物应用证据。
+
 已修正 AnchorWave 作者字段并更新 `docs/m03-evidence.md`；M03 工具页和主题页已区分独立 Minigraph、Minigraph-Cactus、PGGB 与 vg 的职责；SyRI 输出数量标为固定测试输入和参数下的运行摘要，不是独立生物学验证。其余论文元数据和案例关系逐条完成出版社或 PubMed 复核前继续保留草稿。
 
 当前结构化关系保留跨领域真实工具关系（例如 OrthoFinder、IQ-TREE、ADMIXTURE）。这会影响发布闭包。公开页面必须仅链接已发布目标；关系数据库中的草稿边继续保存，后续领域通过分阶段发布补齐。
