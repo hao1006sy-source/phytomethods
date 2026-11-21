@@ -9,7 +9,7 @@
 - 数据可复核命令：`python scripts/check-plink-example.py`、`python scripts/check-gwas-example.py`、`python scripts/check-bismark-example.py`、`python scripts/generate-single-cell-demo.py --check`、`python scripts/test-pca-demo.py`、`python scripts/generate-gwas-demo.py --check`、`node scripts/test-phylogeny-demo.mjs`。
 - 知识关联页已增加基于已发布内容的工具中心图，支持领域及原理筛选；上下游等关系仍待建模。新增单细胞、拟时序、共表达、GWAS 和甲基化示意图，其中模拟数据均标注。
 - 已保存阶段截图至 `outputs/long-run/checkpoint-20261121-0625/`；截图反映开发分支本地构建，M03 专题仍显示筹备状态，不能当作线上发布截图。
-- SyRI、OrthoFinder 和 Bismark 的隔离环境位于 WSL `/tmp/phytomethods-mamba-20261121/`，可能随重启消失；R 的独立包库和 Scanpy 虚拟环境位于项目 `work/`，属于临时环境，不应提交。
+- SyRI、OrthoFinder 和 Bismark 曾在 WSL `/tmp/phytomethods-mamba-20261121/` 隔离环境运行；当前 WSL 状态检查返回 `E_ACCESSDENIED`，暂时无法确认该环境是否仍可用，既有运行日志和摘要保存在项目验证目录。当前 Windows PATH 未发现 AnchorWave、Minigraph、ODGI、vg、PGGB、Cactus 或 EUPAN。R 独立包库和 Scanpy 虚拟环境位于项目 `work/`，属于临时环境，不应提交。
 - 下一步：先运行 `git status --short`，读取本文件、`docs/long-run-progress.md`、`docs/m03-evidence.md` 与 `docs/scientific-review-v2.md`；继续审核 M03 论文、工具与图示，处理 M03 水稻论文 → ADMIXTURE → M05 `m05-topic-03` 的发布依赖闭包。npm 官方安全审计当前受 DNS/网络超时阻断，网络恢复后重试。满足发布门槛前保留草稿状态，再推进 M04–M09。
 - 发布前需处理跨领域关联的状态依赖：已发布专题关联的工具、论文和教程必须同时为已发布状态，论文引用的工具及工具引用的专题也必须可访问。不得删除准确的关联以绕过检查。
 - 最终仍需整体科学审核、性能与可访问性检查、完整知识网络、阶段报告、合并及线上部署；当前没有声称完成或上线 v2.0。

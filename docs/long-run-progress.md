@@ -137,4 +137,4 @@
 
 ### 2026-11-21：水稻案例审核与 EUPAN 方法资源
 
-依据 Nature、PubMed、PMC 与 EUPAN 官方安装页/SOP 核对两篇水稻泛基因组论文。补录 66 份材料研究的短读段组装与参考锚定流程，以及 3,010 总群体与 453 份高覆盖 SV/PAV 子集的区分；新增 EUPAN 工具页、方法论文和受控原理标签，并按论文证据关联 PLINK、ADMIXTURE、EUPAN。四个 M03 专题、两篇水稻论文及 EUPAN 页面在 375、768、1280、1440 px 完成 32 次 Edge 渲染，草稿标识、关系链接和横向溢出检查通过。普通权限下首次 Pagefind 写索引遇到 Windows 权限拒绝；授权环境重跑 `npm run validate` 通过，Astro 0 错误/警告，54 页构建，Pagefind 索引 54 页、5913 词，1222 条站内链接通过。`npm run coverage` 显示 M03 七专题、八工具、14 篇论文和一篇教程均为草稿，七专题的工具关联均完整；EUPAN 未本机运行。
+依据 Nature、PubMed、PMC 与 EUPAN 官方安装页/SOP 核对两篇水稻泛基因组论文。补录 66 份材料研究的短读段组装与参考锚定流程，以及 3,010 总群体与 453 份高覆盖 SV/PAV 子集的区分；新增 EUPAN 工具页、方法论文和受控原理标签，并按论文证据关联 PLINK、ADMIXTURE、EUPAN。四个 M03 专题、两篇水稻论文及 EUPAN 页面在 375、768、1280、1440 px 完成 32 次 Edge 渲染，草稿标识、关系链接和横向溢出检查通过。普通权限下首次 Pagefind 写索引遇到 Windows 权限拒绝；授权环境重跑 `npm run validate` 通过，Astro 0 错误/警告，54 页构建，Pagefind 索引 54 页、5913 词，1222 条站内链接通过。`npm run coverage` 显示 M03 七专题、八工具、14 篇论文和一篇教程均为草稿，七专题的工具关联均完整。当前 Windows PATH 未发现 M03 组装/泛基因组工具；WSL 检查返回 `E_ACCESSDENIED`，没有新增软件实跑记录，既有 SyRI 日志保留原验证范围。
