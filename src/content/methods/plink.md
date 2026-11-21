@@ -5,7 +5,7 @@ summary: 面向基因型数据的质量控制、遗传统计、群体结构概�
 dataType: VCF / BCF / PLINK 基因型文件
 principle: 基因型统计与关联分析
 domainIds: [population-genetics]
-topicIds: [m05-topic-02, m05-topic-03, m05-topic-04]
+topicIds: [m05-topic-02, m05-topic-03, m05-topic-04, m05-topic-07]
 principleIds: [genotype-statistics]
 dataIds: [variant-data]
 paper: plink-paper

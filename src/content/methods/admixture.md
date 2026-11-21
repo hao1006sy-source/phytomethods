@@ -5,7 +5,7 @@ summary: 在给定成分数 K 下，以最大似然估计个体祖先成分比�
 dataType: 多位点双等位 SNP 基因型
 principle: 最大似然祖先成分模型
 domainIds: [population-genetics]
-topicIds: [m05-topic-03]
+topicIds: [m05-topic-03, m05-topic-07]
 principleIds: [ancestry-model]
 dataIds: [variant-data]
 paper: admixture-paper

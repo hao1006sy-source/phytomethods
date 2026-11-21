@@ -1117,26 +1117,40 @@
   {
     "id": "m05-topic-07",
     "title": "驯化与环境适应案例",
-    "englishTitle": "Domestication",
+    "englishTitle": "Domestication, improvement, and local adaptation",
     "domainId": "population-genetics",
     "order": 7,
-    "summary": "比较水稻、玉米和大豆驯化研究中的群体遗传证据。",
+    "summary": "以水稻、玉米和大豆研究比较驯化、改良与地方适应的群体基因组证据。",
     "keyConcepts": [
       "驯化",
-      "野生祖先",
-      "选择",
+      "驯化瓶颈",
+      "野生近缘种渗入",
+      "选择扫荡",
       "群体结构",
-      "环境适应"
+      "地方适应",
+      "表型—环境关联"
     ],
-    "methodIds": [],
-    "principleIds": [],
+    "methodIds": [
+      "plink",
+      "admixture",
+      "xpclr"
+    ],
+    "principleIds": [
+      "genotype-statistics",
+      "ancestry-model",
+      "population-differentiation",
+      "composite-likelihood-selection"
+    ],
     "dataIds": [
-      "variant-data"
+      "variant-data",
+      "phenotype"
     ],
     "paperIds": [
       "rice-domestication-huang",
+      "rice-domestication-civan",
       "rice-3010-pangenome",
       "maize-domestication",
+      "maize-zeas-adaptation",
       "soybean-resequencing"
     ],
     "tutorialIds": [],

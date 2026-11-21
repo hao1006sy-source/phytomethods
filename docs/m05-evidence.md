@@ -88,3 +88,14 @@ M05-05 新增 XP-CLR、selscan、SweepFinder2 工具记录，四篇方法/软件
 | 胡杨研究 | Jia 等全基因组重测序研究报告约 3.15 million SNP 和四个具有地理结构的支系；PSMC 用于支系规模历史，fastsimcoal26 单独用于多群体模型/迁移参数，页面不把迁移率归于 PSMC。 | [PubMed与DOI](https://pubmed.ncbi.nlm.nih.gov/32242238/)；[PMC全文](https://pmc.ncbi.nlm.nih.gov/articles/PMC7475257/) |
 
 M05-06 新增 PSMC、MSMC2 和 SMC++ 工具页，新增 MSMC 方法论文、MSMC2 协议、SMC++ 方法论文及三篇植物案例；方法关系和标签通过稳定 ID 管理。新增共祖状态流程 SVG 标明为原理示意。`npm run validate` 通过：Astro 61 文件零诊断、54 个已发布页、Pagefind 54 页/5948 词、1276 条站内链接无错误。`npm run coverage` 确认 M05 七专题、10 工具、24 篇论文和一篇教程均为草稿；无工具关联草稿专题由 16 降为 15。Edge 对 M05-06 专题、三工具与七论文共 11 个路由在 375、768、1280、1440 px 检查 HTTP 200、标题、草稿预览状态和页面溢出；专题—工具—案例链接存在，375px 下流程 SVG 处于内部横向滚动容器，页面整体宽度未溢出。新增工具命令依据官方材料核对，未在本机真实植物基因组上运行。
+## M05-07 驯化与环境适应案例
+
+| 记录项 | 已核事实 | 来源 |
+| --- | --- | --- |
+| Huang 水稻驯化 | 446 份野生 Oryza rufipogon、1,083 份栽培籼/粳稻；野生组约 2×、栽培组约 1×覆盖；合并群体约 7.97 百万个非单例 SNP。报告 55 个选择扫荡区域，主扫描使用滑窗 πw/πc，并提出粳稻珠江中游起源及籼稻与当地野生稻杂交形成的历史模型。 | [PubMed](https://pubmed.ncbi.nlm.nih.gov/23034647/)；[PMC 全文](https://pmc.ncbi.nlm.nih.gov/articles/PMC7518720/)；[Nature DOI](https://doi.org/10.1038/nature11532) |
+| 水稻驯化模型比较 | Civáň 等 2015 年论文基于栽培亚群选择足迹提出籼、粳、aus 的不同地理驯化区域，并讨论芳香稻杂交和粳稻后续生态型分化。作为与 Huang 等假说相异的论文模型记录。 | [Nature Plants](https://www.nature.com/articles/nplants2015164)；[PMC 全文](https://pmc.ncbi.nlm.nih.gov/articles/PMC4900444/)；[PubMed](https://pubmed.ncbi.nlm.nih.gov/27251535/) |
+| Hufford 玉米驯化与改良 | 75 份野生近缘、地方及改良玉米材料；包括 35 个改良系、23 个地方品种、17 个野生近缘材料，平均测序深度 >5×，比对 B73 release 4a.53，使用 21,141,953 个高质量 SNP。通过 XP-CLR 分析驯化和改良阶段，识别论文阈值下 484 个驯化和 695 个改良特征区域。 | [PubMed](https://pubmed.ncbi.nlm.nih.gov/22660546/)；[PMC 原文](https://pmc.ncbi.nlm.nih.gov/articles/PMC5531767/)；[DOI](https://doi.org/10.1038/ng.2309) |
+| Xu 玉米地方适应 | 982 份玉米自交系与 190 份 teosinte，42,204 个芯片 SNP；分别比较 teosinte—玉米和热带—温带玉米。论文采用 100 kb 窗口、10 kb 步长，以 FST 和 XP-CLR 各自最高 0.5% 形成候选，报告 394 个驯化与 360 个适应区域，另以开花期 GWAS 和置换检验评估共定位富集。作者说明该采样未含地方品种，无法完整分离改良信号。 | [BMC Plant Biology 出版方全文](https://link.springer.com/article/10.1186/s12870-022-03427-w)；[DOI](https://doi.org/10.1186/s12870-022-03427-w) |
+| Lam 大豆重测序 | 17 份野生与 14 份栽培大豆，Illumina Genome Analyzer II，平均约 5×深度且 >90% 覆盖。PubMed 摘要报告野生材料等位基因多样性更高、LD 较高，并提供 205,614 个 tag SNP。 | [PubMed 摘要](https://pubmed.ncbi.nlm.nih.gov/21076406/)；[DOI](https://doi.org/10.1038/ng.715) |
+
+M05-07 补入驯化、改良与地方适应的分组设计、统计方法和解释框架；新增玉米地方适应及水稻驯化模型比较记录，完善 Huang、Hufford 和 Lam 案例。专题、PLINK、ADMIXTURE、XP-CLR 与论文关联使用稳定 ID。新增 SVG 标明为原理示意。全部新增页面及相关资源保持草稿；案例分析未在本机真实植物数据上复现。

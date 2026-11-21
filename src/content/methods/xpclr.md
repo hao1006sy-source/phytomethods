@@ -5,7 +5,7 @@ summary: 基于两群体多位点等位基因频率差异和连锁结构的跨�
 dataType: 两个群体的 SNP 基因型与等位基因频率
 principle: 跨群体等位基因频率复合似然
 domainIds: [population-genetics]
-topicIds: [m05-topic-05]
+topicIds: [m05-topic-05, m05-topic-07]
 principleIds: [allele-frequency-differentiation, composite-likelihood-selection]
 dataIds: [variant-data]
 paper: xpclr-paper
@@ -66,4 +66,4 @@ Liu 等在亚洲稻驯化研究中采用 XP-CLR 与 SweeD 等方法比较栽培�
 
 XP-CLR 依据两个群体的多位点频率变化；XP-EHH 比较两群体中延伸单倍型纯合性，依赖经过相位处理的密集标记；SweepFinder2 依据单群体位点频率谱及空间分布。FST 描述群体分化程度，单独的高 FST 并未包含 XP-CLR 的连锁选择模型。分析可并列报告互补方法，阈值、窗口与群体抽样必须分别说明。
 
-相关资源：[M05-05 选择性清除](../../topics/population-genetics/m05-topic-05/)、[XP-CLR 方法论文](../../papers/xpclr-paper/)、[SweepFinder2](../sweepfinder2/)、[selscan 与 XP-EHH](../selscan/)、[PLINK 群体统计](../plink/)。
+相关资源：[M05-05 选择性清除](../../topics/population-genetics/m05-topic-05/)、[M05-07 驯化与环境适应](../../topics/population-genetics/m05-topic-07/)、[XP-CLR 方法论文](../../papers/xpclr-paper/)、[玉米驯化与适应案例](../../papers/maize-zeas-adaptation/)、[SweepFinder2](../sweepfinder2/)、[selscan 与 XP-EHH](../selscan/)、[PLINK 群体统计](../plink/)。
