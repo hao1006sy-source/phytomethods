@@ -21,12 +21,13 @@ async function entries(collection){
 const metadata=JSON.parse(await readFile('src/data/topic-metadata.json','utf8'));
 const [topics,methods,papers,tutorials]=await Promise.all(['topics','methods','papers','tutorials'].map(entries));
 const topicById=new Map(topics.map(t=>[t.id,t]));const methodById=new Map(methods.map(m=>[m.id,m]));
-console.log('| 领域 | 专题总数 | 已发布 | 草稿正文 | 待编写 | 已发布工具 | 已发布论文 | 已发布教程 |');
+console.log('| 领域 | 专题总数 | 已发布 | 草稿正文 | 待编写 | 工具（发布/草稿） | 论文（发布/草稿） | 教程（发布/草稿） |');
 console.log('| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |');
 for(const domain of [...new Set(metadata.map(t=>t.domainId))]){
   const ts=metadata.filter(t=>t.domainId===domain);const published=ts.filter(t=>topicById.get(t.id)?.status==='published').length;const draft=ts.filter(t=>topicById.get(t.id)?.status==='draft').length;
-  const ms=methods.filter(m=>m.status==='published'&&m.domains.includes(domain));const ps=papers.filter(p=>p.status==='published'&&p.domains.includes(domain));const us=tutorials.filter(t=>t.status==='published'&&methodById.get(t.method)?.domains.includes(domain));
-  console.log(`| ${domain} | ${ts.length} | ${published} | ${draft} | ${ts.length-published-draft} | ${ms.length} | ${ps.length} | ${us.length} |`);
+  const ms=methods.filter(m=>m.domains.includes(domain));const ps=papers.filter(p=>p.domains.includes(domain));const us=tutorials.filter(t=>methodById.get(t.method)?.domains.includes(domain));
+  const counts=entries=>`${entries.filter(e=>e.status==='published').length}/${entries.filter(e=>e.status==='draft').length}`;
+  console.log(`| ${domain} | ${ts.length} | ${published} | ${draft} | ${ts.length-published-draft} | ${counts(ms)} | ${counts(ps)} | ${counts(us)} |`);
 }
 const noPaper=metadata.filter(t=>t.status==='published'&&!t.paperIds.length).map(t=>t.id);
 const noMethod=metadata.filter(t=>t.status==='published'&&!t.methodIds.length).map(t=>t.id);
@@ -34,3 +35,10 @@ const unverified=tutorials.filter(t=>t.status==='published'&&t.tested!=='verifie
 console.log(`\n已发布专题无文献关联: ${noPaper.join(', ')||'无'}`);
 console.log(`已发布专题无工具关联: ${noMethod.join(', ')||'无'}`);
 console.log(`未实际运行验证的已发布教程: ${unverified.join(', ')||'无'}`);
+
+const draftNoPaper=metadata.filter(t=>t.status==='draft'&&!t.paperIds.length).map(t=>t.id);
+const draftNoMethod=metadata.filter(t=>t.status==='draft'&&!t.methodIds.length).map(t=>t.id);
+const draftTutorials=tutorials.filter(t=>t.status==='draft');
+console.log(`草稿专题无文献关联 (${draftNoPaper.length}): ${draftNoPaper.join(', ')||'无'}`);
+console.log(`草稿专题无工具关联 (${draftNoMethod.length}): ${draftNoMethod.join(', ')||'无'}`);
+console.log(`草稿教程验证状态: 已运行 ${draftTutorials.filter(t=>t.tested==='verified').length}，命令核对 ${draftTutorials.filter(t=>t.tested==='template').length}，未测试 ${draftTutorials.filter(t=>t.tested==='not-tested').length}`);

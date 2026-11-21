@@ -1323,7 +1323,9 @@
     "methodIds": [],
     "principleIds": [],
     "dataIds": [],
-    "paperIds": [],
+    "paperIds": [
+      "arabidopsis-methylome-cokus-2008"
+    ],
     "tutorialIds": [],
     "status": "draft",
     "createdAt": null,
@@ -1409,7 +1411,9 @@
     "methodIds": [],
     "principleIds": [],
     "dataIds": [],
-    "paperIds": [],
+    "paperIds": [
+      "arabidopsis-bzip11-atac-2023"
+    ],
     "tutorialIds": [],
     "status": "draft",
     "createdAt": null,
@@ -1430,7 +1434,9 @@
     "methodIds": [],
     "principleIds": [],
     "dataIds": [],
-    "paperIds": [],
+    "paperIds": [
+      "arabidopsis-bzip11-atac-2023"
+    ],
     "tutorialIds": [],
     "status": "draft",
     "createdAt": null,
@@ -1451,7 +1457,9 @@
     "methodIds": [],
     "principleIds": [],
     "dataIds": [],
-    "paperIds": [],
+    "paperIds": [
+      "arabidopsis-pds5-hic-2024"
+    ],
     "tutorialIds": [],
     "status": "draft",
     "createdAt": null,
@@ -1472,7 +1480,9 @@
     "methodIds": [],
     "principleIds": [],
     "dataIds": [],
-    "paperIds": [],
+    "paperIds": [
+      "arabidopsis-drought-memory-2012"
+    ],
     "tutorialIds": [],
     "status": "draft",
     "createdAt": null,
@@ -1653,7 +1663,9 @@
     "methodIds": [],
     "principleIds": [],
     "dataIds": [],
-    "paperIds": [],
+    "paperIds": [
+      "rice-root-soil-single-cell-2025"
+    ],
     "tutorialIds": [],
     "status": "draft",
     "createdAt": null,
@@ -1674,7 +1686,9 @@
     "methodIds": [],
     "principleIds": [],
     "dataIds": [],
-    "paperIds": [],
+    "paperIds": [
+      "rice-root-single-cell-2021"
+    ],
     "tutorialIds": [],
     "status": "draft",
     "createdAt": null,
@@ -1695,7 +1709,9 @@
     "methodIds": [],
     "principleIds": [],
     "dataIds": [],
-    "paperIds": [],
+    "paperIds": [
+      "deseq2-2014"
+    ],
     "tutorialIds": [],
     "status": "draft",
     "createdAt": null,
@@ -1748,7 +1764,9 @@
     "methodIds": [],
     "principleIds": [],
     "dataIds": [],
-    "paperIds": [],
+    "paperIds": [
+      "arabidopsis-integrated-grn-2021"
+    ],
     "tutorialIds": [],
     "status": "draft",
     "createdAt": null,
@@ -1769,7 +1787,9 @@
     "methodIds": [],
     "principleIds": [],
     "dataIds": [],
-    "paperIds": [],
+    "paperIds": [
+      "arabidopsis-stomata-accessibility-2022"
+    ],
     "tutorialIds": [],
     "status": "draft",
     "createdAt": null,
@@ -1790,7 +1810,9 @@
     "methodIds": [],
     "principleIds": [],
     "dataIds": [],
-    "paperIds": [],
+    "paperIds": [
+      "maize-multiomics-network-2023"
+    ],
     "tutorialIds": [],
     "status": "draft",
     "createdAt": null,
@@ -1811,7 +1833,9 @@
     "methodIds": [],
     "principleIds": [],
     "dataIds": [],
-    "paperIds": [],
+    "paperIds": [
+      "agro-nt-2024"
+    ],
     "tutorialIds": [],
     "status": "draft",
     "createdAt": null,
@@ -1832,7 +1856,9 @@
     "methodIds": [],
     "principleIds": [],
     "dataIds": [],
-    "paperIds": [],
+    "paperIds": [
+      "agro-nt-2024"
+    ],
     "tutorialIds": [],
     "status": "draft",
     "createdAt": null,
