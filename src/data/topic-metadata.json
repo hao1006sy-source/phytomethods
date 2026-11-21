@@ -425,11 +425,17 @@
       "vg"
     ],
     "principleIds": [
-      "graph-genomics"
+      "alignment",
+      "graph-genomics",
+      "pav-calling"
     ],
     "dataIds": [
       "assembly",
-      "graph"
+      "annotation-input",
+      "coding-sequences",
+      "graph",
+      "proteins",
+      "short-reads"
     ],
     "paperIds": [
       "eupan-paper",
