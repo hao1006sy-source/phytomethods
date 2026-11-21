@@ -57,6 +57,10 @@
 
 2026-11-21 对照出版方与 PMC 方法段复核两篇拟南芥应用论文，并按论文实际使用情况更新稳定工具关系：2024 年 69 份组装研究关联 OrthoFinder、PLINK、ADMIXTURE；2023 年 32 份组装研究关联 Hifiasm、OrthoFinder、IQ-TREE、Minigraph、vg、PLINK 和 MCScanX。M03 与 M04/M05 工具记录之间的关系保留在草稿内容数据中，发布闭包尚未完成。
 
+2026-11-21 进一步逐句审核 2024 年 69 份拟南芥泛基因组案例：根据 Nature Genetics 全文及作者开放版 PDF，将群体 SNP 分析的 72 份材料与排除 3 份杂合材料后的 69 份组装/泛基因组样本分开；核对三类长读长组装比较、后续合并与参考引导 scaffold、OrthoFinder 聚类与拆并校正、SyRI/SURVIVOR SV 合并、Merqury k-mer 评估及 PLINK/ADMIXTURE 的任务范围。补录各类 gene family 数目及注释拆分/合并对私有类目的影响，并将已建模且原文实际使用的 Hifiasm、SyRI、Merqury、EDTA、InterProScan、IQ-TREE、OrthoFinder、PLINK、ADMIXTURE 纳入论文关联。案例正文和引用数据完成本轮局部复核，未覆盖全站其他内容；页面仍为草稿，发布依赖闭包仍待处理。
+
+2026-11-21 对照 Nature Communications/PMC 原文逐项复核 32 份拟南芥适应研究。核对 HiFi 组装和参考引导染色体构建、gene-family 与 graph pan-genome 两套分析、图 SV 与群体 reads genotype 两个样本层级，以及 61 项性状的 GWAS/方差估计。结果段的图 SV 为 61,322，摘要为 61,332；OrthoFinder 分类计数合计 31,318，Methods 段为 31,317。页面按结果段与分类计数列示并保留差异说明。逐项核对 KNAT3、WH1、HPCA1 候选案例中关联、表达和功能实验的证据范围；论文关联含 Hifiasm、OrthoFinder、IQ-TREE、EDTA、Minigraph、vg、PLINK 与 MCScanX。此次只关闭该案例的局部结果和书目审阅，相关资源仍为草稿，跨领域发布依赖未关闭。
+
 2026-11-21 对照 PubMed/PMC 原文更正 Giraffe 方法论文题名为 “Pangenomics enables genotyping known structural variants in 5,202 diverse genomes”，并注明其 5,202 份人类数据评估不属于植物应用案例；核对 167,000 个已知 SV 的分型范围。补全 ODGI 论文五位作者。书目及适用范围证据已加入 M03 台账。
 
 2026-11-21 扩写并复核 AnchorWave、Minigraph、Minigraph-Cactus、ODGI、PGGB、vg、Giraffe 七篇方法论文记录。Minigraph-Cactus 记为 2024 卷期出版并注明 2023 年在线发表；VG 论文的图上映射能力与下游分型步骤分开描述。方法原理和人类基准不转换为植物应用证据。

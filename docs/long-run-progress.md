@@ -161,3 +161,11 @@ M03-05 的路径示意改为带 `<figure>` 与图注的交互图，明确 segmen
 ### 2026-11-21：66 份水稻短读段多组装案例审核
 
 按作者 PDF、出版方和 PubMed 核对 66 份材料的抽样、测序、组装、变异流程、PAV 基因数及核心/可变阈值。正文补充 BAC 与全长 cDNA 的定量验证，并说明这些指标来自两份材料，不推广到所有组装。此研究采用线性参考锚定，未关联到变异图工具。与同轮 3,010 水稻案例一起通过 `npm run validate` 和 `npm run coverage`；本轮构建结果为 Astro 60 文件零诊断、54 页静态页面、Pagefind 54 页/5932 词、1276 条链接无错误。Edge 四视口核对两篇案例的正文标题、关键结果和横向溢出通过，两篇论文均保持草稿。
+
+### 2026-11-21：69 份拟南芥泛基因组案例结果和方法审核
+
+依据 Nature Genetics 全文与作者开放版 PDF 扩写案例页，区分 72 份材料的群体结构分析与排除 3 份杂合材料后 69 份组装和泛基因组分析。加入 HiFi/ONT 组装组合、染色体结构与着丝粒结果、32,986 个家族的类别统计、注释拆分/合并对私有类目的影响及开放泛基因组抽样边界。按原文加入 Hifiasm、SyRI、Merqury、EDTA、InterProScan、IQ-TREE、OrthoFinder、PLINK、ADMIXTURE 的任务描述与稳定关联，补齐九位作者及卷页。Edge/Playwright 在 375、768、1280、1440px 核对标题、关键结果、九个工具关联、页面宽度和浏览器错误通过；`npm run validate` 通过，60 个 Astro 文件零诊断、54 个发布页面、Pagefind 54 页/5932 词、1276 条本地链接；`npm run coverage` 通过。该文仍为草稿，跨 M05 论文—工具—专题发布依赖尚待检查。
+
+### 2026-11-21：32 份拟南芥适应泛基因组案例审核
+
+对照 PMC 原文扩写适应案例记录，补录 32 份 HiFi 组装、参考引导 scaffold、基因家族泛基因组和 Minigraph 图泛基因组两个层次、基于 graph bubble 的 SV 提取、群体短读段图映射/过滤及性状分析。逐项记录 Hifiasm、OrthoFinder、IQ-TREE、EDTA、Minigraph、vg、PLINK、MCScanX 实际任务；补充 61 项性状结果和 KNAT3、WH1、HPCA1 的表达及功能实验。原文摘要/结果 SV 数及方法段/结果段基因家族数存在差异，页面依结果段统计并留档。链接到 GSA、Figshare 与 SRA 数据。Edge/Playwright 在 375、768、1280、1440px 检查正文标题、关键结果、八个工具关联、页面宽度和浏览器错误通过；`npm run validate` 通过，Astro 60 文件零诊断、54 个发布页面、Pagefind 54 页/5932 词、1276 条本地链接；`npm run coverage` 通过。案例继续保持草稿。
