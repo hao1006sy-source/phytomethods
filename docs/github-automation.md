@@ -45,11 +45,12 @@ Codex 默认隔离命令无法访问宿主 Windows 的本机回环地址：默�
 ## 本轮验证记录
 
 - 远程：`hao1006sy-source/phytomethods`。
-- 正式 `main`：`d2193f661fe6faf403823a1405f663d1b53bce50`。
+- 正式 `main`：`0b254bdd71df3ff7970085aad2c7f889518c12e4`，由 PR #8 合并。
 - Git Push：已通过仅含临时测试文件的分支验证；测试分支 `codex-gh-cli-pr-test-20261122` 已删除，未修改 `main`。
-- PR：GitHub CLI 浏览器授权成功，`gh auth status` 为 `hao1006sy-source`。CLI 成功创建、查询并关闭临时 PR #7；该 PR 未合并。GitHub App 连接器的创建接口仍返回 403。
-- CI：PR #7 没有检查项，确认原有仓库未配置 PR 校验。新增 `.github/workflows/ci.yml`，等待其正式 PR 运行验证。
-- Pages：本轮未触发部署，既有 `main` 部署未修改。
-- 跨会话：两个独立的授权宿主命令调用均成功读取远程 `HEAD`/`main`，当前仓库均为 `d2193f661fe6faf403823a1405f663d1b53bce50`。这证明独立宿主命令可复用登录态 FlClash；两个独立 Codex 会话的完整验收仍待执行。默认隔离命令不能访问宿主 `localhost`。
+- PR：GitHub CLI 浏览器授权成功，`gh auth status` 为 `hao1006sy-source`，权限范围含 `repo`、`workflow`。CLI 成功创建、查询并关闭临时 PR #7；该 PR 未合并。GitHub App 连接器创建接口仍返回 403。
+- CI：新增 `.github/workflows/ci.yml`。PR #8 的 `validate` 检查通过，运行 ID `45008400249`，耗时 27 秒。
+- Pages：PR #8 合并后部署运行 `45008525605` 成功，build 26 秒、deploy 9 秒；线上首页返回 HTTP 200。
+- FClash：已配置用户登录 Startup 快捷方式及 `PhytoMethods-FlClash-Autostart` 交互式登录任务；任务运行结果为 0，宿主 `:::7890` 有 FlClashCore 监听。
+- 执行隔离：两个独立授权宿主命令调用均成功读取远程 `HEAD`/`main`，结果为 `0b254bdd71df3ff7970085aad2c7f889518c12e4`。默认隔离命令无法访问宿主 `localhost`；两个独立 Codex 会话之间的测试尚未完成。
 
-测试分支上的临时文件不会合并进正式代码。验证清理应关闭测试 PR 并删除测试分支。
+测试分支上的临时文件未合并进正式代码；临时 PR #7 已关闭，测试分支已从本地和远程删除。
