@@ -225,6 +225,10 @@ v2.1 返工将七篇专题的推断层级、公式和结果解释具体化：从
 
 浏览器矩阵覆盖领域、7 专题、5 工具、15 篇关联论文和教程，29 URL × 3 视口；记录文件在 `outputs/v2.1/m07-browser-verified/`。初测发现移动端教程长行内代码溢出并修复 CSS，另发现 metadata 写入失误导致的一次失效测试批次；该批次标记为无效，不作验收证据。仅采用修复后的最终批次统计。
 
+### M04 v2.1 专题质量复核
+
+七篇专题经 10 维证据复核均评 L3，成熟度和逐篇缺项见 `docs/content-quality-audit-v2.1.md`。核对重点包括 CAFE5 生灭模型根节点及误差模型假设、MCScanX 锚点与区块边界、IQ-TREE bootstrap 与后验概率差别、MCMCTree 校准和 Ks 近似、PAML 似然比较。论文与实际软件应用对应关系引用 `docs/m04-evidence.md`。领域、专题、6 工具、16 篇论文和 2 教程共 32 路由，以 3 个视口检查 96 次；无 HTTP/标题/资源/控制台/溢出问题，共线性方向切换与重置通过。截图位于 `outputs/v2.1/m04-browser-verified/`。本域工具及真实植物教程未新增本机运行记录。
+
 ### M02：首轮逐篇复核完成
 
 M02 七篇专题已逐篇评分，详见 `docs/content-quality-audit-v2.1.md`。返工扩充了计算流程、方法差异、植物应用、质量解释和相关资源；M02 评级 L3×7，L4×0。BRAKER3、EDTA 与 InterProScan 工具条目及 BRAKER3、EDTA、Infernal、InterProScan、芒果应用论文均已补充方法解读。TSEBRA DOI 已按期刊原文更正为 10.1186/s12859-021-04482-0。EDTA/Hifiasm 以外没有新增真实运行结果；EDTA 流程保持 `template` 状态。
