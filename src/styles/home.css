@@ -8,8 +8,15 @@
   --home-muted: #63766b;
   --home-border: #cfe1d5;
   --home-subtle: #f1f8f3;
-  --home-serif: "Noto Serif SC", "Songti SC", STSong, Georgia, serif;
-  --home-sans: Inter, "Noto Sans SC", "Microsoft YaHei", system-ui, sans-serif;
+  --home-sans: "Inter", "Noto Sans SC", "Source Han Sans SC", "Microsoft YaHei", system-ui, sans-serif;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("../assets/fonts/InterVariable.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
 }
 
 body.home-body {
@@ -60,7 +67,7 @@ body.home-body {
 
 .home-body .brand-name {
   color: var(--home-navy);
-  font-family: var(--home-serif);
+  font-family: var(--home-sans);
   font-size: 1.2rem;
   letter-spacing: -0.02em;
 }
@@ -167,7 +174,7 @@ body.home-body {
   max-width: 760px;
   margin: 0 0 8px;
   color: var(--home-navy);
-  font-family: var(--home-serif);
+  font-family: var(--home-sans);
   font-size: clamp(2.15rem, 3vw, 3.05rem);
   font-weight: 700;
   letter-spacing: -0.045em;
@@ -318,7 +325,7 @@ body.home-body {
 .section-heading h2 {
   margin: 0;
   color: var(--home-navy);
-  font-family: var(--home-serif);
+  font-family: var(--home-sans);
   font-size: 1.7rem;
   font-weight: 700;
   letter-spacing: -0.025em;
@@ -416,7 +423,7 @@ body.home-body {
 .domain-title {
   display: block;
   color: var(--home-navy);
-  font-family: var(--home-serif);
+  font-family: var(--home-sans);
   font-size: 1.1rem;
   font-weight: 700;
   line-height: 1.48;
@@ -482,7 +489,7 @@ body.home-body {
   min-width: 0;
   margin: 0;
   color: var(--home-navy);
-  font-family: var(--home-serif);
+  font-family: var(--home-sans);
   font-size: 1.16rem;
   font-weight: 700;
 }
@@ -626,7 +633,7 @@ body.home-body {
 
 .home-body .footer-brand {
   color: var(--home-navy);
-  font-family: var(--home-serif);
+  font-family: var(--home-sans);
   font-size: 1.05rem;
 }
 
