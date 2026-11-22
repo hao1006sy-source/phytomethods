@@ -1,0 +1,33 @@
+---
+import {domains} from '../../data/domains';
+import {topicMetadata} from '../../data/topics';
+import './article-v2.css';
+const {entry,metadata,headings,relatedMethods=[],relatedPapers=[],relatedTutorials=[],highlights=[]}=Astro.props;
+const base=import.meta.env.BASE_URL;
+const domain=domains.find(d=>d[1]===metadata.domainId)!;
+const topics=topicMetadata.filter(t=>t.domainId===metadata.domainId&&t.status==='published').sort((a,b)=>a.order-b.order);
+const pos=topics.findIndex(t=>t.id===metadata.id);
+const sections=headings.filter((h:any)=>h.depth===2);
+const url=(t:any)=>`${base}topics/${metadata.domainId}/${t.id}/`;
+---
+<div class="topic-v2">
+<div class="article-progress" role="progressbar" aria-label="阅读进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span></span></div>
+<nav class="article-crumb" aria-label="面包屑"><a href={base}>⌂ 首页</a> › <a href={`${base}topics/`}>研究领域</a> › <a href={`${base}topics/${domain[1]}/`}>{domain[2]}</a> › <span>{entry.data.title}</span></nav>
+<header class="article-hero"><div class="article-badges"><b>{domain[0]}</b><span>专题 {String(pos+1).padStart(2,'0')} / {String(topics.length).padStart(2,'0')}</span></div><div class="article-heading"><div><h1>{entry.data.title}</h1><span>{metadata.englishTitle}</span></div><p>{entry.data.summary}</p></div><time datetime={entry.data.updatedAt.toISOString()}>更新日期：{entry.data.updatedAt.toISOString().slice(0,10)}</time></header>
+<div class="article-grid">
+<aside class="article-left"><details open><summary>{domain[2]}</summary><nav aria-label="所属领域专题">{topics.map((t,i)=><a href={url(t)} aria-current={t.id===metadata.id?'page':undefined}><span>{String(i+1).padStart(2,'0')}</span>{t.title}</a>)}</nav><a class="return-domain" href={`${base}topics/${domain[1]}/`}>← 返回领域概览</a></details></aside>
+<article class="article-body"><section class="article-highlights"><h2>◎ 本篇要点</h2><ul>{highlights.map((text:string)=><li>{text}</li>)}</ul></section><details class="article-mobile-toc"><summary>本页内容</summary><nav>{sections.map((h:any,i:number)=><a href={`#${h.slug}`}>{String(i+1).padStart(2,'0')}　{h.text}</a>)}</nav></details><article class="article-content prose"><slot/></article><section class="article-learning"><h2>延伸学习</h2><h3>相关算法</h3><div>{relatedMethods.map((m:any)=><a href={`${base}methods/${m.id}/`}>{m.data.name}</a>)}</div><h3>方法论文与植物案例</h3><ul>{relatedPapers.map((p:any)=><li><a href={`${base}papers/${p.id}/`}>{p.data.title}</a></li>)}</ul><h3>分析教程</h3><ul>{relatedTutorials.map((t:any)=><li><a href={`${base}tutorials/${t.id}/`}>{t.data.title}</a></li>)}</ul></section><nav class="article-pagination" aria-label="专题前后导航"><a href={`${base}topics/${domain[1]}/`}>返回领域概览</a>{pos>0&&<a href={url(topics[pos-1])}>上一篇：{topics[pos-1].title}</a>}{pos<topics.length-1&&<a href={url(topics[pos+1])}>下一篇：{topics[pos+1].title} →</a>}</nav></article>
+<aside class="article-right"><nav class="article-toc" aria-label="本页章节"><h2>本页内容</h2>{sections.map((h:any,i:number)=><a href={`#${h.slug}`}><span>{String(i+1).padStart(2,'0')}</span>{h.text}</a>)}</nav><section class="article-resources"><h2>▱ 相关资源</h2>{relatedMethods.map((m:any)=><a href={`${base}methods/${m.id}/`}><strong>{m.data.name}</strong><span>{m.data.summary}</span></a>)}<a class="all-methods" href={`${base}methods/`}>查看全部方法与工具 →</a></section></aside>
+</div></div>
+<script>
+const root=document.querySelector('.topic-v2');
+if(root){
+const titles=[...root.querySelectorAll<HTMLElement>('.article-content h2')];titles.forEach((h,i)=>{const n=document.createElement('span');n.className='section-number';n.textContent=String(i+1).padStart(2,'0')+' ';h.prepend(n);});
+const table=root.querySelector('.article-content table');
+if(table){const figure=document.createElement('figure');figure.className='read-length-figure';figure.innerHTML=`<svg viewBox="0 0 820 155" role="img" aria-label="读长示意：三个教学示例分别为0.15、15与100kb，对数坐标"><g font-family="Inter, Noto Sans SC, sans-serif" font-size="13" fill="#25362f"><text x="12" y="25">Illumina 短读段</text><text x="12" y="57">PacBio HiFi 长读段</text><text x="12" y="89">ONT 超长读段</text></g><g stroke-linecap="round" stroke-width="14"><path d="M190 20h28.17" stroke="#afd8b8"/><path d="M190 52h348.17" stroke="#68bb78"/><path d="M190 84h480" stroke="#248354"/></g><g fill="#25362f" font-family="Inter,sans-serif" font-size="12"><text x="235" y="25">0.15 kb</text><text x="559" y="57">15 kb</text><text x="693" y="89">100 kb</text></g><path d="M190 108H730" stroke="#60736a"/><g fill="#60736a" font-family="Inter,sans-serif" font-size="12" text-anchor="middle"><text x="190" y="128">0.1</text><text x="350" y="128">1</text><text x="510" y="128">10</text><text x="670" y="128">100</text><text x="450" y="150">读长（kb，对数坐标）</text></g></svg><figcaption>图 1　读长教学示例，固定示意值：0.15、15、100 kb；并非平台规格或实测数据。实际读长取决于文库、仪器及处理流程。</figcaption>`;const host=table.closest('.table-scroll')??table;host.after(figure);}
+const links=[...root.querySelectorAll<HTMLAnchorElement>('.article-toc a')];
+const observer=new IntersectionObserver(entries=>{for(const e of entries)if(e.isIntersecting)links.forEach(a=>{const active=decodeURIComponent(a.hash.slice(1))===e.target.id;a.classList.toggle('active',active);if(active)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current');});},{rootMargin:'-90px 0px -65% 0px'});titles.forEach(t=>observer.observe(t));
+const progress=root.querySelector<HTMLElement>('.article-progress')!;const update=()=>{const article=root.querySelector('.article-content')!;const top=article.getBoundingClientRect().top+scrollY;const length=Math.max(1,article.scrollHeight-innerHeight);const percent=Math.max(0,Math.min(100,(scrollY-top)/length*100));progress.style.setProperty('--progress',percent+'%');progress.setAttribute('aria-valuenow',String(Math.round(percent)));};addEventListener('scroll',update,{passive:true});addEventListener('resize',update);update();
+const mq=matchMedia('(max-width: 900px)');const fold=()=>{const d=root.querySelector('.article-left details');if(mq.matches)d?.removeAttribute('open');else d?.setAttribute('open','');};mq.addEventListener('change',fold);fold();
+}
+</script>
