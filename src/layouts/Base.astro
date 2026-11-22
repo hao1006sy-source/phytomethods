@@ -31,9 +31,16 @@ const isCurrent = (href: string) => href ? path.startsWith(`${base}${href}`) : p
       <div class="wrap header-inner">
         <a href={base} class="brand-lockup" aria-label="PhytoMethods 首页">
           <span class="brand-mark">
-            <svg viewBox="0 0 32 32" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-              <path d="M16 27V14M16 20C8 20 5 15 5 9c7 0 11 3 11 9M16 15C17 8 22 5 27 5c0 7-4 11-11 12" />
-            </svg>
+            {home ? (
+              <svg viewBox="0 0 32 32" width="26" height="26" aria-hidden="true">
+                <path d="M4.5 27.5C6.4 14.6 15.2 5 28 4.5 27.4 17 18.9 26.3 4.5 27.5Z" fill="currentColor" />
+                <path d="M7.5 25.2C13 19.3 18.6 13.4 25.1 7.6" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="1.7" />
+              </svg>
+            ) : (
+              <svg viewBox="0 0 32 32" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path d="M16 27V14M16 20C8 20 5 15 5 9c7 0 11 3 11 9M16 15C17 8 22 5 27 5c0 7-4 11-11 12" />
+              </svg>
+            )}
           </span>
           <span class="brand-copy">
             <span class="brand-name">PhytoMethods</span>
@@ -264,6 +271,8 @@ const isCurrent = (href: string) => href ? path.startsWith(`${base}${href}`) : p
   });
 
   updateScrollableRegionAccessibility();
+  window.addEventListener('load', updateScrollableRegionAccessibility, {once: true});
+  document.fonts?.ready.then(updateScrollableRegionAccessibility);
   window.addEventListener('resize', updateScrollableRegionAccessibility, {passive: true});
 
   document.querySelectorAll('pre').forEach(pre=>{const toolbar=document.createElement('div');toolbar.className='code-toolbar';const label=document.createElement('span');label.textContent=pre.querySelector('code')?.className.match(/language-([\w-]+)/)?.[1]?.toUpperCase()??'代码';const button=document.createElement('button');button.textContent='复制代码';button.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(pre.querySelector('code')?.textContent??'');button.textContent='已复制'}catch{button.textContent='复制失败，请手动选择'}});toolbar.append(label,button);pre.before(toolbar)});
