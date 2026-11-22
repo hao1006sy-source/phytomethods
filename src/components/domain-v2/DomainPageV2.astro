@@ -1,0 +1,125 @@
+---
+import { getCollection } from 'astro:content';
+import { domains } from '../../data/domains';
+import { topicMetadata } from '../../data/topics';
+import configs from '../../data/domain-v2-m02-m09.json';
+import AnnotationOverview from '../AnnotationOverview.astro';
+import AnnotationFigure from '../AnnotationFigure.astro';
+import PangenomeOverview from '../PangenomeOverview.astro';
+import PangenomeFigure from '../PangenomeFigure.astro';
+import './domain-v2.css';
+
+const { domain } = Astro.props;
+const [id, slug, title] = domain;
+const config = configs.find((item) => item.id === id);
+if (!config) throw new Error(`Missing Domain V2 configuration: ${id}`);
+const base = import.meta.env.BASE_URL;
+const allTopics = await getCollection('topics');
+const topics = topicMetadata
+  .filter((item) => item.domainId === slug && item.status === 'published')
+  .filter((item) => allTopics.some((entry) => entry.id === item.id && entry.data.status === 'published'))
+  .sort((a, b) => a.order - b.order);
+const methods = (await getCollection('methods'))
+  .filter((item) => config.methodIds.includes(item.id) && item.data.status === 'published')
+  .sort((a, b) => config.methodIds.indexOf(a.id) - config.methodIds.indexOf(b.id));
+const papers = (await getCollection('papers'))
+  .filter((item) => item.data.status === 'published' && item.data.domainIds.includes(slug))
+  .sort((a, b) => b.data.year - a.data.year).slice(0, 6);
+const tutorials = (await getCollection('tutorials'))
+  .filter((item) => item.data.status === 'published' && methods.some((method) => method.id === item.data.method))
+  .slice(0, 4);
+const relatedDomains = domains.filter((item) => config.relatedIds.includes(item[0]));
+const sections = [
+  ['overview', '领域概览'], ['workflow', '技术路线'], ['topics', '七大专题'],
+  ['methods', '核心方法'], ['resources', '研究资源'],
+];
+const figurePath = `${base}images/domain-v2/${id}.svg`;
+---
+
+<div class="m01-v2 domain-v2" data-domain={id}>
+  <nav class="m01-breadcrumb" aria-label="面包屑导航"><a href={base}>⌂ 首页</a><span aria-hidden="true">›</span><a href={`${base}topics/`}>研究领域</a><span aria-hidden="true">›</span><span>{id} {title}</span></nav>
+  <header class="m01-hero">
+    <div class="m01-heading"><div class="m01-badges"><span>{id}</span><span>研究领域</span></div><div><div class="m01-title-line"><h1>{title}</h1><span>{config.english}</span></div><p>{config.lead}</p></div></div>
+    <figure class="m01-sequence domain-figure"><img src={figurePath} alt={`原理示意：${title}`} width="510" height="100" /><figcaption>领域原理示意 · 简化教学图形</figcaption></figure>
+  </header>
+
+  <div class="m01-grid">
+    <aside class="m01-sidebar">
+      <nav aria-label={`${id} 领域导航`}>{sections.map(([key, label], index) => <a href={`#dv2-${key}`} class:list={{ active: index === 0 }} data-section={key}>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d={['M6 3h9l4 4v14H6zM9 10h7M9 14h7M9 18h4','M5 18 10 6l9 12M5 18h14','M4 4h16v16H4zM8 9h8M8 14h8','M6 4h12v16H6zM9 8h6M9 12h6','M4 5h7l1 2h8v14H4z'][index]} /></svg>{label}
+      </a>)}</nav>
+      <div class="m01-local"><strong>本页目录</strong>{sections.map(([key, label], index) => <a href={`#dv2-${key}`}>{index + 1}　{label}</a>)}</div>
+    </aside>
+
+    <article class="m01-main">
+      <section id="dv2-overview"><h2>领域概览</h2><p>{config.intro}</p></section>
+      <section id="dv2-workflow">
+        <h2>技术路线：{config.workflowTitle}</h2>
+        <ol class="m01-workflow">{config.stages.map(([name, desc], index) => <li><span class="m01-stage-icon" aria-hidden="true"><span>{String(index + 1).padStart(2, '0')}</span></span><div><strong>{name}</strong><p>{desc}</p></div></li>)}</ol>
+        <p class="m01-caption">{config.warning}</p>
+      </section>
+      <section id="dv2-topics"><h2>七大专题</h2><div class="m01-topic-list">{topics.map((topic) => <a href={`${base}topics/${slug}/${topic.id}/`}><span class="m01-number">{String(topic.order).padStart(2, '0')}</span><strong>{topic.title}</strong><span class="m01-summary">{topic.summary}</span><span class="m01-read">阅读专题 →</span></a>)}</div></section>
+      <section id="dv2-methods"><h2>关键方法与工具</h2><div class="m01-method-list">{methods.map((method) => <a href={`${base}methods/${method.id}/`}><strong>{method.data.name}</strong><span>{method.data.summary}</span><span aria-hidden="true">→</span></a>)}</div></section>
+      {(id === 'M02' || id === 'M03') && <section id="dv2-background" class="m01-background"><h2>研究背景与详细图解</h2>{id === 'M02' ? <><AnnotationOverview /><AnnotationFigure kind="m02-topic-01" /></> : <><PangenomeOverview /><PangenomeFigure kind="m03-topic-07" /></>}</section>}
+      <section id="dv2-resources"><h2>研究资源</h2><div class="m01-resource-links"><a href={`${base}papers/`}>全部文献 →</a><a href={`${base}tutorials/`}>分析教程 →</a><a href={`${base}methods/`}>全部算法与工具 →</a></div>
+        {papers.length > 0 && <div class="domain-resource-list"><h3>相关文献</h3>{papers.slice(0, 4).map((paper) => <a href={`${base}papers/${paper.id}/`}><strong>{paper.data.title}</strong><span>{paper.data.year} · {paper.data.journal}</span></a>)}</div>}
+        {tutorials.length > 0 && <div class="domain-resource-list"><h3>相关教程</h3>{tutorials.map((tutorial) => <a href={`${base}tutorials/${tutorial.id}/`}><strong>{tutorial.data.title}</strong><span>验证状态：{tutorial.data.tested}</span></a>)}</div>}
+      </section>
+    </article>
+
+    <aside class="m01-panels" aria-label="领域相关资源">
+      <section><h2><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 8 9-5 9 5-9 5ZM3 12l9 5 9-5M3 16l9 5 9-5" /></svg>核心方法与工具</h2><div>{methods.map((method) => <a class="m01-tool" href={`${base}methods/${method.id}/`}><strong>{method.data.name}</strong><span>{method.data.summary}</span></a>)}<a class="m01-more" href={`${base}methods/`}>查看全部方法与工具 →</a></div></section>
+      <section><h2><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5C8 2 4 3 3 4v15c4-2 7-1 9 1 2-2 5-3 9-1V4c-1-1-5-2-9 1ZM12 5v15" /></svg>推荐阅读</h2><div><ul>{topics.map((topic) => <li><a href={`${base}topics/${slug}/${topic.id}/`}>{topic.title}</a></li>)}</ul>{papers.length > 0 && <a class="m01-more" href={`${base}papers/${papers[0].id}/`}>最新相关文献 →</a>}</div></section>
+      <section><h2><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 17 6-12 6 12M6 17h12" /><circle cx="12" cy="5" r="3" /><circle cx="5" cy="18" r="3" /><circle cx="19" cy="18" r="3" /></svg>相关研究领域</h2><div>{relatedDomains.map((related) => <a class="m01-related" href={`${base}topics/${related[1]}/`}><strong>{related[0]}</strong><span>{related[2]}</span></a>)}</div></section>
+    </aside>
+  </div>
+</div>
+
+<script>
+  const root = document.querySelector('.domain-v2');
+  if (root) {
+    const links = [...root.querySelectorAll<HTMLAnchorElement>('[data-section]')];
+    const observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) if (entry.isIntersecting) links.forEach((link) => {
+        const active = link.hash === `#${entry.target.id}`;
+        link.classList.toggle('active', active);
+        if (active) link.setAttribute('aria-current', 'location'); else link.removeAttribute('aria-current');
+      });
+    }, { rootMargin: '-10% 0px -65% 0px' });
+    root.querySelectorAll('.m01-main>section').forEach((section) => observer.observe(section));
+  }
+</script>
+
+<style>
+  :global(body:has(.domain-v2) main.wrap) { width: 100%; min-width: 0; box-sizing: border-box; }
+  .domain-v2, .domain-v2 .m01-hero, .domain-v2 .m01-heading, .domain-v2 .m01-heading>div:last-child, .domain-v2 .m01-grid, .domain-v2 .m01-main { min-width: 0; }
+  .domain-v2 .m01-heading { gap: 18px; }
+  .domain-v2 .m01-heading>div:last-child { padding-left: 18px; }
+  .domain-v2 .m01-title-line { gap: 12px; flex-wrap: nowrap; }
+  .domain-v2 .m01-title-line h1 { font-size: 32px; white-space: nowrap; }
+  .domain-v2 .m01-title-line>span { white-space: nowrap; }
+  .domain-v2 .domain-figure { width: 100%; max-width: 510px; justify-self: end; }
+  .domain-v2 .domain-figure img { display: block; width: 100%; height: auto; max-height: 105px; object-fit: contain; }
+  .domain-v2 .m01-stage-icon { border-radius: 50%; width: 24px; height: 24px; display: grid; place-items: center; background: #e0f0e5; color: #087a50; font-size: 10px; font-weight: 700; }
+  .domain-v2 .domain-resource-list { margin-top: 22px; }
+  .domain-v2 .domain-resource-list h3 { margin: 0 0 8px; font-size: 16px; color: #123f2d; }
+  .domain-v2 .domain-resource-list a { display: flex; justify-content: space-between; gap: 12px; padding: 9px 10px; border-bottom: 1px solid #dce8e0; font-size: 13px; }
+  .domain-v2 .domain-resource-list a span { color: #60736a; white-space: nowrap; }
+  .domain-v2 .m01-tool { grid-template-columns: max-content minmax(0, 1fr); }
+  .domain-v2 .m01-tool strong { white-space: nowrap; padding: 0 8px; }
+  .domain-v2 .m01-panels .m01-tool span { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
+  @media (max-width: 1350px) { .domain-v2 .m01-title-line h1 { font-size: 28px; } }
+  @media (max-width: 1100px) { .domain-v2 .m01-hero { grid-template-columns: minmax(0, 1fr) minmax(0, 310px); } }
+  @media (max-width: 800px) { .domain-v2 .m01-hero { grid-template-columns: minmax(0, 1fr); } }
+  @media (max-width: 800px) { .domain-v2 .m01-title-line { flex-wrap: wrap; } }
+  @media (max-width: 700px) {
+    .domain-v2 .domain-resource-list a { flex-direction: column; gap: 2px; }
+    .domain-v2 .m01-heading { width: 100%; align-items: flex-start; }
+    .domain-v2 .m01-heading>div:first-child { flex: 0 0 auto; }
+    .domain-v2 .m01-heading>div:last-child { flex: 1 1 0%; width: 0; min-width: 0; }
+    .domain-v2 .m01-title-line { width: 100%; gap: 4px; }
+    .domain-v2 .m01-title-line h1, .domain-v2 .m01-title-line>span { flex: 1 1 100%; width: 100%; white-space: normal; overflow-wrap: normal; }
+    .domain-v2 .m01-title-line h1 { font-size: 25px; }
+    .domain-v2 .domain-figure { width: 100%; min-width: 0; margin: 0; }
+  }
+</style>
