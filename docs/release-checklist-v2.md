@@ -1,10 +1,10 @@
 # v2.0 分阶段发布核对表
 
-状态更新时间：2026-11-22。工作分支：`feat/long-run-m03-v2`。
+状态更新时间：2026-11-22。正式发布提交：`e65cc18`（PR #2）。
 
 ## 本地交付状态
 
-M03–M09 七个领域的专题、工具、论文和教程内容均已完成本地发布闭包；M01、M02 保留既有公开内容。本地内容状态为 `published`，表示当前工作树构建会生成对应页面，不代表 GitHub Pages 已同步。
+M03–M09 七个领域的专题、工具、论文和教程内容均已合并发布；M01、M02 保留既有内容。GitHub Pages 已部署 `main` 的 `e65cc18`。
 
 | 领域 | 专题 | 工具 | 论文 | 教程 | 本地状态 |
 |---|---:|---:|---:|---:|---|
@@ -23,22 +23,19 @@ M03–M09 七个领域的专题、工具、论文和教程内容均已完成本�
 - `npm run validate`：Astro 63 个内容文件零错误、警告和提示；静态生成 276 页；Pagefind zh-cn 索引 276 页、34,436 词；7,749 条站内链接零错误。
 - `node work/audit-metadata-relations.mjs`：63 个专题、58 个方法、127 篇论文，双向关系差异为 0。
 - `npm run coverage`：M01–M09 的 63 个专题正文均已发布；各领域教程和方法数量见上表。未真实运行的教程继续按各自 `tested` 状态标明。
-- M09 新增内容已执行本地路由生成及链接检查；该领域的浏览器三视口、浏览器内搜索与交互测试未完成。
+- M09 新增内容通过构建与链接检查。浏览器三视口、浏览器内搜索及交互测试未完成；当前环境中的 Edge 启动因 `CoCreateInstance of Elevator` 权限错误退出，agent-browser 会话目录也不可写。
 - 其他领域的逐项科学审核、示意图和已实际运行教程记录见 `docs/scientific-review-v2.md`、`docs/m03-evidence.md` 至 `docs/m09-evidence.md`。
-- `npm audit --offline` 使用本机缓存报告 0 vulnerabilities；在线 `npm audit` 因 `registry.npmjs.org` DNS 解析失败，未取得当前在线 advisory 数据。
+- 在线 `npm audit` 经系统代理完成，0 vulnerabilities。
 
 ## 正式发布状态
 
-本地最新提交为 `8f6936e`（`Complete M09 regulatory genomics and AI release`）。本地分支比远程跟踪分支领先 51 个提交。远程仓库 `hao1006sy-source/phytomethods` 的 `main` 仍指向已合并的 M02 版本；远程 `feat/long-run-m03-v2` 仍停留在 2026-11-21 的 M02 基线；GitHub 上未发现本轮 v2.0 PR。
+PR #2（[完成 M03–M09 科研知识体系与 v2.0 验收](https://github.com/hao1006sy-source/phytomethods/pull/2)）已合并至 `main`，merge commit 为 `e65cc18cb36352a1a6fc34baab14898e54b30582`。GitHub Actions 部署工作流 [44971996069](https://github.com/hao1006sy-source/phytomethods/actions/runs/44971996069) 以 `success` 结束。GitHub Pages 地址为 <https://hao1006sy-source.github.io/phytomethods/>。
 
-本轮 `git push` 无法连接 `github.com:443`。GitHub MCP 对 Git Trees API 和 Contents API 的写入均返回 `403 Resource not accessible by integration`。网页读取工具也无法访问 Pages 地址。GitHub 仓库 API 显示远程 `main` 仍为 M02；因此尚无 v2.0 PR、Actions 构建、Pages 部署或线上验收记录。不得把当前本地 `published` 状态描述为正式线上发布。
+线上首页、M01 领域及单倍型专题、Hifiasm 工具/论文/教程、M09 领域及 AgroNT 工具/论文、WGCNA 教程和搜索页均返回 HTTP 200。Pagefind `pagefind-entry.json`、UI 脚本、运行脚本、站点地图与 robots 文件均返回 HTTP 200；线上中文索引包含 276 页。浏览器内搜索交互与三视口布局尚未验证。
 
 ## 尚未关闭的最终步骤
 
-1. 恢复可用的 GitHub 写入通道，将本地提交序列推送至既有分支。
-2. 创建并检查 M03–M09 的 v2.0 PR，确认 GitHub Actions 构建结果后按既有授权合并。
-3. 检查 `/phytomethods/` 线上首页、九领域、专题、工具、论文、教程和 Pagefind 搜索。
-4. 补做 M09 桌面/平板/手机浏览器布局与交互回归，并保存最终页面截图。
-5. 在可访问 npm registry 的环境重跑 `npm audit`，复核本机缓存审计结果并记录依赖处置。
+1. 在浏览器可启动的环境补做 M09 桌面、平板、手机视口与页面交互回归，并保存最终页面截图。
+2. 在浏览器中输入中文查询词，验证 Pagefind 返回结果、点击结果跳转和子路径部署下的资源加载。
 
-在远程同步、线上部署及相应验收完成前，v2.0 的阶段性正式发布保持未完成。
+除上述浏览器验收项外，v2.0 内容合并、CI 部署、线上路由与资源响应、在线依赖审计均已完成。
