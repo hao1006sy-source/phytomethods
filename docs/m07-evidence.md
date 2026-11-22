@@ -4,7 +4,7 @@
 
 ## 表观遗传与 DNA 甲基化
 
-- Zhang H, Lang Z, Zhu JK. 2021. “Dynamics of DNA Methylation and Its Functions in Plant Growth and Development.” *Frontiers in Plant Science* 12:596236. DOI [10.3389/fpls.2021.596236](https://doi.org/10.3389/fpls.2021.596236)。综述用于核对 MET1、CMT3、CMT2、DRM2/RdDM 在不同胞嘧啶背景中的作用与相互作用。
+- Kumar S, Mohapatra T. 2021. “Dynamics of DNA Methylation and Its Functions in Plant Growth and Development.” *Frontiers in Plant Science* 12:596236. DOI [10.3389/fpls.2021.596236](https://doi.org/10.3389/fpls.2021.596236)。作者字段已按 PubMed PMID `34093600` 与 DOI 注册元数据更正；该综述用于核对植物 DNA 甲基化调控综述观点。
 - Cokus SJ, Feng S, Zhang X, et al. 2008. “Shotgun bisulphite sequencing of the Arabidopsis genome reveals DNA methylation patterning.” *Nature*. DOI [10.1038/nature06745](https://doi.org/10.1038/nature06745)。用于拟南芥甲基化图谱案例。
 - Krueger F, Andrews SR. 2011. “Bismark: a flexible aligner and methylation caller for Bisulfite-Seq applications.” *Bioinformatics* 27:1571–1572. DOI [10.1093/bioinformatics/btr167](https://doi.org/10.1093/bioinformatics/btr167)。期刊页说明 Bismark 执行 BS-seq reads 比对和 CG/CHG/CHH 甲基化提取。
 - Gardiner LJ, Quinton-Tulloch M, Olohan L, et al. 2015. “A genome-wide survey of DNA methylation in hexaploid wheat.” *Genome Biology* 16:273. DOI [10.1186/s13059-015-0838-3](https://doi.org/10.1186/s13059-015-0838-3)。原文报告六个小麦样本、12°C/27°C 条件、靶向基因富集及 Bismark 比对；甲基化比较使用 methylKit。M07 页面不称其为全基因组均匀覆盖 WGBS。
@@ -29,3 +29,6 @@
 ## 教程验证状态
 
 Bismark 模拟教程记录 Rust suite 3.3.0、Bowtie2 2.5.5 和 Samtools 1.25 的本机运行结果，使用固定参考和已知甲基化状态模拟 reads。该验证检查命令及模拟流程，不是植物样本的复现。DSS、MACS3、MEME Suite 和 HiCExplorer 本轮仅核对官方文档，未在本机运行。
+## v2.1 书目交叉核对补充（2026-11-22）
+
+对 DOI `10.3389/fpls.2021.596236` 的 DOI 注册元数据与 PubMed PMID `34093600` 进行题名/作者复核。记录题名、Frontiers in Plant Science、2021 年及 DOI 匹配；原先作者字段 `Zhang H, Lang Z, Zhu JK` 与原始书目不符，已更正为 `Kumar S, Mohapatra T`。该更正来自 PubMed 与 Crossref DOI 记录，未改变文章中综述科学结论。

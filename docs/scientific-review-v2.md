@@ -1,5 +1,7 @@
 # v2.0 科学审核台账
 
+> v2.1 持续审核状态以本文件末尾的“v2.1 质量返工进度”及 `docs/content-quality-audit-v2.1.md` 为准；以下历史台账保留为 v2.0 基线记录。
+
 审核日期：2026-11-21（Asia/Shanghai）
 审核分支：`feat/long-run-m03-v2`
 审核基线：`58c339f Document AgroNT plant sequence model`
@@ -207,8 +209,69 @@ M05-01 对照 3,010 水稻研究的样本、SNP/InDel 数、GATK 调用与 PLINK
 
 完成单细胞与空间组学七专题、7 个工具、14 篇论文及 Scanpy 模拟教程的引用、软件归属和发布检查。植物案例核实包括水稻根 2021 分别采集 scRNA/scATAC（Scanpy 1.4.5.1、Palantir 0.2.2、velocyto 各自职责）、拟南芥根图谱 110,427 细胞与 StationaryOT、拟南芥光响应 92,861 细胞时序图谱、水稻土壤研究超过 79,000 个高质量 scRNA-seq 细胞与 Molecular Cartography，以及 2025 水稻 8 器官/116,564 细胞同步 RNA+ATAC 图谱。COPILOT、DoubletFinder 仅按水稻土壤论文明确报告的预处理和 doublet 过滤任务关联。Cell2location、Squidpy、CellRank 2、ArchR 方法页面区分各自模型和输出；其方法论文的人/鼠应用没有改写为植物软件案例。Cell2location/Squidpy 未认领 Molecular Cartography 的水稻应用；ArchR 未认领水稻多组学论文的 RSCA 分析。证据及来源记录见 `docs/m08-evidence.md`。Scanpy 1.13.0 教程验证仍限定于模拟计数矩阵。`node work/audit-metadata-relations.mjs` 检查 63 个专题、54 个工具、123 篇论文，零双向关联差异；`npm run coverage` 显示 M08 七专题、7 工具、14 论文和 1 教程已发布；`npm run validate` 通过：Astro 63 文件零错误/警告/提示，249 页生成，Pagefind zh-cn 索引 249 页/33,026 词，7,036 条站内链接零错误。植物数据复现和新增工具实跑不在验证范围内。
 
+v2.1 返工将七篇专题的推断层级、公式和结果解释具体化：从 barcode/UMI 计数到归一化、图聚类、marker 证据、轨迹概率、空间混合模型及配对 RNA/ATAC 的可识别性。M08 七篇经 10 维证据表评为 L3；缺少真实植物数据端到端教程的条目保持 L4 以下。当前重跑 `npm run validate` 为 279 页、Pagefind 38,178 词、8,093 条链接零错误。浏览器覆盖 27 个 URL × 3 个视口共 81 次访问；单细胞组别切色/重置、拟时序下一步/重置通过，截图位于 `outputs/v2.1/m08-browser/`。
+
 ### M09 七专题科学审核与发布闭包（2026-11-22）
 
 逐条核对 RNA-seq 差异表达、WGCNA 共表达、GENIE3/GRNBoost2 网络推断、PWM/FIMO motif 扫描、多组学潜在因子、AgroNT 与 PlantCAD2 序列模型。GENIE3 的逐靶基因树集成回归、GRNBoost2 的梯度提升和 Arboreto 调度、MOFA+ 多视图因子/变分推断分别依原方法论文描述。PlantCAD2 按 Cell Genomics 正式发表版本修订；与 AgroNT 的 Transformer 区分为 Caduceus/Mamba2 双向状态空间模型，并将 benchmark 数字限定在原论文任务。复核 DESeq2、WGCNA 植物案例；拟南芥 iGRN 和玉米多组学网络保留为领域案例，不误关联成 GENIE3、GRNBoost2 或 MOFA+ 使用案例。拟南芥气孔研究按原文报告将 FIMO 扫描关联 MEME Suite。来源表、官方代码地址和未运行范围见 `docs/m09-evidence.md`。
 
 七专题、八个方法页面、13 篇方法/植物应用论文及 WGCNA 模拟教程状态与 ID 关联闭合。Astro 63 文件零诊断，276 页生成，Pagefind 索引 276 页/34,436 词，7,749 条站内链接零错误；内容关系审计 63 专题、58 方法、127 论文，双向关系差异为零。当前环境无法启动 Edge/agent-browser 会话，因此 M09 桌面、平板、手机视口和浏览器内搜索/交互自动化检查未执行；静态构建生成了所有 M09 路由，站内链接检查通过。工具未在本机植物实测数据上运行；WGCNA 教程只报告模拟矩阵运行结果。
+
+## v2.1 质量返工进度（2026-11-22）
+
+### M07 v2.1 专题质量复核
+
+本轮对七篇专题完成逐篇 10 维评分，均为 L3（L4=0），内容补充详见 `docs/content-quality-audit-v2.1.md`。新加 ATAC 共同峰计数和 size factor 说明、PWM 对数似然比；现存公式明确了 m/u 甲基化计数、beta-binomial 过度离散和 Hi-C 接触矩阵。`docs/m07-evidence.md` 保留原始方法来源与植物实际使用工具的区分。Bismark 仅在固定参考模拟 reads 上实测，其他方法未在本机运行。
+
+浏览器矩阵覆盖领域、7 专题、5 工具、15 篇关联论文和教程，29 URL × 3 视口；记录文件在 `outputs/v2.1/m07-browser-verified/`。初测发现移动端教程长行内代码溢出并修复 CSS，另发现 metadata 写入失误导致的一次失效测试批次；该批次标记为无效，不作验收证据。仅采用修复后的最终批次统计。
+
+### M04 v2.1 专题质量复核
+
+七篇专题经 10 维证据复核均评 L3，成熟度和逐篇缺项见 `docs/content-quality-audit-v2.1.md`。核对重点包括 CAFE5 生灭模型根节点及误差模型假设、MCScanX 锚点与区块边界、IQ-TREE bootstrap 与后验概率差别、MCMCTree 校准和 Ks 近似、PAML 似然比较。论文与实际软件应用对应关系引用 `docs/m04-evidence.md`。领域、专题、6 工具、16 篇论文和 2 教程共 32 路由，以 3 个视口检查 96 次；无 HTTP/标题/资源/控制台/溢出问题，共线性方向切换与重置通过。截图位于 `outputs/v2.1/m04-browser-verified/`。本域工具及真实植物教程未新增本机运行记录。
+
+### M06 v2.1 专题质量复核
+
+七篇专题经 10 维评分均评 L3。M06-06 新增 GBLUP 模型与标准化标记关系矩阵、RMSE/相关性解释和训练验证泄漏控制；M06-07 补充多组学样本对齐、DNNGP 原论文网络组件范围及面向新家系/未来年份/新环境的拆分设计。11 篇关联论文与 5 个方法按 `docs/m06-evidence.md` 对应，DNNGP 未在本站运行，固定种子 GWAS 模拟不称作植物群体分析。25 路由×3视口的 75 次浏览均通过，Manhattan/QQ 切换和重置通过；结果和截图位于 `outputs/v2.1/m06-browser-verified/`。
+
+### M03 v2.1 专题质量复核
+
+七篇专题均经 10 维证据评分评为 L3。检查覆盖 PAV 统计定义、比对与锚点算法、SyRI 路径分类、读段/组装/图 SV 检测、Minigraph-Cactus 与 PGGB 构图差别、Giraffe 图映射与后续分型、图坐标与可视化语义。植物案例与软件使用归属依据 `docs/m03-evidence.md`；仅 SyRI 官方拟南芥测试数据有本机实际运行证据。领域、专题、13 工具、23 关联论文和教程共 45 路由，在三种视口访问 135 次，零状态、正文、控制台、资源及溢出错误；GraphMappingDemo 读段选择和重置通过。截图位于 `outputs/v2.1/m03-browser-verified/`。
+
+### M02：首轮逐篇复核完成
+
+M02 七篇专题已逐篇评分，详见 `docs/content-quality-audit-v2.1.md`。返工扩充了计算流程、方法差异、植物应用、质量解释和相关资源；M02 评级 L3×7，L4×0。BRAKER3、EDTA 与 InterProScan 工具条目及 BRAKER3、EDTA、Infernal、InterProScan、芒果应用论文均已补充方法解读。TSEBRA DOI 已按期刊原文更正为 10.1186/s12859-021-04482-0。EDTA/Hifiasm 以外没有新增真实运行结果；EDTA 流程保持 `template` 状态。
+
+`npm run validate`：Astro 63 个内容文件 0 错误/警告/提示，276 页静态构建，Pagefind zh-cn 276 页/35,568 词，7,752 条站内链接通过。M02 本地浏览器覆盖 13 个 URL × 1440/768/375px；39 次访问标题和正文正常、无横向溢出。首次领域页记录一次资源 404，紧接复查未重现，结果已在审计报告注明。截图：`outputs/v2.1/m02-browser/`。
+
+已核实来源与已运行验证分别记载。上述句子为 v2.0 阶段历史状态；v2.1 的九领域逐篇复核、来源检查、浏览器矩阵、提交与发布状态以文末“v2.1 最终审核和发布记录”为准。
+
+## M09 专题返工进度（2026-11-22）
+
+M09 七篇专题正文新增统计/算法表达、操作流程、结果评价与模型对比；修订 WGCNA 植物案例对应关系；深化 WGCNA、GENIE3、MOFA+、AgroNT、PlantCAD2 五篇方法论文解读。M09 当前 L3×7、L4×0。WGCNA 模拟教程已有真实运行记录；没有声明任何模型已基于真实植物数据运行。逐篇分数和未完成图解列表见 `docs/content-quality-audit-v2.1.md`。
+
+### M09 v2.1 浏览器与交互验收
+
+`npm run validate` 通过：276 页构建、Pagefind 276 页/35,568 词、8,028 条站内链接 0 错误。21 个 M09 领域/专题/工具/论文/教程 URL 分别以 1440、768、375 px 打开，共 63 次访问，全部 HTTP 200、无控制台错误、无资源失败、无横向溢出。共表达教学演示阈值从 0 调为 1 时可见边从 6 条降为 0 条，重置恢复 0.70。浏览器检查和 63 张截图在 `outputs/v2.1/m09-browser/`。已新增站点 favicon 并修复此前自动 favicon 404。
+
+## M01 专题返工进度（2026-11-22）
+
+M01 七篇专题完成结构化补充，加入数据设计和 FASTQ 检查、OLC/de Bruijn/String Graph 的构图与差异、相位支持读段例子、Hi-C 接触矩阵读图、T2T 重复区流程和 Merqury QV 推导。成熟度均评 L3，L4 为 0；逐篇证据评分见质量审计表。Hifiasm、Verkko、Merqury 工具页及五篇核心方法/植物案例解读已扩写，新增三篇已核实的植物组装论文记录。水稻 Nipponbare DOI 由错误后缀 `.08.007` 更正为 `.08.003`，以 PubMed 与期刊记录为准。
+
+本地 `npm run validate` 当前通过：279 页静态构建、Pagefind zh-cn 279 页/37,660 词、8,090 条站内链接 0 错误；Astro 检查 63 个内容文件 0 错误/警告/提示。M01 共 21 个页面 URL × 三种视口 = 63 次访问，全为 HTTP 200、零控制台错误、零失败资源、零横向溢出；单倍型图下一步、播放和重置通过。截图在 `outputs/v2.1/m01-browser/`。Hifiasm 命令仍标注“已核对，真实数据待验证”，Merqury 与 Hi-C 本站流程未实测。
+## v2.1 九大领域逐篇科学审核汇总（2026-11-22）
+
+九个领域的 63 篇专题均已逐篇按 B/A/M/C/P/R/O/F/T/K 记录证据评分。成熟度为 L3×63、L4×0。L4 未评定；合成数据教程不满足真实植物数据复现要求，多项方法工具也未在本站真实植物材料上运行。
+
+本轮复核顺序为 M02、M09、M01、M08、M07、M04、M06、M03、M05。重点检查工具方法与植物应用案例是否有原文支持、算法和软件实现是否分开、输入输出与参数是否明确，以及植物倍性、交配系统、结构变异、样本结构与数据泄漏等限制是否在对应专题说明。M05-04 新增频率代入的 π 与 LD-$r^2$ 教学计算；其余领域的增补和逐篇评分详见 `docs/content-quality-audit-v2.1.md` 及 M03–M09 来源记录。
+
+### 工具、论文和教程核查边界
+
+现仓库包含 58 个工具、130 条论文记录及 10 篇教程；130 条比 v2.1 任务书基线 127 条多 3 条，来源为 M01 新增的组装案例。构建 Schema 要求工具记录含资源 URL、对应方法论文 ID、领域/专题/原理/数据标签；论文含 DOI、作者、年份、期刊、类型和稳定关联 ID；教程含关联方法及验证状态。构建和关系审计通过。19 个工具记录填有结构化版本字段，39 个未锁定当前版本，保持空缺以免将旧论文版本误当当前发布版；41 个工具关联植物应用论文，17 个暂未确认直接植物应用，不以邻近领域案例替代。
+
+论文结构字段、DOI、题名、出版年份及记录中列出的作者已通过 Crossref REST API 逐条核对；DOI、题名、年份和作者各为 130/130 匹配。发现并修正 GRNBoost2 论文作者错误；作者顺序、复姓和缩写差异由匹配规则处理后复核一致。PNAS 两条及 GPB 一条刊名采用期刊名缩写，与 Crossref 全称等价。详细核查材料见 `docs/content-quality-audit-v2.1.md` 和 `outputs/v2.1/bibliography-audit/crossref-full.json`。教程状态为 7 verified、3 template（CAFE5、EDTA、Hifiasm）；verified 仍按模拟数据、合成数据、官方样例和真实植物数据区分。M05 PLINK 使用合成二倍体数据，SyRI 使用官方拟南芥样例，WGCNA 使用模拟表达数据。
+
+## v2.1 最终审核和发布记录
+
+九大领域 63 篇专题均已完成 10 维证据审查，成熟度 L3×63、L4×0。专题级分数及缺项见 `docs/content-quality-audit-v2.1.md`。工具共 58 个，论文记录 130 条，教程 10 篇。工具的资源链接和关联关系完成结构校验；19/58 有结构化版本字段，41/58 关联直接植物应用论文，17 个没有足够证据建立工具与植物实证的直接关系。教程中 7 个有运行记录，CAFE5、EDTA、Hifiasm 仍为命令核对或教学模板状态。
+
+本地 `npm run validate` 最终通过：Astro 63 个内容文件零错误/警告/提示；生成 279 页；Pagefind 中文索引包含 279 页、38,424 词；8,094 条本地链接零错误。`npm run coverage` 显示 63/63 专题正文发布；Stable ID 关系检查覆盖 63 专题、58 工具、130 论文，反向关系差异为 0。全站浏览器矩阵覆盖 256 个资源 URL、375/768/1440 px 三种视口，共 768 次页面访问，状态、标题、资源、控制台与页面宽度检查均通过。截图与结果位于 `outputs/v2.1/`。

@@ -7,7 +7,7 @@
 添加内容后运行 `npm run build`。Schema 检查字段类型；首页构建期间检查关联、受控标签与 DOI 唯一性。修改目录元数据或新增领域时同步检查 `src/data/domains.ts` 与 `src/data/topics.ts`。之后运行 `python scripts/check-links.py` 与 `node scripts/browser-test.mjs`；浏览器测试需要运行预览服务器。
 
 ## 专题元数据与关系
-`src/data/topic-metadata.json` 包含 63 条独立记录。`id` 是持久英文标识；`title` 与 `englishTitle` 分别是中英文名称；`domainId` 和 `order` 控制领域及顺序；`summary` 和 `keyConcepts` 描述主题。`methodIds`、`paperIds`、`tutorialIds` 是指向对应内容的稳定 ID 数组；`principleIds` 和 `dataIds` 来自 `src/data/tags.ts`。`status` 为 `published`、`draft` 或 `planned`；未核实的 `createdAt`、`updatedAt` 为 null，不推定历史日期。
+`src/data/topic-metadata.json` 包含 63 条独立记录。`id` 是持久英文标识；`title` 与 `englishTitle` 分别是中英文名称；`domainId` 和 `order` 控制领域及顺序；`summary` 和 `keyConcepts` 描述主题。`methodIds`、`paperIds`、`tutorialIds` 是指向对应内容的稳定 ID 数组；`principleIds` 和 `dataIds` 来自 `src/data/tags.ts`。`status` 为 `published`、`draft` 或 `planned`；未核实的 `createdAt`、`updatedAt` 为 null，不推定历史日期。`maturity` 记录专题内容成熟度：L1 基础概念，L2 有完整算法原理，L3 有核实案例、文献和方法比较，L4 有经真实数据验证的可复现教程及完整图解。成熟度按实际证据更新，不由发布状态自动推导；当前阶段报告需同时注明哪些领域完成逐篇审核。
 
 M01 的已发布记录应有同名 Markdown 正文，网页根据专题关系反查工具、论文及教程；工具页面反查专题与论文。论文的 `methodIds` 是多对多关系，只有经原论文证实的工具关系才能写入。构建时验证 63 条记录的 ID、领域、顺序、标签、正文及各类关系，并检查已发布内容、DOI 和重复项。已知 `method` 是历史兼容字段，新论文使用 `methodIds`。
 
@@ -29,3 +29,13 @@ M09 的序列模型需分别标注模型架构和具体模型版本：AgroNT 为
 专题正文的 ID、领域和状态必须与专题元数据一致；校验同时覆盖草稿和已发布内容。新增草稿正文时先登记相同 ID、domainId 和 draft 状态的元数据，再运行 npm run validate。
 
 知识关联图从已发布工具的领域、原理、专题、论文和教程关联自动生成；草稿不进入图或搜索。添加关联时应保证关系语义有来源支持，并运行 npm run validate 与 scripts/browser-test-knowledge-graph.mjs。
+
+## v2.1 学术质量分级与证据记录
+
+专题成熟度是内容证据层级，不代表期刊等级或整体研究价值。L1 为术语与基础问题介绍；L2 要求解释核心算法并描述主要计算步骤；L3 还要求方法比较、可追溯的原始方法来源及至少一个真实植物研究案例；L4 要求在真实植物数据上验证可复现流程，并提供与流程步骤对应的完整科研图解。只有模拟数据或合成基因型运行的教程不能支撑 L4。每个专题在 `docs/content-quality-audit-v2.1.md` 按 B/A/M/C/P/R/O/F/T/K 十项逐项评分，分值 0–2：生物背景、算法原理、数学符号、计算步骤、植物特异问题、真实植物案例、原始方法论文、科研图解、教程代码、知识关联。表内必须写出正文或来源证据及仍缺内容；评分不能从页面存在、链接可达或文献条目数量推导。
+
+方法论文与植物应用论文分开记录。来源证据应能支撑其相邻事实：优先引用原始论文 DOI/出版方记录、项目官方仓库或官方手册；案例中的样本规模、流程、阈值、结果必须与论文相符。没有确认的版本、运行和案例字段留为待验证，不得将模拟输出描述为真实运行。教程记录输入数据来源、环境与软件版本、完整命令、日志/结果文件、结果解释及运行状态。浏览器验收记录实际 URL、视口、标题和正文检查、控制台/资源错误、布局溢出、交互断言与截图路径；页面响应码不等同于科学内容审查。
+
+### v2.1 全量书目及工具核对记录
+
+书目 API 核对应保存检查时间、数据源和每条 DOI 对照结果，分别核对 DOI、题名、作者、出版日期及刊名；刊名缩写与出版社全称采用明确的等价记录。Crossref 字段对照不能替代论文正文证据阅读。方法版本应以官方 release/tag 或官方文档核实后填写；无法核实则留空，不从论文发表年份推导当前版本。工具的植物应用关联必须来自研究方法中对该工具的明确使用证据；关联缺失时保留空值。教程的 `tested` 状态表示实际执行范围，需同时记录输入来源、环境、运行数据类型和结果文件。`verified` 不单独说明是否使用真实植物数据，需在教程内容和审计中具体注明。

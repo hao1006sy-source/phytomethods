@@ -29,3 +29,8 @@ ChIP-seq 富集依赖目标抗体、input/IgG 对照、染色质片段化和测�
 Motif 富集应使用生物学合理、序列组成匹配的背景集。若输入的是同一批 peak 中心序列，背景可按 GC 与长度匹配；跨基因组扫描还需处理重复序列和可比对性。MEME 用于发现 motif，FIMO 用于对已给 motif 进行位置扫描；[MEME Suite 工具页](../../../methods/meme-suite/)和[方法论文](../../../papers/meme-suite-paper/)说明其功能范围。motif 相似不能区分共享结合偏好的 TF 家族成员，需结合 ChIP、CUT&Tag、遗传材料或报告基因验证。
 
 植物案例分别来自 bZIP11 组蛋白乙酰化研究、ATAC-seq 数据论文与 CUT&Tag 技术方法，三类来源回答的问题不同。方法论文不作为植物生物学发现，数据论文也不意味着所有算法在原文中均被使用。参考[拟南芥 bZIP11 ATAC-seq 案例](../../../papers/arabidopsis-bzip11-atac-2023/)与[CUT&Tag 原始方法](../../../papers/cutntag-paper/)。
+
+## 位置权重矩阵的扫描分数
+对长度为 $L$ 的 motif，位置 $k$ 上碱基 $b$ 的概率记为 $p_{k,b}$，背景频率记为 $q_b$。候选序列 $x_1\ldots x_L$ 的简化对数似然比为 $S(x)=\sum_{k=1}^{L}\log_2(p_{k,x_k}/q_{x_k})$。分数衡量序列相对背景与 motif 模型的匹配程度，不直接等于体内结合概率。伪计数、背景序列组成、扫描阈值和多重检验均会影响命中数量。
+
+MEME 的 de novo 模式从输入序列中估计候选 motif；FIMO 则扫描给定 motif，并输出位置、分数和 p/q 值。二者的输入与问题不同。植物基因组中重复序列和 GC 差异可导致大量表面命中，因此应匹配背景集合、报告过滤策略，并结合表达、可及性或 ChIP/CUT&Tag 证据解释候选位点。

@@ -38,3 +38,21 @@ HiFi reads 可使用 FASTA 或 FASTQ，支持 gzip 压缩。`-o` 指定输出前
 
 ## 相关资源
 [官方软件与教程](https://github.com/chhylp123/hifiasm)；[输出解释](https://hifiasm.readthedocs.io/en/latest/interpreting-output.html)；[方法论文](https://doi.org/10.1038/s41592-020-01056-5)。上游需要准备高质量 reads，下游可用 Merqury 等方法评估质量。
+
+## 一句话简介与开发背景
+Hifiasm 是面向 PacBio HiFi 读段的 de novo 组装器，以相位感知重叠图处理复杂二倍体和多倍体材料。Cheng 等 2021 年方法论文报告了基于 HiFi 和 trio-binning 的组装策略，并在多种非人类数据上评估，论文也说明了参考无关图结构及单倍型路径的价值。
+
+## 算法原理与图处理
+HiFi 的高准确率使长读段间的可靠重叠可支持单倍型差异识别。Hifiasm 使用种子与重叠关系建立读段图，通过图简化和纠错降低错误分支，再利用杂合变异与 reads 支持将等位序列保留为候选路径。输出图可包含 primary/alternate 或 haplotype contig 路径；不同模式下文件命名和保留关系会改变。不要把图中所有分支直接解释为杂合等位变异：重复、低质量重叠和旁系同源序列也会形成分支。
+
+## 运行入口、输入检查与参数
+输入应为同一材料的 HiFi FASTQ/FASTA，压缩格式与路径要求按安装版本确认。基础形式为 `hifiasm -o sample -t 32 reads.fq.gz`，`-o` 为前缀，`-t` 为线程数；trio 模式提供父本/母本短读段并按官方文档设置对应参数，Hi-C 模式可通过 `--h1/--h2` 传入两端 Hi-C reads。运行前检查样本 ID、read 数、碱基数、文件完整性和覆盖度；不同版本参数可能变化，命令需与实际 `hifiasm --help` 一起存档。
+
+## 输出文件阅读
+GFA 中的 `S` 行代表片段序列，`L` 行代表重叠连接，`P` 行代表路径。HiFi-only 常见输出包括 `*.bp.p_ctg.gfa` 和 `*.bp.hap1.p_ctg.gfa`、`*.bp.hap2.p_ctg.gfa` 等图文件；primary contig 不等同于单倍体全序列，hap1/hap2 是否完整分相需结合运行模式、GFA 路径和覆盖评估。可以使用 `awk` 或 `gfatools` 从选定路径生成 FASTA，但需按官方输出解释选择对应 GFA 文件，避免将 primary 与 alternate 冗余片段重复导出。
+
+## 植物案例及证据
+Macadamia jansenii 论文方法部分报告 HiFi reads 使用 Hifiasm 默认设置及内置 haplotig 处理；结果中 8 条染色体以大型连续片段表示，其余染色体仍为多个主要 contig，未解析缺口主要涉及 rDNA 重复。这是已发表植物应用案例，不代表所有植物均能达到相同连续性。见 [Sharma 等 2022 原文](https://doi.org/10.1111/tpj.15583)。
+
+## 适用范围与质量评估
+Hifiasm 适用于高准确长读段支持的长读段组装及相位解析；超长重复仍可能缺少跨越证据，多倍体材料需明确目标倍性和预期输出路径。建议报告软件版本、输入平台与读段数、覆盖、命令、GFA/FASTA 层级，并结合 Merqury、BUSCO、Hi-C 联系图和长 reads 回贴进行多维评估。

@@ -1,7 +1,7 @@
 ---
 title: "GRNBoost2 and Arboreto: efficient and scalable inference of gene regulatory networks"
 summary: "介绍梯度提升树网络推断及 Arboreto 并行调度框架。"
-authors: "Moerman T, Santos-Rodriguez R, De Neve W, et al."
+authors: "Moerman T, Aibar Santos S, Bravo González-Blas C, et al."
 year: 2019
 journal: Bioinformatics
 doi: 10.1093/bioinformatics/bty916
