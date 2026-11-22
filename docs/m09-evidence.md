@@ -28,3 +28,7 @@
 ## 教程与验证边界
 
 `wgcna-synthetic` 使用模拟表达矩阵，已在 R 4.5.1、WGCNA 1.74 下重复运行；模拟矩阵不含真实植物实验。DESeq2、GENIE3、GRNBoost2、MEME Suite、MOFA+、AgroNT 与 PlantCAD2 页面未声明本机真实植物样本运行。PlantCAD2 论文与官方链接核验不等于本站环境已部署模型或复现实验。
+
+## M09 证据与验收补记
+
+M09 五个重点方法页面及配套论文内容已深化；21 个路线覆盖 63 个桌面/平板/手机渲染，截图、标题、公式数、资源失败和控制台记录见 `outputs/v2.1/m09-browser/results.json`。当前没有声明 AgroNT、PlantCAD2、GENIE3 或 MOFA+ 在本机真实植物数据上运行。WGCNA 仅在已记录的模拟表达数据上实际运行。
