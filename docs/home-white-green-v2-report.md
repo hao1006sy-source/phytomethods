@@ -2,7 +2,7 @@
 
 ## 改版范围
 
-本轮沿用未合并的首页 PR 分支，在现有 V1 首页结构上做 V2 视觉细化。保留 Astro、Content Collections、Pagefind、GitHub Pages 子路径、九大领域路由和所有专业正文、论文元数据。
+本轮在现有 V1 首页结构上完成 V2 视觉细化。保留 Astro、Content Collections、Pagefind、GitHub Pages 子路径、九大领域路由和所有专业正文、论文元数据。
 
 ## 设计变量
 
@@ -40,13 +40,15 @@
 - 五种视口下文档宽度分别与视口一致，九个领域卡片均存在，水稻图成功加载，标题与搜索按钮可见。
 - 最终桌面和手机截图：`outputs/home-white-editorial/v2-typography-final-1440x900.png`、`outputs/home-white-editorial/v2-typography-final-390x844.png`；另有 5 种宽度的整页截图。
 - 最终视口截图由本地 Astro 页面 `http://127.0.0.1:4321/phytomethods/` 渲染，加载真实子路径资源；浏览器确认 Inter 文件加载，检查五种宽度、搜索和 M01 领域跳转。
+- 部署后在线浏览器再次检查 `https://hao1006sy-source.github.io/phytomethods/`，视口为 1440、1280、768、390、375px；Inter、Noto Sans SC 和水稻配图均加载，页面宽度未溢出。
 
 ## 功能和自动化检查
 
 - `npm run validate`：通过。Astro 检查 64 个文件，0 错误、0 警告、0 提示；静态构建 279 个页面；Pagefind 索引 279 页、38,426 个词；首页推荐配置检查通过；10,058 个本地链接 0 错误。
 - `npm run test:figure-a11y`：通过。375、768、1280、1440px 下图解键盘滚动、菜单选择、图表放大、焦点管理和文档溢出检查通过。
 - 浏览器逐项点击：首页移动菜单、Hifiasm 搜索表单、M01 领域入口、Hifiasm 工具、最新专题、论文和教程链接均到达目标路径。
-- 公开搜索实测：`Hifiasm` 返回 24 条，`泛基因组` 返回 53 条结果。
+- 线上浏览器点击首页搜索，`Hifiasm` 返回 24 条；M01 卡片进入 `/topics/genome-assembly/`。页面控制台无错误，站内资源请求无失败。
+- `npm run test:figure-a11y`：字体更新后重新运行，375、768、1280、1440px 回归均通过。
 
 ## 截图文件
 
@@ -55,11 +57,13 @@
 - 改版后桌面视口：`outputs/home-white-editorial/v2-typography-final-1440x900.png`
 - 改版后手机视口：`outputs/home-white-editorial/v2-typography-final-390x844.png`
 - 改版后完整 1440、1280、768、390、375px 页面：`outputs/home-white-editorial/v2-typography-final-{1440,1280,768,390,375}-full.png`
+- 部署后桌面和手机视口：`outputs/home-white-editorial/v2-online-final-1440x900.png`、`outputs/home-white-editorial/v2-online-final-390x844.png`
+- 部署后完整 1440、1280、768、390、375px 页面：`outputs/home-white-editorial/v2-online-final-{1440,1280,768,390,375}-full.png`
 - 1440px 前后对比：`outputs/home-white-editorial/v2-typography-before-after-20261122.png`
-- 390px 前后对比：`outputs/home-white-editorial/v2-before-after-390x844.png`
+- 改版前手机截图：`outputs/home-white-editorial/before-v2-390x844.png`
 
 ## 发布状态
 
-此前 PR #10 已合并。PR #11 已包含首页参考图校准、配图、图标和字体改进；用户已授权直接合并。最新字体实现已本地构建验收，待推送后重新执行 PR CI。
+PR #11 已于 2026-11-22 合并，合并提交为 `9ca6f4f7e6937d8e8306fa05ec137408581545ee`。GitHub Actions `validate` 检查通过，GitHub Pages 部署工作流成功。PR 地址：[hao1006sy-source/phytomethods#11](https://github.com/hao1006sy-source/phytomethods/pull/11)，部署运行：[Deploy to GitHub Pages](https://github.com/hao1006sy-source/phytomethods/actions/runs/45029358032)。线上地址：[PhytoMethods](https://hao1006sy-source.github.io/phytomethods/)。
 
-最终审阅截图来自本地 Astro 页面，部署用的 GitHub Pages `/phytomethods/` 子路径保持原样。生成式水稻配图用于首页视觉设计，不作为真实标本照片或科学数据。
+公开网站已完成首页、搜索结果和 M01 领域入口的浏览器验收。生成式水稻配图用于首页视觉设计，不作为真实标本照片或科学数据。
