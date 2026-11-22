@@ -8,7 +8,7 @@
     "build": "astro check && astro build && (pagefind --site dist --output-subdir pagefind-search || pagefind --site dist --output-subdir pagefind-search)",
     "preview": "astro preview",
     "check": "astro check",
-    "validate": "npm run build && python scripts/check-links.py",
+    "validate": "npm run build && node scripts/check-home-curation.mjs && python scripts/check-links.py",
     "coverage": "node scripts/content-coverage.mjs",
     "test:figure-a11y": "node scripts/browser-test-figure-a11y.mjs"
   },
