@@ -1,7 +1,7 @@
 ---
 title: "Dynamics of DNA Methylation and Its Functions in Plant Growth and Development"
 summary: "综述植物 CG、CHG、CHH 甲基化的建立、维持及其发育功能。"
-authors: "Zhang H, Lang Z, Zhu JK"
+authors: "Kumar S, Mohapatra T"
 year: 2021
 journal: Frontiers in Plant Science
 doi: 10.3389/fpls.2021.596236
