@@ -5,7 +5,8 @@
 - M03–M09 内容建设、逐领域科学审核记录、教程/工具/论文关系和本地发布闭包已完成。PR #2 已合并；GitHub Actions 部署成功，当前正式版本为 `e65cc18`。本地 `main` 已快进至同一提交。
 - 最新完整 `npm run validate` 通过：276 页、Pagefind 276 页/34,436 词、7,749 条站内链接零错误；关系审计 63 专题、58 方法、127 论文，差异为零。在线 `npm audit` 经系统代理执行，0 vulnerabilities。
 - 正式站点首页、M01/M09、M01 单倍型专题、Hifiasm 工具/论文/教程、AgroNT 工具/论文、WGCNA 教程和搜索路由均返回 HTTP 200。Pagefind 中文索引为 276 页。
-- 尚未完成 M09 浏览器视口、搜索交互和截图验收。Edge 无法启动（Elevator COM 权限错误），agent-browser 会话目录不可写；详情见 `docs/release-checklist-v2.md`。
+- 浏览器验收已覆盖首页、M01/M09 领域、M01 单倍型专题、Hifiasm 工具/论文/教程、AgroNT 工具、WGCNA 教程和搜索页的 375/768/1280px 布局；均无横向溢出、页面错误为 0。Pagefind `AgroNT` 查询结果可点击到 AgroNT 工具页；单倍型图的步骤、播放/暂停和重置可用。
+- 最终截图保存在 `outputs/long-run/final-v2-20261122/`。未用真实数据验证的教程仍按内容字段标注待验证。状态详情见 `docs/release-checklist-v2.md`。
 - `outputs/` 与 `work/` 保留本地截图、交付物和工作缓存，未加入仓库。跟踪文件无未提交改动；工作区当前仅显示这两个未跟踪目录。
 
 ### 历史恢复记录（当前状态以快照和发布核对表为准）
