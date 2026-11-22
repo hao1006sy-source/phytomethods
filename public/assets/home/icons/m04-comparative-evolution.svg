@@ -1,1 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" fill="none" stroke="#147860" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="m04-comparative-evolution"><path d="M9 32h15M24 13v38M24 13h16M24 51h16M40 7v12M40 45v12M40 7h14M40 19h14M40 45h14M40 57h14"/><circle cx="54" cy="7" r="2"/><circle cx="54" cy="19" r="2"/><circle cx="54" cy="45" r="2"/><circle cx="54" cy="57" r="2"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" fill="none" stroke="#117750" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="比较基因组系统发育分支示意">
+  <path d="M8 32h12m0-20v40M20 12h13m-13 14h13m-13 14h13m-13 12h13M33 12h11m-11 14h11m-11 14h11m-11 12h11M44 12h12m-12 14h12m-12 14h12m-12 12h12" />
+  <circle cx="56" cy="12" r="2.5" fill="#f1f8f3" />
+  <circle cx="56" cy="26" r="2.5" fill="#f1f8f3" />
+  <circle cx="56" cy="40" r="2.5" fill="#f1f8f3" />
+  <circle cx="56" cy="52" r="2.5" fill="#f1f8f3" />
+</svg>

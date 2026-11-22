@@ -1,1 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" fill="none" stroke="#147860" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="m07-epigenome-3d"><path d="M7 31c0-13 8-13 14 0s14 13 21 0 15-13 15 0"/><path d="M7 34c0 13 8 13 14 0s14-13 21 0 15 13 15 0"/><path d="M15 22v-9M49 42v9"/><circle cx="15" cy="10" r="3"/><circle cx="49" cy="54" r="3"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" fill="none" stroke="#117750" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="核小体与染色质组织示意">
+  <path d="M5 32c5-16 14-16 19 0s14 16 19 0 12-16 16 0" />
+  <circle cx="14" cy="32" r="8" fill="#dceee1" />
+  <circle cx="32" cy="32" r="8" fill="#c5e3ce" />
+  <circle cx="50" cy="32" r="8" fill="#dceee1" />
+  <path d="M10 29c2-3 5-3 8 0m10 0c2-3 5-3 8 0m10 0c2-3 5-3 8 0" stroke-width="1.5" />
+  <path d="M14 13v-4m36 50v-4" stroke-width="1.5" />
+</svg>

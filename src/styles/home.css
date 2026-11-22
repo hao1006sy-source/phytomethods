@@ -1,13 +1,13 @@
 :root {
   --home-bg: #ffffff;
   --home-surface: #ffffff;
-  --home-navy: #13294b;
-  --home-ink: #273749;
-  --home-green: #137e65;
-  --home-green-hover: #0b6351;
-  --home-muted: #64748b;
-  --home-border: #d7e0e7;
-  --home-subtle: #f5faf7;
+  --home-navy: #123c2b;
+  --home-ink: #20352b;
+  --home-green: #117750;
+  --home-green-hover: #0a6042;
+  --home-muted: #63766b;
+  --home-border: #cfe1d5;
+  --home-subtle: #f1f8f3;
   --home-serif: "Noto Serif SC", "Songti SC", STSong, Georgia, serif;
   --home-sans: Inter, "Noto Sans SC", "Microsoft YaHei", system-ui, sans-serif;
 }
@@ -113,12 +113,40 @@ body.home-body {
 }
 
 .home-hero {
+  position: relative;
+  isolation: isolate;
   display: grid;
   grid-template-columns: minmax(0, 1.18fr) minmax(300px, 0.82fr);
   align-items: center;
   gap: 38px;
-  min-height: 248px;
-  padding: 30px 0 25px;
+  min-height: 0;
+  padding: 12px 0 10px;
+}
+
+.home-hero::before,
+.home-hero::after {
+  position: absolute;
+  z-index: -1;
+  display: block;
+  content: "";
+  pointer-events: none;
+}
+
+.home-hero::before {
+  inset: 0 0 0 47%;
+  background:
+    radial-gradient(ellipse at 78% 20%, rgb(221 240 225 / 48%), transparent 46%),
+    radial-gradient(ellipse at 68% 92%, rgb(204 231 211 / 62%), transparent 56%);
+  clip-path: ellipse(76% 82% at 68% 55%);
+}
+
+.home-hero::after {
+  right: 0;
+  bottom: 0;
+  width: 58%;
+  height: 38%;
+  background: linear-gradient(174deg, rgb(255 255 255 / 0%), rgb(229 243 232 / 64%));
+  clip-path: ellipse(72% 58% at 72% 100%);
 }
 
 .hero-copy {
@@ -142,7 +170,7 @@ body.home-body {
   max-width: 780px;
   margin: 0 0 18px;
   color: var(--home-ink);
-  font-family: var(--home-serif);
+  font-family: var(--home-sans);
   font-size: 1rem;
   line-height: 1.8;
 }
@@ -236,6 +264,8 @@ body.home-body {
 }
 
 .hero-botanical {
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -244,9 +274,12 @@ body.home-body {
 
 .hero-botanical img {
   display: block;
-  width: min(100%, 410px);
-  height: auto;
-  opacity: 0.78;
+  width: min(100%, 420px);
+  height: 230px;
+  object-fit: contain;
+  transform: scaleX(1.15);
+  transform-origin: right center;
+  opacity: 0.94;
 }
 
 .home-section {
@@ -316,16 +349,16 @@ body.home-body {
   min-height: 108px;
   padding: 12px 15px;
   border: 1px solid var(--home-border);
-  border-radius: 9px;
-  background: var(--home-surface);
+  border-radius: 10px;
+  background: var(--home-subtle);
   color: var(--home-ink);
   text-decoration: none;
   transition: border-color 140ms ease, background-color 140ms ease;
 }
 
 .domain-card:hover {
-  border-color: #7eb49f;
-  background: #fcfefc;
+  border-color: #9fc7aa;
+  background: #eaf4ed;
   color: var(--home-ink);
 }
 
@@ -368,7 +401,7 @@ body.home-body {
   display: block;
   color: var(--home-navy);
   font-family: var(--home-serif);
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 700;
   line-height: 1.48;
   overflow-wrap: anywhere;
@@ -377,7 +410,7 @@ body.home-body {
 .domain-summary {
   display: block;
   color: #526476;
-  font-size: 0.77rem;
+  font-size: 0.81rem;
   line-height: 1.55;
   overflow-wrap: anywhere;
 }
@@ -652,6 +685,11 @@ body.home-body {
     display: none;
   }
 
+  .home-hero::before,
+  .home-hero::after {
+    display: none;
+  }
+
   .domain-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -772,6 +810,7 @@ body.home-body {
     gap: 12px;
     min-height: 98px;
     padding: 10px 12px;
+    background: var(--home-subtle);
   }
 
   .domain-visual img {

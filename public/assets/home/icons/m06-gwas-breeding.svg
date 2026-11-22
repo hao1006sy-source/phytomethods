@@ -1,1 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" fill="none" stroke="#147860" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="m06-gwas-breeding"><path d="M6 55h52M6 55V8"/><path d="M12 55V44M17 55V39M22 55V46M27 55V14M32 55V34M37 55V42M42 55V18M47 55V40M52 55V28M57 55V43"/><circle cx="27" cy="11" r="2"/><circle cx="42" cy="15" r="2"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" fill="none" stroke="#117750" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="全基因组关联分析峰值示意">
+  <path d="M7 53h51M8 53V12" stroke-width="1.8" />
+  <path d="M13 53V43m6 10V37m6 16V45m6 8V17m6 36V40m6 13V33m6 20V21m6 32V42m6 11V30" />
+  <circle cx="31" cy="13" r="2.5" fill="#a7c982" stroke="none" />
+  <circle cx="49" cy="17" r="2.5" fill="#a7c982" stroke="none" />
+</svg>

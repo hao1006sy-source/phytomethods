@@ -1,1 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" fill="none" stroke="#147860" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="m03-pangenome-sv"><path d="M6 19h13l8-8h14l8 8h9M6 45h13l8 8h14l8-8h9M6 32h52"/><path d="M19 19v26M49 19v26"/><circle cx="19" cy="19" r="2" fill="currentColor" stroke="none"/><circle cx="49" cy="45" r="2" fill="currentColor" stroke="none"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" fill="none" stroke="#117750" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="泛基因组变异路径示意">
+  <path d="M5 19h12m30 0h12M5 32h12m30 0h12M5 45h12m30 0h12" />
+  <rect x="17" y="14" width="12" height="10" rx="2" fill="#dceee1" />
+  <rect x="35" y="27" width="12" height="10" rx="2" fill="#c5e3ce" />
+  <rect x="17" y="40" width="12" height="10" rx="2" fill="#dceee1" />
+  <path d="m29 19 6 13m-6 13 6-13" />
+</svg>

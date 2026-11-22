@@ -264,6 +264,8 @@ const isCurrent = (href: string) => href ? path.startsWith(`${base}${href}`) : p
   });
 
   updateScrollableRegionAccessibility();
+  window.addEventListener('load', updateScrollableRegionAccessibility, {once: true});
+  document.fonts?.ready.then(updateScrollableRegionAccessibility);
   window.addEventListener('resize', updateScrollableRegionAccessibility, {passive: true});
 
   document.querySelectorAll('pre').forEach(pre=>{const toolbar=document.createElement('div');toolbar.className='code-toolbar';const label=document.createElement('span');label.textContent=pre.querySelector('code')?.className.match(/language-([\w-]+)/)?.[1]?.toUpperCase()??'代码';const button=document.createElement('button');button.textContent='复制代码';button.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(pre.querySelector('code')?.textContent??'');button.textContent='已复制'}catch{button.textContent='复制失败，请手动选择'}});toolbar.append(label,button);pre.before(toolbar)});

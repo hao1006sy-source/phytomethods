@@ -1,1 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" fill="none" stroke="#147860" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="m02-genome-annotation"><path d="M6 32h52"/><rect x="9" y="26" width="10" height="12" rx="1"/><rect x="26" y="23" width="13" height="18" rx="1"/><rect x="46" y="26" width="10" height="12" rx="1"/><path d="M14 18v-6h35m-5-4 5 4-5 4"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" fill="none" stroke="#117750" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="基因结构注释示意">
+  <path d="M6 35h52M8 26h48" />
+  <rect x="12" y="23" width="9" height="15" rx="1.5" fill="#dceee1" />
+  <rect x="28" y="19" width="12" height="19" rx="1.5" fill="#c5e3ce" />
+  <rect x="47" y="25" width="8" height="13" rx="1.5" fill="#dceee1" />
+  <path d="M9 47h40m-6-5 6 5-6 5" />
+</svg>
