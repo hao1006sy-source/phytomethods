@@ -25,7 +25,7 @@
 
 来源复核：BRAKER3 原始论文、TSEBRA 原始论文（DOI 更正为 `10.1186/s12859-021-04482-0`）、EDTA 原始论文、Infernal、InterProScan、tRNAscan-SE 与 OMArk 方法来源；植物应用链接至芒果基因组论文 `10.1002/tpg2.20441` 和番茄 T2T 论文 `10.1093/gigascience/giaf058`。EDTA 的水稻基准和芒果研究并未使用 EDTA 的边界已在正文标明。软件版本及 BRAKER 当前状态以官方仓库/文档为准。
 
-浏览器验收记录：本地构建预览通过 13 个页面路由（M02 领域、7 专题、3 工具、BRAKER3 论文、EDTA 教程），视口 1440、768、375 px，共 39 次访问；标题/正文正确、HTTP 200、无控制台错误、无横向溢出。检查中定位并修复缺失 favicon 导致的浏览器自动 404。M02 图解弹窗、Escape 关闭/焦点恢复及领域到专题导航已通过交互检查。39 张页面截图及 `results.json` 位于 `outputs/v2.1/m02-browser/`。
+浏览器验收记录：本地构建预览通过 13 个页面路由（M02 领域、7 专题、3 工具、BRAKER3 论文、EDTA 教程），视口 1440、768、375 px，共 39 次访问；标题/正文正确、HTTP 200、无控制台错误、无横向溢出。检查中定位并修复缺失 favicon 导致的浏览器自动 404。M02 图解弹窗、Escape 关闭/焦点恢复及领域到专题导航已通过交互检查。完整 39 张页面截图及逐页 `results.json` 位于 `outputs/v2.1/m02-browser-complete/`；早期截图目录仅保存部分 PNG，不作为完整截图集。
 
 ## 其余领域的首轮盘点状态
 
@@ -199,3 +199,13 @@ M09 本地 `npm run validate` 通过：276 页静态构建、Pagefind 276 页/35
 | M03-07 泛基因组可视化与应用 | L3 | 2/2/1/2/2/2/2/2/0/2 | 区分节点、路径坐标、布局和生物学变异，关联 ODGI/Bandage 功能及水稻、高粱植物案例；图为通用示意。缺真实图文件可视化复现。 |
 
 M03 来源台账 `docs/m03-evidence.md` 覆盖 13 个关联工具、23 篇论文和 SyRI 教程；对高粱基准中模拟真值 F1 与真实 reads 重叠检验、PAV 样本分母及工具实际职责分别记录。除 SyRI 1.8.2 配合官方拟南芥测试数据外，不新增任何工具运行声明。浏览器验收包含领域页、7 专题、13 工具、23 论文和 1 教程，共 45 路由 × 1440/768/375 px = 135 次访问；HTTP 200、H1/正文、控制台错误、失败资源和页面溢出均通过。GraphMappingDemo 的 CGTT 分支选择与重置通过。截图及 `results.json` 位于 `outputs/v2.1/m03-browser-verified/`。`npm run validate`：Astro 63 个内容文件零诊断，279 页构建，Pagefind zh-cn 279 页/38,355 词，8,094 条站内链接零错误；关系审计 63 专题、58 工具、130 论文，双向差异为零。
+
+## 全量书目外部元数据核对（2026-11-22）
+
+使用 Crossref REST API 对 130 条 DOI 记录逐条比对 DOI、标题、出版年份、刊名与记录中明确列出的作者；结果保存在 `outputs/v2.1/bibliography-audit/crossref-full.json`。DOI、标题、至少一个出版日期年份及列出作者均为 130/130 匹配。姓名比较支持姓/名次序、复姓粒子及首字母格式。三条刊名差异为期刊名缩写/格式别名（PNAS 与 Proceedings of the National Academy of Sciences 两条；Genomics Proteomics Bioinformatics 与带符号全称一条）。原始对照发现 GRNBoost2 作者错误，已依据 Oxford Academic 期刊页更正为 Moerman、Aibar Santos、Bravo González-Blas 等；更正后全量复核作者字段零差异。全量核验未发现 DOI、论文题名或出版年份不符。更正见 `src/content/papers/grnboost2-paper.md`。
+
+Crossref 元数据核对用于书目字段，不能替代论文正文逐项复核。重点案例和方法来源另列于领域 evidence 文档。130 条引用的逐篇正文精读未完成，各文献条目的方法解读深度仍不相同。
+
+## 工具与教程核查状态
+
+58 个工具记录通过 Schema 与稳定 ID 关联检查；官方资源 URL 和方法论文 ID 均有字段。版本号仅 19/58 条为结构化记录，其余版本未在本轮统一锁定。41/58 条关联可核查的植物应用论文；17 条尚无直接植物应用关联，不以相邻领域论文替代工具实证。10 篇教程中 7 篇有运行记录、3 篇保持 template（CAFE5、EDTA、Hifiasm）；运行数据分别标记为模拟、合成、官方样例或植物数据。教程状态不代表覆盖全部操作系统和数据规模。
