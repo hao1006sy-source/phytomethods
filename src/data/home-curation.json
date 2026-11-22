@@ -1,0 +1,4 @@
+{
+  "featuredMethodIds": ["hifiasm", "edta", "orthofinder"],
+  "popularQueries": ["Hifiasm", "泛基因组", "OrthoFinder", "GWAS", "单细胞", "WGCNA"]
+}

@@ -7,3 +7,17 @@
 .reading-main .prose .katex-display{max-width:100%;overflow-x:auto;overflow-y:hidden;padding:.45rem .25rem .7rem;margin:1.2rem 0}
 
 .wrap p code,.wrap li code{overflow-wrap:anywhere!important;}
+
+/* Keyboard-accessible navigation at widths where the complete link row no longer fits. */
+.site-header .header-inner{position:relative}
+.mobile-nav{display:none}
+.mobile-nav-toggle{list-style:none;display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:40px;padding:7px 10px;border:1px solid var(--border);border-radius:7px;background:#fff;color:var(--navy);font-size:.88rem;font-weight:650;cursor:pointer}
+.mobile-nav-toggle::-webkit-details-marker{display:none}
+.mobile-nav-toggle svg{width:20px;height:20px;stroke:currentColor;stroke-width:1.8;stroke-linecap:round}
+.mobile-nav-panel{position:absolute;z-index:20;top:calc(100% + 9px);right:0;display:grid;min-width:min(300px,calc(100vw - 32px));padding:8px;border:1px solid var(--border);border-radius:8px;background:#fff}
+.mobile-nav-panel a{padding:10px 12px;border-radius:5px;color:var(--ink);font-size:.9rem;font-weight:600;text-decoration:none}
+.mobile-nav-panel a:hover,.mobile-nav-panel a[aria-current=page]{background:#edf5f4;color:var(--teal)}
+.mobile-nav-toggle:focus-visible,.mobile-nav-panel a:focus-visible{outline:3px solid #137e65;outline-offset:2px}
+.footer-links{display:flex;flex-wrap:wrap;gap:8px 16px}
+@media(max-width:1050px){.site-header .header-inner{flex-wrap:nowrap;gap:16px;padding-top:0;min-height:72px}.site-nav{display:none}.mobile-nav{display:block;margin-left:auto}}
+@media(prefers-reduced-motion:reduce){.mobile-nav-panel{scroll-behavior:auto}}

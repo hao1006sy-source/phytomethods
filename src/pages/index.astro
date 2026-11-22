@@ -1,18 +1,189 @@
 ---
+import type { CollectionEntry } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import { domains } from '../data/domains';
-import {validateContent} from '../lib/validate-content';
+import homeCuration from '../data/home-curation.json';
+import { validateContent } from '../lib/validate-content';
 import { getCollection } from 'astro:content';
-const methods=await getCollection('methods'); const papers=await getCollection('papers'); const tutorials=await getCollection('tutorials'); const topics=await getCollection('topics');
+
+const methods = await getCollection('methods');
+const papers = await getCollection('papers');
+const tutorials = await getCollection('tutorials');
+const topics = await getCollection('topics');
 await validateContent();
-const latest=<T extends {data:{updatedAt:Date,status:string}}>(items:T[])=>items.filter(i=>i.data.status==='published').sort((a,b)=>b.data.updatedAt.getTime()-a.data.updatedAt.getTime()).slice(0,3);
-const base=import.meta.env.BASE_URL;
+
+const base = import.meta.env.BASE_URL;
+const homeAsset = (path: string) => `${base}assets/home/${path}`;
+const domainIcons: Record<string, string> = {
+  M01: 'm01-genome-assembly.svg',
+  M02: 'm02-genome-annotation.svg',
+  M03: 'm03-pangenome-sv.svg',
+  M04: 'm04-comparative-evolution.svg',
+  M05: 'm05-population-genetics.svg',
+  M06: 'm06-gwas-breeding.svg',
+  M07: 'm07-epigenome-3d.svg',
+  M08: 'm08-single-cell-spatial.svg',
+  M09: 'm09-regulatory-ai.svg',
+};
+const latest = <T extends { data: { updatedAt: Date; status: string } }>(items: T[], limit = 3) =>
+  items
+    .filter((item) => item.data.status === 'published')
+    .sort((a, b) => b.data.updatedAt.getTime() - a.data.updatedAt.getTime())
+    .slice(0, limit);
+
+const featuredMethods = homeCuration.featuredMethodIds
+  .map((id) => methods.find((method) => method.id === id))
+  .filter((method): method is CollectionEntry<'methods'> => Boolean(method && method.data.status === 'published'));
+
+const recentPapers = papers
+  .filter((paper) => paper.data.status === 'published')
+  .map((paper) => ({
+    id: paper.id,
+    title: paper.data.title,
+    href: `${base}papers/${paper.id}/`,
+    type: '文献',
+    meta: String(paper.data.year),
+    updatedAt: paper.data.updatedAt,
+  }))
+  .sort((a, b) => b.updatedAt.getTime() - a.updatedAt.getTime())
+  .slice(0, 2);
+
+const recentTutorials = tutorials
+  .filter((tutorial) => tutorial.data.status === 'published')
+  .map((tutorial) => ({
+    id: tutorial.id,
+    title: tutorial.data.title,
+    href: `${base}tutorials/${tutorial.id}/`,
+    type: '教程',
+    meta: tutorial.data.updatedAt.toISOString().slice(0, 10),
+    updatedAt: tutorial.data.updatedAt,
+  }))
+  .sort((a, b) => b.updatedAt.getTime() - a.updatedAt.getTime())
+  .slice(0, 2);
+
+const recentResources = [...recentPapers, ...recentTutorials]
+  .sort((a, b) => b.updatedAt.getTime() - a.updatedAt.getTime());
+
+const latestTopics = latest(topics, 4);
+const searchTerms = homeCuration.popularQueries;
 ---
 
-<Base home><section class="hero"><div class="hero-copy"><div class="hero-kicker"><span class="hero-line"></span> 植物基因组学 · 方法与实践</div><h1>PhytoMethods</h1><h2>植物基因组学与生物信息学方法知识库</h2><p>系统整理植物基因组学的研究领域、核心算法、经典文献与分析教程。</p><form class="hero-search" action={`${base}search/`}><label class="sr-only" for="q">搜索知识库</label><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4 4"/></svg><input id="q" name="q" placeholder="搜索专题、算法或文献"/><button>搜索</button></form><div class="hero-hints">常用检索 <a href={`${base}search/?q=Hifiasm`}>Hifiasm</a><a href={`${base}search/?q=单倍型`}>单倍型</a><a href={`${base}search/?q=组装`}>基因组组装</a></div></div><div class="hero-aside" aria-hidden="true"><svg viewBox="0 0 300 240" fill="none"><path d="M28 192C76 145 94 78 151 46s93-3 127-24M28 192c60-20 116-21 166-75 36-39 53-42 84-40M28 192c56 0 106 20 157-6 41-21 61-55 93-52" stroke="#75b5a9" stroke-width="1.3"/><g fill="#a9d6c9"><circle cx="28" cy="192" r="5"/><circle cx="151" cy="46" r="4"/><circle cx="194" cy="117" r="4"/><circle cx="185" cy="186" r="4"/><circle cx="278" cy="22" r="3"/><circle cx="278" cy="77" r="3"/><circle cx="278" cy="134" r="3"/></g></svg><span>从数据到发现<br/><small>方法、证据与实践</small></span></div></section>
-<section class="home-section"><div class="section-heading"><div><span class="section-eyebrow">探索知识体系</span><h2>九大研究领域</h2><p>从基础测序到组学分析，按研究问题查找方法。</p></div><a href={`${base}topics/`}>查看全部领域 <span aria-hidden="true">↗</span></a></div><div class="domain-grid">{domains.map(([id,slug,title,summary],i)=><a class="domain-card" href={`${base}topics/${slug}/`}><div class="domain-card-top"><span class="domain-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">{i%3===0?<><path d="M4 19c4-1 5-5 8-8s5-4 8-5M6 5c1 5 5 7 8 7M10 20c0-4 2-7 6-8"/><circle cx="5" cy="5" r="1.5"/><circle cx="19" cy="6" r="1.5"/></>:i%3===1?<><path d="M5 4c0 7 14 9 14 16M19 4C19 11 5 13 5 20M7 7h10M8 12h8M7 17h10"/></>:<><circle cx="6" cy="7" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><path d="m8 7 8-1M7 9l4 7m6-8-4 8"/></>}</svg></span><span class="domain-id">{id}</span></div><h3>{title}</h3><p>{summary}</p><span class="domain-link">进入领域 <span aria-hidden="true">→</span></span></a>)}</div></section>
-<section class="home-section"><div class="section-heading"><div><span class="section-eyebrow">方法资源</span><h2>精选算法与工具</h2><p>了解工具原理、适用数据与研究实践。</p></div><a href={`${base}methods/`}>浏览全部工具 ↗</a></div><div class="method-list">{latest(methods).map((e,i)=><a href={`${base}methods/${e.id}/`} class="method-row"><span class="method-number">0{i+1}</span><span><strong>{e.data.name}</strong><small>{e.data.dataType}</small></span><span class="method-summary">{e.data.summary}</span><span class="row-arrow">↗</span></a>)}</div></section>
-<section class="home-section home-updates"><div class="section-heading"><div><span class="section-eyebrow">持续更新</span><h2>最新内容与文献</h2><p>浏览专题、方法论文和分析教程。</p></div></div><div class="updates-grid"><div class="update-block"><h3>专题文章 <a href={`${base}topics/`}>全部专题 ↗</a></h3>{latest(topics).map(e=><a class="update-row" href={`${base}topics/${e.data.domain}/${e.id}/`}><span>{e.data.title}</span><time>{e.data.updatedAt.toISOString().slice(0,10)}</time></a>)}</div><div class="update-block"><h3>文献与教程 <a href={`${base}papers/`}>文献索引 ↗</a></h3>{latest(papers).map(e=><a class="update-row" href={`${base}papers/${e.id}/`}><span>{e.data.title}</span><time>{e.data.year}</time></a>)}{latest(tutorials).map(e=><a class="update-row" href={`${base}tutorials/${e.id}/`}><span>{e.data.title}</span><time>教程</time></a>)}</div></div></section></Base>
-<style>
-:global(main.home-main){padding-top:24px}.hero{background:#17324d;color:white;border-radius:16px;padding:56px 64px;display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:40px;overflow:hidden}.hero h1{font-size:clamp(2.6rem,5vw,4.3rem);color:white;letter-spacing:-.05em;margin:16px 0 10px}.hero h2{font-size:clamp(1.15rem,2vw,1.55rem);color:#e6f3f1;margin:0 0 16px;font-weight:600}.hero p{color:#bcd0dc;font-size:1rem;margin-bottom:28px}.hero-kicker{font-size:.8rem;color:#a5d5c7;letter-spacing:.06em}.hero-line{display:inline-block;width:26px;height:2px;vertical-align:middle;background:#78b8a7;margin-right:8px}.hero-search{display:flex;align-items:center;gap:12px;background:white;border-radius:10px;padding:6px 6px 6px 18px;max-width:640px;color:#6b8190}.hero-search:focus-within{outline:3px solid #8dc7b9}.hero-search input{flex:1;border:0;outline:0;min-width:0;padding:12px 0}.hero-search button{background:#197b73;color:white;border:0;padding:11px 24px;font-weight:700}.hero-hints{display:flex;align-items:center;gap:16px;margin-top:15px;color:#a8bfcc;font-size:.8rem;flex-wrap:wrap}.hero-hints a{color:#d1eae3;text-decoration:none}.hero-aside{border-left:1px solid #426077;padding-left:32px;display:flex;flex-direction:column;justify-content:center;color:#d4ebe5;font-size:.9rem}.hero-aside svg{width:100%;height:auto}.hero-aside span{border-top:1px solid #436174;padding-top:16px}.hero-aside small{color:#93b3bd}.home-section{margin-top:72px}.section-heading{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:24px}.section-heading h2{font-size:1.75rem;margin:4px 0 8px}.section-heading p{margin:0;color:var(--muted);font-size:.92rem}.section-heading>a{white-space:nowrap;text-decoration:none;font-size:.85rem;font-weight:650}.section-eyebrow{color:var(--teal);font-size:.78rem;font-weight:700}.domain-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.domain-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:24px;text-decoration:none;color:var(--ink);min-height:205px;display:flex;flex-direction:column;transition:border-color .15s,transform .15s}.domain-card:hover{border-color:#83b9ae;transform:translateY(-2px)}.domain-card-top{display:flex;align-items:center;justify-content:space-between}.domain-icon{width:40px;height:40px;display:grid;place-items:center;background:#edf6f4;color:var(--teal);border-radius:9px}.domain-icon svg{width:24px}.domain-id{font-size:.75rem;font-weight:700;color:#8193a0;letter-spacing:.06em}.domain-card h3{font-size:1.08rem;margin:18px 0 6px}.domain-card p{font-size:.88rem;color:var(--muted);margin:0 0 16px}.domain-link{margin-top:auto;font-size:.82rem;color:var(--teal);font-weight:700}.method-list{background:#fff;border:1px solid var(--border);border-radius:12px;padding:0 24px}.method-row{display:grid;grid-template-columns:42px 200px 1fr 24px;align-items:center;gap:16px;padding:20px 0;text-decoration:none;color:var(--ink);border-bottom:1px solid var(--border)}.method-row:last-child{border:0}.method-number{color:#9aabb6;font-size:.8rem}.method-row strong{display:block;color:var(--navy);font-size:1.08rem}.method-row small{display:block;color:var(--muted);font-size:.76rem}.method-summary{color:#647789;font-size:.88rem}.row-arrow{color:var(--teal)}.updates-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;border-top:1px solid var(--border)}.update-block h3{font-size:1rem;display:flex;justify-content:space-between;align-items:center;margin:22px 0 8px}.update-block h3 a{font-size:.78rem;text-decoration:none}.update-row{display:flex;justify-content:space-between;gap:16px;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--border);padding:14px 0;font-size:.9rem}.update-row:hover{color:var(--teal)}.update-row time{color:#91a0aa;white-space:nowrap;font-size:.78rem}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}@media(max-width:900px){.hero{grid-template-columns:1fr;padding:40px}.hero-aside{display:none}.domain-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:600px){:global(main.home-main){padding-top:12px}.hero{padding:32px 24px;border-radius:12px}.hero-copy{min-width:0}.hero h1{font-size:2.6rem}.hero-search{width:100%;min-width:0}.hero-search button{padding:10px 14px}.domain-grid,.updates-grid{grid-template-columns:1fr}.home-section{margin-top:48px}.section-heading{align-items:start}.section-heading>a{font-size:.76rem}.domain-card{min-height:170px}.method-row{grid-template-columns:25px 1fr 20px}.method-summary{grid-column:2/3}.updates-grid{gap:8px}}
-</style>
+<Base title="探索植物基因组学的计算方法" home>
+  <div class="home-content">
+    <section class="home-hero" aria-labelledby="home-title">
+      <div class="hero-copy">
+        <h1 id="home-title">探索植物基因组学的计算方法</h1>
+        <p class="hero-intro">系统整理研究领域、算法原理、经典文献与可复现分析流程，面向长期学习与科研实践。</p>
+
+        <form class="home-search" action={`${base}search/`} method="get" role="search">
+          <label class="sr-only" for="home-query">搜索专题、算法、工具、文献与教程</label>
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="10.8" cy="10.8" r="6.8" />
+            <path d="m16 16 4.2 4.2" />
+          </svg>
+          <input id="home-query" name="q" type="search" placeholder="搜索专题、算法、工具、文献与教程…" autocomplete="off" />
+          <button type="submit">搜索</button>
+        </form>
+
+        <div class="popular-searches" aria-label="热门检索">
+          <span class="popular-label">热门检索</span>
+          {searchTerms.map((term) => (
+            <a href={`${base}search/?q=${encodeURIComponent(term)}`}>{term}</a>
+          ))}
+        </div>
+      </div>
+
+      <div class="hero-botanical">
+        <img src={homeAsset('botanical/rice-line-art.svg')} alt="" width="390" height="310" fetchpriority="high" />
+      </div>
+    </section>
+
+    <section class="home-section domain-section" aria-labelledby="domains-title">
+      <div class="section-heading">
+        <h2 id="domains-title">九大研究领域</h2>
+        <span class="heading-rule" aria-hidden="true"></span>
+        <a class="section-more" href={`${base}topics/`}>查看全部领域 <span aria-hidden="true">→</span></a>
+      </div>
+
+      <div class="domain-grid">
+        {domains.map(([id, slug, title, summary]) => (
+          <a class="domain-card" href={`${base}topics/${slug}/`} aria-label={`${id} ${title}：${summary}`}>
+            <span class="domain-visual" aria-hidden="true">
+              <img src={homeAsset(`icons/${domainIcons[id]}`)} alt="" width="64" height="64" loading="lazy" />
+            </span>
+            <span class="domain-copy">
+              <span class="domain-id">{id}</span>
+              <span class="domain-title">{title}</span>
+              <span class="domain-summary">{summary}</span>
+            </span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section class="home-section resource-section" aria-label="精选方法、专题更新、文献与教程">
+      <div class="resource-grid">
+        <section class="resource-column" aria-labelledby="featured-title">
+          <div class="resource-heading">
+            <svg viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M4 19 10 9l4 6 4-9 6 13H4Z"/><path d="M7 22h14M9 25h10"/></svg>
+            <h2 id="featured-title">精选方法与工具</h2>
+            <a href={`${base}methods/`} aria-label="浏览全部算法与工具">更多 <span aria-hidden="true">→</span></a>
+          </div>
+          <ul class="resource-list featured-list">
+            {featuredMethods.map((method) => {
+              const domain = domains.find((item) => method.data.domainIds.includes(item[1]));
+              return (
+                <li>
+                  <a class="featured-method" href={`${base}methods/${method.id}/`}>
+                    <span class="method-name">{method.data.name}</span>
+                    <span class="method-domain">{domain?.[0] ?? '方法'}</span>
+                    <span class="method-description">{method.data.summary}</span>
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+
+        <section class="resource-column" aria-labelledby="latest-title">
+          <div class="resource-heading">
+            <svg viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M5 4h13l5 5v15H5z"/><path d="M18 4v6h5M9 14h10M9 18h10"/></svg>
+            <h2 id="latest-title">最新更新</h2>
+            <a href={`${base}topics/`} aria-label="浏览全部专题">更多 <span aria-hidden="true">→</span></a>
+          </div>
+          <ul class="resource-list update-list">
+            {latestTopics.map((topic) => (
+              <li>
+                <a class="resource-link" href={`${base}topics/${topic.data.domain}/${topic.id}/`}>
+                  <span class="resource-bullet" aria-hidden="true"></span>
+                  <span class="resource-title">{topic.data.title}</span>
+                  <time datetime={topic.data.updatedAt.toISOString().slice(0, 10)}>{topic.data.updatedAt.toISOString().slice(0, 10)}</time>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section class="resource-column" aria-labelledby="papers-tutorials-title">
+          <div class="resource-heading">
+            <svg viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M3 8 14 3l11 5-11 5L3 8Z"/><path d="M3 14 14 19l11-5M3 20l11 5 11-5"/></svg>
+            <h2 id="papers-tutorials-title">文献与教程</h2>
+            <a href={`${base}papers/`} aria-label="浏览文献索引">更多 <span aria-hidden="true">→</span></a>
+          </div>
+          <ul class="resource-list update-list">
+            {recentResources.map((resource) => (
+              <li>
+                <a class="resource-link resource-link--typed" href={resource.href}>
+                  <span class="resource-bullet" aria-hidden="true"></span>
+                  <span class="resource-type">{resource.type}</span>
+                  <span class="resource-title">{resource.title}</span>
+                  <span class="resource-meta">{resource.meta}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      </div>
+    </section>
+  </div>
+</Base>
