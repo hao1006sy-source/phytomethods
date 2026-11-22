@@ -219,6 +219,12 @@ v2.1 返工将七篇专题的推断层级、公式和结果解释具体化：从
 
 ## v2.1 质量返工进度（2026-11-22）
 
+### M07 v2.1 专题质量复核
+
+本轮对七篇专题完成逐篇 10 维评分，均为 L3（L4=0），内容补充详见 `docs/content-quality-audit-v2.1.md`。新加 ATAC 共同峰计数和 size factor 说明、PWM 对数似然比；现存公式明确了 m/u 甲基化计数、beta-binomial 过度离散和 Hi-C 接触矩阵。`docs/m07-evidence.md` 保留原始方法来源与植物实际使用工具的区分。Bismark 仅在固定参考模拟 reads 上实测，其他方法未在本机运行。
+
+浏览器矩阵覆盖领域、7 专题、5 工具、15 篇关联论文和教程，29 URL × 3 视口；记录文件在 `outputs/v2.1/m07-browser-verified/`。初测发现移动端教程长行内代码溢出并修复 CSS，另发现 metadata 写入失误导致的一次失效测试批次；该批次标记为无效，不作验收证据。仅采用修复后的最终批次统计。
+
 ### M02：首轮逐篇复核完成
 
 M02 七篇专题已逐篇评分，详见 `docs/content-quality-audit-v2.1.md`。返工扩充了计算流程、方法差异、植物应用、质量解释和相关资源；M02 评级 L3×7，L4×0。BRAKER3、EDTA 与 InterProScan 工具条目及 BRAKER3、EDTA、Infernal、InterProScan、芒果应用论文均已补充方法解读。TSEBRA DOI 已按期刊原文更正为 10.1186/s12859-021-04482-0。EDTA/Hifiasm 以外没有新增真实运行结果；EDTA 流程保持 `template` 状态。
