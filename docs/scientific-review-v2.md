@@ -1,5 +1,7 @@
 # v2.0 科学审核台账
 
+> v2.1 持续审核状态以本文件末尾的“v2.1 质量返工进度”及 `docs/content-quality-audit-v2.1.md` 为准；以下历史台账保留为 v2.0 基线记录。
+
 审核日期：2026-11-21（Asia/Shanghai）
 审核分支：`feat/long-run-m03-v2`
 审核基线：`58c339f Document AgroNT plant sequence model`
@@ -212,3 +214,13 @@ M05-01 对照 3,010 水稻研究的样本、SNP/InDel 数、GATK 调用与 PLINK
 逐条核对 RNA-seq 差异表达、WGCNA 共表达、GENIE3/GRNBoost2 网络推断、PWM/FIMO motif 扫描、多组学潜在因子、AgroNT 与 PlantCAD2 序列模型。GENIE3 的逐靶基因树集成回归、GRNBoost2 的梯度提升和 Arboreto 调度、MOFA+ 多视图因子/变分推断分别依原方法论文描述。PlantCAD2 按 Cell Genomics 正式发表版本修订；与 AgroNT 的 Transformer 区分为 Caduceus/Mamba2 双向状态空间模型，并将 benchmark 数字限定在原论文任务。复核 DESeq2、WGCNA 植物案例；拟南芥 iGRN 和玉米多组学网络保留为领域案例，不误关联成 GENIE3、GRNBoost2 或 MOFA+ 使用案例。拟南芥气孔研究按原文报告将 FIMO 扫描关联 MEME Suite。来源表、官方代码地址和未运行范围见 `docs/m09-evidence.md`。
 
 七专题、八个方法页面、13 篇方法/植物应用论文及 WGCNA 模拟教程状态与 ID 关联闭合。Astro 63 文件零诊断，276 页生成，Pagefind 索引 276 页/34,436 词，7,749 条站内链接零错误；内容关系审计 63 专题、58 方法、127 论文，双向关系差异为零。当前环境无法启动 Edge/agent-browser 会话，因此 M09 桌面、平板、手机视口和浏览器内搜索/交互自动化检查未执行；静态构建生成了所有 M09 路由，站内链接检查通过。工具未在本机植物实测数据上运行；WGCNA 教程只报告模拟矩阵运行结果。
+
+## v2.1 质量返工进度（2026-11-22）
+
+### M02：首轮逐篇复核完成
+
+M02 七篇专题已逐篇评分，详见 `docs/content-quality-audit-v2.1.md`。返工扩充了计算流程、方法差异、植物应用、质量解释和相关资源；M02 评级 L3×7，L4×0。BRAKER3、EDTA 与 InterProScan 工具条目及 BRAKER3、EDTA、Infernal、InterProScan、芒果应用论文均已补充方法解读。TSEBRA DOI 已按期刊原文更正为 10.1186/s12859-021-04482-0。EDTA/Hifiasm 以外没有新增真实运行结果；EDTA 流程保持 `template` 状态。
+
+`npm run validate`：Astro 63 个内容文件 0 错误/警告/提示，276 页静态构建，Pagefind zh-cn 276 页/35,568 词，7,752 条站内链接通过。M02 本地浏览器覆盖 13 个 URL × 1440/768/375px；39 次访问标题和正文正常、无横向溢出。首次领域页记录一次资源 404，紧接复查未重现，结果已在审计报告注明。截图：`outputs/v2.1/m02-browser/`。
+
+已核实来源与已运行验证分别记载。M02 的案例和方法论文来源已复核；教程未真实运行；本域还未提交、合并或部署。M01、M03–M09 逐篇审计仍待执行，当前成熟度仅为首轮文本信号分级，不能视为科学审核通过。

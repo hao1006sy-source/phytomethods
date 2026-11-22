@@ -7,7 +7,7 @@
 添加内容后运行 `npm run build`。Schema 检查字段类型；首页构建期间检查关联、受控标签与 DOI 唯一性。修改目录元数据或新增领域时同步检查 `src/data/domains.ts` 与 `src/data/topics.ts`。之后运行 `python scripts/check-links.py` 与 `node scripts/browser-test.mjs`；浏览器测试需要运行预览服务器。
 
 ## 专题元数据与关系
-`src/data/topic-metadata.json` 包含 63 条独立记录。`id` 是持久英文标识；`title` 与 `englishTitle` 分别是中英文名称；`domainId` 和 `order` 控制领域及顺序；`summary` 和 `keyConcepts` 描述主题。`methodIds`、`paperIds`、`tutorialIds` 是指向对应内容的稳定 ID 数组；`principleIds` 和 `dataIds` 来自 `src/data/tags.ts`。`status` 为 `published`、`draft` 或 `planned`；未核实的 `createdAt`、`updatedAt` 为 null，不推定历史日期。
+`src/data/topic-metadata.json` 包含 63 条独立记录。`id` 是持久英文标识；`title` 与 `englishTitle` 分别是中英文名称；`domainId` 和 `order` 控制领域及顺序；`summary` 和 `keyConcepts` 描述主题。`methodIds`、`paperIds`、`tutorialIds` 是指向对应内容的稳定 ID 数组；`principleIds` 和 `dataIds` 来自 `src/data/tags.ts`。`status` 为 `published`、`draft` 或 `planned`；未核实的 `createdAt`、`updatedAt` 为 null，不推定历史日期。`maturity` 记录专题内容成熟度：L1 基础概念，L2 有完整算法原理，L3 有核实案例、文献和方法比较，L4 有经真实数据验证的可复现教程及完整图解。成熟度按实际证据更新，不由发布状态自动推导；当前阶段报告需同时注明哪些领域完成逐篇审核。
 
 M01 的已发布记录应有同名 Markdown 正文，网页根据专题关系反查工具、论文及教程；工具页面反查专题与论文。论文的 `methodIds` 是多对多关系，只有经原论文证实的工具关系才能写入。构建时验证 63 条记录的 ID、领域、顺序、标签、正文及各类关系，并检查已发布内容、DOI 和重复项。已知 `method` 是历史兼容字段，新论文使用 `methodIds`。
 

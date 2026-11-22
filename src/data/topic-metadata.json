@@ -26,6 +26,7 @@
       "hifiasm-intro"
     ],
     "status": "published",
+    "maturity": "L2",
     "createdAt": null,
     "updatedAt": "2026-11-20"
   },
@@ -53,6 +54,7 @@
       "hifiasm-intro"
     ],
     "status": "published",
+    "maturity": "L2",
     "createdAt": null,
     "updatedAt": "2026-11-20"
   },
@@ -83,6 +85,7 @@
       "hifiasm-intro"
     ],
     "status": "published",
+    "maturity": "L1",
     "createdAt": null,
     "updatedAt": "2026-11-20"
   },
@@ -112,6 +115,7 @@
       "hifiasm-intro"
     ],
     "status": "published",
+    "maturity": "L3",
     "createdAt": null,
     "updatedAt": "2026-11-20"
   },
@@ -140,6 +144,7 @@
     ],
     "tutorialIds": [],
     "status": "published",
+    "maturity": "L2",
     "createdAt": null,
     "updatedAt": "2026-11-20"
   },
@@ -165,6 +170,7 @@
     ],
     "tutorialIds": [],
     "status": "published",
+    "maturity": "L2",
     "createdAt": null,
     "updatedAt": "2026-11-20"
   },
@@ -193,6 +199,7 @@
     ],
     "tutorialIds": [],
     "status": "published",
+    "maturity": "L1",
     "createdAt": null,
     "updatedAt": "2026-11-20"
   },
@@ -224,8 +231,9 @@
     ],
     "tutorialIds": [],
     "status": "published",
+    "maturity": "L3",
     "createdAt": null,
-    "updatedAt": "2026-11-20"
+    "updatedAt": "2026-11-22"
   },
   {
     "id": "m02-topic-02",
@@ -257,8 +265,9 @@
       "edta-tutorial"
     ],
     "status": "published",
+    "maturity": "L3",
     "createdAt": null,
-    "updatedAt": "2026-11-20"
+    "updatedAt": "2026-11-22"
   },
   {
     "id": "m02-topic-03",
@@ -286,8 +295,9 @@
     ],
     "tutorialIds": [],
     "status": "published",
+    "maturity": "L3",
     "createdAt": null,
-    "updatedAt": "2026-11-20"
+    "updatedAt": "2026-11-22"
   },
   {
     "id": "m02-topic-04",
@@ -314,8 +324,9 @@
     ],
     "tutorialIds": [],
     "status": "published",
+    "maturity": "L3",
     "createdAt": null,
-    "updatedAt": "2026-11-20"
+    "updatedAt": "2026-11-22"
   },
   {
     "id": "m02-topic-05",
@@ -341,8 +352,9 @@
     ],
     "tutorialIds": [],
     "status": "published",
+    "maturity": "L3",
     "createdAt": null,
-    "updatedAt": "2026-11-20"
+    "updatedAt": "2026-11-22"
   },
   {
     "id": "m02-topic-06",
@@ -371,8 +383,9 @@
     ],
     "tutorialIds": [],
     "status": "published",
+    "maturity": "L3",
     "createdAt": null,
-    "updatedAt": "2026-11-20"
+    "updatedAt": "2026-11-22"
   },
   {
     "id": "m02-topic-07",
@@ -397,8 +410,9 @@
     ],
     "tutorialIds": [],
     "status": "published",
+    "maturity": "L3",
     "createdAt": null,
-    "updatedAt": "2026-11-20"
+    "updatedAt": "2026-11-22"
   },
   {
     "id": "m03-topic-01",
@@ -443,6 +457,7 @@
     ],
     "tutorialIds": [],
     "status": "published",
+    "maturity": "L3",
     "createdAt": null,
     "updatedAt": "2026-11-21"
   },
@@ -485,6 +500,7 @@
       "syri-intro"
     ],
     "status": "published",
+    "maturity": "L3",
     "createdAt": null,
     "updatedAt": "2026-11-21"
   },
@@ -539,6 +555,7 @@
       "syri-intro"
     ],
     "status": "published",
+    "maturity": "L2",
     "createdAt": null,
     "updatedAt": "2026-11-21"
   },
@@ -585,6 +602,7 @@
     ],
     "tutorialIds": [],
     "status": "published",
+    "maturity": "L3",
     "createdAt": null,
     "updatedAt": "2026-11-21"
   },
@@ -624,6 +642,7 @@
     ],
     "tutorialIds": [],
     "status": "published",
+    "maturity": "L3",
     "createdAt": null,
     "updatedAt": "2026-11-22"
   },
@@ -663,6 +682,7 @@
     ],
     "tutorialIds": [],
     "status": "published",
+    "maturity": "L3",
     "createdAt": null,
     "updatedAt": "2026-11-21"
   },
@@ -696,6 +716,7 @@
     ],
     "tutorialIds": [],
     "status": "published",
+    "maturity": "L3",
     "createdAt": null,
     "updatedAt": "2026-11-22"
   },
@@ -732,6 +753,7 @@
       "orthofinder-intro"
     ],
     "status": "published",
+    "maturity": "L1",
     "createdAt": null,
     "updatedAt": "2026-11-22"
   },
@@ -773,6 +795,7 @@
       "cafe5-intro"
     ],
     "status": "published",
+    "maturity": "L3",
     "createdAt": null,
     "updatedAt": "2026-11-22"
   },
@@ -806,6 +829,7 @@
     ],
     "tutorialIds": [],
     "status": "published",
+    "maturity": "L3",
     "createdAt": null,
     "updatedAt": "2026-11-22"
   },
@@ -840,6 +864,7 @@
     ],
     "tutorialIds": [],
     "status": "published",
+    "maturity": "L3",
     "createdAt": null,
     "updatedAt": "2026-11-22"
   },
@@ -873,6 +898,7 @@
     ],
     "tutorialIds": [],
     "status": "published",
+    "maturity": "L3",
     "createdAt": null,
     "updatedAt": "2026-11-22"
   },
@@ -909,6 +935,7 @@
     ],
     "tutorialIds": [],
     "status": "published",
+    "maturity": "L3",
     "createdAt": null,
     "updatedAt": "2026-11-22"
   },
@@ -943,6 +970,7 @@
     ],
     "tutorialIds": [],
     "status": "published",
+    "maturity": "L3",
     "createdAt": null,
     "updatedAt": "2026-11-22"
   },
@@ -983,6 +1011,7 @@
       "plink-synthetic"
     ],
     "status": "published",
+    "maturity": "L2",
     "createdAt": null,
     "updatedAt": "2026-11-22"
   },
@@ -1026,6 +1055,7 @@
       "plink-synthetic"
     ],
     "status": "published",
+    "maturity": "L2",
     "createdAt": null,
     "updatedAt": "2026-11-22"
   },
@@ -1063,6 +1093,7 @@
       "plink-synthetic"
     ],
     "status": "published",
+    "maturity": "L3",
     "createdAt": null,
     "updatedAt": "2026-11-22"
   },
@@ -1094,6 +1125,7 @@
     ],
     "tutorialIds": [],
     "status": "published",
+    "maturity": "L3",
     "createdAt": null,
     "updatedAt": "2026-11-22"
   },
@@ -1141,6 +1173,7 @@
     ],
     "tutorialIds": [],
     "status": "published",
+    "maturity": "L1",
     "createdAt": null,
     "updatedAt": "2026-11-22"
   },
@@ -1187,6 +1220,7 @@
     ],
     "tutorialIds": [],
     "status": "published",
+    "maturity": "L2",
     "createdAt": null,
     "updatedAt": "2026-11-22"
   },
@@ -1231,6 +1265,7 @@
     ],
     "tutorialIds": [],
     "status": "published",
+    "maturity": "L2",
     "createdAt": null,
     "updatedAt": "2026-11-22"
   },
@@ -1265,6 +1300,7 @@
     ],
     "tutorialIds": [],
     "status": "published",
+    "maturity": "L3",
     "createdAt": null,
     "updatedAt": "2026-11-22"
   },
@@ -1298,6 +1334,7 @@
     ],
     "tutorialIds": [],
     "status": "published",
+    "maturity": "L3",
     "createdAt": null,
     "updatedAt": "2026-11-22"
   },
@@ -1339,6 +1376,7 @@
       "gwas-synthetic"
     ],
     "status": "published",
+    "maturity": "L3",
     "createdAt": null,
     "updatedAt": "2026-11-22"
   },
@@ -1374,6 +1412,7 @@
     ],
     "tutorialIds": [],
     "status": "published",
+    "maturity": "L3",
     "createdAt": null,
     "updatedAt": "2026-11-22"
   },
@@ -1414,6 +1453,7 @@
       "gwas-synthetic"
     ],
     "status": "published",
+    "maturity": "L3",
     "createdAt": null,
     "updatedAt": "2026-11-22"
   },
@@ -1449,6 +1489,7 @@
     ],
     "tutorialIds": [],
     "status": "published",
+    "maturity": "L1",
     "createdAt": null,
     "updatedAt": "2026-11-22"
   },
@@ -1484,6 +1525,7 @@
     ],
     "tutorialIds": [],
     "status": "published",
+    "maturity": "L1",
     "createdAt": null,
     "updatedAt": "2026-11-22"
   },
@@ -1514,6 +1556,7 @@
     ],
     "tutorialIds": [],
     "status": "published",
+    "maturity": "L1",
     "createdAt": null,
     "updatedAt": "2026-11-22"
   },
@@ -1549,6 +1592,7 @@
       "bismark-synthetic"
     ],
     "status": "published",
+    "maturity": "L1",
     "createdAt": null,
     "updatedAt": "2026-11-22"
   },
@@ -1585,6 +1629,7 @@
       "bismark-synthetic"
     ],
     "status": "published",
+    "maturity": "L3",
     "createdAt": null,
     "updatedAt": "2026-11-22"
   },
@@ -1616,6 +1661,7 @@
     ],
     "tutorialIds": [],
     "status": "published",
+    "maturity": "L3",
     "createdAt": null,
     "updatedAt": "2026-11-22"
   },
@@ -1652,6 +1698,7 @@
     ],
     "tutorialIds": [],
     "status": "published",
+    "maturity": "L2",
     "createdAt": null,
     "updatedAt": "2026-11-22"
   },
@@ -1683,6 +1730,7 @@
     ],
     "tutorialIds": [],
     "status": "published",
+    "maturity": "L1",
     "createdAt": null,
     "updatedAt": "2026-11-22"
   },
@@ -1711,6 +1759,7 @@
     ],
     "tutorialIds": [],
     "status": "published",
+    "maturity": "L3",
     "createdAt": null,
     "updatedAt": "2026-11-22"
   },
@@ -1750,6 +1799,7 @@
       "scanpy-synthetic"
     ],
     "status": "published",
+    "maturity": "L1",
     "createdAt": null,
     "updatedAt": "2026-11-22"
   },
@@ -1792,6 +1842,7 @@
       "scanpy-synthetic"
     ],
     "status": "published",
+    "maturity": "L3",
     "createdAt": null,
     "updatedAt": "2026-11-22"
   },
@@ -1826,6 +1877,7 @@
       "scanpy-synthetic"
     ],
     "status": "published",
+    "maturity": "L3",
     "createdAt": null,
     "updatedAt": "2026-11-22"
   },
@@ -1860,6 +1912,7 @@
       "scanpy-synthetic"
     ],
     "status": "published",
+    "maturity": "L2",
     "createdAt": null,
     "updatedAt": "2026-11-22"
   },
@@ -1898,6 +1951,7 @@
       "scanpy-synthetic"
     ],
     "status": "published",
+    "maturity": "L3",
     "createdAt": null,
     "updatedAt": "2026-11-22"
   },
@@ -1934,6 +1988,7 @@
     ],
     "tutorialIds": [],
     "status": "published",
+    "maturity": "L1",
     "createdAt": null,
     "updatedAt": "2026-11-22"
   },
@@ -1969,6 +2024,7 @@
     ],
     "tutorialIds": [],
     "status": "published",
+    "maturity": "L3",
     "createdAt": null,
     "updatedAt": "2026-11-22"
   },
@@ -1993,6 +2049,7 @@
     ],
     "tutorialIds": [],
     "status": "published",
+    "maturity": "L2",
     "createdAt": null,
     "updatedAt": "2026-11-22"
   },
@@ -2025,6 +2082,7 @@
       "wgcna-synthetic"
     ],
     "status": "published",
+    "maturity": "L2",
     "createdAt": null,
     "updatedAt": "2026-11-22"
   },
@@ -2051,6 +2109,7 @@
     ],
     "tutorialIds": [],
     "status": "published",
+    "maturity": "L2",
     "createdAt": null,
     "updatedAt": "2026-11-22"
   },
@@ -2075,6 +2134,7 @@
     ],
     "tutorialIds": [],
     "status": "published",
+    "maturity": "L1",
     "createdAt": null,
     "updatedAt": "2026-11-22"
   },
@@ -2099,6 +2159,7 @@
     ],
     "tutorialIds": [],
     "status": "published",
+    "maturity": "L1",
     "createdAt": null,
     "updatedAt": "2026-11-22"
   },
@@ -2128,6 +2189,7 @@
     ],
     "tutorialIds": [],
     "status": "published",
+    "maturity": "L2",
     "createdAt": null,
     "updatedAt": "2026-11-22"
   },
@@ -2155,6 +2217,7 @@
     ],
     "tutorialIds": [],
     "status": "published",
+    "maturity": "L1",
     "createdAt": null,
     "updatedAt": "2026-11-22"
   }
