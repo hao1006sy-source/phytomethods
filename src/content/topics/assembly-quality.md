@@ -36,3 +36,22 @@ Merqury 的 spectra-cn 横轴表示 reads 中 k-mer 的出现次数，纵轴表�
 
 ## L50 与组合评估
 L50 是按长度从大到小累加到总组装长度一半时所需的 contig 数量。示例长度为 8、5、3、2 Mb 时，前两条累计 13 Mb，超过总长 18 Mb 的一半，故 L50 为 2，N50 为 5 Mb。N50 高可能伴随错接，因此应结合 Hi-C 图、长 reads 回贴、BUSCO 与 k-mer 指标。重复序列塌缩可能让组装中相应 k-mer 拷贝数下降；这些信号需要结合样本倍性和覆盖度解释。
+
+## k-mer 频谱的参考无关比较
+Merqury 通常从高准确 reads 建立 Meryl k-mer 数据库，过滤低频且可能来自测序错误的 k-mer，再比较 reads 与 assembly。对二倍体样本，杂合单拷贝 k-mer 常在约半倍体深度附近形成峰，同型 k-mer 常接近全深度；实际峰位会受到测序覆盖、倍性、拷贝数变异和重复影响。横轴是 read k-mer multiplicity，纵轴是具有该 multiplicity 的 distinct k-mer 数量，颜色按其在 assembly 中的拷贝数分层。
+
+在 spectra-cn 中，低频读段特有 k-mer 常对应错误，但不能只按固定阈值删去：低覆盖区域的真 k-mer 也可能低频。较高频 reads-only k-mer 表示被组装遗漏或无法比对的真实序列候选；assembly-only k-mer 可支持组装独有序列及 QV 估计，也可能受 reads 覆盖不足影响。spectra-asm 对组装 k-mer 的 multiplicity 作图，可查看拷贝数变化；spectra-hap 使用亲本特异 k-mer 评估 haplotype 路径和相位。不同图应结合输入数据和样本遗传结构解释。
+
+## QV 的计算与假设
+若组装共有 $K_{shared}$ 个在可信 reads k-mer 集中找到的 k-mer，总组装唯一 k-mer 数为 $K_{total}$，k-mer 长度为 $k$，则每个 k-mer 的匹配概率近似为 $P=(K_{shared}/K_{total})^{1/k}$，推导单碱基错误率 $E=1-P$，再计算 $QV=-10\log_{10}(E)$。例如 $E=10^{-4}$ 时 QV 为 40。该换算假设单碱基错误近似独立；邻近错误、局部系统误差和数据集污染会破坏假设。低 reads 覆盖使本来正确的组装 k-mer 未被观测，可能令 QV 偏低；reads 错误过滤不充分则可能改变共有集合。
+
+Merqury 的 k-mer completeness 是可信 reads k-mer 中能在 assembly 找到的比例，度量 reads 证据可被组装解释的程度。它不等同于生物学“全基因组完整性”：reads 本身若未覆盖某个区域，组装也无法通过该数据集证明该区域缺失。QV 关注碱基层面准确度，不直接评价 scaffold 排序、结构变异真实性或染色体端粒完整性。
+
+## 组合评估与故障信号
+N50/L50 评估连续性；BUSCO 评估保守基因空间；Merqury 的 completeness/QV/spectra-cn 评估序列 k-mer 恢复、碱基错误和 copy-number pattern；长 reads 回贴可检查跨越断点的支持；Hi-C 热图检查染色体尺度排序；亲本标记或遗传图谱检验相位和连锁。单一高指标不能取代其他维度。对异常信号按顺序排查：样本混杂和倍性信息、read 过滤与覆盖、组装参数、重复塌缩或等位冗余、图路径及外部验证数据。
+
+## 结果报告示例框架
+质量报告至少记录：组装版本与序列层级、contig/scaffold 总长和数量、N50/L50 与估计基因组大小、BUSCO lineage 与版本、可信 read k-mer 过滤条件、Merqury 软件版本和完整度/QV、Hi-C 或亲本证据、已知 gap 和端粒/着丝粒评估。若提供图像，应标明横纵轴、k 值、倍性、原始 reads 深度和“原理示意”或“真实数据”。本页图示为教学模拟数据，并不代表某一植物物种的实验结果。
+
+## 文献与实操入口
+Merqury 方法论文以读段 k-mer 作为参考无关质量证据，并展示组装准确度、完整度和相位评估；其图中频谱需要结合样本倍性解释。参见 [Rhie 等 2020 原文](https://doi.org/10.1186/s13059-020-02134-9)、[Merqury 官方仓库](https://github.com/marbl/merqury)及[工具详情页](../../../methods/merqury/)。本项目尚未在本地以植物真实组装执行 Merqury 教程，页面上的频谱图是原理示意。

@@ -5,16 +5,23 @@
     "englishTitle": "Sequencing technologies and raw data",
     "domainId": "genome-assembly",
     "order": 1,
-    "summary": "测序技术与数据基础的概念、方法与研究应用。",
+    "summary": "比较 Illumina、PacBio HiFi 与 ONT 数据特性，完成植物长读段组装的数据设计与质量检查。",
     "keyConcepts": [
-      "测序技术与数据基础"
+      "Illumina",
+      "HiFi",
+      "ONT",
+      "FASTQ",
+      "覆盖度",
+      "Q-score"
     ],
     "methodIds": [
       "hifiasm",
       "verkko",
       "merqury"
     ],
-    "principleIds": [],
+    "principleIds": [
+      "kmer"
+    ],
     "dataIds": [
       "hifi",
       "ont-ul"
@@ -26,9 +33,9 @@
       "hifiasm-intro"
     ],
     "status": "published",
-    "maturity": "L2",
+    "maturity": "L3",
     "createdAt": null,
-    "updatedAt": "2026-11-20"
+    "updatedAt": "2026-11-22"
   },
   {
     "id": "assembly-basics",
@@ -36,16 +43,24 @@
     "englishTitle": "Genome assembly fundamentals",
     "domainId": "genome-assembly",
     "order": 2,
-    "summary": "基因组组装基础的概念、方法与研究应用。",
+    "summary": "从 Reads、Contig、Scaffold 到染色体理解 OLC、de Bruijn 图和组装质量指标。",
     "keyConcepts": [
-      "基因组组装基础"
+      "de novo assembly",
+      "Contig",
+      "Scaffold",
+      "OLC",
+      "de Bruijn graph",
+      "N50"
     ],
     "methodIds": [
       "hifiasm",
       "verkko",
       "merqury"
     ],
-    "principleIds": [],
+    "principleIds": [
+      "overlap",
+      "debruijn"
+    ],
     "dataIds": [],
     "paperIds": [
       "potato"
@@ -54,9 +69,9 @@
       "hifiasm-intro"
     ],
     "status": "published",
-    "maturity": "L2",
+    "maturity": "L3",
     "createdAt": null,
-    "updatedAt": "2026-11-20"
+    "updatedAt": "2026-11-22"
   },
   {
     "id": "assembly-graphs",
@@ -64,9 +79,13 @@
     "englishTitle": "Assembly graphs and algorithms",
     "domainId": "genome-assembly",
     "order": 3,
-    "summary": "组装图与核心算法的概念、方法与研究应用。",
+    "summary": "比较 OLC、de Bruijn 图与 String Graph，沿图简化、bubble 解释和路径选择理解长读段组装。",
     "keyConcepts": [
-      "组装图与核心算法"
+      "overlap graph",
+      "unitig",
+      "bubble",
+      "GFA",
+      "String Graph"
     ],
     "methodIds": [
       "hifiasm",
@@ -79,15 +98,16 @@
     "dataIds": [],
     "paperIds": [
       "hifiasm",
-      "verkko"
+      "verkko",
+      "macadamia"
     ],
     "tutorialIds": [
       "hifiasm-intro"
     ],
     "status": "published",
-    "maturity": "L1",
+    "maturity": "L3",
     "createdAt": null,
-    "updatedAt": "2026-11-20"
+    "updatedAt": "2026-11-22"
   },
   {
     "id": "haplotype-resolution",
@@ -95,9 +115,12 @@
     "englishTitle": "Haplotype-resolved assembly",
     "domainId": "genome-assembly",
     "order": 4,
-    "summary": "单倍型解析的概念、方法与研究应用。",
+    "summary": "利用杂合位点、跨位点长读段和长程证据构建并评估单倍型路径。",
     "keyConcepts": [
-      "单倍型解析"
+      "phasing",
+      "phase block",
+      "switch error",
+      "haplotype"
     ],
     "methodIds": [
       "hifiasm",
@@ -109,7 +132,8 @@
     "dataIds": [],
     "paperIds": [
       "hifiasm",
-      "potato"
+      "potato",
+      "haphic-paper"
     ],
     "tutorialIds": [
       "hifiasm-intro"
@@ -117,7 +141,7 @@
     "status": "published",
     "maturity": "L3",
     "createdAt": null,
-    "updatedAt": "2026-11-20"
+    "updatedAt": "2026-11-22"
   },
   {
     "id": "hic-scaffolding",
@@ -125,9 +149,12 @@
     "englishTitle": "Hi-C scaffolding",
     "domainId": "genome-assembly",
     "order": 5,
-    "summary": "Hi-C 辅助染色体挂载的概念、方法与研究应用。",
+    "summary": "从 Hi-C 配对读段构建接触矩阵，执行 contig 聚类、排序、定向与验证。",
     "keyConcepts": [
-      "Hi-C 辅助染色体挂载"
+      "Hi-C",
+      "contact map",
+      "AGP",
+      "chromosome scaffolding"
     ],
     "methodIds": [
       "yahs"
@@ -140,13 +167,14 @@
       "hic-contact-data"
     ],
     "paperIds": [
-      "yahs"
+      "yahs",
+      "haphic-paper"
     ],
     "tutorialIds": [],
     "status": "published",
-    "maturity": "L2",
+    "maturity": "L3",
     "createdAt": null,
-    "updatedAt": "2026-11-20"
+    "updatedAt": "2026-11-22"
   },
   {
     "id": "complete-assembly",
@@ -154,25 +182,34 @@
     "englishTitle": "T2T and complex regions",
     "domainId": "genome-assembly",
     "order": 6,
-    "summary": "T2T 与复杂区域组装的概念、方法与研究应用。",
+    "summary": "解释端粒到端粒组装目标、植物长重复区域难题及结合 HiFi 与超长读段的验证流程。",
     "keyConcepts": [
-      "T2T 与复杂区域组装"
+      "T2T",
+      "telomere",
+      "centromere",
+      "rDNA",
+      "ultralong reads"
     ],
     "methodIds": [
       "hifiasm",
       "verkko"
     ],
-    "principleIds": [],
+    "principleIds": [
+      "overlap",
+      "debruijn"
+    ],
     "dataIds": [],
     "paperIds": [
       "verkko",
-      "xanthoceras"
+      "xanthoceras",
+      "rice-t2t-nipponbare",
+      "watermelon-t2t-pangenome"
     ],
     "tutorialIds": [],
     "status": "published",
-    "maturity": "L2",
+    "maturity": "L3",
     "createdAt": null,
-    "updatedAt": "2026-11-20"
+    "updatedAt": "2026-11-22"
   },
   {
     "id": "assembly-quality",
@@ -180,9 +217,14 @@
     "englishTitle": "Genome assembly quality",
     "domainId": "genome-assembly",
     "order": 7,
-    "summary": "组装质量评估的概念、方法与研究应用。",
+    "summary": "联合 N50/L50、BUSCO、k-mer completeness、Merqury QV 与结构/相位证据评价组装。",
     "keyConcepts": [
-      "组装质量评估"
+      "N50",
+      "L50",
+      "BUSCO",
+      "k-mer completeness",
+      "QV",
+      "spectra-cn"
     ],
     "methodIds": [
       "merqury"
@@ -199,9 +241,9 @@
     ],
     "tutorialIds": [],
     "status": "published",
-    "maturity": "L1",
+    "maturity": "L3",
     "createdAt": null,
-    "updatedAt": "2026-11-20"
+    "updatedAt": "2026-11-22"
   },
   {
     "id": "m02-topic-01",
@@ -2040,7 +2082,9 @@
       "DESeq2",
       "差异表达"
     ],
-    "methodIds": ["deseq2"],
+    "methodIds": [
+      "deseq2"
+    ],
     "principleIds": [],
     "dataIds": [],
     "paperIds": [
@@ -2099,9 +2143,16 @@
       "转录因子",
       "调控网络"
     ],
-    "methodIds": ["genie3", "grnboost2"],
-    "principleIds": ["tree-ensemble-regression"],
-    "dataIds": ["expression-matrix"],
+    "methodIds": [
+      "genie3",
+      "grnboost2"
+    ],
+    "principleIds": [
+      "tree-ensemble-regression"
+    ],
+    "dataIds": [
+      "expression-matrix"
+    ],
     "paperIds": [
       "genie3-paper",
       "grnboost2-paper",
@@ -2125,9 +2176,16 @@
       "PWM",
       "FIMO"
     ],
-    "methodIds": ["meme-suite"],
-    "principleIds": ["motif-analysis"],
-    "dataIds": ["dna-sequence", "atac-fragments"],
+    "methodIds": [
+      "meme-suite"
+    ],
+    "principleIds": [
+      "motif-analysis"
+    ],
+    "dataIds": [
+      "dna-sequence",
+      "atac-fragments"
+    ],
     "paperIds": [
       "meme-suite-paper",
       "arabidopsis-stomata-accessibility-2022"
@@ -2150,9 +2208,15 @@
       "MOFA+",
       "潜在因子"
     ],
-    "methodIds": ["mofa-plus"],
-    "principleIds": ["latent-factor-integration"],
-    "dataIds": ["multi-omics-view-matrix"],
+    "methodIds": [
+      "mofa-plus"
+    ],
+    "principleIds": [
+      "latent-factor-integration"
+    ],
+    "dataIds": [
+      "multi-omics-view-matrix"
+    ],
     "paperIds": [
       "mofa-plus-paper",
       "maize-multiomics-network-2023"
@@ -2181,8 +2245,13 @@
       "agront",
       "plantcad2"
     ],
-    "principleIds": ["sequence-transformer", "bidirectional-state-space-model"],
-    "dataIds": ["dna-sequence"],
+    "principleIds": [
+      "sequence-transformer",
+      "bidirectional-state-space-model"
+    ],
+    "dataIds": [
+      "dna-sequence"
+    ],
     "paperIds": [
       "agro-nt-2024",
       "plantcad2-paper"
@@ -2209,8 +2278,13 @@
       "agront",
       "plantcad2"
     ],
-    "principleIds": ["sequence-transformer", "bidirectional-state-space-model"],
-    "dataIds": ["dna-sequence"],
+    "principleIds": [
+      "sequence-transformer",
+      "bidirectional-state-space-model"
+    ],
+    "dataIds": [
+      "dna-sequence"
+    ],
     "paperIds": [
       "agro-nt-2024",
       "plantcad2-paper"
