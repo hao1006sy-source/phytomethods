@@ -1,15 +1,31 @@
-# PhytoMethods 下一次恢复入口
+# PhytoMethods v2.1 发布恢复入口
 
 ## 当前状态快照（2026-11-22）
 
-- M03–M09 内容建设、逐领域科学审核记录、教程/工具/论文关系和本地发布闭包已完成。PR #2 已合并；GitHub Actions 部署成功，当前正式版本为 `e65cc18`。本地 `main` 已快进至同一提交。
-- 最新完整 `npm run validate` 通过：276 页、Pagefind 276 页/34,436 词、7,749 条站内链接零错误；关系审计 63 专题、58 方法、127 论文，差异为零。在线 `npm audit` 经系统代理执行，0 vulnerabilities。
-- 正式站点首页、M01/M09、M01 单倍型专题、Hifiasm 工具/论文/教程、AgroNT 工具/论文、WGCNA 教程和搜索路由均返回 HTTP 200。Pagefind 中文索引为 276 页。
-- 浏览器验收已覆盖首页、M01/M09 领域、M01 单倍型专题、Hifiasm 工具/论文/教程、AgroNT 工具、WGCNA 教程和搜索页的 375/768/1280px 布局；均无横向溢出、页面错误为 0。Pagefind `AgroNT` 查询结果可点击到 AgroNT 工具页；单倍型图的步骤、播放/暂停和重置可用。
-- 最终截图保存在 `outputs/long-run/final-v2-20261122/`。未用真实数据验证的教程仍按内容字段标注待验证。状态详情见 `docs/release-checklist-v2.md`。
-- `outputs/` 与 `work/` 保留本地截图、交付物和工作缓存，未加入仓库。跟踪文件无未提交改动；工作区当前仅显示这两个未跟踪目录。
+- 本地分支：`feat/v2.1-content-quality`；HEAD：`e4b2b3c1c6ae23bab3b2af768393974095c263b6`。本地分支相对 main 基点有 12 个提交，保留全部内容改动。
+- origin URL：`https://github.com/hao1006sy-source/phytomethods.git`。GitHub API 当前可读取的 `main` SHA 与本地 `origin/main` 相同：`1bd3882a4acf02b159e47afaed65336fe688a025`。远程开发分支尚未创建。
+- Git 工作区跟踪文件干净；`outputs/` 与 `work/` 是未跟踪本地交付/测试材料，不加入版本提交。
+- Git Credential Manager 2.7.3 已绑定 `hao1006sy-source`；`gh` CLI 未安装。执行环境访问 `github.com:443` 返回不可达，之前 Git HTTPS 和 SSH 请求均超时。
+- GitHub App 具有只读能力；实际创建分支请求曾返回 403 `Resource not accessible by integration`。本轮重复写请求被自动审核拦截，没有继续尝试。
+- 尚无 v2.1 PR、CI、合并、Pages 部署或线上 v2.1 浏览器测试。v2.1 本地测试矩阵已完成，256 个 URL × 3 视口，768 张截图。
+- 分支 bundle 已验证：`D:\Codex-Projects-data-output\20261122PhytoMethods内容质量补强与验收\PhytoMethods-v2.1-content-quality-branch.bundle`。截图压缩包及审计资料也在同一交付目录。
 
-### 历史恢复记录（当前状态以快照和发布核对表为准）
+### 最短恢复步骤
+
+当 Windows 网络能够访问 GitHub 时，在 PowerShell 执行：
+
+```powershell
+Set-Location 'C:\Users\31764\Documents\Codex\2026-11-20\phytomethods-phytomethods-v1-0-1-2'
+Test-NetConnection github.com -Port 443
+git status -sb
+git push -u origin feat/v2.1-content-quality
+```
+
+网络检查未通过时停止推送。推送出现 GCM 登录提示时，以 `hao1006sy-source` 账号完成浏览器认证；不要将令牌复制到命令或聊天。也可用 GitHub Desktop 打开现有仓库和该分支，执行 Publish branch，再创建指向 `main` 的 PR。GitHub App 发布需要 Contents 与 Pull requests 写权限。`gh` 未安装，因此当前无需使用 `gh auth login --web`。
+
+发布后先等待 CI 成功，再按仓库正常流程合并、等待 Pages Actions 部署，最后按 `docs/v2.1-release-verification.md` 执行九领域线上三视口验收并记录真实 URL 和截图。完整内容质量和本地验收记录见 `docs/v2.1-final-report.md` 与 `docs/content-quality-audit-v2.1.md`。
+
+### 历史记录（下文仅作旧阶段归档；以上 v2.1 快照为当前状态）
 
 - 分支：`feat/long-run-m03-v2`；本地分支领先远程跟踪分支，最新 HEAD 与提交数以 `git log -1` 和 `git status -sb` 为准。2026-11-21 推送因无法连接 GitHub 443 超时；当前未推送。已发布 main 基点为 `91f24bd`；M03–M09 新增内容仍为草稿，尚未合并部署。网络写入恢复后推送并依既有流程创建/更新 PR。
 - M03～M09 共 49 篇专题已有正文初稿；仍需逐篇深化、科学审核和正式发布态验收。M03、M04、M05 已有部分工具及论文，M06 新增 GAPIT 与 SciPy，M07 新增 Bismark，M08 新增 Scanpy，M09 新增 WGCNA。

@@ -99,4 +99,4 @@ PR #2（[完成 M03–M09 科研知识体系与 v2.0 验收](https://github.com/
 
 ### 远程发布
 
-开发变更已提交至本地分支 `feat/v2.1-content-quality`，当前 HEAD 为 `f5aca36`。推送尝试因到 GitHub HTTPS 的连接超时失败；连接的 GitHub App 读取 `main` 成功，但创建远程分支返回 403 `Resource not accessible by integration`。因此尚未创建 PR、CI 未运行、变更未合并，GitHub Pages 当前仍是先前版本。需要恢复 Git 推送网络或为连接应用授予仓库内容写入权限后，才可继续远程发布及线上复验。没有强推或改写远程历史。
+开发变更已提交至本地分支 `feat/v2.1-content-quality`，HEAD 为 `e4b2b3c`，领先远程 main 12 个提交。origin URL 正确，GitHub API 读取的 main SHA 为 `1bd3882a4acf02b159e47afaed65336fe688a025`。当前环境 `github.com:443` 不可达，Git HTTPS/SSH 均超时；Git Credential Manager 已绑定 `hao1006sy-source`，`gh` CLI 未安装。GitHub App 读取仓库成功，创建分支的上次实际 API 结果为 403 `Resource not accessible by integration`。因此尚未创建 PR、CI 未运行、变更未合并，v2.1 线上验收尚未开始。恢复方式见 `docs/RESUME-NEXT.md`。本轮没有强推或改写远程历史。
