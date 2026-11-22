@@ -2,11 +2,11 @@
 
 ## 当前状态快照（2026-11-22）
 
-- M03–M09 内容建设、逐领域科学审核记录、教程/工具/论文关系和本地发布闭包均已完成；M09 已提交本地提交 `8f6936e`。全站 `npm run validate` 通过：276 页、Pagefind 276 页/34,436 词、7,749 条站内链接零错误；关系审计 63 专题、58 方法、127 论文，差异为零。
-- 本地分支比远程跟踪分支领先 51 个提交。远程 `main` 仍为 M02，远程长周期分支未包含本地 M03–M09。本地推送遇到 GitHub 443 网络连接失败；GitHub MCP 的树与内容写接口均返回 403，尚无 v2.0 PR、CI 或 Pages 发布。
-- M09 Edge 浏览器三视口、搜索和交互回归未完成。`npm audit` 尚无当前完整报告。远程 PR 合并、线上部署和线上页面检查仍待 GitHub 写入通道恢复。
-- `npm audit --offline` 使用本机缓存结果为 0 vulnerabilities；在线审计因 `registry.npmjs.org` DNS 失败未返回报告。
-- 下一步按 `docs/release-checklist-v2.md` 执行远程同步、PR/Actions/合并和 Pages 验收。此前的阶段日志保留为开发过程记录，不作为当前状态。
+- M03–M09 内容建设、逐领域科学审核记录、教程/工具/论文关系和本地发布闭包已完成。PR #2 已合并；GitHub Actions 部署成功，当前正式版本为 `e65cc18`。本地 `main` 已快进至同一提交。
+- 最新完整 `npm run validate` 通过：276 页、Pagefind 276 页/34,436 词、7,749 条站内链接零错误；关系审计 63 专题、58 方法、127 论文，差异为零。在线 `npm audit` 经系统代理执行，0 vulnerabilities。
+- 正式站点首页、M01/M09、M01 单倍型专题、Hifiasm 工具/论文/教程、AgroNT 工具/论文、WGCNA 教程和搜索路由均返回 HTTP 200。Pagefind 中文索引为 276 页。
+- 尚未完成 M09 浏览器视口、搜索交互和截图验收。Edge 无法启动（Elevator COM 权限错误），agent-browser 会话目录不可写；详情见 `docs/release-checklist-v2.md`。
+- `outputs/` 与 `work/` 保留本地截图、交付物和工作缓存，未加入仓库。跟踪文件无未提交改动；工作区当前仅显示这两个未跟踪目录。
 
 ### 历史恢复记录（当前状态以快照和发布核对表为准）
 
