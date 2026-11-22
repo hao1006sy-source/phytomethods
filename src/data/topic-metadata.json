@@ -1531,7 +1531,7 @@
     ],
     "tutorialIds": [],
     "status": "published",
-    "maturity": "L1",
+    "maturity": "L3",
     "createdAt": null,
     "updatedAt": "2026-11-22"
   },
@@ -1567,7 +1567,7 @@
     ],
     "tutorialIds": [],
     "status": "published",
-    "maturity": "L1",
+    "maturity": "L3",
     "createdAt": null,
     "updatedAt": "2026-11-22"
   },

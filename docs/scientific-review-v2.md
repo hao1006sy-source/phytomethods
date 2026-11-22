@@ -229,6 +229,10 @@ v2.1 返工将七篇专题的推断层级、公式和结果解释具体化：从
 
 七篇专题经 10 维证据复核均评 L3，成熟度和逐篇缺项见 `docs/content-quality-audit-v2.1.md`。核对重点包括 CAFE5 生灭模型根节点及误差模型假设、MCScanX 锚点与区块边界、IQ-TREE bootstrap 与后验概率差别、MCMCTree 校准和 Ks 近似、PAML 似然比较。论文与实际软件应用对应关系引用 `docs/m04-evidence.md`。领域、专题、6 工具、16 篇论文和 2 教程共 32 路由，以 3 个视口检查 96 次；无 HTTP/标题/资源/控制台/溢出问题，共线性方向切换与重置通过。截图位于 `outputs/v2.1/m04-browser-verified/`。本域工具及真实植物教程未新增本机运行记录。
 
+### M06 v2.1 专题质量复核
+
+七篇专题经 10 维评分均评 L3。M06-06 新增 GBLUP 模型与标准化标记关系矩阵、RMSE/相关性解释和训练验证泄漏控制；M06-07 补充多组学样本对齐、DNNGP 原论文网络组件范围及面向新家系/未来年份/新环境的拆分设计。11 篇关联论文与 5 个方法按 `docs/m06-evidence.md` 对应，DNNGP 未在本站运行，固定种子 GWAS 模拟不称作植物群体分析。25 路由×3视口的 75 次浏览均通过，Manhattan/QQ 切换和重置通过；结果和截图位于 `outputs/v2.1/m06-browser-verified/`。
+
 ### M02：首轮逐篇复核完成
 
 M02 七篇专题已逐篇评分，详见 `docs/content-quality-audit-v2.1.md`。返工扩充了计算流程、方法差异、植物应用、质量解释和相关资源；M02 评级 L3×7，L4×0。BRAKER3、EDTA 与 InterProScan 工具条目及 BRAKER3、EDTA、Infernal、InterProScan、芒果应用论文均已补充方法解读。TSEBRA DOI 已按期刊原文更正为 10.1186/s12859-021-04482-0。EDTA/Hifiasm 以外没有新增真实运行结果；EDTA 流程保持 `template` 状态。
