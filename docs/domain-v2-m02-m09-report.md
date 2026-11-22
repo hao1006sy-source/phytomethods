@@ -47,4 +47,4 @@
 
 ## 发布状态
 
-代码已在 `feat/domain-v2-m02-m09` 分支完成本地验收。下一步推送该分支并创建指向 `main` 的 PR。按任务要求，PR 保持未合并，不触发正式部署。
+代码已推送到 `feat/domain-v2-m02-m09`。审阅 PR：[#14 Extend Domain V2 pages to M02-M09](https://github.com/hao1006sy-source/phytomethods/pull/14)。GitHub Actions `validate` 检查已通过。PR 保持开启并未合并，正式部署尚未触发。
