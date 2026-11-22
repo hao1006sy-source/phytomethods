@@ -2,7 +2,7 @@
 title: 测序技术与原始数据
 summary: 理解测序数据、质量与组装需求。
 domain: genome-assembly
-methods: [hifiasm, verkko]
+methods: [hifiasm, verkko, merqury]
 updatedAt: 2026-11-20
 ---
 ## 研究背景和生物学问题

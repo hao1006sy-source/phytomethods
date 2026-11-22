@@ -5,7 +5,7 @@ summary: 基于 k-mer 对组装进行无需参考基因组的质量评估。
 dataType: 高准确度 reads / 组装序列
 principle: k-mer 集合比较
 domainIds: [genome-assembly]
-topicIds: [assembly-quality]
+topicIds: [assembly-basics, assembly-quality, sequencing-data]
 principleIds: [kmer]
 dataIds: [accurate-reads, assembly]
 paper: merqury

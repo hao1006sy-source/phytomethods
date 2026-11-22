@@ -1,0 +1,29 @@
+<section class="trajectory-demo" data-trajectory aria-labelledby="trajectory-title">
+ <h2 id="trajectory-title">细胞拟时序：分支模型</h2>
+ <p>原理示意：下图中的节点代表已假设的细胞状态，连线代表预先给定的相邻关系。演示从选定根节点沿图前进，并不从表达矩阵计算真实发育轨迹。</p>
+ <div class="trajectory-scroll"><svg viewBox="0 0 680 260" role="img" aria-labelledby="trajectory-svg-title trajectory-svg-desc">
+  <title id="trajectory-svg-title">预设分叉图的拟时序示意</title><desc id="trajectory-svg-desc">从左侧根节点经过中间状态，再分为上下两条候选分支；逐步高亮离根越来越远的节点。</desc>
+  <g fill="none" stroke="#aabcc5" stroke-width="4"><path d="M90 130H245"/><path d="M245 130L400 65"/><path d="M245 130L400 195"/><path d="M400 65H570"/><path d="M400 195H570"/></g>
+  <g data-state data-stage="0"><circle cx="90" cy="130" r="25"/><text x="90" y="137">根</text></g>
+  <g data-state data-stage="1"><circle cx="245" cy="130" r="25"/><text x="245" y="137">1</text></g>
+  <g data-state data-stage="2"><circle cx="400" cy="65" r="25"/><text x="400" y="72">2A</text></g>
+  <g data-state data-stage="2"><circle cx="400" cy="195" r="25"/><text x="400" y="202">2B</text></g>
+  <g data-state data-stage="3"><circle cx="570" cy="65" r="25"/><text x="570" y="72">3A</text></g>
+  <g data-state data-stage="3"><circle cx="570" cy="195" r="25"/><text x="570" y="202">3B</text></g>
+ </svg></div>
+ <p class="trajectory-explanation" aria-live="polite" data-description>步骤 0 / 3：指定起始根节点；根的选择需要外部生物学证据。</p>
+ <div class="trajectory-actions"><button type="button" data-prev>上一步</button><button type="button" data-next>下一步</button><button type="button" data-reset>重置</button></div>
+ <p class="trajectory-caption">高亮表示图上与根相距不超过当前步数的节点。分叉是本示例预先设定的结构；它不能单凭二维图确认细胞谱系或真实时间。</p>
+</section>
+<script>
+for(const root of document.querySelectorAll<HTMLElement>('[data-trajectory]')){
+ let step=0;
+ const descriptions=['指定起始根节点；根的选择需要外部生物学证据。','到达共享的相邻状态 1。','共享状态连接两条预设候选分支 2A 与 2B。','分别到达两条分支的末端状态 3A 和 3B。'];
+ const prev=root.querySelector<HTMLButtonElement>('[data-prev]')!,next=root.querySelector<HTMLButtonElement>('[data-next]')!,desc=root.querySelector<HTMLElement>('[data-description]')!;
+ function update(){for(const node of root.querySelectorAll<SVGGElement>('[data-state]'))node.classList.toggle('active',Number(node.dataset.stage)<=step);prev.disabled=step===0;next.disabled=step===3;desc.textContent=`步骤 ${step} / 3：${descriptions[step]}`;}
+ prev.addEventListener('click',()=>{step=Math.max(0,step-1);update()});next.addEventListener('click',()=>{step=Math.min(3,step+1);update()});root.querySelector<HTMLButtonElement>('[data-reset]')!.addEventListener('click',()=>{step=0;update()});update();
+}
+</script>
+<style>
+.trajectory-demo{padding:1.25rem;border:1px solid var(--border);border-radius:12px;background:#f8fbfa;margin:2rem 0}.trajectory-demo h2{margin-top:0}.trajectory-scroll{overflow-x:auto}.trajectory-scroll svg{display:block;width:100%;min-width:550px;height:auto}.trajectory-demo [data-state] circle{fill:#e6ebef;stroke:#91a5af;stroke-width:2}.trajectory-demo [data-state] text{fill:#445867;text-anchor:middle;font-size:17px}.trajectory-demo [data-state].active circle{fill:#d1ece5;stroke:#197b73;stroke-width:3}.trajectory-actions{display:flex;gap:.5rem;flex-wrap:wrap}.trajectory-actions button{padding:.5rem .85rem;border:1px solid #97adb6;border-radius:6px;background:white;cursor:pointer}.trajectory-actions button:disabled{opacity:.5;cursor:default}.trajectory-explanation{min-height:3rem}.trajectory-caption{font-size:.875rem;color:var(--muted)}
+</style>

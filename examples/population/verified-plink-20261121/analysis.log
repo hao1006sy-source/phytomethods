@@ -1,0 +1,33 @@
+PLINK v1.9.1 64-bit (11 Nov 2026)
+Options in effect:
+  --bfile work/plink-run-20261121/simulated
+  --freq
+  --missing
+  --out work/plink-run-20261121/analysis
+  --pca 2
+
+Hostname: [redacted]
+Working directory: [project root]
+Start time: Sat Nov 21 05:54:11 2026
+
+Random number seed: 1795211651
+16070 MB RAM detected; reserving 8035 MB for main workspace.
+6 variants loaded from .bim file.
+8 people (0 males, 0 females, 8 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to work/plink-run-20261121/analysis.nosex .
+Using up to 15 threads (change this with --threads).
+Before main variant filters, 8 founders and 0 nonfounders present.
+Calculating allele frequencies... done.
+Total genotyping rate is exactly 1.
+--freq: Allele frequencies (founders only) written to
+work/plink-run-20261121/analysis.frq .
+--missing: Sample missing data report written to
+work/plink-run-20261121/analysis.imiss, and variant-based missing data report
+written to work/plink-run-20261121/analysis.lmiss.
+6 variants and 8 people pass filters and QC.
+Note: No phenotypes present.
+Relationship matrix calculation complete.
+--pca: Results saved to work/plink-run-20261121/analysis.eigenval and
+work/plink-run-20261121/analysis.eigenvec .
+
+End time: Sat Nov 21 05:54:11 2026

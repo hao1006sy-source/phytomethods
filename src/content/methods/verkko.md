@@ -5,7 +5,7 @@ summary: 整合高准确度与超长读长进行二倍体基因组组装。
 dataType: HiFi / ONT
 principle: 多数据组装图
 domainIds: [genome-assembly]
-topicIds: [assembly-graphs, haplotype-resolution]
+topicIds: [assembly-basics, assembly-graphs, complete-assembly, haplotype-resolution, sequencing-data]
 principleIds: [debruijn, phasing]
 dataIds: [hifi, ont-ul]
 paper: verkko

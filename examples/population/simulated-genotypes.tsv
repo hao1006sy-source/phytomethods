@@ -1,0 +1,9 @@
+sample	group	snp1	snp2	snp3	snp4	snp5	snp6
+A1	A	0	0	1	0	0	1
+A2	A	0	1	1	0	1	1
+A3	A	1	0	0	0	0	2
+A4	A	0	0	1	1	0	1
+B1	B	2	2	1	2	2	1
+B2	B	2	1	1	2	1	1
+B3	B	1	2	2	2	2	0
+B4	B	2	2	1	1	2	1

@@ -1,0 +1,214 @@
+# v2.0 科学审核台账
+
+审核日期：2026-11-21（Asia/Shanghai）
+审核分支：`feat/long-run-m03-v2`
+审核基线：`58c339f Document AgroNT plant sequence model`
+用途：逐条记录方法内容、原始来源、测试证据和发布状态。状态会随复核更新；“开发完成”不等于“科学审核通过”或“公开发布”。
+
+## 恢复检查
+
+- 工作分支为 `feat/long-run-m03-v2`；科学审核起点为 `58c339f`。后续提交记录审核、文档和可访问性改进。工作区中既有 `outputs/`、`work/` 未跟踪目录保留原样。
+- `docs/RESUME-NEXT.md`、`docs/long-run-progress.md` 与 `docs/m03-evidence.md` 已检查。M03–M09 的 49 篇专题、工具、论文和教程记录仍是草稿；SyRI 官方拟南芥示例已有真实运行日志。此前的构建、浏览器和模拟数据验证只按其实际范围记为工程或教程证据。
+- 最新正式验证记录：Astro 检查 0 错误、0 警告，静态生成 54 个发布页面，Pagefind 索引 54 页、5913 词，1276 条本地链接无错误。该结果对应当前发布集合；M03 草稿页面另行通过草稿预览检查，尚未通过发布态内容审核。
+
+## 状态定义
+
+| 状态 | 含义 |
+| --- | --- |
+| 已开发 | 正文、数据或交互已存在于开发分支 |
+| 已核源 | DOI、标题或方法细节已通过所列原始论文、PubMed 或官方仓库核查 |
+| 已测试 | 有可复核的运行日志或浏览器测试；明确数据和测试范围 |
+| 科学审核通过 | 科学论断、方法解释、关联和限制已逐项核对，满足发布标准 |
+| 已发布 | 已合并到正式分支，线上页面通过验收 |
+| 草稿/待核 | 任一关键论断或关联尚未满足对应发布条件 |
+
+## M03 专题审核
+
+| ID / 专题 | 已有内容与证据 | 首轮科学审核结论 | 发布状态 |
+| --- | --- | --- | --- |
+| m03-topic-01 泛基因组与核心、可变基因组 | 增补样本出现频率与稀释抽样期望式，区分基因家族矩阵和全序列图；加入 EUPAN Map-to-pan 关系 | 本轮明确频率分母仅纳入可判定样本，并限定稀释期望式的完整矩阵假设；专题关联的水稻、拟南芥案例此前已分批对照原文核查。完整正文逐节审核和图文关系复核仍在进行。 | 内容已深化；草稿，科学审核未关闭 |
+| m03-topic-02 植物全基因组比对 | 增补锚点链抽象式、正代价约定的两段仿射 gap 代价式；建立 MUMmer4、minimap2、AnchorWave、SyRI 独立工具页与论文关系 | 原理经 AnchorWave 原论文复核；核对水稻多组装论文的 MUMmer 参考锚定与 EMBOSS diffseq，并按 MUMmer4/minimap2 原始方法论文和官方文档补充工具页、输出格式与流程边界。四视口路由、标题和宽度检查通过；其余正文与植物应用证据继续审核。 | 内容深化中；草稿，科学审核未关闭 |
+| m03-topic-03 结构变异检测 | 增补读段、组装及图路径路线比较；形式化 SyRI 共线路径评分抽象；补植物案例、F1 指标及流程选择 | SyRI 原文的 DAG 动态规划、倒位/转位/复制分类与局部差异步骤已逐项核对；核实拟南芥 50 份 F2、117 个 >1 kb 候选及 108/117（92.3%）至少一项检验通过；重核 3,010 水稻的定制 novoBreak-germline 与 453 份高覆盖样本 93,683 个 SV；高粱基准模拟真值下 SVIM-asm、SyRI、Minigraph-Cactus、PGGB F1 分别为 0.93、0.91、0.89、0.83。结构变异示意图展示参考相对的缺失、重复、倒位与插入，并在图注声明未画出易位；该图与正文关键标签、引用范围已核。Edge 四视口、KaTeX、图题、SyRI 论文点击与 13 个相关工具/论文路由通过；图解键盘、焦点和弹窗回归覆盖 M03 七专题并通过。正文其他论断仍需全文复审，M03 发布依赖闭包仍待检查。 | 局部科学审核完成；正文仍待完整审核，草稿 |
+| m03-topic-04 基因存在缺失变异（PAV） | 增补带未知值的状态频率式、同源聚类/投影误差和多倍体剂量边界；增加 EUPAN 与水稻 Se 位点功能案例 | 本轮复核了三态判定、EUPAN Map-to-pan、3,010 水稻的 453 份高覆盖 PAV 子集及 Se 位点 ORF3/ORF4 功能结论；DOI/作者/期刊由 PubMed、出版方和 PMC 记录核对。原创图示区分组装序列、reads 支持缺失及证据不足。 | 专题局部审核完成；草稿，M03 全域审核未关闭 |
+| m03-topic-05 图泛基因组构建 | 形式化 G=(V,E,σ,P)；补 Minigraph、Minigraph-Cactus、PGGB 三流程区别和高粱基准边界；增补真实水稻图泛基因组案例及方法阶段关联 | 高粱数据与过滤差别已查原文；Minigraph、Minigraph-Cactus、PGGB 流程差别及 Minigraph 工具关系已对照官方说明。补入 Guo 等水稻研究的 145 份基因家族集合、144 份合并图、15/129 份栽培/野生图输入及 3.87 Gb 非参考节点序列，关联独立 Minigraph 与 Minigraph-Cactus；交互图的 segment/link/path 及未观察遍历边界已对照 GFA 规范。375、768、1280、1440px 路径控制/重置、键盘图放大回归通过。正文其他论断仍需逐节复核。 | 内容深化中；草稿，科学审核未关闭 |
+| m03-topic-06 图上的比对与分型 | 增补明确标为教学模型的路径似然式，区分映射文件、VCF 与基因型推断；补充高粱模拟和真实 reads 两类证据 | vg/Giraffe 与 ODGI 职责区分已补；Giraffe 的 GBWT 单倍型索引、minimizer 种子、图距离聚类、路径延伸和剩余缺口比对已对原始论文与官方索引文档核对。教学读段图的精确子串关系及共享片段歧义已复算并加入可复现按钮测试；专题公式、植物案例全文仍待审核。 | 内容已深化；草稿，科学审核未关闭 |
+| m03-topic-07 可视化与应用 | 补图形类型、坐标、适用问题、图例、数据来源和可复现检查 | 图注/模拟数据范围已补；高粱图基准、ODGI 与植物方法案例分别标明支持范围；新增高粱、水稻、拟南芥论文详情入口并把拟南芥案例加入稳定论文 ID。M03 图放大、键盘及响应式回归通过；科学论断仍需逐节复核。 | 内容深化中；草稿，科学审核未关闭 |
+
+## M03 工具审核
+
+| 工具 | 核实和运行证据 | 待补事项 | 状态 |
+| --- | --- | --- | --- |
+| AnchorWave | PNAS/PubMed 作者与 DOI、官方 v1.3.0 README、MIT 已核；页面补足四命令、输入输出、参数与内存说明 | 本机未运行；需验证植物案例逐条描述和页面关联 | 内容完善，未实跑，草稿 |
+| SyRI | 原论文、官方仓库和 MIT；1.8.2/MUMmer 3.23 官方 TAIR10/Ler 数据命令、日志、SHA256 和摘要可复核 | 网页仍草稿；需检查关键输出解读、自动 Chr4 映射和页面内导航 | 教程运行已验证（限定官方测试集），草稿 |
+| Minigraph | Li/Feng/Chu 2020 方法论文、官方 v0.21/r606 README、MIT 与图格式/命令已核；新增独立工具和论文页 | 未本机运行；不把拟南芥 Minigraph 应用写成 Minigraph-Cactus 案例 | 内容完善，未实跑，草稿 |
+| Minigraph-Cactus | 原论文、官方流程、v4.0.0 发布快照和 MIT 文本已核；许可证注明 externalTools 排除项 | 本机未运行；外部依赖许可证、容器、资源和论文历史版本需逐项核 | 内容完善，未实跑，草稿 |
+| PGGB | 方法论文、官方仓库、MIT、v0.7.4 和官方 `-i/-o/-n/-t/-p/-s/-V` 示例已核 | 组件实际版本组合与完整工作流未运行 | 内容完善，未实跑，草稿 |
+| vg / Giraffe | vg 原论文、Giraffe 独立论文、官方索引页、核心 MIT；高粱论文的模拟与真实 reads 结果及 PGGB 映射排除条件已核；官方长读段页面记录 vg ≥1.63、HiFi/R10 预设，标签已扩展至短读段、长读段和 HiFi | 本机未运行；Giraffe mapping 与 genotyping caller 的边界待继续检查 | 内容完善，未实跑，草稿 |
+| ODGI | 原论文、官方仓库、MIT、v0.9.4 和主要命令已核；高粱论文中用于图处理与评估 | 未实跑；GFA 版本、具体输入路径和输出需后续验证 | 内容完善，未实跑，草稿 |
+| EUPAN | PubMed 原论文、官方 SOP/安装页、Map-to-pan 与覆盖阈值已核；关联 3,010 水稻案例和两个 M03 专题 | 未安装或运行；官方旧版依赖需隔离环境评估 | 内容已核，未实跑，草稿 |
+| YaHS（共享 M01 工具） | 原始论文作者/DOI、MIT、官方 v1.2.2 发布页及 FASTA/Hi-C 输入和 AGP/FASTA 输出已核；水稻论文报告运行 v1.1 | 本机未运行；M03 专题与工具关系仍属于草稿审核范围 | 工具页和 M01 关系已发布，M03 关联保持草稿 |
+
+## M03 文献与关系检查
+
+首轮查看并持续复核 M03 植物案例与方法论文记录；目前有 17 条 M03 关联论文草稿，其中包括 EUPAN 方法论文、野生—栽培稻 2025 案例及新建的 Sniffles2/cuteSV 方法论文记录。AnchorWave、SyRI、Sniffles2 与 cuteSV 的书目信息已分别依据 PubMed、PMC 或出版方记录核对；Giraffe、ODGI、Minigraph 等方法论文依据 PubMed/PMC 或出版方核对方法范围。高粱原文确认构图方法、模拟和真实 paired-end read mapping 任务，PGGB 因索引资源需求未参与映射比较。水稻 66 份材料和 3,010 份材料论文的测序、组装、变异和 PAV 流程已逐条核对，页面仍为草稿。
+
+2026-11-21 按 PMC 全文重核 3,010 水稻论文的结果数字与样本范围，并更正页面精度：29,399,875 SNP（27,024,796 双等位）及 2,467,043 个 <40 bp indel 属于 3,010 样本全群体；93,683 个 SV、23,876 个 PAV 家族和其核心/候选核心/可变划分来自 453 份高覆盖分析集合。补入新基因 reads 支持比例和组装片段化关联，关联关系继续指向论文原文实际使用的工具。案例仍草稿，不能以局部结果审核替代跨领域发布依赖检查。
+
+2026-11-21 复核 66 份水稻组装论文：作者列表及 DOI 与 PubMed/出版方一致，组装选择、测序、Fermi/SOAPdenovo2/GapCloser/REPLACE、contig N50 和 MUMmer/EMBOSS 变异流程与作者 PDF 相符。补明 BAC 与 cDNA 验证数据仅支持其对应材料和局部指标；PAV 以 67 个基因组（含 Nipponbare）及 ≥60/67（约89.6%，论文概称约90%）存在阈值定义核心基因。论文未采用 Minigraph、PGGB 或 Minigraph-Cactus，工具关联保持空值。两篇水稻案例的 Edge 四视口测试验证了正文标题、关键结果数字、工具关系和无横向溢出。
+
+2026-11-21 对照出版方与 PMC 方法段复核两篇拟南芥应用论文，并按论文实际使用情况更新稳定工具关系：2024 年 69 份组装研究关联 OrthoFinder、PLINK、ADMIXTURE；2023 年 32 份组装研究关联 Hifiasm、OrthoFinder、IQ-TREE、Minigraph、vg、PLINK 和 MCScanX。M03 与 M04/M05 工具记录之间的关系保留在草稿内容数据中，发布闭包尚未完成。
+
+2026-11-21 进一步逐句审核 2024 年 69 份拟南芥泛基因组案例：根据 Nature Genetics 全文及作者开放版 PDF，将群体 SNP 分析的 72 份材料与排除 3 份杂合材料后的 69 份组装/泛基因组样本分开；核对三类长读长组装比较、后续合并与参考引导 scaffold、OrthoFinder 聚类与拆并校正、SyRI/SURVIVOR SV 合并、Merqury k-mer 评估及 PLINK/ADMIXTURE 的任务范围。补录各类 gene family 数目及注释拆分/合并对私有类目的影响，并将已建模且原文实际使用的 Hifiasm、SyRI、Merqury、EDTA、InterProScan、IQ-TREE、OrthoFinder、PLINK、ADMIXTURE 纳入论文关联。案例正文和引用数据完成本轮局部复核，未覆盖全站其他内容；页面仍为草稿，发布依赖闭包仍待处理。
+
+2026-11-21 对照 Nature Communications/PMC 原文逐项复核 32 份拟南芥适应研究。核对 HiFi 组装和参考引导染色体构建、gene-family 与 graph pan-genome 两套分析、图 SV 与群体 reads genotype 两个样本层级，以及 61 项性状的 GWAS/方差估计。结果段的图 SV 为 61,322，摘要为 61,332；OrthoFinder 分类计数合计 31,318，Methods 段为 31,317。页面按结果段与分类计数列示并保留差异说明。逐项核对 KNAT3、WH1、HPCA1 候选案例中关联、表达和功能实验的证据范围；论文关联含 Hifiasm、OrthoFinder、IQ-TREE、EDTA、Minigraph、vg、PLINK 与 MCScanX。此次只关闭该案例的局部结果和书目审阅，相关资源仍为草稿，跨领域发布依赖未关闭。
+
+2026-11-21 对照 PubMed/PMC 原文更正 Giraffe 方法论文题名为 “Pangenomics enables genotyping known structural variants in 5,202 diverse genomes”，并注明其 5,202 份人类数据评估不属于植物应用案例；核对 167,000 个已知 SV 的分型范围。补全 ODGI 论文五位作者。书目及适用范围证据已加入 M03 台账。
+
+2026-11-21 扩写并复核 AnchorWave、Minigraph、Minigraph-Cactus、ODGI、PGGB、vg、Giraffe 七篇方法论文记录。Minigraph-Cactus 记为 2024 卷期出版并注明 2023 年在线发表；VG 论文的图上映射能力与下游分型步骤分开描述。方法原理和人类基准不转换为植物应用证据。
+
+已修正 AnchorWave 作者字段并更新 `docs/m03-evidence.md`；M03 工具页和主题页已区分独立 Minigraph、Minigraph-Cactus、PGGB 与 vg 的职责；SyRI 输出数量标为固定测试输入和参数下的运行摘要，不是独立生物学验证。其余论文元数据和案例关系逐条完成出版社或 PubMed 复核前继续保留草稿。
+
+当前结构化关系保留跨领域真实工具关系（例如 OrthoFinder、IQ-TREE、ADMIXTURE）。这会影响发布闭包。公开页面必须仅链接已发布目标；关系数据库中的草稿边继续保存，后续领域通过分阶段发布补齐。
+
+## M03 交互图与教程审核
+
+- `PangenomeDemo` 仅显示预设的两条虚构样本路径，可切换、显示全部和重置；不进行构图或序列比对。
+- `PangenomeFigure` 展示核心基因矩阵、SV 排列、PAV 三态矩阵和研究路线。图例/标题及“原理示意”标识存在。M03 七篇草稿已在 375/768/1280/1440px 检查无文档级横向溢出；锚点链、路径切换、reads 映射、重置与工具/论文/教程草稿预览通过。最终发布态需在发布闭包完成后复验。
+- `AnchorChainDemo` 表示离散锚点排序，不能作为 AnchorWave 输出或真实 WGA 运行结果。
+- SyRI 运行记录保存于 `examples/syri/verified-20261121/`，输入来自官方仓库固定提交的 TAIR10/Ler chr4 测试文件；实际命令链及 54 syntenic regions、4 inversions 等输出必须与原日志复算，所统计事件尚未独立验证。PAF 流程结果与 MUMmer 流程输入不同，摘要不要求相同。
+
+2026-11-21 更新：修复共用图解放大弹窗的可访问名称、图注说明、SVG 克隆 ID 冲突、初始焦点和关闭后的焦点返回。横向溢出的图示、表格、公式与代码区域仅在实际溢出时进入 Tab 顺序，并提供方向键及 Home/End 滚动；重设视口时会同步更新。草稿提示改为有效的 status 区域，文章两侧导航获得独立地标名称，面包屑文字和链接样式通过自动对比度/链接辨识检查。`agent-browser` axe-core 4.12.1 对七篇专题在 375 与 1280 px 共 14 次审计均为 0 violation；放大图在 375 px 的审计也为 0 violation。自动审计仍有一组 KaTeX/SVG 对比度需人工核看。项目脚本 `npm run test:figure-a11y` 使用 Playwright Edge 在 375、768、1280、1440 px 验证 M03-01、M03-05、M03-07 三篇图示页的命名弹窗、SVG ID 唯一性、Enter/ESC/关闭按钮、焦点返回、文档宽度和方向键横向滚动；M03-05 的样本路径选择、说明文字及重置也在四种视口通过。该项属于交互与可访问性验收，M03 科学审核仍在进行。
+
+## M03-07 泛基因组路线图局部审核
+
+2026-11-21 审核原创五阶段流程图的顺序、箭头、替代文本和图注。箭头标出常见的信息推进方向；替代文本与图注说明具体研究可能分支或迭代。图示不对应 ODGI 或其他软件运行结果，也不把通用路线描述为固定算法。ODGI 官方文档分别说明图排序/布局及其路径与连接的可视化，项目台账记录了与通用路线图的区别。Edge/Playwright 四视口回归及构建产物几何断言通过；具体记录见 `docs/long-run-progress.md`。该局部审核不关闭专题全文审读、案例论断或发布依赖。
+
+后续核对 M03-07 正文的图坐标、Bandage 适用范围、coverage 轨道和案例证据：将图节点序列长度与节点 ID/布局坐标区分，以嵌入路径解释坐标；将组装级 BUSCO/N50 指标从连续基因组轨道中分离；补充 ODGI 和 Bandage 官方资源链接。Nature 水稻原文和 GigaScience 高粱基准支持页面所述的植物多组装/PAV及图覆盖评估范围。详细论断边界与来源已记入 `docs/m03-evidence.md`；本次未完成 M03-07 全文审读。
+
+2026-11-21 检查专题五列比较表在 375px 下的内容密度，增加具无障碍名称和键盘滚动的宽表区域。Edge/Playwright 在 375、768、1280、1440px 回归通过；窄屏表格保留 640px 阅读宽度并在文章容器内滚动，未触发文档横向溢出。该响应式修复不构成专题科学审核结论。
+
+## 下一轮审核顺序
+
+1. 对 M03 其余论文逐条核对 DOI、标题、作者、刊物与年份及案例方法段，建立来源—论断—专题追踪。
+2. 按当前版本文档核验工具许可、参数、输出、示例命令与实际植物案例；未运行的软件继续标记未实跑。
+3. 七个专题的 SVG/交互图在 375/1280px 的 axe 审计、放大弹窗键盘与焦点、横向溢出区按键滚动已完成；下一轮对照图示对应的科学论断、图中标签和引用来源做逐项内容复核，并保留 axe 标记的 KaTeX/SVG 对比度人工检查记录。
+4. 更新公开链接过滤和关系校验，重算工具/论文/专题/教程的发布闭包并做发布态验收。
+5. 仅将满足科学审查、页面检查及依赖检查的记录改为 published。
+
+## M05 局部科学审核
+
+| 资源 | 核查范围与证据 | 审核结果 | 状态 |
+| --- | --- | --- | --- |
+| M05-03 PCA、群体结构与祖先成分 | 补入 ADMIXTURE 混合等位基因频率与二倍体基因型似然表达、Q/P 参数约束、交替块优化、CV 解释和与 PCA/STRUCTURE 的差别；依据 ADMIXTURE 2009 方法论文及官方手册核对。 | 群体模型与 K 的解释边界已写明。PCA 公式、群体统计、全专题案例及关联闭包仍待审核。 | 深化完成；草稿，专题科学审核未关闭 |
+| ADMIXTURE 工具 | 核对官方 1.4.0 发布页、2026-04-26 版本记录、官方手册输入输出和 CV/线程/Bootstrap/投影用法；依据 2011 与 2016 论文可用性字段记录二进制/源码分发状态；2011 监督估计按 `.ind` 标签条件核对。 | 页面说明 BED/BIM/FAM、PED/MAP、EIGENSTRAT 输入，`.K.Q`、`.K.P`、`.K.Q_se` 输出，最大似然模型与参数。官方版当前为 1.4.0；旧的水稻文章软件版本不能由当前下载版本替代。 | 局部方法核源；未在本机实跑，草稿 |
+| ADMIXTURE 方法论文 | 原始论文 DOI、题名、作者、期刊、年份依据 Genome Research、PubMed 及官方 publication 页核对；算法增强论文依据 PubMed/PMC 核对 2011 年书目和 CV、监督、惩罚、多处理器方法扩展。 | 两篇方法论文书目匹配；草稿论文仍需纳入完整发布依赖审核。 | 局部书目核源；草稿 |
+| 3,010 份水稻群体案例 | Nature/PMC 原文的方法段关联 PLINK SNP/LD 步骤、多个 K 的 ADMIXTURE 重复运行、K=9 的研究结果以及 CLUMPP 对齐；另区分 3,010 群体统计与 453 高覆盖 PAV/SV 子集。 | 案例方法边界已复核并在 M05-03 与工具页明确。 | 局部案例审核；草稿 |
+
+本轮记录只覆盖上述局部。M05 其余专题与工具、真实植物案例引用、教程及跨领域发布依赖仍待审核；ADMIXTURE、相关论文、专题和水稻案例保持草稿。
+
+### 2026-11-21：PLINK/PCA 与水稻根系案例方法分工
+
+依据 PLINK 1.9/2.0 官方群体分层、版本与文件格式文档补充关系矩阵 PCA 原理、两代默认 PC 数、PLINK 2.0 `approx` 缺失均值填补语义和 `.eigenvec`/`.eigenval` 解析差异；官方页于 2026-11-21 显示 PLINK 2.0 Beta 1.4（2026-11-07）。检查原 PLINK 模拟日志，确认 1.9.1（2026-11-11 构建）实际运行 8 个模拟二倍体样本、6 个 SNP，校验频率及缺失率与输入一致。依据 PLOS Genetics 出版方全文更正 795 份水稻根系适应论文的方法归属：PLINK 生成 154,516 个 LD 剪枝 SNP 集，ADMIXTURE 拟合 K=1–10 并报告 K=8 结构选择，GAPIT 以 3.3 百万个未填补 SNP 计算 PCA/kinship 并将前三 PC 用于关联模型。更新 PLINK、GAPIT、M05-03 与案例页的稳定关系和内容。PLINK 2.0、真实植物数据均未在本机运行；相关页面保持草稿。详细论断、来源及日志位置见 `docs/m05-evidence.md`。
+
+### 2026-11-21：M05-04 多样性、分化与 LD 的 PLINK 实现边界
+
+依据 PLINK 1.9/2.0 官方基本统计和 LD 手册审核 FST 与 LD 工具关联。补充 PLINK 1.9 `--fst` 的 Weir–Cockerham 方法、常染色体二倍体范围和按群体标签输入；PLINK 2.0 Hudson 默认及 Weir–Cockerham 选项、区块 jackknife 与逐位点输出；并区分 `--r2` 基因型剂量相关、`--ld` 单个位点对的单倍型统计及 `--indep-pairwise` 剪枝。明确 PLINK 1.9 LD 默认 founder 样本范围。M05-04 与 PLINK 的稳定 ID 关系已写入专题正文、工具页和 `topic-metadata.json`。未将 PLINK 关联泛化为 π 或 Tajima’s D 的计算能力；所关联的 3,010 水稻论文只对应原文报告的 SNP/LD 工作。该专题与相关资源保持草稿；实跑命令和开发态页面回归见本轮记录及 `docs/m05-evidence.md`。
+
+### 2026-11-21：高粱泛基因组图评测案例结果审核
+
+依据 GigaScience 出版方全文与 PMC 正文审核 `sorghum-graph-benchmark`。补齐五位作者和卷号/文章编号；区分六份真实高粱组装、带 SV 真值的模拟组装、模拟 reads 与公开真实 paired-end reads。核对图构建版本、模拟/真实图规模、BUSCO 完整度与重复率、图中输入组装覆盖、SV F1、真实数据置换检验、小变异结果及重复序列相似性。正文分别列示 Minigraph-Cactus、PGGB、Minigraph 与线性 Minimap2 结果，注明 Minigraph 的 >50 bp 变异过滤设置、PGGB 索引未生成、min_mapQ 阈值及模拟真值定义；公开真实 reads 的总比对率与完美比对率分开呈现。高粱之外仅按主文范围概述大豆、大麦和油菜分析，详细跨物种数值保留在补充材料。Edge 在 375、768、1280、1440px 检查该案例、Hifiasm 文献和 EDTA 文献共 12 个页面状态，标题、方法链接和页面宽度通过；`npm run validate` 零 Astro 诊断、54 页静态构建、Pagefind 54 页/5932 词、1276 条本地链接通过。论文及 M03 资源仍为草稿，跨领域发布依赖待闭合。来源：[出版方全文](https://academic.oup.com/gigascience/article/doi/10.1093/gigascience/giaf121/8364989)、[PMC 正文](https://pmc.ncbi.nlm.nih.gov/articles/PMC12676463/)；论断和指标明细见 `docs/m03-evidence.md`。
+
+### 2026-11-21：M05-05 选择性清除局部审核
+
+新增 XP-CLR、selscan/XP-EHH 与 SweepFinder2 的方法原理、数据需求、实现差异和植物案例说明。XP-CLR 书目信息依据 PubMed/PMC 原文核对；XP-EHH 统计方法与 selscan 软件论文分别记录；SweepFinder2 输入格式、网格、重组率和 B 值条件依据开发者手册核对。XP-CLR Python 仓库明确标作独立实现，水稻案例使用的软件未与该重写程序混同。核查三篇植物应用：Huang 等野生/栽培水稻 55 个扫荡区及 π 比值主扫描；He 等 70 份韩国稻材料的五类统计及前 2.5%筛选；Yan 等水稻 SNP/TE 标记的 SweepFinder2 10 kb 网格和前 1%经验窗口；并登记 Liu 等 3K 数据 XP-CLR/SweeD 比较。工具页、方法论文、案例和专题关系采用稳定 ID。`npm run validate` 和 `npm run coverage` 通过；Edge 在四种视口检查八个 M05-05 页面共 32 个页面状态，并通过专题→XP-CLR→方法论文及 SweepFinder2→方法论文导航。命令未使用本机真实植物数据运行，M05-05 与关联实体保持草稿，专题全文审核未关闭。
+
+### 2026-11-21：M05-06 群体历史方法与植物案例局部审核
+
+核对 PSMC 原始方法论文及官方命令/文件格式；MSMC 2014 方法论文、MSMC2 软件仓库和 2020 协议分别记录；SMC++ 方法论文与官方 VCF、mask、estimate、split 文档核查。新增非洲稻 246 份基因组、*Populus trichocarpa* 重复序列敏感性、胡杨重测序三项植物应用条目。对照非洲稻 STAR Methods 区分 PSMC/MSMC 的 8 个伪二倍体、6 次 MSMC bootstrap 与 SMC++ 的 79 个伪二倍体、5 条区分谱系及突变率/世代时间；胡杨案例将 PSMC 历史曲线和 fastsimcoal26 迁移模型分开说明；杨树案例记载 mask 对远古和近期 $N_e$ 估计方向不同的结果。新增 SVG 是共祖状态概念示意，不对应实测曲线。`npm run validate` 及 `npm run coverage` 通过；Edge 四视口检查新增 11 路由与专题/工具/论文关联。工具命令按官方文档核对，未在本机真实植物数据上执行；M05-06 与关联资源保持草稿，局部审核不关闭整个 M05 的科学审查。
+## M05-07 局部科学审核记录（2026-11-21）
+
+M05-07 的五项植物研究记录已逐篇按出版方、PubMed 或 PMC 原文核对。Huang 水稻论文记录 446 份野生、1,083 份栽培材料、55 个扫荡区及其 π 比值分析；另关联 Civáň 等不同的水稻地理驯化模型。Hufford 玉米论文记录 75 份材料及 XP-CLR 的驯化/改良阶段比较。Xu 等 2022 年玉米案例记录 teosinte—玉米与热带—温带两套比较、FST/XP-CLR 区域扫描和开花期 GWAS 共定位。Lam 大豆案例依据摘要记录 17 野生/14 栽培、约 5×测序、野生多样性较高及 205,614 个 tag SNP。
+
+专题方法关联分别对应 3K 稻的 PLINK/ADMIXTURE 处理和玉米研究报告的 ADMIXTURE/XP-CLR 任务；Huang 与 Lam 记录不添加未核实的软件关联。所有页面保持草稿，论文候选区域没有描述为已证实因果位点。
+
+### M05-01/02 局部审核（2026-11-21）
+
+M05-01 对照 3,010 水稻研究的样本、SNP/InDel 数、GATK 调用与 PLINK LD 剪枝、ADMIXTURE 结构分析步骤；专题分别解释频率、HWE、繁殖系统、遗传漂变、有效群体大小、基因流、LD 与结构统计，并保留群体历史假设边界。M05-02 对照 HTS VCF 规范及 BCFtools/PLINK 2 官方说明，复核 VCF 固定列、GT 与相位、FORMAT/INFO、mpileup/call/norm 阶段、缺失过滤语义、VCF→PGEN 字段保留和 PLINK 2 倍性限制。Balimponya 等水稻调用比较记录四种映射/调用组合及原文相似度，明确 BCFtools 进入比较但未作为该研究最终选定组合。正文命令按官方文档核对，真实植物数据未在本机运行；专题、工具和案例仍为草稿。
+
+### M03-01 泛基因组概念与野生—栽培稻案例局部审核（2026-11-21）
+
+对照 Guo 等 *Nature* 2025 原文及 PMC 方法，核对其 149 份初始材料、4 份稻属外群重分类、145 份基因家族分析集合、144 份合并图集合和 142 份内部变异调用集合之间的分母。复核 Hifiasm/NECAT/NextDenovo 组装分工、p-contigs/a-contigs、Hi-C/ALLMAPS 锚定、YaHS 与 JuiceBox Assembly Tools、Minigraph-Cactus 图构建及 vg Giraffe→DeepVariant→GLnexus 调用步骤。依据原文记录 69,531 个 pan-genes、28,907 个核心、5,181 个 private、13,728 个野生稻特异基因，以及 3.87 Gb 非参考图节点总长；强调基因类别、图节点和变异队列的统计对象不同。新建论文案例页并关联 M03-01、M03-04、M03-05 及正文中实际使用且本站已有详情的工具。该项是专题局部审核，M03-01 全文、其余引用与依赖闭包仍待逐项检查；资源继续为草稿。
+
+### M03-01 关联工具 YaHS 与案例书目局部审核（2026-11-21）
+
+依据 YaHS 原始论文、官方仓库和 release 页新建工具详情，并将原 M01 Hi-C 专题中的 YaHS ID 连接到该工具实体。核对方法论文作者、卷期、DOI、C 语言实现与 MIT License；官方版本快照为 v1.2.2，野生—栽培稻论文报告的实际运行版本为 v1.1。文章区分 YaHS 的 scaffold 阶段与上游 Hi-C 比对和下游 Juicebox 人工检查，记录其单倍型组装假设及图构建流程；未声称本机运行。修订 YaHS 文献页的作者字段和陈述，使其与工具实体一致。该项关闭该软件与书目的局部核验，不能替代 M03-01 全文与 M03 七专题审核。
+
+### M03-02 比对器职责与格式边界局部审核（2026-11-21）
+
+对照 MUMmer4、minimap2、SyRI 官方文档，补入四类方法的适用输入、输出格式和分析职责。检查 MUMmer4 `.delta`、minimap2 PAF/SAM 与 SyRI 可接收的对齐输入关系；解释格式转换和重复区过滤需要保存命令、版本及原始文件。四视口测试覆盖新增方法表及 AnchorChain 下一步/重置。该审核覆盖工具角色和页面交互，WGA 数学模型、植物应用案例和剩余正文仍待完整复审。
+
+2026-11-21：浏览器路由回归覆盖 M03 领域、七专题、9 个工具及 10 篇论文，四视口共 108 个页面状态通过 HTTP、H1 和文档宽度检查；另验证 M03-05 → Minigraph → 水稻图泛基因组案例点击路径。内容仍为草稿，发布态验收未执行。
+
+2026-11-21 对照 vg 官方长读段指南及 minimap2 README，确认 Giraffe 的 HiFi/R10 预设与 vg 1.63 起始支持版本；为数据模型补通用 `long-reads` 受控标签，更新 minimap2、vg 工具及 M03-02/M03-06 相关数据标签。vg 页记录 v1.78.0 快照。构建与内容关系检查通过；工具未在本机运行。
+
+2026-11-21 补充核对 vg 长读段投射：官方索引文档列出 Giraffe 的 GBZ/GBWT、distance index 与 minimizer index 组成；官方长读段指南将 `.longread.withzip.min` 和 `.longread.zipcodes` 与短读段索引区分，并注明 `vg surject --read-length long` 自 1.73.0 起可用于长读段 BAM 投射的低复杂度剪枝。正文补入 `--ref-paths` 与图路径名称的一致性要求，区分图比对与线性投射。vg 未在本机运行，M03-06 全文科学审读仍未关闭。
+### M03-02 全文科学审核完成（2026-11-21）
+
+复核专题正文中的局部/全局比对、种子和锚点、锚点链、共线区块、重复与备选匹配，以及 AnchorWave 两段仿射 gap 和概念链式动态规划表达；公式均标记为一般性教学抽象或论文方法表达。对照 AnchorWave 官方当前流程、SyRI 输入要求和 MUMmer4/minimap2 官方说明检查各工具的输入输出与分析边界。依 Nature 原文核对 2025 水稻案例：MUMmer v4.0.0beta2 的细胞器筛查、代表材料共线比较与 assembly-based SNP calling；minimap2 v2.21-r1071 的 read mapping 输入及 Longshot/PAV 流程职责。新增论文与工具双向关系后，npm run validate、npm run coverage、关系审计和 git diff --check 通过；Edge 的四视口专题/工具/案例关系回归沿用本轮之前已通过的路由验证，最近正文变化未改变页面组件或交互。相关软件未在此轮本机运行，M03-02 正文及引用关系审核完成，整域发布闭包仍待完成。
+
+### M03-01 全文科学审核完成（2026-11-21）
+
+核对泛基因组概念、家族频率和抽样曲线公式、PAV/未知状态、线性序列图表示及四项植物案例。比较 66 份水稻 assembly-to-reference 分析、3,010 份材料及其中 453 份高覆盖 SV/PAV 分析、69 份拟南芥组装泛基因组，以及 2025 野生—栽培稻基因家族与图数据的独立分母。通过原始论文和方法记录核对各方法关系；2018 水稻论文中的 MUMmer 版本未标作 MUMmer4。M03-01 专题内容科学审核完成，文章及关联资源仍为草稿，等待 M03 全域发布闭包审核。
+### M03-03 长读长 caller 工具与植物案例复核（2026-11-21）
+
+对照 Sniffles2 与 cuteSV 官方仓库说明输入、输出、群体/嵌合模式和平台相关聚类参数；新增两条独立工具记录并关联各自方法论文。以 Bechen 等拟南芥诱导 SV 研究核验 cuteSV 实际用于 Nanopore 比对后的 SV 调用，论文报告的 12 个候选事件及部分 PCR/遗传验证按原文分层记录。以 Zhang 等 2026 十种被子植物 HiFi benchmark 核验 91 pipeline 数量、跨物种检测差异与插入/缺失优选组合。方法参数与研究表现分开说明。
+
+### M03-03 全文科学审核完成（2026-11-21）
+
+确认结构变异坐标与事件类型、reads/组装/图路线差异、SyRI DAG 共线路径的概念表达、候选 SV 基因型与验证证据分层，以及 precision/recall/F1 定义和不同基准的适用边界。逐条检查 SyRI 拟南芥案例、水稻 3K custom novoBreak、六组装高粱图基准、拟南芥 Minigraph/vg、拟南芥 cuteSV 应用和 2026 十种被子植物 caller 基准。新建 Sniffles2、cuteSV 工具页并以官方文档核查输入输出、population/mosaic/force-genotyping 模式、平台相关参数及版本快照；方法页的植物应用分别链接至真实论文。build、coverage、内部链接及关系审计通过；此轮未安装或运行新工具。专题与依赖均保持草稿，M03 全域发布审核及 M04—M09 扩展继续进行。
+
+### M03-04 PAV 与基因存在缺失专题全文科学审核关闭（2026-11-21）
+
+逐节核对基因座与家族层级、存在/缺失/未知三态、参考偏倚、同源聚类、侧翼与 reads 证据、多倍体剂量、群体频率及 PAV 与性状关联的推断边界。以 Zhao 等 2018 年水稻泛基因组原文核对 66 份材料加 Nipponbare 的 67 个基因组、42,580 个非转座子蛋白编码基因、至少 60/67 的核心阈值、10,872 个相对参考部分缺失基因及约 9.5% 可在独立 Nipponbare 组装中找到的比例。以 Wang 等 2018 年 3,010 水稻论文核对 3,010 群体与 453 份高覆盖 PAV 集合、23,876 个基因家族、12,770 个全体材料共有家族、2,056 个候选核心和 9,050 个分布型家族；CDS >95% 且 gene-body >85% 是该研究的 reads 覆盖判定条件，不推广为通用标准。Se 位点论文的书目、ORF3/ORF4 互补模型、787 份稻属材料调查及 PCR、转基因与编辑验证依据 Nature Communications、PubMed 与 PMC 核对。核查 OrthoFinder 家族聚类与基因座 PAV 判定的职责差异，以及序列图路径不能替代原始组装、注释和 reads 证据。专题方法、数据、论文和案例关联均通过现有稳定 ID 审计；M03-04 正文审核关闭，所关联内容仍按全域发布门槛保持草稿。来源：[Zhao et al. 2018](https://doi.org/10.1038/s41588-018-0041-z)、[Wang et al. 2018](https://doi.org/10.1038/s41586-018-0063-9)、[Se 位点研究](https://doi.org/10.1038/s41467-023-40189-x)。
+
+### M03-05 图泛基因组专题全文科学审核关闭（2026-11-21）
+
+逐节核对序列图节点、边、方向和路径含义，GFA 路径恢复、节点坐标和图嵌入的解释边界，以及图允许的连接组合不等同于实际观察到的样本单倍型。对照 Minigraph 方法论文和官方工作流，区分参考引导的增量构图与基于 reads 的变异调用；对照 Minigraph-Cactus 方法论文，区分 Minigraph 组装映射/初始结构图与 Cactus 碱基级比对整理；对照 PGGB 论文与官方工作流，复核 wfmash 全对全比对、seqwish 图诱导和 smoothxg/abPOA/GFAffix 图规范化步骤，并标明组件及参数随版本变化。依据 Guo 等水稻研究核对 Minigraph v0.19-r551、Cactus v2.2.1、145 份基因家族集合和 144 份合并图之间的分母，以及 3.87 Gb 非参考节点序列统计对象。依据高粱基准原文区分 6 份真实组装与模拟组装、图总长度与非参考序列/变异真值、Minigraph >50 bp 过滤与 PGGB/Minigraph-Cactus 无同类长度过滤；模拟 reads 真值评估、真实 paired-end 映射率和 PGGB 因资源限制未进入映射比较分别表述。专题正文、交互路径图、论文和工具元数据关系均检查通过；审核关闭，专题继续保持草稿以待 M03 全域发布闭包。来源：[Minigraph 论文](https://doi.org/10.1186/s13059-020-02168-z)、[Minigraph-Cactus 论文](https://doi.org/10.1038/s41587-023-01793-w)、[seqwish 论文](https://doi.org/10.1093/bioinformatics/btac743)、[水稻泛基因组论文](https://pmc.ncbi.nlm.nih.gov/articles/PMC12176639/)、[高粱基准](https://doi.org/10.1093/gigascience/giaf121)。
+
+### M03-06 图上序列比对与变异分型专题全文科学审核关闭（2026-11-21）
+
+逐节区分图构建、索引、read 映射、变异表示、基因型推断、坐标投影和可视化；核对 GBZ/GBWT、distance、minimizer 与 zipcode 索引的用途，Giraffe 的单倍型 minimizer 种子、图距离聚类、沿单倍型延伸和剩余缺口处理。通用 genotype likelihood 公式已明确为简化教学模型，不代表 vg caller 实现；解释低覆盖、共享节点、多重匹配、倍性和投影信息损失。对照 vg 官方索引、Giraffe、长读段与 surject 文档，核对 HiFi/ONT R10 preset、长读段输入输出以及保存 GAM/GAF 的追溯要求。拟南芥论文原文确认 32 份组装以 Minigraph 构图、vg v1.40.0 将群体短读段映射至图，之后经过 PLINK 缺失率/MAF 筛选，最终为 1,073 份材料、20,326 个 SV，并由 Beagle 填补；方法页按论文范围关联图构建、vg 映射和下游分型。高粱基准的模拟 reads 真值、真实 paired-end 映射比例和图构建流程分开表述，不把图比对性能直接称作分型准确度。M03-06 正文、工具和植物案例关联审核关闭；vg 未在本机真实数据上运行，资源仍为草稿等待 M03 发布闭包。来源：[Giraffe 方法论文](https://doi.org/10.1126/science.abg8871)、[vg 索引文档](https://github.com/vgteam/vg/wiki/Index-Construction)、[vg 长读段指南](https://github.com/vgteam/vg/wiki/Mapping-long-reads-with-Giraffe)、[拟南芥原文](https://pmc.ncbi.nlm.nih.gov/articles/PMC10558531/)、[高粱基准](https://doi.org/10.1093/gigascience/giaf121)。
+
+### M03-07 泛基因组可视化专题全文科学审核关闭（2026-11-22）
+
+逐节核查 PAV 矩阵、共线性点图、图路径视图、变异分布与覆盖轨道各自支持的科学问题及必要图例，核对 ODGI 的排序、布局、路径坐标/映射与 Bandage 的 assembly-graph viewer 功能边界。对照 ODGI 方法论文和官方 layout 文档确认二维布局由 path-guided SGD 计算，显示坐标不等于碱基距离或染色体位置；对照高粱图基准与图形输出，保持真实组装统计、模拟 read/SV 结果和示意图来源分开。新增 Morris 等 2026 年高粱泛基因组案例：书目据 Nature 与 PubMed 核对，33 个基因组与 1,984 份材料的范围以及 Minigraph-Cactus v2.9.3、vg v1.59.0、ODGI v0.9.0、sequenceTubeMap v0.1.0 的方法分工据出版方全文/PMC 方法段核对。论文案例及 M03-05、M03-07、Minigraph-Cactus、vg、ODGI 的 stable ID 关系检查通过。专题全文审核关闭，仍保持草稿直到 M03 发布闭包完成。来源：[ODGI 方法论文](https://doi.org/10.1093/bioinformatics/btac308)、[ODGI layout 文档](https://odgi.readthedocs.io/en/latest/rst/commands/odgi_layout.html)、[Kopalli et al. 2025](https://doi.org/10.1093/gigascience/giaf121)、[Morris et al. 2026](https://doi.org/10.1038/s41586-026-10229-9)。
+
+### M03 发布闭包与静态站点验收关闭（2026-11-22）
+
+完成 M03 七专题、13 个工具、24 篇论文与两篇教程的状态和关联审计。教程记录 OrthoFinder 官方非植物示例及 SyRI 官方植物示例均已运行；教程适用范围按实际数据标注。发现 OrthoFinder 工具引用 M04 草稿专题会阻断已发布内容构建，先将跨域方法页的本次关联限制在已发布专题，待 M04 发布审核完成后补回。补齐工具页与专题页的相对链接层级；全站 `npm run validate` 通过，Astro 63 个文件 0 错误/警告，静态生成 101 页，Pagefind zh-cn 索引 101 页/17,929 词，2,753 条本地链接 0 错误。发布依赖检查为 0 发现项。来源及专题逐条证据见 `docs/m03-evidence.md`。该检查点尚未推送远端。
+
+### M05 七专题科学审核与发布状态（2026-11-22）
+
+基于本轮逐节复核和 `docs/m05-evidence.md` 中的来源记录，M05 七专题涉及的群体遗传基础、变异调用与 VCF、群体结构、遗传多样性/分化/LD、选择扫描、共祖人口历史、驯化与环境适应案例已完成内容审查。工具页明确区分 PLINK/ADMIXTURE 的群体基因型处理与结构推断、BCFtools 变异调用、XP-CLR/EHH/SFS 选择扫描以及 PSMC/MSMC2/SMC++ 共祖历史模型；植物应用结果按论文的样本数、过滤策略、对照群体及阈值解释。关系审计通过后，七专题、九个工具、25 篇论文和 PLINK 合成数据教程进入发布状态。水稻根系论文保留为草稿案例记录，关联 GAPIT 的 M06 GWAS 任务，待 M06 审核闭包时一并发布。教程仅验证合成二倍体输入，未声称重现植物研究数据。
+
+### M06-01 数量遗传学与遗传力方法深化（2026-11-22）
+
+对照 Schmidt 等 Genetics 出版方记录与 PMC 全文核对 genotype-difference basis 方法及 DOI 10.1534/genetics.119.302134；区分 entry-mean 与 genotype-difference 的估计目标。依据 Smith、Lim 与 Cullis 的 Cambridge 原文核对多阶段植物育种试验混合模型的题名、作者、年份和 DOI 10.1017/S0021859606006319，并依据 Huang 等 Nature Genetics/PubMed 记录核对 517 份水稻地方品种、约 360 万 SNP 与 14 个农艺性状 GWAS。专题扩充遗传/环境/G×E 方差、单环境平衡重复下 entry-mean 公式的假设范围、非平衡和多环境模型、BLUE/BLUP 目标差异及 QTL/GWAS/基因组选择边界。新增稳定论文 ID `heritability-genotype-difference`，在 M06-01 关联其方法和水稻应用文献，并加入受控原理标签 `heritability-estimation`。页面仍为草稿；M06 专题整体文献、工具及发布依赖审核尚未完成。
+
+### M06-02 QTL 定位与 R/qtl2 关系审核（2026-11-22）
+
+依据 R/qtl2 2019 Genetics 方法论文、官方用户/开发者指南和 GitHub releases 核对两阶段计算：多点标记数据推断潜在 QTL 基因型概率，随后用这些概率扫描表型；版本快照为 v0.46（2026-07-21）。专题扩展 F2、回交、RIL、DH 和多亲本群体设计差异、遗传图谱、HMM 概念流程、LOD 似然比、置换阈值、精细定位与验证层次。Lou 等水稻深根论文依据 Journal of Experimental Botany、PubMed 与 PMC 原文核对 180 条 F8 RIL、237 份关联材料、六个 RDR QTL、1,019,883 SNP、48 个关联 SNP 与 7/9 个候选 SNP 的极端组验证；清楚区分该研究的软件流程和后发布的 R/qtl2。新增 stable ID `rqtl2` 工具与 `rice-deep-rooting-qtl` 应用论文，修正 M06-02、M06-03 关系，将根系关联论文置于 GWAS 专题范围。工具未在本机执行，相关专题和资源保持草稿。
+
+### M07 七专题科学审核与发布闭包（2026-11-22）
+
+完成表观遗传与三维基因组七专题、5 个工具、15 篇论文和 Bismark 模拟教程的关系检查与状态发布。重点检查胞嘧啶 CG/CHG/CHH 甲基化路径、WGBS/ATAC/ChIP/CUT&Tag/Hi-C 的测量边界、DSS beta-binomial 计数模型、MACS3 peak calling、MEME Suite motif discovery/enrichment/scanning 区分，以及 Hi-C 矩阵和结构分析工具分工。原文复核拟南芥热胁迫 Hi-C 论文：HiC-Pro 负责 read/valid-pair 与矩阵，HiCExplorer 负责矩阵转换与部分分析，HOMER 负责 compartment PCA；拟南芥 PDS5 论文使用 HiTC、Juicer、Arrowhead，因此未关联 HiCExplorer。植物小麦甲基化案例保留其靶向基因富集实验范围，没有描述为均匀覆盖 WGBS；DSS、MACS3、MEME Suite、HiCExplorer 页面明确标注未在本机运行。Bismark 教程仅报告固定参考和模拟 reads 的可重复运行结果，不声称真实植物样本复现。来源与原文软件分工见 `docs/m07-evidence.md`。`node work/audit-metadata-relations.mjs` 检查 63 个专题、48 个工具、112 篇论文，0 双向关系不一致；`npm run coverage` 显示 M07 七专题、5 工具、15 论文和 1 教程均已发布；`npm run validate` 通过，Astro 63 个内容文件 0 错误/警告/提示，生成 220 页面，Pagefind zh-cn 索引 220 页/31,135 词，6,212 条站内链接 0 错误。专题与工具通过构建和关系审计；当前记录未包含浏览器回归或真实植物样本软件运行。
+
+### M08 七专题科学审核与发布闭包（2026-11-22）
+
+完成单细胞与空间组学七专题、7 个工具、14 篇论文及 Scanpy 模拟教程的引用、软件归属和发布检查。植物案例核实包括水稻根 2021 分别采集 scRNA/scATAC（Scanpy 1.4.5.1、Palantir 0.2.2、velocyto 各自职责）、拟南芥根图谱 110,427 细胞与 StationaryOT、拟南芥光响应 92,861 细胞时序图谱、水稻土壤研究超过 79,000 个高质量 scRNA-seq 细胞与 Molecular Cartography，以及 2025 水稻 8 器官/116,564 细胞同步 RNA+ATAC 图谱。COPILOT、DoubletFinder 仅按水稻土壤论文明确报告的预处理和 doublet 过滤任务关联。Cell2location、Squidpy、CellRank 2、ArchR 方法页面区分各自模型和输出；其方法论文的人/鼠应用没有改写为植物软件案例。Cell2location/Squidpy 未认领 Molecular Cartography 的水稻应用；ArchR 未认领水稻多组学论文的 RSCA 分析。证据及来源记录见 `docs/m08-evidence.md`。Scanpy 1.13.0 教程验证仍限定于模拟计数矩阵。`node work/audit-metadata-relations.mjs` 检查 63 个专题、54 个工具、123 篇论文，零双向关联差异；`npm run coverage` 显示 M08 七专题、7 工具、14 论文和 1 教程已发布；`npm run validate` 通过：Astro 63 文件零错误/警告/提示，249 页生成，Pagefind zh-cn 索引 249 页/33,026 词，7,036 条站内链接零错误。植物数据复现和新增工具实跑不在验证范围内。
+
+### M09 七专题科学审核与发布闭包（2026-11-22）
+
+逐条核对 RNA-seq 差异表达、WGCNA 共表达、GENIE3/GRNBoost2 网络推断、PWM/FIMO motif 扫描、多组学潜在因子、AgroNT 与 PlantCAD2 序列模型。GENIE3 的逐靶基因树集成回归、GRNBoost2 的梯度提升和 Arboreto 调度、MOFA+ 多视图因子/变分推断分别依原方法论文描述。PlantCAD2 按 Cell Genomics 正式发表版本修订；与 AgroNT 的 Transformer 区分为 Caduceus/Mamba2 双向状态空间模型，并将 benchmark 数字限定在原论文任务。复核 DESeq2、WGCNA 植物案例；拟南芥 iGRN 和玉米多组学网络保留为领域案例，不误关联成 GENIE3、GRNBoost2 或 MOFA+ 使用案例。拟南芥气孔研究按原文报告将 FIMO 扫描关联 MEME Suite。来源表、官方代码地址和未运行范围见 `docs/m09-evidence.md`。
+
+七专题、八个方法页面、13 篇方法/植物应用论文及 WGCNA 模拟教程状态与 ID 关联闭合。Astro 63 文件零诊断，276 页生成，Pagefind 索引 276 页/34,436 词，7,749 条站内链接零错误；内容关系审计 63 专题、58 方法、127 论文，双向关系差异为零。当前环境无法启动 Edge/agent-browser 会话，因此 M09 桌面、平板、手机视口和浏览器内搜索/交互自动化检查未执行；静态构建生成了所有 M09 路由，站内链接检查通过。工具未在本机植物实测数据上运行；WGCNA 教程只报告模拟矩阵运行结果。

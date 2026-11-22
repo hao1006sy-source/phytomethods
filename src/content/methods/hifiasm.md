@@ -5,7 +5,7 @@ summary: 利用高保真长读长构建相位感知的基因组组装图。
 dataType: PacBio HiFi
 principle: 重叠图与单倍型解析
 domainIds: [genome-assembly]
-topicIds: [assembly-graphs, haplotype-resolution]
+topicIds: [assembly-basics, assembly-graphs, complete-assembly, haplotype-resolution, sequencing-data]
 principleIds: [overlap, phasing]
 dataIds: [hifi]
 paper: hifiasm

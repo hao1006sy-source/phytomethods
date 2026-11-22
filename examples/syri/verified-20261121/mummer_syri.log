@@ -1,0 +1,18 @@
+2026-11-21 05:11:47,154 - Reading Coords - INFO - syri:134 - Reading input from .tsv file
+2026-11-21 05:11:47,157 - Reading Coords - INFO - syri:134 - Filtering low-quality alignments (alignment quality < 90, alignment length < 100)
+2026-11-21 05:11:47,159 - Reading Coords - WARNING - syri:134 - Chromosomes IDs do not match.
+2026-11-21 05:11:47,160 - Reading Coords - WARNING - syri:134 - Matching them automatically. For each reference genome, most similar query genome will be selected. Check mapids.txt for mapping used.
+2026-11-21 05:11:47,161 - Reading Coords - INFO - syri:134 - setting OX291574.1 as Chr4
+2026-11-21 05:11:47,278 - syri - INFO - syri:215 - starting
+2026-11-21 05:11:47,279 - syri - INFO - syri:215 - Analysing chromosomes: ['Chr4']
+2026-11-21 05:11:47,291 - syri.Chr4 - INFO - mapstar:48 - Chr4 (731, 11)
+2026-11-21 05:11:47,291 - syri.Chr4 - INFO - mapstar:48 - Identifying Synteny for chromosome Chr4
+2026-11-21 05:11:47,351 - syri.Chr4 - INFO - mapstar:48 - Identifying Inversions for chromosome Chr4
+2026-11-21 05:11:47,404 - syri.Chr4 - INFO - mapstar:48 - Identifying translocation and duplication for chromosome Chr4
+2026-11-21 05:11:48,110 - getCTX - INFO - syri:215 - Identifying cross-chromosomal translocation and duplication for chromosome
+2026-11-21 05:11:48,244 - local_variation - INFO - syri:226 - Finding SVs in synOut.txt, invOut.txt, TLOut.txt, invTLOut.txt, ctxOut.txt
+2026-11-21 05:11:48,593 - local_variation - INFO - syri:246 - Finding SNPs and small indels
+2026-11-21 05:11:51,946 - local_variation - INFO - syri:258 - Combining outputs
+2026-11-21 05:11:51,947 - local_variation - INFO - syri:263 - Generating table output
+2026-11-21 05:11:53,583 - local_variation - INFO - syri:268 - Generating VCF
+2026-11-21 05:11:54,383 - local_variation - INFO - syri:276 - Finished syri

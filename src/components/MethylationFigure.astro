@@ -1,0 +1,25 @@
+<figure class="methylation-figure">
+  <svg viewBox="0 0 720 310" role="img" aria-labelledby="meth-title meth-desc">
+    <title id="meth-title">植物胞嘧啶序列背景与亚硫酸氢盐测序原理</title>
+    <desc id="meth-desc">三个例子分别是 CG、CAG 和 CAT；H 代表 A、C 或 T。示意经过充分转化后甲基化 C 保留为 C，未甲基化 C 经扩增读为 T。</desc>
+    <rect x="1" y="1" width="718" height="308" rx="12" fill="#f8fbfa" stroke="#d7e3e7"/>
+    <text x="30" y="37" fill="#17324d" font-size="20" font-weight="700">植物胞嘧啶序列背景</text>
+    <g font-family="monospace" font-size="24" fill="#243447">
+      <text x="60" y="86">5′ — A<tspan fill="#197b73" font-weight="700">C</tspan>GTA — 3′</text>
+      <text x="60" y="128">5′ — A<tspan fill="#197b73" font-weight="700">C</tspan>AGT — 3′</text>
+      <text x="60" y="170">5′ — A<tspan fill="#197b73" font-weight="700">C</tspan>ATT — 3′</text>
+    </g>
+    <g fill="#17324d" font-size="17"><text x="375" y="86">CG：C 后为 G</text><text x="375" y="128">CHG：此例 H = A</text><text x="375" y="170">CHH：此例两个 H = A、T</text></g>
+    <path d="M30 190H690" stroke="#d7e3e7"/>
+    <text x="30" y="223" fill="#17324d" font-size="18" font-weight="700">理想化的亚硫酸氢盐测序</text>
+    <text x="45" y="262" fill="#197b73" font-size="17">甲基化 C</text><text x="145" y="262" fill="#687789" font-size="17">→ 读取 C</text>
+    <text x="310" y="262" fill="#a45c29" font-size="17">未甲基化 C</text><text x="435" y="262" fill="#687789" font-size="17">→ 转化后扩增读取 T</text>
+    <text x="30" y="293" fill="#687789" font-size="14">H 代表 A、C 或 T；箭头示意理想转换和测序结果</text>
+  </svg>
+  <figcaption>原理示意：绿色 C 为被分类的胞嘧啶。实际结果还受转换效率、测序错误及覆盖深度影响；普通亚硫酸氢盐测序的保留 C 信号不能单独区分 5mC 与 5hmC。</figcaption>
+</figure>
+<style>
+.methylation-figure{margin:2rem 0;padding:1rem;border:1px solid var(--border);border-radius:12px;background:#f8fbfa;overflow-x:auto}
+.methylation-figure svg{display:block;width:100%;min-width:620px;height:auto}
+.methylation-figure figcaption{color:var(--muted);font-size:.875rem;line-height:1.7;margin-top:.75rem}
+</style>

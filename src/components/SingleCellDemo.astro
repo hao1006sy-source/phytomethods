@@ -1,0 +1,31 @@
+---
+import cells from '../data/single-cell-demo.json';
+const xs=cells.map(c=>c.x),ys=cells.map(c=>c.y), minX=Math.min(...xs),minY=Math.min(...ys),spanX=Math.max(...xs)-minX,spanY=Math.max(...ys)-minY;
+const scale=Math.min(500/spanX,280/spanY), offsetX=70+(500-spanX*scale)/2,offsetY=35+(280-spanY*scale)/2;
+---
+<section class="single-cell-demo" data-single-cell aria-labelledby="single-cell-title">
+<h2 id="single-cell-title">模拟细胞降维与聚类</h2>
+<p>模拟数据：60 个虚构细胞的 UMAP 坐标来自本项目实际运行的 Scanpy 示例。按钮仅切换同一坐标上的颜色，不重新计算降维或聚类。</p>
+<div class="single-cell-actions"><button type="button" data-mode="cluster" aria-pressed="true">按 Leiden 聚类</button><button type="button" data-mode="group" aria-pressed="false">按模拟组</button><button type="button" data-reset>重置</button></div>
+<div class="single-cell-scroll"><svg viewBox="0 0 640 365" role="img" aria-labelledby="single-cell-svg-title single-cell-svg-desc"><title id="single-cell-svg-title">模拟单细胞 UMAP 散点图</title><desc id="single-cell-svg-desc">60 个点为模拟细胞；颜色可以切换为 Leiden 聚类或生成数据时预设的模拟组。UMAP 的轴不代表组织坐标。</desc>
+<path d="M55 25V320H605" fill="none" stroke="#92a8b1" stroke-width="1.5"/><text x="310" y="350" text-anchor="middle" fill="#526979" font-size="16">UMAP 1</text><text x="20" y="180" text-anchor="middle" transform="rotate(-90 20 180)" fill="#526979" font-size="16">UMAP 2</text>
+{cells.map(c=><circle cx={offsetX+(c.x-minX)*scale} cy={315-(offsetY-35+(c.y-minY)*scale)} r="5.5" stroke="#fff" stroke-width="1" fill={c.cluster==='0'?'#197b73':'#bd783f'} data-cell data-cluster={c.cluster} data-group={c.group}><title>{c.cell}: 聚类 {c.cluster}，模拟组 {c.group}</title></circle>)}
+</svg></div>
+<p aria-live="polite" data-legend>青绿色：聚类 0；橙色：聚类 1。</p>
+<p class="single-cell-caption">结果来自固定种子的 20 基因模拟矩阵。UMAP 的轴不表示实际空间位置；聚类编号也不是经实验确认的细胞类型。</p>
+</section>
+<script>
+for(const root of document.querySelectorAll<HTMLElement>('[data-single-cell]')){
+ const buttons=[...root.querySelectorAll<HTMLButtonElement>('[data-mode]')],legend=root.querySelector<HTMLElement>('[data-legend]')!;
+ function update(mode:'cluster'|'group'){
+  for(const button of buttons)button.setAttribute('aria-pressed',String(button.dataset.mode===mode));
+  for(const cell of root.querySelectorAll<SVGCircleElement>('[data-cell]'))cell.setAttribute('fill',(mode==='cluster'?cell.dataset.cluster==='0':cell.dataset.group==='A')?'#197b73':'#bd783f');
+  legend.textContent=mode==='cluster'?'青绿色：聚类 0；橙色：聚类 1。':'青绿色：模拟组 A；橙色：模拟组 B。';
+ }
+ for(const button of buttons)button.addEventListener('click',()=>update(button.dataset.mode==='group'?'group':'cluster'));
+ root.querySelector<HTMLButtonElement>('[data-reset]')!.addEventListener('click',()=>update('cluster'));
+}
+</script>
+<style>
+.single-cell-demo{padding:1.25rem;border:1px solid var(--border);border-radius:12px;background:#f8fbfa;margin:2rem 0}.single-cell-demo h2{margin-top:0}.single-cell-actions{display:flex;gap:.5rem;flex-wrap:wrap}.single-cell-actions button{padding:.5rem .75rem;background:#fff;border:1px solid #91a9b3;border-radius:6px;cursor:pointer}.single-cell-actions button[aria-pressed="true"]{background:#197b73;color:white;border-color:#197b73}.single-cell-scroll{overflow-x:auto}.single-cell-scroll svg{width:100%;min-width:500px;display:block;height:auto}.single-cell-caption{color:var(--muted);font-size:.875rem}
+</style>

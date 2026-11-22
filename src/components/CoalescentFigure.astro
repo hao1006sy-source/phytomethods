@@ -1,0 +1,54 @@
+---
+---
+<figure class="coalescent-figure">
+  <svg viewBox="0 0 900 390" role="img" aria-labelledby="coalescent-title coalescent-desc">
+    <title id="coalescent-title">沿基因组变化的局部共祖状态与三类推断方法</title>
+    <desc id="coalescent-desc">上方以三个连续区段表示重组后可出现不同局部共祖状态；下方比较 PSMC 的单个二倍体、MSMC2 的多条序列配对和 SMC++ 的区分二倍体加未定相样本输入。图为原理示意。</desc>
+    <text x="32" y="32" class="title">基因组位置 → 局部共祖状态</text>
+    <text x="34" y="68" class="label">染色体区段</text>
+    <rect x="170" y="48" width="210" height="50" rx="8" class="segment-a"/>
+    <rect x="380" y="48" width="210" height="50" rx="8" class="segment-b"/>
+    <rect x="590" y="48" width="260" height="50" rx="8" class="segment-c"/>
+    <text x="275" y="79" text-anchor="middle" class="label">局部谱系 A</text>
+    <text x="485" y="79" text-anchor="middle" class="label">局部谱系 B</text>
+    <text x="720" y="79" text-anchor="middle" class="label">局部谱系 C</text>
+    <path d="M380 44v62 M590 44v62" class="breakpoint"/>
+    <text x="384" y="119" class="small">重组后状态转换</text>
+    <text x="26" y="162" class="label">TMRCA</text>
+    <text x="26" y="181" class="small">较深 ↑</text>
+    <path d="M170 139h210v42h210v-25h260" class="tmrca"/>
+    <text x="273" y="158" text-anchor="middle" class="small">时间状态 T₁</text>
+    <text x="483" y="174" text-anchor="middle" class="small">时间状态 T₂</text>
+    <text x="720" y="140" text-anchor="middle" class="small">时间状态 T₃</text>
+    <path d="M170 194h680" class="axis"/>
+    <text x="500" y="218" text-anchor="middle" class="small">物理基因组位置</text>
+    <text x="32" y="255" class="title">方法按样本设计读取这些信号</text>
+    <rect x="30" y="273" width="260" height="92" rx="10" class="method-card"/>
+    <rect x="320" y="273" width="260" height="92" rx="10" class="method-card"/>
+    <rect x="610" y="273" width="260" height="92" rx="10" class="method-card"/>
+    <text x="50" y="302" class="method-name">PSMC</text>
+    <text x="50" y="328" class="small">一个二倍体样本</text>
+    <text x="50" y="350" class="small">推断成对共祖历史</text>
+    <text x="340" y="302" class="method-name">MSMC2</text>
+    <text x="340" y="328" class="small">多条样本序列与配对</text>
+    <text x="340" y="350" class="small">估计群体内 / 间共祖率</text>
+    <text x="630" y="302" class="method-name">SMC++</text>
+    <text x="630" y="328" class="small">区分二倍体 + 未定相样本</text>
+    <text x="630" y="350" class="small">共祖信息与条件频谱联合估计</text>
+  </svg>
+  <figcaption>原理示意：重组可使相邻基因组位置对应不同局部共祖状态；三种方法的样本设计和统计输出不同。图中状态与区段为概念标签，不表示真实数据或模拟结果。</figcaption>
+</figure>
+<style>
+  .coalescent-figure{margin:28px 0;padding:18px;background:#f7fafb;border:1px solid var(--border);border-radius:12px;overflow-x:auto}
+  .coalescent-figure svg{display:block;width:100%;min-width:760px;height:auto;font-family:var(--font-sans,"Noto Sans SC",sans-serif)}
+  .coalescent-figure .title{font-size:17px;font-weight:700;fill:#17324d}
+  .coalescent-figure .label{font-size:15px;font-weight:650;fill:#243447}
+  .coalescent-figure .small{font-size:13px;fill:#526477}
+  .coalescent-figure .segment-a{fill:#e2f0ed}.coalescent-figure .segment-b{fill:#e8eef5}.coalescent-figure .segment-c{fill:#f4ead8}
+  .coalescent-figure .breakpoint{stroke:#718395;stroke-width:1.5;stroke-dasharray:5 5}
+  .coalescent-figure .tmrca{fill:none;stroke:#197b73;stroke-width:4;stroke-linejoin:round}
+  .coalescent-figure .axis{stroke:#9aaab7;stroke-width:1.5}
+  .coalescent-figure .method-card{fill:#fff;stroke:#d8e2e8;stroke-width:1.5}
+  .coalescent-figure .method-name{font-size:16px;font-weight:750;fill:#17324d}
+  .coalescent-figure figcaption{margin-top:10px;color:var(--muted);font-size:.88rem;line-height:1.65}
+</style>
