@@ -233,6 +233,10 @@ v2.1 返工将七篇专题的推断层级、公式和结果解释具体化：从
 
 七篇专题经 10 维评分均评 L3。M06-06 新增 GBLUP 模型与标准化标记关系矩阵、RMSE/相关性解释和训练验证泄漏控制；M06-07 补充多组学样本对齐、DNNGP 原论文网络组件范围及面向新家系/未来年份/新环境的拆分设计。11 篇关联论文与 5 个方法按 `docs/m06-evidence.md` 对应，DNNGP 未在本站运行，固定种子 GWAS 模拟不称作植物群体分析。25 路由×3视口的 75 次浏览均通过，Manhattan/QQ 切换和重置通过；结果和截图位于 `outputs/v2.1/m06-browser-verified/`。
 
+### M03 v2.1 专题质量复核
+
+七篇专题均经 10 维证据评分评为 L3。检查覆盖 PAV 统计定义、比对与锚点算法、SyRI 路径分类、读段/组装/图 SV 检测、Minigraph-Cactus 与 PGGB 构图差别、Giraffe 图映射与后续分型、图坐标与可视化语义。植物案例与软件使用归属依据 `docs/m03-evidence.md`；仅 SyRI 官方拟南芥测试数据有本机实际运行证据。领域、专题、13 工具、23 关联论文和教程共 45 路由，在三种视口访问 135 次，零状态、正文、控制台、资源及溢出错误；GraphMappingDemo 读段选择和重置通过。截图位于 `outputs/v2.1/m03-browser-verified/`。
+
 ### M02：首轮逐篇复核完成
 
 M02 七篇专题已逐篇评分，详见 `docs/content-quality-audit-v2.1.md`。返工扩充了计算流程、方法差异、植物应用、质量解释和相关资源；M02 评级 L3×7，L4×0。BRAKER3、EDTA 与 InterProScan 工具条目及 BRAKER3、EDTA、Infernal、InterProScan、芒果应用论文均已补充方法解读。TSEBRA DOI 已按期刊原文更正为 10.1186/s12859-021-04482-0。EDTA/Hifiasm 以外没有新增真实运行结果；EDTA 流程保持 `template` 状态。
