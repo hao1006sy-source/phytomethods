@@ -21,9 +21,12 @@
 
 ## 主要修改文件
 
-- `src/styles/home.css`：统一 V2 绿白色变量；为 Hero 右侧添加低对比薄荷波形；缩短 Hero 纵向占用；领域卡片改为浅薄荷底，优化标题和正文层级。
-- `public/assets/home/botanical/rice-line-art.svg`：改绘原创水稻植株与稻穗线稿，采用自然的穗轴、侧枝、籽粒和叶片形态。
-- `public/assets/home/icons/m01-genome-assembly.svg` 至 `m09-regulatory-ai.svg`：统一 64×64 画布、2px 线条、森林绿配色，分别表达双螺旋、基因结构、变异路径、系统树、群体分布、GWAS 峰、核小体、空间细胞和调控网络。
+- `src/styles/home.css`：统一 V2 绿白色变量；为 Hero 增加跨栏薄荷波形；优化图片融合、桌面端出血范围及手机端展示；扩大领域图标区并将领域编号改为浅绿徽标；资源和工具列表改用无衬线字。
+- `src/pages/index.astro`：Hero 改用横幅式水稻植物配图，保留现有搜索、领域和内容数据逻辑。
+- `public/assets/home/botanical/rice-panicle-photo-v5.png`：新增原创生成的写实风格水稻视觉素材，采用更细致的金黄色稻穗、带叶脉的绿色叶片、纯白与轻薄荷色背景；该素材用于视觉呈现，不代表实测植物样本或研究数据。
+- `public/assets/home/botanical/rice-line-art.svg`：保留原有水稻线稿资源，供后续页面继续使用。
+- `public/assets/home/icons/m01-genome-assembly.svg` 至 `m09-regulatory-ai.svg`：统一 64×64 画布、2px 线条、森林绿配色；进一步校准系统树、GWAS 信号、核小体和调控网络图形。
+- `src/layouts/Base.astro`：仅首页品牌符号采用实心叶片标识；内页原标识保留。
 - `src/layouts/Base.astro`：在页面载入和字体加载后补充执行可横向滚动区域的键盘可访问性标记，修复 M03 公式区初始排版完成后未及时获得焦点属性的问题。
 - `docs/home-white-green-v2-report.md`：本报告。
 
@@ -31,14 +34,15 @@
 
 ## 两轮视觉验收
 
-- 第一轮在 1440×900 检查了 V2 颜色、Hero 波形、水稻线稿、卡片和图标比例；随后压缩 Hero 高度，确保 900px 首屏能够看到三栏资源区。
-- 第二轮在最终构建产物上检查 1440×900、1280×900、768×1024、390×844、375×812，并保存截图及前后对比图。
-- 375px 下文档宽度为 375px，搜索按钮右边界为 349px。所有视口下页面文档宽度均与视口宽度相同。
-- 浏览器确认首页 10 个 SVG 图片资源均完成加载；页面控制台未报告错误。
+- 第一轮按交付图对照白底、薄荷波形、领域卡片、绿色图标与资源区；依据用户反馈，将 Hero 右侧升级为稻穗与叶片写实视觉并继续改进植物纹理。
+- 第二轮针对截图调整了叶片叶脉、领域图标轮廓与尺寸、资源列表字体、首页品牌标识、图片边缘融合和手机端展示位置；复查 1440×900、1280×900、768×1024、390×844、375×812。
+- 五种视口下文档宽度分别与视口一致，九个领域卡片均存在，水稻图成功加载，标题与搜索按钮可见。
+- 最终线上结构模拟截图：`outputs/home-white-editorial/v2-reference-final-1440x900.png`、`outputs/home-white-editorial/v2-reference-final-390x844.png`；另有两种宽度的整页截图。
+- 最新两张视口截图由本地 Astro 页面 `http://127.0.0.1:4321/phytomethods/` 渲染，加载真实子路径资源；自动检查五种宽度、搜索和 M01 领域跳转。
 
 ## 功能和自动化检查
 
-- `npm run validate`：通过。Astro 检查 64 个文件，0 错误、0 警告、0 提示；静态构建 279 个页面；Pagefind 索引 279 页、38,425 个词；首页推荐配置检查通过；10,058 个本地链接 0 错误。
+- `npm run validate`：通过。Astro 检查 64 个文件，0 错误、0 警告、0 提示；静态构建 279 个页面；Pagefind 索引 279 页、38,426 个词；首页推荐配置检查通过；10,058 个本地链接 0 错误。
 - `npm run test:figure-a11y`：通过。375、768、1280、1440px 下图解键盘滚动、菜单选择、图表放大、焦点管理和文档溢出检查通过。
 - 浏览器逐项点击：首页移动菜单、Hifiasm 搜索表单、M01 领域入口、Hifiasm 工具、最新专题、论文和教程链接均到达目标路径。
 - 公开搜索实测：`Hifiasm` 返回 24 条，`泛基因组` 返回 53 条结果。
@@ -47,17 +51,14 @@
 
 - 改版前桌面：`outputs/home-white-editorial/before-v2-1440x900.png`
 - 改版前手机：`outputs/home-white-editorial/before-v2-390x844.png`
-- 改版后桌面：`outputs/home-white-editorial/v2-final-1440x900.png`
-- 改版后完整桌面页：`outputs/home-white-editorial/v2-final-full-1440.png`
-- 改版后 1280px：`outputs/home-white-editorial/v2-final-1280.png`
-- 改版后 768px：`outputs/home-white-editorial/v2-final-768.png`
-- 改版后手机 390px：`outputs/home-white-editorial/v2-final-390x844.png`
-- 改版后手机 375px：`outputs/home-white-editorial/v2-final-375.png`
+- 改版后桌面视口：`outputs/home-white-editorial/v2-reference-final-1440x900.png`
+- 改版后手机视口：`outputs/home-white-editorial/v2-reference-final-390x844.png`
+- 改版后完整 1440、1280、768、390、375px 页面：`outputs/home-white-editorial/v2-reference-final-{1440,1280,768,390,375}-full.png`
 - 1440px 前后对比：`outputs/home-white-editorial/v2-before-after-1440x900.png`
 - 390px 前后对比：`outputs/home-white-editorial/v2-before-after-390x844.png`
 
 ## 发布状态
 
-改动继续保留在 `feat/home-white-editorial` 与 PR #10，未合并、未部署。用户确认截图后再按既定流程处理合并和发布。
+此前 PR #10 已合并，开发分支 `feat/home-white-editorial` 仍保留在远程，且包含本轮 V2 首页改版提交。当前新配图、字体与图标精调尚待提交，完成验收后将创建新的 PR；依照用户要求，保持 PR 未合并、未部署，等待用户审核截图。
 
-截图来自本地 Astro 静态构建产物在浏览器中的渲染。为通过 `file://` 本地查看资源，只在临时预览副本中调整了首页子路径资源前缀；正式源码和 GitHub Pages `/phytomethods/` 配置保持原样。
+最终审阅截图来自本地 Astro 页面，部署用的 GitHub Pages `/phytomethods/` 子路径保持原样。生成式水稻配图用于首页视觉设计，不作为真实标本照片或科学数据。

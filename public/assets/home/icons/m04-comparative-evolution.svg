@@ -1,7 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" fill="none" stroke="#117750" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="比较基因组系统发育分支示意">
-  <path d="M8 32h12m0-20v40M20 12h13m-13 14h13m-13 14h13m-13 12h13M33 12h11m-11 14h11m-11 14h11m-11 12h11M44 12h12m-12 14h12m-12 14h12m-12 12h12" />
-  <circle cx="56" cy="12" r="2.5" fill="#f1f8f3" />
-  <circle cx="56" cy="26" r="2.5" fill="#f1f8f3" />
-  <circle cx="56" cy="40" r="2.5" fill="#f1f8f3" />
-  <circle cx="56" cy="52" r="2.5" fill="#f1f8f3" />
+  <path d="M8 54V40h13V27h12V14h13M21 40h12V32h13m-13 8v10h13m-1-36h12M46 32h11M46 50h11" />
+  <circle cx="58" cy="14" r="2.3" fill="#f1f8f3" />
+  <circle cx="58" cy="32" r="2.3" fill="#f1f8f3" />
+  <circle cx="58" cy="50" r="2.3" fill="#f1f8f3" />
 </svg>

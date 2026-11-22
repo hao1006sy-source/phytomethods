@@ -1,6 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" fill="none" stroke="#117750" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="全基因组关联分析峰值示意">
-  <path d="M7 53h51M8 53V12" stroke-width="1.8" />
-  <path d="M13 53V43m6 10V37m6 16V45m6 8V17m6 36V40m6 13V33m6 20V21m6 32V42m6 11V30" />
-  <circle cx="31" cy="13" r="2.5" fill="#a7c982" stroke="none" />
-  <circle cx="49" cy="17" r="2.5" fill="#a7c982" stroke="none" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" fill="none" stroke="#117750" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="全基因组关联分析信号示意">
+  <path d="M7 53h50" />
+  <path d="M11 53V31m5 22V43m5 10V35m5 18V46m5 7V22m5 31V39m5 14V31m5 22V42m5 11V27m5 26V37" />
+  <path d="M31 18v-4m14 12v-5m10-7v-4" stroke="#74b875" stroke-dasharray="1 4" stroke-width="1.6" />
+  <circle cx="31" cy="11" r="1.7" fill="#74b875" stroke="none" />
+  <circle cx="45" cy="17" r="1.7" fill="#74b875" stroke="none" />
+  <circle cx="55" cy="7" r="1.7" fill="#74b875" stroke="none" />
 </svg>

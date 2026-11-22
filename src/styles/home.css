@@ -31,7 +31,9 @@ body.home-body {
 .home-body .header-inner,
 .home-body main.home-main,
 .home-body .footer-inner {
-  max-width: 1440px;
+  max-width: 1600px;
+  padding-right: clamp(32px, 3.2vw, 54px);
+  padding-left: clamp(32px, 3.2vw, 54px);
 }
 
 .home-body .header-inner {
@@ -42,6 +44,11 @@ body.home-body {
 
 .home-body .brand-lockup {
   gap: 10px;
+}
+
+.home-body .brand-lockup {
+  padding-right: 20px;
+  border-right: 1px solid var(--home-border);
 }
 
 .home-body .brand-mark {
@@ -120,7 +127,7 @@ body.home-body {
   align-items: center;
   gap: 38px;
   min-height: 0;
-  padding: 12px 0 10px;
+  padding: 4px 0 6px;
 }
 
 .home-hero::before,
@@ -133,20 +140,21 @@ body.home-body {
 }
 
 .home-hero::before {
-  inset: 0 0 0 47%;
+  inset: 0 0 0 34%;
   background:
-    radial-gradient(ellipse at 78% 20%, rgb(221 240 225 / 48%), transparent 46%),
-    radial-gradient(ellipse at 68% 92%, rgb(204 231 211 / 62%), transparent 56%);
-  clip-path: ellipse(76% 82% at 68% 55%);
+    radial-gradient(ellipse at 79% 15%, rgb(226 242 229 / 40%), transparent 48%),
+    radial-gradient(ellipse at 75% 92%, rgb(203 231 211 / 64%), transparent 58%);
+  clip-path: ellipse(82% 84% at 67% 56%);
 }
 
 .home-hero::after {
   right: 0;
   bottom: 0;
-  width: 58%;
-  height: 38%;
-  background: linear-gradient(174deg, rgb(255 255 255 / 0%), rgb(229 243 232 / 64%));
-  clip-path: ellipse(72% 58% at 72% 100%);
+  left: 0;
+  width: 100%;
+  height: 34%;
+  background: linear-gradient(176deg, rgb(255 255 255 / 0%), rgb(230 244 233 / 42%));
+  clip-path: ellipse(76% 61% at 72% 100%);
 }
 
 .hero-copy {
@@ -157,10 +165,10 @@ body.home-body {
 
 .hero-copy h1 {
   max-width: 760px;
-  margin: 0 0 12px;
+  margin: 0 0 8px;
   color: var(--home-navy);
   font-family: var(--home-serif);
-  font-size: clamp(2.15rem, 3.2vw, 3.05rem);
+  font-size: clamp(2.15rem, 3vw, 3.05rem);
   font-weight: 700;
   letter-spacing: -0.045em;
   line-height: 1.32;
@@ -168,7 +176,7 @@ body.home-body {
 
 .hero-intro {
   max-width: 780px;
-  margin: 0 0 18px;
+  margin: 0 0 14px;
   color: var(--home-ink);
   font-family: var(--home-sans);
   font-size: 1rem;
@@ -181,8 +189,8 @@ body.home-body {
   align-items: center;
   gap: 12px;
   width: min(100%, 790px);
-  min-height: 52px;
-  padding: 4px 5px 4px 16px;
+  min-height: 48px;
+  padding: 3px 4px 3px 14px;
   border: 1px solid #aab9c5;
   border-radius: 5px;
   background: var(--home-surface);
@@ -240,7 +248,7 @@ body.home-body {
   align-items: center;
   flex-wrap: wrap;
   gap: 8px 10px;
-  margin-top: 12px;
+  margin-top: 10px;
   color: var(--home-muted);
   font-size: 0.8rem;
 }
@@ -270,16 +278,21 @@ body.home-body {
   align-items: center;
   justify-content: flex-end;
   min-width: 0;
+  margin-right: calc(-1 * clamp(32px, 3.2vw, 54px));
 }
 
 .hero-botanical img {
   display: block;
-  width: min(100%, 420px);
-  height: 230px;
-  object-fit: contain;
-  transform: scaleX(1.15);
-  transform-origin: right center;
-  opacity: 0.94;
+  width: min(100%, 540px);
+  height: 220px;
+  object-fit: cover;
+  object-position: right center;
+  mix-blend-mode: multiply;
+  opacity: 0.98;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 26%, #000 100%), linear-gradient(180deg, #000 0%, #000 82%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(90deg, transparent 0%, #000 26%, #000 100%), linear-gradient(180deg, #000 0%, #000 82%, transparent 100%);
+  mask-composite: intersect;
 }
 
 .home-section {
@@ -321,7 +334,7 @@ body.home-body {
 .section-more {
   flex: 0 0 auto;
   color: var(--home-green-hover);
-  font-family: var(--home-serif);
+  font-family: var(--home-sans);
   font-size: 0.94rem;
   font-weight: 650;
   text-decoration: none;
@@ -342,7 +355,7 @@ body.home-body {
 
 .domain-card {
   display: grid;
-  grid-template-columns: 76px minmax(0, 1fr);
+  grid-template-columns: 90px minmax(0, 1fr);
   align-items: center;
   gap: 16px;
   min-width: 0;
@@ -376,8 +389,8 @@ body.home-body {
 
 .domain-visual img {
   display: block;
-  width: 59px;
-  height: 59px;
+  width: 64px;
+  height: 64px;
   object-fit: contain;
 }
 
@@ -390,9 +403,12 @@ body.home-body {
 }
 
 .domain-id {
+  padding: 1px 8px;
+  border-radius: 999px;
+  background: #e3f0e7;
   color: var(--home-green-hover);
-  font-family: var(--home-serif);
-  font-size: 0.78rem;
+  font-family: var(--home-sans);
+  font-size: 0.75rem;
   font-weight: 700;
   line-height: 1.35;
 }
@@ -474,7 +490,7 @@ body.home-body {
 .resource-heading a {
   margin-left: auto;
   color: var(--home-green-hover);
-  font-family: var(--home-serif);
+  font-family: var(--home-sans);
   font-size: 0.78rem;
   font-weight: 650;
   text-decoration: none;
@@ -517,7 +533,7 @@ body.home-body {
 
 .method-name {
   color: var(--home-navy);
-  font-family: var(--home-serif);
+  font-family: var(--home-sans);
   font-size: 0.88rem;
   font-weight: 700;
   overflow-wrap: anywhere;
@@ -548,8 +564,8 @@ body.home-body {
   min-height: 42px;
   padding: 7px 0;
   color: var(--home-ink);
-  font-family: var(--home-serif);
-  font-size: 0.83rem;
+  font-family: var(--home-sans);
+  font-size: 0.82rem;
   line-height: 1.45;
   text-decoration: none;
 }
@@ -579,7 +595,7 @@ body.home-body {
   min-width: 0;
   overflow: hidden;
   color: var(--home-navy);
-  font-weight: 620;
+  font-weight: 560;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
 }
@@ -682,7 +698,18 @@ body.home-body {
   }
 
   .hero-botanical {
-    display: none;
+    justify-content: flex-end;
+    width: 100%;
+    min-height: 128px;
+    margin-top: -8px;
+    margin-right: -32px;
+  }
+
+  .hero-botanical img {
+    width: min(100%, 420px);
+    height: 150px;
+    object-fit: cover;
+    object-position: right center;
   }
 
   .home-hero::before,
@@ -701,6 +728,10 @@ body.home-body {
   .home-body .footer-inner {
     padding-right: 20px;
     padding-left: 20px;
+  }
+
+  .hero-botanical {
+    margin-right: -20px;
   }
 
   .home-body .header-inner {
