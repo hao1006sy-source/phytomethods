@@ -1811,11 +1811,13 @@
     "englishTitle": "Single-cell RNA sequencing",
     "domainId": "single-cell-spatial-omics",
     "order": 1,
-    "summary": "植物单细胞与单核数据来源、UMI 和表达矩阵。",
+    "summary": "从植物单细胞/单核制备、barcode/UMI 计数到实验重复和原生质体偏差理解数据生成。",
     "keyConcepts": [
       "scRNA-seq",
       "snRNA-seq",
-      "UMI"
+      "barcode",
+      "UMI",
+      "spliced/unspliced RNA"
     ],
     "methodIds": [
       "scanpy",
@@ -1841,7 +1843,7 @@
       "scanpy-synthetic"
     ],
     "status": "published",
-    "maturity": "L1",
+    "maturity": "L3",
     "createdAt": null,
     "updatedAt": "2026-11-22"
   },
@@ -1851,11 +1853,13 @@
     "englishTitle": "Single-cell preprocessing",
     "domainId": "single-cell-spatial-omics",
     "order": 2,
-    "summary": "按样本进行细胞质控、归一化与批次整合。",
+    "summary": "按样本检查单细胞计数、doublet 与批次影响，记录归一化公式、模型假设和过滤结果。",
     "keyConcepts": [
-      "质控",
+      "UMI",
+      "library size",
       "doublet",
-      "批次效应"
+      "ambient RNA",
+      "batch integration"
     ],
     "methodIds": [
       "scanpy",
@@ -1894,11 +1898,13 @@
     "englishTitle": "Dimensionality reduction",
     "domainId": "single-cell-spatial-omics",
     "order": 3,
-    "summary": "高变基因、PCA、邻近图、UMAP 和图聚类。",
+    "summary": "解释高变基因、PCA、KNN 图、Leiden 社区和 UMAP 的计算步骤及参数敏感性。",
     "keyConcepts": [
       "PCA",
+      "KNN graph",
+      "Leiden",
       "UMAP",
-      "Leiden"
+      "stability"
     ],
     "methodIds": [
       "scanpy"
@@ -1929,11 +1935,13 @@
     "englishTitle": "Cell type annotation",
     "domainId": "single-cell-spatial-omics",
     "order": 4,
-    "summary": "多标记、参考图谱与植物组织证据支持细胞类型注释。",
+    "summary": "使用多 marker、检测比例、参考映射与组织证据分层确定植物细胞类型标签。",
     "keyConcepts": [
       "marker",
-      "细胞类型",
-      "参考图谱"
+      "detection fraction",
+      "label transfer",
+      "reference atlas",
+      "pseudoreplication"
     ],
     "methodIds": [
       "scanpy"
@@ -1954,7 +1962,7 @@
       "scanpy-synthetic"
     ],
     "status": "published",
-    "maturity": "L2",
+    "maturity": "L3",
     "createdAt": null,
     "updatedAt": "2026-11-22"
   },
@@ -1964,11 +1972,13 @@
     "englishTitle": "Pseudotime",
     "domainId": "single-cell-spatial-omics",
     "order": 5,
-    "summary": "从连续状态推断轨迹、根节点与拟时序。",
+    "summary": "区分图距离拟时序、扩散距离和转移核命运概率，检验 root 与轨迹稳健性。",
     "keyConcepts": [
-      "拟时序",
-      "发育轨迹",
-      "分叉"
+      "pseudotime",
+      "root state",
+      "transition kernel",
+      "fate probability",
+      "lineage"
     ],
     "methodIds": [
       "scanpy",
@@ -2003,11 +2013,13 @@
     "englishTitle": "Spatial transcriptomics",
     "domainId": "single-cell-spatial-omics",
     "order": 6,
-    "summary": "结合空间坐标和参考单细胞数据推断组织表达。",
+    "summary": "比较空间 spot 计数、贝叶斯细胞组成估计和坐标邻域统计，报告参考与不确定性。",
     "keyConcepts": [
-      "空间转录组",
+      "spatial transcriptomics",
       "spot",
-      "反卷积"
+      "deconvolution",
+      "posterior",
+      "spatial neighborhood"
     ],
     "methodIds": [
       "cell2location",
@@ -2030,7 +2042,7 @@
     ],
     "tutorialIds": [],
     "status": "published",
-    "maturity": "L1",
+    "maturity": "L3",
     "createdAt": null,
     "updatedAt": "2026-11-22"
   },
@@ -2040,11 +2052,13 @@
     "englishTitle": "Single-cell multiomics",
     "domainId": "single-cell-spatial-omics",
     "order": 7,
-    "summary": "单细胞 RNA 与染色质可及性的跨模态整合。",
+    "summary": "比较配对与非配对 RNA/ATAC 数据，并从跨模态表示建立待验证的调控假设。",
     "keyConcepts": [
+      "scRNA-seq",
       "scATAC-seq",
-      "跨模态",
-      "调控网络"
+      "paired multiome",
+      "peak-to-gene",
+      "chromatin accessibility"
     ],
     "methodIds": [
       "archr"

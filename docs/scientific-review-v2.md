@@ -209,6 +209,8 @@ M05-01 对照 3,010 水稻研究的样本、SNP/InDel 数、GATK 调用与 PLINK
 
 完成单细胞与空间组学七专题、7 个工具、14 篇论文及 Scanpy 模拟教程的引用、软件归属和发布检查。植物案例核实包括水稻根 2021 分别采集 scRNA/scATAC（Scanpy 1.4.5.1、Palantir 0.2.2、velocyto 各自职责）、拟南芥根图谱 110,427 细胞与 StationaryOT、拟南芥光响应 92,861 细胞时序图谱、水稻土壤研究超过 79,000 个高质量 scRNA-seq 细胞与 Molecular Cartography，以及 2025 水稻 8 器官/116,564 细胞同步 RNA+ATAC 图谱。COPILOT、DoubletFinder 仅按水稻土壤论文明确报告的预处理和 doublet 过滤任务关联。Cell2location、Squidpy、CellRank 2、ArchR 方法页面区分各自模型和输出；其方法论文的人/鼠应用没有改写为植物软件案例。Cell2location/Squidpy 未认领 Molecular Cartography 的水稻应用；ArchR 未认领水稻多组学论文的 RSCA 分析。证据及来源记录见 `docs/m08-evidence.md`。Scanpy 1.13.0 教程验证仍限定于模拟计数矩阵。`node work/audit-metadata-relations.mjs` 检查 63 个专题、54 个工具、123 篇论文，零双向关联差异；`npm run coverage` 显示 M08 七专题、7 工具、14 论文和 1 教程已发布；`npm run validate` 通过：Astro 63 文件零错误/警告/提示，249 页生成，Pagefind zh-cn 索引 249 页/33,026 词，7,036 条站内链接零错误。植物数据复现和新增工具实跑不在验证范围内。
 
+v2.1 返工将七篇专题的推断层级、公式和结果解释具体化：从 barcode/UMI 计数到归一化、图聚类、marker 证据、轨迹概率、空间混合模型及配对 RNA/ATAC 的可识别性。M08 七篇经 10 维证据表评为 L3；缺少真实植物数据端到端教程的条目保持 L4 以下。当前重跑 `npm run validate` 为 279 页、Pagefind 38,178 词、8,093 条链接零错误。浏览器覆盖 27 个 URL × 3 个视口共 81 次访问；单细胞组别切色/重置、拟时序下一步/重置通过，截图位于 `outputs/v2.1/m08-browser/`。
+
 ### M09 七专题科学审核与发布闭包（2026-11-22）
 
 逐条核对 RNA-seq 差异表达、WGCNA 共表达、GENIE3/GRNBoost2 网络推断、PWM/FIMO motif 扫描、多组学潜在因子、AgroNT 与 PlantCAD2 序列模型。GENIE3 的逐靶基因树集成回归、GRNBoost2 的梯度提升和 Arboreto 调度、MOFA+ 多视图因子/变分推断分别依原方法论文描述。PlantCAD2 按 Cell Genomics 正式发表版本修订；与 AgroNT 的 Transformer 区分为 Caduceus/Mamba2 双向状态空间模型，并将 benchmark 数字限定在原论文任务。复核 DESeq2、WGCNA 植物案例；拟南芥 iGRN 和玉米多组学网络保留为领域案例，不误关联成 GENIE3、GRNBoost2 或 MOFA+ 使用案例。拟南芥气孔研究按原文报告将 FIMO 扫描关联 MEME Suite。来源表、官方代码地址和未运行范围见 `docs/m09-evidence.md`。
