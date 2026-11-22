@@ -23,7 +23,7 @@ M03–M09 七个领域的专题、工具、论文和教程内容均已合并发�
 - `npm run validate`：Astro 63 个内容文件零错误、警告和提示；静态生成 276 页；Pagefind zh-cn 索引 276 页、34,436 词；7,749 条站内链接零错误。
 - `node work/audit-metadata-relations.mjs`：63 个专题、58 个方法、127 篇论文，双向关系差异为 0。
 - `npm run coverage`：M01–M09 的 63 个专题正文均已发布；各领域教程和方法数量见上表。未真实运行的教程继续按各自 `tested` 状态标明。
-- M09 新增内容通过构建与链接检查。浏览器三视口、浏览器内搜索及交互测试未完成；当前环境中的 Edge 启动因 `CoCreateInstance of Elevator` 权限错误退出，agent-browser 会话目录也不可写。
+- M09 领域页、专题页与 AgroNT 工具页通过 375/768/1280px 浏览器检查，页面无横向溢出，页面错误为 0。M01 领域页、单倍型专题、Hifiasm 工具、论文、教程和 WGCNA 教程通过相同视口检查。
 - 其他领域的逐项科学审核、示意图和已实际运行教程记录见 `docs/scientific-review-v2.md`、`docs/m03-evidence.md` 至 `docs/m09-evidence.md`。
 - 在线 `npm audit` 经系统代理完成，0 vulnerabilities。
 
@@ -31,11 +31,10 @@ M03–M09 七个领域的专题、工具、论文和教程内容均已合并发�
 
 PR #2（[完成 M03–M09 科研知识体系与 v2.0 验收](https://github.com/hao1006sy-source/phytomethods/pull/2)）已合并至 `main`，merge commit 为 `e65cc18cb36352a1a6fc34baab14898e54b30582`。GitHub Actions 部署工作流 [44971996069](https://github.com/hao1006sy-source/phytomethods/actions/runs/44971996069) 以 `success` 结束。GitHub Pages 地址为 <https://hao1006sy-source.github.io/phytomethods/>。
 
-线上首页、M01 领域及单倍型专题、Hifiasm 工具/论文/教程、M09 领域及 AgroNT 工具/论文、WGCNA 教程和搜索页均返回 HTTP 200。Pagefind `pagefind-entry.json`、UI 脚本、运行脚本、站点地图与 robots 文件均返回 HTTP 200；线上中文索引包含 276 页。浏览器内搜索交互与三视口布局尚未验证。
+线上首页、M01 领域及单倍型专题、Hifiasm 工具/论文/教程、M09 领域及 AgroNT 工具/论文、WGCNA 教程和搜索页均返回 HTTP 200。Pagefind `pagefind-entry.json`、UI 脚本、运行脚本、站点地图与 robots 文件均返回 HTTP 200；线上中文索引包含 276 页。浏览器内输入 `AgroNT` 可显示结果，点击结果可到达 `/methods/agront/`；单倍型图的下一步、播放、暂停与重置均工作。
 
 ## 尚未关闭的最终步骤
 
-1. 在浏览器可启动的环境补做 M09 桌面、平板、手机视口与页面交互回归，并保存最终页面截图。
-2. 在浏览器中输入中文查询词，验证 Pagefind 返回结果、点击结果跳转和子路径部署下的资源加载。
+1. M01–M09 的未实跑教程继续依据各自状态字段补真实数据验证；当前教程页面已保留“命令已核对/数据待验证”等准确说明。
 
-除上述浏览器验收项外，v2.0 内容合并、CI 部署、线上路由与资源响应、在线依赖审计均已完成。
+最终浏览器截图已保存在 `outputs/long-run/final-v2-20261122/`。内容合并、CI 部署、关键线上路径、Pagefind 查询/导航、代表页面多视口和在线依赖审计均已完成。
