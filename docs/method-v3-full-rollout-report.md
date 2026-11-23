@@ -55,4 +55,4 @@ Hifiasm 页面单独使用 `HifiasmPageV3.astro` 与 `config/hifiasm.ts`，保�
 
 ## Pull Request
 
-PR 链接将在创建后补入此处。
+PR：[https://github.com/hao1006sy-source/phytomethods/pull/20](https://github.com/hao1006sy-source/phytomethods/pull/20)。当前保持开放，未合并。
