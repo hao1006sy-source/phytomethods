@@ -94,6 +94,53 @@ export const methodChronologies: Record<string, MethodChronology> = {
         source: 'MBE 2014 selscan-paper'
       }
     ]
+  },
+  msmc: {
+    methodId: 'msmc',
+    name: 'MSMC',
+    firstReleaseYear: 2014,
+    firstReleaseSource: 'Schiffels S, Durbin R. Inferring human population size and separation history from multiple genome sequences. Nature Genetics 2014; 46(8):919–925. DOI: 10.1038/ng.3015',
+    canonicalPaperId: 'msmc-paper',
+    canonicalPaperYear: 2014,
+    knownVersions: [
+      {
+        version: 'MSMC 1.0.0',
+        releaseYear: 2014,
+        doi: '10.1038/ng.3015',
+        source: 'Nature Genetics 2014 msmc-paper'
+      },
+      {
+        version: 'MSMC 1.1.0',
+        releaseYear: 2017,
+        note: 'Cubry et al. (Current Biology 2018) 非洲稻研究所使用的 MSMC 版本'
+      }
+    ]
+  },
+  msmc2: {
+    methodId: 'msmc2',
+    name: 'MSMC2',
+    firstReleaseYear: 2016,
+    firstReleaseSource: 'Schiffels S. MSMC2 GitHub Release v2.0.0 (2016-05-16). https://github.com/stschiff/msmc2',
+    canonicalPaperId: 'msmc2-protocol',
+    canonicalPaperYear: 2020,
+    knownVersions: [
+      {
+        version: 'v2.0.0',
+        releaseYear: 2016,
+        source: 'GitHub Release v2.0.0 (2016-05-16)'
+      },
+      {
+        version: 'v2.1.1',
+        releaseYear: 2018,
+        source: 'GitHub Release v2.1.1'
+      },
+      {
+        version: 'v2.1.2',
+        releaseYear: 2020,
+        doi: '10.1007/978-1-0716-0199-0_7',
+        source: 'Methods Mol Biol 2020 msmc2-protocol'
+      }
+    ]
   }
 };
 

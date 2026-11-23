@@ -92,21 +92,7 @@ export function resolvePaperMethodRelation({
   // 4. 基础科学关系语义判定（根据研究类型原生赋予，与时序审核解耦）
   const baseRelation: RelationType = paperType === 'application' ? 'uses_method' : 'references_method';
 
-  // 5. 专项版本时序或代际对应检查（如 MSMC v1 与 MSMC2）
-  if (paperId === 'african-rice-246-genomes' && targetMethodId === 'msmc2') {
-    return {
-      relation: 'uses_method',
-      evidence: createEvidence({
-        sourceType: 'paper',
-        sourceId: paperId,
-        doi: paperDoi,
-        note: `[版本对应待核实] Cubry 等 (Current Biology 2018) 在 STAR Methods 实际运行的是 MSMC (v1) 算法分析自交伪二倍体，而非 2020 年正式发布的 MSMC2 软件，标记为待复核。`,
-        verificationStatus: 'needs_review'
-      })
-    };
-  }
-
-  // 6. 时序合法性审核（查询软件确凿的首发年份）
+  // 5. 时序合法性审核（查询软件确凿的首发年份）
   const { firstReleaseYear, source: releaseSource, isExplicitReleaseYear } = getMethodFirstReleaseYear(
     targetMethodId,
     targetMethodYear
