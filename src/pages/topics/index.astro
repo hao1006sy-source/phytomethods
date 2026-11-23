@@ -1,6 +1,8 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { domains } from '../../data/domains';
+import {domains} from '../../data/domains';
+import {topicMetadata} from '../../data/topics';
 const base=import.meta.env.BASE_URL;
+const published=topicMetadata.filter(t=>t.status==='published');
 ---
-<Base title="研究领域"><h1>研究领域</h1><div class="grid">{domains.map(([id,slug,title,summary]) => <article class="card"><span class="id">{id}</span><h2>{title}</h2><p>{summary}</p><a href={`${base}topics/${slug}/`}>进入领域 →</a></article>)}</div></Base>
+<Base title="研究领域"><section class="nav-v3"><header class="nav-intro"><div><p class="nav-overline">RESEARCH AREAS</p><h1>研究领域</h1><p>沿植物基因组学研究流程浏览九大研究方向，从科学问题进入专题、方法与文献。</p></div><p class="nav-metric"><b>{domains.length}</b> 研究领域 <b>{published.length}</b> 专题文章</p></header><h2 class="nav-section-title">按研究方向探索</h2><div class="domain-grid">{domains.map(([id,slug,title,summary])=><a class="domain-row" href={`${base}topics/${slug}/`}><span class="id">{id}</span><h2>{title}</h2><p>{summary}</p><div class="domain-bottom"><span>{published.filter(t=>t.domainId===slug).length} 个专题</span><span>浏览领域 →</span></div></a>)}</div></section></Base>

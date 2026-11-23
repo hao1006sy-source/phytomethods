@@ -49,35 +49,6 @@ body.home-body {
   gap: 26px;
 }
 
-.home-body .brand-lockup {
-  gap: 10px;
-}
-
-.home-body .brand-lockup {
-  padding-right: 20px;
-  border-right: 1px solid var(--home-border);
-}
-
-.home-body .brand-mark {
-  width: 34px;
-  height: 34px;
-  background: transparent;
-  color: var(--home-green);
-}
-
-.home-body .brand-name {
-  color: var(--home-navy);
-  font-family: var(--home-sans);
-  font-size: 1.2rem;
-  letter-spacing: -0.02em;
-}
-
-.home-body .brand-sub {
-  color: var(--home-muted);
-  font-size: 0.69rem;
-  line-height: 1.35;
-}
-
 .home-body .site-nav {
   gap: 4px;
 }
@@ -631,12 +602,6 @@ body.home-body {
   padding-bottom: 23px;
 }
 
-.home-body .footer-brand {
-  color: var(--home-navy);
-  font-family: var(--home-sans);
-  font-size: 1.05rem;
-}
-
 .home-body .footer-note {
   color: var(--home-muted);
   font-size: 0.76rem;
@@ -744,24 +709,6 @@ body.home-body {
   .home-body .header-inner {
     min-height: 68px;
     gap: 10px;
-  }
-
-  .home-body .brand-lockup {
-    gap: 7px;
-  }
-
-  .home-body .brand-mark {
-    width: 31px;
-    height: 31px;
-  }
-
-  .home-body .brand-name {
-    font-size: 1.08rem;
-  }
-
-  .home-body .brand-sub {
-    max-width: 235px;
-    font-size: 0.61rem;
   }
 
   .home-body .home-main {

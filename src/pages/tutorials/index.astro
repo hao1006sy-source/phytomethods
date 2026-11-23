@@ -1,4 +1,10 @@
 ---
-import Base from '../../layouts/Base.astro';import {getCollection} from 'astro:content';const entries=await getCollection('tutorials',({data})=>data.status==='published');const base=import.meta.env.BASE_URL;
+import Base from '../../layouts/Base.astro';
+import {getCollection} from 'astro:content';
+import {domains} from '../../data/domains';
+const entries=(await getCollection('tutorials',({data})=>data.status==='published')).sort((a,b)=>a.data.title.localeCompare(b.data.title,'zh-CN'));
+const methods=await getCollection('methods',({data})=>data.status==='published');
+const base=import.meta.env.BASE_URL;
+const labels={verified:'已用示例数据运行验证',template:'命令已核对，真实数据待验证','not-tested':'尚未运行验证'};
 ---
-<Base title="分析教程"><h1>分析教程</h1>{entries.map(e=><article class="card"><h2><a href={`${base}tutorials/${e.id}/`}>{e.data.title}</a></h2><p>{e.data.summary}</p><p>{e.data.tested==='verified' ? '已用示例数据运行验证' : e.data.tested==='template' ? '命令已核对，真实数据待验证' : '尚未运行验证'}</p></article>)}</Base>
+<Base title="分析教程"><section class="nav-v3"><header class="nav-intro"><div><p class="nav-overline">ANALYSIS PROTOCOLS</p><h1>分析教程</h1><p>从输入文件、环境配置到结果解释，查阅结构化、可复现的生物信息学操作流程。</p></div><p class="nav-metric"><b>{entries.length}</b> 已发布教程</p></header><form id="filters" class="filters tutorial-filters"><label>研究领域<select name="domain"><option value="">全部领域</option>{domains.map(d=><option value={d[1]}>{d[2]}</option>)}</select></label><label>运行验证状态<select name="tested"><option value="">全部状态</option>{Object.entries(labels).map(([id,label])=><option value={id}>{label}</option>)}</select></label><label>关联工具<select name="method"><option value="">全部工具</option>{methods.filter(m=>entries.some(e=>e.data.method===m.id)).map(m=><option value={m.id}>{m.data.name}</option>)}</select></label><button type="reset">重置筛选</button></form><p id="filter-count" aria-live="polite"></p><div class="list-view">{entries.map((e,index)=>{const method=methods.find(m=>m.id===e.data.method);return <article class="card filter-item" data-domain={method?.data.domainIds.join('|')} data-method={e.data.method} data-tested={e.data.tested}><span class="result-index">{String(index+1).padStart(2,'0')}</span><h2><a href={`${base}tutorials/${e.id}/`}>{e.data.title}</a></h2><p>{e.data.summary}</p><p><span class="nav-tag">{labels[e.data.tested]}</span> {method?.data.name} · {method?.data.domainIds.map(id=>domains.find(d=>d[1]===id)?.[2]).join('、')}</p><a class="result-go" href={`${base}tutorials/${e.id}/`}>查看教程 →</a></article>})}</div></section><script src="../../scripts/filters.ts"></script></Base>
