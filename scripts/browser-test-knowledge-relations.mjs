@@ -51,22 +51,42 @@ const server = http.createServer((req, res) => {
 await new Promise((resolve) => server.listen(port, '127.0.0.1', () => resolve(true)));
 console.log(`[Test Server] Ready at ${base}`);
 
-// 查找本机 Chrome/Edge 可执行文件
-const browserExecutablePaths = [
-  'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe',
-  'C:\\Program Files\\Microsoft\\Edge\\Application\\msedge.exe',
-  'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
-  'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe'
-];
-const executablePath = browserExecutablePaths.find(p => fs.existsSync(p));
-if (!executablePath) {
-  throw new Error('No Edge/Chrome browser binary found for Playwright testing.');
+// 跨平台查找系统 Chrome / Edge 可执行文件，或回退至 Playwright 默认二进制
+const launchOptions = { headless: true };
+let executablePath = null;
+
+if (process.platform === 'win32') {
+  const winPaths = [
+    'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe',
+    'C:\\Program Files\\Microsoft\\Edge\\Application\\msedge.exe',
+    'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
+    'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe'
+  ];
+  executablePath = winPaths.find(p => fs.existsSync(p));
+} else if (process.platform === 'linux') {
+  const linuxPaths = [
+    '/usr/bin/google-chrome',
+    '/usr/bin/google-chrome-stable',
+    '/usr/bin/chromium-browser',
+    '/usr/bin/chromium'
+  ];
+  executablePath = linuxPaths.find(p => fs.existsSync(p));
+} else if (process.platform === 'darwin') {
+  const macPaths = [
+    '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+    '/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge'
+  ];
+  executablePath = macPaths.find(p => fs.existsSync(p));
 }
 
-const browser = await chromium.launch({
-  executablePath,
-  headless: true
-});
+if (executablePath) {
+  launchOptions.executablePath = executablePath;
+  console.log(`[Browser] Using system browser: ${executablePath}`);
+} else {
+  console.log(`[Browser] Using Playwright default bundled chromium`);
+}
+
+const browser = await chromium.launch(launchOptions);
 
 const testResults = {
   passed: 0,
@@ -78,12 +98,6 @@ function recordPass(msg) {
   testResults.passed++;
   testResults.assertions.push({ status: 'PASS', msg });
   console.log(`  ✓ ${msg}`);
-}
-
-function recordFail(msg) {
-  testResults.failed++;
-  testResults.assertions.push({ status: 'FAIL', msg });
-  console.error(`  ✗ ${msg}`);
 }
 
 try {
