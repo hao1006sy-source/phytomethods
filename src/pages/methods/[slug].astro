@@ -4,10 +4,21 @@ import HifiasmPageV3 from '../../components/method-v3/HifiasmPageV3.astro';
 import Base from '../../layouts/Base.astro';
 import DraftPreview from '../../components/DraftPreview.astro';
 import { getCollection } from 'astro:content';
-export async function getStaticPaths(){return (await getCollection('methods',({data})=>data.status==='published'||import.meta.env.DEV)).map(entry=>({params:{slug:entry.id},props:{entry}}));}
-const allMethods=await getCollection('methods',({data})=>data.status==='published'||import.meta.env.DEV);
-const {entry}=Astro.props;const papers=await getCollection('papers',({data})=>data.status==='published'||import.meta.env.DEV);const tutorials=await getCollection('tutorials',({data})=>data.status==='published'||import.meta.env.DEV);
----
-<Base title={entry.data.title}>{entry.id==='hifiasm'?<HifiasmPageV3 entry={entry} papers={papers} tutorials={tutorials} methods={allMethods}/>:<><DraftPreview status={entry.data.status}/><MethodPageLayout entry={entry} papers={papers} tutorials={tutorials} methods={allMethods}/></>}</Base>
 
-<style>.resource-heading{background:#fff;border:1px solid var(--border);border-radius:12px;padding:36px 40px}.resource-type{color:var(--teal);font-size:.78rem;font-weight:700}.resource-heading h1{margin:8px 0 12px}.resource-meta{display:flex;flex-wrap:wrap;gap:24px;margin:24px 0;color:var(--muted);font-size:.8rem}.resource-meta b{display:block;color:var(--ink);font-size:.9rem;margin-top:4px}.resource-actions{display:flex;gap:10px;flex-wrap:wrap}.resource-actions a{border:1px solid var(--border);padding:8px 14px;border-radius:7px;text-decoration:none;font-size:.85rem;font-weight:700}.resource-actions a:first-child{background:var(--teal);border-color:var(--teal);color:#fff}@media(max-width:700px){.resource-heading{padding:24px}.resource-meta{gap:16px}}</style>
+export async function getStaticPaths() {
+  const entries = await getCollection('methods', ({ data }) => data.status === 'published' || import.meta.env.DEV);
+  return entries.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+const allMethods = await getCollection('methods', ({ data }) => data.status === 'published' || import.meta.env.DEV);
+const { entry } = Astro.props;
+const papers = await getCollection('papers', ({ data }) => data.status === 'published' || import.meta.env.DEV);
+const tutorials = await getCollection('tutorials', ({ data }) => data.status === 'published' || import.meta.env.DEV);
+---
+
+<Base title={entry.data.title} description={entry.data.summary}>
+  <DraftPreview status={entry.data.status} />
+  {entry.id === 'hifiasm'
+    ? <HifiasmPageV3 entry={entry} papers={papers} tutorials={tutorials} methods={allMethods} />
+    : <MethodPageLayout entry={entry} papers={papers} tutorials={tutorials} methods={allMethods} />}
+</Base>

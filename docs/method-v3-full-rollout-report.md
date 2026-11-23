@@ -3,7 +3,7 @@
 ## 变更范围
 
 - 分支：`feat/method-v3-full-rollout`
-- 基线：`origin/main`，提交 `5c83e8d`
+- 初始基线：`origin/main`，提交 `5c83e8d`；后续已同步最新 `main` 至 `0f956d7`（PR #19）
 - 结果：58 个算法与工具详情页统一使用 V3 页面框架；Hifiasm 保留已验收的专属样式与示例。
 - 未修改 `src/content/methods/` 下的 58 篇原始 Markdown。
 
@@ -37,8 +37,8 @@ Hifiasm 页面单独使用 `HifiasmPageV3.astro` 与 `config/hifiasm.ts`，保�
 | --- | --- |
 | `npm run check` | 通过，88 个文件，0 错误、0 警告、0 提示 |
 | `npm run build` | 通过，生成 279 个静态页面 |
-| Pagefind | 索引 279 页、39,125 个词 |
-| `npm run validate` | 通过；首页精选和领域数据校验通过；11,330 个本地链接、0 错误 |
+| Pagefind | 索引 279 页、39,227 个词 |
+| `npm run validate` | 通过；首页精选和领域数据校验通过；11,332 个本地链接、0 错误 |
 | `npm run coverage` | 通过；9 个领域各 7 个已发布专题，工具、论文、教程关系均来自现有内容集合 |
 | `npm run test:methods-v3` | 通过；58/58 详情页、329 个 Markdown 分块对照、84 个视口检查、0 页面错误 |
 | 截图 | 58 张桌面截图、12 张 390px 手机长截图、3 张图表交互截图、10 张总览图 |
@@ -55,4 +55,4 @@ Hifiasm 页面单独使用 `HifiasmPageV3.astro` 与 `config/hifiasm.ts`，保�
 
 ## Pull Request
 
-PR：[https://github.com/hao1006sy-source/phytomethods/pull/20](https://github.com/hao1006sy-source/phytomethods/pull/20)。当前保持开放，未合并。
+PR：[https://github.com/hao1006sy-source/phytomethods/pull/20](https://github.com/hao1006sy-source/phytomethods/pull/20)。已同步 `main` 并在合并后的代码上复测，当前保持开放，未合并。

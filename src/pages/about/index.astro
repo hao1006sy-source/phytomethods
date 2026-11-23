@@ -1,4 +1,74 @@
 ---
 import Base from '../../layouts/Base.astro';
+const base = import.meta.env.BASE_URL;
 ---
-<Base title="关于本站"><h1>关于本站</h1><p>PhytoMethods 是植物基因组学与生物信息学方法知识库，汇集研究领域、方法论文、工具与教程。</p><p>方法记录以原始论文和官方软件文档为来源；教程中的命令模板与实际运行记录分开标记。</p></Base>
+<Base title="关于本站" description="关于 PhytoMethods——植物基因组学与生物信息学方法知识库，了解建站初衷、内容体系、数据来源、引用规范与贡献方式。">
+<article class="about-wrap">
+  <h1>关于 PhytoMethods</h1>
+  <p class="page-lead">植物基因组学与生物信息学方法知识库——系统整理算法、工具、文献与实战教程。</p>
+
+  <section>
+    <h2>建站初衷</h2>
+    <p>植物基因组学正处于技术爆发期：长读长测序、三代 Hi-C、单细胞多组学……新方法层出不穷，但分散在数百篇论文和 GitHub 仓库中，缺乏统一的学习入口。PhytoMethods 希望成为连接"科学问题"与"计算方法"的桥梁，帮助研究者快速定位适用工具、理解算法原理并找到可复现的操作流程。</p>
+  </section>
+
+  <section>
+    <h2>内容体系</h2>
+    <p>网站围绕植物基因组学研究生命周期，划分为九大研究领域（M01–M09）：</p>
+    <ul>
+      <li><strong>M01</strong> 测序与基因组组装</li>
+      <li><strong>M02</strong> 基因组注释与重复序列</li>
+      <li><strong>M03</strong> 泛基因组与结构变异</li>
+      <li><strong>M04</strong> 比较基因组学与演化</li>
+      <li><strong>M05</strong> 群体遗传与驯化</li>
+      <li><strong>M06</strong> 全基因组关联分析与分子育种</li>
+      <li><strong>M07</strong> 表观基因组与三维基因组</li>
+      <li><strong>M08</strong> 单细胞与空间组学</li>
+      <li><strong>M09</strong> 调控网络与组学人工智能</li>
+    </ul>
+    <p>每个领域包含多篇专题文章，每篇文章关联相关算法工具、核心文献与实战教程，形成完整的知识网络。</p>
+  </section>
+
+  <section>
+    <h2>数据来源与引用规范</h2>
+    <ul>
+      <li>方法记录以<strong>原始方法论文</strong>和<strong>官方软件文档</strong>为首要来源，每个工具页均链接至对应论文 DOI。</li>
+      <li>教程中区分两类内容：<em>已用示例数据运行验证</em>的命令标注"已验证"；仅核对语法尚未运行的标注"命令已核对"。</li>
+      <li>如需在学术论著中引用本站内容，请同时注明原始文献出处，不建议将本站作为第一手引用来源。</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>参与贡献</h2>
+    <p>本项目开源于 GitHub，欢迎通过 Issue 或 Pull Request 参与贡献：</p>
+    <ul>
+      <li>发现错误或过时内容？请提 <a href="https://github.com/hao1006sy-source/phytomethods/issues" target="_blank" rel="noreferrer">Issue ↗</a></li>
+      <li>希望补充工具、文献或教程？请直接提 Pull Request</li>
+      <li>大规模内容贡献前建议先开 Issue 讨论结构与格式</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>免责声明</h2>
+    <p>本站内容仅供学习与参考，不构成对任何具体实验结果的保证。工具的适用性取决于具体数据和研究背景，请结合原始文献自行判断。</p>
+  </section>
+
+  <nav class="about-nav">
+    <a href={`${base}topics/`}>浏览研究领域 →</a>
+    <a href={`${base}methods/`}>查看算法与工具 →</a>
+    <a href="https://github.com/hao1006sy-source/phytomethods" target="_blank" rel="noreferrer">GitHub 仓库 ↗</a>
+  </nav>
+</article>
+</Base>
+
+<style>
+.about-wrap{max-width:780px}
+.about-wrap section{margin:2rem 0;padding-bottom:1.5rem;border-bottom:1px solid var(--border)}
+.about-wrap section:last-of-type{border-bottom:none}
+.about-wrap h2{font-size:1.3rem;margin:0 0 .75rem}
+.about-wrap ul{padding-left:1.4rem;line-height:1.9}
+.about-nav{display:flex;flex-wrap:wrap;gap:12px;margin-top:2.5rem}
+.about-nav a{border:1px solid var(--border);padding:10px 20px;border-radius:8px;text-decoration:none;font-weight:600;font-size:.9rem}
+.about-nav a:first-child{background:var(--teal);border-color:var(--teal);color:#fff}
+@media(max-width:600px){.about-nav{flex-direction:column}}
+</style>
