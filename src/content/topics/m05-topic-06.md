@@ -2,7 +2,7 @@
 title: 群体历史动态
 summary: 通过共祖模型和全基因组序列推断有效群体大小变化、谱系分化与时间尺度。
 domain: population-genetics
-methods: [psmc, msmc2, smcpp]
+methods: [psmc, msmc, msmc2, smcpp]
 status: published
 updatedAt: 2026-11-22
 ---

@@ -8,7 +8,7 @@ domainIds: [population-genetics]
 topicIds: [m05-topic-06]
 principleIds: [sequentially-markovian-coalescent, coalescent-hidden-markov-model]
 dataIds: [variant-data, phased-haplotype-data, callable-region-mask]
-paper: msmc-paper
+paper: msmc2-protocol
 repository: https://github.com/stschiff/msmc2
 status: published
 updatedAt: 2026-11-22
@@ -16,7 +16,7 @@ updatedAt: 2026-11-22
 
 ## 一句话简介与开发背景
 
-MSMC2 是 Multiple Sequentially Markovian Coalescent 的软件实现更新，用多个基因组序列中的局部共祖信息估计历史有效群体大小和群体间分离过程。方法原始论文由 Schiffels 与 Durbin 于 2014 年发表；MSMC2 仓库提供软件版本和构建说明，2020 年协议说明了 MSMC/MSMC2 的输入准备和计算流程。[方法论文](../../papers/msmc-paper/)；[MSMC2 协议](../../papers/msmc2-protocol/)；[官方软件仓库](https://github.com/stschiff/msmc2)。
+MSMC2 是 Multiple Sequentially Markovian Coalescent 的第二代算法重构实现，通过计算所有单倍型对的成对共祖率复合似然，突破了初代 MSMC 联合隐状态转移矩阵的计算维度瓶颈，从而支持更多样本的高精度群体规模历史与群体分离历史推断。MSMC 初代方法由 Schiffels 与 Durbin 于 2014 年发表；MSMC2 算法由 Stephan Schiffels 于 2016 年完成重构并在 GitHub 开源，其官方操作协议于 2020 年发表在 Methods in Molecular Biology。[MSMC 初代方法](../msmc/)；[MSMC2 协议论文](../../papers/msmc2-protocol/)；[官方软件仓库](https://github.com/stschiff/msmc2)。
 
 ## 研究问题与算法原理
 
@@ -60,7 +60,7 @@ MSMC2 的多样本关系对定相错误、低覆盖、错误的缺失区 mask �
 
 ## 植物案例与实现边界
 
-Cubry 等非洲稻研究根据自交物种的研究设计，把若干单倍型组合成伪二倍体，并使用 MSMC/MSMC2 对多个材料联合估计人口规模历史、另用 PSMC 逐样本分析；方法段分别记载样本构造与 bootstrap 设置。[原文案例](../../papers/african-rice-246-genomes/)。Patil 与 Vijay 使用多个共祖方法比较杨树重复区域处理对历史估计的影响，显示参考重复区和 mask 选择会改变推断结果。[杨树案例](../../papers/populus-repeats-demography/)。
+Patil 与 Vijay 使用包括 MSMC2 在内的多个共祖方法系统评估了杨树重复序列掩蔽处理对种群历史估计的影响，展示了参考基因组重复区与 mask 选择对推断结果的敏感性。[杨树案例](../../papers/populus-repeats-demography/)。注：早期非洲稻群体历史研究（Cubry et al., 2018）实际使用的是初代 MSMC（v1.1.0），详见[MSMC 详情页](../msmc/)。
 
 ## 方法论文、教程与相关工具
 

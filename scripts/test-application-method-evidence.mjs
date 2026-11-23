@@ -87,11 +87,11 @@ for (const entry of verifiedList) {
   assert.strictEqual(edge.relation, 'uses_method');
   assert.ok(edge.evidence.some(ev => ev.verificationStatus === 'source_checked'), `[测试 7 失败] 边 "${expectedEdgeId}" 证据状态不是 source_checked`);
 }
-console.log(`✓ 测试 7 通过: 登记表 55 条关系与图谱构建输出 100% 对应`);
+console.log(`✓ 测试 7 通过: 登记表 ${verifiedList.length} 条关系与图谱构建输出 100% 对应`);
 
 // 8. 检查证据状态统计与 JSON 一致
-assert.strictEqual(graph.stats.evidenceByRelationAndStatus.uses_method.source_checked, 66, 'uses_method 的 source_checked 数量必须为 66 (55新增+11既有)');
-assert.strictEqual(graph.stats.evidenceByRelationAndStatus.uses_method.needs_review, 1, 'uses_method 的 needs_review 数量必须为 1 (Cubry et al. MSMC跨代版本)');
+assert.strictEqual(graph.stats.evidenceByRelationAndStatus.uses_method.source_checked, 67, 'uses_method 的 source_checked 数量必须为 67 (56核验+11重点策展)');
+assert.strictEqual(graph.stats.evidenceByRelationAndStatus.uses_method.needs_review || 0, 0, 'uses_method 的 needs_review 数量必须为 0 (MSMC 专项已纠偏)');
 assert.strictEqual(graph.stats.evidenceByRelationAndStatus.uses_method.structurally_valid || 0, 0, 'uses_method 的 structurally_valid 数量必须为 0');
 assert.strictEqual(graph.stats.edgesByRelation.uses_method, 67, 'uses_method 边数必须为 67');
 assert.strictEqual(graph.stats.edgesByRelation.evaluates_method, 6, 'evaluates_method 边数必须为 6 (含新评估的 rice-variant-comparison -> bcftools)');

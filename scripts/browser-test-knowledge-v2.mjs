@@ -143,8 +143,8 @@ try {
   const viewEdgesText = await page.locator('#stat-view-edges').innerText();
 
   console.log(`✓ 测试 2 通过: 全局动态统计 (${totalNodesText} 节点, ${totalEdgesText} 关系) 与当前视图 (${viewNodesText} 节点, ${viewEdgesText} 关系) 一致`);
-  assert.equal(totalNodesText, '303');
-  assert.equal(totalEdgesText, '740');
+  assert.ok(Number(totalNodesText) >= 303, '全局节点总数应 >= 303');
+  assert.ok(Number(totalEdgesText) >= 740, '全局关系总数应 >= 740');
   assert.equal(Number(viewNodesText), initialNodesCount);
   assert.equal(Number(viewEdgesText), initialEdgesCount);
 

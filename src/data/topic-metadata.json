@@ -1233,11 +1233,13 @@
       "可调用区域",
       "突变率与世代时间",
       "PSMC",
+      "MSMC",
       "MSMC2",
       "SMC++"
     ],
     "methodIds": [
       "psmc",
+      "msmc",
       "msmc2",
       "smcpp"
     ],

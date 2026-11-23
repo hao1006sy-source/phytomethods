@@ -6,7 +6,7 @@ year: 2018
 journal: Current Biology
 doi: 10.1016/j.cub.2018.05.066
 type: application
-methodIds: [psmc, msmc2, smcpp]
+methodIds: [psmc, msmc, smcpp]
 domainIds: [population-genetics]
 speciesIds: [rice]
 status: published
@@ -23,4 +23,4 @@ updatedAt: 2026-11-22
 
 论文报告栽培稻与野生稻均有始于一万年前以上的有效群体规模下降；栽培稻历史曲线约在 3,400 年前达到低点，在约 1,847 年前出现增加信号。作者结合地理数据、单倍型、基因组选择扫描和空间模型解释该变化。曲线的日期受突变率、世代时间和伪二倍体构造影响，代表论文模型尺度下的估计。
 
-资源关联：[PSMC](../../methods/psmc/)、[MSMC2](../../methods/msmc2/)、[SMC++](../../methods/smcpp/)与[群体历史专题](../../topics/population-genetics/m05-topic-06/)。此处 MSMC/MSMC2 的链接指该研究所用的顺序马尔可夫共祖家族流程；具体脚本版本与样本步骤以原文 STAR Methods 为准。
+资源关联：[PSMC](../../methods/psmc/)、[MSMC](../../methods/msmc/)、[SMC++](../../methods/smcpp/)与[群体历史专题](../../topics/population-genetics/m05-topic-06/)。该研究实际使用 MSMC v1.1.0 联合分析多条单倍型；具体脚本版本与样本步骤以原文 STAR Methods（Method Details: MSMC and PSMC）为准。

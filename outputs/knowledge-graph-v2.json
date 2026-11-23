@@ -2,12 +2,12 @@
   "version": "2.1.0",
   "description": "PhytoMethods Scientific Knowledge Graph Schema V2.1 with Evidence & Integrity",
   "stats": {
-    "nodesCount": 303,
-    "edgesCount": 740,
-    "evidenceEntriesCount": 798,
+    "nodesCount": 304,
+    "edgesCount": 743,
+    "evidenceEntriesCount": 801,
     "nodesByType": {
       "domain": 9,
-      "method": 58,
+      "method": 59,
       "paper_method": 70,
       "paper_application": 59,
       "paper_review": 1,
@@ -16,31 +16,31 @@
       "tutorial": 10
     },
     "edgesByRelation": {
-      "belongs_to_domain": 200,
+      "belongs_to_domain": 201,
       "extends_method": 3,
-      "introduces_method": 58,
+      "introduces_method": 59,
       "studies_species": 64,
       "uses_method": 67,
       "references_method": 1,
       "evaluates_method": 6,
-      "features_method": 111,
+      "features_method": 112,
       "references_paper": 220,
       "guides_method": 10
     },
     "evidenceByStatus": {
-      "source_checked": 597,
-      "structurally_valid": 200,
-      "needs_review": 1
+      "source_checked": 600,
+      "structurally_valid": 201,
+      "needs_review": 0
     },
     "evidenceRatiosByStatus": {
-      "source_checked": "74.8%",
+      "source_checked": "74.9%",
       "structurally_valid": "25.1%",
-      "needs_review": "0.1%"
+      "needs_review": "0.0%"
     },
     "evidenceByRelationAndStatus": {
       "belongs_to_domain": {
         "source_checked": 0,
-        "structurally_valid": 200,
+        "structurally_valid": 201,
         "needs_review": 0
       },
       "extends_method": {
@@ -49,7 +49,7 @@
         "needs_review": 0
       },
       "introduces_method": {
-        "source_checked": 116,
+        "source_checked": 117,
         "structurally_valid": 0,
         "needs_review": 0
       },
@@ -59,9 +59,9 @@
         "needs_review": 0
       },
       "uses_method": {
-        "source_checked": 66,
+        "source_checked": 67,
         "structurally_valid": 0,
-        "needs_review": 1
+        "needs_review": 0
       },
       "references_method": {
         "source_checked": 1,
@@ -74,7 +74,7 @@
         "needs_review": 0
       },
       "features_method": {
-        "source_checked": 111,
+        "source_checked": 112,
         "structurally_valid": 0,
         "needs_review": 0
       },
@@ -727,6 +727,23 @@
       }
     },
     {
+      "id": "method:msmc",
+      "type": "method",
+      "label": "MSMC",
+      "slug": "msmc",
+      "href": "/methods/msmc/",
+      "domainIds": [
+        "population-genetics"
+      ],
+      "summary": "经典多序列顺序马尔可夫共祖模型，联合分析多个单倍型推断历史有效群体大小和群体分化时间。",
+      "meta": {
+        "repository": "https://github.com/stschiff/msmc",
+        "dataType": "多样本 VCF、全基因组高置信度位点相位信息、可调用区域 mask 与 multihetsep",
+        "principle": "多序列顺序马尔可夫共祖隐马尔可夫模型（联合拟合多条单倍型共祖状态）",
+        "canonicalPaperId": "msmc-paper"
+      }
+    },
+    {
       "id": "method:msmc2",
       "type": "method",
       "label": "MSMC2",
@@ -740,7 +757,7 @@
         "repository": "https://github.com/stschiff/msmc2",
         "dataType": "多样本 VCF、位点相位信息、可调用区域 mask 与 multihetsep",
         "principle": "多序列顺序马尔可夫共祖隐马尔可夫模型",
-        "canonicalPaperId": "msmc-paper"
+        "canonicalPaperId": "msmc2-protocol"
       }
     },
     {
@@ -1231,7 +1248,7 @@
         ],
         "methodIds": [
           "psmc",
-          "msmc2",
+          "msmc",
           "smcpp"
         ]
       }
@@ -2597,7 +2614,7 @@
         "doi": "10.1038/ng.3015",
         "speciesIds": [],
         "methodIds": [
-          "msmc2"
+          "msmc"
         ]
       }
     },
@@ -5072,6 +5089,7 @@
         "order": 6,
         "methodIds": [
           "psmc",
+          "msmc",
           "msmc2",
           "smcpp"
         ],
@@ -6354,6 +6372,20 @@
       ]
     },
     {
+      "id": "method:msmc|belongs_to_domain|domain:population-genetics",
+      "source": "method:msmc",
+      "target": "domain:population-genetics",
+      "relation": "belongs_to_domain",
+      "evidence": [
+        {
+          "sourceType": "frontmatter",
+          "sourceId": "msmc",
+          "note": "工具 \"msmc\" 归属于领域 \"population-genetics\"。",
+          "verificationStatus": "structurally_valid"
+        }
+      ]
+    },
+    {
       "id": "method:msmc2|belongs_to_domain|domain:population-genetics",
       "source": "method:msmc2",
       "target": "domain:population-genetics",
@@ -6825,17 +6857,17 @@
       ]
     },
     {
-      "id": "paper:african-rice-246-genomes|uses_method|method:msmc2",
+      "id": "paper:african-rice-246-genomes|uses_method|method:msmc",
       "source": "paper:african-rice-246-genomes",
-      "target": "method:msmc2",
+      "target": "method:msmc",
       "relation": "uses_method",
       "evidence": [
         {
           "sourceType": "paper",
           "sourceId": "african-rice-246-genomes",
           "doi": "10.1016/j.cub.2018.05.066",
-          "note": "[版本对应待核实] Cubry 等 (Current Biology 2018) 在 STAR Methods 实际运行的是 MSMC (v1) 算法分析自交伪二倍体，而非 2020 年正式发布的 MSMC2 软件，标记为待复核。",
-          "verificationStatus": "needs_review"
+          "note": "Cubry 等 (Current Biology 2018) 在 STAR Methods 明确记录运行 MSMC (v1.1.0) 对水稻单倍型组合进行多序列顺序马尔可夫共祖分析，并执行 6 次 bootstrap 评估波动。 [联合分析自交纯合背景下构建的 4 条单倍型（2 个材料组合），估计非洲栽培稻与野生祖先群体分离与规模变迁。；版本: v1.1.0；出处: STAR Methods - Method Details: MSMC and PSMC]",
+          "verificationStatus": "source_checked"
         }
       ]
     },
@@ -9313,23 +9345,23 @@
       ]
     },
     {
-      "id": "paper:msmc-paper|introduces_method|method:msmc2",
+      "id": "paper:msmc-paper|introduces_method|method:msmc",
       "source": "paper:msmc-paper",
-      "target": "method:msmc2",
+      "target": "method:msmc",
       "relation": "introduces_method",
       "evidence": [
         {
           "sourceType": "official_documentation",
-          "sourceId": "msmc2",
+          "sourceId": "msmc",
           "doi": "10.1038/ng.3015",
-          "note": "工具 \"MSMC2\" 官方将论文 \"Inferring human population size and separation history from multiple genome sequences\" 指定为奠基方法文献。",
+          "note": "工具 \"MSMC\" 官方将论文 \"Inferring human population size and separation history from multiple genome sequences\" 指定为奠基方法文献。",
           "verificationStatus": "source_checked"
         },
         {
           "sourceType": "official_documentation",
-          "sourceId": "msmc2",
+          "sourceId": "msmc",
           "doi": "10.1038/ng.3015",
-          "note": "工具 \"msmc2\" 官方文档将其指定为原始方法学奠基论文。",
+          "note": "工具 \"msmc\" 官方文档将其指定为原始方法学奠基论文。",
           "verificationStatus": "source_checked"
         }
       ]
@@ -9345,6 +9377,21 @@
           "sourceId": "msmc2-protocol",
           "note": "文献 \"msmc2-protocol\" 归属于领域 \"population-genetics\"。",
           "verificationStatus": "structurally_valid"
+        }
+      ]
+    },
+    {
+      "id": "paper:msmc2-protocol|introduces_method|method:msmc2",
+      "source": "paper:msmc2-protocol",
+      "target": "method:msmc2",
+      "relation": "introduces_method",
+      "evidence": [
+        {
+          "sourceType": "official_documentation",
+          "sourceId": "msmc2",
+          "doi": "10.1007/978-1-0716-0199-0_7",
+          "note": "工具 \"MSMC2\" 官方将论文 \"MSMC and MSMC2: The Multiple Sequentially Markovian Coalescent\" 指定为奠基方法文献。",
+          "verificationStatus": "source_checked"
         }
       ]
     },
@@ -14464,6 +14511,20 @@
           "sourceType": "curated",
           "sourceId": "m05-topic-05",
           "note": "研究专题 \"选择性清除\" 重点精读与学术引证了文献 \"xpehh-paper\"。",
+          "verificationStatus": "source_checked"
+        }
+      ]
+    },
+    {
+      "id": "topic:m05-topic-06|features_method|method:msmc",
+      "source": "topic:m05-topic-06",
+      "target": "method:msmc",
+      "relation": "features_method",
+      "evidence": [
+        {
+          "sourceType": "curated",
+          "sourceId": "m05-topic-06",
+          "note": "研究专题 \"群体历史动态\" 核心技术模块收录了算法 \"msmc\"。",
           "verificationStatus": "source_checked"
         }
       ]
