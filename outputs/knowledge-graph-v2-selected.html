@@ -1,0 +1,1044 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=1600, initial-scale=1"/>
+<title>科研知识关联图 V2 | PhytoMethods</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-page: #FFFFFF;
+  --bg-subtle: #F8FAF9;
+  --bg-mint: #ECF7EF;
+  --bg-mint-deep: #DCF2E2;
+  --border-light: #DFEBE3;
+  --border-mint: #BFD9C9;
+  --primary-deep: #104A36;
+  --primary-interactive: #0E6548;
+  --text-main: #1B332A;
+  --text-muted: #65786E;
+  --text-light: #8E9F96;
+  
+  --c-domain: #0E6548;
+  --c-method: #104A36;
+  --c-paper-method: #226C9C;
+  --c-paper-app: #7A5600;
+  --c-topic: #0D7377;
+  --c-tutorial: #853A12;
+  --c-species: #2E7D32;
+  
+  --font-family: "Noto Sans SC", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg-page);
+  color: var(--text-main);
+  font-family: var(--font-family);
+  -webkit-font-smoothing: antialiased;
+  width: 1600px;
+  height: 900px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.site-header {
+  height: 60px;
+  background: #FFFFFF;
+  border-bottom: 1px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  flex-shrink: 0;
+}
+.brand-lockup {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+.brand-logo-svg {
+  width: 28px;
+  height: 32px;
+}
+.brand-text {
+  display: flex;
+  flex-direction: column;
+}
+.brand-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--primary-deep);
+  letter-spacing: -0.2px;
+  line-height: 1.1;
+}
+.brand-sub {
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: -0.1px;
+}
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.nav-item {
+  color: var(--text-main);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: all 0.15s;
+}
+.nav-item:hover {
+  background: var(--bg-mint);
+  color: var(--primary-interactive);
+}
+.nav-item.active {
+  background: var(--bg-mint);
+  color: var(--primary-deep);
+  font-weight: 600;
+}
+.nav-github {
+  color: var(--text-muted);
+  font-size: 13px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Page Subheader / Bar */
+.page-top-bar {
+  height: 48px;
+  background: var(--bg-subtle);
+  border-bottom: 1px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  flex-shrink: 0;
+}
+.page-title-group {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+.page-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--primary-deep);
+}
+.page-subhead {
+  font-size: 12px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.network-meta-badge {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.stat-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #FFFFFF;
+  border: 1px solid var(--border-light);
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+}
+.stat-pill strong {
+  color: var(--primary-deep);
+}
+
+/* Main 3-Column Layout */
+.explorer-main {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 290px 1fr 410px;
+  background: #FFFFFF;
+  overflow: hidden;
+  height: calc(900px - 108px);
+}
+
+/* Left Column: Exploration & Filters */
+.panel-left {
+  border-right: 1px solid var(--border-light);
+  background: var(--bg-subtle);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  padding: 16px;
+  gap: 18px;
+}
+.search-box-wrap {
+  position: relative;
+}
+.search-input {
+  width: 100%;
+  height: 36px;
+  background: #FFFFFF;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  padding: 0 12px 0 32px;
+  font-size: 13px;
+  color: var(--text-main);
+  outline: none;
+}
+.search-input:focus {
+  border-color: var(--primary-interactive);
+  box-shadow: 0 0 0 2px var(--bg-mint);
+}
+.search-icon {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  width: 16px;
+  height: 16px;
+  stroke: var(--text-muted);
+}
+.filter-group-title {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--primary-deep);
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.filter-reset-btn {
+  font-size: 11px;
+  color: var(--primary-interactive);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.preset-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.preset-chip {
+  background: #FFFFFF;
+  border: 1px solid var(--border-light);
+  padding: 4px 9px;
+  border-radius: 6px;
+  font-size: 12px;
+  color: var(--text-main);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.preset-chip.active {
+  background: var(--bg-mint);
+  border-color: var(--primary-interactive);
+  color: var(--primary-deep);
+  font-weight: 600;
+}
+.filter-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.filter-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #FFFFFF;
+  border: 1px solid var(--border-light);
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+}
+.filter-item:hover {
+  background: var(--bg-mint);
+}
+.filter-left-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.color-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.filter-count {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-family: "Inter", sans-serif;
+}
+
+/* Center Column: Graph Canvas Viewport */
+.panel-center {
+  position: relative;
+  background: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.canvas-bg-grid {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(var(--border-light) 1px, transparent 1px);
+  background-size: 24px 24px;
+  opacity: 0.6;
+}
+.graph-toolbar {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: #FFFFFF;
+  border: 1px solid var(--border-light);
+  box-shadow: 0 2px 8px rgba(16, 74, 54, 0.06);
+  border-radius: 8px;
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  z-index: 10;
+}
+.tool-btn {
+  width: 30px;
+  height: 30px;
+  background: none;
+  border: none;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text-main);
+  font-size: 14px;
+}
+.tool-btn:hover {
+  background: var(--bg-mint);
+  color: var(--primary-deep);
+}
+.graph-legend-overlay {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(4px);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  padding: 8px 14px;
+  display: flex;
+  gap: 16px;
+  font-size: 11px;
+  color: var(--text-muted);
+  z-index: 10;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* SVG Graph Elements */
+.svg-viewport {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.edge-line {
+  stroke: #B8CEBF;
+  stroke-width: 1.6;
+  fill: none;
+  transition: all 0.2s;
+}
+.edge-line.highlight {
+  stroke: var(--primary-interactive);
+  stroke-width: 2.4;
+}
+.edge-label-pill {
+  font-family: var(--font-family);
+  font-size: 10px;
+  font-weight: 500;
+  fill: var(--primary-deep);
+}
+.edge-label-bg {
+  fill: #FFFFFF;
+  stroke: var(--border-mint);
+  stroke-width: 1;
+  rx: 4;
+}
+
+/* Node card */
+.node-g {
+  cursor: pointer;
+}
+.node-card {
+  fill: #FFFFFF;
+  stroke: var(--border-light);
+  stroke-width: 1.5;
+  rx: 8;
+  filter: drop-shadow(0 2px 5px rgba(16, 74, 54, 0.05));
+  transition: all 0.2s;
+}
+.node-g:hover .node-card {
+  stroke: var(--primary-interactive);
+  filter: drop-shadow(0 4px 10px rgba(16, 74, 54, 0.12));
+}
+.node-card.selected {
+  stroke: var(--primary-interactive);
+  stroke-width: 2.5;
+  filter: drop-shadow(0 4px 12px rgba(14, 101, 72, 0.25));
+}
+.node-card.center-hub {
+  fill: var(--bg-mint);
+  stroke: var(--primary-deep);
+  stroke-width: 2;
+}
+.node-badge-rect {
+  rx: 4;
+}
+.node-badge-text {
+  font-size: 9.5px;
+  font-weight: 600;
+  font-family: "Inter", var(--font-family);
+}
+.node-title-text {
+  font-size: 12px;
+  font-weight: 600;
+  fill: var(--text-main);
+  font-family: var(--font-family);
+}
+.node-sub-text {
+  font-size: 10px;
+  fill: var(--text-muted);
+  font-family: var(--font-family);
+}
+
+/* Right Column: Entity Details & Scientific Evidence */
+.panel-right {
+  border-left: 1px solid var(--border-light);
+  background: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  padding: 20px;
+  gap: 16px;
+}
+.panel-header-badge {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.type-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+}
+.type-tag.method { background: #E6F4EA; color: #137333; }
+.type-tag.paper-app { background: #FEF7E0; color: #B06000; }
+.status-pill {
+  font-size: 11px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 7px;
+  border-radius: 10px;
+  background: var(--bg-mint);
+  color: var(--primary-deep);
+  font-weight: 500;
+}
+.entity-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--primary-deep);
+  line-height: 1.25;
+}
+.entity-lead {
+  font-size: 13px;
+  color: var(--text-main);
+  line-height: 1.55;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+.detail-attr-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 12px;
+}
+.attr-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+.attr-label {
+  color: var(--text-muted);
+  width: 65px;
+  flex-shrink: 0;
+}
+.attr-val {
+  color: var(--text-main);
+  font-weight: 500;
+  word-break: break-all;
+}
+.evidence-section-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--primary-deep);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border-light);
+}
+.evidence-card {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-light);
+  border-left: 3px solid var(--primary-interactive);
+  border-radius: 6px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.evidence-card.checked {
+  border-left-color: #137333;
+}
+.evidence-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+}
+.evidence-rel {
+  font-weight: 600;
+  color: var(--primary-deep);
+}
+.evidence-status {
+  padding: 1px 6px;
+  border-radius: 8px;
+  font-size: 10px;
+  font-weight: 600;
+}
+.status-source-checked {
+  background: #E6F4EA;
+  color: #137333;
+}
+.status-struct-valid {
+  background: #F1F3F4;
+  color: #5F6368;
+}
+.evidence-note {
+  font-size: 12px;
+  color: var(--text-main);
+  line-height: 1.45;
+}
+.evidence-doi {
+  font-size: 11px;
+  color: var(--primary-interactive);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+.panel-footer-actions {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 12px;
+}
+.btn-primary-action {
+  height: 38px;
+  background: var(--primary-interactive);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  text-decoration: none;
+}
+.btn-primary-action:hover {
+  background: var(--primary-deep);
+}
+.btn-sub-action {
+  height: 32px;
+  background: var(--bg-mint);
+  color: var(--primary-deep);
+  border: 1px solid var(--border-mint);
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* Empty state on right panel when not selected */
+.empty-overview-box {
+  background: var(--bg-subtle);
+  border: 1px dashed var(--border-light);
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.overview-metric-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.metric-tile {
+  background: #FFFFFF;
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.metric-num {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--primary-deep);
+  font-family: "Inter", sans-serif;
+}
+.metric-label {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="site-header">
+  <a href="#" class="brand-lockup">
+    <svg class="brand-logo-svg" viewBox="0 0 42 48" xmlns="http://www.w3.org/2000/svg">
+      <g stroke="#0d6e43" stroke-width="1.65" stroke-linejoin="round" stroke-linecap="round">
+        <path d="M21 43V22C19 11 25 5 36 5c2 13-4 21-15 23" fill="#92c954"/>
+        <path d="M20 41C11 39 6 32 7 20c9 1 15 9 14 19" fill="#47a365"/>
+        <path d="M22 28 32 11M20 40 10 26" fill="none"/>
+      </g>
+    </svg>
+    <div class="brand-text">
+      <span class="brand-title">PhytoMethods</span>
+      <span class="brand-sub">植物基因组学与生物信息学方法知识库</span>
+    </div>
+  </a>
+  <nav class="site-nav">
+    <a href="#" class="nav-item">首页</a>
+    <a href="#" class="nav-item">研究领域</a>
+    <a href="#" class="nav-item">算法与工具</a>
+    <a href="#" class="nav-item active">知识关联</a>
+    <a href="#" class="nav-item">文献索引</a>
+    <a href="#" class="nav-item">分析教程</a>
+    <a href="#" class="nav-item">搜索</a>
+    <a href="#" class="nav-github">GitHub ↗</a>
+  </nav>
+</header>
+
+<!-- Subheader Bar -->
+<div class="page-top-bar">
+  <div class="page-title-group">
+    <span class="page-title">科研知识关联图 V2</span>
+    <span class="page-subhead">Scientific Knowledge Explorer</span>
+  </div>
+  <div class="network-meta-badge">
+    <span class="stat-pill">知识节点 <strong>303</strong></span>
+    <span class="stat-pill">科学语义关联 <strong>740</strong></span>
+    <span class="stat-pill">核验证据条目 <strong>798</strong></span>
+    <span class="stat-pill">当前视口 <strong>13 节点 / 16 关系</strong></span>
+  </div>
+</div>
+
+<!-- Main 3-Column Layout -->
+<main class="explorer-main">
+  <!-- Left Column -->
+  <aside class="panel-left">
+    <div class="search-box-wrap">
+      <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" class="search-input" placeholder="搜索算法、论文、物种或专题..." value="Hifiasm"/>
+    </div>
+
+    <div>
+      <div class="filter-group-title">
+        <span>经典知识网络预设</span>
+        <button class="filter-reset-btn">重置</button>
+      </div>
+      <div class="preset-chips">
+        <a href="#" class="preset-chip active">🌱 Hifiasm 单倍型组装网络</a>
+        <a href="#" class="preset-chip">🔬 泛基因组图构建工具群</a>
+        <a href="#" class="preset-chip">🧬 OrthoFinder 同源基因网络</a>
+        <a href="#" class="preset-chip">🌾 水稻群体选择扫描流程</a>
+      </div>
+    </div>
+
+    <div>
+      <div class="filter-group-title">
+        <span>研究领域筛选</span>
+      </div>
+      <div class="filter-list">
+        <div class="filter-item" style="border-left: 3px solid #0E6548; background: var(--bg-mint);">
+          <div class="filter-left-label">
+            <span class="color-dot" style="background:#0E6548;"></span>
+            <span style="font-weight:600; color:var(--primary-deep);">M01 基因组组装与单倍型解析</span>
+          </div>
+          <span class="filter-count">4工具·11文献</span>
+        </div>
+        <div class="filter-item">
+          <div class="filter-left-label"><span class="color-dot" style="background:#9E9E9E;"></span><span>M02 基因组重复序列与结构注释</span></div>
+          <span class="filter-count">3工具·7文献</span>
+        </div>
+        <div class="filter-item">
+          <div class="filter-left-label"><span class="color-dot" style="background:#9E9E9E;"></span><span>M03 泛基因组与结构变异</span></div>
+          <span class="filter-count">13工具·25文献</span>
+        </div>
+        <div class="filter-item">
+          <div class="filter-left-label"><span class="color-dot" style="background:#9E9E9E;"></span><span>M04 比较基因组与全基因组复制</span></div>
+          <span class="filter-count">6工具·16文献</span>
+        </div>
+        <div class="filter-item">
+          <div class="filter-left-label"><span class="color-dot" style="background:#9E9E9E;"></span><span>M05 群体遗传学与演化历史</span></div>
+          <span class="filter-count">9工具·26文献</span>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="filter-group-title">
+        <span>节点类型开关</span>
+      </div>
+      <div class="filter-list">
+        <div class="filter-item">
+          <div class="filter-left-label"><span class="color-dot" style="background:#104A36;"></span><span>算法工具 (Methods)</span></div>
+          <span class="filter-count">58</span>
+        </div>
+        <div class="filter-item">
+          <div class="filter-left-label"><span class="color-dot" style="background:#226C9C;"></span><span>方法奠基文献 (Canonical)</span></div>
+          <span class="filter-count">70</span>
+        </div>
+        <div class="filter-item">
+          <div class="filter-left-label"><span class="color-dot" style="background:#7A5600;"></span><span>植物应用论文 (Applications)</span></div>
+          <span class="filter-count">59</span>
+        </div>
+        <div class="filter-item">
+          <div class="filter-left-label"><span class="color-dot" style="background:#853A12;"></span><span>分析实战教程 (Tutorials)</span></div>
+          <span class="filter-count">10</span>
+        </div>
+        <div class="filter-item">
+          <div class="filter-left-label"><span class="color-dot" style="background:#0D7377;"></span><span>科研专题导读 (Topics)</span></div>
+          <span class="filter-count">63</span>
+        </div>
+        <div class="filter-item">
+          <div class="filter-left-label"><span class="color-dot" style="background:#2E7D32;"></span><span>植物研究物种 (Species)</span></div>
+          <span class="filter-count">33</span>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Center Canvas -->
+  <section class="panel-center">
+    <div class="canvas-bg-grid"></div>
+
+    <!-- Floating Canvas Toolbar -->
+    <div class="graph-toolbar">
+      <button class="tool-btn" title="放大">+</button>
+      <button class="tool-btn" title="缩小">−</button>
+      <button class="tool-btn" title="重置视口">⟲</button>
+      <button class="tool-btn" title="力导向布局">⚡</button>
+      <button class="tool-btn" title="全屏查看">⛶</button>
+    </div>
+
+    <!-- Legend Overlay -->
+    <div class="graph-legend-overlay">
+      <div class="legend-item"><span class="color-dot" style="background:#104A36;"></span><span>算法工具</span></div>
+      <div class="legend-item"><span class="color-dot" style="background:#226C9C;"></span><span>奠基文献</span></div>
+      <div class="legend-item"><span class="color-dot" style="background:#7A5600;"></span><span>植物应用</span></div>
+      <div class="legend-item"><span class="color-dot" style="background:#853A12;"></span><span>实战教程</span></div>
+      <div class="legend-item"><span class="color-dot" style="background:#0D7377;"></span><span>研究专题</span></div>
+      <div class="legend-item"><span class="color-dot" style="background:#2E7D32;"></span><span>研究物种</span></div>
+    </div>
+
+    <!-- Scientific Network SVG -->
+    <svg class="svg-viewport" viewBox="0 0 900 790">
+      <defs>
+        <!-- Arrowhead Marker -->
+        <marker id="arrow" viewBox="0 0 10 10" refX="22" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 1 L 10 5 L 0 9 z" fill="#8FAFA0"/>
+        </marker>
+        <marker id="arrow-active" viewBox="0 0 10 10" refX="22" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M 0 1 L 10 5 L 0 9 z" fill="#0E6548"/>
+        </marker>
+      </defs>
+
+      <!-- Network Edges -->
+      <!-- Hifiasm (cx=440, cy=380) -->
+
+      <!-- 1. Domain: genome-assembly (cx=180, cy=140) -> Hifiasm -->
+      <path d="M 440 380 Q 300 240 200 160" class="edge-line highlight" marker-end="url(#arrow-active)"/>
+      <g transform="translate(290, 245)">
+        <rect x="-35" y="-10" width="70" height="20" class="edge-label-bg"/>
+        <text text-anchor="middle" y="4" class="edge-label-pill">归属领域</text>
+      </g>
+
+      <!-- 2. Paper Canonical: hifiasm (cx=170, cy=360) -> Hifiasm -->
+      <path d="M 230 370 L 370 380" class="edge-line highlight" marker-end="url(#arrow-active)"/>
+      <g transform="translate(300, 365)">
+        <rect x="-35" y="-10" width="70" height="20" class="edge-label-bg"/>
+        <text text-anchor="middle" y="4" class="edge-label-pill">提出方法</text>
+      </g>
+
+      <!-- 3. Tutorial: hifiasm-intro (cx=190, cy=580) -> Hifiasm -->
+      <path d="M 240 560 Q 330 480 400 420" class="edge-line highlight" marker-end="url(#arrow-active)"/>
+      <g transform="translate(315, 500)">
+        <rect x="-35" y="-10" width="70" height="20" class="edge-label-bg"/>
+        <text text-anchor="middle" y="4" class="edge-label-pill">教程指导</text>
+      </g>
+
+      <!-- 4. Topic: assembly-graphs (cx=440, cy=130) -> Hifiasm -->
+      <path d="M 440 160 L 440 340" class="edge-line" marker-end="url(#arrow)"/>
+      <g transform="translate(440, 240)">
+        <rect x="-35" y="-10" width="70" height="20" class="edge-label-bg"/>
+        <text text-anchor="middle" y="4" class="edge-label-pill">专题收录</text>
+      </g>
+
+      <!-- 5. Topic: haplotype-resolution (cx=440, cy=630) -> Hifiasm -->
+      <path d="M 440 595 L 440 425" class="edge-line" marker-end="url(#arrow)"/>
+      <g transform="translate(440, 520)">
+        <rect x="-35" y="-10" width="70" height="20" class="edge-label-bg"/>
+        <text text-anchor="middle" y="4" class="edge-label-pill">核心收录</text>
+      </g>
+
+      <!-- 6. Paper App: macadamia (cx=700, cy=240) -> Hifiasm -->
+      <path d="M 640 260 Q 550 310 490 355" class="edge-line highlight" marker-end="url(#arrow-active)"/>
+      <g transform="translate(570, 300)">
+        <rect x="-35" y="-10" width="70" height="20" class="edge-label-bg"/>
+        <text text-anchor="middle" y="4" class="edge-label-pill">实际使用</text>
+      </g>
+
+      <!-- 7. Paper App: arabidopsis-69 (cx=720, cy=380) -> Hifiasm -->
+      <path d="M 650 380 L 495 380" class="edge-line highlight" marker-end="url(#arrow-active)"/>
+      <g transform="translate(575, 370)">
+        <rect x="-35" y="-10" width="70" height="20" class="edge-label-bg"/>
+        <text text-anchor="middle" y="4" class="edge-label-pill">实际使用</text>
+      </g>
+
+      <!-- 8. Paper App: wild-rice-2025 (cx=700, cy=520) -> Hifiasm -->
+      <path d="M 640 500 Q 550 450 490 405" class="edge-line highlight" marker-end="url(#arrow-active)"/>
+      <g transform="translate(570, 460)">
+        <rect x="-35" y="-10" width="70" height="20" class="edge-label-bg"/>
+        <text text-anchor="middle" y="4" class="edge-label-pill">实际使用</text>
+      </g>
+
+      <!-- 9. macadamia -> species:macadamia (cx=730, cy=110) -->
+      <path d="M 720 205 L 730 145" class="edge-line" marker-end="url(#arrow)"/>
+      <g transform="translate(725, 175)">
+        <rect x="-30" y="-9" width="60" height="18" class="edge-label-bg"/>
+        <text text-anchor="middle" y="4" class="edge-label-pill">研究物种</text>
+      </g>
+
+      <!-- 10. arabidopsis-69 -> species:arabidopsis (cx=850, cy=460) -->
+      <path d="M 800 395 L 850 435" class="edge-line" marker-end="url(#arrow)"/>
+
+      <!-- Node Cards -->
+      <!-- Center Hub: Hifiasm -->
+      <g class="node-g" transform="translate(370, 350)">
+        <rect width="140" height="64" class="node-card center-hub selected" />
+        <rect x="10" y="8" width="46" height="18" class="node-badge-rect" fill="#104A36"/>
+        <text x="33" y="21" text-anchor="middle" class="node-badge-text" fill="#FFFFFF">算法工具</text>
+        <text x="12" y="43" class="node-title-text" style="font-size:16px; font-weight:700; fill:#104A36;">Hifiasm</text>
+        <text x="12" y="57" class="node-sub-text">单倍型解析组装</text>
+      </g>
+
+      <!-- Node: Domain genome-assembly -->
+      <g class="node-g" transform="translate(90, 115)">
+        <rect width="155" height="52" class="node-card"/>
+        <rect x="8" y="7" width="56" height="16" class="node-badge-rect" fill="#E6F4EA"/>
+        <text x="36" y="19" text-anchor="middle" class="node-badge-text" fill="#0E6548">研究领域</text>
+        <text x="10" y="38" class="node-title-text">M01 基因组组装</text>
+      </g>
+
+      <!-- Node: Method Canonical Paper -->
+      <g class="node-g" transform="translate(50, 340)">
+        <rect width="180" height="58" class="node-card"/>
+        <rect x="8" y="7" width="65" height="16" class="node-badge-rect" fill="#E8F0FE"/>
+        <text x="40" y="19" text-anchor="middle" class="node-badge-text" fill="#1A73E8">方法奠基论文</text>
+        <text x="10" y="38" class="node-title-text">Cheng H. et al. (2021)</text>
+        <text x="10" y="50" class="node-sub-text">Nature Methods 原始论文</text>
+      </g>
+
+      <!-- Node: Tutorial hifiasm-intro -->
+      <g class="node-g" transform="translate(70, 545)">
+        <rect width="170" height="54" class="node-card"/>
+        <rect x="8" y="7" width="56" height="16" class="node-badge-rect" fill="#FCE8E6"/>
+        <text x="36" y="19" text-anchor="middle" class="node-badge-text" fill="#C5221F">分析教程</text>
+        <text x="10" y="38" class="node-title-text">Hifiasm 组装入门</text>
+        <text x="10" y="49" class="node-sub-text">实操步骤 · 验证通过</text>
+      </g>
+
+      <!-- Node: Topic assembly-graphs -->
+      <g class="node-g" transform="translate(365, 105)">
+        <rect width="150" height="52" class="node-card"/>
+        <rect x="8" y="7" width="52" height="16" class="node-badge-rect" fill="#E0F2F1"/>
+        <text x="34" y="19" text-anchor="middle" class="node-badge-text" fill="#00695C">科研专题</text>
+        <text x="10" y="38" class="node-title-text">组装图与核心算法</text>
+      </g>
+
+      <!-- Node: Topic haplotype-resolution -->
+      <g class="node-g" transform="translate(365, 600)">
+        <rect width="150" height="52" class="node-card"/>
+        <rect x="8" y="7" width="52" height="16" class="node-badge-rect" fill="#E0F2F1"/>
+        <text x="34" y="19" text-anchor="middle" class="node-badge-text" fill="#00695C">科研专题</text>
+        <text x="10" y="38" class="node-title-text">单倍型解析策略</text>
+      </g>
+
+      <!-- Node: Paper Application: macadamia -->
+      <g class="node-g" transform="translate(635, 215)">
+        <rect width="175" height="58" class="node-card highlight"/>
+        <rect x="8" y="7" width="65" height="16" class="node-badge-rect" fill="#FEF7E0"/>
+        <text x="40" y="19" text-anchor="middle" class="node-badge-text" fill="#B06000">植物应用论文</text>
+        <text x="10" y="38" class="node-title-text">澳洲坚果组装 (2021)</text>
+        <text x="10" y="50" class="node-sub-text">The Plant Journal 真实案例</text>
+      </g>
+
+      <!-- Node: Paper Application: arabidopsis-69 -->
+      <g class="node-g" transform="translate(650, 355)">
+        <rect width="175" height="58" class="node-card"/>
+        <rect x="8" y="7" width="65" height="16" class="node-badge-rect" fill="#FEF7E0"/>
+        <text x="40" y="19" text-anchor="middle" class="node-badge-text" fill="#B06000">植物应用论文</text>
+        <text x="10" y="38" class="node-title-text">拟南芥69个泛基因组</text>
+        <text x="10" y="50" class="node-sub-text">Nature Genetics (2024)</text>
+      </g>
+
+      <!-- Node: Paper Application: wild-rice -->
+      <g class="node-g" transform="translate(635, 495)">
+        <rect width="175" height="58" class="node-card"/>
+        <rect x="8" y="7" width="65" height="16" class="node-badge-rect" fill="#FEF7E0"/>
+        <text x="40" y="19" text-anchor="middle" class="node-badge-text" fill="#B06000">植物应用论文</text>
+        <text x="10" y="38" class="node-title-text">野生稻泛基因组参考</text>
+        <text x="10" y="50" class="node-sub-text">Nature (2025) 真实应用</text>
+      </g>
+
+      <!-- Node: Species macadamia -->
+      <g class="node-g" transform="translate(670, 95)">
+        <rect width="130" height="46" class="node-card"/>
+        <rect x="8" y="6" width="46" height="15" class="node-badge-rect" fill="#E8F5E9"/>
+        <text x="31" y="17" text-anchor="middle" class="node-badge-text" fill="#2E7D32">植物物种</text>
+        <text x="10" y="34" class="node-title-text">澳洲坚果</text>
+      </g>
+    </svg>
+  </section>
+
+  <!-- Right Column -->
+  <aside class="panel-right">
+    
+    <!-- Selected State: Detailed Evidence Inspector -->
+    <div class="panel-header-badge">
+      <span class="type-tag method">🌱 算法工具 · Method</span>
+      <span class="status-pill">● 来源已核实</span>
+    </div>
+
+    <div>
+      <h2 class="entity-title">Hifiasm</h2>
+      <p style="font-size:12px; color:var(--text-muted); margin-top:2px;">haplotype-resolved de novo assembler</p>
+    </div>
+
+    <div class="entity-lead">
+      基于相位组装图（PAG）的高效单倍型解析组装算法，利用 PacBio HiFi 长读长的高精度与长片段特性，快速生成染色体水平单倍型组装。
+    </div>
+
+    <div class="detail-attr-list">
+      <div class="attr-row">
+        <span class="attr-label">归属领域:</span>
+        <span class="attr-val">M01 测序与基因组组装</span>
+      </div>
+      <div class="attr-row">
+        <span class="attr-label">计算思想:</span>
+        <span class="attr-val">相位组装图 (PAG) / 单倍型气泡解开</span>
+      </div>
+      <div class="attr-row">
+        <span class="attr-label">官方仓库:</span>
+        <span class="attr-val"><a href="https://github.com/chhylp123/hifiasm" style="color:var(--primary-interactive); text-decoration:none;">github.com/chhylp123/hifiasm</a></span>
+      </div>
+      <div class="attr-row">
+        <span class="attr-label">发布状态:</span>
+        <span class="attr-val">已发布 · 发布级标准</span>
+      </div>
+    </div>
+
+    <div class="evidence-section-title">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <span>科学证据可信度溯源 (Evidence Trail)</span>
+    </div>
+
+    <!-- Evidence 1: Canonical Paper -->
+    <div class="evidence-card checked">
+      <div class="evidence-meta-row">
+        <span class="evidence-rel">奠基文献 [introduces_method]</span>
+        <span class="evidence-status status-source-checked">官方已核实</span>
+      </div>
+      <p class="evidence-note">工具 "Hifiasm" 官方手册与 GitHub README 将 Cheng et al. 指定为原始方法学奠基文献。</p>
+      <a href="https://doi.org/10.1038/s41592-020-01056-5" class="evidence-doi" target="_blank">
+        DOI: 10.1038/s41592-020-01056-5 ↗
+      </a>
+    </div>
+
+    <!-- Evidence 2: Plant Application -->
+    <div class="evidence-card checked">
+      <div class="evidence-meta-row">
+        <span class="evidence-rel">植物研究实际使用 [uses_method]</span>
+        <span class="evidence-status status-source-checked">人工文献核实</span>
+      </div>
+      <p class="evidence-note">澳洲坚果研究 (The Plant Journal 2021) 明确记录在长读段分析流程中采用 Hifiasm 生成 14 条染色体高质量单倍型组装。</p>
+      <a href="https://doi.org/10.1111/tpj.15583" class="evidence-doi" target="_blank">
+        DOI: 10.1111/tpj.15583 ↗
+      </a>
+    </div>
+
+    <!-- Evidence 3: Tutorial -->
+    <div class="evidence-card checked">
+      <div class="evidence-meta-row">
+        <span class="evidence-rel">实战教程指导 [guides_method]</span>
+        <span class="evidence-status status-source-checked">实操脚本核验</span>
+      </div>
+      <p class="evidence-note">分析教程 "hifiasm-intro" 完整演示真实环境单倍型分型命令行参数与质量评估标准。</p>
+    </div>
+
+    <div class="panel-footer-actions">
+      <a href="#" class="btn-primary-action">进入算法工具详情页 →</a>
+      <button class="btn-sub-action">以该节点为中心扩展子图</button>
+    </div>
+    
+  </aside>
+</main>
+
+</body>
+</html>

@@ -1,0 +1,105 @@
+---
+import { domains } from '../../data/domains';
+
+interface Props {
+  nodesByType: Record<string, number>;
+}
+
+const { nodesByType } = Astro.props;
+
+const nodeTypeConfigs = [
+  { type: 'method', label: '算法与工具', color: '#104A36' },
+  { type: 'paper_method', label: '方法学论文', color: '#226C9C' },
+  { type: 'paper_application', label: '植物应用论文', color: '#7A5600' },
+  { type: 'topic', label: '科研专题', color: '#0D7377' },
+  { type: 'tutorial', label: '分析教程', color: '#853A12' },
+  { type: 'species', label: '植物物种', color: '#2E7D32' },
+  { type: 'domain', label: '研究领域', color: '#0E6548' }
+];
+---
+
+<aside class="panel-left" aria-label="知识探索控制台">
+  <!-- 搜索框 -->
+  <div class="search-box-wrap">
+    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"></circle>
+      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+    </svg>
+    <input 
+      type="search" 
+      id="explorer-search" 
+      class="search-input" 
+      placeholder="搜索工具、论文、物种或领域..." 
+      autocomplete="off"
+      aria-label="搜索知识实体"
+    />
+    <button type="button" id="search-clear" class="search-clear-btn" aria-label="清除搜索">×</button>
+    <div id="search-dropdown" class="search-results-dropdown" role="listbox"></div>
+  </div>
+
+  <!-- 经典预设网络 -->
+  <div class="filter-section">
+    <div class="filter-group-header">
+      <span>经典网络探索</span>
+    </div>
+    <div class="preset-chips">
+      <button type="button" class="preset-chip active" data-seed="method:hifiasm">
+        <span>🌱 Hifiasm 组装</span>
+      </button>
+      <button type="button" class="preset-chip" data-seed="method:orthofinder">
+        <span>🌿 OrthoFinder 同源</span>
+      </button>
+      <button type="button" class="preset-chip" data-seed="method:minigraph-cactus">
+        <span>🌾 泛基因组分析</span>
+      </button>
+      <button type="button" class="preset-chip" data-seed="method:plink">
+        <span>🍃 群体遗传学</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- 研究领域筛选 -->
+  <div class="filter-section">
+    <div class="filter-group-header">
+      <span>研究领域</span>
+    </div>
+    <select id="filter-domain-select" class="domain-select" aria-label="选择研究领域">
+      <option value="">全部九大领域</option>
+      {domains.map(([code, slug, title]) => (
+        <option value={slug}>{code} {title}</option>
+      ))}
+    </select>
+  </div>
+
+  <!-- 实体类型可见性 -->
+  <div class="filter-section">
+    <div class="filter-group-header">
+      <span>实体类型筛选</span>
+      <button type="button" id="btn-reset-filters" class="filter-reset-link">重置全部</button>
+    </div>
+    <div class="filter-list">
+      {nodeTypeConfigs.map(item => (
+        <label class="filter-checkbox-label">
+          <div class="filter-label-left">
+            <input type="checkbox" class="filter-type-checkbox" value={item.type} checked />
+            <span class="color-dot" style={`background-color: ${item.color}`}></span>
+            <span>{item.label}</span>
+          </div>
+          <span class="filter-item-count">{nodesByType[item.type] || 0}</span>
+        </label>
+      ))}
+    </div>
+  </div>
+
+  <!-- 科学证据级别 -->
+  <div class="filter-section">
+    <div class="filter-group-header">
+      <span>科学证据可信度</span>
+    </div>
+    <select id="filter-evidence-select" class="domain-select" aria-label="筛选科学证据级别">
+      <option value="all">全部证据记录 (798 条)</option>
+      <option value="source_checked">来源已核实 source_checked (541 条)</option>
+      <option value="structurally_valid">结构有效 structurally_valid (257 条)</option>
+    </select>
+  </div>
+</aside>

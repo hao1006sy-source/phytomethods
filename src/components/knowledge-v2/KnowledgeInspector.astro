@@ -1,0 +1,64 @@
+---
+interface Props {
+  totalNodes: number;
+  totalEdges: number;
+  totalEvidence: number;
+}
+
+const { totalNodes, totalEdges, totalEvidence } = Astro.props;
+---
+
+<aside class="panel-right" aria-label="实体属性与科学证据详情">
+  <div id="inspector-content">
+    <div class="panel-header-badge">
+      <span class="type-tag domain">科研知识图谱概览</span>
+      <span class="status-badge source_checked">Schema V2.1</span>
+    </div>
+    <h2 class="entity-title">PhytoMethods 知识探索器</h2>
+    <p class="entity-summary">
+      当前知识图谱收录植物基因组学 {totalNodes} 个知识实体与 {totalEdges} 条科学语义关联。点击图谱中的卡片可探查实体档案；点击连线可溯源学术证据与出版 DOI。
+    </p>
+
+    <div class="evidence-section-header">
+      <span>图谱核心指标</span>
+    </div>
+    <div class="detail-attr-list">
+      <div class="attr-row">
+        <span class="attr-label">收录节点</span>
+        <span class="attr-val"><strong>{totalNodes}</strong> 个（算法 58、文献 130、专题 63、教程 10）</span>
+      </div>
+      <div class="attr-row">
+        <span class="attr-label">语义关系</span>
+        <span class="attr-val"><strong>{totalEdges}</strong> 条严格去重关系</span>
+      </div>
+      <div class="attr-row">
+        <span class="attr-label">证据记录</span>
+        <span class="attr-val"><strong>{totalEvidence}</strong> 条学术证据记录</span>
+      </div>
+      <div class="attr-row">
+        <span class="attr-label">奠基文献</span>
+        <span class="attr-val" style="color:var(--primary-deep)">100% 工具奠基论文闭环</span>
+      </div>
+    </div>
+
+    <div class="evidence-section-header">
+      <span>三级科学证据体系</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <div class="evidence-card" style="border-left-color:var(--primary-interactive)">
+        <div class="evidence-card-title">
+          <span>来源已核实 (source_checked)</span>
+          <span class="status-badge source_checked">541 条 (67.8%)</span>
+        </div>
+        <div class="evidence-card-note">经人工精读核对期刊发表论文、官方 GitHub 仓库或官方文档证实。</div>
+      </div>
+      <div class="evidence-card" style="border-left-color:#3C4043">
+        <div class="evidence-card-title">
+          <span>结构有效 (structurally_valid)</span>
+          <span class="status-badge structurally_valid">257 条 (32.2%)</span>
+        </div>
+        <div class="evidence-card-note">Frontmatter 与双向实体关系严格校验有效。</div>
+      </div>
+    </div>
+  </div>
+</aside>
