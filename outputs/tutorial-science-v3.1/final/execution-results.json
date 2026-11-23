@@ -1,0 +1,151 @@
+{
+  "executedAt": "2026-11-23T23:02:00.582578",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "python": "3.13.9 (tags/v3.13.9:8183fa5, Oct 14 2025, 14:09:13) [MSC v.1944 64 bit (AMD64)]",
+  "records": [
+    {
+      "name": "gwas",
+      "command": [
+        "D:\\Python\\python.exe",
+        "examples/gwas/gwas_demo.py",
+        "--output",
+        "outputs\\tutorial-science-v3.1\\final\\gwas"
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "scanpy",
+      "command": [
+        "work/scanpy-venv/Scripts/python.exe",
+        "examples/single-cell/scanpy_demo.py",
+        "--output",
+        "outputs\\tutorial-science-v3.1\\final\\scanpy"
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "wgcna",
+      "command": [
+        "C:/Program Files/R/R-4.5.1/bin/Rscript.exe",
+        "examples/coexpression/wgcna_demo.R",
+        "outputs\\tutorial-science-v3.1\\final\\wgcna"
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "plink-input",
+      "command": [
+        "D:\\Python\\python.exe",
+        "examples/population/generate_vcf.py",
+        "--output",
+        "outputs\\tutorial-science-v3.1\\final\\simulated.vcf"
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "plink-convert",
+      "command": [
+        "work/plink-20261111/plink.exe",
+        "--vcf",
+        "outputs\\tutorial-science-v3.1\\final\\simulated.vcf",
+        "--make-bed",
+        "--out",
+        "outputs\\tutorial-science-v3.1\\final\\simulated"
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "plink-analysis",
+      "command": [
+        "work/plink-20261111/plink.exe",
+        "--bfile",
+        "outputs\\tutorial-science-v3.1\\final\\simulated",
+        "--freq",
+        "--missing",
+        "--pca",
+        "2",
+        "--out",
+        "outputs\\tutorial-science-v3.1\\final\\analysis"
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "independent-gwas",
+      "command": [
+        "D:\\Python\\python.exe",
+        "scripts/check-gwas-example.py"
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "independent-plink",
+      "command": [
+        "D:\\Python\\python.exe",
+        "scripts/check-plink-example.py"
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "independent-bismark",
+      "command": [
+        "D:\\Python\\python.exe",
+        "scripts/check-bismark-example.py"
+      ],
+      "exitCode": 0
+    },
+    {
+      "dataComparisons": [
+        {
+          "workflow": "gwas",
+          "file": "associations.csv",
+          "identicalToHistorical": true
+        },
+        {
+          "workflow": "gwas",
+          "file": "genotypes.csv",
+          "identicalToHistorical": true
+        },
+        {
+          "workflow": "gwas",
+          "file": "phenotypes.csv",
+          "identicalToHistorical": true
+        },
+        {
+          "workflow": "scanpy",
+          "file": "cell_results.csv",
+          "identicalToHistorical": true
+        },
+        {
+          "workflow": "scanpy",
+          "file": "qc_before.csv",
+          "identicalToHistorical": true
+        },
+        {
+          "workflow": "scanpy",
+          "file": "simulated_counts.csv",
+          "identicalToHistorical": true
+        },
+        {
+          "workflow": "wgcna",
+          "file": "gene_correlations.csv",
+          "identicalToHistorical": true
+        },
+        {
+          "workflow": "wgcna",
+          "file": "modules.csv",
+          "identicalToHistorical": true
+        },
+        {
+          "workflow": "wgcna",
+          "file": "module_eigengenes.csv",
+          "identicalToHistorical": true
+        },
+        {
+          "workflow": "wgcna",
+          "file": "synthetic_expression.tsv",
+          "identicalToHistorical": true
+        }
+      ]
+    }
+  ]
+}

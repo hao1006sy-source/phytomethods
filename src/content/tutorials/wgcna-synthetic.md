@@ -22,7 +22,7 @@ BiocManager::install(c('impute', 'preprocessCore', 'WGCNA'),
                      lib = 'R-library', ask = FALSE, update = FALSE)
 ```
 
-运行时需让 R 找到该库，例如设置 `R_LIBS_USER` 后执行：
+运行时需让 R 找到该库，例如在启动 Rscript 前设置 `R_LIBS_USER` 指向上面安装的绝对库目录后执行。`.libPaths()` 的修改仅在当前 R 进程有效，新启动的 Rscript 需要同一个库路径：
 
 ```bash
 Rscript examples/coexpression/wgcna_demo.R results-wgcna-demo

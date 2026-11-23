@@ -1,0 +1,18 @@
+{
+  "data": "simulated genotypes and phenotype, not real plant data",
+  "seed": 20261121,
+  "samples": 80,
+  "markers": 60,
+  "simulated_causal_marker_1based": 24,
+  "model": "single-marker ordinary least squares, two-sided t test, no covariates",
+  "bonferroni_p": 0.0008333333333333334,
+  "smallest_p_marker": 24,
+  "smallest_p": 4.2169156245228036e-10,
+  "python": "3.13.9",
+  "packages": {
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "matplotlib": "3.11.1"
+  }
+}
+

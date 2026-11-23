@@ -1,0 +1,33 @@
+PLINK v1.9.1 64-bit (11 Nov 2026)                  cog-genomics.org/plink/1.9/
+(C) 2005-2026 Shaun Purcell, Christopher Chang   GNU General Public License v3
+Logging to outputs\tutorial-science-v3.1\final\analysis.log.
+Options in effect:
+  --bfile outputs\tutorial-science-v3.1\final\simulated
+  --freq
+  --missing
+  --out outputs\tutorial-science-v3.1\final\analysis
+  --pca 2
+
+16070 MB RAM detected; reserving 8035 MB for main workspace.
+6 variants loaded from .bim file.
+8 people (0 males, 0 females, 8 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to outputs\tutorial-science-v3.1\final\analysis.nosex
+.
+Using up to 15 threads (change this with --threads).
+Before main variant filters, 8 founders and 0 nonfounders present.
+Calculating allele frequencies... 0%1%2%3%4%5%6%7%8%9%10%11%12%13%14%15%16%17%18%19%20%21%22%23%24%25%26%27%28%29%30%31%32%33%34%35%36%37%38%39%40%41%42%43%44%45%46%47%48%49%50%51%52%53%54%55%56%57%58%59%60%61%62%63%64%65%66%67%68%69%70%71%72%73%74%75%76%77%78%79%80%81%82%83%84%85%86%87%88%89%90%91%92%93%94%95%96%97%98%99% done.
+Total genotyping rate is exactly 1.
+--freq: Allele frequencies (founders only) written to
+outputs\tutorial-science-v3.1\final\analysis.frq .
+--missing: Sample missing data report written to
+outputs\tutorial-science-v3.1\final\analysis.imiss, and variant-based missing
+data report written to outputs\tutorial-science-v3.1\final\analysis.lmiss.
+6 variants and 8 people pass filters and QC.
+Note: No phenotypes present.
+
+6 markers complete.
+Relationship matrix calculation complete.
+[extracting eigenvalues and eigenvectors]
+--pca: Results saved to outputs\tutorial-science-v3.1\final\analysis.eigenval
+and outputs\tutorial-science-v3.1\final\analysis.eigenvec .
+

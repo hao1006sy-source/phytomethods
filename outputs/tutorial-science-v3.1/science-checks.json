@@ -1,0 +1,22 @@
+[
+  {
+    "task": "check",
+    "exitCode": 0
+  },
+  {
+    "task": "build",
+    "exitCode": 0
+  },
+  {
+    "task": "coverage",
+    "exitCode": 0
+  },
+  {
+    "task": "test:knowledge-integrity",
+    "exitCode": 0
+  },
+  {
+    "task": "check:tutorial-science",
+    "exitCode": 0
+  }
+]
