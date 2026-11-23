@@ -131,7 +131,7 @@ const searchTerms = homeCuration.popularQueries;
           </div>
           <ul class="resource-list featured-list">
             {featuredMethods.map((method) => {
-              const domain = domains.find((item) => method.data.domainIds.includes(item[1]));
+              const domain = domains.find((item) => item[1] === method.data.domainIds[0]);
               return (
                 <li>
                   <a class="featured-method" href={`${base}methods/${method.id}/`}>
