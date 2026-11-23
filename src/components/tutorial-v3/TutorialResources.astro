@@ -1,0 +1,7 @@
+---
+const {entry,method,paper}=Astro.props;const base=import.meta.env.BASE_URL;
+---
+<section><h2>ⓘ 教程信息</h2><dl><dt>所属领域</dt><dd><a href={`${base}topics/genome-assembly/`}>M01 测序与基因组组装</a></dd><dt>关联工具</dt><dd>{method.data.name}</dd><dt>验证状态</dt><dd><mark>命令模板已核对</mark></dd><dt>数据类型</dt><dd>官方小型测试数据及示例 HiFi 输入</dd><dt>更新时间</dt><dd>{entry.data.updatedAt.toISOString().slice(0,10)}</dd></dl></section>
+<section><h2>▣ 运行环境</h2><dl><dt>操作系统</dt><dd>Linux 或兼容环境</dd><dt>核心软件</dt><dd>Hifiasm（记录实际版本）</dd><dt>编译依赖</dt><dd>g++、Make、zlib</dd><dt>计算资源</dt><dd>多线程；内存与磁盘按实际数据规模准备</dd></dl></section>
+<section><h2>▱ 输入与输出</h2><dl><dt>输入数据</dt><dd>PacBio HiFi reads<br/>FASTA / FASTQ，支持 gzip</dd><dt>主要输出</dt><dd>GFA 图、相关 contig 与日志；具体命名依据模式和版本</dd></dl></section>
+<section><h2>↗ 相关资源</h2><ul><li><a href={`${base}methods/${method.id}/`}>Hifiasm 算法与工具详情 →</a></li><li><a href={`${base}papers/${paper.id}/`}>方法学论文 · {paper.data.journal} · {paper.data.year} →</a></li><li><a href={`https://doi.org/${paper.data.doi}`}>DOI: {paper.data.doi} ↗</a></li><li><a href={method.data.repository}>Hifiasm 官方 GitHub ↗</a></li><li><a href={`${base}methods/merqury/`}>Merqury 质量评估工具 →</a></li><li><a href="https://busco.ezlab.org/busco_userguide.html">BUSCO 官方指南 ↗</a></li></ul></section>

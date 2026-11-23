@@ -1,0 +1,5 @@
+---
+import {Code} from 'astro:components';
+const {code,lang='bash',label=lang}=Astro.props;
+---
+<div class="tv3-code"><header><b>{label}</b><button type="button" class="tv3-copy" aria-label={`复制 ${label} 代码`}>复制代码</button><span class="tv3-copy-status" aria-live="polite"></span></header><Code code={code} lang={lang} theme="github-dark" /></div>

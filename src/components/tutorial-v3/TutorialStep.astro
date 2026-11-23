@@ -1,0 +1,4 @@
+---
+const {id,title,number}=Astro.props;
+---
+<section id={`tutorial-${id}`} class="tv3-step"><h2>{number&&<span>STEP {String(number).padStart(2,'0')}</span>}{title}</h2><slot/></section>
