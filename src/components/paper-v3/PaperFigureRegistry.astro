@@ -1,0 +1,11 @@
+---
+import PaperFigure from './PaperFigure.astro';
+
+interface Props {
+  paperId: string;
+}
+
+const { paperId } = Astro.props;
+---
+
+{paperId === 'hifiasm' && <PaperFigure />}
