@@ -70,9 +70,12 @@ export interface KnowledgeGraphV2 {
   stats: {
     nodesCount: number;
     edgesCount: number;
+    evidenceEntriesCount?: number;
     nodesByType: Record<NodeType, number>;
     edgesByRelation: Record<RelationType, number>;
     evidenceByStatus: Record<VerificationStatus, number>;
+    evidenceRatiosByStatus?: Record<VerificationStatus, string>;
+    evidenceByRelationAndStatus?: Record<RelationType, Record<VerificationStatus, number>>;
   };
   nodes: KnowledgeNode[];
   edges: KnowledgeEdge[];

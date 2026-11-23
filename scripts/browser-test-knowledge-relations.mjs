@@ -159,6 +159,27 @@ try {
     recordPass(`${slug} 移动端无横向溢出验证通过 (scrollWidth <= 390)`);
   }
 
+  console.log('\n--- 测试 5: PAML、GAPIT 与 XP-EHH 历史版本与科学关联浏览器验证 ---');
+  await page.setViewportSize({ width: 1600, height: 900 });
+
+  // 5.1 验证 mam-positive-selection-2006 页面关联了 PAML 工具
+  await page.goto(`${base}/papers/mam-positive-selection-2006/`, { waitUntil: 'networkidle' });
+  const pamlLink = await page.$('a[href*="/methods/paml/"]');
+  assert.ok(pamlLink, 'mam-positive-selection-2006 页面中应正确关联并跳转至 PAML 工具页');
+  recordPass('MAM 正选择应用论文 (2006) 成功展示并链接至 PAML 工具');
+
+  // 5.2 验证 rice-roots-population 页面关联了 GAPIT 工具
+  await page.goto(`${base}/papers/rice-roots-population/`, { waitUntil: 'networkidle' });
+  const gapitLink = await page.$('a[href*="/methods/gapit/"]');
+  assert.ok(gapitLink, 'rice-roots-population 页面中应正确关联并跳转至 GAPIT 工具页');
+  recordPass('水稻根系研究论文 (2018) 成功展示并链接至 GAPIT 工具');
+
+  // 5.3 验证 xpehh-paper 页面不展示 selscan 关联
+  await page.goto(`${base}/papers/xpehh-paper/`, { waitUntil: 'networkidle' });
+  const selscanLink = await page.$('.paper-linked-group a[href*="/methods/selscan/"]');
+  assert.strictEqual(selscanLink, null, 'xpehh-paper 页面严禁错误关联 selscan 工具卡片');
+  recordPass('XP-EHH 奠基论文 (2007) 确认无错误的 selscan 工具关联');
+
 } finally {
   await browser.close();
   server.close();
