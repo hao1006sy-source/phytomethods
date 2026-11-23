@@ -22,6 +22,7 @@
     "test:papers-v3": "node scripts/browser-test-paper-v3-full-rollout.mjs",
     "test:figure-a11y": "node scripts/browser-test-figure-a11y.mjs",
     "test:methods-v3": "node scripts/browser-test-method-v3-full-rollout.mjs",
+    "test:methods-index-v4": "node scripts/browser-test-methods-index-v4.mjs",
     "check:tutorial-science": "node scripts/check-tutorial-scientific-quality.mjs",
     "check:cafe5": "node scripts/check-cafe5-reproducibility.mjs"
   },

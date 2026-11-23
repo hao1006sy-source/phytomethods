@@ -1,0 +1,675 @@
+/**
+ * PhytoMethods 算法与工具目录 V4 - 方案 B 高密度学术工具目录样式
+ * 遵循专业、紧凑、清晰的高密度学术风格
+ */
+
+.methods-v4 {
+  padding: 0 0 40px;
+}
+
+/* 顶部介绍区：紧凑排版，去除多余纵向留白 */
+.methods-v4 .methods-intro {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 20px;
+  padding: 24px 0 20px;
+  border-bottom: 1px solid var(--border, #cbded0);
+  margin-bottom: 24px;
+}
+
+.methods-v4 .methods-intro-main {
+  max-width: 760px;
+}
+
+.methods-v4 .methods-overline {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #557b66;
+  font-weight: 700;
+  margin: 0 0 4px;
+}
+
+.methods-v4 .methods-intro h1 {
+  font-size: 28px;
+  font-weight: 800;
+  color: #123326;
+  margin: 0 0 6px;
+  line-height: 1.25;
+}
+
+.methods-v4 .methods-lead {
+  font-size: 14px;
+  color: #436253;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.methods-v4 .methods-metric {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: #f2f8f4;
+  border: 1px solid #d4e6db;
+  border-radius: 20px;
+  font-size: 13px;
+  color: #276749;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.methods-v4 .methods-metric svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+/* 主工作区布局：双栏 (左侧筛选区 240px，右侧高密度结果区) */
+.methods-v4 .methods-workspace {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+/* 左侧筛选面板 */
+.methods-v4 .filters-sidebar {
+  background: #ffffff;
+  border: 1px solid #cbded0;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.methods-v4 .filters-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid #e2ede5;
+}
+
+.methods-v4 .filters-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #17382b;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.methods-v4 .filter-group {
+  margin-bottom: 14px;
+}
+
+.methods-v4 .filter-group:last-of-type {
+  margin-bottom: 16px;
+}
+
+.methods-v4 .filter-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: #385949;
+  margin-bottom: 6px;
+}
+
+.methods-v4 .filter-select {
+  width: 100%;
+  padding: 6px 10px;
+  font-size: 13px;
+  color: #1a3328;
+  background-color: #fbfdfc;
+  border: 1px solid #cbded0;
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.methods-v4 .filter-select:focus {
+  border-color: #276749;
+  box-shadow: 0 0 0 2px rgba(39, 103, 73, 0.12);
+}
+
+.methods-v4 .filter-reset-btn {
+  width: 100%;
+  padding: 7px 12px;
+  background: #f4f8f5;
+  border: 1px solid #cbded0;
+  border-radius: 6px;
+  color: #2f6048;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.methods-v4 .filter-reset-btn:hover {
+  background: #e6f1ea;
+  color: #123825;
+  border-color: #b5cebc;
+}
+
+/* 移动端筛选折叠触发栏 */
+.methods-v4 .mobile-filter-toggle {
+  display: none;
+  width: 100%;
+  padding: 10px 14px;
+  margin-bottom: 12px;
+  background: #f2f8f4;
+  border: 1px solid #cbded0;
+  border-radius: 6px;
+  color: #205c3f;
+  font-size: 13px;
+  font-weight: 600;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.methods-v4 .mobile-filter-toggle .toggle-icon {
+  transition: transform 0.2s ease;
+}
+
+.methods-v4 .mobile-filter-toggle[aria-expanded="true"] .toggle-icon {
+  transform: rotate(180deg);
+}
+
+/* 右侧核心区域 */
+.methods-v4 .methods-main {
+  min-width: 0;
+}
+
+/* 搜索栏卡片 */
+.methods-v4 .search-panel {
+  position: relative;
+  background: #ffffff;
+  border: 1px solid #cbded0;
+  border-radius: 8px;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  margin-bottom: 12px;
+}
+
+.methods-v4 .search-icon {
+  color: #648875;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.methods-v4 .search-input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  color: #153226;
+  background: transparent;
+  padding: 4px 0;
+}
+
+.methods-v4 .search-input::placeholder {
+  color: #7b998a;
+  font-size: 13.5px;
+}
+
+.methods-v4 .search-clear-btn {
+  background: none;
+  border: none;
+  padding: 4px;
+  color: #7b998a;
+  cursor: pointer;
+  border-radius: 4px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.methods-v4 .search-clear-btn:hover {
+  color: #276749;
+  background: #eef5f1;
+}
+
+.methods-v4 .search-clear-btn.is-active {
+  display: flex;
+}
+
+/* 已选条件栏 (Active Tags Bar) */
+.methods-v4 .active-filters-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  padding: 8px 12px;
+  background: #fafcfb;
+  border: 1px dashed #cbded0;
+  border-radius: 6px;
+  font-size: 12px;
+}
+
+.methods-v4 .active-filters-label {
+  color: #4b6f5d;
+  font-weight: 600;
+  margin-right: 2px;
+}
+
+.methods-v4 .filter-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #e8f3ed;
+  border: 1px solid #c4ded0;
+  border-radius: 4px;
+  padding: 2px 7px;
+  color: #1d4d36;
+  font-size: 11.5px;
+  font-weight: 600;
+}
+
+.methods-v4 .filter-tag-remove {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: #5d8370;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  line-height: 1;
+}
+
+.methods-v4 .filter-tag-remove:hover {
+  color: #b91c1c;
+}
+
+.methods-v4 .clear-all-btn {
+  background: none;
+  border: none;
+  padding: 2px 6px;
+  color: #0e6548;
+  font-size: 11.5px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.methods-v4 .clear-all-btn:hover {
+  color: #094732;
+}
+
+/* 工具条：数量统计与排序 */
+.methods-v4 .results-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  padding: 0 2px;
+}
+
+.methods-v4 .results-count {
+  font-size: 13px;
+  color: #416353;
+  font-weight: 600;
+  margin: 0;
+}
+
+.methods-v4 .results-count strong {
+  color: #133a2a;
+}
+
+.methods-v4 .sort-control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #4f7361;
+}
+
+.methods-v4 .sort-select {
+  padding: 4px 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #1f4735;
+  background: #ffffff;
+  border: 1px solid #cbded0;
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+}
+
+.methods-v4 .sort-select:focus {
+  border-color: #276749;
+}
+
+/* 高密度学术列表容器 */
+.methods-v4 .methods-list-table {
+  background: #ffffff;
+  border: 1px solid #cbded0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+/* 列表表头 */
+.methods-v4 .table-header {
+  display: grid;
+  grid-template-columns: 56px 160px 1fr 100px;
+  gap: 16px;
+  align-items: center;
+  padding: 10px 16px;
+  background: #f7faf8;
+  border-bottom: 1px solid #d9e7de;
+  font-size: 12px;
+  font-weight: 700;
+  color: #4a6d5c;
+  letter-spacing: 0.02em;
+}
+
+.methods-v4 .th-col-action {
+  text-align: right;
+}
+
+/* 列表数据行 (Row) */
+.methods-v4 .table-row {
+  display: grid;
+  grid-template-columns: 56px 160px 1fr 100px;
+  gap: 16px;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid #e8f0eb;
+  transition: background-color 0.12s ease;
+  text-decoration: none;
+  color: inherit;
+}
+
+.methods-v4 .table-row:last-child {
+  border-bottom: none;
+}
+
+.methods-v4 .table-row:hover {
+  background-color: #f3f9f5;
+}
+
+/* 列 1：序号徽章 */
+.methods-v4 .col-index {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 24px;
+  background: #eef6f1;
+  border: 1px solid #d2e5d9;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #276749;
+  font-variant-numeric: tabular-nums;
+}
+
+/* 列 2：方法名称 (最主要视觉元素) */
+.methods-v4 .col-name {
+  font-size: 15px;
+  font-weight: 800;
+  color: #0e6548;
+  letter-spacing: -0.01em;
+  word-break: break-word;
+}
+
+.methods-v4 .col-name a {
+  color: #0e6548;
+  text-decoration: none;
+}
+
+.methods-v4 .col-name a:hover {
+  text-decoration: underline;
+  color: #084c36;
+}
+
+/* 列 3：综合信息 (用途、领域标签、输入数据、原理) */
+.methods-v4 .col-content {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.methods-v4 .method-summary {
+  font-size: 13px;
+  line-height: 1.45;
+  color: #2c4238;
+  margin: 0;
+  word-break: break-word;
+}
+
+.methods-v4 .method-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #557566;
+}
+
+.methods-v4 .domain-pill {
+  display: inline-block;
+  padding: 1px 7px;
+  background: #e8f4ed;
+  color: #1c5e40;
+  border-radius: 3px;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.methods-v4 .meta-separator {
+  color: #a4beaf;
+}
+
+.methods-v4 .meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.methods-v4 .meta-label {
+  color: #698a7a;
+  font-size: 11px;
+}
+
+.methods-v4 .meta-value {
+  color: #2f5242;
+}
+
+.methods-v4 .meta-principle {
+  color: #6a8578;
+  font-size: 11.5px;
+}
+
+/* 列 4：操作跳转 */
+.methods-v4 .col-action {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.methods-v4 .details-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #0e6548;
+  text-decoration: none;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: all 0.12s ease;
+}
+
+.methods-v4 .details-link:hover {
+  background: #e4f2ea;
+  color: #084833;
+}
+
+/* 无匹配空状态 */
+.methods-v4 .empty-state {
+  display: none;
+  padding: 48px 24px;
+  text-align: center;
+  background: #ffffff;
+  border: 1px solid #cbded0;
+  border-radius: 8px;
+}
+
+.methods-v4 .empty-state.is-visible {
+  display: block;
+}
+
+.methods-v4 .empty-icon {
+  width: 44px;
+  height: 44px;
+  color: #7da590;
+  margin: 0 auto 12px;
+}
+
+.methods-v4 .empty-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #173b2c;
+  margin: 0 0 6px;
+}
+
+.methods-v4 .empty-desc {
+  font-size: 13px;
+  color: #557766;
+  margin: 0 0 16px;
+}
+
+.methods-v4 .empty-reset-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: #0e6548;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.methods-v4 .empty-reset-btn:hover {
+  background: #0a4f38;
+}
+
+/* ================= 响应式适配 ================= */
+
+/* 中等桌面与平板横屏 (1024px ~ 1280px) */
+@media (max-width: 1100px) {
+  .methods-v4 .methods-workspace {
+    grid-template-columns: 220px 1fr;
+    gap: 18px;
+  }
+  .methods-v4 .table-header,
+  .methods-v4 .table-row {
+    grid-template-columns: 46px 140px 1fr 90px;
+    gap: 12px;
+    padding: 10px 12px;
+  }
+}
+
+/* 平板竖屏 (768px ~ 900px) */
+@media (max-width: 900px) {
+  .methods-v4 .methods-workspace {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .methods-v4 .mobile-filter-toggle {
+    display: flex;
+  }
+  .methods-v4 .filters-sidebar {
+    display: none;
+  }
+  .methods-v4 .filters-sidebar.is-expanded {
+    display: block;
+    margin-bottom: 14px;
+  }
+  .methods-v4 .methods-intro {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 18px 0 16px;
+  }
+}
+
+/* 手机端 (<= 640px)：单列高密度卡片式目录 */
+@media (max-width: 640px) {
+  .methods-v4 {
+    padding-bottom: 24px;
+  }
+  .methods-v4 .methods-intro {
+    margin-bottom: 16px;
+  }
+  .methods-v4 .methods-intro h1 {
+    font-size: 24px;
+  }
+  .methods-v4 .table-header {
+    display: none; /* 移动端隐藏表头 */
+  }
+  .methods-v4 .methods-list-table {
+    border: none;
+    background: transparent;
+    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .methods-v4 .table-row {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background: #ffffff;
+    border: 1px solid #cbded0;
+    border-radius: 8px;
+    padding: 14px;
+    gap: 8px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  }
+  .methods-v4 .col-index {
+    display: none; /* 移动端隐藏序号以最大化纵向紧凑性 */
+  }
+  .methods-v4 .col-name {
+    font-size: 16px;
+    font-weight: 800;
+  }
+  .methods-v4 .method-summary {
+    font-size: 13px;
+    color: #334e40;
+  }
+  .methods-v4 .method-meta-row {
+    font-size: 11.5px;
+    gap: 6px;
+  }
+  .methods-v4 .col-action {
+    width: 100%;
+    text-align: left;
+    margin-top: 4px;
+    padding-top: 6px;
+    border-top: 1px dashed #e2ede5;
+  }
+  .methods-v4 .details-link {
+    padding: 0;
+    font-size: 13px;
+  }
+}
