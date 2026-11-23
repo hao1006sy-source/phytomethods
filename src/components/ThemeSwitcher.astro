@@ -1,0 +1,93 @@
+---
+// ThemeSwitcher.astro: 全站深色/浅色/跟随系统三态主题控制器
+---
+<div class="theme-switcher-wrap">
+  <button 
+    type="button" 
+    id="theme-toggle-btn" 
+    class="theme-switch-btn" 
+    aria-label="切换颜色模式 (浅色 / 深色 / 跟随系统)"
+    title="切换颜色模式"
+  >
+    <svg id="theme-icon-light" class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+    <svg id="theme-icon-dark" class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+    </svg>
+    <svg id="theme-icon-system" class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
+      <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+      <line x1="8" y1="21" x2="16" y2="21"></line>
+      <line x1="12" y1="17" x2="12" y2="21"></line>
+    </svg>
+    <span id="theme-toggle-text" class="theme-label">主题</span>
+  </button>
+</div>
+
+<script is:inline>
+(function() {
+  const modes = ['system', 'light', 'dark'];
+  const labels = { system: '系统', light: '浅色', dark: '深色' };
+  
+  function getStoredTheme() {
+    return localStorage.getItem('pm-theme') || 'system';
+  }
+
+  function applyTheme(theme) {
+    if (theme === 'system') {
+      document.documentElement.removeAttribute('data-theme');
+    } else {
+      document.documentElement.setAttribute('data-theme', theme);
+    }
+    updateUI(theme);
+  }
+
+  function updateUI(theme) {
+    const textEl = document.getElementById('theme-toggle-text');
+    const iconLight = document.getElementById('theme-icon-light');
+    const iconDark = document.getElementById('theme-icon-dark');
+    const iconSystem = document.getElementById('theme-icon-system');
+
+    if (textEl) textEl.textContent = labels[theme] || '系统';
+    if (iconLight) iconLight.style.display = theme === 'light' ? 'block' : 'none';
+    if (iconDark) iconDark.style.display = theme === 'dark' ? 'block' : 'none';
+    if (iconSystem) iconSystem.style.display = theme === 'system' ? 'block' : 'none';
+  }
+
+  // 循环切换：system -> light -> dark -> system
+  function cycleTheme() {
+    const current = getStoredTheme();
+    const nextIdx = (modes.indexOf(current) + 1) % modes.length;
+    const nextTheme = modes[nextIdx];
+    localStorage.setItem('pm-theme', nextTheme);
+    applyTheme(nextTheme);
+  }
+
+  // 监听系统偏好变化
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+    if (getStoredTheme() === 'system') {
+      applyTheme('system');
+    }
+  });
+
+  // 页面交互绑定
+  document.addEventListener('DOMContentLoaded', () => {
+    const btn = document.getElementById('theme-toggle-btn');
+    if (btn) {
+      btn.addEventListener('click', cycleTheme);
+    }
+    applyTheme(getStoredTheme());
+  });
+
+  // 立即在 script 执行时根据存储还原，避免闪屏
+  applyTheme(getStoredTheme());
+})();
+</script>

@@ -1,0 +1,74 @@
+{
+  "synonyms": [
+    {
+      "terms": ["全基因组关联分析", "GWAS", "Genome-Wide Association Study", "全基因组关联研究", "全基因组关联分析与分子育种"],
+      "canonical": "GWAS",
+      "category": "gwas-breeding"
+    },
+    {
+      "terms": ["转座子", "TE", "Transposable Element", "重复序列", "转座元件", "反转录转座子"],
+      "canonical": "Transposable Element",
+      "category": "genome-annotation"
+    },
+    {
+      "terms": ["泛基因组", "Pangenome", "Pan-genome", "图泛基因组", "Graph Pangenome", "泛基因组图"],
+      "canonical": "Pangenome",
+      "category": "pangenomics-structural-variation"
+    },
+    {
+      "terms": ["直系同源", "Ortholog", "Orthology", "旁系同源", "Paralogy", "同源基因"],
+      "canonical": "Orthology",
+      "category": "comparative-genomics"
+    },
+    {
+      "terms": ["连锁不平衡", "LD", "Linkage Disequilibrium", "连锁不平衡衰减"],
+      "canonical": "Linkage Disequilibrium",
+      "category": "population-genetics"
+    },
+    {
+      "terms": ["群体结构", "Population Structure", "祖先成分", "群体遗传结构", "主成分分析", "PCA"],
+      "canonical": "Population Structure",
+      "category": "population-genetics"
+    },
+    {
+      "terms": ["单核苷酸多态性", "SNP", "Single Nucleotide Polymorphism", "变异检测", "SNP calling"],
+      "canonical": "SNP",
+      "category": "variant-data"
+    },
+    {
+      "terms": ["基因家族", "Gene Family", "基因收缩与扩张", "基因生灭模型"],
+      "canonical": "Gene Family",
+      "category": "comparative-genomics"
+    },
+    {
+      "terms": ["共表达网络", "Co-expression Network", "WGCNA", "加权基因共表达网络"],
+      "canonical": "Co-expression Network",
+      "category": "regulatory-genomics-ai"
+    },
+    {
+      "terms": ["单细胞 RNA 测序", "scRNA-seq", "单细胞转录组", "Single Cell RNA-seq", "单细胞空间组学"],
+      "canonical": "scRNA-seq",
+      "category": "single-cell-spatial-omics"
+    },
+    {
+      "terms": ["Hi-C", "染色体构象捕获", "三维基因组", "染色质构象", "Hi-C 挂载"],
+      "canonical": "Hi-C",
+      "category": "epigenomics-3d-genome"
+    },
+    {
+      "terms": ["结构变异", "SV", "Structural Variation", "倒位", "易位", "插入缺失"],
+      "canonical": "Structural Variation",
+      "category": "pangenomics-structural-variation"
+    },
+    {
+      "terms": ["表观基因组", "Epigenomics", "DNA甲基化", "DNA Methylation", "亚硫酸氢盐测序"],
+      "canonical": "Epigenomics",
+      "category": "epigenomics-3d-genome"
+    },
+    {
+      "terms": ["SMC++", "SMC", "顺序马尔可夫共祖", "有效群体大小", "PSMC", "MSMC", "MSMC2"],
+      "canonical": "Sequential Markovian Coalescent",
+      "category": "population-genetics"
+    }
+  ]
+}

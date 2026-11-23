@@ -1,0 +1,195 @@
+/**
+ * PhytoMethods 全局主题变量系统 (Light & Dark Mode)
+ * 支持：浅色 (Light)、深色 (Dark) 以及跟随系统偏好 (System)
+ */
+
+:root {
+  --theme-transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+/* 浅色主题变量 (默认) */
+html[data-theme="light"],
+html:not([data-theme="dark"]) {
+  --bg: #f5f7fa;
+  --bg-card: #ffffff;
+  --bg-subtle: #f0f4f8;
+  --bg-input: #ffffff;
+  --text: #243447;
+  --text-heading: #17324d;
+  --text-muted: #687789;
+  --border: #e3e9ef;
+  --border-light: #eef3f7;
+  --teal: #197b73;
+  --teal-hover: #115a56;
+  --teal-soft: #eaf4f2;
+  --teal-border: #cbded0;
+  --shadow: 0 4px 16px rgba(23, 50, 77, 0.05);
+  --code-bg: #132a3c;
+  --code-text: #e7f2f3;
+  --table-header-bg: #f0f5f7;
+  --table-row-hover: #f3f8f6;
+  --header-bg: #ffffff;
+  --footer-bg: #10283c;
+  --footer-text: #ccdae3;
+  --accent-badge-bg: #eaf4ed;
+  --accent-badge-text: #175437;
+  --accent-badge-border: #cce3d4;
+}
+
+/* 深色主题变量 (用户显式选择 dark 或系统偏好暗色模式) */
+html[data-theme="dark"] {
+  --bg: #0d151c;
+  --bg-card: #15222e;
+  --bg-subtle: #1a2a38;
+  --bg-input: #172635;
+  --text: #d2dee9;
+  --text-heading: #eef5fa;
+  --text-muted: #8ca2b5;
+  --border: #233748;
+  --border-light: #1e303f;
+  --teal: #2dd4bf;
+  --teal-hover: #5eead4;
+  --teal-soft: #123833;
+  --teal-border: #1d4d44;
+  --shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  --code-bg: #0b151e;
+  --code-text: #e2f1f2;
+  --table-header-bg: #182836;
+  --table-row-hover: #192c3a;
+  --header-bg: #121c25;
+  --footer-bg: #091017;
+  --footer-text: #9ab1c2;
+  --accent-badge-bg: #123229;
+  --accent-badge-text: #4ade80;
+  --accent-badge-border: #1e4a3b;
+}
+
+/* 跟随系统偏好暗色媒体查询 (当 data-theme 为 system 或未设置时) */
+@media (prefers-color-scheme: dark) {
+  html[data-theme="system"],
+  html:not([data-theme]) {
+    --bg: #0d151c;
+    --bg-card: #15222e;
+    --bg-subtle: #1a2a38;
+    --bg-input: #172635;
+    --text: #d2dee9;
+    --text-heading: #eef5fa;
+    --text-muted: #8ca2b5;
+    --border: #233748;
+    --border-light: #1e303f;
+    --teal: #2dd4bf;
+    --teal-hover: #5eead4;
+    --teal-soft: #123833;
+    --teal-border: #1d4d44;
+    --shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+    --code-bg: #0b151e;
+    --code-text: #e2f1f2;
+    --table-header-bg: #182836;
+    --table-row-hover: #192c3a;
+    --header-bg: #121c25;
+    --footer-bg: #091017;
+    --footer-text: #9ab1c2;
+    --accent-badge-bg: #123229;
+    --accent-badge-text: #4ade80;
+    --accent-badge-border: #1e4a3b;
+  }
+}
+
+/* 全站各基础元素与组件映射深色样式适配 */
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  transition: var(--theme-transition);
+}
+
+.site-header {
+  background: var(--header-bg) !important;
+  border-bottom-color: var(--border) !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-heading) !important;
+}
+
+.card {
+  background: var(--bg-card) !important;
+  border-color: var(--border) !important;
+  color: var(--text) !important;
+}
+
+button, .button, input, select {
+  background: var(--bg-input);
+  color: var(--text);
+  border-color: var(--border);
+}
+
+button:hover, .button:hover {
+  background: var(--bg-subtle);
+  border-color: var(--teal);
+}
+
+th {
+  background: var(--table-header-bg) !important;
+  color: var(--text-heading) !important;
+}
+
+td {
+  border-bottom-color: var(--border) !important;
+  color: var(--text) !important;
+}
+
+.site-nav a {
+  color: var(--text-muted);
+}
+
+.site-nav a:hover,
+.site-nav a[aria-current=page] {
+  background: var(--teal-soft) !important;
+  color: var(--teal) !important;
+}
+
+.nav-github {
+  color: var(--text-muted) !important;
+}
+
+.nav-github:hover {
+  color: var(--teal) !important;
+}
+
+/* 主题切换开关 (Theme Switcher UI) */
+.theme-switch-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  min-height: 36px;
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  background: var(--bg-card);
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+
+.theme-switch-btn:hover {
+  color: var(--teal);
+  border-color: var(--teal);
+}
+
+.theme-switch-btn svg {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+}
+
+/* 打印保持黑白清晰 */
+@media print {
+  html, body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+}
