@@ -1,5 +1,5 @@
 ---
-import type { PaperSection } from './hifiasm-paper';
+import type { PaperSection } from './config/paper-types';
 
 interface Props {
   sections: PaperSection[];
@@ -18,7 +18,7 @@ const { sections } = Astro.props;
     {sections.map((section, index) => (
       <a
         href={`#${section.id}`}
-        class:list={['paper-nav-item', { 'is-active': index === 2 }]}
+        class:list={['paper-nav-item', { 'is-active': index === 0 }]}
         data-paper-nav={section.id}
       >
         <span class="paper-nav-num">{section.number}</span>
@@ -42,12 +42,11 @@ const { sections } = Astro.props;
 </details>
 
 <script>
-  // 滚动监听高亮
+  // 滚动监听高亮与移动端收起
   const navLinks = document.querySelectorAll<HTMLAnchorElement>('[data-paper-nav]');
   const mobileNavLinks = document.querySelectorAll<HTMLAnchorElement>('[data-paper-mobile-nav]');
   const mobileToc = document.querySelector<HTMLDetailsElement>('.paper-mobile-toc');
 
-  // 点击移动端链接自动关闭折叠菜单
   mobileNavLinks.forEach(link => {
     link.addEventListener('click', () => {
       if (mobileToc) {
@@ -56,10 +55,13 @@ const { sections } = Astro.props;
     });
   });
 
-  // 使用 IntersectionObserver 监听章节
   if ('IntersectionObserver' in window) {
-    const sectionIds = Array.from(navLinks).map(link => link.getAttribute('href')?.replace('#', '')).filter(Boolean) as string[];
-    const targetElements = sectionIds.map(id => document.getElementById(id)).filter(Boolean) as HTMLElement[];
+    const sectionIds = Array.from(navLinks)
+      .map(link => link.getAttribute('href')?.replace('#', ''))
+      .filter(Boolean) as string[];
+    const targetElements = sectionIds
+      .map(id => document.getElementById(id))
+      .filter(Boolean) as HTMLElement[];
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {

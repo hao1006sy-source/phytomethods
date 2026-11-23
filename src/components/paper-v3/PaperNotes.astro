@@ -1,38 +1,79 @@
 ---
-// PaperNotes.astro - 适合静态站点的精读笔记结构化组件
+interface Props {
+  paperId: string;
+}
+
+const { paperId } = Astro.props;
 ---
 
 <div class="paper-notes-box">
-  <!-- 核心启示 -->
-  <div class="paper-note-card takeaway">
-    <h4 class="paper-note-title">
-      <span aria-hidden="true">💡</span> 核心启示与范式转变
-    </h4>
-    <p class="paper-note-content">
-      <strong>单倍型分相从“后期脚手架”提前至“图构建初期”</strong>：传统组装流程通常在完成 primary contig 后再通过额外比对或外部 Hi-C 算法进行分相，容易导致严重的相位假象和嵌合错误。Hifiasm 证明了在长读长准确度超过 99.9%（Q30）的前提下，算法可以在最初的重叠图中直接保留真实的单核苷酸杂合位点，将单倍型分离变成图遍历的内生问题。
-    </p>
-  </div>
+  {paperId === 'hifiasm' ? (
+    <>
+      <div class="paper-note-card takeaway">
+        <h4 class="paper-note-title">
+          <span aria-hidden="true">💡</span> 核心启示与范式转变
+        </h4>
+        <p class="paper-note-content">
+          <strong>单倍型分相从“后期脚手架”提前至“图构建初期”</strong>：传统组装流程通常在完成 primary contig 后再通过额外比对或外部 Hi-C 算法进行分相，容易导致严重的相位假象和嵌合错误。Hifiasm 证明了在长读长准确度超过 99.9%（Q30）的前提下，算法可以在最初的重叠图中直接保留真实的单核苷酸杂合位点，将单倍型分离变成图遍历的内生问题。
+        </p>
+      </div>
 
-  <!-- 注意事项与局限性 -->
-  <div class="paper-note-card caveat">
-    <h4 class="paper-note-title">
-      <span aria-hidden="true">⚠️</span> 适用范围与局限性提醒
-    </h4>
-    <p class="paper-note-content">
-      1. <strong>HiFi-only 模式的相位连续性边界</strong>：在无亲本或 Hi-C 数据辅助的纯 HiFi 模式下，算法输出的 <code>hap1/hap2</code> 主要是局部相位重叠群（partially phased contigs），当遇到长于读长的纯合重复或低杂合沙漠区时，相位可能发生跨单倍型切换（switch）。若需要全染色体尺度的完全单倍型分离，必须引入 Hi-C 数据或 trio 亲本特异 k-mer。<br/>
-      2. <strong>高倍体与异源多倍体植物</strong>：对于同源拷贝序列高度相似的高多倍体植物，不同亚基因组之间的微小差异可能被判定为测序噪音或重复，需谨慎调节参数或结合超长 ONT reads 进一步跨越。
-    </p>
-  </div>
+      <div class="paper-note-card caveat">
+        <h4 class="paper-note-title">
+          <span aria-hidden="true">⚠️</span> 适用范围与局限性提醒
+        </h4>
+        <p class="paper-note-content">
+          1. <strong>HiFi-only 模式的相位连续性边界</strong>：在无亲本或 Hi-C 数据辅助的纯 HiFi 模式下，算法输出的 <code>hap1/hap2</code> 主要是局部相位重叠群（partially phased contigs），当遇到长于读长的纯合重复或低杂合沙漠区时，相位可能发生跨单倍型切换（switch）。若需要全染色体尺度的完全单倍型分离，必须引入 Hi-C 数据或 trio 亲本特异 k-mer。<br/>
+          2. <strong>高倍体与异源多倍体植物</strong>：对于同源拷贝序列高度相似的高多倍体植物，不同亚基因组之间的微小差异可能被判定为测序噪音或重复，需谨慎调节参数或结合超长 ONT reads 进一步跨越。
+        </p>
+      </div>
 
-  <!-- 实操经验与参数速记 -->
-  <div class="paper-note-card practical">
-    <h4 class="paper-note-title">
-      <span aria-hidden="true">🛠️</span> 植物基因组实操经验与参数建议
-    </h4>
-    <p class="paper-note-content">
-      • <strong>测序深度</strong>：建议每个单倍型至少达到 15–20×（二倍体植物总体推荐 30–40× HiFi reads）以保证气泡连通性。<br/>
-      • <strong>杂合度调节</strong>：对于高杂合野生植物（杂合度 &gt; 1%），建议设置 <code>-l 3</code> 参数以最大程度保留结构变异分支。<br/>
-      • <strong>质控联动</strong>：组装产出的 GFA 图文件建议配合 Bandage 可视化，并立即使用 Merqury 运行 k-mer 谱系评估，验证单倍型纯度与 k-mer 完整性（QV）。
-    </p>
-  </div>
+      <div class="paper-note-card practical">
+        <h4 class="paper-note-title">
+          <span aria-hidden="true">🛠️</span> 植物基因组实操经验与参数建议
+        </h4>
+        <p class="paper-note-content">
+          • <strong>测序深度</strong>：建议每个单倍型至少达到 15–20×（二倍体植物总体推荐 30–40× HiFi reads）以保证气泡连通性。<br/>
+          • <strong>杂合度调节</strong>：对于高杂合野生植物（杂合度 &gt; 1%），建议设置 <code>-l 3</code> 参数以最大程度保留结构变异分支。<br/>
+          • <strong>质控联动</strong>：组装产出的 GFA 图文件建议配合 Bandage 可视化，并立即使用 Merqury 运行 k-mer 谱系评估，验证单倍型纯度与 k-mer 完整性（QV）。
+        </p>
+      </div>
+    </>
+  ) : (
+    <div class="paper-note-card pending">
+      <div class="paper-note-header">
+        <h4 class="paper-note-title">
+          <span aria-hidden="true">📝</span> 科研精读备忘录
+        </h4>
+        <span class="paper-note-badge">精读笔记待补充</span>
+      </div>
+      <p class="paper-note-content">
+        本篇文献已收录核心元数据、原文 DOI 链接及知识网络多维关联。详细的实验参数记录、算法实操对比、植物应用注意事项与深度阅读心得目前处于待补充状态，欢迎学术同行通过 GitHub 提交补充。
+      </p>
+    </div>
+  )}
 </div>
+
+<style>
+  .paper-note-card.pending {
+    background: #fbfdfc;
+    border: 1px dashed var(--paper-border-dark);
+    border-left: 4px solid #8cb5a3;
+  }
+  .paper-note-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+  }
+  .paper-note-badge {
+    font-size: 11.5px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: #eef5f1;
+    color: var(--paper-muted);
+  }
+</style>

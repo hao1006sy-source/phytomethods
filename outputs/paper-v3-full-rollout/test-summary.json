@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "totalPapers": 130,
+  "checks": [
+    "130/130 papers verified: loaded Paper V3, no legacy layout, titles match, no overflow, zero Hifiasm data leak",
+    "Captured 9 representative mobile full-page screenshots (M01-M09) without overflow",
+    "Captured 3 literature type full-page representative screenshots",
+    "CitationModal verified: dynamically renders OrthoFinder metadata without Hifiasm data leak",
+    "Favorite button verified: localStorage keys isolated across different papers",
+    "Hifiasm V3 regression verified: 100% preserves approved visual layout and content"
+  ],
+  "errors": [],
+  "timestamp": "2026-11-23T09:14:14.533Z"
+}

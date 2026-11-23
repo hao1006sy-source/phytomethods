@@ -1,10 +1,46 @@
 ---
+import { paperTypeBadgeMap } from './config/paper-types';
+import { speciesLabels } from '../../data/tags';
+
 interface Props {
-  meta: any;
+  paper: {
+    id: string;
+    title: string;
+    type: 'method' | 'application' | 'review';
+    journal: string;
+    year: number | string;
+    doi: string;
+    volumePages?: string;
+    speciesIds?: string[];
+    methodIds?: string[];
+  };
+  relatedMethods?: any[];
+  relatedTopics?: any[];
+  relatedTutorials?: any[];
+  plantApplicationPaper?: any;
 }
 
-const { meta } = Astro.props;
+const {
+  paper,
+  relatedMethods = [],
+  relatedTopics = [],
+  relatedTutorials = [],
+  plantApplicationPaper
+} = Astro.props;
+
 const base = import.meta.env.BASE_URL;
+const badgeText = paperTypeBadgeMap[paper.type] || '科研文献';
+const doiUrl = `https://doi.org/${paper.doi}`;
+
+const testedLabelMap: Record<string, string> = {
+  verified: '已验证',
+  template: '命令已核对',
+  'not-tested': '待验证'
+};
+
+// 获取植物应用物种信息（用于 application 论文自身展示）
+const primarySpeciesId = paper.speciesIds?.[0];
+const speciesName = primarySpeciesId ? (speciesLabels[primarySpeciesId] || primarySpeciesId) : null;
 ---
 
 <aside class="paper-resources" aria-label="文献元数据与关联科研资源">
@@ -17,21 +53,25 @@ const base = import.meta.env.BASE_URL;
     <div class="paper-card-body">
       <dl class="paper-meta-list">
         <dt class="paper-meta-dt">文献类型</dt>
-        <dd class="paper-meta-dd"><span class="paper-badge" style="padding: 2px 8px; font-size: 11px;">{meta.badge}</span></dd>
+        <dd class="paper-meta-dd"><span class="paper-badge" style="padding: 2px 8px; font-size: 11px;">{badgeText}</span></dd>
         
         <dt class="paper-meta-dt">发表期刊</dt>
-        <dd class="paper-meta-dd">{meta.journal}</dd>
+        <dd class="paper-meta-dd">{paper.journal}</dd>
         
         <dt class="paper-meta-dt">发表年份</dt>
-        <dd class="paper-meta-dd">{meta.year}</dd>
+        <dd class="paper-meta-dd">{paper.year}</dd>
         
-        <dt class="paper-meta-dt">卷期页码</dt>
-        <dd class="paper-meta-dd">{meta.volumePages}</dd>
+        {paper.volumePages && (
+          <>
+            <dt class="paper-meta-dt">卷期页码</dt>
+            <dd class="paper-meta-dd">{paper.volumePages}</dd>
+          </>
+        )}
         
         <dt class="paper-meta-dt">DOI</dt>
         <dd class="paper-meta-dd">
-          <a href={meta.doiUrl} target="_blank" rel="noreferrer">
-            {meta.doi} <span aria-hidden="true">↗</span>
+          <a href={doiUrl} target="_blank" rel="noreferrer">
+            {paper.doi} <span aria-hidden="true">↗</span>
           </a>
         </dd>
       </dl>
@@ -39,84 +79,124 @@ const base = import.meta.env.BASE_URL;
   </section>
 
   <!-- 卡片 2: 关联内容 -->
-  <section class="paper-card" aria-labelledby="card-linked-title">
-    <div class="paper-card-header">
-      <span aria-hidden="true">🔀</span>
-      <h3 id="card-linked-title" class="paper-card-title">关联内容</h3>
-    </div>
-    <div class="paper-card-body">
-      <!-- 关联算法与工具 -->
-      <div class="paper-linked-group">
-        <div class="paper-linked-heading">
-          <span aria-hidden="true">🛠️</span> 相关算法与工具
-        </div>
-        <div class="paper-linked-list">
-          <a href={`${base}methods/hifiasm/`} class="paper-linked-item">
-            <span class="paper-linked-title">🍃 Hifiasm</span>
-            <span class="paper-linked-desc">基因组组装与单倍型解析算法详情</span>
-          </a>
-        </div>
+  {(relatedMethods.length > 0 || relatedTopics.length > 0 || relatedTutorials.length > 0) && (
+    <section class="paper-card" aria-labelledby="card-linked-title">
+      <div class="paper-card-header">
+        <span aria-hidden="true">🔀</span>
+        <h3 id="card-linked-title" class="paper-card-title">关联内容</h3>
       </div>
-
-      <!-- 关联专题 -->
-      <div class="paper-linked-group">
-        <div class="paper-linked-heading">
-          <span aria-hidden="true">📖</span> 相关专题
-        </div>
-        <div class="paper-linked-list">
-          <a href={`${base}topics/genome-assembly/sequencing-data/`} class="paper-linked-item">
-            <span class="paper-linked-title">长读长基因组组装方法综述</span>
-            <span class="paper-linked-desc">测序数据基础与第三代长读长组装</span>
-          </a>
-          <a href={`${base}topics/pangenomics-structural-variation/m03-topic-02/`} class="paper-linked-item">
-            <span class="paper-linked-title">单倍型解析与结构变异分析</span>
-            <span class="paper-linked-desc">多单倍型基因组图构建与变异检测</span>
-          </a>
-        </div>
-      </div>
-
-      <!-- 关联分析教程 -->
-      <div class="paper-linked-group">
-        <div class="paper-linked-heading">
-          <span aria-hidden="true">🧪</span> 相关分析教程
-        </div>
-        <div class="paper-linked-list">
-          <a href={`${base}tutorials/hifiasm-intro/`} class="paper-linked-item">
-            <span class="paper-linked-title">使用 Hifiasm 进行植物基因组组装</span>
-            <span class="paper-linked-desc">从 HiFi 数据到高质量染色体级单倍型</span>
-            <span class="paper-linked-badge">已验证</span>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 卡片 3: 植物研究应用 -->
-  <section class="paper-card" aria-labelledby="card-plant-title">
-    <div class="paper-card-header">
-      <span aria-hidden="true">🌱</span>
-      <h3 id="card-plant-title" class="paper-card-title">植物研究应用</h3>
-    </div>
-    <div class="paper-card-body">
-      <div class="paper-plant-card">
-        <div class="paper-plant-spotlight">
-          <div class="paper-plant-img" aria-hidden="true">
-            🌰
+      <div class="paper-card-body">
+        <!-- 关联算法与工具 -->
+        {relatedMethods.length > 0 && (
+          <div class="paper-linked-group">
+            <div class="paper-linked-heading">
+              <span aria-hidden="true">🛠️</span> 相关算法与工具
+            </div>
+            <div class="paper-linked-list">
+              {relatedMethods.map(m => (
+                <a href={`${base}methods/${m.id}/`} class="paper-linked-item">
+                  <span class="paper-linked-title">🍃 {m.data.name}</span>
+                  <span class="paper-linked-desc">{m.data.summary}</span>
+                </a>
+              ))}
+            </div>
           </div>
-          <div class="paper-plant-info">
-            <h4 class="paper-plant-name">
-              澳洲坚果
-              <em>Macadamia jansenii</em>
-            </h4>
-            <p class="paper-plant-desc">
-              利用 hifiasm 进行高质量单倍型基因组组装，14条染色体中8条由单一contig覆盖，解析濒危植物基因组结构...
-            </p>
+        )}
+
+        <!-- 关联专题 -->
+        {relatedTopics.length > 0 && (
+          <div class="paper-linked-group">
+            <div class="paper-linked-heading">
+              <span aria-hidden="true">📖</span> 相关专题
+            </div>
+            <div class="paper-linked-list">
+              {relatedTopics.slice(0, 3).map(t => (
+                <a href={`${base}topics/${t.domainId}/${t.id}/`} class="paper-linked-item">
+                  <span class="paper-linked-title">{t.title}</span>
+                  <span class="paper-linked-desc">{t.summary}</span>
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <!-- 关联分析教程 -->
+        {relatedTutorials.length > 0 && (
+          <div class="paper-linked-group">
+            <div class="paper-linked-heading">
+              <span aria-hidden="true">🧪</span> 相关分析教程
+            </div>
+            <div class="paper-linked-list">
+              {relatedTutorials.slice(0, 2).map(tut => (
+                <a href={`${base}tutorials/${tut.id}/`} class="paper-linked-item">
+                  <span class="paper-linked-title">{tut.data.title}</span>
+                  <span class="paper-linked-desc">{tut.data.summary}</span>
+                  <span class="paper-linked-badge">{testedLabelMap[tut.data.tested] || tut.data.tested}</span>
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </section>
+  )}
+
+  <!-- 卡片 3: 植物研究应用卡片 -->
+  <!-- 场景 A: 方法学论文找到了真实植物应用案例 (如 Hifiasm 对应的 Macadamia) -->
+  {paper.type === 'method' && plantApplicationPaper && (
+    <section class="paper-card" aria-labelledby="card-plant-title">
+      <div class="paper-card-header">
+        <span aria-hidden="true">🌱</span>
+        <h3 id="card-plant-title" class="paper-card-title">植物研究应用</h3>
+      </div>
+      <div class="paper-card-body">
+        <div class="paper-plant-card">
+          <div class="paper-plant-spotlight">
+            <div class="paper-plant-img" aria-hidden="true">
+              🌰
+            </div>
+            <div class="paper-plant-info">
+              <h4 class="paper-plant-name">
+                {plantApplicationPaper.data.title.includes('Macadamia') ? '澳洲坚果' : '植物应用研究'}
+                <em>{speciesLabels[plantApplicationPaper.data.speciesIds?.[0]] || ''}</em>
+              </h4>
+              <p class="paper-plant-desc">
+                {plantApplicationPaper.data.summary}
+              </p>
+            </div>
+          </div>
+          <a href={`${base}papers/${plantApplicationPaper.id}/`} class="paper-plant-link">
+            查看案例详情 →
+          </a>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- 场景 B: 植物应用论文自身，突出其研究植物对象 -->
+  {paper.type === 'application' && speciesName && (
+    <section class="paper-card" aria-labelledby="card-target-plant-title">
+      <div class="paper-card-header">
+        <span aria-hidden="true">🌿</span>
+        <h3 id="card-target-plant-title" class="paper-card-title">研究植物对象</h3>
+      </div>
+      <div class="paper-card-body">
+        <div class="paper-plant-card">
+          <div class="paper-plant-spotlight">
+            <div class="paper-plant-img" aria-hidden="true">
+              🌱
+            </div>
+            <div class="paper-plant-info">
+              <h4 class="paper-plant-name">
+                {speciesName}
+              </h4>
+              <p class="paper-plant-desc">
+                本研究所聚焦的核心植物材料，结合长短读长组装、群体变异或转录调控分析开展科学探索。
+              </p>
+            </div>
           </div>
         </div>
-        <a href={`${base}papers/macadamia/`} class="paper-plant-link">
-          查看案例详情 →
-        </a>
       </div>
-    </div>
-  </section>
+    </section>
+  )}
 </aside>

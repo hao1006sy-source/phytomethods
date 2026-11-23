@@ -1,0 +1,3065 @@
+[
+  {
+    "id": "admixture-enhancements",
+    "title": "Enhancements to the ADMIXTURE algorithm for individual ancestry estimation",
+    "summary": "介绍 ADMIXTURE 的交叉验证、监督估计、惩罚估计和多处理器扩展。",
+    "authors": "Alexander DH, Lange K",
+    "year": "2011",
+    "journal": "BMC Bioinformatics",
+    "doi": "10.1186/1471-2105-12-246",
+    "type": "method",
+    "methodIds": [
+      "admixture"
+    ],
+    "domainIds": [
+      "population-genetics"
+    ],
+    "speciesIds": [],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "方法扩展"
+    ]
+  },
+  {
+    "id": "admixture-paper",
+    "title": "Fast model-based estimation of ancestry in unrelated individuals",
+    "summary": "使用最大似然模型估计个体的祖先成分比例。",
+    "authors": "Alexander DH, Novembre J, Lange K",
+    "year": "2009",
+    "journal": "Genome Research",
+    "doi": "10.1101/gr.094052.109",
+    "type": "method",
+    "methodIds": [
+      "admixture"
+    ],
+    "domainIds": [
+      "population-genetics"
+    ],
+    "speciesIds": [],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "方法价值"
+    ]
+  },
+  {
+    "id": "african-rice-246-genomes",
+    "title": "The Rise and Fall of African Rice Cultivation Revealed by Analysis of 246 New Genomes",
+    "summary": "使用非洲栽培稻和野生祖先的群体基因组数据重建栽培历史与种群变化。",
+    "authors": "Cubry P, Tranchant-Dubreuil C, Thuillet AC, et al.",
+    "year": "2018",
+    "journal": "Current Biology",
+    "doi": "10.1016/j.cub.2018.05.066",
+    "type": "application",
+    "methodIds": [
+      "psmc",
+      "msmc2",
+      "smcpp"
+    ],
+    "domainIds": [
+      "population-genetics"
+    ],
+    "speciesIds": [
+      "rice"
+    ],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "研究问题与样本",
+      "群体历史方法和论文结果"
+    ]
+  },
+  {
+    "id": "agro-nt-2024",
+    "title": "A foundational large language model for edible plant genomes",
+    "summary": "介绍以 48 种植物基因组预训练的 AgroNT，并评估植物 DNA 序列功能相关任务。",
+    "authors": "Mendoza-Revilla J, Trop E, Gonzalez L, et al.",
+    "year": "2024",
+    "journal": "Communications Biology",
+    "doi": "10.1038/s42003-024-06465-2",
+    "type": "method",
+    "methodIds": [
+      "agront"
+    ],
+    "domainIds": [
+      "regulatory-genomics-ai"
+    ],
+    "speciesIds": [],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "研究背景与模型设计",
+      "主要任务和结果",
+      "方法限制与复现要点",
+      "阅读重点与资源"
+    ]
+  },
+  {
+    "id": "anchorwave-paper",
+    "title": "AnchorWave: Sensitive alignment of genomes with high sequence diversity, extensive structural polymorphism, and whole-genome duplication",
+    "summary": "植物基因组共线锚点识别与碱基级比对。",
+    "authors": "Song B, Marco-Sola S, Moreto M, Johnson L, Buckler ES, Stitzer MC",
+    "year": "2022",
+    "journal": "PNAS",
+    "doi": "10.1073/pnas.2113075119",
+    "type": "method",
+    "methodIds": [
+      "anchorwave"
+    ],
+    "domainIds": [
+      "pangenomics-structural-variation"
+    ],
+    "speciesIds": [],
+    "status": "published",
+    "updatedAt": "2026-11-21",
+    "headings": [
+      "方法贡献"
+    ]
+  },
+  {
+    "id": "angiosperm-phylogenomics-2024",
+    "title": "Phylogenomics and the rise of the angiosperms",
+    "summary": "以 Angiosperms353 核基因数据研究被子植物深层系统发育和分化时间。",
+    "authors": "Zuntini AR, Carruthers T, Maurin O, et al.",
+    "year": "2024",
+    "journal": "Nature",
+    "doi": "10.1038/s41586-024-07324-0",
+    "type": "application",
+    "methodIds": [
+      "iqtree2"
+    ],
+    "domainIds": [
+      "comparative-genomics"
+    ],
+    "speciesIds": [],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "研究范围与分析流程"
+    ]
+  },
+  {
+    "id": "arabidopsis-69-pangenome",
+    "title": "A pan-genome of 69 Arabidopsis thaliana accessions reveals a conserved genome structure throughout the global species range",
+    "summary": "以 69 个拟南芥组装比较基因内容和基因组结构。",
+    "authors": "Qichao Lian, Bruno Huettel, Birgit Walkemeier, Baptiste Mayjonade, Céline Lopez-Roques, Lisa Gil, Fabrice Roux, Korbinian Schneeberger, Raphael Mercier",
+    "year": "2024",
+    "journal": "Nature Genetics",
+    "doi": "10.1038/s41588-024-01715-9",
+    "type": "application",
+    "methodIds": [
+      "hifiasm",
+      "orthofinder",
+      "syri",
+      "merqury",
+      "edta",
+      "interproscan"
+    ],
+    "domainIds": [
+      "pangenomics-structural-variation",
+      "comparative-genomics"
+    ],
+    "speciesIds": [
+      "arabidopsis"
+    ],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "研究问题与材料范围",
+      "组装与群体分析",
+      "基因家族泛基因组方法",
+      "主要结果及解释边界",
+      "软件在研究中的具体作用",
+      "阅读与复现资源"
+    ]
+  },
+  {
+    "id": "arabidopsis-adaptation",
+    "title": "The pan-genome and local adaptation of Arabidopsis thaliana",
+    "summary": "比较拟南芥多材料泛基因组、结构变异及环境适应。",
+    "authors": "Minghui Kang, Haolin Wu, Huanhuan Liu, Wenyu Liu, Mingjia Zhu, Yu Han, Wei Liu, Chunlin Chen, Yan Song, Luna Tan, Kangqun Yin, Yusen Zhao, Zhen Yan, Shangling Lou, Yanjun Zan, Jianquan Liu",
+    "year": "2023",
+    "journal": "Nature Communications",
+    "doi": "10.1038/s41467-023-42029-4",
+    "type": "application",
+    "methodIds": [
+      "hifiasm",
+      "orthofinder",
+      "edta",
+      "minigraph",
+      "vg"
+    ],
+    "domainIds": [
+      "pangenomics-structural-variation",
+      "comparative-genomics"
+    ],
+    "speciesIds": [
+      "arabidopsis"
+    ],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "研究问题与基因组材料",
+      "基因家族泛基因组",
+      "Minigraph 图泛基因组与结构变异",
+      "群体读段映射与性状分析",
+      "生态型案例与功能验证",
+      "软件在该研究中的作用",
+      "统计口径与资料来源"
+    ]
+  },
+  {
+    "id": "arabidopsis-atac-root-2021",
+    "title": "The regulatory landscape of Arabidopsis thaliana roots at single-cell resolution",
+    "summary": "单细胞 ATAC-seq 揭示拟南芥根细胞类型的染色质可及性差异。",
+    "authors": "Dorrity MW, Alexandre CM, Hamm MO, et al.",
+    "year": "2021",
+    "journal": "Nature Communications",
+    "doi": "10.1038/s41467-021-23675-y",
+    "type": "application",
+    "methodIds": [],
+    "domainIds": [
+      "single-cell-spatial-omics"
+    ],
+    "speciesIds": [
+      "arabidopsis"
+    ],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "拟南芥根单细胞染色质研究"
+    ]
+  },
+  {
+    "id": "arabidopsis-bzip11-atac-2023",
+    "title": "Genome-wide identification of accessible chromatin regions by ATAC-seq upon induction of the transcription factor bZIP11 in Arabidopsis",
+    "summary": "拟南芥叶原生质体中诱导 bZIP11，利用 ATAC-seq 描述染色质可及性变化。",
+    "authors": "Hellens AM, Humphreys JL, Fichtner F, et al.",
+    "year": "2023",
+    "journal": "Scientific Data",
+    "doi": "10.1038/s41597-023-02395-6",
+    "type": "application",
+    "methodIds": [],
+    "domainIds": [
+      "epigenomics-3d-genome"
+    ],
+    "speciesIds": [
+      "arabidopsis"
+    ],
+    "status": "published",
+    "updatedAt": "2026-11-21",
+    "headings": [
+      "研究价值"
+    ]
+  },
+  {
+    "id": "arabidopsis-bzip11-chromatin-2014",
+    "title": "The Arabidopsis transcription factor bZIP11 activates auxin-mediated transcription by recruiting the histone acetylation machinery",
+    "summary": "拟南芥 bZIP11 通过招募组蛋白乙酰化机制调节生长素响应基因。",
+    "authors": "Weiste C, Dröge-Laser W",
+    "year": "2014",
+    "journal": "Nature Communications",
+    "doi": "10.1038/ncomms4883",
+    "type": "application",
+    "methodIds": [],
+    "domainIds": [
+      "epigenomics-3d-genome"
+    ],
+    "speciesIds": [
+      "arabidopsis"
+    ],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "植物研究"
+    ]
+  },
+  {
+    "id": "arabidopsis-drought-memory-2012",
+    "title": "Multiple exposures to drought 'train' transcriptional responses in Arabidopsis",
+    "summary": "研究拟南芥重复干旱处理后的转录响应记忆。",
+    "authors": "Ding Y, Fromm M, Avramova Z",
+    "year": "2012",
+    "journal": "Nature Communications",
+    "doi": "10.1038/ncomms1732",
+    "type": "application",
+    "methodIds": [],
+    "domainIds": [
+      "epigenomics-3d-genome"
+    ],
+    "speciesIds": [
+      "arabidopsis"
+    ],
+    "status": "published",
+    "updatedAt": "2026-11-21",
+    "headings": [
+      "研究价值"
+    ]
+  },
+  {
+    "id": "arabidopsis-heat-hic-2020",
+    "title": "Heat stress-induced transposon activation correlates with 3D chromatin organization rearrangement in Arabidopsis",
+    "summary": "拟南芥热胁迫 Hi-C 研究将 HiC-Pro 输出转换后用 HiCExplorer 处理与检查接触矩阵。",
+    "authors": "Sun L, Jing Y, Liu X, Li Q, Xue Z, Cheng Z, Wang D, He H, Qian W",
+    "year": "2020",
+    "journal": "Nature Communications",
+    "doi": "10.1038/s41467-020-15809-5",
+    "type": "application",
+    "methodIds": [
+      "hicexplorer"
+    ],
+    "domainIds": [
+      "epigenomics-3d-genome"
+    ],
+    "speciesIds": [
+      "arabidopsis"
+    ],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "植物研究与软件分工"
+    ]
+  },
+  {
+    "id": "arabidopsis-heat-memory-2021",
+    "title": "Heteromeric HSFA2/HSFA3 complexes drive transcriptional memory after heat stress in Arabidopsis",
+    "summary": "在拟南芥中研究 HSFA2/HSFA3 复合体、H3K4 甲基化与热胁迫后的转录记忆。",
+    "authors": "Friedrich T, Oberkofler V, Trindade I, et al.",
+    "year": "2021",
+    "journal": "Nature Communications",
+    "doi": "10.1038/s41467-021-23786-6",
+    "type": "application",
+    "methodIds": [],
+    "domainIds": [
+      "epigenomics-3d-genome"
+    ],
+    "speciesIds": [
+      "arabidopsis"
+    ],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "植物研究"
+    ]
+  },
+  {
+    "id": "arabidopsis-integrated-grn-2021",
+    "title": "Integrative inference of transcriptional networks in Arabidopsis yields novel ROS signalling regulators",
+    "summary": "整合序列基序、开放染色质、转录因子结合和表达信息推断拟南芥调控网络。",
+    "authors": "De Clercq I, Van de Velde J, Luo X, et al.",
+    "year": "2021",
+    "journal": "Nature Plants",
+    "doi": "10.1038/s41477-021-00894-1",
+    "type": "application",
+    "methodIds": [],
+    "domainIds": [
+      "regulatory-genomics-ai"
+    ],
+    "speciesIds": [
+      "arabidopsis"
+    ],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "研究价值"
+    ]
+  },
+  {
+    "id": "arabidopsis-light-atlas-2023",
+    "title": "Time series single-cell transcriptional atlases reveal cell fate differentiation driven by light in Arabidopsis seedlings",
+    "summary": "以拟南芥光诱导时间序列单细胞图谱分析地上部和根的细胞类型响应。",
+    "authors": "Han X, Zhang Y, Lou Z, et al.",
+    "year": "2023",
+    "journal": "Nature Plants",
+    "doi": "10.1038/s41477-023-01544-4",
+    "type": "application",
+    "methodIds": [],
+    "domainIds": [
+      "single-cell-spatial-omics"
+    ],
+    "speciesIds": [
+      "arabidopsis"
+    ],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "拟南芥光响应时序图谱"
+    ]
+  },
+  {
+    "id": "arabidopsis-methylome-cokus-2008",
+    "title": "Shotgun bisulphite sequencing of the Arabidopsis genome reveals DNA methylation patterning",
+    "summary": "全基因组亚硫酸氢盐测序揭示拟南芥 DNA 甲基化的序列背景与分布。",
+    "authors": "Cokus SJ, Feng S, Zhang X, et al.",
+    "year": "2008",
+    "journal": "Nature",
+    "doi": "10.1038/nature06745",
+    "type": "application",
+    "methodIds": [],
+    "domainIds": [
+      "epigenomics-3d-genome"
+    ],
+    "speciesIds": [
+      "arabidopsis"
+    ],
+    "status": "published",
+    "updatedAt": "2026-11-21",
+    "headings": [
+      "研究价值"
+    ]
+  },
+  {
+    "id": "arabidopsis-pds5-hic-2024",
+    "title": "Mutations of PDS5 genes enhance TAD-like domain formation in Arabidopsis thaliana",
+    "summary": "Hi-C 分析显示拟南芥 PDS5 突变体出现增强的 TAD-like 结构。",
+    "authors": "Göbel AM, Zhou S, Wang Z, et al.",
+    "year": "2024",
+    "journal": "Nature Communications",
+    "doi": "10.1038/s41467-024-53760-x",
+    "type": "application",
+    "methodIds": [],
+    "domainIds": [
+      "epigenomics-3d-genome"
+    ],
+    "speciesIds": [
+      "arabidopsis"
+    ],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "研究价值"
+    ]
+  },
+  {
+    "id": "arabidopsis-protoplast-germination-2024",
+    "title": "Establishment of single-cell transcriptional states during seed germination",
+    "summary": "比较拟南芥胚胎完整组织、原生质体和单细胞制备中的转录状态。",
+    "authors": "Liew LC, You Y, Auroux L, et al.",
+    "year": "2024",
+    "journal": "Nature Plants",
+    "doi": "10.1038/s41477-024-01771-3",
+    "type": "application",
+    "methodIds": [],
+    "domainIds": [
+      "single-cell-spatial-omics"
+    ],
+    "speciesIds": [
+      "arabidopsis"
+    ],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "原生质体处理效应案例"
+    ]
+  },
+  {
+    "id": "arabidopsis-root-atlas-2022",
+    "title": "A single-cell Arabidopsis root atlas reveals developmental trajectories in wild-type and cell identity mutants",
+    "summary": "整合 110,427 个拟南芥根细胞表达谱，分析细胞类型和发育轨迹。",
+    "authors": "Shahan R, Hsu CW, Nolan TM, et al.",
+    "year": "2022",
+    "journal": "Developmental Cell",
+    "doi": "10.1016/j.devcel.2022.01.008",
+    "type": "application",
+    "methodIds": [],
+    "domainIds": [
+      "single-cell-spatial-omics"
+    ],
+    "speciesIds": [
+      "arabidopsis"
+    ],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "拟南芥根单细胞图谱"
+    ]
+  },
+  {
+    "id": "arabidopsis-stomata-accessibility-2022",
+    "title": "Dynamic chromatin accessibility deploys heterotypic cis/trans-acting factors driving stomatal cell-fate commitment",
+    "summary": "研究气孔细胞命运决定过程中的动态染色质可及性与顺反调控因子。",
+    "authors": "Kim ED, Dorrity MW, Fitzgerald BA, et al.",
+    "year": "2022",
+    "journal": "Nature Plants",
+    "doi": "10.1038/s41477-022-01304-w",
+    "type": "application",
+    "methodIds": [
+      "meme-suite"
+    ],
+    "domainIds": [
+      "regulatory-genomics-ai",
+      "epigenomics-3d-genome"
+    ],
+    "speciesIds": [
+      "arabidopsis"
+    ],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "研究价值"
+    ]
+  },
+  {
+    "id": "archr-paper",
+    "title": "ArchR is a scalable software package for integrative single-cell chromatin accessibility analysis",
+    "summary": "用于 scATAC-seq 质控、聚类、调控元件链接及 RNA 整合的 R 软件。",
+    "authors": "Granja JM, Corces MR, Pierce SE, et al.",
+    "year": "2021",
+    "journal": "Nature Genetics",
+    "doi": "10.1038/s41588-021-00790-6",
+    "type": "method",
+    "methodIds": [
+      "archr"
+    ],
+    "domainIds": [
+      "single-cell-spatial-omics"
+    ],
+    "speciesIds": [],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "方法论文"
+    ]
+  },
+  {
+    "id": "bcftools-paper",
+    "title": "Twelve years of SAMtools and BCFtools",
+    "summary": "介绍 SAMtools、BCFtools 和 HTSlib 的数据处理及变异分析能力。",
+    "authors": "Danecek P, Bonfield JK, Liddle J, et al.",
+    "year": "2021",
+    "journal": "GigaScience",
+    "doi": "10.1093/gigascience/giab008",
+    "type": "method",
+    "methodIds": [
+      "bcftools"
+    ],
+    "domainIds": [
+      "population-genetics"
+    ],
+    "speciesIds": [],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "方法价值"
+    ]
+  },
+  {
+    "id": "bismark-paper",
+    "title": "Bismark: a flexible aligner and methylation caller for Bisulfite-Seq applications",
+    "summary": "提出亚硫酸氢盐测序 reads 的比对与甲基化状态识别方法。",
+    "authors": "Krueger F, Andrews SR",
+    "year": "2011",
+    "journal": "Bioinformatics",
+    "doi": "10.1093/bioinformatics/btr167",
+    "type": "method",
+    "methodIds": [
+      "bismark"
+    ],
+    "domainIds": [
+      "epigenomics-3d-genome"
+    ],
+    "speciesIds": [],
+    "status": "published",
+    "updatedAt": "2026-11-21",
+    "headings": [
+      "方法价值"
+    ]
+  },
+  {
+    "id": "braker3-paper",
+    "title": "BRAKER3: Fully automated genome annotation using RNA-Seq and protein evidence with GeneMark-ETP, AUGUSTUS, and TSEBRA",
+    "summary": "方法论文介绍 BRAKER3 如何整合 RNA-seq 与同源蛋白证据，并在多物种基因组上评估基因预测。",
+    "authors": "Gabriel L et al.",
+    "year": "2024",
+    "journal": "Genome Research",
+    "doi": "10.1101/gr.278090.123",
+    "type": "method",
+    "methodIds": [
+      "braker3"
+    ],
+    "domainIds": [
+      "genome-annotation"
+    ],
+    "speciesIds": [
+      "arabidopsis",
+      "tomato"
+    ],
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "研究问题",
+      "方法创新",
+      "主要结果与适用边界",
+      "阅读重点"
+    ]
+  },
+  {
+    "id": "cafe5-paper",
+    "title": "CAFE 5 models variation in evolutionary rates among gene families",
+    "summary": "用生灭模型研究基因家族大小变化，并考虑家族间演化速率差异。",
+    "authors": "Mendes FK, Vanderpool D, Fulton B, Hahn MW",
+    "year": "2020",
+    "journal": "Bioinformatics",
+    "doi": "10.1093/bioinformatics/btaa1022",
+    "type": "method",
+    "methodIds": [
+      "cafe5"
+    ],
+    "domainIds": [
+      "comparative-genomics"
+    ],
+    "speciesIds": [],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "方法问题与计算模型"
+    ]
+  },
+  {
+    "id": "cell2location-paper",
+    "title": "Cell2location maps fine-grained cell types in spatial transcriptomics",
+    "summary": "以层次贝叶斯模型将单细胞参考细胞类型映射至空间转录组位置。",
+    "authors": "Kleshchevnikov V, Shmatko A, Dann E, et al.",
+    "year": "2022",
+    "journal": "Nature Biotechnology",
+    "doi": "10.1038/s41587-021-01139-4",
+    "type": "method",
+    "methodIds": [
+      "cell2location"
+    ],
+    "domainIds": [
+      "single-cell-spatial-omics"
+    ],
+    "speciesIds": [],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "方法论文"
+    ]
+  },
+  {
+    "id": "cellrank2-paper",
+    "title": "CellRank 2: unified fate mapping in multiview single-cell data",
+    "summary": "以模块化转移核和状态估计器整合单细胞命运推断中的多种数据视角。",
+    "authors": "Weiler P, Lange M, Klein M, et al.",
+    "year": "2024",
+    "journal": "Nature Methods",
+    "doi": "10.1038/s41592-024-02303-9",
+    "type": "method",
+    "methodIds": [
+      "cellrank"
+    ],
+    "domainIds": [
+      "single-cell-spatial-omics"
+    ],
+    "speciesIds": [],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "方法论文"
+    ]
+  },
+  {
+    "id": "cutesv-paper",
+    "title": "Long-read-based human genomic structural variation detection with cuteSV",
+    "summary": "介绍基于长读段比对信号聚类和细化的 cuteSV 结构变异检测方法。",
+    "authors": "Jiang T, Liu Y, Jiang Y, Li J, Gao Y, Cui Z, Liu Y, Liu B, Wang Y",
+    "year": "2020",
+    "journal": "Genome Biology 21(1):189",
+    "doi": "10.1186/s13059-020-02107-y",
+    "type": "method",
+    "methodIds": [
+      "cutesv"
+    ],
+    "domainIds": [
+      "pangenomics-structural-variation"
+    ],
+    "speciesIds": [],
+    "status": "published",
+    "updatedAt": "2026-11-21",
+    "headings": [
+      "方法范围"
+    ]
+  },
+  {
+    "id": "cutntag-paper",
+    "title": "CUT&Tag for efficient epigenomic profiling of small samples and single cells",
+    "summary": "提出抗体引导 protein A-Tn5 对染色质目标进行定位测序的 CUT&Tag 方法。",
+    "authors": "Kaya-Okur HS, Wu SJ, Codomo CA, et al.",
+    "year": "2019",
+    "journal": "Nature Communications",
+    "doi": "10.1038/s41467-019-09982-5",
+    "type": "method",
+    "methodIds": [],
+    "domainIds": [
+      "epigenomics-3d-genome"
+    ],
+    "speciesIds": [],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "方法价值"
+    ]
+  },
+  {
+    "id": "cycas-evolution",
+    "title": "The Cycas genome and the early evolution of seed plants",
+    "summary": "构建攀枝花苏铁基因组并比较种子植物的基因组与演化。",
+    "authors": "Liu Y, Wang S, Li L, et al.",
+    "year": "2022",
+    "journal": "Nature Plants",
+    "doi": "10.1038/s41477-022-01129-7",
+    "type": "application",
+    "methodIds": [
+      "orthofinder"
+    ],
+    "domainIds": [
+      "comparative-genomics"
+    ],
+    "speciesIds": [
+      "cycas"
+    ],
+    "status": "published",
+    "updatedAt": "2026-11-21",
+    "headings": [
+      "研究问题与方法"
+    ]
+  },
+  {
+    "id": "deseq2-2014",
+    "title": "Moderated estimation of fold change and dispersion for RNA-seq data with DESeq2",
+    "summary": "DESeq2 方法论文介绍 RNA-seq 差异表达的离散度和倍数变化估计。",
+    "authors": "Love MI, Huber W, Anders S",
+    "year": "2014",
+    "journal": "Genome Biology",
+    "doi": "10.1186/s13059-014-0550-8",
+    "type": "method",
+    "methodIds": [
+      "deseq2"
+    ],
+    "domainIds": [
+      "regulatory-genomics-ai"
+    ],
+    "speciesIds": [],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "研究价值"
+    ]
+  },
+  {
+    "id": "dnngp-paper",
+    "title": "DNNGP, a deep neural network-based method for genomic prediction using multi-omics data in plants",
+    "summary": "使用深度神经网络整合植物多组学数据进行基因组预测。",
+    "authors": "Wang K, Abid MA, Rasheed A, Crossa J, Hearne S, Li H",
+    "year": "2023",
+    "journal": "Molecular Plant",
+    "doi": "10.1016/j.molp.2022.11.004",
+    "type": "method",
+    "methodIds": [
+      "dnngp"
+    ],
+    "domainIds": [
+      "gwas-breeding"
+    ],
+    "speciesIds": [],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "方法价值"
+    ]
+  },
+  {
+    "id": "doubletfinder-paper",
+    "title": "DoubletFinder: Doublet Detection in Single-Cell RNA Sequencing Data Using Artificial Nearest Neighbors",
+    "summary": "以人工合成双细胞邻居识别液滴单细胞表达数据中的 doublet 候选。",
+    "authors": "McGinnis CS, Murrow LM, Gartner ZJ",
+    "year": "2019",
+    "journal": "Cell Systems",
+    "doi": "10.1016/j.cels.2019.03.003",
+    "type": "method",
+    "methodIds": [
+      "doubletfinder"
+    ],
+    "domainIds": [
+      "single-cell-spatial-omics"
+    ],
+    "speciesIds": [],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "方法论文"
+    ]
+  },
+  {
+    "id": "dss-paper",
+    "title": "A Bayesian hierarchical model to detect differentially methylated loci from single nucleotide resolution sequencing data",
+    "summary": "以层次 beta-binomial 模型分析 BS-seq 甲基化计数并识别差异位点。",
+    "authors": "Feng H, Conneely KN, Wu H",
+    "year": "2014",
+    "journal": "Nucleic Acids Research",
+    "doi": "10.1093/nar/gku154",
+    "type": "method",
+    "methodIds": [
+      "dss"
+    ],
+    "domainIds": [
+      "epigenomics-3d-genome"
+    ],
+    "speciesIds": [],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "方法价值"
+    ]
+  },
+  {
+    "id": "edta-paper",
+    "title": "Benchmarking transposable element annotation methods for creation of a streamlined, comprehensive pipeline",
+    "summary": "提出 EDTA 流程，评估植物基因组中的结构化转座子发现、过滤和综合注释。",
+    "authors": "Ou S et al.",
+    "year": "2019",
+    "journal": "Genome Biology",
+    "doi": "10.1186/s13059-019-1905-y",
+    "type": "method",
+    "methodIds": [
+      "edta"
+    ],
+    "domainIds": [
+      "genome-annotation"
+    ],
+    "speciesIds": [
+      "rice"
+    ],
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "研究问题",
+      "方法贡献",
+      "结果解读与限制",
+      "阅读重点"
+    ]
+  },
+  {
+    "id": "eupan-paper",
+    "title": "EUPAN enables pan-genome studies of a large number of eukaryotic genomes",
+    "summary": "介绍面向大规模真核生物泛基因组分析与基因 PAV 识别的工具集和 Map-to-pan 流程。",
+    "authors": "Hu Z, Sun C, Lu K-C, Chu X, Zhao Y, Lu J, Shi J, Wei C",
+    "year": "2017",
+    "journal": "Bioinformatics",
+    "doi": "10.1093/bioinformatics/btx170",
+    "type": "method",
+    "methodIds": [
+      "eupan"
+    ],
+    "domainIds": [
+      "pangenomics-structural-variation"
+    ],
+    "speciesIds": [
+      "rice"
+    ],
+    "status": "published",
+    "updatedAt": "2026-11-21",
+    "headings": [
+      "方法贡献"
+    ]
+  },
+  {
+    "id": "gapit3-paper",
+    "title": "GAPIT Version 3: Boosting Power and Accuracy for Genomic Association and Prediction",
+    "summary": "提供多种全基因组关联与基因组预测方法的 R 工具。",
+    "authors": "Wang J, Zhang Z",
+    "year": "2021",
+    "journal": "Genomics Proteomics Bioinformatics",
+    "doi": "10.1016/j.gpb.2021.08.005",
+    "type": "method",
+    "methodIds": [
+      "gapit"
+    ],
+    "domainIds": [
+      "gwas-breeding"
+    ],
+    "speciesIds": [],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "方法价值"
+    ]
+  },
+  {
+    "id": "genie3-paper",
+    "title": "Inferring Regulatory Networks from Expression Data Using Tree-Based Methods",
+    "summary": "提出 GENIE3，通过逐靶基因的树集成回归从表达数据产生候选调控边排序。",
+    "authors": "Huynh-Thu VA, Irrthum A, Wehenkel L, Geurts P",
+    "year": "2010",
+    "journal": "PLOS ONE",
+    "doi": "10.1371/journal.pone.0012776",
+    "type": "method",
+    "methodIds": [
+      "genie3"
+    ],
+    "domainIds": [
+      "regulatory-genomics-ai"
+    ],
+    "speciesIds": [],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "研究问题",
+      "方法创新与算法",
+      "研究结果与限制",
+      "阅读重点与植物研究路径"
+    ]
+  },
+  {
+    "id": "giraffe-paper",
+    "title": "Pangenomics enables genotyping known structural variants in 5,202 diverse genomes",
+    "summary": "介绍单倍型感知的 Giraffe 泛基因组短读段比对及结构变异分型。",
+    "authors": "Siren J, Monlong J, Chang X, et al.",
+    "year": "2021",
+    "journal": "Science",
+    "doi": "10.1126/science.abg8871",
+    "type": "method",
+    "methodIds": [
+      "vg"
+    ],
+    "domainIds": [
+      "pangenomics-structural-variation"
+    ],
+    "speciesIds": [],
+    "status": "published",
+    "updatedAt": "2026-11-21",
+    "headings": [
+      "方法价值"
+    ]
+  },
+  {
+    "id": "grnboost2-paper",
+    "title": "GRNBoost2 and Arboreto: efficient and scalable inference of gene regulatory networks",
+    "summary": "介绍梯度提升树网络推断及 Arboreto 并行调度框架。",
+    "authors": "Moerman T, Aibar Santos S, Bravo González-Blas C, et al.",
+    "year": "2019",
+    "journal": "Bioinformatics",
+    "doi": "10.1093/bioinformatics/bty916",
+    "type": "method",
+    "methodIds": [
+      "grnboost2"
+    ],
+    "domainIds": [
+      "regulatory-genomics-ai"
+    ],
+    "speciesIds": [],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "方法价值"
+    ]
+  },
+  {
+    "id": "gwas-mlm-paper",
+    "title": "A unified mixed-model method for association mapping that accounts for multiple levels of relatedness",
+    "summary": "结合群体结构和亲缘关系改进遗传关联分析。",
+    "authors": "Yu J, Pressoir G, Briggs WH, et al.",
+    "year": "2006",
+    "journal": "Nature Genetics",
+    "doi": "10.1038/ng1702",
+    "type": "method",
+    "methodIds": [],
+    "domainIds": [
+      "gwas-breeding"
+    ],
+    "speciesIds": [],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "方法价值"
+    ]
+  },
+  {
+    "id": "haphic-paper",
+    "title": "Chromosome-level scaffolding of haplotype-resolved assemblies using Hi-C data without reference genomes",
+    "summary": "提出无需参考基因组的 allele-aware Hi-C scaffold 方法 HapHiC，并用于奇岗异源三倍体组装。",
+    "authors": "Zeng X et al.",
+    "year": "2024",
+    "journal": "Nature Plants",
+    "doi": "10.1038/s41477-024-01755-3",
+    "type": "method",
+    "methodIds": [],
+    "domainIds": [
+      "genome-assembly"
+    ],
+    "speciesIds": [
+      "miscanthus"
+    ],
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "研究背景",
+      "方法贡献与工作流程",
+      "植物案例与主要结论",
+      "阅读重点与限制"
+    ]
+  },
+  {
+    "id": "heritability-genotype-difference",
+    "title": "Heritability in Plant Breeding on a Genotype-Difference Basis",
+    "summary": "提出将基因型均值间相关性纳入植物育种遗传力估计的 genotype-difference 方法。",
+    "authors": "Schmidt P, Hartung J, Bennewitz J, Piepho H-P",
+    "year": "2019",
+    "journal": "Genetics",
+    "doi": "10.1534/genetics.119.302134",
+    "type": "method",
+    "methodIds": [],
+    "domainIds": [
+      "gwas-breeding"
+    ],
+    "speciesIds": [],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "方法价值",
+      "书目信息与来源"
+    ]
+  },
+  {
+    "id": "hicexplorer-paper",
+    "title": "Galaxy HiCExplorer 3: a web server for reproducible Hi-C, capture Hi-C and single-cell Hi-C data analysis, quality control and visualization",
+    "summary": "介绍 HiCExplorer 3 的接触矩阵构建、质量控制、分析和可视化工作流。",
+    "authors": "Wolff J, Rabbani L, Gilsbach R, Richard G, Manke T, Backofen R, Grüning BA",
+    "year": "2020",
+    "journal": "Nucleic Acids Research",
+    "doi": "10.1093/nar/gkaa220",
+    "type": "method",
+    "methodIds": [
+      "hicexplorer"
+    ],
+    "domainIds": [
+      "epigenomics-3d-genome"
+    ],
+    "speciesIds": [],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "方法价值"
+    ]
+  },
+  {
+    "id": "hifiasm",
+    "title": "Haplotype-resolved de novo assembly using phased assembly graphs with hifiasm",
+    "summary": "提出相位感知组装图，用高准确度长读长构建单倍型解析组装。",
+    "authors": "Cheng H et al.",
+    "year": "2021",
+    "journal": "Nature Methods",
+    "doi": "10.1038/s41592-020-01056-5",
+    "type": "method",
+    "method": "hifiasm",
+    "methodIds": [
+      "hifiasm"
+    ],
+    "domainIds": [
+      "genome-assembly"
+    ],
+    "speciesIds": [],
+    "updatedAt": "2026-11-20",
+    "headings": [
+      "研究解读",
+      "数据来源",
+      "研究背景与问题",
+      "方法创新",
+      "主要结果与材料范围",
+      "方法限制与阅读重点"
+    ]
+  },
+  {
+    "id": "infernal-paper",
+    "title": "Infernal 1.1: 100-fold faster RNA homology searches",
+    "summary": "介绍使用协方差模型进行 RNA 家族同源搜索的 Infernal 1.1。",
+    "authors": "Nawrocki EP and Eddy SR",
+    "year": "2013",
+    "journal": "Bioinformatics",
+    "doi": "10.1093/bioinformatics/btt509",
+    "type": "method",
+    "methodIds": [],
+    "domainIds": [
+      "genome-annotation"
+    ],
+    "speciesIds": [],
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "研究问题与方法贡献",
+      "计算原理",
+      "结果、限制与植物应用",
+      "阅读重点"
+    ]
+  },
+  {
+    "id": "interproscan-paper",
+    "title": "InterProScan 5: genome-scale protein function classification",
+    "summary": "介绍 InterProScan 5 的大规模蛋白签名分析及 InterPro 条目映射。",
+    "authors": "Jones P et al.",
+    "year": "2014",
+    "journal": "Bioinformatics",
+    "doi": "10.1093/bioinformatics/btu031",
+    "type": "method",
+    "methodIds": [
+      "interproscan"
+    ],
+    "domainIds": [
+      "genome-annotation"
+    ],
+    "speciesIds": [],
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "研究问题与方法贡献",
+      "算法与输出",
+      "结果与应用边界",
+      "阅读重点"
+    ]
+  },
+  {
+    "id": "iqtree2-paper",
+    "title": "IQ-TREE 2: New Models and Efficient Methods for Phylogenetic Inference in the Genomic Era",
+    "summary": "基于最大似然的系统发育树推断与模型选择方法。",
+    "authors": "Minh BQ, Schmidt HA, Chernomor O, et al.",
+    "year": "2020",
+    "journal": "Molecular Biology and Evolution",
+    "doi": "10.1093/molbev/msaa015",
+    "type": "method",
+    "methodIds": [
+      "iqtree2"
+    ],
+    "domainIds": [
+      "comparative-genomics"
+    ],
+    "speciesIds": [],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "方法问题与计算流程"
+    ]
+  },
+  {
+    "id": "macadamia-mcscanx",
+    "title": "The genome of the endangered Macadamia jansenii displays little diversity but represents an important genetic resource for plant breeding",
+    "summary": "使用 MCScanX 对澳洲坚果属基因组注释开展重复基因与共线分析。",
+    "authors": "Sharma P, Murigneux V, Haimovitz J, et al.",
+    "year": "2021",
+    "journal": "Plant Direct",
+    "doi": "10.1002/pld3.364",
+    "type": "application",
+    "methodIds": [
+      "mcscanx"
+    ],
+    "domainIds": [
+      "comparative-genomics"
+    ],
+    "speciesIds": [
+      "macadamia"
+    ],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "方法与案例"
+    ]
+  },
+  {
+    "id": "macadamia",
+    "title": "De novo chromosome level assembly of a plant genome from long read sequence data",
+    "summary": "使用 HiFi reads 和 Hifiasm 构建 Macadamia jansenii 基因组组装。",
+    "authors": "Sharma P et al.",
+    "year": "2022",
+    "journal": "The Plant Journal",
+    "doi": "10.1111/tpj.15583",
+    "type": "application",
+    "method": "hifiasm",
+    "methodIds": [
+      "hifiasm"
+    ],
+    "domainIds": [
+      "genome-assembly"
+    ],
+    "speciesIds": [
+      "macadamia"
+    ],
+    "updatedAt": "2026-11-20",
+    "headings": [
+      "研究解读",
+      "研究背景与分析目标",
+      "数据与计算方法",
+      "主要发现与解读",
+      "方法限制与精读重点"
+    ]
+  },
+  {
+    "id": "macs-paper",
+    "title": "Model-based Analysis of ChIP-Seq (MACS)",
+    "summary": "以局部背景模型和 tag-shift 估计识别 ChIP-seq 富集区。",
+    "authors": "Zhang Y, Liu T, Meyer CA, et al.",
+    "year": "2008",
+    "journal": "Genome Biology",
+    "doi": "10.1186/gb-2008-9-9-r137",
+    "type": "method",
+    "methodIds": [
+      "macs3"
+    ],
+    "domainIds": [
+      "epigenomics-3d-genome"
+    ],
+    "speciesIds": [],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "方法价值"
+    ]
+  },
+  {
+    "id": "maize-domestication",
+    "title": "Comparative population genomics of maize domestication and improvement",
+    "summary": "比较野生、地方和改良玉米材料的群体基因组变化。",
+    "authors": "Hufford MB, Xu X, van Heerwaarden J, et al.",
+    "year": "2012",
+    "journal": "Nature Genetics",
+    "doi": "10.1038/ng.2309",
+    "type": "application",
+    "methodIds": [
+      "xpclr"
+    ],
+    "domainIds": [
+      "population-genetics"
+    ],
+    "speciesIds": [
+      "maize"
+    ],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "研究问题与样本设计"
+    ]
+  },
+  {
+    "id": "maize-drought-deseq2-2019",
+    "title": "Maize leaves drought-responsive genes revealed by comparative transcriptome of two cultivars during the filling stage",
+    "summary": "玉米灌浆期叶片干旱响应转录组比较使用 DESeq2 进行差异表达分析。",
+    "authors": "Jin H, Liu S, Zenda T, et al.",
+    "year": "2019",
+    "journal": "PLOS ONE",
+    "doi": "10.1371/journal.pone.0223786",
+    "type": "application",
+    "methodIds": [
+      "deseq2"
+    ],
+    "domainIds": [
+      "regulatory-genomics-ai"
+    ],
+    "speciesIds": [
+      "maize"
+    ],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "植物研究"
+    ]
+  },
+  {
+    "id": "maize-multiomics-network-2023",
+    "title": "A multi-omics integrative network map of maize",
+    "summary": "整合玉米发育过程的基因组、转录组、翻译组和蛋白质组网络。",
+    "authors": "Han L, Zhong W, Qian J, et al.",
+    "year": "2023",
+    "journal": "Nature Genetics",
+    "doi": "10.1038/s41588-022-01262-1",
+    "type": "application",
+    "methodIds": [],
+    "domainIds": [
+      "regulatory-genomics-ai"
+    ],
+    "speciesIds": [
+      "maize"
+    ],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "研究价值"
+    ]
+  },
+  {
+    "id": "maize-zeas-adaptation",
+    "title": "Population genomics of Zea species identifies selection signatures during maize domestication and adaptation",
+    "summary": "以 teosinte—玉米和热带—温带玉米的分组比较研究驯化与环境适应信号。",
+    "authors": "Xu G, Zhang X, Chen W, et al.",
+    "year": "2022",
+    "journal": "BMC Plant Biology",
+    "doi": "10.1186/s12870-022-03427-w",
+    "type": "application",
+    "methodIds": [
+      "admixture",
+      "xpclr"
+    ],
+    "domainIds": [
+      "population-genetics"
+    ],
+    "speciesIds": [
+      "maize"
+    ],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "研究问题与材料",
+      "统计方法与论文结果",
+      "参考记录"
+    ]
+  },
+  {
+    "id": "mam-positive-selection-2006",
+    "title": "Positive selection driving diversification in plant secondary metabolism",
+    "summary": "结合拟南芥 MAM 基因簇的演化分析与酶功能实验研究代谢多样化。",
+    "authors": "Benderoth M, Textor S, Windsor AJ, et al.",
+    "year": "2006",
+    "journal": "Proceedings of the National Academy of Sciences",
+    "doi": "10.1073/pnas.0601738103",
+    "type": "application",
+    "methodIds": [
+      "paml"
+    ],
+    "domainIds": [
+      "comparative-genomics"
+    ],
+    "speciesIds": [
+      "arabidopsis"
+    ],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "研究问题与方法"
+    ]
+  },
+  {
+    "id": "mango-annotation",
+    "title": "A chromosome-level genome of mango exclusively from long-read sequence data",
+    "summary": "芒果染色体级基因组应用研究，报告重复屏蔽、BRAKER3 结构预测及蛋白功能注释流程。",
+    "authors": "Wijesundara UK et al.",
+    "year": "2024",
+    "journal": "The Plant Genome",
+    "doi": "10.1002/tpg2.20441",
+    "type": "application",
+    "methodIds": [
+      "braker3",
+      "interproscan"
+    ],
+    "domainIds": [
+      "genome-annotation",
+      "genome-assembly"
+    ],
+    "speciesIds": [
+      "mango"
+    ],
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "研究背景",
+      "方法流程与工具角色",
+      "主要结果与限制",
+      "阅读重点"
+    ]
+  },
+  {
+    "id": "mcscanx-paper",
+    "title": "MCScanX: a toolkit for detection and evolutionary analysis of gene synteny and collinearity",
+    "summary": "利用同源基因位置识别共线区块并开展相关演化分析。",
+    "authors": "Wang Y, Tang H, DeBarry JD, et al.",
+    "year": "2012",
+    "journal": "Nucleic Acids Research",
+    "doi": "10.1093/nar/gkr1293",
+    "type": "method",
+    "methodIds": [
+      "mcscanx"
+    ],
+    "domainIds": [
+      "comparative-genomics"
+    ],
+    "speciesIds": [],
+    "status": "published",
+    "updatedAt": "2026-11-21",
+    "headings": [
+      "方法价值"
+    ]
+  },
+  {
+    "id": "meme-suite-paper",
+    "title": "The MEME Suite",
+    "summary": "介绍序列 motif 发现、扫描、富集与数据库工具集合。",
+    "authors": "Bailey TL, Johnson J, Grant CE, Noble WS",
+    "year": "2015",
+    "journal": "Nucleic Acids Research",
+    "doi": "10.1093/nar/gkv416",
+    "type": "method",
+    "methodIds": [
+      "meme-suite"
+    ],
+    "domainIds": [
+      "epigenomics-3d-genome",
+      "regulatory-genomics-ai"
+    ],
+    "speciesIds": [],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "方法价值"
+    ]
+  },
+  {
+    "id": "merqury",
+    "title": "Merqury: reference-free quality, completeness, and phasing assessment for genome assemblies",
+    "summary": "提出使用 k-mer 评估组装准确率、完整性和相位的方法。",
+    "authors": "Rhie A et al.",
+    "year": "2020",
+    "journal": "Genome Biology",
+    "doi": "10.1186/s13059-020-02134-9",
+    "type": "method",
+    "method": "merqury",
+    "methodIds": [
+      "merqury"
+    ],
+    "domainIds": [
+      "genome-assembly"
+    ],
+    "speciesIds": [
+      "arabidopsis"
+    ],
+    "updatedAt": "2026-11-20",
+    "headings": [
+      "研究解读",
+      "数据来源",
+      "研究背景与核心问题",
+      "方法创新",
+      "主要结果与植物关系",
+      "限制与精读重点"
+    ]
+  },
+  {
+    "id": "minigraph-cactus-paper",
+    "title": "Pangenome graph construction from genome alignments with Minigraph-Cactus",
+    "summary": "由多套组装构建序列图。",
+    "authors": "Hickey G et al.",
+    "year": "2024",
+    "journal": "Nature Biotechnology",
+    "doi": "10.1038/s41587-023-01793-w",
+    "type": "method",
+    "methodIds": [
+      "minigraph-cactus"
+    ],
+    "domainIds": [
+      "pangenomics-structural-variation"
+    ],
+    "speciesIds": [],
+    "status": "published",
+    "updatedAt": "2026-11-21",
+    "headings": [
+      "方法贡献"
+    ]
+  },
+  {
+    "id": "minigraph-paper",
+    "title": "The design and construction of reference pangenome graphs with minigraph",
+    "summary": "介绍以参考骨架逐步纳入组装序列的泛基因组图构建方法。",
+    "authors": "Li H, Feng X, Chu C",
+    "year": "2020",
+    "journal": "Genome Biology",
+    "doi": "10.1186/s13059-020-02168-z",
+    "type": "method",
+    "methodIds": [
+      "minigraph"
+    ],
+    "domainIds": [
+      "pangenomics-structural-variation"
+    ],
+    "speciesIds": [],
+    "status": "published",
+    "updatedAt": "2026-11-21",
+    "headings": [
+      "方法贡献"
+    ]
+  },
+  {
+    "id": "minimap2-paper",
+    "title": "Minimap2: pairwise alignment for nucleotide sequences",
+    "summary": "介绍 minimizer 种子、锚点链化及碱基级动态规划的通用核苷酸序列比对方法。",
+    "authors": "Li H",
+    "year": "2018",
+    "journal": "Bioinformatics 34(18):3094–3100",
+    "doi": "10.1093/bioinformatics/bty191",
+    "type": "method",
+    "methodIds": [
+      "minimap2"
+    ],
+    "domainIds": [
+      "pangenomics-structural-variation"
+    ],
+    "speciesIds": [],
+    "status": "published",
+    "updatedAt": "2026-11-21",
+    "headings": []
+  },
+  {
+    "id": "mofa-plus-paper",
+    "title": "MOFA+: a statistical framework for comprehensive integration of multi-modal single-cell data",
+    "summary": "提出用于多视图、多组多组学数据的变分贝叶斯潜在因子框架。",
+    "authors": "Argelaguet R, Arnol D, Bredikhin D, et al.",
+    "year": "2020",
+    "journal": "Genome Biology",
+    "doi": "10.1186/s13059-020-02015-1",
+    "type": "method",
+    "methodIds": [
+      "mofa-plus"
+    ],
+    "domainIds": [
+      "regulatory-genomics-ai",
+      "single-cell-spatial-omics"
+    ],
+    "speciesIds": [],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "研究问题",
+      "方法贡献与模型",
+      "结果与适用边界",
+      "阅读重点与植物应用区分"
+    ]
+  },
+  {
+    "id": "msmc-paper",
+    "title": "Inferring human population size and separation history from multiple genome sequences",
+    "summary": "提出 MSMC，利用多条基因组序列推断历史群体大小及群体间分化过程。",
+    "authors": "Schiffels S, Durbin R",
+    "year": "2014",
+    "journal": "Nature Genetics",
+    "doi": "10.1038/ng.3015",
+    "type": "method",
+    "methodIds": [
+      "msmc2"
+    ],
+    "domainIds": [
+      "population-genetics"
+    ],
+    "speciesIds": [],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": []
+  },
+  {
+    "id": "msmc2-protocol",
+    "title": "MSMC and MSMC2: The Multiple Sequentially Markovian Coalescent",
+    "summary": "说明 MSMC 与 MSMC2 的数据准备、运行、共祖率分析和结果解释。",
+    "authors": "Schiffels S, Wang K",
+    "year": "2020",
+    "journal": "Methods in Molecular Biology",
+    "doi": "10.1007/978-1-0716-0199-0_7",
+    "type": "method",
+    "methodIds": [
+      "msmc2"
+    ],
+    "domainIds": [
+      "population-genetics"
+    ],
+    "speciesIds": [],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": []
+  },
+  {
+    "id": "mummer4-paper",
+    "title": "MUMmer4: A fast and versatile genome alignment system",
+    "summary": "介绍以 suffix array、最大精确匹配与局部延伸为基础的 MUMmer4 基因组比较系统。",
+    "authors": "Marçais G, Delcher AL, Phillippy AM, Coston R, Salzberg SL, Zimin A",
+    "year": "2018",
+    "journal": "PLOS Computational Biology 14(1):e1005944",
+    "doi": "10.1371/journal.pcbi.1005944",
+    "type": "method",
+    "methodIds": [
+      "mummer4"
+    ],
+    "domainIds": [
+      "pangenomics-structural-variation"
+    ],
+    "speciesIds": [],
+    "status": "published",
+    "updatedAt": "2026-11-21",
+    "headings": []
+  },
+  {
+    "id": "mungbean-evolution-2014",
+    "title": "Genome sequence of mungbean and insights into evolution within Vigna species",
+    "summary": "以绿豆及近缘豆属材料研究基因组重复信号与物种演化。",
+    "authors": "Kang YJ, Kim SK, Kim MY, et al.",
+    "year": "2014",
+    "journal": "Nature Communications",
+    "doi": "10.1038/ncomms6443",
+    "type": "application",
+    "methodIds": [],
+    "domainIds": [
+      "comparative-genomics"
+    ],
+    "speciesIds": [
+      "mungbean"
+    ],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "研究范围与解读"
+    ]
+  },
+  {
+    "id": "odgi-paper",
+    "title": "ODGI: understanding pangenome graphs",
+    "summary": "介绍泛基因组图操作与可视化工具。",
+    "authors": "Guarracino A, Heumos S, Nahnsen S, Prins P, Garrison E",
+    "year": "2022",
+    "journal": "Bioinformatics",
+    "doi": "10.1093/bioinformatics/btac308",
+    "type": "method",
+    "methodIds": [
+      "odgi"
+    ],
+    "domainIds": [
+      "pangenomics-structural-variation"
+    ],
+    "speciesIds": [],
+    "status": "published",
+    "updatedAt": "2026-11-21",
+    "headings": [
+      "方法贡献"
+    ]
+  },
+  {
+    "id": "orthofinder-2026",
+    "title": "OrthoFinder: improved phylogenetic orthology inference with enhanced accuracy and scalability",
+    "summary": "介绍 OrthoFinder 方法在系统发育同源推断准确性与可扩展性方面的改进。",
+    "authors": "Emms DM, Liu Y, Belcher L, et al.",
+    "year": "2026",
+    "journal": "Nature Methods",
+    "doi": "10.1038/s41592-026-03126-6",
+    "type": "method",
+    "methodIds": [
+      "orthofinder"
+    ],
+    "domainIds": [
+      "comparative-genomics"
+    ],
+    "speciesIds": [],
+    "status": "published",
+    "updatedAt": "2026-11-21",
+    "headings": [
+      "方法价值"
+    ]
+  },
+  {
+    "id": "orthofinder-paper",
+    "title": "OrthoFinder: phylogenetic orthology inference for comparative genomics",
+    "summary": "基于基因家族和系统发育推断直系同源关系及基因复制事件。",
+    "authors": "Emms DM, Kelly S",
+    "year": "2019",
+    "journal": "Genome Biology",
+    "doi": "10.1186/s13059-019-1832-y",
+    "type": "method",
+    "methodIds": [
+      "orthofinder"
+    ],
+    "domainIds": [
+      "comparative-genomics",
+      "pangenomics-structural-variation"
+    ],
+    "speciesIds": [],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "方法价值"
+    ]
+  },
+  {
+    "id": "paml-paper",
+    "title": "PAML 4: Phylogenetic Analysis by Maximum Likelihood",
+    "summary": "用于分子序列系统发育与进化模型分析的软件包。",
+    "authors": "Yang Z",
+    "year": "2007",
+    "journal": "Molecular Biology and Evolution",
+    "doi": "10.1093/molbev/msm088",
+    "type": "method",
+    "methodIds": [
+      "paml"
+    ],
+    "domainIds": [
+      "comparative-genomics"
+    ],
+    "speciesIds": [],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "软件范围与方法"
+    ]
+  },
+  {
+    "id": "pggb-paper",
+    "title": "Building pangenome graphs",
+    "summary": "基于全对全比对构建图泛基因组。",
+    "authors": "Garrison E et al.",
+    "year": "2024",
+    "journal": "Nature Methods",
+    "doi": "10.1038/s41592-024-02430-3",
+    "type": "method",
+    "methodIds": [
+      "pggb"
+    ],
+    "domainIds": [
+      "pangenomics-structural-variation"
+    ],
+    "speciesIds": [],
+    "status": "published",
+    "updatedAt": "2026-11-21",
+    "headings": [
+      "方法贡献"
+    ]
+  },
+  {
+    "id": "plant-dna-methylation-review-2021",
+    "title": "Dynamics of DNA Methylation and Its Functions in Plant Growth and Development",
+    "summary": "综述植物 CG、CHG、CHH 甲基化的建立、维持及其发育功能。",
+    "authors": "Kumar S, Mohapatra T",
+    "year": "2021",
+    "journal": "Frontiers in Plant Science",
+    "doi": "10.3389/fpls.2021.596236",
+    "type": "review",
+    "methodIds": [],
+    "domainIds": [
+      "epigenomics-3d-genome"
+    ],
+    "speciesIds": [
+      "arabidopsis"
+    ],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "延伸阅读"
+    ]
+  },
+  {
+    "id": "plant-induced-sv-2025",
+    "title": "A simple method to efficiently generate structural variation in plants",
+    "summary": "在拟南芥中评估依托泊苷诱导遗传结构变异，并以长读长测序和遗传分析验证候选事件。",
+    "authors": "Bechen LL, Ahsan N, Bahrainwala A, Gehring M, Satyaki PRV",
+    "year": "2025",
+    "journal": "PLoS Genetics 21(12):e1011977",
+    "doi": "10.1371/journal.pgen.1011977",
+    "type": "application",
+    "methodIds": [
+      "cutesv"
+    ],
+    "domainIds": [
+      "pangenomics-structural-variation"
+    ],
+    "speciesIds": [
+      "arabidopsis"
+    ],
+    "status": "published",
+    "updatedAt": "2026-11-21",
+    "headings": [
+      "研究问题与数据",
+      "软件与结果边界",
+      "文献与数据"
+    ]
+  },
+  {
+    "id": "plant-sv-benchmark-2026",
+    "title": "Benchmarking long-read aligner-caller pipelines for structural variant detection across ten angiosperm species with PacBio high-fidelity sequencing",
+    "summary": "建立十种被子植物的 HiFi 结构变异真值集，比较 91 种比对器—变异检测器流程。",
+    "authors": "Zhang Z, Xu J, Wang Z, Yu T, He K, Liu D, Zhao Y, Wang K, Xie Z, Huang C, Wang J, Li H",
+    "year": "2026",
+    "journal": "Genome Biology",
+    "doi": "10.1186/s13059-026-04300-x",
+    "type": "application",
+    "methodIds": [
+      "sniffles2",
+      "cutesv"
+    ],
+    "domainIds": [
+      "pangenomics-structural-variation"
+    ],
+    "speciesIds": [],
+    "status": "published",
+    "updatedAt": "2026-11-21",
+    "headings": [
+      "研究问题与数据",
+      "方法关系与主要结果",
+      "文献与工具"
+    ]
+  },
+  {
+    "id": "plant-wgd-timing-2017",
+    "title": "Constraining the timing of whole genome duplication in plant evolutionary history",
+    "summary": "结合串联基因家族、化石校准与分子钟估计种子植物和被子植物古复制事件。",
+    "authors": "Clark JW, Donoghue PCJ",
+    "year": "2017",
+    "journal": "Proceedings of the Royal Society B",
+    "doi": "10.1098/rspb.2017.0912",
+    "type": "application",
+    "methodIds": [
+      "paml"
+    ],
+    "domainIds": [
+      "comparative-genomics"
+    ],
+    "speciesIds": [],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "研究问题与方法"
+    ]
+  },
+  {
+    "id": "plantcad2-paper",
+    "title": "PlantCAD2: A DNA foundation model for interpreting genomes across flowering plants",
+    "summary": "提出面向开花植物的长上下文 Caduceus/Mamba2 DNA 基础模型及跨物种基准。",
+    "authors": "Zhai J, Gokaslan A, Hsu S-K, Chen S-P, Liu Z-Y, Marroquin E, Czech E, Cannon B, Berthel A, Romay MC, Pennell M, Kuleshov V, Buckler ES",
+    "year": "2026",
+    "journal": "Cell Genomics",
+    "doi": "10.1016/j.xgen.2026.101329",
+    "type": "method",
+    "methodIds": [
+      "plantcad2"
+    ],
+    "domainIds": [
+      "regulatory-genomics-ai"
+    ],
+    "speciesIds": [
+      "maize"
+    ],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "研究问题与方法设计",
+      "任务与主要结果",
+      "限制与复现关注点",
+      "阅读重点与原始来源"
+    ]
+  },
+  {
+    "id": "plink-paper",
+    "title": "PLINK: A Tool Set for Whole-Genome Association and Population-Based Linkage Analyses",
+    "summary": "用于大规模基因型数据管理、群体结构和遗传统计分析的工具集。",
+    "authors": "Purcell S, Neale B, Todd-Brown K, et al.",
+    "year": "2007",
+    "journal": "American Journal of Human Genetics",
+    "doi": "10.1086/519795",
+    "type": "method",
+    "methodIds": [
+      "plink"
+    ],
+    "domainIds": [
+      "population-genetics"
+    ],
+    "speciesIds": [],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "方法价值"
+    ]
+  },
+  {
+    "id": "populus-euphratica-demography",
+    "title": "Genome resequencing reveals demographic history and genetic architecture of seed salinity tolerance in Populus euphratica",
+    "summary": "以全基因组重测序研究胡杨群体结构、PSMC 历史轨迹和种子耐盐性。",
+    "authors": "Jia H, Liu G, Li J, et al.",
+    "year": "2020",
+    "journal": "Journal of Experimental Botany",
+    "doi": "10.1093/jxb/eraa172",
+    "type": "application",
+    "methodIds": [
+      "psmc"
+    ],
+    "domainIds": [
+      "population-genetics"
+    ],
+    "speciesIds": [
+      "populus-euphratica"
+    ],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": []
+  },
+  {
+    "id": "populus-repeats-demography",
+    "title": "Repetitive genomic regions and the inference of demographic history",
+    "summary": "以美洲黑杨分析重复区域掩蔽对多类人口历史估计的影响。",
+    "authors": "Patil AB, Vijay N",
+    "year": "2021",
+    "journal": "Heredity",
+    "doi": "10.1038/s41437-021-00443-8",
+    "type": "application",
+    "methodIds": [
+      "psmc",
+      "smcpp"
+    ],
+    "domainIds": [
+      "population-genetics"
+    ],
+    "speciesIds": [
+      "populus-trichocarpa"
+    ],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": []
+  },
+  {
+    "id": "potato",
+    "title": "Chromosome-scale and haplotype-resolved genome assembly of a tetraploid potato cultivar",
+    "summary": "该研究提供四倍体马铃薯染色体尺度单倍型组装案例。",
+    "authors": "Sun H et al.",
+    "year": "2022",
+    "journal": "Nature Genetics",
+    "doi": "10.1038/s41588-022-01015-0",
+    "type": "application",
+    "methodIds": [],
+    "domainIds": [
+      "genome-assembly"
+    ],
+    "speciesIds": [
+      "potato"
+    ],
+    "updatedAt": "2026-11-20",
+    "headings": [
+      "研究解读",
+      "数据来源",
+      "研究背景与目标",
+      "数据与计算策略",
+      "主要结果",
+      "解读边界与精读问题"
+    ]
+  },
+  {
+    "id": "psmc-paper",
+    "title": "Inference of human population history from individual whole-genome sequences",
+    "summary": "利用单个二倍体全基因组序列推断历史共祖和有效群体大小。",
+    "authors": "Li H, Durbin R",
+    "year": "2011",
+    "journal": "Nature",
+    "doi": "10.1038/nature10231",
+    "type": "method",
+    "methodIds": [
+      "psmc"
+    ],
+    "domainIds": [
+      "population-genetics"
+    ],
+    "speciesIds": [],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "方法价值"
+    ]
+  },
+  {
+    "id": "purple-rice-wgcna",
+    "title": "Transcriptome analysis of the coexpression network of genes related to antioxidant characteristics after grain filling in purple rice",
+    "summary": "使用加权基因共表达网络研究紫米籽粒灌浆后的抗氧化相关性状。",
+    "authors": "Sun C, Zhu J, Zhu Y, et al.",
+    "year": "2024",
+    "journal": "Scientific Reports",
+    "doi": "10.1038/s41598-024-73698-w",
+    "type": "application",
+    "methodIds": [
+      "wgcna"
+    ],
+    "domainIds": [
+      "regulatory-genomics-ai"
+    ],
+    "speciesIds": [
+      "rice"
+    ],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "植物研究"
+    ]
+  },
+  {
+    "id": "repeatmodeler2-paper",
+    "title": "RepeatModeler2 for automated genomic discovery of transposable element families",
+    "summary": "介绍转座子家族的自动发现方法。",
+    "authors": "Flynn JM et al.",
+    "year": "2020",
+    "journal": "PNAS",
+    "doi": "10.1073/pnas.1921046117",
+    "type": "method",
+    "methodIds": [],
+    "domainIds": [
+      "genome-annotation"
+    ],
+    "speciesIds": [],
+    "updatedAt": "2026-11-20",
+    "headings": [
+      "研究解读",
+      "原始来源"
+    ]
+  },
+  {
+    "id": "rice-3010-pangenome",
+    "title": "Genomic variation in 3,010 diverse accessions of Asian cultivated rice",
+    "summary": "分析亚洲栽培稻群体遗传变异和泛基因组基因存在缺失。",
+    "authors": "Wang W, Mauleon R, Hu Z, et al.",
+    "year": "2018",
+    "journal": "Nature",
+    "doi": "10.1038/s41586-018-0063-9",
+    "type": "application",
+    "methodIds": [
+      "eupan"
+    ],
+    "domainIds": [
+      "pangenomics-structural-variation",
+      "population-genetics"
+    ],
+    "speciesIds": [
+      "rice"
+    ],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "研究问题与方法价值",
+      "计算流程与软件关系",
+      "结果解读与限制",
+      "资料来源"
+    ]
+  },
+  {
+    "id": "rice-deep-rooting-qtl",
+    "title": "Quantitative trait locus mapping of deep rooting by linkage and association analysis in rice",
+    "summary": "结合水稻重组自交系连锁定位与多材料关联分析，研究深根比例的遗传基础。",
+    "authors": "Lou Q, Chen L, Mei H, Wei H, Feng F, Wang P, Xia H, Li T, Luo L",
+    "year": "2015",
+    "journal": "Journal of Experimental Botany",
+    "doi": "10.1093/jxb/erv246",
+    "type": "application",
+    "methodIds": [],
+    "domainIds": [
+      "gwas-breeding"
+    ],
+    "speciesIds": [
+      "rice"
+    ],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "研究问题"
+    ]
+  },
+  {
+    "id": "rice-deleterious-domestication",
+    "title": "Deleterious Variants in Asian Rice and the Potential Cost of Domestication",
+    "summary": "比较野生与栽培亚洲稻的有害变异，并以 XP-CLR 和 SweeD 等方法分析潜在扫荡区域。",
+    "authors": "Liu Q, Zhou Y, Morrell PL, Gaut BS",
+    "year": "2017",
+    "journal": "Molecular Biology and Evolution",
+    "doi": "10.1093/molbev/msw296",
+    "type": "application",
+    "methodIds": [
+      "xpclr"
+    ],
+    "domainIds": [
+      "population-genetics"
+    ],
+    "speciesIds": [
+      "rice"
+    ],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "研究问题与选择扫描方法"
+    ]
+  },
+  {
+    "id": "rice-domestication-civan",
+    "title": "Three geographically separate domestications of Asian rice",
+    "summary": "以不同栽培稻亚群的基因组选择足迹提出多地理起源模型。",
+    "authors": "Civáň P, Craig H, Cox CJ, Brown TA",
+    "year": "2015",
+    "journal": "Nature Plants",
+    "doi": "10.1038/nplants.2015.164",
+    "type": "application",
+    "methodIds": [],
+    "domainIds": [
+      "population-genetics"
+    ],
+    "speciesIds": [
+      "rice"
+    ],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "研究问题与解释框架",
+      "参考记录"
+    ]
+  },
+  {
+    "id": "rice-domestication-huang",
+    "title": "A map of rice genome variation reveals the origin of cultivated rice",
+    "summary": "比较野生与栽培水稻的基因组变异和驯化候选区域。",
+    "authors": "Huang X, Kurata N, Wei X, et al.",
+    "year": "2012",
+    "journal": "Nature",
+    "doi": "10.1038/nature11532",
+    "type": "application",
+    "methodIds": [],
+    "domainIds": [
+      "population-genetics"
+    ],
+    "speciesIds": [
+      "rice"
+    ],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "研究设计",
+      "方法与结果",
+      "参考记录"
+    ]
+  },
+  {
+    "id": "rice-gapit-2023",
+    "title": "Gene based markers improve precision of genome-wide association studies and accuracy of genomic predictions in rice breeding",
+    "summary": "比较水稻基因相关标记在关联分析与基因组预测中的应用。",
+    "authors": "Anilkumar C, Muhammed Azharudheen TP, Sah RP, et al.",
+    "year": "2023",
+    "journal": "Heredity",
+    "doi": "10.1038/s41437-023-00599-5",
+    "type": "application",
+    "methodIds": [
+      "gapit"
+    ],
+    "domainIds": [
+      "gwas-breeding"
+    ],
+    "speciesIds": [
+      "rice"
+    ],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "植物研究"
+    ]
+  },
+  {
+    "id": "rice-gwas-2010",
+    "title": "Genome-wide association studies of 14 agronomic traits in rice landraces",
+    "summary": "利用水稻地方品种的基因组变异分析多个农艺性状。",
+    "authors": "Huang X, Wei X, Sang T, et al.",
+    "year": "2010",
+    "journal": "Nature Genetics",
+    "doi": "10.1038/ng.695",
+    "type": "application",
+    "methodIds": [],
+    "domainIds": [
+      "gwas-breeding"
+    ],
+    "speciesIds": [
+      "rice"
+    ],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "研究价值"
+    ]
+  },
+  {
+    "id": "rice-pangenome-paper",
+    "title": "Pan-genome analysis highlights the extent of genomic variation in cultivated and wild rice",
+    "summary": "比较栽培和野生水稻材料的基因内容与基因组变异。",
+    "authors": "Zhao Q, Feng Q, Lu H, Li Y, Wang A, Tian Q, Zhan Q, Lu Y, Zhang L, Huang T, Wang Y, Fan D, Zhao Y, Wang Z, Zhou C, Chen J, Zhu C, Li W, Weng Q, Xu Q, Wang Z-X, Wei X, Han B, Huang X",
+    "year": "2018",
+    "journal": "Nature Genetics",
+    "doi": "10.1038/s41588-018-0041-z",
+    "type": "application",
+    "methodIds": [],
+    "domainIds": [
+      "pangenomics-structural-variation"
+    ],
+    "speciesIds": [
+      "rice"
+    ],
+    "status": "published",
+    "updatedAt": "2026-11-21",
+    "headings": [
+      "研究背景与问题",
+      "数据与计算流程",
+      "变异检测与 PAV",
+      "方法范围与进一步阅读"
+    ]
+  },
+  {
+    "id": "rice-root-single-cell-2021",
+    "title": "Single-cell transcriptome atlas and chromatin accessibility landscape reveal differentiation trajectories in the rice root",
+    "summary": "结合单细胞转录组和染色质可及性研究水稻根细胞分化。",
+    "authors": "Zhang TQ, Chen Y, Liu Y, et al.",
+    "year": "2021",
+    "journal": "Nature Communications",
+    "doi": "10.1038/s41467-021-22352-4",
+    "type": "application",
+    "methodIds": [
+      "scanpy"
+    ],
+    "domainIds": [
+      "single-cell-spatial-omics"
+    ],
+    "speciesIds": [
+      "rice"
+    ],
+    "status": "published",
+    "updatedAt": "2026-11-21",
+    "headings": [
+      "植物研究"
+    ]
+  },
+  {
+    "id": "rice-root-soil-single-cell-2025",
+    "title": "Single-cell transcriptomics reveal how root tissues adapt to soil stress",
+    "summary": "结合单细胞 RNA 测序与空间转录组研究水稻根对土壤环境的响应。",
+    "authors": "Zhu M, Hsu CW, Peralta Ogorek LL, et al.",
+    "year": "2025",
+    "journal": "Nature",
+    "doi": "10.1038/s41586-025-08941-z",
+    "type": "application",
+    "methodIds": [
+      "sc-kb-copilot",
+      "doubletfinder"
+    ],
+    "domainIds": [
+      "single-cell-spatial-omics"
+    ],
+    "speciesIds": [
+      "rice"
+    ],
+    "status": "published",
+    "updatedAt": "2026-11-21",
+    "headings": [
+      "研究价值"
+    ]
+  },
+  {
+    "id": "rice-roots-population",
+    "title": "Loci and natural alleles underlying robust roots and adaptive domestication of upland ecotype rice in aerobic conditions",
+    "summary": "结合水稻群体数据和表型研究根系变异与适应。",
+    "authors": "Zhao Y, Zhang H, Xu J, et al.",
+    "year": "2018",
+    "journal": "PLOS Genetics",
+    "doi": "10.1371/journal.pgen.1007521",
+    "type": "application",
+    "methodIds": [
+      "plink",
+      "admixture",
+      "gapit"
+    ],
+    "domainIds": [
+      "population-genetics",
+      "gwas-breeding"
+    ],
+    "speciesIds": [
+      "rice"
+    ],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "研究问题与数据",
+      "软件任务与结果",
+      "研究边界"
+    ]
+  },
+  {
+    "id": "rice-se-pav-hybrid-sterility-2023",
+    "title": "Two complementary genes in a presence-absence variation contribute to indica-japonica reproductive isolation in rice",
+    "summary": "以水稻 Se 基因座说明 PAV 如何通过互补基因作用影响籼粳杂交花粉育性。",
+    "authors": "Wang D, Wang H, Xu X, et al.",
+    "year": "2023",
+    "journal": "Nature Communications 14:4531",
+    "doi": "10.1038/s41467-023-40189-x",
+    "type": "application",
+    "methodIds": [],
+    "domainIds": [
+      "pangenomics-structural-variation"
+    ],
+    "speciesIds": [
+      "rice"
+    ],
+    "status": "published",
+    "updatedAt": "2026-11-21",
+    "headings": [
+      "研究问题与关键发现",
+      "PAV 识别与功能证据",
+      "对基因组分析的启示"
+    ]
+  },
+  {
+    "id": "rice-single-cell-multiomics-2025",
+    "title": "A single-cell multi-omics atlas of rice",
+    "summary": "在水稻八个器官的 116,564 个细胞中同步测量 RNA 表达和染色质可及性。",
+    "authors": "Wang X, Huang H, Jiang S, Kang J, Li D, et al.",
+    "year": "2025",
+    "journal": "Nature",
+    "doi": "10.1038/s41586-025-09251-0",
+    "type": "application",
+    "methodIds": [],
+    "domainIds": [
+      "single-cell-spatial-omics"
+    ],
+    "speciesIds": [
+      "rice"
+    ],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "植物单细胞多组学案例"
+    ]
+  },
+  {
+    "id": "rice-t2t-nipponbare",
+    "title": "A complete assembly of the rice Nipponbare reference genome",
+    "summary": "完成水稻 Nipponbare 参考基因组 T2T 组装，补充既有参考序列中缺失的基因组信息。",
+    "authors": "Shang L et al.",
+    "year": "2023",
+    "journal": "Molecular Plant",
+    "doi": "10.1016/j.molp.2023.08.003",
+    "type": "application",
+    "methodIds": [],
+    "domainIds": [
+      "genome-assembly"
+    ],
+    "speciesIds": [
+      "rice"
+    ],
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "研究背景",
+      "主要结果",
+      "方法学与阅读重点"
+    ]
+  },
+  {
+    "id": "rice-temarker-sweeps",
+    "title": "Exploring transposable element-based markers to identify allelic variations underlying agronomic traits in rice",
+    "summary": "在 176 份水稻材料中构建转座子插入基因型，并用 SweepFinder2 比较 SNP 与 TE 标记的扫荡信号。",
+    "authors": "Yan H, Haak DC, Li S, Huang L, Bombarely A",
+    "year": "2022",
+    "journal": "Plant Communications",
+    "doi": "10.1016/j.xplc.2021.100270",
+    "type": "application",
+    "methodIds": [
+      "sweepfinder2"
+    ],
+    "domainIds": [
+      "population-genetics"
+    ],
+    "speciesIds": [
+      "rice"
+    ],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "研究设计与软件任务"
+    ]
+  },
+  {
+    "id": "rice-variant-comparison",
+    "title": "Accurate detections of the heterozygous SNPs with rice genomic data and prediction of de novo spontaneous mutation rate",
+    "summary": "比较水稻基因组中杂合变异检测流程的表现。",
+    "authors": "Balimponya EG, Dwiyanti MS, Yamamori K, et al.",
+    "year": "2025",
+    "journal": "Plant Methods",
+    "doi": "10.1186/s13007-025-01437-x",
+    "type": "application",
+    "methodIds": [
+      "bcftools"
+    ],
+    "domainIds": [
+      "population-genetics"
+    ],
+    "speciesIds": [
+      "rice"
+    ],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "研究问题与设计",
+      "结果与解释范围",
+      "来源与工具关系"
+    ]
+  },
+  {
+    "id": "rice-weedy-selection",
+    "title": "Population genomics identifies the origin and signatures of selection of Korean weedy rice",
+    "summary": "使用重测序和多种互补扫描统计分析韩国杂草稻的群体来源与选择候选。",
+    "authors": "He Q, Kim K-W, Park Y-J",
+    "year": "2017",
+    "journal": "Plant Biotechnology Journal",
+    "doi": "10.1111/pbi.12630",
+    "type": "application",
+    "methodIds": [
+      "xpclr",
+      "selscan",
+      "plink"
+    ],
+    "domainIds": [
+      "population-genetics"
+    ],
+    "speciesIds": [
+      "rice"
+    ],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "研究设计与软件任务"
+    ]
+  },
+  {
+    "id": "rqtl2-paper",
+    "title": "R/qtl2: Software for Mapping Quantitative Trait Loci with High-Dimensional Data and Multiparent Populations",
+    "summary": "支持复杂实验杂交群体和高维表型的 QTL 分析。",
+    "authors": "Broman KW, Gatti DM, Simecek P, et al.",
+    "year": "2019",
+    "journal": "Genetics",
+    "doi": "10.1534/genetics.118.301595",
+    "type": "method",
+    "methodIds": [
+      "rqtl2"
+    ],
+    "domainIds": [
+      "gwas-breeding"
+    ],
+    "speciesIds": [],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "方法价值"
+    ]
+  },
+  {
+    "id": "rrblup-paper",
+    "title": "Ridge Regression and Other Kernels for Genomic Selection with R Package rrBLUP",
+    "summary": "在 R 中实现岭回归和核方法的基因组选择分析。",
+    "authors": "Endelman JB",
+    "year": "2011",
+    "journal": "The Plant Genome",
+    "doi": "10.3835/plantgenome2011.08.0024",
+    "type": "method",
+    "methodIds": [
+      "rrblup"
+    ],
+    "domainIds": [
+      "gwas-breeding"
+    ],
+    "speciesIds": [],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "方法价值"
+    ]
+  },
+  {
+    "id": "sc-kb-copilot-paper",
+    "title": "Protocol for fast scRNA-seq raw data processing using scKB and non-arbitrary quality control with COPILOT",
+    "summary": "介绍 kallisto/bustools 计数、scKB 矩阵生成和 COPILOT 分布式单细胞质控流程。",
+    "authors": "Hsu CW, Shahan R, Nolan TM, Benfey PN, Ohler U",
+    "year": "2022",
+    "journal": "STAR Protocols",
+    "doi": "10.1016/j.xpro.2022.101729",
+    "type": "method",
+    "methodIds": [
+      "sc-kb-copilot"
+    ],
+    "domainIds": [
+      "single-cell-spatial-omics"
+    ],
+    "speciesIds": [
+      "arabidopsis"
+    ],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "方法协议"
+    ]
+  },
+  {
+    "id": "scanpy-paper",
+    "title": "SCANPY: large-scale single-cell gene expression data analysis",
+    "summary": "介绍用于单细胞表达数据分析的 Python 工具包。",
+    "authors": "Wolf FA, Angerer P, Theis FJ",
+    "year": "2018",
+    "journal": "Genome Biology",
+    "doi": "10.1186/s13059-017-1382-0",
+    "type": "method",
+    "methodIds": [
+      "scanpy"
+    ],
+    "domainIds": [
+      "single-cell-spatial-omics"
+    ],
+    "speciesIds": [],
+    "status": "published",
+    "updatedAt": "2026-11-21",
+    "headings": [
+      "方法价值"
+    ]
+  },
+  {
+    "id": "scipy-paper",
+    "title": "SciPy 1.0: fundamental algorithms for scientific computing in Python",
+    "summary": "介绍 Python 科学计算库 SciPy 的基础算法及软件生态。",
+    "authors": "Virtanen P, Gommers R, Oliphant TE, et al.",
+    "year": "2020",
+    "journal": "Nature Methods",
+    "doi": "10.1038/s41592-019-0686-2",
+    "type": "method",
+    "methodIds": [
+      "scipy"
+    ],
+    "domainIds": [
+      "gwas-breeding"
+    ],
+    "speciesIds": [],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "方法价值"
+    ]
+  },
+  {
+    "id": "selscan-paper",
+    "title": "selscan: an efficient multi-threaded program to perform EHH-based scans for positive selection",
+    "summary": "介绍用于计算 EHH、iHS 和 XP-EHH 等统计量的多线程软件实现。",
+    "authors": "Szpiech ZA, Hernandez RD",
+    "year": "2014",
+    "journal": "Molecular Biology and Evolution",
+    "doi": "10.1093/molbev/msu211",
+    "type": "method",
+    "methodIds": [
+      "selscan"
+    ],
+    "domainIds": [
+      "population-genetics"
+    ],
+    "speciesIds": [],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "软件贡献"
+    ]
+  },
+  {
+    "id": "smcpp-paper",
+    "title": "Robust and scalable inference of population history from hundreds of unphased whole genomes",
+    "summary": "提出 SMC++，结合共祖连锁信息和条件样本频率谱推断群体历史。",
+    "authors": "Terhorst J, Kamm JA, Song YS",
+    "year": "2017",
+    "journal": "Nature Genetics",
+    "doi": "10.1038/ng.3748",
+    "type": "method",
+    "methodIds": [
+      "smcpp"
+    ],
+    "domainIds": [
+      "population-genetics"
+    ],
+    "speciesIds": [],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": []
+  },
+  {
+    "id": "sniffles2-paper",
+    "title": "Detection of mosaic and population-level structural variants with Sniffles2",
+    "summary": "介绍面向长读段的 Sniffles2 结构变异检测、群体分型与低频嵌合变异模式。",
+    "authors": "Smolka M, Paulin LF, Grochowski CM, Horner DW, Mahmoud M, Behera S, Kalef-Ezra E, Gandhi M, Hong K, Pehlivan D, Scholz SW, Carvalho CMB, Proukakis C, Sedlazeck FJ",
+    "year": "2024",
+    "journal": "Nature Biotechnology 42(10):1571–1580",
+    "doi": "10.1038/s41587-023-02024-y",
+    "type": "method",
+    "methodIds": [
+      "sniffles2"
+    ],
+    "domainIds": [
+      "pangenomics-structural-variation"
+    ],
+    "speciesIds": [],
+    "status": "published",
+    "updatedAt": "2026-11-21",
+    "headings": [
+      "方法范围"
+    ]
+  },
+  {
+    "id": "sorghum-graph-benchmark",
+    "title": "Toward a standardized framework for pangenome graph evaluation: assessing crop plant pangenome variation graph construction from multiple assemblies",
+    "summary": "以高粱为主模型，分开评估多种泛基因组图的内容覆盖、结构变异检测和读段映射，并将部分分析扩展到三种作物。",
+    "authors": "Venkataramana Kopalli, Kübra Arslan, Noemia Morales-Díaz, Silvia F Zanini, Agnieszka A Golicz",
+    "year": "2025",
+    "journal": "GigaScience",
+    "doi": "10.1093/gigascience/giaf121",
+    "type": "application",
+    "methodIds": [
+      "minigraph",
+      "pggb",
+      "minigraph-cactus",
+      "syri",
+      "vg",
+      "odgi"
+    ],
+    "domainIds": [
+      "pangenomics-structural-variation"
+    ],
+    "speciesIds": [
+      "sorghum"
+    ],
+    "status": "published",
+    "updatedAt": "2026-11-21",
+    "headings": [
+      "研究问题与数据",
+      "计算流程与工具版本",
+      "模拟组装：结构变异检测与图内容",
+      "真实组装：图规模、覆盖和完整度",
+      "真实组装：变异结果",
+      "读段映射：模拟数据与真实数据",
+      "跨作物扩展与方法适用范围",
+      "阅读结果时应区分的指标",
+      "文献与数据"
+    ]
+  },
+  {
+    "id": "sorghum-pangenome-reference-2026",
+    "title": "A sorghum pangenome reference improves global crop trait discovery",
+    "summary": "以 33 个基因组构建高粱泛基因组参考，并连接群体多样性与作物性状分析。",
+    "authors": "Morris GP, Harder AM, Healey AL, et al.",
+    "year": "2026",
+    "journal": "Nature 652:1245–1253",
+    "doi": "10.1038/s41586-026-10229-9",
+    "type": "application",
+    "methodIds": [
+      "minigraph-cactus",
+      "vg",
+      "odgi"
+    ],
+    "domainIds": [
+      "pangenomics-structural-variation"
+    ],
+    "speciesIds": [
+      "sorghum"
+    ],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "研究范围",
+      "图构建与可视化职责"
+    ]
+  },
+  {
+    "id": "soybean-resequencing",
+    "title": "Resequencing of 31 wild and cultivated soybean genomes identifies patterns of genetic diversity and selection",
+    "summary": "比较野生和栽培大豆基因组多样性及选择相关模式。",
+    "authors": "Lam HM, Xu X, Liu X, et al.",
+    "year": "2010",
+    "journal": "Nature Genetics",
+    "doi": "10.1038/ng.715",
+    "type": "application",
+    "methodIds": [],
+    "domainIds": [
+      "population-genetics"
+    ],
+    "speciesIds": [
+      "soybean"
+    ],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "样本与测序设计",
+      "主要观察及边界",
+      "参考记录"
+    ]
+  },
+  {
+    "id": "squidpy-paper",
+    "title": "Squidpy: a scalable framework for spatial omics analysis",
+    "summary": "为空间组学构建空间邻居图、空间统计和图像分析工作流。",
+    "authors": "Palla G, Spitzer H, Klein M, et al.",
+    "year": "2022",
+    "journal": "Nature Methods",
+    "doi": "10.1038/s41592-021-01358-2",
+    "type": "method",
+    "methodIds": [
+      "squidpy"
+    ],
+    "domainIds": [
+      "single-cell-spatial-omics"
+    ],
+    "speciesIds": [],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "方法论文"
+    ]
+  },
+  {
+    "id": "sweepfinder2-paper",
+    "title": "SweepFinder2: increased sensitivity, robustness and flexibility",
+    "summary": "在 SweepFinder 框架上纳入局部重组率和背景选择影响，扩展单群体选择清除扫描。",
+    "authors": "DeGiorgio M, Huber CD, Hubisz MJ, Hellmann I, Nielsen R",
+    "year": "2016",
+    "journal": "Bioinformatics",
+    "doi": "10.1093/bioinformatics/btw051",
+    "type": "method",
+    "methodIds": [
+      "sweepfinder2"
+    ],
+    "domainIds": [
+      "population-genetics"
+    ],
+    "speciesIds": [],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "方法贡献"
+    ]
+  },
+  {
+    "id": "syri-paper",
+    "title": "SyRI: finding genomic rearrangements and local sequence differences from whole-genome assemblies",
+    "summary": "在两套组装之间识别共线和重排区域，并描述局部序列差异。",
+    "authors": "Goel M, Sun H, Jiao WB, Schneeberger K",
+    "year": "2019",
+    "journal": "Genome Biology",
+    "doi": "10.1186/s13059-019-1911-0",
+    "type": "method",
+    "methodIds": [
+      "syri"
+    ],
+    "domainIds": [
+      "pangenomics-structural-variation"
+    ],
+    "speciesIds": [
+      "arabidopsis"
+    ],
+    "status": "published",
+    "updatedAt": "2026-11-21",
+    "headings": [
+      "方法贡献与植物数据"
+    ]
+  },
+  {
+    "id": "tea-comparative",
+    "title": "Genomic analyses of agronomic traits in tea plants and related Camellia species",
+    "summary": "结合山茶属基因组与群体数据研究农艺性状及基因家族演化。",
+    "authors": "Duan S, Yan L, Shen Z, et al.",
+    "year": "2024",
+    "journal": "Frontiers in Plant Science",
+    "doi": "10.3389/fpls.2024.1449006",
+    "type": "application",
+    "methodIds": [
+      "orthofinder",
+      "mcscanx",
+      "cafe5",
+      "paml"
+    ],
+    "domainIds": [
+      "comparative-genomics"
+    ],
+    "speciesIds": [
+      "tea"
+    ],
+    "status": "published",
+    "updatedAt": "2026-11-21",
+    "headings": [
+      "研究流程与方法"
+    ]
+  },
+  {
+    "id": "trnascan-paper",
+    "title": "tRNAscan-SE 2.0: improved detection and functional classification of transfer RNA genes",
+    "summary": "介绍 tRNA 基因检测与功能分类。",
+    "authors": "Chan PP et al.",
+    "year": "2021",
+    "journal": "Nucleic Acids Research",
+    "doi": "10.1093/nar/gkab688",
+    "type": "method",
+    "methodIds": [],
+    "domainIds": [
+      "genome-annotation"
+    ],
+    "speciesIds": [],
+    "updatedAt": "2026-11-20",
+    "headings": [
+      "研究解读",
+      "原始来源"
+    ]
+  },
+  {
+    "id": "verkko",
+    "title": "Telomere-to-telomere assembly of diploid chromosomes with Verkko",
+    "summary": "介绍整合 HiFi 与超长读长的二倍体基因组组装方法。",
+    "authors": "Rautiainen M et al.",
+    "year": "2023",
+    "journal": "Nature Biotechnology",
+    "doi": "10.1038/s41587-023-01662-6",
+    "type": "method",
+    "method": "verkko",
+    "methodIds": [
+      "verkko"
+    ],
+    "domainIds": [
+      "genome-assembly"
+    ],
+    "speciesIds": [],
+    "updatedAt": "2026-11-20",
+    "headings": [
+      "研究解读",
+      "数据来源",
+      "研究背景与方法目标",
+      "方法创新与计算路线",
+      "主要结果与研究范围",
+      "局限与阅读重点"
+    ]
+  },
+  {
+    "id": "vg-paper",
+    "title": "Variation graph toolkit improves read mapping by representing genetic variation in the reference",
+    "summary": "介绍变异图工具及基于图的 reads 比对。",
+    "authors": "Garrison E et al.",
+    "year": "2018",
+    "journal": "Nature Biotechnology",
+    "doi": "10.1038/nbt.4227",
+    "type": "method",
+    "methodIds": [
+      "vg"
+    ],
+    "domainIds": [
+      "pangenomics-structural-variation"
+    ],
+    "speciesIds": [],
+    "status": "published",
+    "updatedAt": "2026-11-21",
+    "headings": [
+      "方法贡献"
+    ]
+  },
+  {
+    "id": "watermelon-t2t-pangenome",
+    "title": "Telomere-to-telomere Citrullus super-pangenome provides direction for watermelon breeding",
+    "summary": "构建涵盖七个西瓜属物种的 27 个基因型 T2T super-pangenome，并用于研究演化和育种相关变异。",
+    "authors": "Zhang Y et al.",
+    "year": "2024",
+    "journal": "Nature Genetics",
+    "doi": "10.1038/s41588-024-01823-6",
+    "type": "application",
+    "methodIds": [],
+    "domainIds": [
+      "genome-assembly",
+      "pangenomics-structural-variation"
+    ],
+    "speciesIds": [
+      "watermelon"
+    ],
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "研究问题与资源构建",
+      "主要结果",
+      "方法阅读重点与边界"
+    ]
+  },
+  {
+    "id": "wgcna-paper",
+    "title": "WGCNA: an R package for weighted correlation network analysis",
+    "summary": "提出 WGCNA R 包，将表达相关转为加权网络并用于模块识别及性状关联。",
+    "authors": "Langfelder P, Horvath S",
+    "year": "2008",
+    "journal": "BMC Bioinformatics",
+    "doi": "10.1186/1471-2105-9-559",
+    "type": "method",
+    "methodIds": [
+      "wgcna"
+    ],
+    "domainIds": [
+      "regulatory-genomics-ai"
+    ],
+    "speciesIds": [],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "研究问题与方法贡献",
+      "计算原理与实现",
+      "主要价值与限制",
+      "植物应用与阅读重点"
+    ]
+  },
+  {
+    "id": "wgd-v2-paper",
+    "title": "wgd v2: a suite of tools to uncover and date ancient polyploidy and whole-genome duplication",
+    "summary": "用于重复基因 Ks、共线性与古多倍化时间分析的工具集。",
+    "authors": "Chen H, Zwaenepoel A, Van de Peer Y",
+    "year": "2024",
+    "journal": "Bioinformatics",
+    "doi": "10.1093/bioinformatics/btae272",
+    "type": "method",
+    "methodIds": [
+      "wgd"
+    ],
+    "domainIds": [
+      "comparative-genomics"
+    ],
+    "speciesIds": [],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "方法问题与分析框架"
+    ]
+  },
+  {
+    "id": "wheat-methylome-2015",
+    "title": "A genome-wide survey of DNA methylation in hexaploid wheat",
+    "summary": "采用亚硫酸氢盐处理和靶向基因富集研究六倍体小麦亚基因组甲基化。",
+    "authors": "Gardiner LJ, Quinton-Tulloch M, Olohan L, et al.",
+    "year": "2015",
+    "journal": "Genome Biology",
+    "doi": "10.1186/s13059-015-0838-3",
+    "type": "application",
+    "methodIds": [
+      "bismark"
+    ],
+    "domainIds": [
+      "epigenomics-3d-genome"
+    ],
+    "speciesIds": [
+      "wheat"
+    ],
+    "status": "published",
+    "updatedAt": "2026-11-21",
+    "headings": [
+      "研究与方法"
+    ]
+  },
+  {
+    "id": "wild-rice-pangenome-2025",
+    "title": "A pangenome reference of wild and cultivated rice",
+    "summary": "整合野生稻与栽培稻的多组装、基因家族矩阵和图泛基因组，展示群体采样与表示层级对结果的影响。",
+    "authors": "Guo D, Li Y, Lu H, Zhao Y, Kurata N, Wei X, Wang A, Wang Y, Zhan Q, et al.",
+    "year": "2025",
+    "journal": "Nature",
+    "doi": "10.1038/s41586-025-08883-6",
+    "type": "application",
+    "methodIds": [
+      "hifiasm",
+      "yahs",
+      "syri",
+      "minigraph",
+      "minigraph-cactus",
+      "vg",
+      "mummer4",
+      "minimap2"
+    ],
+    "domainIds": [
+      "pangenomics-structural-variation"
+    ],
+    "speciesIds": [
+      "rice"
+    ],
+    "status": "published",
+    "updatedAt": "2026-11-21",
+    "headings": [
+      "研究问题与样本集合",
+      "测序、组装与染色体级锚定",
+      "基因家族泛基因组与序列图分别回答的问题",
+      "主要发现及解释边界",
+      "本知识库中的方法关联",
+      "数据、代码与延伸阅读"
+    ]
+  },
+  {
+    "id": "xanthoceras",
+    "title": "Two haplotype-resolved telomere-to-telomere genome assemblies of Xanthoceras sorbifolium",
+    "summary": "黄花木单倍型解析组装研究使用 Verkko 组装结果辅助填补缺口。",
+    "authors": "Liu Y et al.",
+    "year": "2025",
+    "journal": "Scientific Data",
+    "doi": "10.1038/s41597-025-05057-x",
+    "type": "application",
+    "method": "verkko",
+    "methodIds": [
+      "hifiasm",
+      "verkko"
+    ],
+    "domainIds": [
+      "genome-assembly"
+    ],
+    "speciesIds": [
+      "xanthoceras"
+    ],
+    "updatedAt": "2026-11-20",
+    "headings": [
+      "研究解读"
+    ]
+  },
+  {
+    "id": "xpclr-paper",
+    "title": "Population differentiation as a test for selective sweeps",
+    "summary": "提出 XP-CLR，通过跨群体连锁位点的等位基因频率分化复合似然扫描选择信号。",
+    "authors": "Chen H, Patterson N, Reich D",
+    "year": "2010",
+    "journal": "Genome Research",
+    "doi": "10.1101/gr.100545.109",
+    "type": "method",
+    "methodIds": [
+      "xpclr"
+    ],
+    "domainIds": [
+      "population-genetics"
+    ],
+    "speciesIds": [],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "方法贡献"
+    ]
+  },
+  {
+    "id": "xpehh-paper",
+    "title": "Genome-wide detection and characterization of positive selection in human populations",
+    "summary": "在 HapMap 群体基因组扫描中提出并应用跨群体延伸单倍型纯合性 XP-EHH。",
+    "authors": "Sabeti PC, Varilly P, Fry B, et al.; International HapMap Consortium",
+    "year": "2007",
+    "journal": "Nature",
+    "doi": "10.1038/nature06250",
+    "type": "method",
+    "methodIds": [
+      "selscan"
+    ],
+    "domainIds": [
+      "population-genetics"
+    ],
+    "speciesIds": [],
+    "status": "published",
+    "updatedAt": "2026-11-22",
+    "headings": [
+      "方法贡献"
+    ]
+  },
+  {
+    "id": "yahs",
+    "title": "YaHS: yet another Hi-C scaffolding tool",
+    "summary": "介绍利用 Hi-C 数据进行基因组 scaffold 构建的工具。",
+    "authors": "Zhou C, McCarthy SA, Durbin R",
+    "year": "2023",
+    "journal": "Bioinformatics",
+    "doi": "10.1093/bioinformatics/btac808",
+    "type": "method",
+    "methodIds": [
+      "yahs"
+    ],
+    "domainIds": [
+      "genome-assembly"
+    ],
+    "speciesIds": [],
+    "status": "published",
+    "updatedAt": "2026-11-21",
+    "headings": [
+      "研究解读"
+    ]
+  }
+]

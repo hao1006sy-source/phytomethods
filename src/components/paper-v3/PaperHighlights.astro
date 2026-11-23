@@ -1,0 +1,47 @@
+---
+import type { PaperHighlightItem, PaperType } from './config/paper-types';
+
+interface Props {
+  paperId?: string;
+  type: PaperType;
+  summary: string;
+  highlights?: PaperHighlightItem[];
+  customSummary?: string;
+}
+
+const { type, summary, highlights = [], customSummary } = Astro.props;
+
+const titleMap: Record<PaperType, { icon: string; title: string }> = {
+  method: { icon: '🎯', title: '核心贡献与方法创新' },
+  application: { icon: '🌱', title: '核心研究发现与生物学价值' },
+  review: { icon: '📚', title: '核心综述主题与技术进展' }
+};
+
+const sectionConfig = titleMap[type] || titleMap.method;
+const displaySummary = customSummary || summary;
+---
+
+<section id="paper-contributions" class="paper-section">
+  <h2 class="paper-section-title">
+    <span aria-hidden="true">{sectionConfig.icon}</span> {sectionConfig.title}
+  </h2>
+  <div class="paper-contribution-card">
+    <div class="paper-contribution-summary">
+      {displaySummary}
+    </div>
+
+    {highlights.length > 0 && (
+      <div class="paper-highlights-grid">
+        {highlights.map(item => (
+          <div class="paper-highlight-item">
+            <div class="paper-highlight-header">
+              <span class="paper-highlight-icon" aria-hidden="true">{item.icon}</span>
+              <span class="paper-highlight-title">{item.title}</span>
+            </div>
+            <p class="paper-highlight-desc">{item.description}</p>
+          </div>
+        ))}
+      </div>
+    )}
+  </div>
+</section>
