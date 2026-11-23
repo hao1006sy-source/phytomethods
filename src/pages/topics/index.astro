@@ -1,8 +1,29 @@
 ---
 import Base from '../../layouts/Base.astro';
 import {domains} from '../../data/domains';
-import {topicMetadata} from '../../data/topics';
+import {getCollection} from 'astro:content';
+import '../../styles/research-index-v4.css';
 const base=import.meta.env.BASE_URL;
-const published=topicMetadata.filter(t=>t.status==='published');
+const topics=await getCollection('topics',({data})=>data.status==='published');
+const methods=await getCollection('methods',({data})=>data.status==='published');
+const icons=['m01-genome-assembly','m02-genome-annotation','m03-pangenome-sv','m04-comparative-evolution','m05-population-genetics','m06-gwas-breeding','m07-epigenome-3d','m08-single-cell-spatial','m09-regulatory-ai'];
+const featured=[['hifiasm','verkko'],['edta','braker3'],['minigraph-cactus','pggb'],['orthofinder','iqtree2'],['admixture','psmc'],['gapit','rrblup'],['bismark','hicexplorer'],['scanpy','cell2location'],['wgcna','agront']];
+const groups=[['基因组构建与解析','从测序数据到高质量基因组、基因注释与结构变异解析。'],['演化、群体与育种','从比较基因组、群体遗传与数量性状分析，研究植物演化和育种。'],['功能组学与智能分析','通过表观组学、单细胞与空间分析、调控网络和人工智能研究植物功能。']];
+const cards=domains.map(([id,slug,title,summary],i)=>{
+ const associated=methods.filter(m=>m.data.domainIds.includes(slug));
+ const representatives=featured[i].map(key=>{const m=associated.find(m=>m.id===key);if(!m)throw new Error(`Invalid representative ${key} for ${id}`);return m.data.name;});
+ return {id,slug,title,summary,icon:icons[i],topics:topics.filter(t=>t.data.domain===slug).length,methods:new Set(associated.map(m=>m.id)).size,representatives};
+});
 ---
-<Base title="研究领域" description="沿植物基因组学研究流程浏览九大研究方向（M01–M09），从科学问题进入专题、算法与文献。涵盖测序组装、基因注释、泛基因组、比较基因组、群体遗传、GWAS、表观组学、单细胞及调控网络。"><section class="nav-v3"><header class="nav-intro"><div><p class="nav-overline">RESEARCH AREAS</p><h1>研究领域</h1><p>沿植物基因组学研究流程浏览九大研究方向，从科学问题进入专题、方法与文献。</p></div><p class="nav-metric"><b>{domains.length}</b> 研究领域 <b>{published.length}</b> 专题文章</p></header><h2 class="nav-section-title">按研究方向探索</h2><div class="domain-grid">{domains.map(([id,slug,title,summary])=><a class="domain-row" href={`${base}topics/${slug}/`}><span class="id">{id}</span><h2>{title}</h2><p>{summary}</p><div class="domain-bottom"><span>{published.filter(t=>t.domainId===slug).length} 个专题</span><span>浏览领域 →</span></div></a>)}</div></section></Base>
+<Base title="研究领域" description="探索九大植物基因组学研究领域，从专题文章进入算法工具、文献与分析方法。">
+<div class="research-index-v4">
+ <header class="ri-hero">
+  <div class="ri-intro"><p class="ri-eyebrow">RESEARCH AREAS</p><h1>探索九大研究领域</h1><p>从基因组构建到分子育种与人工智能，系统浏览植物基因组学的核心计算方法。</p></div>
+  <div class="ri-stats" aria-label="已发布内容统计">{[[domains.length,'个研究领域','m03-pangenome-sv'],[topics.length,'篇专题文章','m02-genome-annotation'],[methods.length,'个算法与工具','m09-regulatory-ai']].map(([count,label,icon])=><div><span aria-hidden="true"><img src={`${base}assets/home/icons/${icon}.svg`} alt=""/></span><p><b>{count}</b><small>{label}</small></p></div>)}</div>
+  <svg class="ri-leaves" viewBox="0 0 240 130" aria-hidden="true"><path d="M30 145Q155 55 224 12" fill="none" stroke="#548763" stroke-width="3"/><g fill="#d6edcf" stroke="#609b69" stroke-width="1.5"><path d="M76 111Q5 67 25 22Q95 26 76 111Z"/><path d="M119 79Q87 6 136 2Q166 44 119 79Z"/><path d="M150 63Q163 3 224 12Q210 67 150 63Z"/><path d="M101 93Q172 74 197 119Q136 144 101 93Z"/></g></svg>
+ </header>
+ {groups.map(([title,summary],g)=><section class="ri-group" aria-labelledby={`research-group-${g}`}><header class="ri-band"><b>{String(g+1).padStart(2,'0')}</b><h2 id={`research-group-${g}`}>{title}</h2><p>{summary}</p><img src={`${base}assets/home/icons/${icons[g*3]}.svg`} alt=""/></header><div class="ri-grid">{cards.slice(g*3,g*3+3).map(c=><a class="ri-card" href={`${base}topics/${c.slug}/`}><img class="ri-card-icon" src={`${base}assets/home/icons/${c.icon}.svg`} alt=""/><div class="ri-card-copy"><h3><span>{c.id}</span>{c.title}</h3><p>{c.summary}</p></div><div class="ri-counts"><span>{c.topics} 篇专题</span><span>{c.methods} 个工具</span></div><div class="ri-card-bottom"><span class="ri-label">代表方法</span><span class="ri-tools">{c.representatives.join('、')}</span><strong>浏览领域 →</strong></div></a>)}</div></section>)}
+ <nav class="ri-explore" aria-label="继续探索"><div><h2>继续探索计算方法</h2><p>从方法工具、文献与知识网络中深入学习相关内容。</p></div>{[['算法与工具','methods/','浏览分析方法与工具'],['文献索引','papers/','检索核心研究文献'],['知识关联','knowledge/','探索方法、文献与专题的关联']].map(([title,url,summary])=><a href={`${base}${url}`}><b>{title} →</b><span>{summary}</span></a>)}</nav>
+</div>
+</Base>
+
