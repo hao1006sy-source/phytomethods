@@ -1,0 +1,15 @@
+{
+  "unchangedTutorials": [
+    "hifiasm-intro",
+    "orthofinder-intro",
+    "syri-intro",
+    "bismark-synthetic",
+    "plink-synthetic",
+    "gwas-synthetic",
+    "scanpy-synthetic",
+    "wgcna-synthetic",
+    "edta-tutorial"
+  ],
+  "verified": 8,
+  "template": 2
+}

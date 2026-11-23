@@ -1,0 +1,26 @@
+{
+  "repository": "https://github.com/hahnlab/CAFE5",
+  "tag": "v5.1",
+  "releaseTitle": "1.1",
+  "version": "1.1 (AC_INIT; executable has -h but no dedicated --version flag)",
+  "commit": "8d3ab080796eafa192241a1067398832d886592d",
+  "installation": "WSL Ubuntu; git clone --branch v5.1 --depth 1; autoreconf -fi; ./configure; make -j4; executable work/cafe5-v32/bin/cafe5",
+  "inputs": [
+    {
+      "path": "examples/cafe5/inputs/mammals_tree.txt",
+      "url": "https://raw.githubusercontent.com/hahnlab/CAFE5/8d3ab080796eafa192241a1067398832d886592d/examples/mammals_tree.txt",
+      "bytes": 309,
+      "sha256": "2688b974861d6d65cdffe02fffea01ea000e16e4840923d83bae40401e04e71d"
+    },
+    {
+      "path": "examples/cafe5/inputs/mammal_gene_families.txt",
+      "url": "https://raw.githubusercontent.com/hahnlab/CAFE5/8d3ab080796eafa192241a1067398832d886592d/examples/mammal_gene_families.txt",
+      "bytes": 458999,
+      "sha256": "145e86b6fc18554bbf03dd7d35245816ee7c66ac76bd3639832041ec20747ee2"
+    }
+  ],
+  "documentation": [
+    "https://github.com/hahnlab/CAFE5/blob/8d3ab080796eafa192241a1067398832d886592d/README.md",
+    "https://github.com/hahnlab/CAFE5/blob/8d3ab080796eafa192241a1067398832d886592d/docs/tutorial/tutorial.md"
+  ]
+}

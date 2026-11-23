@@ -1,0 +1,42 @@
+[
+  {
+    "model": "base",
+    "command": [
+      "/mnt/c/Users/31764/Documents/Codex/2026-11-20/phytomethods-phytomethods-v1-0-1-2/work/cafe5-v32/bin/cafe5",
+      "-t",
+      "/mnt/c/Users/31764/Documents/Codex/2026-11-20/phytomethods-phytomethods-v1-0-1-2/examples/cafe5/inputs/mammals_tree.txt",
+      "-i",
+      "/mnt/c/Users/31764/Documents/Codex/2026-11-20/phytomethods-phytomethods-v1-0-1-2/examples/cafe5/inputs/mammal_gene_families.txt",
+      "-p",
+      "-c",
+      "4",
+      "-o",
+      "/mnt/c/Users/31764/Documents/Codex/2026-11-20/phytomethods-phytomethods-v1-0-1-2/examples/cafe5/verified-20261123/results-base"
+    ],
+    "exitCode": 0,
+    "elapsedSeconds": 187.98746919631958,
+    "verificationCompletedAt": "2026-11-24",
+    "environment": "WSL Ubuntu 26.04 / GCC 15.2.0 / CAFE5 AC_INIT 1.1 at v5.1"
+  },
+  {
+    "model": "gamma",
+    "command": [
+      "/mnt/c/Users/31764/Documents/Codex/2026-11-20/phytomethods-phytomethods-v1-0-1-2/work/cafe5-v32/bin/cafe5",
+      "-t",
+      "/mnt/c/Users/31764/Documents/Codex/2026-11-20/phytomethods-phytomethods-v1-0-1-2/examples/cafe5/inputs/mammals_tree.txt",
+      "-i",
+      "/mnt/c/Users/31764/Documents/Codex/2026-11-20/phytomethods-phytomethods-v1-0-1-2/examples/cafe5/inputs/mammal_gene_families.txt",
+      "-p",
+      "-c",
+      "4",
+      "-k",
+      "2",
+      "-o",
+      "/mnt/c/Users/31764/Documents/Codex/2026-11-20/phytomethods-phytomethods-v1-0-1-2/examples/cafe5/verified-20261123/results-gamma"
+    ],
+    "exitCode": 0,
+    "elapsedSeconds": 828.4961230754852,
+    "verificationCompletedAt": "2026-11-24",
+    "environment": "WSL Ubuntu 26.04 / GCC 15.2.0 / CAFE5 AC_INIT 1.1 at v5.1"
+  }
+]
