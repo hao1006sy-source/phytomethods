@@ -31,7 +31,7 @@ const statusLabel = verification.verificationScope;
     <dd>{method ? <a href={`${base}methods/${method.id}/`}>{method.data.name}</a> : entry.data.method}</dd>
     <dt>验证状态</dt>
     <dd><mark class={entry.data.tested === 'verified' ? 'tv3-status-verified' : ''}>{statusLabel}</mark></dd>
-    <dt>验证范围</dt><dd>{verification.unverifiedScope}</dd>
+    <dt>待验证</dt><dd>{verification.unverifiedScope}</dd>
     <dt>更新时间</dt>
     <dd>{entry.data.updatedAt.toISOString().slice(0, 10)}</dd>
   </dl>
