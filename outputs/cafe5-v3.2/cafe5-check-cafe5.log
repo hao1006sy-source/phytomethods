@@ -1,0 +1,5 @@
+
+> phytomethods@0.1.0 check:cafe5
+> node scripts/check-cafe5-reproducibility.mjs
+
+CAFE5 evidence passed: 35 hashes; 2 model runs; 12653 input / 10956 retained; 8 verified / 2 template

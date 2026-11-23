@@ -1,0 +1,185 @@
+{
+  "status": "verified",
+  "version": "CAFE5 1.1",
+  "tag": "v5.1",
+  "commit": "8d3ab080796eafa192241a1067398832d886592d",
+  "verifiedAt": "2026-11-24",
+  "evidenceDirectory": "examples/cafe5/verified-20261123",
+  "files": [
+    {
+      "path": "examples/cafe5/verified-20261123/base-stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "examples/cafe5/verified-20261123/base-stdout.log",
+      "bytes": 4504,
+      "sha256": "70e7fc292bac7a9b22c646ab86d81c729218ec6de6dda7ef52d86d54e29e7b44"
+    },
+    {
+      "path": "examples/cafe5/verified-20261123/cafe5-autoreconf.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "examples/cafe5/verified-20261123/cafe5-build.log",
+      "bytes": 6977,
+      "sha256": "bfe233be4808fbd6b946504961ab1cce813d5d707cb0939b7d8a3df9b4238623"
+    },
+    {
+      "path": "examples/cafe5/verified-20261123/cafe5-configure.log",
+      "bytes": 1107,
+      "sha256": "29efcf271ecdd1ed62043099f9df4a82f3f86bb4f351b1be66d4832331af49f1"
+    },
+    {
+      "path": "examples/cafe5/verified-20261123/execution.json",
+      "bytes": 1721,
+      "sha256": "6b78e1be856207f2de758dc55958e970156dca1289fd97dd83119454c0bf0932"
+    },
+    {
+      "path": "examples/cafe5/verified-20261123/gamma-stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "examples/cafe5/verified-20261123/gamma-stdout.log",
+      "bytes": 245310,
+      "sha256": "ebe47d92f7976978dbe4f19f09300d30013a5d850f753f8f3064f6fc465a0593"
+    },
+    {
+      "path": "examples/cafe5/verified-20261123/help.txt",
+      "bytes": 3101,
+      "sha256": "1dd7109e53a1e7419dc91012d3f2b1a9ad53878329d0bf6d1e8a76ef1f428d52"
+    },
+    {
+      "path": "examples/cafe5/verified-20261123/input-sha256.txt",
+      "bytes": 220,
+      "sha256": "45d38b336c7e2444d20873a84e748f748acd3a36a007c10ba61e334a6ec3b659"
+    },
+    {
+      "path": "examples/cafe5/verified-20261123/input-tests.log",
+      "bytes": 108,
+      "sha256": "b1a31c9e37aeb22e6962ee3fa7777f91ed2a6ac1d71babb4afd38fe2ab4a488a"
+    },
+    {
+      "path": "examples/cafe5/verified-20261123/input-validation.json",
+      "bytes": 143491,
+      "sha256": "d1e267b6e24b76e96ac31d088f71d9ec51fb97c3c5338a443c92e039e0bfadbe"
+    },
+    {
+      "path": "examples/cafe5/verified-20261123/output-sha256.txt",
+      "bytes": 2563,
+      "sha256": "ceb6d125a5b8e4f0890215387f488624896709f5164a3b1ef38bf3ce9c6abb2a"
+    },
+    {
+      "path": "examples/cafe5/verified-20261123/results-base/Base_asr.tre",
+      "bytes": 4533313,
+      "sha256": "38b6f7b62c26f5b62139abc230e3e35383cab4caf87b8924a07aed535ba27d48"
+    },
+    {
+      "path": "examples/cafe5/verified-20261123/results-base/Base_branch_probabilities.tab",
+      "bytes": 314820,
+      "sha256": "6cea261a3a7f1678edae1f7a381e4c7ac38c90e8597ee339e0c4f767f042faa1"
+    },
+    {
+      "path": "examples/cafe5/verified-20261123/results-base/Base_change.tab",
+      "bytes": 569894,
+      "sha256": "5870450622582824fa67763351786cfe2ccd5db1de6fca0ee3728b530151793d"
+    },
+    {
+      "path": "examples/cafe5/verified-20261123/results-base/Base_clade_results.txt",
+      "bytes": 362,
+      "sha256": "3e98f5e6f17d8818afcf38eefbe6904dd427a8c65fffb548dc784b20a8eddc01"
+    },
+    {
+      "path": "examples/cafe5/verified-20261123/results-base/Base_count.tab",
+      "bytes": 562023,
+      "sha256": "e42a6fe081c903226fc3b91a45fc3abfaa5994ffeafac749bde8d0c56af12d72"
+    },
+    {
+      "path": "examples/cafe5/verified-20261123/results-base/Base_family_likelihoods.txt",
+      "bytes": 152400,
+      "sha256": "7f5689b558c8b6f4af567a29723f7a60c0b24fd80b18e2117b4fb61c7668cf9a"
+    },
+    {
+      "path": "examples/cafe5/verified-20261123/results-base/Base_family_results.txt",
+      "bytes": 139203,
+      "sha256": "c47169ed333b620013d3b7007011eeb8a96122c86d9916ba99c9b64ad186c5a6"
+    },
+    {
+      "path": "examples/cafe5/verified-20261123/results-base/Base_report.cafe",
+      "bytes": 773681,
+      "sha256": "cdde1143e5d77d7744979780f94051803138462ef6852d967aa6badf25095666"
+    },
+    {
+      "path": "examples/cafe5/verified-20261123/results-base/Base_results.txt",
+      "bytes": 162,
+      "sha256": "c421c2b5c0e066c312c430181a21c8c6739cac83c17ea7c3b8e0ddc77e5c01a9"
+    },
+    {
+      "path": "examples/cafe5/verified-20261123/results-gamma/Gamma_asr.tre",
+      "bytes": 4529532,
+      "sha256": "2c3c5ddac80a88243a881da98ce34eb9971c086dec1e6a4aacc92b99c2b5b856"
+    },
+    {
+      "path": "examples/cafe5/verified-20261123/results-gamma/Gamma_branch_probabilities.tab",
+      "bytes": 108357,
+      "sha256": "d5d26b0fd9418511e3f8feff847aa91ce9999205b988a45a1af8ebd782944897"
+    },
+    {
+      "path": "examples/cafe5/verified-20261123/results-gamma/Gamma_category_likelihoods.txt",
+      "bytes": 319386,
+      "sha256": "1124fd2eabce26e30b28207ab14897ff8e88ac394b96447fdb19bb8902d805a8"
+    },
+    {
+      "path": "examples/cafe5/verified-20261123/results-gamma/Gamma_change.tab",
+      "bytes": 570497,
+      "sha256": "c19853bc249291c9d280b7b7742329ea41c2426fb4ae97037622ece261d863bd"
+    },
+    {
+      "path": "examples/cafe5/verified-20261123/results-gamma/Gamma_clade_results.txt",
+      "bytes": 364,
+      "sha256": "1796f2df5980edaf2cff8dca7744272ee1407cd280bea66f4cfefe7004d7e19c"
+    },
+    {
+      "path": "examples/cafe5/verified-20261123/results-gamma/Gamma_count.tab",
+      "bytes": 562017,
+      "sha256": "0533045f65293044c655d0b7f3860cea1242e122dae11319e6abd259b233795f"
+    },
+    {
+      "path": "examples/cafe5/verified-20261123/results-gamma/Gamma_family_likelihoods.txt",
+      "bytes": 1073113,
+      "sha256": "7260661a9f49cf8ffb5d19aff1466eec32b7d187c712af23de3c1fb74b5eadf9"
+    },
+    {
+      "path": "examples/cafe5/verified-20261123/results-gamma/Gamma_family_results.txt",
+      "bytes": 140562,
+      "sha256": "f076e74c7edea9f457ff27dc896d7b0c028a8a195a2984f78592df56e274a1ae"
+    },
+    {
+      "path": "examples/cafe5/verified-20261123/results-gamma/Gamma_report.cafe",
+      "bytes": 271004,
+      "sha256": "b128ee92699988fdefa5629989a1e20cc337fbad5f8d9f1a337f776257861415"
+    },
+    {
+      "path": "examples/cafe5/verified-20261123/results-gamma/Gamma_results.txt",
+      "bytes": 230262,
+      "sha256": "224efb49d158f2de05a0c6535518b464b11fb56c4738de9976f8475c52c45cb4"
+    },
+    {
+      "path": "examples/cafe5/verified-20261123/source-manifest.json",
+      "bytes": 1279,
+      "sha256": "d4ebb809155bea05764f59814cecf2e1eabdcbc3b34fde6c399f472b3f7e7c63"
+    },
+    {
+      "path": "examples/cafe5/verified-20261123/validation-results.json",
+      "bytes": 1415,
+      "sha256": "e0b17d55b9a4feac1844f4872523a3476bb69a8e45d89361803b753fe5877e99"
+    },
+    {
+      "path": "examples/cafe5/verified-20261123/versions.txt",
+      "bytes": 2170,
+      "sha256": "f9691416dd968e9a50ab53a9c73507e6fa267a92792fc1edddba13ed7f6dd3b5"
+    }
+  ]
+}

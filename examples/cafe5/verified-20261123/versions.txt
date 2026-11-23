@@ -1,0 +1,44 @@
+PRETTY_NAME="Ubuntu 26.04 LTS"
+NAME="Ubuntu"
+VERSION_ID="26.04"
+VERSION="26.04 (Resolute Raccoon)"
+VERSION_CODENAME=resolute
+ID=ubuntu
+ID_LIKE=debian
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+UBUNTU_CODENAME=resolute
+LOGO=ubuntu-logo
+Linux localhost 6.18.33.2-microsoft-standard-WSL2 #1 SMP PREEMPT_DYNAMIC Thu Jun 18 21:54:43 UTC 2026 x86_64 GNU/Linux
+g++ (Ubuntu 15.2.0-16ubuntu1) 15.2.0
+Copyright (C) 2025 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+GNU Make 4.4.1
+Built for x86_64-pc-linux-gnu
+Copyright (C) 1988-2023 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+autoconf (GNU Autoconf) 2.72
+Copyright (C) 2023 Free Software Foundation, Inc.
+License GPLv3+/Autoconf: GNU GPL version 3 or later
+<https://gnu.org/licenses/gpl.html>, <https://gnu.org/licenses/exceptions.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Written by David J. MacKenzie and Akim Demaille.
+8d3ab080796eafa192241a1067398832d886592d
+AC_INIT([cafe5],[1.1])
+/mnt/c/Users/31764/Documents/Codex/2026-11-20/phytomethods-phytomethods-v1-0-1-2/work/cafe5-v32/bin/cafe5
+d7f5f533ace8a9954e8faa76d5f2987af610e322b91e24cd8d2b8fe2351128d8  work/cafe5-v32/bin/cafe5
+	linux-vdso.so.1 (0x000076f866d65000)
+	libstdc++.so.6 => /usr/lib/x86_64-linux-gnu/libstdc++.so.6 (0x000076f866800000)
+	libm.so.6 => /usr/lib/x86_64-linux-gnu/libm.so.6 (0x000076f866b52000)
+	libgomp.so.1 => /usr/lib/x86_64-linux-gnu/libgomp.so.1 (0x000076f866af3000)
+	libgcc_s.so.1 => /usr/lib/x86_64-linux-gnu/libgcc_s.so.1 (0x000076f866ac5000)
+	libc.so.6 => /usr/lib/x86_64-linux-gnu/libc.so.6 (0x000076f866400000)
+	/lib64/ld-linux-x86-64.so.2 (0x000076f866d67000)

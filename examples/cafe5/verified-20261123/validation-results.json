@@ -1,0 +1,47 @@
+{
+  "valid": true,
+  "models": [
+    {
+      "model": "base",
+      "valid": true,
+      "negativeLogLikelihood": 130363.0,
+      "lambdaEstimate": 0.0020461638869407,
+      "inputFamilies": 12653,
+      "retainedFamilies": 10956,
+      "excludedFamilies": 1697,
+      "pvalueRange": [
+        0.0,
+        0.999
+      ],
+      "optimizerIterations": [
+        "22",
+        "27"
+      ],
+      "elapsedSeconds": 187.98746919631958,
+      "summary": "Model Base Final Likelihood (-lnL): 130363\nLambda: 0.0020461638869407\nMaximum possible lambda for this topology: 0.0103696\n54 values were attempted (0% rejected)",
+      "alphaEstimate": null,
+      "optimizationWarningFamilies": 0
+    },
+    {
+      "model": "gamma",
+      "valid": true,
+      "negativeLogLikelihood": 119119.0,
+      "lambdaEstimate": 0.0055788489716427,
+      "inputFamilies": 12653,
+      "retainedFamilies": 10956,
+      "excludedFamilies": 1697,
+      "pvalueRange": [
+        0.0,
+        0.999
+      ],
+      "optimizerIterations": [
+        "31",
+        "69"
+      ],
+      "elapsedSeconds": 828.4961230754852,
+      "summary": "Model Gamma Final Likelihood (-lnL): 119119\nLambda: 0.0055788489716427\nMaximum possible lambda for this topology: 0.0103696\n163 values were attempted (1% rejected)",
+      "alphaEstimate": 0.497586,
+      "optimizationWarningFamilies": 10956
+    }
+  ]
+}

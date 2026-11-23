@@ -1,0 +1,2 @@
+2688b974861d6d65cdffe02fffea01ea000e16e4840923d83bae40401e04e71d  examples/cafe5/inputs/mammals_tree.txt
+145e86b6fc18554bbf03dd7d35245816ee7c66ac76bd3639832041ec20747ee2  examples/cafe5/inputs/mammal_gene_families.txt

@@ -1,0 +1,44 @@
+
+
+Usage: cafe5 [options]
+
+CAFE is a software that provides a statistical foundation for evolutionary inferences about changes in gene family size.
+ The program employs a birth and death process to model gene gain and loss across a user-specified phylogenetic tree,
+ thus accounting for the species phylogenetic history. The distribution of family sizes generated under this model can
+ provide a basis for assessing the significance of the observed family size differences among taxa.
+
+OPTIONS:
+  Required Options:
+   --infile, -i			Path to tab delimited gene families file to be analyzed - Required for estimation.
+   --tree, -t			Path to file containing newick formatted tree - Required for estimation.
+
+  Common Options:
+   --help, -h			This help menu.
+   --cores, -c			Number of processing cores to use, requires an integer argument. Default=All available cores.
+   --error_model, -e		Run with no file name to estimate the global error model file. This file can be provided
+ 				    in subsequent runs by providing the path to the Error model file with no spaces (e.g. -eBase_error_model.txt).
+   --log_config, -L		Turn on logging, provide name of the configuration file for logging (see example log.config file).
+   --n_gamma_cats, -k		Number of gamma rate categories to use. If specified, the Gamma model will be used to run
+ 				    calculations, otherwise the Base model will be used.
+   --output_prefix, -o		Output directory - Name of directory automatically created for output. Default=results.
+   --lambda_tree, -y		Path to lambda tree, for use with multiple lambdas.
+   --fixed_alpha, -a		Alpha value of the discrete gamma distribution to use in category calculations. If not
+ 				    specified, the alpha parameter will be estimated by maximum likelihood.
+   --fixed_lambda, -l		Value (between 0 and 1) for a single user provided lambda value, otherwise lambda is estimated.
+   --fixed_multiple_lambdas, -m	Multiple lambda values, comma separated.
+   --poisson, -p		Use a Poisson distribution for the root frequency distribution. Without specifying this, a
+ 				    uniform distribution will be used. A value can be specified -p10 (no space) or --poisson = 10,
+ 				    otherwise the distribution will be estimated from the gene families.
+   --simulate, -s		Simulate families. Optionally provide the number of simulations to generate (-s100 no space, or --simulate = 100)
+   --rootdist, -f		Path to root distribution file for simulating datasets.
+
+  Less Common Options:
+   --lambda_per_family, -b	Estimate lambda by family (for testing purposes only).
+   --pvalue, -P			P-value to use for determining significance of family size change, Default=0.05.
+   --zero_root, -z		Include gene families that don't exist at the root, not recommended.
+   --Expansion, -E		Expansion parameter for Nelder-Mead optimizer, Default=2.
+   --Iterations, -I		Maximum number of iterations that will be performed in 
+ 				    lambda search. Default=300 (increase this number if likelihood is still improving when limit is hit).
+   --Reflection, -R		Reflection parameter for Nelder-Mead optimizer, Default=1.
+
+

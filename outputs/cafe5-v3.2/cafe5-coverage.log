@@ -1,0 +1,22 @@
+
+> phytomethods@0.1.0 coverage
+> node scripts/content-coverage.mjs
+
+| 领域 | 专题总数 | 已发布 | 草稿正文 | 待编写 | 工具（发布/草稿） | 论文（发布/草稿） | 教程（发布/草稿） |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| genome-assembly | 7 | 7 | 0 | 0 | 4/0 | 11/0 | 1/0 |
+| genome-annotation | 7 | 7 | 0 | 0 | 3/0 | 7/0 | 1/0 |
+| pangenomics-structural-variation | 7 | 7 | 0 | 0 | 13/0 | 25/0 | 2/0 |
+| comparative-genomics | 7 | 7 | 0 | 0 | 6/0 | 16/0 | 2/0 |
+| population-genetics | 7 | 7 | 0 | 0 | 9/0 | 26/0 | 1/0 |
+| gwas-breeding | 7 | 7 | 0 | 0 | 5/0 | 11/0 | 1/0 |
+| epigenomics-3d-genome | 7 | 7 | 0 | 0 | 5/0 | 16/0 | 1/0 |
+| single-cell-spatial-omics | 7 | 7 | 0 | 0 | 7/0 | 15/0 | 1/0 |
+| regulatory-genomics-ai | 7 | 7 | 0 | 0 | 8/0 | 13/0 | 1/0 |
+
+已发布专题无文献关联: 无
+已发布专题无工具关联: m02-topic-05, m02-topic-07, m06-topic-01, m07-topic-01, m07-topic-07
+未实际运行验证的已发布教程: edta-tutorial (template), hifiasm-intro (template)
+草稿专题无文献关联 (0): 无
+草稿专题无工具关联 (0): 无
+草稿教程验证状态: 已运行 0，命令核对 0，未测试 0

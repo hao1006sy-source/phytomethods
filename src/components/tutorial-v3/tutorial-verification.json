@@ -271,24 +271,39 @@
   },
   "cafe5-intro": {
     "tutorialId": "cafe5-intro",
-    "status": "template",
-    "verificationScope": "命令模板已核对 · 真实数据待验证",
-    "softwareVersion": "CAFE5 1.1 命令格式；实际构建须记录",
-    "environment": "Linux / 兼容编译环境；安装后 cafe5 -h",
-    "dataSource": "非负整数家族计数表；名称匹配且分支长度有时间尺度的 Newick 物种树",
+    "status": "verified",
+    "verificationScope": "官方哺乳动物示例已运行验证（基础与 Gamma 模型）",
+    "softwareVersion": "CAFE5 1.1；tag v5.1；commit 8d3ab080796e",
+    "environment": "WSL Ubuntu 26.04；GCC 15.2.0；OpenMP；4 核",
+    "dataSource": "固定官方提交的 12 物种、12,653 家族；默认根存在性过滤保留 10,956 家族",
     "expectedOutputs": [
-      "Base_report.cafe 或 Gamma_report.cafe；模型与分支报告"
+      "Base / Gamma 的 results.txt、family_likelihoods.txt、family_results.txt、count.tab、change.tab、asr.tre、report.cafe"
     ],
-    "evidencePaths": [],
+    "evidencePaths": [
+      "examples/cafe5/verified-20261123/versions.txt",
+      "examples/cafe5/verified-20261123/source-manifest.json",
+      "examples/cafe5/verified-20261123/execution.json",
+      "examples/cafe5/verified-20261123/validation-results.json",
+      "examples/cafe5/verified-20261123/input-sha256.txt",
+      "examples/cafe5/verified-20261123/output-sha256.txt",
+      "examples/cafe5/verified-20261123/base-stdout.log",
+      "examples/cafe5/verified-20261123/gamma-stdout.log"
+    ],
     "sourceUrls": [
-      "https://github.com/hahnlab/CAFE5"
+      "https://github.com/hahnlab/CAFE5/tree/8d3ab080796eafa192241a1067398832d886592d",
+      "https://github.com/hahnlab/CAFE5/releases/tag/v5.1"
     ],
-    "verifiedAt": null,
-    "reviewedAt": "2026-11-23",
-    "unverifiedScope": "真实植物独立样本上的完整科研结论；参数敏感性与实验验证；本模板全部运行步骤尚待执行",
+    "verifiedAt": "2026-11-24",
+    "reviewedAt": "2026-11-24",
+    "unverifiedScope": "植物家族分析、模型选择、多起点优化及参数敏感性；Gamma 搜索期间数值失败警告需保留解读",
     "documentedCommands": [
-      "cafe5 -t data/mammals_integral_tree.txt \\\n  -i data/filtered_cafe_input.txt \\\n  -p -k 2 -c 4 -o cafe5_results"
+      "git clone --branch v5.1 --depth 1 https://github.com/hahnlab/CAFE5.git CAFE5\ncd CAFE5\ntest \"$(git rev-parse HEAD)\" = 8d3ab080796eafa192241a1067398832d886592d\nautoreconf -fi\n./configure\nmake -j4\n./bin/cafe5 -h",
+      "python3 examples/cafe5/check-inputs.py \\\n  --tree examples/cafe5/inputs/mammals_tree.txt \\\n  --table examples/cafe5/inputs/mammal_gene_families.txt \\\n  --output input-validation.json",
+      "\"$CAFE5_BIN\" -t examples/cafe5/inputs/mammals_tree.txt \\\n  -i examples/cafe5/inputs/mammal_gene_families.txt \\\n  -p -c 4 -o results-base",
+      "\"$CAFE5_BIN\" -t examples/cafe5/inputs/mammals_tree.txt \\\n  -i examples/cafe5/inputs/mammal_gene_families.txt \\\n  -p -k 2 -c 4 -o results-gamma",
+      "python3 examples/cafe5/check-results.py \\\n  --inputs examples/cafe5/inputs \\\n  --results examples/cafe5/verified-20261123\nnpm run check:cafe5",
+      "export CAFE5_BIN=/absolute/path/CAFE5/bin/cafe5\nbash examples/cafe5/run-example.sh /absolute/path/new-cafe5-verification"
     ],
-    "executionEvidenceScope": "历史运行命令以 evidencePaths 中原始日志为准；documentedCommands 为教程代码清单，安装命令未逐条重新执行。"
+    "executionEvidenceScope": "完整官方输入的基础与 Gamma 模型均退出 0；逐家族 ID、叶计数和结果数值核验通过；原始日志保留搜索警告"
   }
 }

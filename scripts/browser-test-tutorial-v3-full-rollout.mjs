@@ -56,7 +56,7 @@ for (const id of ids) {
   assert.equal(faqCount > 0, sourceHeadings.some(heading => /常见问题|常见错误|FAQ/i.test(heading)), `${id}: source FAQ sections are rendered as accordions`);
   assert.equal(await page.locator('.tv3-workflow svg').count(), 1, `${id}: method-specific workflow exists`);
   const statusElement = page.locator(id === 'hifiasm-intro' ? '.tv3-status' : '.tv3-section-status').first();
-  assert.match(await statusElement.textContent(), status === 'verified' ? /已验证/ : /命令模板|尚未/);
+  assert.match(await statusElement.textContent(), status === 'verified' ? /已验证|已运行验证/ : /命令模板|尚未/);
 
   const headings = await page.locator('.tv3-step>h2').allTextContents();
   if (id !== 'hifiasm-intro') for (const heading of sourceHeadings) assert.ok(headings.some(text => text.includes(heading)), `${id}: source heading retained (${heading})`);
@@ -170,7 +170,7 @@ const stateCounts = Object.values(results.tutorials).reduce((counts, tutorial) =
   counts[tutorial.status] = (counts[tutorial.status] ?? 0) + 1;
   return counts;
 }, {});
-assert.deepEqual(stateCounts, { template: 3, verified: 7 }, 'Validation state remains 7 verified / 3 template');
+assert.deepEqual(stateCounts, { template: 2, verified: 8 }, 'Validation state is 8 verified / 2 template after CAFE5 execution');
 await page.goto(`${base}/tutorials/`, { waitUntil: 'domcontentloaded' });
 assert.equal(await page.locator('.ti-card').count(), 10, 'Tutorial index V4 remains complete');
 for (const id of ids) assert.equal(await page.locator(`.ti-card[href*="${id}"]`).count(), 1, `Index links to ${id}`);

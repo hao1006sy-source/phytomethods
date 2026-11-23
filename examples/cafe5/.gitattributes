@@ -1,0 +1,5 @@
+# Preserve the exact bytes used for checksums, across Windows and Linux checkouts.
+inputs/** -text
+verified-*/** -text
+*.sh text eol=lf
+*.py text eol=lf
