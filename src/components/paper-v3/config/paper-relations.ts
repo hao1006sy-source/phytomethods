@@ -1,5 +1,5 @@
 /**
- * PhytoMethods 科研文献知识关联与推荐引擎
+ * PhytoMethods 科研文献知识关联与推荐引擎 V2.1
  * 负责解析论文与算法、植物应用、专题及其他文献的多维度科学关联
  */
 
@@ -24,14 +24,23 @@ export interface PaperKnowledgeContext {
 }
 
 /**
- * 获取方法学论文提出的工具 ID 集合（支持双向索引）
+ * 获取方法学论文真正首次提出或发布的工具 ID 集合（优先以工具官方奠基论文指向为准）
  */
 export function getIntroducedMethodIds(paperId: string, paperMethodIds: string[] = [], allMethods: any[] = []): string[] {
-  const result = new Set<string>(paperMethodIds);
-  // 从 allMethods 反查 paper === paperId
+  const result = new Set<string>();
+  // 1. 最核心科学依据：来自工具官方将该论文指定为 canonical paper
   for (const m of allMethods) {
     if (m.data?.paper === paperId) {
       result.add(m.id);
+    }
+  }
+  // 2. 备用验证：若工具未指定其他论文，但论文自身声明
+  if (result.size === 0) {
+    for (const mId of paperMethodIds) {
+      const m = allMethods.find(x => x.id === mId);
+      if (m && (!m.data?.paper || m.data?.paper === paperId)) {
+        result.add(mId);
+      }
     }
   }
   return [...result];
@@ -52,10 +61,16 @@ export function resolvePaperRelations({
   const paperSpeciesIds: string[] = entry.data.speciesIds || [];
   const directMethodIds: string[] = entry.data.methodIds || [];
 
-  // 1. 解析当前论文关联的工具 ID（方法学论文合并引入的工具；应用论文使用声明的工具）
-  const effectiveMethodIds = paperType === 'method'
+  // 1. 精确区分：真正提出的方法 (introduced) 与 关联引用的方法 (referenced)
+  const introducedMethodIds = paperType === 'method'
     ? getIntroducedMethodIds(paperId, directMethodIds, allMethods)
-    : directMethodIds;
+    : [];
+
+  // 有效关联工具（用于展示工具卡片和专题反查）：提出的工具 + 明确引用的工具
+  const effectiveMethodIds = Array.from(new Set([
+    ...introducedMethodIds,
+    ...directMethodIds
+  ]));
 
   // 2. 关联算法与工具实体
   const relatedMethods = allMethods.filter(m => effectiveMethodIds.includes(m.id));
@@ -73,15 +88,16 @@ export function resolvePaperRelations({
     effectiveMethodIds.includes(tut.data.method)
   );
 
-  // 5. 植物应用案例（针对 method 论文：查找采用其算法的真实植物研究）
+  // 5. 植物应用案例（针对 method 论文：优先以本论文提出的算法查找应用案例）
   let plantApplications: any[] = [];
   if (paperType === 'method') {
+    const targetIds = introducedMethodIds.length > 0 ? introducedMethodIds : effectiveMethodIds;
     plantApplications = allPapers.filter(p =>
       p.id !== paperId &&
       p.data.status === 'published' &&
       p.data.type === 'application' &&
       Array.isArray(p.data.methodIds) &&
-      p.data.methodIds.some((m: string) => effectiveMethodIds.includes(m))
+      p.data.methodIds.some((m: string) => targetIds.includes(m))
     );
 
     // Hifiasm 优先保留已验收的 Macadamia 作为首选代表
@@ -120,7 +136,7 @@ export function resolvePaperRelations({
     const candType = candidate.data.type;
 
     // 优先级 1: 算法提出与应用的直接关联 (Score: 100)
-    if (paperType === 'method' && candType === 'application' && candMethodIds.some(m => effectiveMethodIds.includes(m))) {
+    if (paperType === 'method' && candType === 'application' && candMethodIds.some(m => (introducedMethodIds.length > 0 ? introducedMethodIds : effectiveMethodIds).includes(m))) {
       score = 100;
       reason = '本算法实际植物研究案例';
     } else if (paperType === 'application' && candType === 'method' && originMethodPapers.some(p => p.id === candidate.id)) {
@@ -148,7 +164,6 @@ export function resolvePaperRelations({
       reason = '同领域经典学术前沿';
     }
 
-    // 只有具有明确关联依据（得分 >= 10）的候选才参与推荐
     if (score >= 10) {
       candidates.push({
         id: candidate.id,
@@ -170,10 +185,10 @@ export function resolvePaperRelations({
     return a.id.localeCompare(b.id);
   });
 
-  // 严格限制为推荐 2 篇最相关的文献
   const recommendedPapers = candidates.slice(0, 2);
 
   return {
+    introducedMethodIds,
     effectiveMethodIds,
     relatedMethods,
     relatedTopics,

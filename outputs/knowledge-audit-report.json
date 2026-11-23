@@ -1,25 +1,42 @@
 {
-  "generatedAt": "2026-11-23T09:37:22.393Z",
+  "version": "2.1.0",
+  "generatedAt": "2026-11-23T10:13:08.990Z",
+  "integrityPassed": true,
   "stats": {
-    "totalPapers": 130,
-    "totalMethods": 58,
-    "totalTopics": 63,
-    "totalTutorials": 10,
-    "totalRelations": 535,
-    "verifiedRelations": 535,
-    "relationTypeBreakdown": {
-      "introduces_method": 116,
-      "uses_method": 73,
-      "related_method": 5,
+    "nodesCount": 303,
+    "edgesCount": 741,
+    "nodesByType": {
+      "domain": 9,
+      "method": 58,
+      "paper_method": 70,
+      "paper_application": 59,
+      "paper_review": 1,
+      "species": 33,
+      "topic": 63,
+      "tutorial": 10
+    },
+    "edgesByRelation": {
+      "belongs_to_domain": 200,
+      "extends_method": 7,
+      "introduces_method": 58,
+      "studies_species": 64,
+      "uses_method": 59,
+      "references_method": 3,
+      "evaluates_method": 9,
       "features_method": 111,
       "references_paper": 220,
       "guides_method": 10
     },
-    "paperIssuesCount": 3,
-    "methodIssuesCount": 0,
-    "applicationPapersWithMethods": 35,
-    "applicationPapersWithoutMethods": 24
+    "evidenceByStatus": {
+      "structurally_valid": 203,
+      "source_checked": 596
+    },
+    "danglingEdges": 0,
+    "duplicateEdges": 0,
+    "duplicateNodes": 0,
+    "tutorialsCovered": 10
   },
+  "validationIssues": [],
   "papersAudit": [
     {
       "id": "admixture-enhancements",
@@ -35,7 +52,6 @@
       "methodIds": [
         "admixture"
       ],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -51,9 +67,6 @@
       ],
       "speciesIds": [],
       "methodIds": [
-        "admixture"
-      ],
-      "introducedMethods": [
         "admixture"
       ],
       "status": "已核实",
@@ -77,7 +90,6 @@
         "msmc2",
         "smcpp"
       ],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -93,9 +105,6 @@
       ],
       "speciesIds": [],
       "methodIds": [
-        "agront"
-      ],
-      "introducedMethods": [
         "agront"
       ],
       "status": "已核实",
@@ -115,9 +124,6 @@
       "methodIds": [
         "anchorwave"
       ],
-      "introducedMethods": [
-        "anchorwave"
-      ],
       "status": "已核实",
       "issues": []
     },
@@ -135,11 +141,8 @@
       "methodIds": [
         "iqtree2"
       ],
-      "introducedMethods": [],
-      "status": "需审查",
-      "issues": [
-        "植物应用论文未声明 speciesIds"
-      ]
+      "status": "已核实",
+      "issues": []
     },
     {
       "id": "arabidopsis-69-pangenome",
@@ -163,7 +166,6 @@
         "edta",
         "interproscan"
       ],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -188,7 +190,6 @@
         "minigraph",
         "vg"
       ],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -206,7 +207,6 @@
         "arabidopsis"
       ],
       "methodIds": [],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -224,7 +224,6 @@
         "arabidopsis"
       ],
       "methodIds": [],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -242,7 +241,6 @@
         "arabidopsis"
       ],
       "methodIds": [],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -260,7 +258,6 @@
         "arabidopsis"
       ],
       "methodIds": [],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -280,7 +277,6 @@
       "methodIds": [
         "hicexplorer"
       ],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -298,7 +294,6 @@
         "arabidopsis"
       ],
       "methodIds": [],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -316,7 +311,6 @@
         "arabidopsis"
       ],
       "methodIds": [],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -334,7 +328,6 @@
         "arabidopsis"
       ],
       "methodIds": [],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -352,7 +345,6 @@
         "arabidopsis"
       ],
       "methodIds": [],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -370,7 +362,6 @@
         "arabidopsis"
       ],
       "methodIds": [],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -388,7 +379,6 @@
         "arabidopsis"
       ],
       "methodIds": [],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -406,7 +396,6 @@
         "arabidopsis"
       ],
       "methodIds": [],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -427,7 +416,6 @@
       "methodIds": [
         "meme-suite"
       ],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -443,9 +431,6 @@
       ],
       "speciesIds": [],
       "methodIds": [
-        "archr"
-      ],
-      "introducedMethods": [
         "archr"
       ],
       "status": "已核实",
@@ -465,9 +450,6 @@
       "methodIds": [
         "bcftools"
       ],
-      "introducedMethods": [
-        "bcftools"
-      ],
       "status": "已核实",
       "issues": []
     },
@@ -483,9 +465,6 @@
       ],
       "speciesIds": [],
       "methodIds": [
-        "bismark"
-      ],
-      "introducedMethods": [
         "bismark"
       ],
       "status": "已核实",
@@ -508,9 +487,6 @@
       "methodIds": [
         "braker3"
       ],
-      "introducedMethods": [
-        "braker3"
-      ],
       "status": "已核实",
       "issues": []
     },
@@ -526,9 +502,6 @@
       ],
       "speciesIds": [],
       "methodIds": [
-        "cafe5"
-      ],
-      "introducedMethods": [
         "cafe5"
       ],
       "status": "已核实",
@@ -548,9 +521,6 @@
       "methodIds": [
         "cell2location"
       ],
-      "introducedMethods": [
-        "cell2location"
-      ],
       "status": "已核实",
       "issues": []
     },
@@ -566,9 +536,6 @@
       ],
       "speciesIds": [],
       "methodIds": [
-        "cellrank"
-      ],
-      "introducedMethods": [
         "cellrank"
       ],
       "status": "已核实",
@@ -588,9 +555,6 @@
       "methodIds": [
         "cutesv"
       ],
-      "introducedMethods": [
-        "cutesv"
-      ],
       "status": "已核实",
       "issues": []
     },
@@ -606,7 +570,6 @@
       ],
       "speciesIds": [],
       "methodIds": [],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -626,7 +589,6 @@
       "methodIds": [
         "orthofinder"
       ],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -642,9 +604,6 @@
       ],
       "speciesIds": [],
       "methodIds": [
-        "deseq2"
-      ],
-      "introducedMethods": [
         "deseq2"
       ],
       "status": "已核实",
@@ -664,9 +623,6 @@
       "methodIds": [
         "dnngp"
       ],
-      "introducedMethods": [
-        "dnngp"
-      ],
       "status": "已核实",
       "issues": []
     },
@@ -684,9 +640,6 @@
       "methodIds": [
         "doubletfinder"
       ],
-      "introducedMethods": [
-        "doubletfinder"
-      ],
       "status": "已核实",
       "issues": []
     },
@@ -702,9 +655,6 @@
       ],
       "speciesIds": [],
       "methodIds": [
-        "dss"
-      ],
-      "introducedMethods": [
         "dss"
       ],
       "status": "已核实",
@@ -726,9 +676,6 @@
       "methodIds": [
         "edta"
       ],
-      "introducedMethods": [
-        "edta"
-      ],
       "status": "已核实",
       "issues": []
     },
@@ -748,9 +695,6 @@
       "methodIds": [
         "eupan"
       ],
-      "introducedMethods": [
-        "eupan"
-      ],
       "status": "已核实",
       "issues": []
     },
@@ -766,9 +710,6 @@
       ],
       "speciesIds": [],
       "methodIds": [
-        "gapit"
-      ],
-      "introducedMethods": [
         "gapit"
       ],
       "status": "已核实",
@@ -788,9 +729,6 @@
       "methodIds": [
         "genie3"
       ],
-      "introducedMethods": [
-        "genie3"
-      ],
       "status": "已核实",
       "issues": []
     },
@@ -808,7 +746,6 @@
       "methodIds": [
         "vg"
       ],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -826,9 +763,6 @@
       "methodIds": [
         "grnboost2"
       ],
-      "introducedMethods": [
-        "grnboost2"
-      ],
       "status": "已核实",
       "issues": []
     },
@@ -844,7 +778,6 @@
       ],
       "speciesIds": [],
       "methodIds": [],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -862,7 +795,6 @@
         "miscanthus"
       ],
       "methodIds": [],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -878,7 +810,6 @@
       ],
       "speciesIds": [],
       "methodIds": [],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -894,9 +825,6 @@
       ],
       "speciesIds": [],
       "methodIds": [
-        "hicexplorer"
-      ],
-      "introducedMethods": [
         "hicexplorer"
       ],
       "status": "已核实",
@@ -916,9 +844,6 @@
       "methodIds": [
         "hifiasm"
       ],
-      "introducedMethods": [
-        "hifiasm"
-      ],
       "status": "已核实",
       "issues": []
     },
@@ -934,7 +859,6 @@
       ],
       "speciesIds": [],
       "methodIds": [],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -952,9 +876,6 @@
       "methodIds": [
         "interproscan"
       ],
-      "introducedMethods": [
-        "interproscan"
-      ],
       "status": "已核实",
       "issues": []
     },
@@ -970,9 +891,6 @@
       ],
       "speciesIds": [],
       "methodIds": [
-        "iqtree2"
-      ],
-      "introducedMethods": [
         "iqtree2"
       ],
       "status": "已核实",
@@ -994,7 +912,6 @@
       "methodIds": [
         "mcscanx"
       ],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -1014,7 +931,6 @@
       "methodIds": [
         "hifiasm"
       ],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -1030,9 +946,6 @@
       ],
       "speciesIds": [],
       "methodIds": [
-        "macs3"
-      ],
-      "introducedMethods": [
         "macs3"
       ],
       "status": "已核实",
@@ -1054,7 +967,6 @@
       "methodIds": [
         "xpclr"
       ],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -1074,7 +986,6 @@
       "methodIds": [
         "deseq2"
       ],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -1092,7 +1003,6 @@
         "maize"
       ],
       "methodIds": [],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -1113,7 +1023,6 @@
         "admixture",
         "xpclr"
       ],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -1133,7 +1042,6 @@
       "methodIds": [
         "paml"
       ],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -1155,7 +1063,6 @@
         "braker3",
         "interproscan"
       ],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -1171,9 +1078,6 @@
       ],
       "speciesIds": [],
       "methodIds": [
-        "mcscanx"
-      ],
-      "introducedMethods": [
         "mcscanx"
       ],
       "status": "已核实",
@@ -1192,9 +1096,6 @@
       ],
       "speciesIds": [],
       "methodIds": [
-        "meme-suite"
-      ],
-      "introducedMethods": [
         "meme-suite"
       ],
       "status": "已核实",
@@ -1216,9 +1117,6 @@
       "methodIds": [
         "merqury"
       ],
-      "introducedMethods": [
-        "merqury"
-      ],
       "status": "已核实",
       "issues": []
     },
@@ -1234,9 +1132,6 @@
       ],
       "speciesIds": [],
       "methodIds": [
-        "minigraph-cactus"
-      ],
-      "introducedMethods": [
         "minigraph-cactus"
       ],
       "status": "已核实",
@@ -1256,9 +1151,6 @@
       "methodIds": [
         "minigraph"
       ],
-      "introducedMethods": [
-        "minigraph"
-      ],
       "status": "已核实",
       "issues": []
     },
@@ -1274,9 +1166,6 @@
       ],
       "speciesIds": [],
       "methodIds": [
-        "minimap2"
-      ],
-      "introducedMethods": [
         "minimap2"
       ],
       "status": "已核实",
@@ -1297,9 +1186,6 @@
       "methodIds": [
         "mofa-plus"
       ],
-      "introducedMethods": [
-        "mofa-plus"
-      ],
       "status": "已核实",
       "issues": []
     },
@@ -1315,9 +1201,6 @@
       ],
       "speciesIds": [],
       "methodIds": [
-        "msmc2"
-      ],
-      "introducedMethods": [
         "msmc2"
       ],
       "status": "已核实",
@@ -1337,7 +1220,6 @@
       "methodIds": [
         "msmc2"
       ],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -1353,9 +1235,6 @@
       ],
       "speciesIds": [],
       "methodIds": [
-        "mummer4"
-      ],
-      "introducedMethods": [
         "mummer4"
       ],
       "status": "已核实",
@@ -1375,7 +1254,6 @@
         "mungbean"
       ],
       "methodIds": [],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -1391,9 +1269,6 @@
       ],
       "speciesIds": [],
       "methodIds": [
-        "odgi"
-      ],
-      "introducedMethods": [
         "odgi"
       ],
       "status": "已核实",
@@ -1413,7 +1288,6 @@
       "methodIds": [
         "orthofinder"
       ],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -1430,9 +1304,6 @@
       ],
       "speciesIds": [],
       "methodIds": [
-        "orthofinder"
-      ],
-      "introducedMethods": [
         "orthofinder"
       ],
       "status": "已核实",
@@ -1452,9 +1323,6 @@
       "methodIds": [
         "paml"
       ],
-      "introducedMethods": [
-        "paml"
-      ],
       "status": "已核实",
       "issues": []
     },
@@ -1470,9 +1338,6 @@
       ],
       "speciesIds": [],
       "methodIds": [
-        "pggb"
-      ],
-      "introducedMethods": [
         "pggb"
       ],
       "status": "已核实",
@@ -1492,7 +1357,6 @@
         "arabidopsis"
       ],
       "methodIds": [],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -1512,7 +1376,6 @@
       "methodIds": [
         "cutesv"
       ],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -1531,11 +1394,8 @@
         "sniffles2",
         "cutesv"
       ],
-      "introducedMethods": [],
-      "status": "需审查",
-      "issues": [
-        "植物应用论文未声明 speciesIds"
-      ]
+      "status": "已核实",
+      "issues": []
     },
     {
       "id": "plant-wgd-timing-2017",
@@ -1551,11 +1411,8 @@
       "methodIds": [
         "paml"
       ],
-      "introducedMethods": [],
-      "status": "需审查",
-      "issues": [
-        "植物应用论文未声明 speciesIds"
-      ]
+      "status": "已核实",
+      "issues": []
     },
     {
       "id": "plantcad2-paper",
@@ -1573,9 +1430,6 @@
       "methodIds": [
         "plantcad2"
       ],
-      "introducedMethods": [
-        "plantcad2"
-      ],
       "status": "已核实",
       "issues": []
     },
@@ -1591,9 +1445,6 @@
       ],
       "speciesIds": [],
       "methodIds": [
-        "plink"
-      ],
-      "introducedMethods": [
         "plink"
       ],
       "status": "已核实",
@@ -1615,7 +1466,6 @@
       "methodIds": [
         "psmc"
       ],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -1636,7 +1486,6 @@
         "psmc",
         "smcpp"
       ],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -1654,7 +1503,6 @@
         "potato"
       ],
       "methodIds": [],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -1670,9 +1518,6 @@
       ],
       "speciesIds": [],
       "methodIds": [
-        "psmc"
-      ],
-      "introducedMethods": [
         "psmc"
       ],
       "status": "已核实",
@@ -1694,7 +1539,6 @@
       "methodIds": [
         "wgcna"
       ],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -1710,7 +1554,6 @@
       ],
       "speciesIds": [],
       "methodIds": [],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -1731,7 +1574,6 @@
       "methodIds": [
         "eupan"
       ],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -1749,7 +1591,6 @@
         "rice"
       ],
       "methodIds": [],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -1769,7 +1610,6 @@
       "methodIds": [
         "xpclr"
       ],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -1787,7 +1627,6 @@
         "rice"
       ],
       "methodIds": [],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -1805,7 +1644,6 @@
         "rice"
       ],
       "methodIds": [],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -1825,7 +1663,6 @@
       "methodIds": [
         "gapit"
       ],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -1843,7 +1680,6 @@
         "rice"
       ],
       "methodIds": [],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -1861,7 +1697,6 @@
         "rice"
       ],
       "methodIds": [],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -1881,7 +1716,6 @@
       "methodIds": [
         "scanpy"
       ],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -1902,7 +1736,6 @@
         "sc-kb-copilot",
         "doubletfinder"
       ],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -1925,7 +1758,6 @@
         "admixture",
         "gapit"
       ],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -1943,7 +1775,6 @@
         "rice"
       ],
       "methodIds": [],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -1961,7 +1792,6 @@
         "rice"
       ],
       "methodIds": [],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -1979,7 +1809,6 @@
         "rice"
       ],
       "methodIds": [],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -1999,7 +1828,6 @@
       "methodIds": [
         "sweepfinder2"
       ],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -2019,7 +1847,6 @@
       "methodIds": [
         "bcftools"
       ],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -2041,7 +1868,6 @@
         "selscan",
         "plink"
       ],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -2059,9 +1885,6 @@
       "methodIds": [
         "rqtl2"
       ],
-      "introducedMethods": [
-        "rqtl2"
-      ],
       "status": "已核实",
       "issues": []
     },
@@ -2077,9 +1900,6 @@
       ],
       "speciesIds": [],
       "methodIds": [
-        "rrblup"
-      ],
-      "introducedMethods": [
         "rrblup"
       ],
       "status": "已核实",
@@ -2101,9 +1921,6 @@
       "methodIds": [
         "sc-kb-copilot"
       ],
-      "introducedMethods": [
-        "sc-kb-copilot"
-      ],
       "status": "已核实",
       "issues": []
     },
@@ -2119,9 +1936,6 @@
       ],
       "speciesIds": [],
       "methodIds": [
-        "scanpy"
-      ],
-      "introducedMethods": [
         "scanpy"
       ],
       "status": "已核实",
@@ -2141,9 +1955,6 @@
       "methodIds": [
         "scipy"
       ],
-      "introducedMethods": [
-        "scipy"
-      ],
       "status": "已核实",
       "issues": []
     },
@@ -2159,9 +1970,6 @@
       ],
       "speciesIds": [],
       "methodIds": [
-        "selscan"
-      ],
-      "introducedMethods": [
         "selscan"
       ],
       "status": "已核实",
@@ -2181,9 +1989,6 @@
       "methodIds": [
         "smcpp"
       ],
-      "introducedMethods": [
-        "smcpp"
-      ],
       "status": "已核实",
       "issues": []
     },
@@ -2199,9 +2004,6 @@
       ],
       "speciesIds": [],
       "methodIds": [
-        "sniffles2"
-      ],
-      "introducedMethods": [
         "sniffles2"
       ],
       "status": "已核实",
@@ -2228,7 +2030,6 @@
         "vg",
         "odgi"
       ],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -2250,7 +2051,6 @@
         "vg",
         "odgi"
       ],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -2268,7 +2068,6 @@
         "soybean"
       ],
       "methodIds": [],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -2284,9 +2083,6 @@
       ],
       "speciesIds": [],
       "methodIds": [
-        "squidpy"
-      ],
-      "introducedMethods": [
         "squidpy"
       ],
       "status": "已核实",
@@ -2306,9 +2102,6 @@
       "methodIds": [
         "sweepfinder2"
       ],
-      "introducedMethods": [
-        "sweepfinder2"
-      ],
       "status": "已核实",
       "issues": []
     },
@@ -2326,9 +2119,6 @@
         "arabidopsis"
       ],
       "methodIds": [
-        "syri"
-      ],
-      "introducedMethods": [
         "syri"
       ],
       "status": "已核实",
@@ -2353,7 +2143,6 @@
         "cafe5",
         "paml"
       ],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -2369,7 +2158,6 @@
       ],
       "speciesIds": [],
       "methodIds": [],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -2387,9 +2175,6 @@
       "methodIds": [
         "verkko"
       ],
-      "introducedMethods": [
-        "verkko"
-      ],
       "status": "已核实",
       "issues": []
     },
@@ -2405,9 +2190,6 @@
       ],
       "speciesIds": [],
       "methodIds": [
-        "vg"
-      ],
-      "introducedMethods": [
         "vg"
       ],
       "status": "已核实",
@@ -2428,7 +2210,6 @@
         "watermelon"
       ],
       "methodIds": [],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -2446,9 +2227,6 @@
       "methodIds": [
         "wgcna"
       ],
-      "introducedMethods": [
-        "wgcna"
-      ],
       "status": "已核实",
       "issues": []
     },
@@ -2464,9 +2242,6 @@
       ],
       "speciesIds": [],
       "methodIds": [
-        "wgd"
-      ],
-      "introducedMethods": [
         "wgd"
       ],
       "status": "已核实",
@@ -2488,7 +2263,6 @@
       "methodIds": [
         "bismark"
       ],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -2515,7 +2289,6 @@
         "mummer4",
         "minimap2"
       ],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -2536,7 +2309,6 @@
         "hifiasm",
         "verkko"
       ],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -2552,9 +2324,6 @@
       ],
       "speciesIds": [],
       "methodIds": [
-        "xpclr"
-      ],
-      "introducedMethods": [
         "xpclr"
       ],
       "status": "已核实",
@@ -2574,7 +2343,6 @@
       "methodIds": [
         "selscan"
       ],
-      "introducedMethods": [],
       "status": "已核实",
       "issues": []
     },
@@ -2590,9 +2358,6 @@
       ],
       "speciesIds": [],
       "methodIds": [
-        "yahs"
-      ],
-      "introducedMethods": [
         "yahs"
       ],
       "status": "已核实",
@@ -4184,4823 +3949,6 @@
       ],
       "status": "已核实",
       "issues": []
-    }
-  ],
-  "relations": [
-    {
-      "source": "admixture-paper",
-      "sourceType": "paper",
-      "target": "admixture",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Method \"ADMIXTURE\" explicitly references \"admixture-paper\" as its canonical method paper.",
-      "verified": true
-    },
-    {
-      "source": "agro-nt-2024",
-      "sourceType": "paper",
-      "target": "agront",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Method \"AgroNT\" explicitly references \"agro-nt-2024\" as its canonical method paper.",
-      "verified": true
-    },
-    {
-      "source": "anchorwave-paper",
-      "sourceType": "paper",
-      "target": "anchorwave",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Method \"AnchorWave\" explicitly references \"anchorwave-paper\" as its canonical method paper.",
-      "verified": true
-    },
-    {
-      "source": "archr-paper",
-      "sourceType": "paper",
-      "target": "archr",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Method \"ArchR\" explicitly references \"archr-paper\" as its canonical method paper.",
-      "verified": true
-    },
-    {
-      "source": "bcftools-paper",
-      "sourceType": "paper",
-      "target": "bcftools",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Method \"BCFtools\" explicitly references \"bcftools-paper\" as its canonical method paper.",
-      "verified": true
-    },
-    {
-      "source": "bismark-paper",
-      "sourceType": "paper",
-      "target": "bismark",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Method \"Bismark\" explicitly references \"bismark-paper\" as its canonical method paper.",
-      "verified": true
-    },
-    {
-      "source": "braker3-paper",
-      "sourceType": "paper",
-      "target": "braker3",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Method \"BRAKER3\" explicitly references \"braker3-paper\" as its canonical method paper.",
-      "verified": true
-    },
-    {
-      "source": "cafe5-paper",
-      "sourceType": "paper",
-      "target": "cafe5",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Method \"CAFE5\" explicitly references \"cafe5-paper\" as its canonical method paper.",
-      "verified": true
-    },
-    {
-      "source": "cell2location-paper",
-      "sourceType": "paper",
-      "target": "cell2location",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Method \"cell2location\" explicitly references \"cell2location-paper\" as its canonical method paper.",
-      "verified": true
-    },
-    {
-      "source": "cellrank2-paper",
-      "sourceType": "paper",
-      "target": "cellrank",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Method \"CellRank\" explicitly references \"cellrank2-paper\" as its canonical method paper.",
-      "verified": true
-    },
-    {
-      "source": "cutesv-paper",
-      "sourceType": "paper",
-      "target": "cutesv",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Method \"cuteSV\" explicitly references \"cutesv-paper\" as its canonical method paper.",
-      "verified": true
-    },
-    {
-      "source": "deseq2-2014",
-      "sourceType": "paper",
-      "target": "deseq2",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Method \"DESeq2\" explicitly references \"deseq2-2014\" as its canonical method paper.",
-      "verified": true
-    },
-    {
-      "source": "dnngp-paper",
-      "sourceType": "paper",
-      "target": "dnngp",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Method \"DNNGP\" explicitly references \"dnngp-paper\" as its canonical method paper.",
-      "verified": true
-    },
-    {
-      "source": "doubletfinder-paper",
-      "sourceType": "paper",
-      "target": "doubletfinder",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Method \"DoubletFinder\" explicitly references \"doubletfinder-paper\" as its canonical method paper.",
-      "verified": true
-    },
-    {
-      "source": "dss-paper",
-      "sourceType": "paper",
-      "target": "dss",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Method \"DSS\" explicitly references \"dss-paper\" as its canonical method paper.",
-      "verified": true
-    },
-    {
-      "source": "edta-paper",
-      "sourceType": "paper",
-      "target": "edta",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Method \"EDTA\" explicitly references \"edta-paper\" as its canonical method paper.",
-      "verified": true
-    },
-    {
-      "source": "eupan-paper",
-      "sourceType": "paper",
-      "target": "eupan",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Method \"EUPAN\" explicitly references \"eupan-paper\" as its canonical method paper.",
-      "verified": true
-    },
-    {
-      "source": "gapit3-paper",
-      "sourceType": "paper",
-      "target": "gapit",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Method \"GAPIT\" explicitly references \"gapit3-paper\" as its canonical method paper.",
-      "verified": true
-    },
-    {
-      "source": "genie3-paper",
-      "sourceType": "paper",
-      "target": "genie3",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Method \"GENIE3\" explicitly references \"genie3-paper\" as its canonical method paper.",
-      "verified": true
-    },
-    {
-      "source": "grnboost2-paper",
-      "sourceType": "paper",
-      "target": "grnboost2",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Method \"GRNBoost2 / Arboreto\" explicitly references \"grnboost2-paper\" as its canonical method paper.",
-      "verified": true
-    },
-    {
-      "source": "hicexplorer-paper",
-      "sourceType": "paper",
-      "target": "hicexplorer",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Method \"HiCExplorer\" explicitly references \"hicexplorer-paper\" as its canonical method paper.",
-      "verified": true
-    },
-    {
-      "source": "hifiasm",
-      "sourceType": "paper",
-      "target": "hifiasm",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Method \"Hifiasm\" explicitly references \"hifiasm\" as its canonical method paper.",
-      "verified": true
-    },
-    {
-      "source": "interproscan-paper",
-      "sourceType": "paper",
-      "target": "interproscan",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Method \"InterProScan\" explicitly references \"interproscan-paper\" as its canonical method paper.",
-      "verified": true
-    },
-    {
-      "source": "iqtree2-paper",
-      "sourceType": "paper",
-      "target": "iqtree2",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Method \"IQ-TREE 2\" explicitly references \"iqtree2-paper\" as its canonical method paper.",
-      "verified": true
-    },
-    {
-      "source": "macs-paper",
-      "sourceType": "paper",
-      "target": "macs3",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Method \"MACS3\" explicitly references \"macs-paper\" as its canonical method paper.",
-      "verified": true
-    },
-    {
-      "source": "mcscanx-paper",
-      "sourceType": "paper",
-      "target": "mcscanx",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Method \"MCScanX\" explicitly references \"mcscanx-paper\" as its canonical method paper.",
-      "verified": true
-    },
-    {
-      "source": "meme-suite-paper",
-      "sourceType": "paper",
-      "target": "meme-suite",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Method \"MEME Suite\" explicitly references \"meme-suite-paper\" as its canonical method paper.",
-      "verified": true
-    },
-    {
-      "source": "merqury",
-      "sourceType": "paper",
-      "target": "merqury",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Method \"Merqury\" explicitly references \"merqury\" as its canonical method paper.",
-      "verified": true
-    },
-    {
-      "source": "minigraph-cactus-paper",
-      "sourceType": "paper",
-      "target": "minigraph-cactus",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Method \"Minigraph-Cactus\" explicitly references \"minigraph-cactus-paper\" as its canonical method paper.",
-      "verified": true
-    },
-    {
-      "source": "minigraph-paper",
-      "sourceType": "paper",
-      "target": "minigraph",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Method \"Minigraph\" explicitly references \"minigraph-paper\" as its canonical method paper.",
-      "verified": true
-    },
-    {
-      "source": "minimap2-paper",
-      "sourceType": "paper",
-      "target": "minimap2",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Method \"minimap2\" explicitly references \"minimap2-paper\" as its canonical method paper.",
-      "verified": true
-    },
-    {
-      "source": "mofa-plus-paper",
-      "sourceType": "paper",
-      "target": "mofa-plus",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Method \"MOFA+\" explicitly references \"mofa-plus-paper\" as its canonical method paper.",
-      "verified": true
-    },
-    {
-      "source": "msmc-paper",
-      "sourceType": "paper",
-      "target": "msmc2",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Method \"MSMC2\" explicitly references \"msmc-paper\" as its canonical method paper.",
-      "verified": true
-    },
-    {
-      "source": "mummer4-paper",
-      "sourceType": "paper",
-      "target": "mummer4",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Method \"MUMmer4\" explicitly references \"mummer4-paper\" as its canonical method paper.",
-      "verified": true
-    },
-    {
-      "source": "odgi-paper",
-      "sourceType": "paper",
-      "target": "odgi",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Method \"ODGI\" explicitly references \"odgi-paper\" as its canonical method paper.",
-      "verified": true
-    },
-    {
-      "source": "orthofinder-paper",
-      "sourceType": "paper",
-      "target": "orthofinder",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Method \"OrthoFinder\" explicitly references \"orthofinder-paper\" as its canonical method paper.",
-      "verified": true
-    },
-    {
-      "source": "paml-paper",
-      "sourceType": "paper",
-      "target": "paml",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Method \"PAML\" explicitly references \"paml-paper\" as its canonical method paper.",
-      "verified": true
-    },
-    {
-      "source": "pggb-paper",
-      "sourceType": "paper",
-      "target": "pggb",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Method \"PGGB\" explicitly references \"pggb-paper\" as its canonical method paper.",
-      "verified": true
-    },
-    {
-      "source": "plantcad2-paper",
-      "sourceType": "paper",
-      "target": "plantcad2",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Method \"PlantCAD2\" explicitly references \"plantcad2-paper\" as its canonical method paper.",
-      "verified": true
-    },
-    {
-      "source": "plink-paper",
-      "sourceType": "paper",
-      "target": "plink",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Method \"PLINK\" explicitly references \"plink-paper\" as its canonical method paper.",
-      "verified": true
-    },
-    {
-      "source": "psmc-paper",
-      "sourceType": "paper",
-      "target": "psmc",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Method \"PSMC\" explicitly references \"psmc-paper\" as its canonical method paper.",
-      "verified": true
-    },
-    {
-      "source": "rqtl2-paper",
-      "sourceType": "paper",
-      "target": "rqtl2",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Method \"R/qtl2\" explicitly references \"rqtl2-paper\" as its canonical method paper.",
-      "verified": true
-    },
-    {
-      "source": "rrblup-paper",
-      "sourceType": "paper",
-      "target": "rrblup",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Method \"rrBLUP\" explicitly references \"rrblup-paper\" as its canonical method paper.",
-      "verified": true
-    },
-    {
-      "source": "sc-kb-copilot-paper",
-      "sourceType": "paper",
-      "target": "sc-kb-copilot",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Method \"scKB/COPILOT\" explicitly references \"sc-kb-copilot-paper\" as its canonical method paper.",
-      "verified": true
-    },
-    {
-      "source": "scanpy-paper",
-      "sourceType": "paper",
-      "target": "scanpy",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Method \"Scanpy\" explicitly references \"scanpy-paper\" as its canonical method paper.",
-      "verified": true
-    },
-    {
-      "source": "scipy-paper",
-      "sourceType": "paper",
-      "target": "scipy",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Method \"SciPy\" explicitly references \"scipy-paper\" as its canonical method paper.",
-      "verified": true
-    },
-    {
-      "source": "selscan-paper",
-      "sourceType": "paper",
-      "target": "selscan",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Method \"selscan\" explicitly references \"selscan-paper\" as its canonical method paper.",
-      "verified": true
-    },
-    {
-      "source": "smcpp-paper",
-      "sourceType": "paper",
-      "target": "smcpp",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Method \"SMC++\" explicitly references \"smcpp-paper\" as its canonical method paper.",
-      "verified": true
-    },
-    {
-      "source": "sniffles2-paper",
-      "sourceType": "paper",
-      "target": "sniffles2",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Method \"Sniffles2\" explicitly references \"sniffles2-paper\" as its canonical method paper.",
-      "verified": true
-    },
-    {
-      "source": "squidpy-paper",
-      "sourceType": "paper",
-      "target": "squidpy",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Method \"Squidpy\" explicitly references \"squidpy-paper\" as its canonical method paper.",
-      "verified": true
-    },
-    {
-      "source": "sweepfinder2-paper",
-      "sourceType": "paper",
-      "target": "sweepfinder2",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Method \"SweepFinder2\" explicitly references \"sweepfinder2-paper\" as its canonical method paper.",
-      "verified": true
-    },
-    {
-      "source": "syri-paper",
-      "sourceType": "paper",
-      "target": "syri",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Method \"SyRI\" explicitly references \"syri-paper\" as its canonical method paper.",
-      "verified": true
-    },
-    {
-      "source": "verkko",
-      "sourceType": "paper",
-      "target": "verkko",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Method \"Verkko\" explicitly references \"verkko\" as its canonical method paper.",
-      "verified": true
-    },
-    {
-      "source": "vg-paper",
-      "sourceType": "paper",
-      "target": "vg",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Method \"vg\" explicitly references \"vg-paper\" as its canonical method paper.",
-      "verified": true
-    },
-    {
-      "source": "wgcna-paper",
-      "sourceType": "paper",
-      "target": "wgcna",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Method \"WGCNA\" explicitly references \"wgcna-paper\" as its canonical method paper.",
-      "verified": true
-    },
-    {
-      "source": "wgd-v2-paper",
-      "sourceType": "paper",
-      "target": "wgd",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Method \"wgd\" explicitly references \"wgd-v2-paper\" as its canonical method paper.",
-      "verified": true
-    },
-    {
-      "source": "xpclr-paper",
-      "sourceType": "paper",
-      "target": "xpclr",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Method \"XP-CLR\" explicitly references \"xpclr-paper\" as its canonical method paper.",
-      "verified": true
-    },
-    {
-      "source": "yahs",
-      "sourceType": "paper",
-      "target": "yahs",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Method \"YaHS\" explicitly references \"yahs\" as its canonical method paper.",
-      "verified": true
-    },
-    {
-      "source": "admixture-enhancements",
-      "sourceType": "paper",
-      "target": "admixture",
-      "targetType": "method",
-      "relation": "related_method",
-      "evidence": "Paper \"admixture-enhancements\" declares methodId \"admixture\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "admixture-paper",
-      "sourceType": "paper",
-      "target": "admixture",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Paper \"admixture-paper\" declares methodId \"admixture\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "african-rice-246-genomes",
-      "sourceType": "paper",
-      "target": "psmc",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"african-rice-246-genomes\" declares methodId \"psmc\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "african-rice-246-genomes",
-      "sourceType": "paper",
-      "target": "msmc2",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"african-rice-246-genomes\" declares methodId \"msmc2\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "african-rice-246-genomes",
-      "sourceType": "paper",
-      "target": "smcpp",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"african-rice-246-genomes\" declares methodId \"smcpp\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "agro-nt-2024",
-      "sourceType": "paper",
-      "target": "agront",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Paper \"agro-nt-2024\" declares methodId \"agront\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "anchorwave-paper",
-      "sourceType": "paper",
-      "target": "anchorwave",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Paper \"anchorwave-paper\" declares methodId \"anchorwave\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "angiosperm-phylogenomics-2024",
-      "sourceType": "paper",
-      "target": "iqtree2",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"angiosperm-phylogenomics-2024\" declares methodId \"iqtree2\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "arabidopsis-69-pangenome",
-      "sourceType": "paper",
-      "target": "hifiasm",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"arabidopsis-69-pangenome\" declares methodId \"hifiasm\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "arabidopsis-69-pangenome",
-      "sourceType": "paper",
-      "target": "orthofinder",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"arabidopsis-69-pangenome\" declares methodId \"orthofinder\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "arabidopsis-69-pangenome",
-      "sourceType": "paper",
-      "target": "syri",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"arabidopsis-69-pangenome\" declares methodId \"syri\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "arabidopsis-69-pangenome",
-      "sourceType": "paper",
-      "target": "merqury",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"arabidopsis-69-pangenome\" declares methodId \"merqury\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "arabidopsis-69-pangenome",
-      "sourceType": "paper",
-      "target": "edta",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"arabidopsis-69-pangenome\" declares methodId \"edta\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "arabidopsis-69-pangenome",
-      "sourceType": "paper",
-      "target": "interproscan",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"arabidopsis-69-pangenome\" declares methodId \"interproscan\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "arabidopsis-adaptation",
-      "sourceType": "paper",
-      "target": "hifiasm",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"arabidopsis-adaptation\" declares methodId \"hifiasm\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "arabidopsis-adaptation",
-      "sourceType": "paper",
-      "target": "orthofinder",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"arabidopsis-adaptation\" declares methodId \"orthofinder\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "arabidopsis-adaptation",
-      "sourceType": "paper",
-      "target": "edta",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"arabidopsis-adaptation\" declares methodId \"edta\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "arabidopsis-adaptation",
-      "sourceType": "paper",
-      "target": "minigraph",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"arabidopsis-adaptation\" declares methodId \"minigraph\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "arabidopsis-adaptation",
-      "sourceType": "paper",
-      "target": "vg",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"arabidopsis-adaptation\" declares methodId \"vg\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "arabidopsis-heat-hic-2020",
-      "sourceType": "paper",
-      "target": "hicexplorer",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"arabidopsis-heat-hic-2020\" declares methodId \"hicexplorer\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "arabidopsis-stomata-accessibility-2022",
-      "sourceType": "paper",
-      "target": "meme-suite",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"arabidopsis-stomata-accessibility-2022\" declares methodId \"meme-suite\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "archr-paper",
-      "sourceType": "paper",
-      "target": "archr",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Paper \"archr-paper\" declares methodId \"archr\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "bcftools-paper",
-      "sourceType": "paper",
-      "target": "bcftools",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Paper \"bcftools-paper\" declares methodId \"bcftools\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "bismark-paper",
-      "sourceType": "paper",
-      "target": "bismark",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Paper \"bismark-paper\" declares methodId \"bismark\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "braker3-paper",
-      "sourceType": "paper",
-      "target": "braker3",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Paper \"braker3-paper\" declares methodId \"braker3\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "cafe5-paper",
-      "sourceType": "paper",
-      "target": "cafe5",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Paper \"cafe5-paper\" declares methodId \"cafe5\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "cell2location-paper",
-      "sourceType": "paper",
-      "target": "cell2location",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Paper \"cell2location-paper\" declares methodId \"cell2location\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "cellrank2-paper",
-      "sourceType": "paper",
-      "target": "cellrank",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Paper \"cellrank2-paper\" declares methodId \"cellrank\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "cutesv-paper",
-      "sourceType": "paper",
-      "target": "cutesv",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Paper \"cutesv-paper\" declares methodId \"cutesv\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "cycas-evolution",
-      "sourceType": "paper",
-      "target": "orthofinder",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"cycas-evolution\" declares methodId \"orthofinder\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "deseq2-2014",
-      "sourceType": "paper",
-      "target": "deseq2",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Paper \"deseq2-2014\" declares methodId \"deseq2\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "dnngp-paper",
-      "sourceType": "paper",
-      "target": "dnngp",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Paper \"dnngp-paper\" declares methodId \"dnngp\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "doubletfinder-paper",
-      "sourceType": "paper",
-      "target": "doubletfinder",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Paper \"doubletfinder-paper\" declares methodId \"doubletfinder\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "dss-paper",
-      "sourceType": "paper",
-      "target": "dss",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Paper \"dss-paper\" declares methodId \"dss\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "edta-paper",
-      "sourceType": "paper",
-      "target": "edta",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Paper \"edta-paper\" declares methodId \"edta\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "eupan-paper",
-      "sourceType": "paper",
-      "target": "eupan",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Paper \"eupan-paper\" declares methodId \"eupan\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "gapit3-paper",
-      "sourceType": "paper",
-      "target": "gapit",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Paper \"gapit3-paper\" declares methodId \"gapit\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "genie3-paper",
-      "sourceType": "paper",
-      "target": "genie3",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Paper \"genie3-paper\" declares methodId \"genie3\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "giraffe-paper",
-      "sourceType": "paper",
-      "target": "vg",
-      "targetType": "method",
-      "relation": "related_method",
-      "evidence": "Paper \"giraffe-paper\" declares methodId \"vg\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "grnboost2-paper",
-      "sourceType": "paper",
-      "target": "grnboost2",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Paper \"grnboost2-paper\" declares methodId \"grnboost2\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "hicexplorer-paper",
-      "sourceType": "paper",
-      "target": "hicexplorer",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Paper \"hicexplorer-paper\" declares methodId \"hicexplorer\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "hifiasm",
-      "sourceType": "paper",
-      "target": "hifiasm",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Paper \"hifiasm\" declares methodId \"hifiasm\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "interproscan-paper",
-      "sourceType": "paper",
-      "target": "interproscan",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Paper \"interproscan-paper\" declares methodId \"interproscan\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "iqtree2-paper",
-      "sourceType": "paper",
-      "target": "iqtree2",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Paper \"iqtree2-paper\" declares methodId \"iqtree2\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "macadamia-mcscanx",
-      "sourceType": "paper",
-      "target": "mcscanx",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"macadamia-mcscanx\" declares methodId \"mcscanx\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "macadamia",
-      "sourceType": "paper",
-      "target": "hifiasm",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"macadamia\" declares methodId \"hifiasm\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "macs-paper",
-      "sourceType": "paper",
-      "target": "macs3",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Paper \"macs-paper\" declares methodId \"macs3\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "maize-domestication",
-      "sourceType": "paper",
-      "target": "xpclr",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"maize-domestication\" declares methodId \"xpclr\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "maize-drought-deseq2-2019",
-      "sourceType": "paper",
-      "target": "deseq2",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"maize-drought-deseq2-2019\" declares methodId \"deseq2\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "maize-zeas-adaptation",
-      "sourceType": "paper",
-      "target": "admixture",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"maize-zeas-adaptation\" declares methodId \"admixture\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "maize-zeas-adaptation",
-      "sourceType": "paper",
-      "target": "xpclr",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"maize-zeas-adaptation\" declares methodId \"xpclr\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "mam-positive-selection-2006",
-      "sourceType": "paper",
-      "target": "paml",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"mam-positive-selection-2006\" declares methodId \"paml\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "mango-annotation",
-      "sourceType": "paper",
-      "target": "braker3",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"mango-annotation\" declares methodId \"braker3\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "mango-annotation",
-      "sourceType": "paper",
-      "target": "interproscan",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"mango-annotation\" declares methodId \"interproscan\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "mcscanx-paper",
-      "sourceType": "paper",
-      "target": "mcscanx",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Paper \"mcscanx-paper\" declares methodId \"mcscanx\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "meme-suite-paper",
-      "sourceType": "paper",
-      "target": "meme-suite",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Paper \"meme-suite-paper\" declares methodId \"meme-suite\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "merqury",
-      "sourceType": "paper",
-      "target": "merqury",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Paper \"merqury\" declares methodId \"merqury\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "minigraph-cactus-paper",
-      "sourceType": "paper",
-      "target": "minigraph-cactus",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Paper \"minigraph-cactus-paper\" declares methodId \"minigraph-cactus\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "minigraph-paper",
-      "sourceType": "paper",
-      "target": "minigraph",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Paper \"minigraph-paper\" declares methodId \"minigraph\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "minimap2-paper",
-      "sourceType": "paper",
-      "target": "minimap2",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Paper \"minimap2-paper\" declares methodId \"minimap2\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "mofa-plus-paper",
-      "sourceType": "paper",
-      "target": "mofa-plus",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Paper \"mofa-plus-paper\" declares methodId \"mofa-plus\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "msmc-paper",
-      "sourceType": "paper",
-      "target": "msmc2",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Paper \"msmc-paper\" declares methodId \"msmc2\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "msmc2-protocol",
-      "sourceType": "paper",
-      "target": "msmc2",
-      "targetType": "method",
-      "relation": "related_method",
-      "evidence": "Paper \"msmc2-protocol\" declares methodId \"msmc2\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "mummer4-paper",
-      "sourceType": "paper",
-      "target": "mummer4",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Paper \"mummer4-paper\" declares methodId \"mummer4\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "odgi-paper",
-      "sourceType": "paper",
-      "target": "odgi",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Paper \"odgi-paper\" declares methodId \"odgi\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "orthofinder-2026",
-      "sourceType": "paper",
-      "target": "orthofinder",
-      "targetType": "method",
-      "relation": "related_method",
-      "evidence": "Paper \"orthofinder-2026\" declares methodId \"orthofinder\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "orthofinder-paper",
-      "sourceType": "paper",
-      "target": "orthofinder",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Paper \"orthofinder-paper\" declares methodId \"orthofinder\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "paml-paper",
-      "sourceType": "paper",
-      "target": "paml",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Paper \"paml-paper\" declares methodId \"paml\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "pggb-paper",
-      "sourceType": "paper",
-      "target": "pggb",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Paper \"pggb-paper\" declares methodId \"pggb\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "plant-induced-sv-2025",
-      "sourceType": "paper",
-      "target": "cutesv",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"plant-induced-sv-2025\" declares methodId \"cutesv\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "plant-sv-benchmark-2026",
-      "sourceType": "paper",
-      "target": "sniffles2",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"plant-sv-benchmark-2026\" declares methodId \"sniffles2\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "plant-sv-benchmark-2026",
-      "sourceType": "paper",
-      "target": "cutesv",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"plant-sv-benchmark-2026\" declares methodId \"cutesv\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "plant-wgd-timing-2017",
-      "sourceType": "paper",
-      "target": "paml",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"plant-wgd-timing-2017\" declares methodId \"paml\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "plantcad2-paper",
-      "sourceType": "paper",
-      "target": "plantcad2",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Paper \"plantcad2-paper\" declares methodId \"plantcad2\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "plink-paper",
-      "sourceType": "paper",
-      "target": "plink",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Paper \"plink-paper\" declares methodId \"plink\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "populus-euphratica-demography",
-      "sourceType": "paper",
-      "target": "psmc",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"populus-euphratica-demography\" declares methodId \"psmc\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "populus-repeats-demography",
-      "sourceType": "paper",
-      "target": "psmc",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"populus-repeats-demography\" declares methodId \"psmc\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "populus-repeats-demography",
-      "sourceType": "paper",
-      "target": "smcpp",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"populus-repeats-demography\" declares methodId \"smcpp\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "psmc-paper",
-      "sourceType": "paper",
-      "target": "psmc",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Paper \"psmc-paper\" declares methodId \"psmc\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "purple-rice-wgcna",
-      "sourceType": "paper",
-      "target": "wgcna",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"purple-rice-wgcna\" declares methodId \"wgcna\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "rice-3010-pangenome",
-      "sourceType": "paper",
-      "target": "eupan",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"rice-3010-pangenome\" declares methodId \"eupan\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "rice-deleterious-domestication",
-      "sourceType": "paper",
-      "target": "xpclr",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"rice-deleterious-domestication\" declares methodId \"xpclr\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "rice-gapit-2023",
-      "sourceType": "paper",
-      "target": "gapit",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"rice-gapit-2023\" declares methodId \"gapit\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "rice-root-single-cell-2021",
-      "sourceType": "paper",
-      "target": "scanpy",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"rice-root-single-cell-2021\" declares methodId \"scanpy\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "rice-root-soil-single-cell-2025",
-      "sourceType": "paper",
-      "target": "sc-kb-copilot",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"rice-root-soil-single-cell-2025\" declares methodId \"sc-kb-copilot\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "rice-root-soil-single-cell-2025",
-      "sourceType": "paper",
-      "target": "doubletfinder",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"rice-root-soil-single-cell-2025\" declares methodId \"doubletfinder\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "rice-roots-population",
-      "sourceType": "paper",
-      "target": "plink",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"rice-roots-population\" declares methodId \"plink\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "rice-roots-population",
-      "sourceType": "paper",
-      "target": "admixture",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"rice-roots-population\" declares methodId \"admixture\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "rice-roots-population",
-      "sourceType": "paper",
-      "target": "gapit",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"rice-roots-population\" declares methodId \"gapit\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "rice-temarker-sweeps",
-      "sourceType": "paper",
-      "target": "sweepfinder2",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"rice-temarker-sweeps\" declares methodId \"sweepfinder2\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "rice-variant-comparison",
-      "sourceType": "paper",
-      "target": "bcftools",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"rice-variant-comparison\" declares methodId \"bcftools\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "rice-weedy-selection",
-      "sourceType": "paper",
-      "target": "xpclr",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"rice-weedy-selection\" declares methodId \"xpclr\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "rice-weedy-selection",
-      "sourceType": "paper",
-      "target": "selscan",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"rice-weedy-selection\" declares methodId \"selscan\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "rice-weedy-selection",
-      "sourceType": "paper",
-      "target": "plink",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"rice-weedy-selection\" declares methodId \"plink\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "rqtl2-paper",
-      "sourceType": "paper",
-      "target": "rqtl2",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Paper \"rqtl2-paper\" declares methodId \"rqtl2\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "rrblup-paper",
-      "sourceType": "paper",
-      "target": "rrblup",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Paper \"rrblup-paper\" declares methodId \"rrblup\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "sc-kb-copilot-paper",
-      "sourceType": "paper",
-      "target": "sc-kb-copilot",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Paper \"sc-kb-copilot-paper\" declares methodId \"sc-kb-copilot\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "scanpy-paper",
-      "sourceType": "paper",
-      "target": "scanpy",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Paper \"scanpy-paper\" declares methodId \"scanpy\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "scipy-paper",
-      "sourceType": "paper",
-      "target": "scipy",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Paper \"scipy-paper\" declares methodId \"scipy\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "selscan-paper",
-      "sourceType": "paper",
-      "target": "selscan",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Paper \"selscan-paper\" declares methodId \"selscan\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "smcpp-paper",
-      "sourceType": "paper",
-      "target": "smcpp",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Paper \"smcpp-paper\" declares methodId \"smcpp\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "sniffles2-paper",
-      "sourceType": "paper",
-      "target": "sniffles2",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Paper \"sniffles2-paper\" declares methodId \"sniffles2\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "sorghum-graph-benchmark",
-      "sourceType": "paper",
-      "target": "minigraph",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"sorghum-graph-benchmark\" declares methodId \"minigraph\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "sorghum-graph-benchmark",
-      "sourceType": "paper",
-      "target": "pggb",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"sorghum-graph-benchmark\" declares methodId \"pggb\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "sorghum-graph-benchmark",
-      "sourceType": "paper",
-      "target": "minigraph-cactus",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"sorghum-graph-benchmark\" declares methodId \"minigraph-cactus\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "sorghum-graph-benchmark",
-      "sourceType": "paper",
-      "target": "syri",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"sorghum-graph-benchmark\" declares methodId \"syri\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "sorghum-graph-benchmark",
-      "sourceType": "paper",
-      "target": "vg",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"sorghum-graph-benchmark\" declares methodId \"vg\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "sorghum-graph-benchmark",
-      "sourceType": "paper",
-      "target": "odgi",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"sorghum-graph-benchmark\" declares methodId \"odgi\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "sorghum-pangenome-reference-2026",
-      "sourceType": "paper",
-      "target": "minigraph-cactus",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"sorghum-pangenome-reference-2026\" declares methodId \"minigraph-cactus\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "sorghum-pangenome-reference-2026",
-      "sourceType": "paper",
-      "target": "vg",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"sorghum-pangenome-reference-2026\" declares methodId \"vg\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "sorghum-pangenome-reference-2026",
-      "sourceType": "paper",
-      "target": "odgi",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"sorghum-pangenome-reference-2026\" declares methodId \"odgi\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "squidpy-paper",
-      "sourceType": "paper",
-      "target": "squidpy",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Paper \"squidpy-paper\" declares methodId \"squidpy\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "sweepfinder2-paper",
-      "sourceType": "paper",
-      "target": "sweepfinder2",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Paper \"sweepfinder2-paper\" declares methodId \"sweepfinder2\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "syri-paper",
-      "sourceType": "paper",
-      "target": "syri",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Paper \"syri-paper\" declares methodId \"syri\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "tea-comparative",
-      "sourceType": "paper",
-      "target": "orthofinder",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"tea-comparative\" declares methodId \"orthofinder\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "tea-comparative",
-      "sourceType": "paper",
-      "target": "mcscanx",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"tea-comparative\" declares methodId \"mcscanx\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "tea-comparative",
-      "sourceType": "paper",
-      "target": "cafe5",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"tea-comparative\" declares methodId \"cafe5\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "tea-comparative",
-      "sourceType": "paper",
-      "target": "paml",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"tea-comparative\" declares methodId \"paml\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "verkko",
-      "sourceType": "paper",
-      "target": "verkko",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Paper \"verkko\" declares methodId \"verkko\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "vg-paper",
-      "sourceType": "paper",
-      "target": "vg",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Paper \"vg-paper\" declares methodId \"vg\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "wgcna-paper",
-      "sourceType": "paper",
-      "target": "wgcna",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Paper \"wgcna-paper\" declares methodId \"wgcna\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "wgd-v2-paper",
-      "sourceType": "paper",
-      "target": "wgd",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Paper \"wgd-v2-paper\" declares methodId \"wgd\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "wheat-methylome-2015",
-      "sourceType": "paper",
-      "target": "bismark",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"wheat-methylome-2015\" declares methodId \"bismark\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "wild-rice-pangenome-2025",
-      "sourceType": "paper",
-      "target": "hifiasm",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"wild-rice-pangenome-2025\" declares methodId \"hifiasm\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "wild-rice-pangenome-2025",
-      "sourceType": "paper",
-      "target": "yahs",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"wild-rice-pangenome-2025\" declares methodId \"yahs\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "wild-rice-pangenome-2025",
-      "sourceType": "paper",
-      "target": "syri",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"wild-rice-pangenome-2025\" declares methodId \"syri\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "wild-rice-pangenome-2025",
-      "sourceType": "paper",
-      "target": "minigraph",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"wild-rice-pangenome-2025\" declares methodId \"minigraph\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "wild-rice-pangenome-2025",
-      "sourceType": "paper",
-      "target": "minigraph-cactus",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"wild-rice-pangenome-2025\" declares methodId \"minigraph-cactus\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "wild-rice-pangenome-2025",
-      "sourceType": "paper",
-      "target": "vg",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"wild-rice-pangenome-2025\" declares methodId \"vg\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "wild-rice-pangenome-2025",
-      "sourceType": "paper",
-      "target": "mummer4",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"wild-rice-pangenome-2025\" declares methodId \"mummer4\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "wild-rice-pangenome-2025",
-      "sourceType": "paper",
-      "target": "minimap2",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"wild-rice-pangenome-2025\" declares methodId \"minimap2\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "xanthoceras",
-      "sourceType": "paper",
-      "target": "hifiasm",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"xanthoceras\" declares methodId \"hifiasm\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "xanthoceras",
-      "sourceType": "paper",
-      "target": "verkko",
-      "targetType": "method",
-      "relation": "uses_method",
-      "evidence": "Paper \"xanthoceras\" declares methodId \"verkko\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "xpclr-paper",
-      "sourceType": "paper",
-      "target": "xpclr",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Paper \"xpclr-paper\" declares methodId \"xpclr\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "xpehh-paper",
-      "sourceType": "paper",
-      "target": "selscan",
-      "targetType": "method",
-      "relation": "related_method",
-      "evidence": "Paper \"xpehh-paper\" declares methodId \"selscan\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "yahs",
-      "sourceType": "paper",
-      "target": "yahs",
-      "targetType": "method",
-      "relation": "introduces_method",
-      "evidence": "Paper \"yahs\" declares methodId \"yahs\" in frontmatter.",
-      "verified": true
-    },
-    {
-      "source": "sequencing-data",
-      "sourceType": "topic",
-      "target": "hifiasm",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"测序技术与数据基础\" includes method \"hifiasm\".",
-      "verified": true
-    },
-    {
-      "source": "sequencing-data",
-      "sourceType": "topic",
-      "target": "verkko",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"测序技术与数据基础\" includes method \"verkko\".",
-      "verified": true
-    },
-    {
-      "source": "sequencing-data",
-      "sourceType": "topic",
-      "target": "merqury",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"测序技术与数据基础\" includes method \"merqury\".",
-      "verified": true
-    },
-    {
-      "source": "sequencing-data",
-      "sourceType": "topic",
-      "target": "macadamia",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"测序技术与数据基础\" lists paper \"macadamia\".",
-      "verified": true
-    },
-    {
-      "source": "assembly-basics",
-      "sourceType": "topic",
-      "target": "hifiasm",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"基因组组装基础\" includes method \"hifiasm\".",
-      "verified": true
-    },
-    {
-      "source": "assembly-basics",
-      "sourceType": "topic",
-      "target": "verkko",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"基因组组装基础\" includes method \"verkko\".",
-      "verified": true
-    },
-    {
-      "source": "assembly-basics",
-      "sourceType": "topic",
-      "target": "merqury",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"基因组组装基础\" includes method \"merqury\".",
-      "verified": true
-    },
-    {
-      "source": "assembly-basics",
-      "sourceType": "topic",
-      "target": "potato",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"基因组组装基础\" lists paper \"potato\".",
-      "verified": true
-    },
-    {
-      "source": "assembly-graphs",
-      "sourceType": "topic",
-      "target": "hifiasm",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"组装图与核心算法\" includes method \"hifiasm\".",
-      "verified": true
-    },
-    {
-      "source": "assembly-graphs",
-      "sourceType": "topic",
-      "target": "verkko",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"组装图与核心算法\" includes method \"verkko\".",
-      "verified": true
-    },
-    {
-      "source": "assembly-graphs",
-      "sourceType": "topic",
-      "target": "hifiasm",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"组装图与核心算法\" lists paper \"hifiasm\".",
-      "verified": true
-    },
-    {
-      "source": "assembly-graphs",
-      "sourceType": "topic",
-      "target": "verkko",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"组装图与核心算法\" lists paper \"verkko\".",
-      "verified": true
-    },
-    {
-      "source": "assembly-graphs",
-      "sourceType": "topic",
-      "target": "macadamia",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"组装图与核心算法\" lists paper \"macadamia\".",
-      "verified": true
-    },
-    {
-      "source": "haplotype-resolution",
-      "sourceType": "topic",
-      "target": "hifiasm",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"单倍型解析\" includes method \"hifiasm\".",
-      "verified": true
-    },
-    {
-      "source": "haplotype-resolution",
-      "sourceType": "topic",
-      "target": "verkko",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"单倍型解析\" includes method \"verkko\".",
-      "verified": true
-    },
-    {
-      "source": "haplotype-resolution",
-      "sourceType": "topic",
-      "target": "hifiasm",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"单倍型解析\" lists paper \"hifiasm\".",
-      "verified": true
-    },
-    {
-      "source": "haplotype-resolution",
-      "sourceType": "topic",
-      "target": "potato",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"单倍型解析\" lists paper \"potato\".",
-      "verified": true
-    },
-    {
-      "source": "haplotype-resolution",
-      "sourceType": "topic",
-      "target": "haphic-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"单倍型解析\" lists paper \"haphic-paper\".",
-      "verified": true
-    },
-    {
-      "source": "hic-scaffolding",
-      "sourceType": "topic",
-      "target": "yahs",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"Hi-C 辅助染色体挂载\" includes method \"yahs\".",
-      "verified": true
-    },
-    {
-      "source": "hic-scaffolding",
-      "sourceType": "topic",
-      "target": "yahs",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"Hi-C 辅助染色体挂载\" lists paper \"yahs\".",
-      "verified": true
-    },
-    {
-      "source": "hic-scaffolding",
-      "sourceType": "topic",
-      "target": "haphic-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"Hi-C 辅助染色体挂载\" lists paper \"haphic-paper\".",
-      "verified": true
-    },
-    {
-      "source": "complete-assembly",
-      "sourceType": "topic",
-      "target": "hifiasm",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"T2T 与复杂区域组装\" includes method \"hifiasm\".",
-      "verified": true
-    },
-    {
-      "source": "complete-assembly",
-      "sourceType": "topic",
-      "target": "verkko",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"T2T 与复杂区域组装\" includes method \"verkko\".",
-      "verified": true
-    },
-    {
-      "source": "complete-assembly",
-      "sourceType": "topic",
-      "target": "verkko",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"T2T 与复杂区域组装\" lists paper \"verkko\".",
-      "verified": true
-    },
-    {
-      "source": "complete-assembly",
-      "sourceType": "topic",
-      "target": "xanthoceras",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"T2T 与复杂区域组装\" lists paper \"xanthoceras\".",
-      "verified": true
-    },
-    {
-      "source": "complete-assembly",
-      "sourceType": "topic",
-      "target": "rice-t2t-nipponbare",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"T2T 与复杂区域组装\" lists paper \"rice-t2t-nipponbare\".",
-      "verified": true
-    },
-    {
-      "source": "complete-assembly",
-      "sourceType": "topic",
-      "target": "watermelon-t2t-pangenome",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"T2T 与复杂区域组装\" lists paper \"watermelon-t2t-pangenome\".",
-      "verified": true
-    },
-    {
-      "source": "assembly-quality",
-      "sourceType": "topic",
-      "target": "merqury",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"组装质量评估\" includes method \"merqury\".",
-      "verified": true
-    },
-    {
-      "source": "assembly-quality",
-      "sourceType": "topic",
-      "target": "merqury",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"组装质量评估\" lists paper \"merqury\".",
-      "verified": true
-    },
-    {
-      "source": "m02-topic-01",
-      "sourceType": "topic",
-      "target": "braker3",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"基因组注释基础与 GFF3/GTF\" includes method \"braker3\".",
-      "verified": true
-    },
-    {
-      "source": "m02-topic-01",
-      "sourceType": "topic",
-      "target": "interproscan",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"基因组注释基础与 GFF3/GTF\" includes method \"interproscan\".",
-      "verified": true
-    },
-    {
-      "source": "m02-topic-01",
-      "sourceType": "topic",
-      "target": "braker3-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"基因组注释基础与 GFF3/GTF\" lists paper \"braker3-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m02-topic-02",
-      "sourceType": "topic",
-      "target": "edta",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"重复序列与转座子识别\" includes method \"edta\".",
-      "verified": true
-    },
-    {
-      "source": "m02-topic-02",
-      "sourceType": "topic",
-      "target": "edta-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"重复序列与转座子识别\" lists paper \"edta-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m02-topic-02",
-      "sourceType": "topic",
-      "target": "repeatmodeler2-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"重复序列与转座子识别\" lists paper \"repeatmodeler2-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m02-topic-03",
-      "sourceType": "topic",
-      "target": "braker3",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"蛋白编码基因预测\" includes method \"braker3\".",
-      "verified": true
-    },
-    {
-      "source": "m02-topic-03",
-      "sourceType": "topic",
-      "target": "braker3-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"蛋白编码基因预测\" lists paper \"braker3-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m02-topic-04",
-      "sourceType": "topic",
-      "target": "braker3",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"转录本辅助注释\" includes method \"braker3\".",
-      "verified": true
-    },
-    {
-      "source": "m02-topic-04",
-      "sourceType": "topic",
-      "target": "braker3-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"转录本辅助注释\" lists paper \"braker3-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m02-topic-05",
-      "sourceType": "topic",
-      "target": "infernal-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"非编码 RNA 注释\" lists paper \"infernal-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m02-topic-05",
-      "sourceType": "topic",
-      "target": "trnascan-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"非编码 RNA 注释\" lists paper \"trnascan-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m02-topic-06",
-      "sourceType": "topic",
-      "target": "interproscan",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"基因功能注释\" includes method \"interproscan\".",
-      "verified": true
-    },
-    {
-      "source": "m02-topic-06",
-      "sourceType": "topic",
-      "target": "interproscan-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"基因功能注释\" lists paper \"interproscan-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m02-topic-06",
-      "sourceType": "topic",
-      "target": "mango-annotation",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"基因功能注释\" lists paper \"mango-annotation\".",
-      "verified": true
-    },
-    {
-      "source": "m02-topic-07",
-      "sourceType": "topic",
-      "target": "braker3-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"注释质量评估\" lists paper \"braker3-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-01",
-      "sourceType": "topic",
-      "target": "eupan",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"泛基因组概念与核心/可变基因组\" includes method \"eupan\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-01",
-      "sourceType": "topic",
-      "target": "orthofinder",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"泛基因组概念与核心/可变基因组\" includes method \"orthofinder\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-01",
-      "sourceType": "topic",
-      "target": "minigraph",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"泛基因组概念与核心/可变基因组\" includes method \"minigraph\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-01",
-      "sourceType": "topic",
-      "target": "pggb",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"泛基因组概念与核心/可变基因组\" includes method \"pggb\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-01",
-      "sourceType": "topic",
-      "target": "minigraph-cactus",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"泛基因组概念与核心/可变基因组\" includes method \"minigraph-cactus\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-01",
-      "sourceType": "topic",
-      "target": "eupan-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"泛基因组概念与核心/可变基因组\" lists paper \"eupan-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-01",
-      "sourceType": "topic",
-      "target": "rice-pangenome-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"泛基因组概念与核心/可变基因组\" lists paper \"rice-pangenome-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-01",
-      "sourceType": "topic",
-      "target": "rice-3010-pangenome",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"泛基因组概念与核心/可变基因组\" lists paper \"rice-3010-pangenome\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-01",
-      "sourceType": "topic",
-      "target": "arabidopsis-69-pangenome",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"泛基因组概念与核心/可变基因组\" lists paper \"arabidopsis-69-pangenome\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-01",
-      "sourceType": "topic",
-      "target": "arabidopsis-adaptation",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"泛基因组概念与核心/可变基因组\" lists paper \"arabidopsis-adaptation\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-01",
-      "sourceType": "topic",
-      "target": "wild-rice-pangenome-2025",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"泛基因组概念与核心/可变基因组\" lists paper \"wild-rice-pangenome-2025\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-02",
-      "sourceType": "topic",
-      "target": "mummer4",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"全基因组比对\" includes method \"mummer4\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-02",
-      "sourceType": "topic",
-      "target": "minimap2",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"全基因组比对\" includes method \"minimap2\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-02",
-      "sourceType": "topic",
-      "target": "anchorwave",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"全基因组比对\" includes method \"anchorwave\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-02",
-      "sourceType": "topic",
-      "target": "syri",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"全基因组比对\" includes method \"syri\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-02",
-      "sourceType": "topic",
-      "target": "mummer4-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"全基因组比对\" lists paper \"mummer4-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-02",
-      "sourceType": "topic",
-      "target": "minimap2-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"全基因组比对\" lists paper \"minimap2-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-02",
-      "sourceType": "topic",
-      "target": "anchorwave-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"全基因组比对\" lists paper \"anchorwave-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-02",
-      "sourceType": "topic",
-      "target": "syri-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"全基因组比对\" lists paper \"syri-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-02",
-      "sourceType": "topic",
-      "target": "rice-pangenome-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"全基因组比对\" lists paper \"rice-pangenome-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-03",
-      "sourceType": "topic",
-      "target": "syri",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"结构变异检测\" includes method \"syri\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-03",
-      "sourceType": "topic",
-      "target": "minigraph",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"结构变异检测\" includes method \"minigraph\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-03",
-      "sourceType": "topic",
-      "target": "minigraph-cactus",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"结构变异检测\" includes method \"minigraph-cactus\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-03",
-      "sourceType": "topic",
-      "target": "pggb",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"结构变异检测\" includes method \"pggb\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-03",
-      "sourceType": "topic",
-      "target": "vg",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"结构变异检测\" includes method \"vg\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-03",
-      "sourceType": "topic",
-      "target": "sniffles2",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"结构变异检测\" includes method \"sniffles2\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-03",
-      "sourceType": "topic",
-      "target": "cutesv",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"结构变异检测\" includes method \"cutesv\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-03",
-      "sourceType": "topic",
-      "target": "syri-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"结构变异检测\" lists paper \"syri-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-03",
-      "sourceType": "topic",
-      "target": "rice-3010-pangenome",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"结构变异检测\" lists paper \"rice-3010-pangenome\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-03",
-      "sourceType": "topic",
-      "target": "arabidopsis-adaptation",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"结构变异检测\" lists paper \"arabidopsis-adaptation\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-03",
-      "sourceType": "topic",
-      "target": "rice-pangenome-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"结构变异检测\" lists paper \"rice-pangenome-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-03",
-      "sourceType": "topic",
-      "target": "sorghum-graph-benchmark",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"结构变异检测\" lists paper \"sorghum-graph-benchmark\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-03",
-      "sourceType": "topic",
-      "target": "wild-rice-pangenome-2025",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"结构变异检测\" lists paper \"wild-rice-pangenome-2025\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-03",
-      "sourceType": "topic",
-      "target": "sniffles2-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"结构变异检测\" lists paper \"sniffles2-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-03",
-      "sourceType": "topic",
-      "target": "cutesv-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"结构变异检测\" lists paper \"cutesv-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-03",
-      "sourceType": "topic",
-      "target": "plant-induced-sv-2025",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"结构变异检测\" lists paper \"plant-induced-sv-2025\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-03",
-      "sourceType": "topic",
-      "target": "plant-sv-benchmark-2026",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"结构变异检测\" lists paper \"plant-sv-benchmark-2026\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-04",
-      "sourceType": "topic",
-      "target": "eupan",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"PAV 与基因存在缺失变异\" includes method \"eupan\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-04",
-      "sourceType": "topic",
-      "target": "orthofinder",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"PAV 与基因存在缺失变异\" includes method \"orthofinder\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-04",
-      "sourceType": "topic",
-      "target": "minigraph",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"PAV 与基因存在缺失变异\" includes method \"minigraph\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-04",
-      "sourceType": "topic",
-      "target": "minigraph-cactus",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"PAV 与基因存在缺失变异\" includes method \"minigraph-cactus\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-04",
-      "sourceType": "topic",
-      "target": "pggb",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"PAV 与基因存在缺失变异\" includes method \"pggb\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-04",
-      "sourceType": "topic",
-      "target": "eupan-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"PAV 与基因存在缺失变异\" lists paper \"eupan-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-04",
-      "sourceType": "topic",
-      "target": "rice-pangenome-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"PAV 与基因存在缺失变异\" lists paper \"rice-pangenome-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-04",
-      "sourceType": "topic",
-      "target": "rice-3010-pangenome",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"PAV 与基因存在缺失变异\" lists paper \"rice-3010-pangenome\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-04",
-      "sourceType": "topic",
-      "target": "arabidopsis-69-pangenome",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"PAV 与基因存在缺失变异\" lists paper \"arabidopsis-69-pangenome\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-04",
-      "sourceType": "topic",
-      "target": "wild-rice-pangenome-2025",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"PAV 与基因存在缺失变异\" lists paper \"wild-rice-pangenome-2025\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-04",
-      "sourceType": "topic",
-      "target": "rice-se-pav-hybrid-sterility-2023",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"PAV 与基因存在缺失变异\" lists paper \"rice-se-pav-hybrid-sterility-2023\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-05",
-      "sourceType": "topic",
-      "target": "minigraph",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"图泛基因组构建\" includes method \"minigraph\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-05",
-      "sourceType": "topic",
-      "target": "minigraph-cactus",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"图泛基因组构建\" includes method \"minigraph-cactus\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-05",
-      "sourceType": "topic",
-      "target": "pggb",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"图泛基因组构建\" includes method \"pggb\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-05",
-      "sourceType": "topic",
-      "target": "minigraph-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"图泛基因组构建\" lists paper \"minigraph-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-05",
-      "sourceType": "topic",
-      "target": "minigraph-cactus-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"图泛基因组构建\" lists paper \"minigraph-cactus-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-05",
-      "sourceType": "topic",
-      "target": "pggb-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"图泛基因组构建\" lists paper \"pggb-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-05",
-      "sourceType": "topic",
-      "target": "sorghum-graph-benchmark",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"图泛基因组构建\" lists paper \"sorghum-graph-benchmark\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-05",
-      "sourceType": "topic",
-      "target": "sorghum-pangenome-reference-2026",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"图泛基因组构建\" lists paper \"sorghum-pangenome-reference-2026\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-05",
-      "sourceType": "topic",
-      "target": "arabidopsis-adaptation",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"图泛基因组构建\" lists paper \"arabidopsis-adaptation\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-05",
-      "sourceType": "topic",
-      "target": "wild-rice-pangenome-2025",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"图泛基因组构建\" lists paper \"wild-rice-pangenome-2025\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-06",
-      "sourceType": "topic",
-      "target": "vg",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"图上的序列比对与变异分型\" includes method \"vg\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-06",
-      "sourceType": "topic",
-      "target": "odgi",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"图上的序列比对与变异分型\" includes method \"odgi\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-06",
-      "sourceType": "topic",
-      "target": "vg-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"图上的序列比对与变异分型\" lists paper \"vg-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-06",
-      "sourceType": "topic",
-      "target": "odgi-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"图上的序列比对与变异分型\" lists paper \"odgi-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-06",
-      "sourceType": "topic",
-      "target": "sorghum-graph-benchmark",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"图上的序列比对与变异分型\" lists paper \"sorghum-graph-benchmark\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-06",
-      "sourceType": "topic",
-      "target": "giraffe-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"图上的序列比对与变异分型\" lists paper \"giraffe-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-06",
-      "sourceType": "topic",
-      "target": "arabidopsis-adaptation",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"图上的序列比对与变异分型\" lists paper \"arabidopsis-adaptation\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-07",
-      "sourceType": "topic",
-      "target": "odgi",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"泛基因组可视化与应用\" includes method \"odgi\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-07",
-      "sourceType": "topic",
-      "target": "odgi-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"泛基因组可视化与应用\" lists paper \"odgi-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-07",
-      "sourceType": "topic",
-      "target": "rice-pangenome-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"泛基因组可视化与应用\" lists paper \"rice-pangenome-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-07",
-      "sourceType": "topic",
-      "target": "sorghum-graph-benchmark",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"泛基因组可视化与应用\" lists paper \"sorghum-graph-benchmark\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-07",
-      "sourceType": "topic",
-      "target": "sorghum-pangenome-reference-2026",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"泛基因组可视化与应用\" lists paper \"sorghum-pangenome-reference-2026\".",
-      "verified": true
-    },
-    {
-      "source": "m03-topic-07",
-      "sourceType": "topic",
-      "target": "arabidopsis-69-pangenome",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"泛基因组可视化与应用\" lists paper \"arabidopsis-69-pangenome\".",
-      "verified": true
-    },
-    {
-      "source": "m04-topic-01",
-      "sourceType": "topic",
-      "target": "orthofinder",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"同源、直系同源与旁系同源\" includes method \"orthofinder\".",
-      "verified": true
-    },
-    {
-      "source": "m04-topic-01",
-      "sourceType": "topic",
-      "target": "cycas-evolution",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"同源、直系同源与旁系同源\" lists paper \"cycas-evolution\".",
-      "verified": true
-    },
-    {
-      "source": "m04-topic-01",
-      "sourceType": "topic",
-      "target": "arabidopsis-69-pangenome",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"同源、直系同源与旁系同源\" lists paper \"arabidopsis-69-pangenome\".",
-      "verified": true
-    },
-    {
-      "source": "m04-topic-01",
-      "sourceType": "topic",
-      "target": "orthofinder-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"同源、直系同源与旁系同源\" lists paper \"orthofinder-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m04-topic-01",
-      "sourceType": "topic",
-      "target": "orthofinder-2026",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"同源、直系同源与旁系同源\" lists paper \"orthofinder-2026\".",
-      "verified": true
-    },
-    {
-      "source": "m04-topic-02",
-      "sourceType": "topic",
-      "target": "orthofinder",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"基因家族聚类与扩张\" includes method \"orthofinder\".",
-      "verified": true
-    },
-    {
-      "source": "m04-topic-02",
-      "sourceType": "topic",
-      "target": "cafe5",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"基因家族聚类与扩张\" includes method \"cafe5\".",
-      "verified": true
-    },
-    {
-      "source": "m04-topic-02",
-      "sourceType": "topic",
-      "target": "cafe5-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"基因家族聚类与扩张\" lists paper \"cafe5-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m04-topic-02",
-      "sourceType": "topic",
-      "target": "cycas-evolution",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"基因家族聚类与扩张\" lists paper \"cycas-evolution\".",
-      "verified": true
-    },
-    {
-      "source": "m04-topic-02",
-      "sourceType": "topic",
-      "target": "arabidopsis-69-pangenome",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"基因家族聚类与扩张\" lists paper \"arabidopsis-69-pangenome\".",
-      "verified": true
-    },
-    {
-      "source": "m04-topic-02",
-      "sourceType": "topic",
-      "target": "tea-comparative",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"基因家族聚类与扩张\" lists paper \"tea-comparative\".",
-      "verified": true
-    },
-    {
-      "source": "m04-topic-02",
-      "sourceType": "topic",
-      "target": "orthofinder-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"基因家族聚类与扩张\" lists paper \"orthofinder-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m04-topic-02",
-      "sourceType": "topic",
-      "target": "orthofinder-2026",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"基因家族聚类与扩张\" lists paper \"orthofinder-2026\".",
-      "verified": true
-    },
-    {
-      "source": "m04-topic-03",
-      "sourceType": "topic",
-      "target": "mcscanx",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"共线性与染色体演化\" includes method \"mcscanx\".",
-      "verified": true
-    },
-    {
-      "source": "m04-topic-03",
-      "sourceType": "topic",
-      "target": "mcscanx-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"共线性与染色体演化\" lists paper \"mcscanx-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m04-topic-03",
-      "sourceType": "topic",
-      "target": "macadamia-mcscanx",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"共线性与染色体演化\" lists paper \"macadamia-mcscanx\".",
-      "verified": true
-    },
-    {
-      "source": "m04-topic-03",
-      "sourceType": "topic",
-      "target": "tea-comparative",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"共线性与染色体演化\" lists paper \"tea-comparative\".",
-      "verified": true
-    },
-    {
-      "source": "m04-topic-04",
-      "sourceType": "topic",
-      "target": "iqtree2",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"系统发育推断\" includes method \"iqtree2\".",
-      "verified": true
-    },
-    {
-      "source": "m04-topic-04",
-      "sourceType": "topic",
-      "target": "iqtree2-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"系统发育推断\" lists paper \"iqtree2-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m04-topic-04",
-      "sourceType": "topic",
-      "target": "angiosperm-phylogenomics-2024",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"系统发育推断\" lists paper \"angiosperm-phylogenomics-2024\".",
-      "verified": true
-    },
-    {
-      "source": "m04-topic-04",
-      "sourceType": "topic",
-      "target": "arabidopsis-adaptation",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"系统发育推断\" lists paper \"arabidopsis-adaptation\".",
-      "verified": true
-    },
-    {
-      "source": "m04-topic-05",
-      "sourceType": "topic",
-      "target": "paml",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"物种分化时间与分子钟\" includes method \"paml\".",
-      "verified": true
-    },
-    {
-      "source": "m04-topic-05",
-      "sourceType": "topic",
-      "target": "paml-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"物种分化时间与分子钟\" lists paper \"paml-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m04-topic-05",
-      "sourceType": "topic",
-      "target": "plant-wgd-timing-2017",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"物种分化时间与分子钟\" lists paper \"plant-wgd-timing-2017\".",
-      "verified": true
-    },
-    {
-      "source": "m04-topic-05",
-      "sourceType": "topic",
-      "target": "tea-comparative",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"物种分化时间与分子钟\" lists paper \"tea-comparative\".",
-      "verified": true
-    },
-    {
-      "source": "m04-topic-06",
-      "sourceType": "topic",
-      "target": "mcscanx",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"全基因组复制与古多倍化\" includes method \"mcscanx\".",
-      "verified": true
-    },
-    {
-      "source": "m04-topic-06",
-      "sourceType": "topic",
-      "target": "wgd",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"全基因组复制与古多倍化\" includes method \"wgd\".",
-      "verified": true
-    },
-    {
-      "source": "m04-topic-06",
-      "sourceType": "topic",
-      "target": "wgd-v2-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"全基因组复制与古多倍化\" lists paper \"wgd-v2-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m04-topic-06",
-      "sourceType": "topic",
-      "target": "mungbean-evolution-2014",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"全基因组复制与古多倍化\" lists paper \"mungbean-evolution-2014\".",
-      "verified": true
-    },
-    {
-      "source": "m04-topic-06",
-      "sourceType": "topic",
-      "target": "tea-comparative",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"全基因组复制与古多倍化\" lists paper \"tea-comparative\".",
-      "verified": true
-    },
-    {
-      "source": "m04-topic-06",
-      "sourceType": "topic",
-      "target": "mcscanx-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"全基因组复制与古多倍化\" lists paper \"mcscanx-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m04-topic-07",
-      "sourceType": "topic",
-      "target": "paml",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"选择压力与分子进化\" includes method \"paml\".",
-      "verified": true
-    },
-    {
-      "source": "m04-topic-07",
-      "sourceType": "topic",
-      "target": "paml-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"选择压力与分子进化\" lists paper \"paml-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m04-topic-07",
-      "sourceType": "topic",
-      "target": "mam-positive-selection-2006",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"选择压力与分子进化\" lists paper \"mam-positive-selection-2006\".",
-      "verified": true
-    },
-    {
-      "source": "m04-topic-07",
-      "sourceType": "topic",
-      "target": "tea-comparative",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"选择压力与分子进化\" lists paper \"tea-comparative\".",
-      "verified": true
-    },
-    {
-      "source": "m05-topic-01",
-      "sourceType": "topic",
-      "target": "plink",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"群体遗传学基本概念\" includes method \"plink\".",
-      "verified": true
-    },
-    {
-      "source": "m05-topic-01",
-      "sourceType": "topic",
-      "target": "admixture",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"群体遗传学基本概念\" includes method \"admixture\".",
-      "verified": true
-    },
-    {
-      "source": "m05-topic-01",
-      "sourceType": "topic",
-      "target": "rice-3010-pangenome",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"群体遗传学基本概念\" lists paper \"rice-3010-pangenome\".",
-      "verified": true
-    },
-    {
-      "source": "m05-topic-02",
-      "sourceType": "topic",
-      "target": "bcftools",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"SNP 检测、过滤与 VCF\" includes method \"bcftools\".",
-      "verified": true
-    },
-    {
-      "source": "m05-topic-02",
-      "sourceType": "topic",
-      "target": "plink",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"SNP 检测、过滤与 VCF\" includes method \"plink\".",
-      "verified": true
-    },
-    {
-      "source": "m05-topic-02",
-      "sourceType": "topic",
-      "target": "bcftools-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"SNP 检测、过滤与 VCF\" lists paper \"bcftools-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m05-topic-02",
-      "sourceType": "topic",
-      "target": "rice-3010-pangenome",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"SNP 检测、过滤与 VCF\" lists paper \"rice-3010-pangenome\".",
-      "verified": true
-    },
-    {
-      "source": "m05-topic-02",
-      "sourceType": "topic",
-      "target": "plink-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"SNP 检测、过滤与 VCF\" lists paper \"plink-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m05-topic-02",
-      "sourceType": "topic",
-      "target": "rice-variant-comparison",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"SNP 检测、过滤与 VCF\" lists paper \"rice-variant-comparison\".",
-      "verified": true
-    },
-    {
-      "source": "m05-topic-03",
-      "sourceType": "topic",
-      "target": "plink",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"PCA、群体结构与祖先成分\" includes method \"plink\".",
-      "verified": true
-    },
-    {
-      "source": "m05-topic-03",
-      "sourceType": "topic",
-      "target": "admixture",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"PCA、群体结构与祖先成分\" includes method \"admixture\".",
-      "verified": true
-    },
-    {
-      "source": "m05-topic-03",
-      "sourceType": "topic",
-      "target": "admixture-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"PCA、群体结构与祖先成分\" lists paper \"admixture-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m05-topic-03",
-      "sourceType": "topic",
-      "target": "admixture-enhancements",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"PCA、群体结构与祖先成分\" lists paper \"admixture-enhancements\".",
-      "verified": true
-    },
-    {
-      "source": "m05-topic-03",
-      "sourceType": "topic",
-      "target": "rice-3010-pangenome",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"PCA、群体结构与祖先成分\" lists paper \"rice-3010-pangenome\".",
-      "verified": true
-    },
-    {
-      "source": "m05-topic-03",
-      "sourceType": "topic",
-      "target": "plink-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"PCA、群体结构与祖先成分\" lists paper \"plink-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m05-topic-04",
-      "sourceType": "topic",
-      "target": "plink",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"多样性、分化、LD\" includes method \"plink\".",
-      "verified": true
-    },
-    {
-      "source": "m05-topic-04",
-      "sourceType": "topic",
-      "target": "rice-3010-pangenome",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"多样性、分化、LD\" lists paper \"rice-3010-pangenome\".",
-      "verified": true
-    },
-    {
-      "source": "m05-topic-05",
-      "sourceType": "topic",
-      "target": "xpclr",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"选择性清除\" includes method \"xpclr\".",
-      "verified": true
-    },
-    {
-      "source": "m05-topic-05",
-      "sourceType": "topic",
-      "target": "selscan",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"选择性清除\" includes method \"selscan\".",
-      "verified": true
-    },
-    {
-      "source": "m05-topic-05",
-      "sourceType": "topic",
-      "target": "sweepfinder2",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"选择性清除\" includes method \"sweepfinder2\".",
-      "verified": true
-    },
-    {
-      "source": "m05-topic-05",
-      "sourceType": "topic",
-      "target": "rice-domestication-huang",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"选择性清除\" lists paper \"rice-domestication-huang\".",
-      "verified": true
-    },
-    {
-      "source": "m05-topic-05",
-      "sourceType": "topic",
-      "target": "xpclr-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"选择性清除\" lists paper \"xpclr-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m05-topic-05",
-      "sourceType": "topic",
-      "target": "xpehh-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"选择性清除\" lists paper \"xpehh-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m05-topic-05",
-      "sourceType": "topic",
-      "target": "sweepfinder2-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"选择性清除\" lists paper \"sweepfinder2-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m05-topic-05",
-      "sourceType": "topic",
-      "target": "selscan-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"选择性清除\" lists paper \"selscan-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m05-topic-05",
-      "sourceType": "topic",
-      "target": "rice-weedy-selection",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"选择性清除\" lists paper \"rice-weedy-selection\".",
-      "verified": true
-    },
-    {
-      "source": "m05-topic-05",
-      "sourceType": "topic",
-      "target": "rice-deleterious-domestication",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"选择性清除\" lists paper \"rice-deleterious-domestication\".",
-      "verified": true
-    },
-    {
-      "source": "m05-topic-05",
-      "sourceType": "topic",
-      "target": "rice-temarker-sweeps",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"选择性清除\" lists paper \"rice-temarker-sweeps\".",
-      "verified": true
-    },
-    {
-      "source": "m05-topic-06",
-      "sourceType": "topic",
-      "target": "psmc",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"群体历史动态\" includes method \"psmc\".",
-      "verified": true
-    },
-    {
-      "source": "m05-topic-06",
-      "sourceType": "topic",
-      "target": "msmc2",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"群体历史动态\" includes method \"msmc2\".",
-      "verified": true
-    },
-    {
-      "source": "m05-topic-06",
-      "sourceType": "topic",
-      "target": "smcpp",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"群体历史动态\" includes method \"smcpp\".",
-      "verified": true
-    },
-    {
-      "source": "m05-topic-06",
-      "sourceType": "topic",
-      "target": "psmc-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"群体历史动态\" lists paper \"psmc-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m05-topic-06",
-      "sourceType": "topic",
-      "target": "msmc-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"群体历史动态\" lists paper \"msmc-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m05-topic-06",
-      "sourceType": "topic",
-      "target": "msmc2-protocol",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"群体历史动态\" lists paper \"msmc2-protocol\".",
-      "verified": true
-    },
-    {
-      "source": "m05-topic-06",
-      "sourceType": "topic",
-      "target": "smcpp-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"群体历史动态\" lists paper \"smcpp-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m05-topic-06",
-      "sourceType": "topic",
-      "target": "african-rice-246-genomes",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"群体历史动态\" lists paper \"african-rice-246-genomes\".",
-      "verified": true
-    },
-    {
-      "source": "m05-topic-06",
-      "sourceType": "topic",
-      "target": "populus-repeats-demography",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"群体历史动态\" lists paper \"populus-repeats-demography\".",
-      "verified": true
-    },
-    {
-      "source": "m05-topic-06",
-      "sourceType": "topic",
-      "target": "populus-euphratica-demography",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"群体历史动态\" lists paper \"populus-euphratica-demography\".",
-      "verified": true
-    },
-    {
-      "source": "m05-topic-07",
-      "sourceType": "topic",
-      "target": "plink",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"驯化与环境适应案例\" includes method \"plink\".",
-      "verified": true
-    },
-    {
-      "source": "m05-topic-07",
-      "sourceType": "topic",
-      "target": "admixture",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"驯化与环境适应案例\" includes method \"admixture\".",
-      "verified": true
-    },
-    {
-      "source": "m05-topic-07",
-      "sourceType": "topic",
-      "target": "xpclr",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"驯化与环境适应案例\" includes method \"xpclr\".",
-      "verified": true
-    },
-    {
-      "source": "m05-topic-07",
-      "sourceType": "topic",
-      "target": "rice-domestication-huang",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"驯化与环境适应案例\" lists paper \"rice-domestication-huang\".",
-      "verified": true
-    },
-    {
-      "source": "m05-topic-07",
-      "sourceType": "topic",
-      "target": "rice-domestication-civan",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"驯化与环境适应案例\" lists paper \"rice-domestication-civan\".",
-      "verified": true
-    },
-    {
-      "source": "m05-topic-07",
-      "sourceType": "topic",
-      "target": "rice-3010-pangenome",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"驯化与环境适应案例\" lists paper \"rice-3010-pangenome\".",
-      "verified": true
-    },
-    {
-      "source": "m05-topic-07",
-      "sourceType": "topic",
-      "target": "maize-domestication",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"驯化与环境适应案例\" lists paper \"maize-domestication\".",
-      "verified": true
-    },
-    {
-      "source": "m05-topic-07",
-      "sourceType": "topic",
-      "target": "maize-zeas-adaptation",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"驯化与环境适应案例\" lists paper \"maize-zeas-adaptation\".",
-      "verified": true
-    },
-    {
-      "source": "m05-topic-07",
-      "sourceType": "topic",
-      "target": "soybean-resequencing",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"驯化与环境适应案例\" lists paper \"soybean-resequencing\".",
-      "verified": true
-    },
-    {
-      "source": "m06-topic-01",
-      "sourceType": "topic",
-      "target": "heritability-genotype-difference",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"数量遗传学与遗传力\" lists paper \"heritability-genotype-difference\".",
-      "verified": true
-    },
-    {
-      "source": "m06-topic-01",
-      "sourceType": "topic",
-      "target": "rice-gwas-2010",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"数量遗传学与遗传力\" lists paper \"rice-gwas-2010\".",
-      "verified": true
-    },
-    {
-      "source": "m06-topic-02",
-      "sourceType": "topic",
-      "target": "rqtl2",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"QTL 定位与遗传连锁\" includes method \"rqtl2\".",
-      "verified": true
-    },
-    {
-      "source": "m06-topic-02",
-      "sourceType": "topic",
-      "target": "rqtl2-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"QTL 定位与遗传连锁\" lists paper \"rqtl2-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m06-topic-02",
-      "sourceType": "topic",
-      "target": "rice-deep-rooting-qtl",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"QTL 定位与遗传连锁\" lists paper \"rice-deep-rooting-qtl\".",
-      "verified": true
-    },
-    {
-      "source": "m06-topic-03",
-      "sourceType": "topic",
-      "target": "gapit",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"GWAS 关联检验基础\" includes method \"gapit\".",
-      "verified": true
-    },
-    {
-      "source": "m06-topic-03",
-      "sourceType": "topic",
-      "target": "scipy",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"GWAS 关联检验基础\" includes method \"scipy\".",
-      "verified": true
-    },
-    {
-      "source": "m06-topic-03",
-      "sourceType": "topic",
-      "target": "gwas-mlm-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"GWAS 关联检验基础\" lists paper \"gwas-mlm-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m06-topic-03",
-      "sourceType": "topic",
-      "target": "rice-gwas-2010",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"GWAS 关联检验基础\" lists paper \"rice-gwas-2010\".",
-      "verified": true
-    },
-    {
-      "source": "m06-topic-03",
-      "sourceType": "topic",
-      "target": "gapit3-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"GWAS 关联检验基础\" lists paper \"gapit3-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m06-topic-03",
-      "sourceType": "topic",
-      "target": "rice-gapit-2023",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"GWAS 关联检验基础\" lists paper \"rice-gapit-2023\".",
-      "verified": true
-    },
-    {
-      "source": "m06-topic-03",
-      "sourceType": "topic",
-      "target": "scipy-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"GWAS 关联检验基础\" lists paper \"scipy-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m06-topic-03",
-      "sourceType": "topic",
-      "target": "rice-roots-population",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"GWAS 关联检验基础\" lists paper \"rice-roots-population\".",
-      "verified": true
-    },
-    {
-      "source": "m06-topic-04",
-      "sourceType": "topic",
-      "target": "gapit",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"GWAS 模型\" includes method \"gapit\".",
-      "verified": true
-    },
-    {
-      "source": "m06-topic-04",
-      "sourceType": "topic",
-      "target": "gwas-mlm-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"GWAS 模型\" lists paper \"gwas-mlm-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m06-topic-04",
-      "sourceType": "topic",
-      "target": "gapit3-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"GWAS 模型\" lists paper \"gapit3-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m06-topic-04",
-      "sourceType": "topic",
-      "target": "rice-gwas-2010",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"GWAS 模型\" lists paper \"rice-gwas-2010\".",
-      "verified": true
-    },
-    {
-      "source": "m06-topic-04",
-      "sourceType": "topic",
-      "target": "rice-gapit-2023",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"GWAS 模型\" lists paper \"rice-gapit-2023\".",
-      "verified": true
-    },
-    {
-      "source": "m06-topic-05",
-      "sourceType": "topic",
-      "target": "gapit",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"Manhattan、QQ、LD、候选基因\" includes method \"gapit\".",
-      "verified": true
-    },
-    {
-      "source": "m06-topic-05",
-      "sourceType": "topic",
-      "target": "scipy",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"Manhattan、QQ、LD、候选基因\" includes method \"scipy\".",
-      "verified": true
-    },
-    {
-      "source": "m06-topic-05",
-      "sourceType": "topic",
-      "target": "rice-gwas-2010",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"Manhattan、QQ、LD、候选基因\" lists paper \"rice-gwas-2010\".",
-      "verified": true
-    },
-    {
-      "source": "m06-topic-05",
-      "sourceType": "topic",
-      "target": "gwas-mlm-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"Manhattan、QQ、LD、候选基因\" lists paper \"gwas-mlm-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m06-topic-05",
-      "sourceType": "topic",
-      "target": "gapit3-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"Manhattan、QQ、LD、候选基因\" lists paper \"gapit3-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m06-topic-05",
-      "sourceType": "topic",
-      "target": "rice-gapit-2023",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"Manhattan、QQ、LD、候选基因\" lists paper \"rice-gapit-2023\".",
-      "verified": true
-    },
-    {
-      "source": "m06-topic-05",
-      "sourceType": "topic",
-      "target": "scipy-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"Manhattan、QQ、LD、候选基因\" lists paper \"scipy-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m06-topic-06",
-      "sourceType": "topic",
-      "target": "gapit",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"基因组选择\" includes method \"gapit\".",
-      "verified": true
-    },
-    {
-      "source": "m06-topic-06",
-      "sourceType": "topic",
-      "target": "rrblup",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"基因组选择\" includes method \"rrblup\".",
-      "verified": true
-    },
-    {
-      "source": "m06-topic-06",
-      "sourceType": "topic",
-      "target": "rrblup-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"基因组选择\" lists paper \"rrblup-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m06-topic-06",
-      "sourceType": "topic",
-      "target": "gapit3-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"基因组选择\" lists paper \"gapit3-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m06-topic-06",
-      "sourceType": "topic",
-      "target": "rice-gapit-2023",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"基因组选择\" lists paper \"rice-gapit-2023\".",
-      "verified": true
-    },
-    {
-      "source": "m06-topic-07",
-      "sourceType": "topic",
-      "target": "dnngp",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"机器学习预测与 G×E\" includes method \"dnngp\".",
-      "verified": true
-    },
-    {
-      "source": "m06-topic-07",
-      "sourceType": "topic",
-      "target": "rrblup",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"机器学习预测与 G×E\" includes method \"rrblup\".",
-      "verified": true
-    },
-    {
-      "source": "m06-topic-07",
-      "sourceType": "topic",
-      "target": "dnngp-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"机器学习预测与 G×E\" lists paper \"dnngp-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m06-topic-07",
-      "sourceType": "topic",
-      "target": "rrblup-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"机器学习预测与 G×E\" lists paper \"rrblup-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m07-topic-01",
-      "sourceType": "topic",
-      "target": "arabidopsis-methylome-cokus-2008",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"表观遗传基础\" lists paper \"arabidopsis-methylome-cokus-2008\".",
-      "verified": true
-    },
-    {
-      "source": "m07-topic-01",
-      "sourceType": "topic",
-      "target": "plant-dna-methylation-review-2021",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"表观遗传基础\" lists paper \"plant-dna-methylation-review-2021\".",
-      "verified": true
-    },
-    {
-      "source": "m07-topic-01",
-      "sourceType": "topic",
-      "target": "arabidopsis-drought-memory-2012",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"表观遗传基础\" lists paper \"arabidopsis-drought-memory-2012\".",
-      "verified": true
-    },
-    {
-      "source": "m07-topic-01",
-      "sourceType": "topic",
-      "target": "arabidopsis-heat-memory-2021",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"表观遗传基础\" lists paper \"arabidopsis-heat-memory-2021\".",
-      "verified": true
-    },
-    {
-      "source": "m07-topic-02",
-      "sourceType": "topic",
-      "target": "bismark",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"DNA 甲基化检测\" includes method \"bismark\".",
-      "verified": true
-    },
-    {
-      "source": "m07-topic-02",
-      "sourceType": "topic",
-      "target": "bismark-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"DNA 甲基化检测\" lists paper \"bismark-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m07-topic-02",
-      "sourceType": "topic",
-      "target": "wheat-methylome-2015",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"DNA 甲基化检测\" lists paper \"wheat-methylome-2015\".",
-      "verified": true
-    },
-    {
-      "source": "m07-topic-02",
-      "sourceType": "topic",
-      "target": "arabidopsis-methylome-cokus-2008",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"DNA 甲基化检测\" lists paper \"arabidopsis-methylome-cokus-2008\".",
-      "verified": true
-    },
-    {
-      "source": "m07-topic-03",
-      "sourceType": "topic",
-      "target": "bismark",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"DMR 分析\" includes method \"bismark\".",
-      "verified": true
-    },
-    {
-      "source": "m07-topic-03",
-      "sourceType": "topic",
-      "target": "dss",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"DMR 分析\" includes method \"dss\".",
-      "verified": true
-    },
-    {
-      "source": "m07-topic-03",
-      "sourceType": "topic",
-      "target": "bismark-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"DMR 分析\" lists paper \"bismark-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m07-topic-03",
-      "sourceType": "topic",
-      "target": "dss-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"DMR 分析\" lists paper \"dss-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m07-topic-03",
-      "sourceType": "topic",
-      "target": "wheat-methylome-2015",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"DMR 分析\" lists paper \"wheat-methylome-2015\".",
-      "verified": true
-    },
-    {
-      "source": "m07-topic-04",
-      "sourceType": "topic",
-      "target": "macs3",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"ATAC-seq 与开放染色质\" includes method \"macs3\".",
-      "verified": true
-    },
-    {
-      "source": "m07-topic-04",
-      "sourceType": "topic",
-      "target": "macs-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"ATAC-seq 与开放染色质\" lists paper \"macs-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m07-topic-04",
-      "sourceType": "topic",
-      "target": "arabidopsis-bzip11-atac-2023",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"ATAC-seq 与开放染色质\" lists paper \"arabidopsis-bzip11-atac-2023\".",
-      "verified": true
-    },
-    {
-      "source": "m07-topic-05",
-      "sourceType": "topic",
-      "target": "macs3",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"ChIP-seq、CUT&Tag 与 Motif\" includes method \"macs3\".",
-      "verified": true
-    },
-    {
-      "source": "m07-topic-05",
-      "sourceType": "topic",
-      "target": "meme-suite",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"ChIP-seq、CUT&Tag 与 Motif\" includes method \"meme-suite\".",
-      "verified": true
-    },
-    {
-      "source": "m07-topic-05",
-      "sourceType": "topic",
-      "target": "macs-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"ChIP-seq、CUT&Tag 与 Motif\" lists paper \"macs-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m07-topic-05",
-      "sourceType": "topic",
-      "target": "arabidopsis-bzip11-chromatin-2014",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"ChIP-seq、CUT&Tag 与 Motif\" lists paper \"arabidopsis-bzip11-chromatin-2014\".",
-      "verified": true
-    },
-    {
-      "source": "m07-topic-05",
-      "sourceType": "topic",
-      "target": "meme-suite-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"ChIP-seq、CUT&Tag 与 Motif\" lists paper \"meme-suite-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m07-topic-05",
-      "sourceType": "topic",
-      "target": "cutntag-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"ChIP-seq、CUT&Tag 与 Motif\" lists paper \"cutntag-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m07-topic-05",
-      "sourceType": "topic",
-      "target": "arabidopsis-bzip11-atac-2023",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"ChIP-seq、CUT&Tag 与 Motif\" lists paper \"arabidopsis-bzip11-atac-2023\".",
-      "verified": true
-    },
-    {
-      "source": "m07-topic-06",
-      "sourceType": "topic",
-      "target": "hicexplorer",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"Hi-C、Compartment、TAD、互作\" includes method \"hicexplorer\".",
-      "verified": true
-    },
-    {
-      "source": "m07-topic-06",
-      "sourceType": "topic",
-      "target": "arabidopsis-heat-hic-2020",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"Hi-C、Compartment、TAD、互作\" lists paper \"arabidopsis-heat-hic-2020\".",
-      "verified": true
-    },
-    {
-      "source": "m07-topic-06",
-      "sourceType": "topic",
-      "target": "hicexplorer-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"Hi-C、Compartment、TAD、互作\" lists paper \"hicexplorer-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m07-topic-06",
-      "sourceType": "topic",
-      "target": "arabidopsis-pds5-hic-2024",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"Hi-C、Compartment、TAD、互作\" lists paper \"arabidopsis-pds5-hic-2024\".",
-      "verified": true
-    },
-    {
-      "source": "m07-topic-07",
-      "sourceType": "topic",
-      "target": "arabidopsis-drought-memory-2012",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"表观调控与植物响应案例\" lists paper \"arabidopsis-drought-memory-2012\".",
-      "verified": true
-    },
-    {
-      "source": "m07-topic-07",
-      "sourceType": "topic",
-      "target": "arabidopsis-heat-memory-2021",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"表观调控与植物响应案例\" lists paper \"arabidopsis-heat-memory-2021\".",
-      "verified": true
-    },
-    {
-      "source": "m08-topic-01",
-      "sourceType": "topic",
-      "target": "scanpy",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"scRNA-seq 与 snRNA-seq 基础\" includes method \"scanpy\".",
-      "verified": true
-    },
-    {
-      "source": "m08-topic-01",
-      "sourceType": "topic",
-      "target": "sc-kb-copilot",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"scRNA-seq 与 snRNA-seq 基础\" includes method \"sc-kb-copilot\".",
-      "verified": true
-    },
-    {
-      "source": "m08-topic-01",
-      "sourceType": "topic",
-      "target": "scanpy-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"scRNA-seq 与 snRNA-seq 基础\" lists paper \"scanpy-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m08-topic-01",
-      "sourceType": "topic",
-      "target": "rice-root-single-cell-2021",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"scRNA-seq 与 snRNA-seq 基础\" lists paper \"rice-root-single-cell-2021\".",
-      "verified": true
-    },
-    {
-      "source": "m08-topic-01",
-      "sourceType": "topic",
-      "target": "arabidopsis-root-atlas-2022",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"scRNA-seq 与 snRNA-seq 基础\" lists paper \"arabidopsis-root-atlas-2022\".",
-      "verified": true
-    },
-    {
-      "source": "m08-topic-01",
-      "sourceType": "topic",
-      "target": "arabidopsis-protoplast-germination-2024",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"scRNA-seq 与 snRNA-seq 基础\" lists paper \"arabidopsis-protoplast-germination-2024\".",
-      "verified": true
-    },
-    {
-      "source": "m08-topic-01",
-      "sourceType": "topic",
-      "target": "rice-single-cell-multiomics-2025",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"scRNA-seq 与 snRNA-seq 基础\" lists paper \"rice-single-cell-multiomics-2025\".",
-      "verified": true
-    },
-    {
-      "source": "m08-topic-01",
-      "sourceType": "topic",
-      "target": "sc-kb-copilot-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"scRNA-seq 与 snRNA-seq 基础\" lists paper \"sc-kb-copilot-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m08-topic-02",
-      "sourceType": "topic",
-      "target": "scanpy",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"质控、归一化、批次校正\" includes method \"scanpy\".",
-      "verified": true
-    },
-    {
-      "source": "m08-topic-02",
-      "sourceType": "topic",
-      "target": "sc-kb-copilot",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"质控、归一化、批次校正\" includes method \"sc-kb-copilot\".",
-      "verified": true
-    },
-    {
-      "source": "m08-topic-02",
-      "sourceType": "topic",
-      "target": "doubletfinder",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"质控、归一化、批次校正\" includes method \"doubletfinder\".",
-      "verified": true
-    },
-    {
-      "source": "m08-topic-02",
-      "sourceType": "topic",
-      "target": "scanpy-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"质控、归一化、批次校正\" lists paper \"scanpy-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m08-topic-02",
-      "sourceType": "topic",
-      "target": "rice-root-single-cell-2021",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"质控、归一化、批次校正\" lists paper \"rice-root-single-cell-2021\".",
-      "verified": true
-    },
-    {
-      "source": "m08-topic-02",
-      "sourceType": "topic",
-      "target": "rice-root-soil-single-cell-2025",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"质控、归一化、批次校正\" lists paper \"rice-root-soil-single-cell-2025\".",
-      "verified": true
-    },
-    {
-      "source": "m08-topic-02",
-      "sourceType": "topic",
-      "target": "arabidopsis-light-atlas-2023",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"质控、归一化、批次校正\" lists paper \"arabidopsis-light-atlas-2023\".",
-      "verified": true
-    },
-    {
-      "source": "m08-topic-02",
-      "sourceType": "topic",
-      "target": "arabidopsis-protoplast-germination-2024",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"质控、归一化、批次校正\" lists paper \"arabidopsis-protoplast-germination-2024\".",
-      "verified": true
-    },
-    {
-      "source": "m08-topic-02",
-      "sourceType": "topic",
-      "target": "sc-kb-copilot-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"质控、归一化、批次校正\" lists paper \"sc-kb-copilot-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m08-topic-02",
-      "sourceType": "topic",
-      "target": "doubletfinder-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"质控、归一化、批次校正\" lists paper \"doubletfinder-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m08-topic-03",
-      "sourceType": "topic",
-      "target": "scanpy",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"PCA/UMAP/t-SNE/聚类\" includes method \"scanpy\".",
-      "verified": true
-    },
-    {
-      "source": "m08-topic-03",
-      "sourceType": "topic",
-      "target": "scanpy-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"PCA/UMAP/t-SNE/聚类\" lists paper \"scanpy-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m08-topic-03",
-      "sourceType": "topic",
-      "target": "rice-root-single-cell-2021",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"PCA/UMAP/t-SNE/聚类\" lists paper \"rice-root-single-cell-2021\".",
-      "verified": true
-    },
-    {
-      "source": "m08-topic-03",
-      "sourceType": "topic",
-      "target": "arabidopsis-root-atlas-2022",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"PCA/UMAP/t-SNE/聚类\" lists paper \"arabidopsis-root-atlas-2022\".",
-      "verified": true
-    },
-    {
-      "source": "m08-topic-03",
-      "sourceType": "topic",
-      "target": "arabidopsis-light-atlas-2023",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"PCA/UMAP/t-SNE/聚类\" lists paper \"arabidopsis-light-atlas-2023\".",
-      "verified": true
-    },
-    {
-      "source": "m08-topic-04",
-      "sourceType": "topic",
-      "target": "scanpy",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"Marker Gene 与细胞类型注释\" includes method \"scanpy\".",
-      "verified": true
-    },
-    {
-      "source": "m08-topic-04",
-      "sourceType": "topic",
-      "target": "scanpy-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"Marker Gene 与细胞类型注释\" lists paper \"scanpy-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m08-topic-04",
-      "sourceType": "topic",
-      "target": "rice-root-single-cell-2021",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"Marker Gene 与细胞类型注释\" lists paper \"rice-root-single-cell-2021\".",
-      "verified": true
-    },
-    {
-      "source": "m08-topic-04",
-      "sourceType": "topic",
-      "target": "arabidopsis-root-atlas-2022",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"Marker Gene 与细胞类型注释\" lists paper \"arabidopsis-root-atlas-2022\".",
-      "verified": true
-    },
-    {
-      "source": "m08-topic-04",
-      "sourceType": "topic",
-      "target": "rice-root-soil-single-cell-2025",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"Marker Gene 与细胞类型注释\" lists paper \"rice-root-soil-single-cell-2025\".",
-      "verified": true
-    },
-    {
-      "source": "m08-topic-05",
-      "sourceType": "topic",
-      "target": "scanpy",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"拟时序\" includes method \"scanpy\".",
-      "verified": true
-    },
-    {
-      "source": "m08-topic-05",
-      "sourceType": "topic",
-      "target": "cellrank",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"拟时序\" includes method \"cellrank\".",
-      "verified": true
-    },
-    {
-      "source": "m08-topic-05",
-      "sourceType": "topic",
-      "target": "scanpy-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"拟时序\" lists paper \"scanpy-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m08-topic-05",
-      "sourceType": "topic",
-      "target": "cellrank2-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"拟时序\" lists paper \"cellrank2-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m08-topic-05",
-      "sourceType": "topic",
-      "target": "rice-root-single-cell-2021",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"拟时序\" lists paper \"rice-root-single-cell-2021\".",
-      "verified": true
-    },
-    {
-      "source": "m08-topic-05",
-      "sourceType": "topic",
-      "target": "arabidopsis-root-atlas-2022",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"拟时序\" lists paper \"arabidopsis-root-atlas-2022\".",
-      "verified": true
-    },
-    {
-      "source": "m08-topic-05",
-      "sourceType": "topic",
-      "target": "arabidopsis-light-atlas-2023",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"拟时序\" lists paper \"arabidopsis-light-atlas-2023\".",
-      "verified": true
-    },
-    {
-      "source": "m08-topic-06",
-      "sourceType": "topic",
-      "target": "cell2location",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"空间转录组与反卷积\" includes method \"cell2location\".",
-      "verified": true
-    },
-    {
-      "source": "m08-topic-06",
-      "sourceType": "topic",
-      "target": "squidpy",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"空间转录组与反卷积\" includes method \"squidpy\".",
-      "verified": true
-    },
-    {
-      "source": "m08-topic-06",
-      "sourceType": "topic",
-      "target": "cell2location-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"空间转录组与反卷积\" lists paper \"cell2location-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m08-topic-06",
-      "sourceType": "topic",
-      "target": "squidpy-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"空间转录组与反卷积\" lists paper \"squidpy-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m08-topic-06",
-      "sourceType": "topic",
-      "target": "rice-root-soil-single-cell-2025",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"空间转录组与反卷积\" lists paper \"rice-root-soil-single-cell-2025\".",
-      "verified": true
-    },
-    {
-      "source": "m08-topic-07",
-      "sourceType": "topic",
-      "target": "archr",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"单细胞多组学\" includes method \"archr\".",
-      "verified": true
-    },
-    {
-      "source": "m08-topic-07",
-      "sourceType": "topic",
-      "target": "archr-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"单细胞多组学\" lists paper \"archr-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m08-topic-07",
-      "sourceType": "topic",
-      "target": "arabidopsis-atac-root-2021",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"单细胞多组学\" lists paper \"arabidopsis-atac-root-2021\".",
-      "verified": true
-    },
-    {
-      "source": "m08-topic-07",
-      "sourceType": "topic",
-      "target": "rice-root-single-cell-2021",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"单细胞多组学\" lists paper \"rice-root-single-cell-2021\".",
-      "verified": true
-    },
-    {
-      "source": "m08-topic-07",
-      "sourceType": "topic",
-      "target": "rice-single-cell-multiomics-2025",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"单细胞多组学\" lists paper \"rice-single-cell-multiomics-2025\".",
-      "verified": true
-    },
-    {
-      "source": "m09-topic-01",
-      "sourceType": "topic",
-      "target": "deseq2",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"常规 RNA-seq 与差异表达\" includes method \"deseq2\".",
-      "verified": true
-    },
-    {
-      "source": "m09-topic-01",
-      "sourceType": "topic",
-      "target": "deseq2-2014",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"常规 RNA-seq 与差异表达\" lists paper \"deseq2-2014\".",
-      "verified": true
-    },
-    {
-      "source": "m09-topic-01",
-      "sourceType": "topic",
-      "target": "maize-drought-deseq2-2019",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"常规 RNA-seq 与差异表达\" lists paper \"maize-drought-deseq2-2019\".",
-      "verified": true
-    },
-    {
-      "source": "m09-topic-02",
-      "sourceType": "topic",
-      "target": "wgcna",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"共表达网络\" includes method \"wgcna\".",
-      "verified": true
-    },
-    {
-      "source": "m09-topic-02",
-      "sourceType": "topic",
-      "target": "wgcna-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"共表达网络\" lists paper \"wgcna-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m09-topic-02",
-      "sourceType": "topic",
-      "target": "purple-rice-wgcna",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"共表达网络\" lists paper \"purple-rice-wgcna\".",
-      "verified": true
-    },
-    {
-      "source": "m09-topic-03",
-      "sourceType": "topic",
-      "target": "genie3",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"基因调控网络\" includes method \"genie3\".",
-      "verified": true
-    },
-    {
-      "source": "m09-topic-03",
-      "sourceType": "topic",
-      "target": "grnboost2",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"基因调控网络\" includes method \"grnboost2\".",
-      "verified": true
-    },
-    {
-      "source": "m09-topic-03",
-      "sourceType": "topic",
-      "target": "genie3-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"基因调控网络\" lists paper \"genie3-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m09-topic-03",
-      "sourceType": "topic",
-      "target": "grnboost2-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"基因调控网络\" lists paper \"grnboost2-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m09-topic-03",
-      "sourceType": "topic",
-      "target": "arabidopsis-integrated-grn-2021",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"基因调控网络\" lists paper \"arabidopsis-integrated-grn-2021\".",
-      "verified": true
-    },
-    {
-      "source": "m09-topic-04",
-      "sourceType": "topic",
-      "target": "meme-suite",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"顺式调控元件与 Motif\" includes method \"meme-suite\".",
-      "verified": true
-    },
-    {
-      "source": "m09-topic-04",
-      "sourceType": "topic",
-      "target": "meme-suite-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"顺式调控元件与 Motif\" lists paper \"meme-suite-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m09-topic-04",
-      "sourceType": "topic",
-      "target": "arabidopsis-stomata-accessibility-2022",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"顺式调控元件与 Motif\" lists paper \"arabidopsis-stomata-accessibility-2022\".",
-      "verified": true
-    },
-    {
-      "source": "m09-topic-05",
-      "sourceType": "topic",
-      "target": "mofa-plus",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"多组学整合\" includes method \"mofa-plus\".",
-      "verified": true
-    },
-    {
-      "source": "m09-topic-05",
-      "sourceType": "topic",
-      "target": "mofa-plus-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"多组学整合\" lists paper \"mofa-plus-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m09-topic-05",
-      "sourceType": "topic",
-      "target": "maize-multiomics-network-2023",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"多组学整合\" lists paper \"maize-multiomics-network-2023\".",
-      "verified": true
-    },
-    {
-      "source": "m09-topic-06",
-      "sourceType": "topic",
-      "target": "agront",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"植物 DNA 基础模型\" includes method \"agront\".",
-      "verified": true
-    },
-    {
-      "source": "m09-topic-06",
-      "sourceType": "topic",
-      "target": "plantcad2",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"植物 DNA 基础模型\" includes method \"plantcad2\".",
-      "verified": true
-    },
-    {
-      "source": "m09-topic-06",
-      "sourceType": "topic",
-      "target": "agro-nt-2024",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"植物 DNA 基础模型\" lists paper \"agro-nt-2024\".",
-      "verified": true
-    },
-    {
-      "source": "m09-topic-06",
-      "sourceType": "topic",
-      "target": "plantcad2-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"植物 DNA 基础模型\" lists paper \"plantcad2-paper\".",
-      "verified": true
-    },
-    {
-      "source": "m09-topic-07",
-      "sourceType": "topic",
-      "target": "agront",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"AI 功能预测、表达与变异效应\" includes method \"agront\".",
-      "verified": true
-    },
-    {
-      "source": "m09-topic-07",
-      "sourceType": "topic",
-      "target": "plantcad2",
-      "targetType": "method",
-      "relation": "features_method",
-      "evidence": "Topic \"AI 功能预测、表达与变异效应\" includes method \"plantcad2\".",
-      "verified": true
-    },
-    {
-      "source": "m09-topic-07",
-      "sourceType": "topic",
-      "target": "agro-nt-2024",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"AI 功能预测、表达与变异效应\" lists paper \"agro-nt-2024\".",
-      "verified": true
-    },
-    {
-      "source": "m09-topic-07",
-      "sourceType": "topic",
-      "target": "plantcad2-paper",
-      "targetType": "paper",
-      "relation": "references_paper",
-      "evidence": "Topic \"AI 功能预测、表达与变异效应\" lists paper \"plantcad2-paper\".",
-      "verified": true
-    },
-    {
-      "source": "bismark-synthetic",
-      "sourceType": "tutorial",
-      "target": "bismark",
-      "targetType": "method",
-      "relation": "guides_method",
-      "evidence": "Tutorial \"使用 Bismark 分析模拟甲基化数据\" guides usage of method \"bismark\".",
-      "verified": true
-    },
-    {
-      "source": "cafe5-intro",
-      "sourceType": "tutorial",
-      "target": "cafe5",
-      "targetType": "method",
-      "relation": "guides_method",
-      "evidence": "Tutorial \"使用 CAFE 5 分析基因家族大小变化\" guides usage of method \"cafe5\".",
-      "verified": true
-    },
-    {
-      "source": "edta-tutorial",
-      "sourceType": "tutorial",
-      "target": "edta",
-      "targetType": "method",
-      "relation": "guides_method",
-      "evidence": "Tutorial \"使用 EDTA 注释植物基因组重复序列\" guides usage of method \"edta\".",
-      "verified": true
-    },
-    {
-      "source": "gwas-synthetic",
-      "sourceType": "tutorial",
-      "target": "scipy",
-      "targetType": "method",
-      "relation": "guides_method",
-      "evidence": "Tutorial \"使用模拟基因型和表型理解 GWAS\" guides usage of method \"scipy\".",
-      "verified": true
-    },
-    {
-      "source": "hifiasm-intro",
-      "sourceType": "tutorial",
-      "target": "hifiasm",
-      "targetType": "method",
-      "relation": "guides_method",
-      "evidence": "Tutorial \"Hifiasm 组装入门\" guides usage of method \"hifiasm\".",
-      "verified": true
-    },
-    {
-      "source": "orthofinder-intro",
-      "sourceType": "tutorial",
-      "target": "orthofinder",
-      "targetType": "method",
-      "relation": "guides_method",
-      "evidence": "Tutorial \"从蛋白序列到同源基因家族入门\" guides usage of method \"orthofinder\".",
-      "verified": true
-    },
-    {
-      "source": "plink-synthetic",
-      "sourceType": "tutorial",
-      "target": "plink",
-      "targetType": "method",
-      "relation": "guides_method",
-      "evidence": "Tutorial \"使用 PLINK 分析模拟群体 SNP\" guides usage of method \"plink\".",
-      "verified": true
-    },
-    {
-      "source": "scanpy-synthetic",
-      "sourceType": "tutorial",
-      "target": "scanpy",
-      "targetType": "method",
-      "relation": "guides_method",
-      "evidence": "Tutorial \"使用 Scanpy 分析模拟单细胞表达矩阵\" guides usage of method \"scanpy\".",
-      "verified": true
-    },
-    {
-      "source": "syri-intro",
-      "sourceType": "tutorial",
-      "target": "syri",
-      "targetType": "method",
-      "relation": "guides_method",
-      "evidence": "Tutorial \"基于组装比对的 SyRI 结构变异分析入门\" guides usage of method \"syri\".",
-      "verified": true
-    },
-    {
-      "source": "wgcna-synthetic",
-      "sourceType": "tutorial",
-      "target": "wgcna",
-      "targetType": "method",
-      "relation": "guides_method",
-      "evidence": "Tutorial \"使用 WGCNA 分析模拟基因表达网络\" guides usage of method \"wgcna\".",
-      "verified": true
     }
   ]
 }
