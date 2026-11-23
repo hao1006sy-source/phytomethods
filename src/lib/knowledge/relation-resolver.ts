@@ -1,27 +1,20 @@
 /**
- * PhytoMethods 科研实体关系判定与语义映射引擎
+ * PhytoMethods 科研实体关系判定与语义映射引擎 V1.1.1
+ * 严格基于人工策展库、官方文献对应与发表时序逻辑，彻底废除标题关键词模糊推断
  */
 
 import type { RelationType, KnowledgeEvidence } from './graph-types.ts';
 import { createEvidence } from './evidence.ts';
-
-// 已知的方法扩展/改进论文映射表 (paperId -> methodId)
-const knownExtendingPapers: Record<string, string> = {
-  'admixture-enhancements': 'admixture'
-};
-
-// 已知的基准评估比较论文映射表 (paperId -> methodIds)
-const knownBenchmarkingPapers: Record<string, string[]> = {
-  'plant-sv-benchmark-2026': ['sniffles2', 'cutesv'],
-  'sorghum-graph-benchmark': ['minigraph', 'minigraph-cactus', 'pggb']
-};
+import { findCuratedRelation } from './curated-relations.ts';
 
 export interface ResolveRelationParams {
   paperId: string;
   paperType: 'method' | 'application' | 'review';
   paperTitle?: string;
   paperDoi?: string;
+  paperYear?: number;
   targetMethodId: string;
+  targetMethodYear?: number;
   canonicalMethodPaperId?: string;
   isMethodCanonicalPaper: boolean;
 }
@@ -34,43 +27,28 @@ export function resolvePaperMethodRelation({
   paperType,
   paperTitle,
   paperDoi,
+  paperYear,
   targetMethodId,
+  targetMethodYear,
   canonicalMethodPaperId,
   isMethodCanonicalPaper
 }: ResolveRelationParams): { relation: RelationType; evidence: KnowledgeEvidence } {
-  // 1. 扩展或改进方法 (extends_method)
-  if (knownExtendingPapers[paperId] === targetMethodId || /enhanc|extend|improv|v2|version 2/i.test(paperTitle || '')) {
-    if (!isMethodCanonicalPaper) {
-      return {
-        relation: 'extends_method',
-        evidence: createEvidence({
-          sourceType: 'paper',
-          sourceId: paperId,
-          doi: paperDoi,
-          note: `论文 "${paperTitle || paperId}" 对算法 "${targetMethodId}" 进行功能扩展与性能增强。`,
-          verificationStatus: 'source_checked'
-        })
-      };
-    }
+  // 1. 优先查询经过人工文献核实的人工策展清单 (Curated Relations)
+  const curated = findCuratedRelation(paperId, targetMethodId);
+  if (curated) {
+    return {
+      relation: curated.relation,
+      evidence: createEvidence({
+        sourceType: 'paper',
+        sourceId: paperId,
+        doi: curated.doi || paperDoi,
+        note: curated.note,
+        verificationStatus: curated.verificationStatus
+      })
+    };
   }
 
-  // 2. 基准评测与方法比较 (evaluates_method)
-  if (knownBenchmarkingPapers[paperId]?.includes(targetMethodId) || /benchmark|evaluat|compar/i.test(paperTitle || '')) {
-    if (!isMethodCanonicalPaper) {
-      return {
-        relation: 'evaluates_method',
-        evidence: createEvidence({
-          sourceType: 'paper',
-          sourceId: paperId,
-          doi: paperDoi,
-          note: `论文 "${paperTitle || paperId}" 开展了对算法 "${targetMethodId}" 的基准评测或性能比较。`,
-          verificationStatus: 'source_checked'
-        })
-      };
-    }
-  }
-
-  // 3. 首次提出或正式发布方法 (introduces_method)
+  // 2. 首次提出或正式发布方法 (introduces_method)
   if (isMethodCanonicalPaper || canonicalMethodPaperId === paperId) {
     return {
       relation: 'introduces_method',
@@ -84,6 +62,20 @@ export function resolvePaperMethodRelation({
     };
   }
 
+  // 3. 时序冲突防御检测 (发表年份早于软件首发年份)
+  if (paperYear && targetMethodYear && paperYear < targetMethodYear) {
+    return {
+      relation: 'references_method',
+      evidence: createEvidence({
+        sourceType: 'frontmatter',
+        sourceId: paperId,
+        doi: paperDoi,
+        note: `[时序冲突警告] 论文发表于 ${paperYear} 年，早于工具基准文献发布年份 (${targetMethodYear} 年)，标记为待核实。`,
+        verificationStatus: 'needs_review'
+      })
+    };
+  }
+
   // 4. 植物研究中实际使用 (uses_method)
   if (paperType === 'application') {
     return {
@@ -92,20 +84,24 @@ export function resolvePaperMethodRelation({
         sourceType: 'frontmatter',
         sourceId: paperId,
         doi: paperDoi,
-        note: `植物应用研究 "${paperId}" 在生物信息学分析流程中实际使用了 "${targetMethodId}"。`,
-        verificationStatus: 'source_checked'
+        note: paperTitle
+          ? `植物应用研究 "${paperTitle}" 在生物信息学分析流程中使用了算法 "${targetMethodId}"。`
+          : `植物应用研究 "${paperId}" 在生物信息学分析流程中使用了算法 "${targetMethodId}"。`,
+        verificationStatus: 'structurally_valid'
       })
     };
   }
 
-  // 5. 方法学论文交叉引用或辅助集成 (references_method)
+  // 5. 方法学或综述论文交叉引用/辅助参考 (references_method)
   return {
     relation: 'references_method',
     evidence: createEvidence({
       sourceType: 'frontmatter',
       sourceId: paperId,
       doi: paperDoi,
-      note: `方法学论文 "${paperId}" 引用、讨论或集成了算法 "${targetMethodId}"。`,
+      note: paperTitle
+        ? `论文 "${paperTitle}" (${paperType}) 在分析、讨论或流程中引用了算法 "${targetMethodId}"。`
+        : `论文 "${paperId}" (${paperType}) 在分析、讨论或流程中引用了算法 "${targetMethodId}"。`,
       verificationStatus: 'structurally_valid'
     })
   };

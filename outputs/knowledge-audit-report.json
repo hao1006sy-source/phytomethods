@@ -1,10 +1,10 @@
 {
   "version": "2.1.0",
-  "generatedAt": "2026-11-23T10:13:08.990Z",
+  "generatedAt": "2026-11-23T10:35:34.052Z",
   "integrityPassed": true,
   "stats": {
     "nodesCount": 303,
-    "edgesCount": 741,
+    "edgesCount": 740,
     "nodesByType": {
       "domain": 9,
       "method": 58,
@@ -17,19 +17,20 @@
     },
     "edgesByRelation": {
       "belongs_to_domain": 200,
-      "extends_method": 7,
+      "extends_method": 3,
       "introduces_method": 58,
       "studies_species": 64,
-      "uses_method": 59,
+      "uses_method": 66,
       "references_method": 3,
-      "evaluates_method": 9,
+      "evaluates_method": 5,
       "features_method": 111,
       "references_paper": 220,
       "guides_method": 10
     },
     "evidenceByStatus": {
-      "structurally_valid": 203,
-      "source_checked": 596
+      "structurally_valid": 257,
+      "source_checked": 539,
+      "needs_review": 2
     },
     "danglingEdges": 0,
     "duplicateEdges": 0,
@@ -2340,9 +2341,7 @@
         "population-genetics"
       ],
       "speciesIds": [],
-      "methodIds": [
-        "selscan"
-      ],
+      "methodIds": [],
       "status": "已核实",
       "issues": []
     },

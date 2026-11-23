@@ -3,7 +3,7 @@
   "description": "PhytoMethods Scientific Knowledge Graph Schema V2.1 with Evidence & Integrity",
   "stats": {
     "nodesCount": 303,
-    "edgesCount": 741,
+    "edgesCount": 740,
     "nodesByType": {
       "domain": 9,
       "method": 58,
@@ -16,19 +16,20 @@
     },
     "edgesByRelation": {
       "belongs_to_domain": 200,
-      "extends_method": 7,
+      "extends_method": 3,
       "introduces_method": 58,
       "studies_species": 64,
-      "uses_method": 59,
+      "uses_method": 66,
       "references_method": 3,
-      "evaluates_method": 9,
+      "evaluates_method": 5,
       "features_method": 111,
       "references_paper": 220,
       "guides_method": 10
     },
     "evidenceByStatus": {
-      "structurally_valid": 203,
-      "source_checked": 596
+      "structurally_valid": 257,
+      "source_checked": 539,
+      "needs_review": 2
     }
   },
   "nodes": [
@@ -3929,9 +3930,7 @@
         "year": 2007,
         "doi": "10.1038/nature06250",
         "speciesIds": [],
-        "methodIds": [
-          "selscan"
-        ]
+        "methodIds": []
       }
     },
     {
@@ -6698,7 +6697,7 @@
           "sourceType": "paper",
           "sourceId": "admixture-enhancements",
           "doi": "10.1186/1471-2105-12-246",
-          "note": "论文 \"Enhancements to the ADMIXTURE algorithm for individual ancestry estimation\" 对算法 \"admixture\" 进行功能扩展与性能增强。",
+          "note": "Alexander & Lange (2011) 针对 ADMIXTURE 提出拟牛顿加速与多线程并行算法扩展。",
           "verificationStatus": "source_checked"
         }
       ]
@@ -6777,8 +6776,8 @@
           "sourceType": "frontmatter",
           "sourceId": "african-rice-246-genomes",
           "doi": "10.1016/j.cub.2018.05.066",
-          "note": "植物应用研究 \"african-rice-246-genomes\" 在生物信息学分析流程中实际使用了 \"msmc2\"。",
-          "verificationStatus": "source_checked"
+          "note": "植物应用研究 \"The Rise and Fall of African Rice Cultivation Revealed by Analysis of 246 New Genomes\" 在生物信息学分析流程中使用了算法 \"msmc2\"。",
+          "verificationStatus": "structurally_valid"
         }
       ]
     },
@@ -6792,8 +6791,8 @@
           "sourceType": "frontmatter",
           "sourceId": "african-rice-246-genomes",
           "doi": "10.1016/j.cub.2018.05.066",
-          "note": "植物应用研究 \"african-rice-246-genomes\" 在生物信息学分析流程中实际使用了 \"psmc\"。",
-          "verificationStatus": "source_checked"
+          "note": "植物应用研究 \"The Rise and Fall of African Rice Cultivation Revealed by Analysis of 246 New Genomes\" 在生物信息学分析流程中使用了算法 \"psmc\"。",
+          "verificationStatus": "structurally_valid"
         }
       ]
     },
@@ -6807,8 +6806,8 @@
           "sourceType": "frontmatter",
           "sourceId": "african-rice-246-genomes",
           "doi": "10.1016/j.cub.2018.05.066",
-          "note": "植物应用研究 \"african-rice-246-genomes\" 在生物信息学分析流程中实际使用了 \"smcpp\"。",
-          "verificationStatus": "source_checked"
+          "note": "植物应用研究 \"The Rise and Fall of African Rice Cultivation Revealed by Analysis of 246 New Genomes\" 在生物信息学分析流程中使用了算法 \"smcpp\"。",
+          "verificationStatus": "structurally_valid"
         }
       ]
     },
@@ -6908,8 +6907,8 @@
           "sourceType": "frontmatter",
           "sourceId": "angiosperm-phylogenomics-2024",
           "doi": "10.1038/s41586-024-07324-0",
-          "note": "植物应用研究 \"angiosperm-phylogenomics-2024\" 在生物信息学分析流程中实际使用了 \"iqtree2\"。",
-          "verificationStatus": "source_checked"
+          "note": "植物应用研究 \"Phylogenomics and the rise of the angiosperms\" 在生物信息学分析流程中使用了算法 \"iqtree2\"。",
+          "verificationStatus": "structurally_valid"
         }
       ]
     },
@@ -6965,8 +6964,8 @@
           "sourceType": "frontmatter",
           "sourceId": "arabidopsis-69-pangenome",
           "doi": "10.1038/s41588-024-01715-9",
-          "note": "植物应用研究 \"arabidopsis-69-pangenome\" 在生物信息学分析流程中实际使用了 \"edta\"。",
-          "verificationStatus": "source_checked"
+          "note": "植物应用研究 \"A pan-genome of 69 Arabidopsis thaliana accessions reveals a conserved genome structure throughout the global species range\" 在生物信息学分析流程中使用了算法 \"edta\"。",
+          "verificationStatus": "structurally_valid"
         }
       ]
     },
@@ -6980,8 +6979,8 @@
           "sourceType": "frontmatter",
           "sourceId": "arabidopsis-69-pangenome",
           "doi": "10.1038/s41588-024-01715-9",
-          "note": "植物应用研究 \"arabidopsis-69-pangenome\" 在生物信息学分析流程中实际使用了 \"hifiasm\"。",
-          "verificationStatus": "source_checked"
+          "note": "植物应用研究 \"A pan-genome of 69 Arabidopsis thaliana accessions reveals a conserved genome structure throughout the global species range\" 在生物信息学分析流程中使用了算法 \"hifiasm\"。",
+          "verificationStatus": "structurally_valid"
         }
       ]
     },
@@ -6995,8 +6994,8 @@
           "sourceType": "frontmatter",
           "sourceId": "arabidopsis-69-pangenome",
           "doi": "10.1038/s41588-024-01715-9",
-          "note": "植物应用研究 \"arabidopsis-69-pangenome\" 在生物信息学分析流程中实际使用了 \"interproscan\"。",
-          "verificationStatus": "source_checked"
+          "note": "植物应用研究 \"A pan-genome of 69 Arabidopsis thaliana accessions reveals a conserved genome structure throughout the global species range\" 在生物信息学分析流程中使用了算法 \"interproscan\"。",
+          "verificationStatus": "structurally_valid"
         }
       ]
     },
@@ -7010,8 +7009,8 @@
           "sourceType": "frontmatter",
           "sourceId": "arabidopsis-69-pangenome",
           "doi": "10.1038/s41588-024-01715-9",
-          "note": "植物应用研究 \"arabidopsis-69-pangenome\" 在生物信息学分析流程中实际使用了 \"merqury\"。",
-          "verificationStatus": "source_checked"
+          "note": "植物应用研究 \"A pan-genome of 69 Arabidopsis thaliana accessions reveals a conserved genome structure throughout the global species range\" 在生物信息学分析流程中使用了算法 \"merqury\"。",
+          "verificationStatus": "structurally_valid"
         }
       ]
     },
@@ -7025,8 +7024,8 @@
           "sourceType": "frontmatter",
           "sourceId": "arabidopsis-69-pangenome",
           "doi": "10.1038/s41588-024-01715-9",
-          "note": "植物应用研究 \"arabidopsis-69-pangenome\" 在生物信息学分析流程中实际使用了 \"orthofinder\"。",
-          "verificationStatus": "source_checked"
+          "note": "植物应用研究 \"A pan-genome of 69 Arabidopsis thaliana accessions reveals a conserved genome structure throughout the global species range\" 在生物信息学分析流程中使用了算法 \"orthofinder\"。",
+          "verificationStatus": "structurally_valid"
         }
       ]
     },
@@ -7040,8 +7039,8 @@
           "sourceType": "frontmatter",
           "sourceId": "arabidopsis-69-pangenome",
           "doi": "10.1038/s41588-024-01715-9",
-          "note": "植物应用研究 \"arabidopsis-69-pangenome\" 在生物信息学分析流程中实际使用了 \"syri\"。",
-          "verificationStatus": "source_checked"
+          "note": "植物应用研究 \"A pan-genome of 69 Arabidopsis thaliana accessions reveals a conserved genome structure throughout the global species range\" 在生物信息学分析流程中使用了算法 \"syri\"。",
+          "verificationStatus": "structurally_valid"
         }
       ]
     },
@@ -7097,8 +7096,8 @@
           "sourceType": "frontmatter",
           "sourceId": "arabidopsis-adaptation",
           "doi": "10.1038/s41467-023-42029-4",
-          "note": "植物应用研究 \"arabidopsis-adaptation\" 在生物信息学分析流程中实际使用了 \"edta\"。",
-          "verificationStatus": "source_checked"
+          "note": "植物应用研究 \"The pan-genome and local adaptation of Arabidopsis thaliana\" 在生物信息学分析流程中使用了算法 \"edta\"。",
+          "verificationStatus": "structurally_valid"
         }
       ]
     },
@@ -7112,8 +7111,8 @@
           "sourceType": "frontmatter",
           "sourceId": "arabidopsis-adaptation",
           "doi": "10.1038/s41467-023-42029-4",
-          "note": "植物应用研究 \"arabidopsis-adaptation\" 在生物信息学分析流程中实际使用了 \"hifiasm\"。",
-          "verificationStatus": "source_checked"
+          "note": "植物应用研究 \"The pan-genome and local adaptation of Arabidopsis thaliana\" 在生物信息学分析流程中使用了算法 \"hifiasm\"。",
+          "verificationStatus": "structurally_valid"
         }
       ]
     },
@@ -7127,8 +7126,8 @@
           "sourceType": "frontmatter",
           "sourceId": "arabidopsis-adaptation",
           "doi": "10.1038/s41467-023-42029-4",
-          "note": "植物应用研究 \"arabidopsis-adaptation\" 在生物信息学分析流程中实际使用了 \"minigraph\"。",
-          "verificationStatus": "source_checked"
+          "note": "植物应用研究 \"The pan-genome and local adaptation of Arabidopsis thaliana\" 在生物信息学分析流程中使用了算法 \"minigraph\"。",
+          "verificationStatus": "structurally_valid"
         }
       ]
     },
@@ -7142,8 +7141,8 @@
           "sourceType": "frontmatter",
           "sourceId": "arabidopsis-adaptation",
           "doi": "10.1038/s41467-023-42029-4",
-          "note": "植物应用研究 \"arabidopsis-adaptation\" 在生物信息学分析流程中实际使用了 \"orthofinder\"。",
-          "verificationStatus": "source_checked"
+          "note": "植物应用研究 \"The pan-genome and local adaptation of Arabidopsis thaliana\" 在生物信息学分析流程中使用了算法 \"orthofinder\"。",
+          "verificationStatus": "structurally_valid"
         }
       ]
     },
@@ -7157,8 +7156,8 @@
           "sourceType": "frontmatter",
           "sourceId": "arabidopsis-adaptation",
           "doi": "10.1038/s41467-023-42029-4",
-          "note": "植物应用研究 \"arabidopsis-adaptation\" 在生物信息学分析流程中实际使用了 \"vg\"。",
-          "verificationStatus": "source_checked"
+          "note": "植物应用研究 \"The pan-genome and local adaptation of Arabidopsis thaliana\" 在生物信息学分析流程中使用了算法 \"vg\"。",
+          "verificationStatus": "structurally_valid"
         }
       ]
     },
@@ -7312,8 +7311,8 @@
           "sourceType": "frontmatter",
           "sourceId": "arabidopsis-heat-hic-2020",
           "doi": "10.1038/s41467-020-15809-5",
-          "note": "植物应用研究 \"arabidopsis-heat-hic-2020\" 在生物信息学分析流程中实际使用了 \"hicexplorer\"。",
-          "verificationStatus": "source_checked"
+          "note": "植物应用研究 \"Heat stress-induced transposon activation correlates with 3D chromatin organization rearrangement in Arabidopsis\" 在生物信息学分析流程中使用了算法 \"hicexplorer\"。",
+          "verificationStatus": "structurally_valid"
         }
       ]
     },
@@ -7565,8 +7564,8 @@
           "sourceType": "frontmatter",
           "sourceId": "arabidopsis-stomata-accessibility-2022",
           "doi": "10.1038/s41477-022-01304-w",
-          "note": "植物应用研究 \"arabidopsis-stomata-accessibility-2022\" 在生物信息学分析流程中实际使用了 \"meme-suite\"。",
-          "verificationStatus": "source_checked"
+          "note": "植物应用研究 \"Dynamic chromatin accessibility deploys heterotypic cis/trans-acting factors driving stomatal cell-fate commitment\" 在生物信息学分析流程中使用了算法 \"meme-suite\"。",
+          "verificationStatus": "structurally_valid"
         }
       ]
     },
@@ -7938,8 +7937,8 @@
           "sourceType": "frontmatter",
           "sourceId": "cycas-evolution",
           "doi": "10.1038/s41477-022-01129-7",
-          "note": "植物应用研究 \"cycas-evolution\" 在生物信息学分析流程中实际使用了 \"orthofinder\"。",
-          "verificationStatus": "source_checked"
+          "note": "植物应用研究 \"The Cycas genome and the early evolution of seed plants\" 在生物信息学分析流程中使用了算法 \"orthofinder\"。",
+          "verificationStatus": "structurally_valid"
         }
       ]
     },
@@ -8274,17 +8273,17 @@
       ]
     },
     {
-      "id": "paper:giraffe-paper|references_method|method:vg",
+      "id": "paper:giraffe-paper|extends_method|method:vg",
       "source": "paper:giraffe-paper",
       "target": "method:vg",
-      "relation": "references_method",
+      "relation": "extends_method",
       "evidence": [
         {
-          "sourceType": "frontmatter",
+          "sourceType": "paper",
           "sourceId": "giraffe-paper",
           "doi": "10.1126/science.abg8871",
-          "note": "方法学论文 \"giraffe-paper\" 引用、讨论或集成了算法 \"vg\"。",
-          "verificationStatus": "structurally_valid"
+          "note": "Sirén et al. (2021) 在 Science 正式提出单倍型感知短读长比对器 Giraffe 并作为核心模块扩展整合至 vg 泛基因组工具套件。",
+          "verificationStatus": "source_checked"
         }
       ]
     },
@@ -8576,8 +8575,8 @@
           "sourceType": "frontmatter",
           "sourceId": "macadamia-mcscanx",
           "doi": "10.1002/pld3.364",
-          "note": "植物应用研究 \"macadamia-mcscanx\" 在生物信息学分析流程中实际使用了 \"mcscanx\"。",
-          "verificationStatus": "source_checked"
+          "note": "植物应用研究 \"The genome of the endangered Macadamia jansenii displays little diversity but represents an important genetic resource for plant breeding\" 在生物信息学分析流程中使用了算法 \"mcscanx\"。",
+          "verificationStatus": "structurally_valid"
         }
       ]
     },
@@ -8619,8 +8618,8 @@
           "sourceType": "frontmatter",
           "sourceId": "macadamia",
           "doi": "10.1111/tpj.15583",
-          "note": "植物应用研究 \"macadamia\" 在生物信息学分析流程中实际使用了 \"hifiasm\"。",
-          "verificationStatus": "source_checked"
+          "note": "植物应用研究 \"De novo chromosome level assembly of a plant genome from long read sequence data\" 在生物信息学分析流程中使用了算法 \"hifiasm\"。",
+          "verificationStatus": "structurally_valid"
         }
       ]
     },
@@ -8675,21 +8674,6 @@
       ]
     },
     {
-      "id": "paper:maize-domestication|extends_method|method:xpclr",
-      "source": "paper:maize-domestication",
-      "target": "method:xpclr",
-      "relation": "extends_method",
-      "evidence": [
-        {
-          "sourceType": "paper",
-          "sourceId": "maize-domestication",
-          "doi": "10.1038/ng.2309",
-          "note": "论文 \"Comparative population genomics of maize domestication and improvement\" 对算法 \"xpclr\" 进行功能扩展与性能增强。",
-          "verificationStatus": "source_checked"
-        }
-      ]
-    },
-    {
       "id": "paper:maize-domestication|studies_species|species:maize",
       "source": "paper:maize-domestication",
       "target": "species:maize",
@@ -8699,6 +8683,21 @@
           "sourceType": "frontmatter",
           "sourceId": "maize-domestication",
           "note": "论文 \"maize-domestication\" 聚焦植物材料 \"玉米\" 展开研究。",
+          "verificationStatus": "source_checked"
+        }
+      ]
+    },
+    {
+      "id": "paper:maize-domestication|uses_method|method:xpclr",
+      "source": "paper:maize-domestication",
+      "target": "method:xpclr",
+      "relation": "uses_method",
+      "evidence": [
+        {
+          "sourceType": "paper",
+          "sourceId": "maize-domestication",
+          "doi": "10.1038/ng.2309",
+          "note": "Hufford et al. (2012) 实际使用 XP-CLR 开展玉米驯化与改良选择清除扫描，标题之 improvement 指作物品种改良。",
           "verificationStatus": "source_checked"
         }
       ]
@@ -8718,21 +8717,6 @@
       ]
     },
     {
-      "id": "paper:maize-drought-deseq2-2019|evaluates_method|method:deseq2",
-      "source": "paper:maize-drought-deseq2-2019",
-      "target": "method:deseq2",
-      "relation": "evaluates_method",
-      "evidence": [
-        {
-          "sourceType": "paper",
-          "sourceId": "maize-drought-deseq2-2019",
-          "doi": "10.1371/journal.pone.0223786",
-          "note": "论文 \"Maize leaves drought-responsive genes revealed by comparative transcriptome of two cultivars during the filling stage\" 开展了对算法 \"deseq2\" 的基准评测或性能比较。",
-          "verificationStatus": "source_checked"
-        }
-      ]
-    },
-    {
       "id": "paper:maize-drought-deseq2-2019|studies_species|species:maize",
       "source": "paper:maize-drought-deseq2-2019",
       "target": "species:maize",
@@ -8742,6 +8726,21 @@
           "sourceType": "frontmatter",
           "sourceId": "maize-drought-deseq2-2019",
           "note": "论文 \"maize-drought-deseq2-2019\" 聚焦植物材料 \"玉米\" 展开研究。",
+          "verificationStatus": "source_checked"
+        }
+      ]
+    },
+    {
+      "id": "paper:maize-drought-deseq2-2019|uses_method|method:deseq2",
+      "source": "paper:maize-drought-deseq2-2019",
+      "target": "method:deseq2",
+      "relation": "uses_method",
+      "evidence": [
+        {
+          "sourceType": "paper",
+          "sourceId": "maize-drought-deseq2-2019",
+          "doi": "10.1371/journal.pone.0223786",
+          "note": "研究采用 DESeq2 开展两品种玉米叶片干旱转录组差异分析，comparative 系指生物学设计，非评测 DESeq2。",
           "verificationStatus": "source_checked"
         }
       ]
@@ -8812,8 +8811,8 @@
           "sourceType": "frontmatter",
           "sourceId": "maize-zeas-adaptation",
           "doi": "10.1186/s12870-022-03427-w",
-          "note": "植物应用研究 \"maize-zeas-adaptation\" 在生物信息学分析流程中实际使用了 \"admixture\"。",
-          "verificationStatus": "source_checked"
+          "note": "植物应用研究 \"Population genomics of Zea species identifies selection signatures during maize domestication and adaptation\" 在生物信息学分析流程中使用了算法 \"admixture\"。",
+          "verificationStatus": "structurally_valid"
         }
       ]
     },
@@ -8827,8 +8826,8 @@
           "sourceType": "frontmatter",
           "sourceId": "maize-zeas-adaptation",
           "doi": "10.1186/s12870-022-03427-w",
-          "note": "植物应用研究 \"maize-zeas-adaptation\" 在生物信息学分析流程中实际使用了 \"xpclr\"。",
-          "verificationStatus": "source_checked"
+          "note": "植物应用研究 \"Population genomics of Zea species identifies selection signatures during maize domestication and adaptation\" 在生物信息学分析流程中使用了算法 \"xpclr\"。",
+          "verificationStatus": "structurally_valid"
         }
       ]
     },
@@ -8847,6 +8846,21 @@
       ]
     },
     {
+      "id": "paper:mam-positive-selection-2006|references_method|method:paml",
+      "source": "paper:mam-positive-selection-2006",
+      "target": "method:paml",
+      "relation": "references_method",
+      "evidence": [
+        {
+          "sourceType": "frontmatter",
+          "sourceId": "mam-positive-selection-2006",
+          "doi": "10.1073/pnas.0601738103",
+          "note": "[时序冲突警告] 论文发表于 2006 年，早于工具基准文献发布年份 (2007 年)，标记为待核实。",
+          "verificationStatus": "needs_review"
+        }
+      ]
+    },
+    {
       "id": "paper:mam-positive-selection-2006|studies_species|species:arabidopsis",
       "source": "paper:mam-positive-selection-2006",
       "target": "species:arabidopsis",
@@ -8856,21 +8870,6 @@
           "sourceType": "frontmatter",
           "sourceId": "mam-positive-selection-2006",
           "note": "论文 \"mam-positive-selection-2006\" 聚焦植物材料 \"拟南芥\" 展开研究。",
-          "verificationStatus": "source_checked"
-        }
-      ]
-    },
-    {
-      "id": "paper:mam-positive-selection-2006|uses_method|method:paml",
-      "source": "paper:mam-positive-selection-2006",
-      "target": "method:paml",
-      "relation": "uses_method",
-      "evidence": [
-        {
-          "sourceType": "frontmatter",
-          "sourceId": "mam-positive-selection-2006",
-          "doi": "10.1073/pnas.0601738103",
-          "note": "植物应用研究 \"mam-positive-selection-2006\" 在生物信息学分析流程中实际使用了 \"paml\"。",
           "verificationStatus": "source_checked"
         }
       ]
@@ -8927,8 +8926,8 @@
           "sourceType": "frontmatter",
           "sourceId": "mango-annotation",
           "doi": "10.1002/tpg2.20441",
-          "note": "植物应用研究 \"mango-annotation\" 在生物信息学分析流程中实际使用了 \"braker3\"。",
-          "verificationStatus": "source_checked"
+          "note": "植物应用研究 \"A chromosome-level genome of mango exclusively from long-read sequence data\" 在生物信息学分析流程中使用了算法 \"braker3\"。",
+          "verificationStatus": "structurally_valid"
         }
       ]
     },
@@ -8942,8 +8941,8 @@
           "sourceType": "frontmatter",
           "sourceId": "mango-annotation",
           "doi": "10.1002/tpg2.20441",
-          "note": "植物应用研究 \"mango-annotation\" 在生物信息学分析流程中实际使用了 \"interproscan\"。",
-          "verificationStatus": "source_checked"
+          "note": "植物应用研究 \"A chromosome-level genome of mango exclusively from long-read sequence data\" 在生物信息学分析流程中使用了算法 \"interproscan\"。",
+          "verificationStatus": "structurally_valid"
         }
       ]
     },
@@ -9298,11 +9297,11 @@
       "relation": "references_method",
       "evidence": [
         {
-          "sourceType": "frontmatter",
+          "sourceType": "paper",
           "sourceId": "msmc2-protocol",
           "doi": "10.1007/978-1-0716-0199-0_7",
-          "note": "方法学论文 \"msmc2-protocol\" 引用、讨论或集成了算法 \"msmc2\"。",
-          "verificationStatus": "structurally_valid"
+          "note": "Schiffels & Wang (2020) 撰写可复现操作协议，引用并指导 MSMC2 在多重顺序马尔可夫共祖分析中的标准流程。",
+          "verificationStatus": "source_checked"
         }
       ]
     },
@@ -9430,7 +9429,7 @@
           "sourceType": "paper",
           "sourceId": "orthofinder-2026",
           "doi": "10.1038/s41592-026-03126-6",
-          "note": "论文 \"OrthoFinder: improved phylogenetic orthology inference with enhanced accuracy and scalability\" 对算法 \"orthofinder\" 进行功能扩展与性能增强。",
+          "note": "Emms et al. (2026) 在 Nature Methods 正式发布 OrthoFinder 新一代扩展升级算法，提升推断准确度与大规模扩展性。",
           "verificationStatus": "source_checked"
         }
       ]
@@ -9623,8 +9622,8 @@
           "sourceType": "frontmatter",
           "sourceId": "plant-induced-sv-2025",
           "doi": "10.1371/journal.pgen.1011977",
-          "note": "植物应用研究 \"plant-induced-sv-2025\" 在生物信息学分析流程中实际使用了 \"cutesv\"。",
-          "verificationStatus": "source_checked"
+          "note": "植物应用研究 \"A simple method to efficiently generate structural variation in plants\" 在生物信息学分析流程中使用了算法 \"cutesv\"。",
+          "verificationStatus": "structurally_valid"
         }
       ]
     },
@@ -9652,7 +9651,7 @@
           "sourceType": "paper",
           "sourceId": "plant-sv-benchmark-2026",
           "doi": "10.1186/s13059-026-04300-x",
-          "note": "论文 \"Benchmarking long-read aligner-caller pipelines for structural variant detection across ten angiosperm species with PacBio high-fidelity sequencing\" 开展了对算法 \"cutesv\" 的基准评测或性能比较。",
+          "note": "Zhang et al. (2026) 构建十种被子植物真值集，系统评估 91 种流程，对 cuteSV 变异检测性能开展基准比较。",
           "verificationStatus": "source_checked"
         }
       ]
@@ -9667,7 +9666,7 @@
           "sourceType": "paper",
           "sourceId": "plant-sv-benchmark-2026",
           "doi": "10.1186/s13059-026-04300-x",
-          "note": "论文 \"Benchmarking long-read aligner-caller pipelines for structural variant detection across ten angiosperm species with PacBio high-fidelity sequencing\" 开展了对算法 \"sniffles2\" 的基准评测或性能比较。",
+          "note": "Zhang et al. (2026) 系统横向评测了 Sniffles2 在被子植物不同变异长度与重复区下的 F1 分数与稳定性。",
           "verificationStatus": "source_checked"
         }
       ]
@@ -9696,8 +9695,8 @@
           "sourceType": "frontmatter",
           "sourceId": "plant-wgd-timing-2017",
           "doi": "10.1098/rspb.2017.0912",
-          "note": "植物应用研究 \"plant-wgd-timing-2017\" 在生物信息学分析流程中实际使用了 \"paml\"。",
-          "verificationStatus": "source_checked"
+          "note": "植物应用研究 \"Constraining the timing of whole genome duplication in plant evolutionary history\" 在生物信息学分析流程中使用了算法 \"paml\"。",
+          "verificationStatus": "structurally_valid"
         }
       ]
     },
@@ -9811,8 +9810,8 @@
           "sourceType": "frontmatter",
           "sourceId": "populus-euphratica-demography",
           "doi": "10.1093/jxb/eraa172",
-          "note": "植物应用研究 \"populus-euphratica-demography\" 在生物信息学分析流程中实际使用了 \"psmc\"。",
-          "verificationStatus": "source_checked"
+          "note": "植物应用研究 \"Genome resequencing reveals demographic history and genetic architecture of seed salinity tolerance in Populus euphratica\" 在生物信息学分析流程中使用了算法 \"psmc\"。",
+          "verificationStatus": "structurally_valid"
         }
       ]
     },
@@ -9840,8 +9839,8 @@
           "sourceType": "frontmatter",
           "sourceId": "populus-repeats-demography",
           "doi": "10.1038/s41437-021-00443-8",
-          "note": "植物应用研究 \"populus-repeats-demography\" 在生物信息学分析流程中实际使用了 \"psmc\"。",
-          "verificationStatus": "source_checked"
+          "note": "植物应用研究 \"Repetitive genomic regions and the inference of demographic history\" 在生物信息学分析流程中使用了算法 \"psmc\"。",
+          "verificationStatus": "structurally_valid"
         }
       ]
     },
@@ -9855,8 +9854,8 @@
           "sourceType": "frontmatter",
           "sourceId": "populus-repeats-demography",
           "doi": "10.1038/s41437-021-00443-8",
-          "note": "植物应用研究 \"populus-repeats-demography\" 在生物信息学分析流程中实际使用了 \"smcpp\"。",
-          "verificationStatus": "source_checked"
+          "note": "植物应用研究 \"Repetitive genomic regions and the inference of demographic history\" 在生物信息学分析流程中使用了算法 \"smcpp\"。",
+          "verificationStatus": "structurally_valid"
         }
       ]
     },
@@ -9962,8 +9961,8 @@
           "sourceType": "frontmatter",
           "sourceId": "purple-rice-wgcna",
           "doi": "10.1038/s41598-024-73698-w",
-          "note": "植物应用研究 \"purple-rice-wgcna\" 在生物信息学分析流程中实际使用了 \"wgcna\"。",
-          "verificationStatus": "source_checked"
+          "note": "植物应用研究 \"Transcriptome analysis of the coexpression network of genes related to antioxidant characteristics after grain filling in purple rice\" 在生物信息学分析流程中使用了算法 \"wgcna\"。",
+          "verificationStatus": "structurally_valid"
         }
       ]
     },
@@ -10033,8 +10032,8 @@
           "sourceType": "frontmatter",
           "sourceId": "rice-3010-pangenome",
           "doi": "10.1038/s41586-018-0063-9",
-          "note": "植物应用研究 \"rice-3010-pangenome\" 在生物信息学分析流程中实际使用了 \"eupan\"。",
-          "verificationStatus": "source_checked"
+          "note": "植物应用研究 \"Genomic variation in 3,010 diverse accessions of Asian cultivated rice\" 在生物信息学分析流程中使用了算法 \"eupan\"。",
+          "verificationStatus": "structurally_valid"
         }
       ]
     },
@@ -10104,8 +10103,8 @@
           "sourceType": "frontmatter",
           "sourceId": "rice-deleterious-domestication",
           "doi": "10.1093/molbev/msw296",
-          "note": "植物应用研究 \"rice-deleterious-domestication\" 在生物信息学分析流程中实际使用了 \"xpclr\"。",
-          "verificationStatus": "source_checked"
+          "note": "植物应用研究 \"Deleterious Variants in Asian Rice and the Potential Cost of Domestication\" 在生物信息学分析流程中使用了算法 \"xpclr\"。",
+          "verificationStatus": "structurally_valid"
         }
       ]
     },
@@ -10180,21 +10179,6 @@
       ]
     },
     {
-      "id": "paper:rice-gapit-2023|extends_method|method:gapit",
-      "source": "paper:rice-gapit-2023",
-      "target": "method:gapit",
-      "relation": "extends_method",
-      "evidence": [
-        {
-          "sourceType": "paper",
-          "sourceId": "rice-gapit-2023",
-          "doi": "10.1038/s41437-023-00599-5",
-          "note": "论文 \"Gene based markers improve precision of genome-wide association studies and accuracy of genomic predictions in rice breeding\" 对算法 \"gapit\" 进行功能扩展与性能增强。",
-          "verificationStatus": "source_checked"
-        }
-      ]
-    },
-    {
       "id": "paper:rice-gapit-2023|studies_species|species:rice",
       "source": "paper:rice-gapit-2023",
       "target": "species:rice",
@@ -10204,6 +10188,21 @@
           "sourceType": "frontmatter",
           "sourceId": "rice-gapit-2023",
           "note": "论文 \"rice-gapit-2023\" 聚焦植物材料 \"水稻\" 展开研究。",
+          "verificationStatus": "source_checked"
+        }
+      ]
+    },
+    {
+      "id": "paper:rice-gapit-2023|uses_method|method:gapit",
+      "source": "paper:rice-gapit-2023",
+      "target": "method:gapit",
+      "relation": "uses_method",
+      "evidence": [
+        {
+          "sourceType": "paper",
+          "sourceId": "rice-gapit-2023",
+          "doi": "10.1038/s41437-023-00599-5",
+          "note": "研究利用 GAPIT 软件开展水稻 GWAS 分析，标题之 improve 指基于功能标记提升预测精度，非修改 GAPIT 算法。",
           "verificationStatus": "source_checked"
         }
       ]
@@ -10302,8 +10301,8 @@
           "sourceType": "frontmatter",
           "sourceId": "rice-root-single-cell-2021",
           "doi": "10.1038/s41467-021-22352-4",
-          "note": "植物应用研究 \"rice-root-single-cell-2021\" 在生物信息学分析流程中实际使用了 \"scanpy\"。",
-          "verificationStatus": "source_checked"
+          "note": "植物应用研究 \"Single-cell transcriptome atlas and chromatin accessibility landscape reveal differentiation trajectories in the rice root\" 在生物信息学分析流程中使用了算法 \"scanpy\"。",
+          "verificationStatus": "structurally_valid"
         }
       ]
     },
@@ -10345,8 +10344,8 @@
           "sourceType": "frontmatter",
           "sourceId": "rice-root-soil-single-cell-2025",
           "doi": "10.1038/s41586-025-08941-z",
-          "note": "植物应用研究 \"rice-root-soil-single-cell-2025\" 在生物信息学分析流程中实际使用了 \"doubletfinder\"。",
-          "verificationStatus": "source_checked"
+          "note": "植物应用研究 \"Single-cell transcriptomics reveal how root tissues adapt to soil stress\" 在生物信息学分析流程中使用了算法 \"doubletfinder\"。",
+          "verificationStatus": "structurally_valid"
         }
       ]
     },
@@ -10360,8 +10359,8 @@
           "sourceType": "frontmatter",
           "sourceId": "rice-root-soil-single-cell-2025",
           "doi": "10.1038/s41586-025-08941-z",
-          "note": "植物应用研究 \"rice-root-soil-single-cell-2025\" 在生物信息学分析流程中实际使用了 \"sc-kb-copilot\"。",
-          "verificationStatus": "source_checked"
+          "note": "植物应用研究 \"Single-cell transcriptomics reveal how root tissues adapt to soil stress\" 在生物信息学分析流程中使用了算法 \"sc-kb-copilot\"。",
+          "verificationStatus": "structurally_valid"
         }
       ]
     },
@@ -10394,6 +10393,21 @@
       ]
     },
     {
+      "id": "paper:rice-roots-population|references_method|method:gapit",
+      "source": "paper:rice-roots-population",
+      "target": "method:gapit",
+      "relation": "references_method",
+      "evidence": [
+        {
+          "sourceType": "frontmatter",
+          "sourceId": "rice-roots-population",
+          "doi": "10.1371/journal.pgen.1007521",
+          "note": "[时序冲突警告] 论文发表于 2018 年，早于工具基准文献发布年份 (2021 年)，标记为待核实。",
+          "verificationStatus": "needs_review"
+        }
+      ]
+    },
+    {
       "id": "paper:rice-roots-population|studies_species|species:rice",
       "source": "paper:rice-roots-population",
       "target": "species:rice",
@@ -10417,23 +10431,8 @@
           "sourceType": "frontmatter",
           "sourceId": "rice-roots-population",
           "doi": "10.1371/journal.pgen.1007521",
-          "note": "植物应用研究 \"rice-roots-population\" 在生物信息学分析流程中实际使用了 \"admixture\"。",
-          "verificationStatus": "source_checked"
-        }
-      ]
-    },
-    {
-      "id": "paper:rice-roots-population|uses_method|method:gapit",
-      "source": "paper:rice-roots-population",
-      "target": "method:gapit",
-      "relation": "uses_method",
-      "evidence": [
-        {
-          "sourceType": "frontmatter",
-          "sourceId": "rice-roots-population",
-          "doi": "10.1371/journal.pgen.1007521",
-          "note": "植物应用研究 \"rice-roots-population\" 在生物信息学分析流程中实际使用了 \"gapit\"。",
-          "verificationStatus": "source_checked"
+          "note": "植物应用研究 \"Loci and natural alleles underlying robust roots and adaptive domestication of upland ecotype rice in aerobic conditions\" 在生物信息学分析流程中使用了算法 \"admixture\"。",
+          "verificationStatus": "structurally_valid"
         }
       ]
     },
@@ -10447,8 +10446,8 @@
           "sourceType": "frontmatter",
           "sourceId": "rice-roots-population",
           "doi": "10.1371/journal.pgen.1007521",
-          "note": "植物应用研究 \"rice-roots-population\" 在生物信息学分析流程中实际使用了 \"plink\"。",
-          "verificationStatus": "source_checked"
+          "note": "植物应用研究 \"Loci and natural alleles underlying robust roots and adaptive domestication of upland ecotype rice in aerobic conditions\" 在生物信息学分析流程中使用了算法 \"plink\"。",
+          "verificationStatus": "structurally_valid"
         }
       ]
     },
@@ -10574,8 +10573,8 @@
           "sourceType": "frontmatter",
           "sourceId": "rice-temarker-sweeps",
           "doi": "10.1016/j.xplc.2021.100270",
-          "note": "植物应用研究 \"rice-temarker-sweeps\" 在生物信息学分析流程中实际使用了 \"sweepfinder2\"。",
-          "verificationStatus": "source_checked"
+          "note": "植物应用研究 \"Exploring transposable element-based markers to identify allelic variations underlying agronomic traits in rice\" 在生物信息学分析流程中使用了算法 \"sweepfinder2\"。",
+          "verificationStatus": "structurally_valid"
         }
       ]
     },
@@ -10617,8 +10616,8 @@
           "sourceType": "frontmatter",
           "sourceId": "rice-variant-comparison",
           "doi": "10.1186/s13007-025-01437-x",
-          "note": "植物应用研究 \"rice-variant-comparison\" 在生物信息学分析流程中实际使用了 \"bcftools\"。",
-          "verificationStatus": "source_checked"
+          "note": "植物应用研究 \"Accurate detections of the heterozygous SNPs with rice genomic data and prediction of de novo spontaneous mutation rate\" 在生物信息学分析流程中使用了算法 \"bcftools\"。",
+          "verificationStatus": "structurally_valid"
         }
       ]
     },
@@ -10660,8 +10659,8 @@
           "sourceType": "frontmatter",
           "sourceId": "rice-weedy-selection",
           "doi": "10.1111/pbi.12630",
-          "note": "植物应用研究 \"rice-weedy-selection\" 在生物信息学分析流程中实际使用了 \"plink\"。",
-          "verificationStatus": "source_checked"
+          "note": "植物应用研究 \"Population genomics identifies the origin and signatures of selection of Korean weedy rice\" 在生物信息学分析流程中使用了算法 \"plink\"。",
+          "verificationStatus": "structurally_valid"
         }
       ]
     },
@@ -10675,8 +10674,8 @@
           "sourceType": "frontmatter",
           "sourceId": "rice-weedy-selection",
           "doi": "10.1111/pbi.12630",
-          "note": "植物应用研究 \"rice-weedy-selection\" 在生物信息学分析流程中实际使用了 \"selscan\"。",
-          "verificationStatus": "source_checked"
+          "note": "植物应用研究 \"Population genomics identifies the origin and signatures of selection of Korean weedy rice\" 在生物信息学分析流程中使用了算法 \"selscan\"。",
+          "verificationStatus": "structurally_valid"
         }
       ]
     },
@@ -10690,8 +10689,8 @@
           "sourceType": "frontmatter",
           "sourceId": "rice-weedy-selection",
           "doi": "10.1111/pbi.12630",
-          "note": "植物应用研究 \"rice-weedy-selection\" 在生物信息学分析流程中实际使用了 \"xpclr\"。",
-          "verificationStatus": "source_checked"
+          "note": "植物应用研究 \"Population genomics identifies the origin and signatures of selection of Korean weedy rice\" 在生物信息学分析流程中使用了算法 \"xpclr\"。",
+          "verificationStatus": "structurally_valid"
         }
       ]
     },
@@ -11021,7 +11020,7 @@
           "sourceType": "paper",
           "sourceId": "sorghum-graph-benchmark",
           "doi": "10.1093/gigascience/giaf121",
-          "note": "论文 \"Toward a standardized framework for pangenome graph evaluation: assessing crop plant pangenome variation graph construction from multiple assemblies\" 开展了对算法 \"minigraph\" 的基准评测或性能比较。",
+          "note": "Kopalli et al. (2025) 建立标准化评估框架，系统比较 Minigraph 在作物多组装构建中的图规模与节点特征。",
           "verificationStatus": "source_checked"
         }
       ]
@@ -11036,22 +11035,7 @@
           "sourceType": "paper",
           "sourceId": "sorghum-graph-benchmark",
           "doi": "10.1093/gigascience/giaf121",
-          "note": "论文 \"Toward a standardized framework for pangenome graph evaluation: assessing crop plant pangenome variation graph construction from multiple assemblies\" 开展了对算法 \"minigraph-cactus\" 的基准评测或性能比较。",
-          "verificationStatus": "source_checked"
-        }
-      ]
-    },
-    {
-      "id": "paper:sorghum-graph-benchmark|evaluates_method|method:odgi",
-      "source": "paper:sorghum-graph-benchmark",
-      "target": "method:odgi",
-      "relation": "evaluates_method",
-      "evidence": [
-        {
-          "sourceType": "paper",
-          "sourceId": "sorghum-graph-benchmark",
-          "doi": "10.1093/gigascience/giaf121",
-          "note": "论文 \"Toward a standardized framework for pangenome graph evaluation: assessing crop plant pangenome variation graph construction from multiple assemblies\" 开展了对算法 \"odgi\" 的基准评测或性能比较。",
+          "note": "Kopalli et al. (2025) 评估 Minigraph-Cactus 在高粱及多作物中的图内容覆盖度、节点粒度与结构变异一致性。",
           "verificationStatus": "source_checked"
         }
       ]
@@ -11066,37 +11050,7 @@
           "sourceType": "paper",
           "sourceId": "sorghum-graph-benchmark",
           "doi": "10.1093/gigascience/giaf121",
-          "note": "论文 \"Toward a standardized framework for pangenome graph evaluation: assessing crop plant pangenome variation graph construction from multiple assemblies\" 开展了对算法 \"pggb\" 的基准评测或性能比较。",
-          "verificationStatus": "source_checked"
-        }
-      ]
-    },
-    {
-      "id": "paper:sorghum-graph-benchmark|evaluates_method|method:syri",
-      "source": "paper:sorghum-graph-benchmark",
-      "target": "method:syri",
-      "relation": "evaluates_method",
-      "evidence": [
-        {
-          "sourceType": "paper",
-          "sourceId": "sorghum-graph-benchmark",
-          "doi": "10.1093/gigascience/giaf121",
-          "note": "论文 \"Toward a standardized framework for pangenome graph evaluation: assessing crop plant pangenome variation graph construction from multiple assemblies\" 开展了对算法 \"syri\" 的基准评测或性能比较。",
-          "verificationStatus": "source_checked"
-        }
-      ]
-    },
-    {
-      "id": "paper:sorghum-graph-benchmark|evaluates_method|method:vg",
-      "source": "paper:sorghum-graph-benchmark",
-      "target": "method:vg",
-      "relation": "evaluates_method",
-      "evidence": [
-        {
-          "sourceType": "paper",
-          "sourceId": "sorghum-graph-benchmark",
-          "doi": "10.1093/gigascience/giaf121",
-          "note": "论文 \"Toward a standardized framework for pangenome graph evaluation: assessing crop plant pangenome variation graph construction from multiple assemblies\" 开展了对算法 \"vg\" 的基准评测或性能比较。",
+          "note": "Kopalli et al. (2025) 评估无参考 PGGB 流程在高粱真实与模拟组装中的图表示与变异调用表现。",
           "verificationStatus": "source_checked"
         }
       ]
@@ -11116,6 +11070,51 @@
       ]
     },
     {
+      "id": "paper:sorghum-graph-benchmark|uses_method|method:odgi",
+      "source": "paper:sorghum-graph-benchmark",
+      "target": "method:odgi",
+      "relation": "uses_method",
+      "evidence": [
+        {
+          "sourceType": "paper",
+          "sourceId": "sorghum-graph-benchmark",
+          "doi": "10.1093/gigascience/giaf121",
+          "note": "实际使用 ODGI 进行图展平、覆盖度与图增长统计分析。",
+          "verificationStatus": "source_checked"
+        }
+      ]
+    },
+    {
+      "id": "paper:sorghum-graph-benchmark|uses_method|method:syri",
+      "source": "paper:sorghum-graph-benchmark",
+      "target": "method:syri",
+      "relation": "uses_method",
+      "evidence": [
+        {
+          "sourceType": "paper",
+          "sourceId": "sorghum-graph-benchmark",
+          "doi": "10.1093/gigascience/giaf121",
+          "note": "评估流程中实际使用 SyRI 分析组装间变异作为比较基准。",
+          "verificationStatus": "source_checked"
+        }
+      ]
+    },
+    {
+      "id": "paper:sorghum-graph-benchmark|uses_method|method:vg",
+      "source": "paper:sorghum-graph-benchmark",
+      "target": "method:vg",
+      "relation": "uses_method",
+      "evidence": [
+        {
+          "sourceType": "paper",
+          "sourceId": "sorghum-graph-benchmark",
+          "doi": "10.1093/gigascience/giaf121",
+          "note": "实际调用 VG deconstruct 从泛基因组图中解析路径变异。",
+          "verificationStatus": "source_checked"
+        }
+      ]
+    },
+    {
       "id": "paper:sorghum-pangenome-reference-2026|belongs_to_domain|domain:pangenomics-structural-variation",
       "source": "paper:sorghum-pangenome-reference-2026",
       "target": "domain:pangenomics-structural-variation",
@@ -11130,51 +11129,6 @@
       ]
     },
     {
-      "id": "paper:sorghum-pangenome-reference-2026|extends_method|method:minigraph-cactus",
-      "source": "paper:sorghum-pangenome-reference-2026",
-      "target": "method:minigraph-cactus",
-      "relation": "extends_method",
-      "evidence": [
-        {
-          "sourceType": "paper",
-          "sourceId": "sorghum-pangenome-reference-2026",
-          "doi": "10.1038/s41586-026-10229-9",
-          "note": "论文 \"A sorghum pangenome reference improves global crop trait discovery\" 对算法 \"minigraph-cactus\" 进行功能扩展与性能增强。",
-          "verificationStatus": "source_checked"
-        }
-      ]
-    },
-    {
-      "id": "paper:sorghum-pangenome-reference-2026|extends_method|method:odgi",
-      "source": "paper:sorghum-pangenome-reference-2026",
-      "target": "method:odgi",
-      "relation": "extends_method",
-      "evidence": [
-        {
-          "sourceType": "paper",
-          "sourceId": "sorghum-pangenome-reference-2026",
-          "doi": "10.1038/s41586-026-10229-9",
-          "note": "论文 \"A sorghum pangenome reference improves global crop trait discovery\" 对算法 \"odgi\" 进行功能扩展与性能增强。",
-          "verificationStatus": "source_checked"
-        }
-      ]
-    },
-    {
-      "id": "paper:sorghum-pangenome-reference-2026|extends_method|method:vg",
-      "source": "paper:sorghum-pangenome-reference-2026",
-      "target": "method:vg",
-      "relation": "extends_method",
-      "evidence": [
-        {
-          "sourceType": "paper",
-          "sourceId": "sorghum-pangenome-reference-2026",
-          "doi": "10.1038/s41586-026-10229-9",
-          "note": "论文 \"A sorghum pangenome reference improves global crop trait discovery\" 对算法 \"vg\" 进行功能扩展与性能增强。",
-          "verificationStatus": "source_checked"
-        }
-      ]
-    },
-    {
       "id": "paper:sorghum-pangenome-reference-2026|studies_species|species:sorghum",
       "source": "paper:sorghum-pangenome-reference-2026",
       "target": "species:sorghum",
@@ -11184,6 +11138,51 @@
           "sourceType": "frontmatter",
           "sourceId": "sorghum-pangenome-reference-2026",
           "note": "论文 \"sorghum-pangenome-reference-2026\" 聚焦植物材料 \"高粱\" 展开研究。",
+          "verificationStatus": "source_checked"
+        }
+      ]
+    },
+    {
+      "id": "paper:sorghum-pangenome-reference-2026|uses_method|method:minigraph-cactus",
+      "source": "paper:sorghum-pangenome-reference-2026",
+      "target": "method:minigraph-cactus",
+      "relation": "uses_method",
+      "evidence": [
+        {
+          "sourceType": "paper",
+          "sourceId": "sorghum-pangenome-reference-2026",
+          "doi": "10.1038/s41586-026-10229-9",
+          "note": "本研究实际使用 Minigraph-Cactus 构建高粱泛基因组变异图，title 之 improves 指作物农艺性状挖掘突破。",
+          "verificationStatus": "source_checked"
+        }
+      ]
+    },
+    {
+      "id": "paper:sorghum-pangenome-reference-2026|uses_method|method:odgi",
+      "source": "paper:sorghum-pangenome-reference-2026",
+      "target": "method:odgi",
+      "relation": "uses_method",
+      "evidence": [
+        {
+          "sourceType": "paper",
+          "sourceId": "sorghum-pangenome-reference-2026",
+          "doi": "10.1038/s41586-026-10229-9",
+          "note": "高粱泛基因组参考研究实际使用 ODGI 进行图拓扑分析与路径检查。",
+          "verificationStatus": "source_checked"
+        }
+      ]
+    },
+    {
+      "id": "paper:sorghum-pangenome-reference-2026|uses_method|method:vg",
+      "source": "paper:sorghum-pangenome-reference-2026",
+      "target": "method:vg",
+      "relation": "uses_method",
+      "evidence": [
+        {
+          "sourceType": "paper",
+          "sourceId": "sorghum-pangenome-reference-2026",
+          "doi": "10.1038/s41586-026-10229-9",
+          "note": "高粱泛基因组参考研究实际使用 vg 进行图索引与结构处理。",
           "verificationStatus": "source_checked"
         }
       ]
@@ -11376,8 +11375,8 @@
           "sourceType": "frontmatter",
           "sourceId": "tea-comparative",
           "doi": "10.3389/fpls.2024.1449006",
-          "note": "植物应用研究 \"tea-comparative\" 在生物信息学分析流程中实际使用了 \"cafe5\"。",
-          "verificationStatus": "source_checked"
+          "note": "植物应用研究 \"Genomic analyses of agronomic traits in tea plants and related Camellia species\" 在生物信息学分析流程中使用了算法 \"cafe5\"。",
+          "verificationStatus": "structurally_valid"
         }
       ]
     },
@@ -11391,8 +11390,8 @@
           "sourceType": "frontmatter",
           "sourceId": "tea-comparative",
           "doi": "10.3389/fpls.2024.1449006",
-          "note": "植物应用研究 \"tea-comparative\" 在生物信息学分析流程中实际使用了 \"mcscanx\"。",
-          "verificationStatus": "source_checked"
+          "note": "植物应用研究 \"Genomic analyses of agronomic traits in tea plants and related Camellia species\" 在生物信息学分析流程中使用了算法 \"mcscanx\"。",
+          "verificationStatus": "structurally_valid"
         }
       ]
     },
@@ -11406,8 +11405,8 @@
           "sourceType": "frontmatter",
           "sourceId": "tea-comparative",
           "doi": "10.3389/fpls.2024.1449006",
-          "note": "植物应用研究 \"tea-comparative\" 在生物信息学分析流程中实际使用了 \"orthofinder\"。",
-          "verificationStatus": "source_checked"
+          "note": "植物应用研究 \"Genomic analyses of agronomic traits in tea plants and related Camellia species\" 在生物信息学分析流程中使用了算法 \"orthofinder\"。",
+          "verificationStatus": "structurally_valid"
         }
       ]
     },
@@ -11421,8 +11420,8 @@
           "sourceType": "frontmatter",
           "sourceId": "tea-comparative",
           "doi": "10.3389/fpls.2024.1449006",
-          "note": "植物应用研究 \"tea-comparative\" 在生物信息学分析流程中实际使用了 \"paml\"。",
-          "verificationStatus": "source_checked"
+          "note": "植物应用研究 \"Genomic analyses of agronomic traits in tea plants and related Camellia species\" 在生物信息学分析流程中使用了算法 \"paml\"。",
+          "verificationStatus": "structurally_valid"
         }
       ]
     },
@@ -11664,8 +11663,8 @@
           "sourceType": "frontmatter",
           "sourceId": "wheat-methylome-2015",
           "doi": "10.1186/s13059-015-0838-3",
-          "note": "植物应用研究 \"wheat-methylome-2015\" 在生物信息学分析流程中实际使用了 \"bismark\"。",
-          "verificationStatus": "source_checked"
+          "note": "植物应用研究 \"A genome-wide survey of DNA methylation in hexaploid wheat\" 在生物信息学分析流程中使用了算法 \"bismark\"。",
+          "verificationStatus": "structurally_valid"
         }
       ]
     },
@@ -11707,8 +11706,8 @@
           "sourceType": "frontmatter",
           "sourceId": "wild-rice-pangenome-2025",
           "doi": "10.1038/s41586-025-08883-6",
-          "note": "植物应用研究 \"wild-rice-pangenome-2025\" 在生物信息学分析流程中实际使用了 \"hifiasm\"。",
-          "verificationStatus": "source_checked"
+          "note": "植物应用研究 \"A pangenome reference of wild and cultivated rice\" 在生物信息学分析流程中使用了算法 \"hifiasm\"。",
+          "verificationStatus": "structurally_valid"
         }
       ]
     },
@@ -11722,8 +11721,8 @@
           "sourceType": "frontmatter",
           "sourceId": "wild-rice-pangenome-2025",
           "doi": "10.1038/s41586-025-08883-6",
-          "note": "植物应用研究 \"wild-rice-pangenome-2025\" 在生物信息学分析流程中实际使用了 \"minigraph\"。",
-          "verificationStatus": "source_checked"
+          "note": "植物应用研究 \"A pangenome reference of wild and cultivated rice\" 在生物信息学分析流程中使用了算法 \"minigraph\"。",
+          "verificationStatus": "structurally_valid"
         }
       ]
     },
@@ -11737,8 +11736,8 @@
           "sourceType": "frontmatter",
           "sourceId": "wild-rice-pangenome-2025",
           "doi": "10.1038/s41586-025-08883-6",
-          "note": "植物应用研究 \"wild-rice-pangenome-2025\" 在生物信息学分析流程中实际使用了 \"minigraph-cactus\"。",
-          "verificationStatus": "source_checked"
+          "note": "植物应用研究 \"A pangenome reference of wild and cultivated rice\" 在生物信息学分析流程中使用了算法 \"minigraph-cactus\"。",
+          "verificationStatus": "structurally_valid"
         }
       ]
     },
@@ -11752,8 +11751,8 @@
           "sourceType": "frontmatter",
           "sourceId": "wild-rice-pangenome-2025",
           "doi": "10.1038/s41586-025-08883-6",
-          "note": "植物应用研究 \"wild-rice-pangenome-2025\" 在生物信息学分析流程中实际使用了 \"minimap2\"。",
-          "verificationStatus": "source_checked"
+          "note": "植物应用研究 \"A pangenome reference of wild and cultivated rice\" 在生物信息学分析流程中使用了算法 \"minimap2\"。",
+          "verificationStatus": "structurally_valid"
         }
       ]
     },
@@ -11767,8 +11766,8 @@
           "sourceType": "frontmatter",
           "sourceId": "wild-rice-pangenome-2025",
           "doi": "10.1038/s41586-025-08883-6",
-          "note": "植物应用研究 \"wild-rice-pangenome-2025\" 在生物信息学分析流程中实际使用了 \"mummer4\"。",
-          "verificationStatus": "source_checked"
+          "note": "植物应用研究 \"A pangenome reference of wild and cultivated rice\" 在生物信息学分析流程中使用了算法 \"mummer4\"。",
+          "verificationStatus": "structurally_valid"
         }
       ]
     },
@@ -11782,8 +11781,8 @@
           "sourceType": "frontmatter",
           "sourceId": "wild-rice-pangenome-2025",
           "doi": "10.1038/s41586-025-08883-6",
-          "note": "植物应用研究 \"wild-rice-pangenome-2025\" 在生物信息学分析流程中实际使用了 \"syri\"。",
-          "verificationStatus": "source_checked"
+          "note": "植物应用研究 \"A pangenome reference of wild and cultivated rice\" 在生物信息学分析流程中使用了算法 \"syri\"。",
+          "verificationStatus": "structurally_valid"
         }
       ]
     },
@@ -11797,8 +11796,8 @@
           "sourceType": "frontmatter",
           "sourceId": "wild-rice-pangenome-2025",
           "doi": "10.1038/s41586-025-08883-6",
-          "note": "植物应用研究 \"wild-rice-pangenome-2025\" 在生物信息学分析流程中实际使用了 \"vg\"。",
-          "verificationStatus": "source_checked"
+          "note": "植物应用研究 \"A pangenome reference of wild and cultivated rice\" 在生物信息学分析流程中使用了算法 \"vg\"。",
+          "verificationStatus": "structurally_valid"
         }
       ]
     },
@@ -11812,8 +11811,8 @@
           "sourceType": "frontmatter",
           "sourceId": "wild-rice-pangenome-2025",
           "doi": "10.1038/s41586-025-08883-6",
-          "note": "植物应用研究 \"wild-rice-pangenome-2025\" 在生物信息学分析流程中实际使用了 \"yahs\"。",
-          "verificationStatus": "source_checked"
+          "note": "植物应用研究 \"A pangenome reference of wild and cultivated rice\" 在生物信息学分析流程中使用了算法 \"yahs\"。",
+          "verificationStatus": "structurally_valid"
         }
       ]
     },
@@ -11855,8 +11854,8 @@
           "sourceType": "frontmatter",
           "sourceId": "xanthoceras",
           "doi": "10.1038/s41597-025-05057-x",
-          "note": "植物应用研究 \"xanthoceras\" 在生物信息学分析流程中实际使用了 \"hifiasm\"。",
-          "verificationStatus": "source_checked"
+          "note": "植物应用研究 \"Two haplotype-resolved telomere-to-telomere genome assemblies of Xanthoceras sorbifolium\" 在生物信息学分析流程中使用了算法 \"hifiasm\"。",
+          "verificationStatus": "structurally_valid"
         }
       ]
     },
@@ -11870,8 +11869,8 @@
           "sourceType": "frontmatter",
           "sourceId": "xanthoceras",
           "doi": "10.1038/s41597-025-05057-x",
-          "note": "植物应用研究 \"xanthoceras\" 在生物信息学分析流程中实际使用了 \"verkko\"。",
-          "verificationStatus": "source_checked"
+          "note": "植物应用研究 \"Two haplotype-resolved telomere-to-telomere genome assemblies of Xanthoceras sorbifolium\" 在生物信息学分析流程中使用了算法 \"verkko\"。",
+          "verificationStatus": "structurally_valid"
         }
       ]
     },
@@ -11921,21 +11920,6 @@
           "sourceType": "frontmatter",
           "sourceId": "xpehh-paper",
           "note": "文献 \"xpehh-paper\" 归属于领域 \"population-genetics\"。",
-          "verificationStatus": "structurally_valid"
-        }
-      ]
-    },
-    {
-      "id": "paper:xpehh-paper|references_method|method:selscan",
-      "source": "paper:xpehh-paper",
-      "target": "method:selscan",
-      "relation": "references_method",
-      "evidence": [
-        {
-          "sourceType": "frontmatter",
-          "sourceId": "xpehh-paper",
-          "doi": "10.1038/nature06250",
-          "note": "方法学论文 \"xpehh-paper\" 引用、讨论或集成了算法 \"selscan\"。",
           "verificationStatus": "structurally_valid"
         }
       ]

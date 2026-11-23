@@ -6,7 +6,7 @@ year: 2007
 journal: Nature
 doi: 10.1038/nature06250
 type: method
-methodIds: [selscan]
+methodIds: []
 domainIds: [population-genetics]
 speciesIds: []
 status: published
