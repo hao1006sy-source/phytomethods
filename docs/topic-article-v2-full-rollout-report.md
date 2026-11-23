@@ -68,4 +68,4 @@
 
 ## 发布状态
 
-开发分支：`feat/topic-article-v2-full-rollout`。最终提交：`8c6a7b2899ce755605131cbf7010a7f3ad67aec2`。PR #16：<https://github.com/hao1006sy-source/phytomethods/pull/16>，状态 Open，目标 `main`，未合并。最新 CI `validate` 于 2026-11-23 通过：<https://github.com/hao1006sy-source/phytomethods/actions/runs/45091141957/job/137420719518>。
+开发分支：`feat/topic-article-v2-full-rollout`。报告提交：`a606bc0`。PR #16：<https://github.com/hao1006sy-source/phytomethods/pull/16>，状态 Open，目标 `main`，未合并。最新 CI `validate` 于 2026-11-23 通过：<https://github.com/hao1006sy-source/phytomethods/actions/runs/45091507319/job/137421894220>。
