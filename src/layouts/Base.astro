@@ -4,7 +4,7 @@ import '../styles/global.css';
 import '../styles/home.css';
 import '../styles/nav-v3.css';
 import BrandLogo from '../components/BrandLogo.astro';
-const { title = 'PhytoMethods', home = false } = Astro.props;
+const { title = 'PhytoMethods', home = false, description = '植物基因组学与生物信息学方法知识库，涵盖基因组组装、注释、泛基因组、群体遗传、GWAS、表观组学、单细胞及调控网络等九大研究领域的算法工具、经典文献与实战教程。' } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const path = Astro.url.pathname;
 const nav = [
@@ -23,8 +23,8 @@ const isCurrent = (href: string) => href ? path.startsWith(`${base}${href}`) : p
 <html lang="zh-CN">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="description" content="植物基因组学与生物信息学方法知识库" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
     <title>{title} | PhytoMethods</title>
   </head>

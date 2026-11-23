@@ -24,7 +24,7 @@ const relatedMethods = methods.filter((method) => metadata.methodIds.includes(me
 const relatedPapers = papers.filter((paper) => metadata.paperIds.includes(paper.id));
 const relatedTutorials = tutorials.filter((tutorial) => metadata.tutorialIds.includes(tutorial.id));
 ---
-<Base title={entry.data.title}>
+<Base title={entry.data.title} description={entry.data.summary}>
   <DraftPreview status={entry.data.status} />
   <TopicArticleLayout
     entry={entry}
