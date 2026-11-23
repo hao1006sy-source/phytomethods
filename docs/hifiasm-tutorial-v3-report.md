@@ -44,3 +44,5 @@
 outputs/hifiasm-tutorial-v3 包含旧版、首轮、最终首屏、七尺寸长图、安装代码特写、SVG/截图与放大状态、前后对比、浏览器与外链 JSON。最终交付同步 D 盘任务目录。
 
 无阻断性问题。PR 保持未合并，等待视觉验收。
+
+提交：3623a05。PR：https://github.com/hao1006sy-source/phytomethods/pull/27（开放待验收）。
