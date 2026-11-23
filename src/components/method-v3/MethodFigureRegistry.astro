@@ -1,0 +1,7 @@
+---
+import Diagram from '../Diagram.astro';
+import ScientificFigure from '../ScientificFigure.astro';
+const { methodId } = Astro.props;
+---
+{methodId === 'verkko' && <Diagram kind="verkko" />}
+{methodId === 'merqury' && <><Diagram kind="merqury" /><ScientificFigure kind="spectrum" /></>}

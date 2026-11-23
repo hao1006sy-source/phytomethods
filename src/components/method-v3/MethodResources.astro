@@ -1,4 +1,83 @@
 ---
-const {paper,application,entry,tutorial,relatedTopics,methods}=Astro.props;const base=import.meta.env.BASE_URL;
+const {
+  paper,
+  application,
+  applications: applicationList,
+  entry,
+  tutorial,
+  relatedTopics = [],
+  methods = [],
+  applicationSpecies,
+  externalResources = [],
+} = Astro.props;
+const base = import.meta.env.BASE_URL;
+const legacyMode = applicationList === undefined;
+const applications = applicationList ?? (application ? [application] : []);
+const relatedMethods = methods
+  .filter((method: any) => method.id !== entry.id && relatedTopics.some((topic: any) => topic.methodIds.includes(method.id)))
+  .slice(0, 6);
+const testedLabel = (tested: string) => tested === 'verified'
+  ? '已用示例数据运行验证'
+  : tested === 'template'
+    ? '命令已核对，真实数据待验证'
+    : '尚未运行验证';
 ---
-<aside class="method-resources" aria-label="相关科研资源">{paper&&<section class="method-resource-card"><h2>方法学论文</h2><div><p class="resource-citation">{paper.data.authors} · {paper.data.journal} · {paper.data.year}</p><a class="resource-paper-title" href={`${base}papers/${paper.id}/`}>{paper.data.title}</a><p>{paper.data.summary}</p><a href={`https://doi.org/${paper.data.doi}`} target="_blank" rel="noreferrer">DOI: {paper.data.doi} ↗</a></div></section>}{application&&<section class="method-resource-card"><h2>植物研究案例</h2><div><p class="resource-citation"><i>Macadamia jansenii</i> · {application.data.year}</p><p>{application.data.summary}</p><a href={`${base}papers/${application.id}/`}>阅读研究 →</a></div></section>}<section class="method-resource-card"><h2>相关科研资源</h2><ul><li><a href={entry.data.repository} target="_blank" rel="noreferrer">官方 GitHub ↗</a><small>源代码与使用说明</small></li><li><a href="https://hifiasm.readthedocs.io/en/latest/interpreting-output.html" target="_blank" rel="noreferrer">Hifiasm 输出解释 ↗</a><small>按运行模式解读组装图</small></li>{tutorial&&<li><a href={`${base}tutorials/${tutorial.id}/`}>{tutorial.data.title} →</a><small>{tutorial.data.tested==='verified'?'已用示例数据运行验证':tutorial.data.tested==='template'?'命令已核对，真实数据待验证':'尚未运行验证'}</small></li>}{methods.filter((m:any)=>m.id==='merqury').map((m:any)=><li><a href={`${base}methods/${m.id}/`}>{m.data.name} 质量评估 →</a></li>)}{relatedTopics.map((t:any)=><li><a href={`${base}topics/${t.domainId}/${t.id}/`}>{t.title} →</a></li>)}</ul></section></aside>
+
+<aside class="method-resources" aria-label="相关科研资源">
+  {paper && <section class="method-resource-card">
+    <h2>方法学论文</h2>
+    <div>
+      <p class="resource-citation">{paper.data.authors} · {paper.data.journal} · {paper.data.year}</p>
+      <a class="resource-paper-title" href={`${base}papers/${paper.id}/`}>{paper.data.title}</a>
+      <p>{paper.data.summary}</p>
+      {paper.data.doi && <a href={`https://doi.org/${paper.data.doi}`} target="_blank" rel="noreferrer">DOI: {paper.data.doi} ↗</a>}
+    </div>
+  </section>}
+
+  {legacyMode && application && <section class="method-resource-card">
+    <h2>植物研究案例</h2>
+    <div>
+      <p class="resource-citation"><i>{applicationSpecies}</i> · {application.data.year}</p>
+      <p>{application.data.summary}</p>
+      <a href={`${base}papers/${application.id}/`}>阅读研究 →</a>
+    </div>
+  </section>}
+
+  {!legacyMode && applications.length > 0 && <section class="method-resource-card">
+    <h2>植物研究案例</h2>
+    {applications.map((item: any) => <div class="method-application-entry">
+      <a class="resource-paper-title" href={`${base}papers/${item.id}/`}>{item.data.title}</a>
+      <p>{item.data.summary}</p>
+      <a href={`${base}papers/${item.id}/`}>阅读研究 →</a>
+    </div>)}
+  </section>}
+
+  <section class="method-resource-card">
+    <h2>{legacyMode ? '相关科研资源' : '相关资源'}</h2>
+    <ul>
+      <li>
+        <a href={entry.data.repository} target="_blank" rel="noreferrer">{legacyMode ? '官方 GitHub ↗' : '官方代码或项目网站 ↗'}</a>
+        <small>{legacyMode ? '源代码与使用说明' : entry.data.version ? `版本：${entry.data.version}` : '代码与官方使用资料'}</small>
+      </li>
+      {externalResources.map((resource: any) => <li>
+        <a href={resource.url} target="_blank" rel="noreferrer">{resource.title} ↗</a>
+        <small>{resource.description}</small>
+      </li>)}
+      {tutorial && <li>
+        <a href={`${base}tutorials/${tutorial.id}/`}>{tutorial.data.title} →</a>
+        <small>{testedLabel(tutorial.data.tested)}</small>
+      </li>}
+      {legacyMode && methods.filter((method: any) => method.id === 'merqury').map((method: any) => <li>
+        <a href={`${base}methods/${method.id}/`}>{method.data.name} 质量评估 →</a>
+      </li>)}
+      {relatedTopics.map((topic: any) => <li>
+        <a href={`${base}topics/${topic.domainId}/${topic.id}/`}>{topic.title}{legacyMode ? '' : ' →'}</a>
+        {!legacyMode && <small>相关专题</small>}
+      </li>)}
+      {!legacyMode && relatedMethods.map((method: any) => <li>
+        <a href={`${base}methods/${method.id}/`}>{method.data.name} →</a>
+        <small>共同关联专题</small>
+      </li>)}
+    </ul>
+  </section>
+</aside>

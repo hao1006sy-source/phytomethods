@@ -10,7 +10,8 @@
     "check": "astro check",
     "validate": "npm run build && node scripts/check-home-curation.mjs && node scripts/check-domain-v2.mjs && python scripts/check-links.py",
     "coverage": "node scripts/content-coverage.mjs",
-    "test:figure-a11y": "node scripts/browser-test-figure-a11y.mjs"
+    "test:figure-a11y": "node scripts/browser-test-figure-a11y.mjs",
+    "test:methods-v3": "node scripts/browser-test-method-v3-full-rollout.mjs"
   },
   "dependencies": {
     "@astrojs/markdown-remark": "^7.3.10",
