@@ -7,6 +7,8 @@ import AnnotationOverview from '../AnnotationOverview.astro';
 import AnnotationFigure from '../AnnotationFigure.astro';
 import PangenomeOverview from '../PangenomeOverview.astro';
 import PangenomeFigure from '../PangenomeFigure.astro';
+import MethodComparisonMatrix from './MethodComparisonMatrix.astro';
+import ContentFeedback from '../ContentFeedback.astro';
 import './domain-v2.css';
 
 const { domain } = Astro.props;
@@ -60,11 +62,15 @@ const figurePath = `${base}images/domain-v2/${id}.svg`;
       </section>
       <section id="dv2-topics"><h2>七大专题</h2><div class="m01-topic-list">{topics.map((topic) => <a href={`${base}topics/${slug}/${topic.id}/`}><span class="m01-number">{String(topic.order).padStart(2, '0')}</span><strong>{topic.title}</strong><span class="m01-summary">{topic.summary}</span><span class="m01-read">阅读专题 →</span></a>)}</div></section>
       <section id="dv2-methods"><h2>关键方法与工具</h2><div class="m01-method-list">{methods.map((method) => <a href={`${base}methods/${method.id}/`}><strong>{method.data.name}</strong><span>{method.data.summary}</span><span aria-hidden="true">→</span></a>)}</div></section>
+      <MethodComparisonMatrix domainId={slug} />
       {(id === 'M02' || id === 'M03') && <section id="dv2-background" class="m01-background"><h2>研究背景与详细图解</h2>{id === 'M02' ? <><AnnotationOverview /><AnnotationFigure kind="m02-topic-01" /></> : <><PangenomeOverview /><PangenomeFigure kind="m03-topic-07" /></>}</section>}
       <section id="dv2-resources"><h2>研究资源</h2><div class="m01-resource-links"><a href={`${base}papers/`}>全部文献 →</a><a href={`${base}tutorials/`}>分析教程 →</a><a href={`${base}methods/`}>全部算法与工具 →</a></div>
         {papers.length > 0 && <div class="domain-resource-list"><h3>相关文献</h3>{papers.slice(0, 4).map((paper) => <a href={`${base}papers/${paper.id}/`}><strong>{paper.data.title}</strong><span>{paper.data.year} · {paper.data.journal}</span></a>)}</div>}
         {tutorials.length > 0 && <div class="domain-resource-list"><h3>相关教程</h3>{tutorials.map((tutorial) => <a href={`${base}tutorials/${tutorial.id}/`}><strong>{tutorial.data.title}</strong><span>验证状态：{tutorial.data.tested}</span></a>)}</div>}
       </section>
+      <div style="margin-top: 2rem;">
+        <ContentFeedback pageTitle={`${id} ${title} 研究领域`} sourcePath="src/data/domains.ts" />
+      </div>
     </article>
 
     <aside class="m01-panels" aria-label="领域相关资源">

@@ -1,0 +1,925 @@
+---
+import Base from '../../layouts/Base.astro';
+import ContentFeedback from '../../components/ContentFeedback.astro';
+import { researchWorkflows } from '../../data/workflows';
+
+const base = import.meta.env.BASE_URL;
+const workflows = researchWorkflows;
+---
+
+<Base
+  title="端到端科研工作流 (Workflows) · PhytoMethods"
+  description="植物基因组学与生物信息学经典端到端分析路线图：从基因组组装、泛基因组构建，到群体变异检测、GWAS 关联分析及转录调控网络 WGCNA。"
+>
+  <main class="workflows-page">
+    <!-- 顶部 Banner -->
+    <header class="workflows-hero">
+      <div class="hero-container">
+        <div class="badge-row">
+          <span class="platform-badge">END-TO-END WORKFLOWS</span>
+          <span class="status-badge">3 条核心端到端学术路线</span>
+        </div>
+        <h1 class="hero-title">端到端科研工作流路线图</h1>
+        <p class="hero-subtitle">
+          打破单一工具孤岛，系统化串联从“原始测序数据”到“生物学科学发现”的标准化植物生物信息分析全流程。
+        </p>
+      </div>
+    </header>
+
+    <div class="workflows-container">
+      <!-- 路线导航切换栏 -->
+      <nav class="workflows-nav-tabs" aria-label="工作流路线切换">
+        {workflows.map((wf, index) => (
+          <button
+            class={`workflow-tab-btn ${index === 0 ? 'active' : ''}`}
+            data-target={wf.id}
+            type="button"
+          >
+            <span class="tab-index">0{index + 1}</span>
+            <div class="tab-info">
+              <strong class="tab-title">{wf.title}</strong>
+              <span class="tab-en">{wf.englishTitle}</span>
+            </div>
+          </button>
+        ))}
+      </nav>
+
+      <!-- 工作流内容展示区 -->
+      <div class="workflows-content-wrapper">
+        {workflows.map((wf, index) => (
+          <article
+            class={`workflow-detail-panel ${index === 0 ? 'active' : ''}`}
+            id={`panel-${wf.id}`}
+            aria-label={wf.title}
+          >
+            <!-- 工作流基本规格卡片 -->
+            <section class="workflow-overview-card">
+              <div class="overview-top">
+                <span class="overview-tag">路线概述</span>
+                <h2 class="overview-heading">{wf.title}</h2>
+                <p class="overview-en">{wf.englishTitle}</p>
+                <p class="overview-summary">{wf.summary}</p>
+              </div>
+
+              <div class="overview-meta-grid">
+                <div class="meta-card">
+                  <span class="meta-label">适用研究场景</span>
+                  <span class="meta-val">{wf.targetScenario}</span>
+                </div>
+                <div class="meta-card">
+                  <span class="meta-label">代表性植物应用</span>
+                  <div class="pill-list">
+                    {wf.plantCases.map((plant) => (
+                      <span class="plant-pill">{plant}</span>
+                    ))}
+                  </div>
+                </div>
+                <div class="meta-card full-span">
+                  <span class="meta-label">推荐硬件算力规划</span>
+                  <span class="meta-val font-mono">{wf.recommendedCompute}</span>
+                </div>
+              </div>
+
+              <!-- 流程逻辑拓扑卡片 -->
+              <div class="diagram-section">
+                <h3 class="diagram-title">阶段流向全景图</h3>
+                <div class="diagram-box">
+                  <pre class="mermaid">{wf.mermaidDiagram}</pre>
+                </div>
+              </div>
+            </section>
+
+            <!-- 阶段详情列表 -->
+            <section class="phases-timeline-section">
+              <h3 class="timeline-heading">路线执行阶段详解 ({wf.phases.length} 个步骤)</h3>
+
+              <div class="phases-list">
+                {wf.phases.map((phase) => (
+                  <div class="phase-step-card" id={`phase-${phase.id}`}>
+                    <div class="phase-badge-col">
+                      <div class="phase-number-circle">P{phase.order}</div>
+                      <div class="phase-line"></div>
+                    </div>
+
+                    <div class="phase-body">
+                      <div class="phase-header">
+                        <div class="phase-title-group">
+                          <h4 class="phase-title">
+                            阶段 {phase.order}：{phase.title}
+                          </h4>
+                          <span class="phase-subtitle-en">{phase.englishTitle}</span>
+                        </div>
+                        {phase.estimatedDuration && (
+                          <span class="duration-badge">⏱ {phase.estimatedDuration}</span>
+                        )}
+                      </div>
+
+                      <p class="phase-desc">{phase.summary}</p>
+
+                      <!-- 核心推荐工具与命令 -->
+                      <div class="tools-spec-box">
+                        <h5 class="spec-subtitle">推荐工具与参数模板：</h5>
+                        <div class="tools-grid">
+                          {phase.recommendedTools.map((t) => (
+                            <div class="tool-card">
+                              <div class="tool-header">
+                                <a href={`${base}methods/${t.methodId}/`} class="tool-link">
+                                  {t.name} →
+                                </a>
+                                <span class="tool-role">{t.role}</span>
+                              </div>
+                              {t.recommendedParams && (
+                                <div class="cmd-snippet">
+                                  <span class="cmd-label">核心参数示例:</span>
+                                  <code>{t.recommendedParams}</code>
+                                </div>
+                              )}
+                              {t.alternativeMethodIds && t.alternativeMethodIds.length > 0 && (
+                                <div class="alt-methods">
+                                  <span class="alt-label">备选/同类工具:</span>
+                                  {t.alternativeMethodIds.map((alt) => (
+                                    <a href={`${base}methods/${alt}/`} class="alt-link">
+                                      {alt}
+                                    </a>
+                                  ))}
+                                </div>
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      <!-- 输入输出矩阵 -->
+                      <div class="io-matrix-grid">
+                        <div class="io-box io-input">
+                          <span class="io-title">📥 标准输入数据</span>
+                          <ul class="io-list">
+                            {phase.inputData.map((inp) => (
+                              <li>{inp}</li>
+                            ))}
+                          </ul>
+                        </div>
+                        <div class="io-box io-output">
+                          <span class="io-title">📤 核心产出数据</span>
+                          <ul class="io-list">
+                            {phase.outputData.map((out) => (
+                              <li>{out}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+
+                      <!-- 质控要点与避坑指南 -->
+                      <div class="qc-checkpoints-box">
+                        <span class="qc-title">🎯 关键质控标准与避坑点：</span>
+                        <ul class="qc-list">
+                          {phase.qualityCheckpoints.map((qc) => (
+                            <li>{qc}</li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      <!-- 关联教程直达 -->
+                      {phase.tutorialId && (
+                        <div class="related-tutorial-bar">
+                          <span class="tutorial-tip">📖 本站对应实战教程：</span>
+                          <a href={`${base}tutorials/${phase.tutorialId}/`} class="tutorial-btn">
+                            前往 {phase.title} 实战教程与小型测试数据 →
+                          </a>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          </article>
+        ))}
+      </div>
+
+      <!-- 页面底部反馈与编辑 -->
+      <section class="feedback-section">
+        <ContentFeedback
+          pageTitle="端到端科研工作流路线图"
+          sourcePath="src/data/workflows/index.ts"
+        />
+      </section>
+    </div>
+  </main>
+</Base>
+
+<!-- 客户端标签页交互与 Mermaid 图形渲染脚本 -->
+<script>
+  // 选项卡切换
+  const tabs = document.querySelectorAll<HTMLButtonElement>('.workflow-tab-btn');
+  const panels = document.querySelectorAll<HTMLElement>('.workflow-detail-panel');
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const targetId = tab.getAttribute('data-target');
+      if (!targetId) return;
+
+      tabs.forEach((t) => t.classList.remove('active'));
+      tab.classList.add('active');
+
+      panels.forEach((p) => {
+        if (p.id === `panel-${targetId}`) {
+          p.classList.add('active');
+        } else {
+          p.classList.remove('active');
+        }
+      });
+
+      // 同步 URL Hash
+      if (history.replaceState) {
+        history.replaceState(null, '', `#${targetId}`);
+      }
+    });
+  });
+
+  // 读取初始 Hash
+  if (window.location.hash) {
+    const hashId = window.location.hash.slice(1);
+    const matchedTab = document.querySelector<HTMLButtonElement>(`[data-target="${hashId}"]`);
+    if (matchedTab) {
+      matchedTab.click();
+    }
+  }
+
+  // 动态按需加载 Mermaid
+  async function renderMermaidCharts() {
+    const mermaidNodes = document.querySelectorAll('.mermaid');
+    if (mermaidNodes.length === 0) return;
+
+    try {
+      // @ts-ignore
+      const { default: mermaid } = await import(/* @vite-ignore */ 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs');
+      const isDark = document.documentElement.classList.contains('dark');
+      mermaid.initialize({
+        startOnLoad: false,
+        theme: isDark ? 'dark' : 'neutral',
+        fontFamily: 'Inter, system-ui, sans-serif'
+      });
+      await mermaid.run({
+        nodes: mermaidNodes
+      });
+    } catch (e) {
+      console.warn('Mermaid rendering fallback to plain pre-formatted text', e);
+    }
+  }
+
+  renderMermaidCharts();
+</script>
+
+<style>
+  .workflows-page {
+    padding-bottom: 4rem;
+  }
+
+  .workflows-hero {
+    background: linear-gradient(180deg, #f0fdf4 0%, #ffffff 100%);
+    border-bottom: 1px solid var(--color-border, #e2e8f0);
+    padding: 3rem 1.5rem 2.5rem;
+    text-align: center;
+  }
+
+  :global(.dark) .workflows-hero {
+    background: linear-gradient(180deg, #052e16 0%, #0b0f17 100%);
+  }
+
+  .hero-container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .badge-row {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .platform-badge {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    background: #166534;
+    color: #ffffff;
+    padding: 0.2rem 0.6rem;
+    border-radius: 9999px;
+  }
+
+  .status-badge {
+    font-size: 0.75rem;
+    font-weight: 600;
+    background: #dcfce7;
+    color: #15803d;
+    padding: 0.2rem 0.6rem;
+    border-radius: 9999px;
+  }
+
+  .hero-title {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: var(--color-text-heading, #0f172a);
+    margin: 0.5rem 0 0.75rem;
+    letter-spacing: -0.02em;
+  }
+
+  .hero-subtitle {
+    font-size: 1.05rem;
+    color: var(--color-text-secondary, #475569);
+    line-height: 1.6;
+    margin: 0 auto;
+  }
+
+  .workflows-container {
+    max-width: 1200px;
+    margin: 2rem auto 0;
+    padding: 0 1.5rem;
+  }
+
+  /* 选项卡栏 */
+  .workflows-nav-tabs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 860px) {
+    .workflows-nav-tabs {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .workflows-hero {
+      padding: 2rem 1rem 1.5rem;
+    }
+    .hero-title {
+      font-size: 1.6rem;
+    }
+    .workflows-container {
+      padding: 0 0.75rem;
+      margin-top: 1.25rem;
+    }
+    .workflow-overview-card {
+      padding: 1.25rem 0.875rem;
+      border-radius: 12px;
+    }
+    .overview-heading {
+      font-size: 1.3rem;
+    }
+    .overview-meta-grid {
+      grid-template-columns: 1fr;
+      padding: 0.75rem;
+    }
+    .phase-step-card {
+      padding: 1rem 0.75rem;
+      gap: 0.75rem;
+      flex-direction: column;
+    }
+    .phase-badge-col {
+      flex-direction: row;
+      gap: 0.5rem;
+      align-items: center;
+    }
+    .phase-line {
+      display: none;
+    }
+    .io-matrix-grid {
+      grid-template-columns: 1fr;
+    }
+    .diagram-box {
+      padding: 0.75rem;
+    }
+    .cmd-snippet code {
+      word-break: break-all;
+      white-space: pre-wrap;
+    }
+  }
+
+  .workflow-tab-btn {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.25rem;
+    background: var(--color-surface, #ffffff);
+    border: 1px solid var(--color-border, #e2e8f0);
+    border-radius: 12px;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.2s ease;
+  }
+
+  .workflow-tab-btn:hover {
+    border-color: #22c55e;
+    background: var(--color-surface-hover, #f8fafc);
+  }
+
+  .workflow-tab-btn.active {
+    border-color: #16a34a;
+    background: #f0fdf4;
+    box-shadow: 0 4px 12px rgba(22, 163, 74, 0.12);
+  }
+
+  :global(.dark) .workflow-tab-btn.active {
+    background: #14532d33;
+    border-color: #22c55e;
+  }
+
+  .tab-index {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #16a34a;
+    line-height: 1;
+  }
+
+  .tab-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .tab-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--color-text-heading, #0f172a);
+    line-height: 1.4;
+  }
+
+  .tab-en {
+    font-size: 0.75rem;
+    color: var(--color-text-muted, #94a3b8);
+  }
+
+  /* 详情面板展示与隐藏 */
+  .workflow-detail-panel {
+    display: none;
+  }
+
+  .workflow-detail-panel.active {
+    display: block;
+    animation: fadeIn 0.25s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* 概览卡片 */
+  .workflow-overview-card {
+    background: var(--color-surface, #ffffff);
+    border: 1px solid var(--color-border, #e2e8f0);
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 2.5rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+  }
+
+  .overview-tag {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #16a34a;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .overview-heading {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--color-text-heading, #0f172a);
+    margin: 0.35rem 0 0.25rem;
+  }
+
+  .overview-en {
+    font-size: 0.9rem;
+    color: var(--color-text-muted, #94a3b8);
+    margin: 0 0 1rem;
+  }
+
+  .overview-summary {
+    font-size: 1.05rem;
+    color: var(--color-text-body, #334155);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .overview-meta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+    background: var(--color-surface-secondary, #f8fafc);
+    padding: 1.25rem;
+    border-radius: 10px;
+    border: 1px solid var(--color-border-subtle, #f1f5f9);
+    margin-bottom: 1.5rem;
+  }
+
+  .meta-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .meta-card.full-span {
+    grid-column: 1 / -1;
+  }
+
+  .meta-label {
+    font-size: 0.75rem;
+    color: var(--color-text-muted, #94a3b8);
+    font-weight: 600;
+  }
+
+  .meta-val {
+    font-size: 0.9rem;
+    color: var(--color-text-heading, #1e293b);
+    font-weight: 500;
+  }
+
+  .pill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .plant-pill {
+    background: #e2e8f0;
+    color: #334155;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+  }
+
+  :global(.dark) .plant-pill {
+    background: #334155;
+    color: #e2e8f0;
+  }
+
+  /* 流程图区域 */
+  .diagram-section {
+    margin-top: 1.5rem;
+  }
+
+  .diagram-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-text-heading, #0f172a);
+    margin: 0 0 0.75rem;
+  }
+
+  .diagram-box {
+    background: var(--color-surface-secondary, #f8fafc);
+    border: 1px dashed var(--color-border, #cbd5e1);
+    border-radius: 8px;
+    padding: 1.5rem;
+    overflow-x: auto;
+    text-align: center;
+  }
+
+  .diagram-box pre.mermaid {
+    margin: 0 auto;
+    display: inline-block;
+  }
+
+  /* 阶段时间线列表 */
+  .timeline-heading {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--color-text-heading, #0f172a);
+    margin-bottom: 1.5rem;
+  }
+
+  .phases-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .phase-step-card {
+    display: flex;
+    gap: 1.25rem;
+    background: var(--color-surface, #ffffff);
+    border: 1px solid var(--color-border, #e2e8f0);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+  }
+
+  .phase-badge-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .phase-number-circle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #16a34a;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 0.85rem;
+  }
+
+  .phase-line {
+    flex-grow: 1;
+    width: 2px;
+    background: var(--color-border, #e2e8f0);
+    margin-top: 0.5rem;
+  }
+
+  .phase-body {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .phase-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .phase-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--color-text-heading, #0f172a);
+    margin: 0 0 0.2rem;
+  }
+
+  .phase-subtitle-en {
+    font-size: 0.8rem;
+    color: var(--color-text-muted, #94a3b8);
+  }
+
+  .duration-badge {
+    font-size: 0.75rem;
+    font-weight: 600;
+    background: #f1f5f9;
+    color: #475569;
+    padding: 0.2rem 0.5rem;
+    border-radius: 6px;
+  }
+
+  :global(.dark) .duration-badge {
+    background: #1e293b;
+    color: #94a3b8;
+  }
+
+  .phase-desc {
+    font-size: 0.95rem;
+    color: var(--color-text-body, #334155);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* 工具规格 */
+  .tools-spec-box {
+    background: var(--color-surface-secondary, #f8fafc);
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--color-border-subtle, #f1f5f9);
+  }
+
+  .spec-subtitle {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--color-text-heading, #0f172a);
+    margin: 0 0 0.5rem;
+  }
+
+  .tools-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .tool-card {
+    background: var(--color-surface, #ffffff);
+    border: 1px solid var(--color-border, #e2e8f0);
+    padding: 0.75rem;
+    border-radius: 6px;
+  }
+
+  .tool-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.35rem;
+    flex-wrap: wrap;
+  }
+
+  .tool-link {
+    font-weight: 700;
+    color: #16a34a;
+    text-decoration: none;
+    font-size: 0.95rem;
+  }
+
+  .tool-link:hover {
+    text-decoration: underline;
+  }
+
+  .tool-role {
+    font-size: 0.8rem;
+    color: var(--color-text-secondary, #64748b);
+  }
+
+  .cmd-snippet {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin-top: 0.35rem;
+  }
+
+  .cmd-label {
+    font-size: 0.7rem;
+    color: var(--color-text-muted, #94a3b8);
+  }
+
+  .cmd-snippet code {
+    background: var(--color-code-bg, #0f172a);
+    color: var(--color-code-text, #f8fafc);
+    padding: 0.35rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-family: ui-monospace, SFMono-Regular, monospace;
+    overflow-x: auto;
+  }
+
+  .alt-methods {
+    margin-top: 0.4rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.75rem;
+  }
+
+  .alt-label {
+    color: var(--color-text-muted, #94a3b8);
+  }
+
+  .alt-link {
+    color: #0284c7;
+    text-decoration: none;
+  }
+
+  .alt-link:hover {
+    text-decoration: underline;
+  }
+
+  /* 输入输出矩阵 */
+  .io-matrix-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  @media (max-width: 700px) {
+    .io-matrix-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .io-box {
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+  }
+
+  .io-input {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+  }
+
+  :global(.dark) .io-input {
+    background: #14532d22;
+    border-color: #14532d;
+  }
+
+  .io-output {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+  }
+
+  :global(.dark) .io-output {
+    background: #1e293b22;
+    border-color: #334155;
+  }
+
+  .io-title {
+    font-weight: 700;
+    color: var(--color-text-heading, #0f172a);
+    display: block;
+    margin-bottom: 0.35rem;
+  }
+
+  .io-list {
+    margin: 0;
+    padding-left: 1.25rem;
+    color: var(--color-text-body, #334155);
+  }
+
+  .io-list li {
+    margin-bottom: 0.25rem;
+  }
+
+  /* 质控标准 */
+  .qc-checkpoints-box {
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  :global(.dark) .qc-checkpoints-box {
+    background: #78350f22;
+    border-color: #78350f;
+  }
+
+  .qc-title {
+    font-weight: 700;
+    color: #92400e;
+    display: block;
+    margin-bottom: 0.35rem;
+  }
+
+  :global(.dark) .qc-title {
+    color: #fde68a;
+  }
+
+  .qc-list {
+    margin: 0;
+    padding-left: 1.25rem;
+    color: #78350f;
+  }
+
+  :global(.dark) .qc-list {
+    color: #fef3c7;
+  }
+
+  .qc-list li {
+    margin-bottom: 0.25rem;
+  }
+
+  /* 关联教程 */
+  .related-tutorial-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+  }
+
+  :global(.dark) .related-tutorial-bar {
+    background: #1e3a8a22;
+    border-color: #1e3a8a;
+  }
+
+  .tutorial-tip {
+    font-weight: 600;
+    color: #1d4ed8;
+  }
+
+  :global(.dark) .tutorial-tip {
+    color: #93c5fd;
+  }
+
+  .tutorial-btn {
+    font-weight: 700;
+    color: #1d4ed8;
+    text-decoration: none;
+  }
+
+  .tutorial-btn:hover {
+    text-decoration: underline;
+  }
+
+  .feedback-section {
+    margin-top: 4rem;
+  }
+</style>

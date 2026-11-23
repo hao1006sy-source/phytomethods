@@ -1,5 +1,7 @@
 ---
 import AssemblyOverview from '../AssemblyOverview.astro';
+import MethodComparisonMatrix from './MethodComparisonMatrix.astro';
+import ContentFeedback from '../ContentFeedback.astro';
 import {topicMetadata} from '../../data/topics';
 import {domains} from '../../data/domains';
 import {getCollection} from 'astro:content';
@@ -20,8 +22,9 @@ const stages=[['样本与数据准备','样本鉴定、DNA 提取与测序设计
 <section id="m01-workflow"><h2>技术路线：从测序到染色体组装</h2><ol class="m01-workflow">{stages.map(([name,desc],i)=><li><span class="m01-stage-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d={['M10 3h7l1 3-7 14H5L4 17l7-14M8 12l5 2','M4 6c0-4 16-4 16 0v12c0 4-16 4-16 0ZM4 6c0 4 16 4 16 0M4 12c0 4 16 4 16 0','M5 18 11 5l8 13M5 18h14','M7 3c-7 7 15 11 10 18M17 3c7 7-15 11-10 18','M4 20v-7h4v7m4 0V8h4v12m4 0V3h3v17'][i]}/></svg></span><div><strong>{name}</strong><p>{desc}</p></div></li>)}</ol><p class="m01-caption">概括性技术路线：各阶段可选择不同方法；图示并非单一软件的内部算法。</p></section>
 <section id="m01-topics"><h2>七大专题</h2><div class="m01-topic-list">{topics.map(t=><a href={`${base}topics/genome-assembly/${t.id}/`}><span class="m01-number">{String(t.order).padStart(2,'0')}</span><strong>{t.title}</strong><span class="m01-summary">{t.summary}</span><span class="m01-read">阅读专题 →</span></a>)}</div></section>
 <section id="m01-methods"><h2>关键方法与工具</h2><div class="m01-method-list">{methods.map(m=><a href={`${base}methods/${m.id}/`}><strong>{m.data.name}</strong><span>{m.data.summary}</span><span aria-hidden="true">→</span></a>)}</div></section>
+<MethodComparisonMatrix domainId="genome-assembly" />
 <section id="m01-background" class="m01-background"><h2>研究背景与方法</h2><AssemblyOverview/></section>
-<section id="m01-resources"><h2>研究资源</h2><div class="m01-resource-links"><a href={`${base}papers/`}>方法论文与植物案例 →</a><a href={`${base}tutorials/hifiasm-intro/`}>Hifiasm 组装入门 →</a><a href={`${base}tutorials/`}>全部分析教程 →</a></div></section></article>
+<section id="m01-resources"><h2>研究资源</h2><div class="m01-resource-links"><a href={`${base}papers/`}>方法论文与植物案例 →</a><a href={`${base}tutorials/hifiasm-intro/`}>Hifiasm 组装入门 →</a><a href={`${base}tutorials/`}>全部分析教程 →</a></div></section><div style="margin-top:2rem;"><ContentFeedback pageTitle="M01 测序与基因组组装 研究领域" sourcePath="src/data/domains.ts" /></div></article>
 <aside class="m01-panels"><section><h2><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 8 9-5 9 5-9 5ZM3 12l9 5 9-5M3 16l9 5 9-5"/></svg>核心方法与工具</h2><div>{methods.map(m=><a class="m01-tool" href={`${base}methods/${m.id}/`}><strong>{m.data.name}</strong><span>{m.data.summary}</span></a>)}<a class="m01-more" href={`${base}methods/`}>查看全部方法与工具 →</a></div></section><section><h2><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5C8 2 4 3 3 4v15c4-2 7-1 9 1 2-2 5-3 9-1V4c-1-1-5-2-9 1ZM12 5v15"/></svg>推荐阅读</h2><div><ul>{topics.map(t=><li><a href={`${base}topics/genome-assembly/${t.id}/`}>{t.title}</a></li>)}</ul><a class="m01-more" href={`${base}papers/`}>查看全部文献 →</a></div></section><section><h2><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 17 6-12 6 12M6 17h12"/><circle cx="12" cy="5" r="3"/><circle cx="5" cy="18" r="3"/><circle cx="19" cy="18" r="3"/></svg>相关研究领域</h2><div>{domains.filter(d=>['M02','M03','M04'].includes(d[0])).map(d=><a class="m01-related" href={`${base}topics/${d[1]}/`}><strong>{d[0]}</strong><span>{d[2]}</span></a>)}</div></section></aside></div></div>
 <script>
 const root=document.querySelector('.m01-v2');

@@ -186,6 +186,32 @@ td {
   stroke: currentColor;
 }
 
+/* KaTeX 数学公式响应式与移动端水平滚动保护 */
+.katex-display {
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  padding: 0.5rem 0 !important;
+  margin: 1rem 0 !important;
+  -webkit-overflow-scrolling: touch;
+}
+
+.katex {
+  font-size: 1.05em;
+  max-width: 100%;
+}
+
+/* 深色模式下的数学公式适应 */
+html[data-theme="dark"] .katex {
+  color: #e2e8f0;
+}
+
+/* Mermaid 流程图容器保护 */
+.mermaid {
+  max-width: 100%;
+  overflow-x: auto;
+  text-align: center;
+}
+
 /* 打印保持黑白清晰 */
 @media print {
   html, body {
