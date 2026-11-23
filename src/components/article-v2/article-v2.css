@@ -11,3 +11,4 @@ body:has(.topic-v2) .brand-mark svg{display:none}body:has(.topic-v2) .brand-mark
 .topic-v2 .article-toc a:first-of-type{background:transparent}
 .topic-v2 .article-toc a.active{background:#e0f0e5}
 @media(max-width:1100px){.topic-v2 .article-right{display:none}.topic-v2 .article-mobile-toc{display:block;padding:12px;background:#edf6f0;margin-bottom:20px;border-radius:6px}.topic-v2 .article-mobile-toc nav a{display:block;padding:5px;color:#25362f}}
+@media(max-width:700px){.topic-v2 .article-content .table-scroll--wide::before{content:'表格可横向滑动查看';display:block;color:#60736a;font-size:12px;margin:0 0 8px}}
