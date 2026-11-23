@@ -39,17 +39,13 @@ const baseUrl = import.meta.env.BASE_URL;
     <!-- 三栏主探索区 -->
     <main class="explorer-main">
       <!-- 左栏：控制与多维检索 -->
-      <KnowledgeFilterPanel nodesByType={stats.nodesByType} />
+      <KnowledgeFilterPanel stats={stats} />
 
       <!-- 中栏：网络拓扑画布 -->
       <KnowledgeCanvas />
 
       <!-- 右栏：实体与科学证据详情 -->
-      <KnowledgeInspector 
-        totalNodes={totalNodes} 
-        totalEdges={totalEdges} 
-        totalEvidence={totalEvidence} 
-      />
+      <KnowledgeInspector stats={stats} />
     </main>
 
     <!-- 内联全量知识图谱数据，保证零网络延迟且支持离线/静态发布 -->
