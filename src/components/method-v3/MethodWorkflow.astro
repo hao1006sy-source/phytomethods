@@ -1,0 +1,4 @@
+---
+const {steps}=Astro.props;
+---
+<p class="method-caption">概括性分析流程 · 用于理解分析任务，软件内部实现以论文与版本文档为准</p><ol class="method-workflow">{steps.map((s:{name:string,text:string},i:number)=><li><h3><span>{String(i+1).padStart(2,'0')}</span>{s.name}</h3><p>{s.text}</p></li>)}</ol>
