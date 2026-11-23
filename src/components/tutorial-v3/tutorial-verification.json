@@ -297,7 +297,12 @@
     "reviewedAt": "2026-11-24",
     "unverifiedScope": "植物家族分析、模型选择、多起点优化及参数敏感性；Gamma 搜索期间数值失败警告需保留解读",
     "documentedCommands": [
-      "cafe5 -t data/mammals_integral_tree.txt \\\n  -i data/filtered_cafe_input.txt \\\n  -p -k 2 -c 4 -o cafe5_results"
+      "git clone --branch v5.1 --depth 1 https://github.com/hahnlab/CAFE5.git CAFE5\ncd CAFE5\ntest \"$(git rev-parse HEAD)\" = 8d3ab080796eafa192241a1067398832d886592d\nautoreconf -fi\n./configure\nmake -j4\n./bin/cafe5 -h",
+      "python3 examples/cafe5/check-inputs.py \\\n  --tree examples/cafe5/inputs/mammals_tree.txt \\\n  --table examples/cafe5/inputs/mammal_gene_families.txt \\\n  --output input-validation.json",
+      "\"$CAFE5_BIN\" -t examples/cafe5/inputs/mammals_tree.txt \\\n  -i examples/cafe5/inputs/mammal_gene_families.txt \\\n  -p -c 4 -o results-base",
+      "\"$CAFE5_BIN\" -t examples/cafe5/inputs/mammals_tree.txt \\\n  -i examples/cafe5/inputs/mammal_gene_families.txt \\\n  -p -k 2 -c 4 -o results-gamma",
+      "python3 examples/cafe5/check-results.py \\\n  --inputs examples/cafe5/inputs \\\n  --results examples/cafe5/verified-20261123\nnpm run check:cafe5",
+      "export CAFE5_BIN=/absolute/path/CAFE5/bin/cafe5\nbash examples/cafe5/run-example.sh /absolute/path/new-cafe5-verification"
     ],
     "executionEvidenceScope": "完整官方输入的基础与 Gamma 模型均退出 0；逐家族 ID、叶计数和结果数值核验通过；原始日志保留搜索警告"
   }
