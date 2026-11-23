@@ -1,0 +1,239 @@
+---
+import { hifiasmPaperSections, hifiasmPaperMeta } from './hifiasm-paper';
+import PaperHeader from './PaperHeader.astro';
+import PaperSidebar from './PaperSidebar.astro';
+import PaperResources from './PaperResources.astro';
+import PaperFigure from './PaperFigure.astro';
+import PaperNotes from './PaperNotes.astro';
+import CitationModal from './CitationModal.astro';
+import './paper-v3.css';
+
+interface Props {
+  entry: any;
+  methods?: any[];
+  papers?: any[];
+  tutorials?: any[];
+}
+
+const { entry } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const meta = hifiasmPaperMeta;
+const sections = hifiasmPaperSections;
+---
+
+<div class="paper-v3">
+  <!-- 顶部文献信息与操作栏 -->
+  <PaperHeader meta={meta} />
+
+  <!-- 三栏核心区域 -->
+  <div class="paper-columns">
+    <!-- 左侧：目录导航 -->
+    <PaperSidebar sections={sections} />
+
+    <!-- 中间：文献核心深度内容 -->
+    <main class="paper-main" aria-label="文献深度解读">
+      <!-- 1. 核心贡献 (突出展示) -->
+      <section id="paper-contributions" class="paper-section">
+        <h2 class="paper-section-title">
+          <span aria-hidden="true">🎯</span> 核心贡献与创新
+        </h2>
+        <div class="paper-contribution-card">
+          <div class="paper-contribution-summary">
+            {meta.coreContributionSummary}
+          </div>
+          <div class="paper-highlights-grid">
+            {meta.highlights.map(item => (
+              <div class="paper-highlight-item">
+                <div class="paper-highlight-header">
+                  <span class="paper-highlight-icon" aria-hidden="true">{item.icon}</span>
+                  <span class="paper-highlight-title">{item.title}</span>
+                </div>
+                <p class="paper-highlight-desc">{item.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. 研究背景 -->
+      <section id="paper-background" class="paper-section">
+        <h2 class="paper-section-title">
+          <span aria-hidden="true">📖</span> 研究背景与解决的科学问题
+        </h2>
+        <div class="paper-prose">
+          <p>
+            在真核生物基因组学研究中，获得<strong>单倍型解析（Haplotype-resolved）</strong>的高质量基因组对于理解等位基因特异性表达、显性互补、染色体结构变异（SV）以及作物杂种优势至关重要。然而在过去二十年中，从二代短读长到早期的三代长读长组装算法，都面临着共同的算法难题：
+          </p>
+          <ul>
+            <li><strong>等位基因坍缩假象</strong>：传统组装流程在遇到杂合区段时，由于无法有效区分杂合变异与测序错误，往往将两条同源染色体的序列强行压合成一条单一的“共识伪单倍型”，造成大量杂合位点丢失，并在杂合边界处产生断裂。</li>
+            <li><strong>外源分相依赖与高成本</strong>：以往的单倍型组装策略（如 TrioCanu 或 Falcon-Unzip）高度依赖昂贵的家系亲本测序数据（trio-binning）或复杂的染色质构象捕获（Hi-C）技术。分析流水线繁琐，对样品收集要求极高，难以广泛适用于非模式生物与野生植物。</li>
+            <li><strong>高准确度长读段的技术突破</strong>：随着 PacBio 高保真长读段（HiFi reads，平均长度 10–25 kb，测序准确度超过 99.9%）的普及，长读段兼备了跨越复杂重复序列的能力与精确识别单核苷酸变异（SNV）的准确性。这为在组装图层面直接保留并解析全部单倍型提供了前所未有的可能。</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 3. 方法原理与图解 -->
+      <section id="paper-methods" class="paper-section">
+        <h2 class="paper-section-title">
+          <span aria-hidden="true">⚙️</span> 核心算法思想与流程图解
+        </h2>
+        <div class="paper-prose">
+          <p>
+            Hifiasm 的核心设计理念是将<strong>单倍型分相（Phasing）直接内生于组装图构建的全过程</strong>，而非组装完成后的修补工作。其整体计算流程包括三大核心步骤：
+          </p>
+          <ol>
+            <li><strong>高保真重叠与错误纠正</strong>：利用所有读段间的高准确度全长比对信息，区分真实杂合变异位点与残余测序噪音，纠正个别插入/缺失错误，同时完好保留所有的真实杂合 SNV。</li>
+            <li><strong>构建相位组装图（Phased Assembly Graph, PAG）</strong>：将读段重叠转化为弦图结构。与传统方法提前合并杂合分支不同，PAG 原生保留了代表不同单倍型等位基因的分岔气泡（bubble），从而保留了所有的遗传多样性。</li>
+            <li><strong>气泡解开与单倍型路径提取</strong>：通过图遍历算法追踪相连的分岔，识别单倍型块（phase blocks）。在 HiFi-only 模式下输出部分相位的单倍型重叠群；若输入 Hi-C 接触数据或亲本特异 k-mer，则利用跨距离连接信息完成全染色体尺度的连续分相。</li>
+          </ol>
+        </div>
+
+        <!-- 流程图组件 -->
+        <PaperFigure />
+      </section>
+
+      <!-- 4. 关键结果与科学意义 -->
+      <section id="paper-results" class="paper-section">
+        <h2 class="paper-section-title">
+          <span aria-hidden="true">📊</span> 关键评估结果与科学意义
+        </h2>
+        <div class="paper-prose">
+          <p>
+            论文在人类基准数据集（如 GIAB HG002）以及跨越不同界门物种的真核生物数据集上对 Hifiasm 进行了严谨的定量基准评测：
+          </p>
+        </div>
+
+        <div class="paper-table-wrapper">
+          <table class="paper-table">
+            <thead>
+              <tr>
+                <th>测试数据集</th>
+                <th>基因组特性</th>
+                <th>Contig N50 (Mb)</th>
+                <th>开关错误率 (Switch Error)</th>
+                <th>计算耗时 (CPU 小时)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>人类 HG002 (HiFi-only)</strong></td>
+                <td>3.1 Gb, 二倍体哺乳动物</td>
+                <td>25.4</td>
+                <td>0.54%</td>
+                <td>&lt; 50 h</td>
+              </tr>
+              <tr>
+                <td><strong>人类 HG002 (Trio-binning)</strong></td>
+                <td>结合父本/母本 Illumina k-mer</td>
+                <td>70.3</td>
+                <td>0.22%</td>
+                <td>&lt; 65 h</td>
+              </tr>
+              <tr>
+                <td><strong>加州红杉 (Sequoia)</strong></td>
+                <td>约 30 Gb, 复杂异源六倍体</td>
+                <td>1.92</td>
+                <td>保持多倍体图结构</td>
+                <td>~ 850 h (同类工具数倍提速)</td>
+              </tr>
+              <tr>
+                <td><strong>拟南芥 (Arabidopsis)</strong></td>
+                <td>135 Mb, 植物经典模式</td>
+                <td>14.8 (近染色体臂级)</td>
+                <td>&lt; 0.1%</td>
+                <td>&lt; 2 h</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="paper-prose">
+          <p>
+            <strong>科学意义</strong>：评测结果表明，Hifiasm 在连续性（Contig N50 提升 2–4 倍）、准确性（单倍型开关错误率降低至原来的一半以下）和计算开销上均大幅超越了同期的主流工具。其对超大基因组（如 30 Gb 红杉）的成功解析，确立了植物基因组学迈入高质量单倍型组装时代的重要基石。
+          </p>
+        </div>
+      </section>
+
+      <!-- 5. 植物研究应用案例 -->
+      <section id="paper-applications" class="paper-section">
+        <h2 class="paper-section-title">
+          <span aria-hidden="true">🌿</span> 植物科研实践与典型案例
+        </h2>
+        <div class="paper-prose">
+          <p>
+            植物基因组普遍存在全基因组加倍（WGD）、高杂合度、高度重复序列与转座子富集的特征，常被生信领域视为组装的“深水区”。Hifiasm 问世后迅速成为全球植物演化与功能基因组学研究的标配工具。
+          </p>
+          <div class="paper-related-grid">
+            <a href={`${base}papers/macadamia/`} class="paper-related-item">
+              <span class="paper-related-tag">植物应用论文标杆 ｜ The Plant Journal 2022</span>
+              <h3 class="paper-related-title">De novo chromosome level assembly of a plant genome from long read sequence data</h3>
+              <p class="paper-related-meta">
+                Sharma P et al. ｜ 聚焦澳大利亚濒危坚果植物 <em>Macadamia jansenii</em>（基因组 ~800 Mb）。利用 28× PacBio HiFi 数据与 Hifiasm 组装，在 14 条染色体中有 8 条仅由单个连续 contig 覆盖（其中 6 条两端均含有完整端粒），Contig N50 高达 46.1 Mb，BUSCO 评估 99.6%，为多年生木本植物组装提供了绝佳示范。
+              </p>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. 关联资源 -->
+      <section id="paper-resources" class="paper-section">
+        <h2 class="paper-section-title">
+          <span aria-hidden="true">🔗</span> 关联算法、专题与分析教程
+        </h2>
+        <div class="paper-prose">
+          <p>PhytoMethods 知识网络已将本论文与以下计算方法、研究专题及可复现实操紧密串联：</p>
+          <ul>
+            <li><strong>相关计算工具</strong>：<a href={`${base}methods/hifiasm/`}>Hifiasm 算法详情页 →</a>，系统阅读其参数配置、输入输出规范与内存需求。</li>
+            <li><strong>相关研究专题</strong>：<a href={`${base}topics/genome-assembly/sequencing-data/`}>M01 测序技术与数据基础 →</a>，全面了解 HiFi、ONT、Illumina 数据的互补设计。</li>
+            <li><strong>实战分析教程</strong>：<a href={`${base}tutorials/hifiasm-intro/`}>使用 Hifiasm 进行植物基因组组装教程 →</a>，已用真实测试数据全流程验证。</li>
+            <li><strong>官方开源仓库</strong>：<a href="https://github.com/chhylp123/hifiasm" target="_blank" rel="noreferrer">GitHub - chhylp123/hifiasm ↗</a> 与 <a href="https://hifiasm.readthedocs.io/" target="_blank" rel="noreferrer">官方文档 ↗</a>。</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 7. 精读笔记 -->
+      <section id="paper-notes" class="paper-section">
+        <h2 class="paper-section-title">
+          <span aria-hidden="true">📝</span> 结构化精读笔记
+        </h2>
+        <PaperNotes />
+      </section>
+
+      <!-- 8. 相关文献推荐 -->
+      <section id="paper-related-papers" class="paper-section">
+        <h2 class="paper-section-title">
+          <span aria-hidden="true">📚</span> 延伸阅读与相关文献
+        </h2>
+        <div class="paper-related-grid">
+          <a href={`${base}papers/merqury/`} class="paper-related-item">
+            <span class="paper-related-tag">质控方法论文 ｜ Genome Biology 2020</span>
+            <h3 class="paper-related-title">Merqury: reference-free quality, completeness, and phasing assessment for genome assemblies</h3>
+            <p class="paper-related-meta">Rhie A et al. ｜ 基于无参 k-mer 的组装质量评估金标准，专门用于评测 Hifiasm 组装结果的 QV 准确度与单倍型分相纯度。</p>
+          </a>
+          <a href={`${base}papers/verkko/`} class="paper-related-item">
+            <span class="paper-related-tag">下一代 T2T 组装 ｜ Nature Biotechnology 2023</span>
+            <h3 class="paper-related-title">Verkko: telomere-to-telomere assembly of diploid chromosomes with gapless phased assembly graphs</h3>
+            <p class="paper-related-meta">Rautiainen M et al. ｜ 结合 HiFi reads 与超长 ONT reads，在 Hifiasm 理念基础上进一步实现无缺口端到端端粒到端粒（T2T）组装。</p>
+          </a>
+        </div>
+      </section>
+
+      <!-- 底部导航与操作 -->
+      <nav class="paper-pagination" aria-label="文献浏览导航">
+        <a href={`${base}papers/`} class="paper-nav-back">← 返回文献索引列表</a>
+        <a href={`${base}papers/macadamia/`} class="paper-nav-next">推荐阅读：Macadamia jansenii 组装应用案例 →</a>
+      </nav>
+    </main>
+
+    <!-- 右侧：文献信息、关联内容、植物应用卡片 -->
+    <PaperResources meta={meta} />
+  </div>
+
+  <!-- 引用弹窗 Modal -->
+  <CitationModal
+    bibtex={meta.bibtex}
+    apa={meta.apa}
+    gb7714={meta.gb7714}
+    title={meta.title}
+  />
+</div>

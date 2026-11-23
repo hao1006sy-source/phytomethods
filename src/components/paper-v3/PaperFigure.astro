@@ -1,0 +1,155 @@
+---
+// PaperFigure.astro - Hifiasm 方法流程与相位组装图矢量示意图
+---
+
+<figure class="paper-figure-card">
+  <div class="paper-figure-header">
+    <h4 class="paper-figure-title">hifiasm 方法流程示意图</h4>
+  </div>
+  <div class="paper-figure-visual" role="region" aria-label="hifiasm 方法流程图，可横向滑动或点击放大查看" tabindex="0">
+    <svg viewBox="0 0 860 210" role="img" aria-labelledby="hifiasm-flow-title hifiasm-flow-desc">
+      <title id="hifiasm-flow-title">hifiasm 方法流程示意图：从 HiFi reads 到单倍型组装</title>
+      <desc id="hifiasm-flow-desc">包含三个核心阶段：高保真长读段 HiFi reads，重叠比对并构建包含分相分支的相位组装图 PAG，解开路径分别输出单倍型组装 Hap1 和 Hap2。</desc>
+      
+      <defs>
+        <!-- 渐变定义 -->
+        <linearGradient id="hap1Grad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#0e6548" />
+          <stop offset="100%" stop-color="#199970" />
+        </linearGradient>
+        <linearGradient id="hap2Grad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#c98a2c" />
+          <stop offset="100%" stop-color="#e5a93b" />
+        </linearGradient>
+        <!-- 箭头标记 -->
+        <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#0e6548" />
+        </marker>
+        <marker id="arrow-sub" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+          <path d="M 0 2 L 6 5 L 0 8 z" fill="#65786e" />
+        </marker>
+      </defs>
+
+      <g font-family="Inter, 'Noto Sans SC', system-ui, sans-serif">
+        <!-- 阶段一：HiFi reads -->
+        <g transform="translate(20, 20)">
+          <!-- 阶段标题 -->
+          <text x="75" y="22" font-size="14" font-weight="700" fill="#104a36" text-anchor="middle">HiFi reads</text>
+          <text x="75" y="38" font-size="11.5" fill="#65786e" text-anchor="middle">(高保真长读长)</text>
+          
+          <!-- 背景框 -->
+          <rect x="0" y="50" width="150" height="96" rx="8" fill="#f4faf6" stroke="#dfebe3" stroke-width="1.2" />
+          
+          <!-- Reads 条形示意 -->
+          <!-- Read 1 -->
+          <path d="M 16 68 L 134 68" stroke="#8cb5a3" stroke-width="3.5" stroke-linecap="round" />
+          <circle cx="50" cy="68" r="3" fill="#0e6548" />
+          <circle cx="102" cy="68" r="3" fill="#c98a2c" />
+          
+          <!-- Read 2 -->
+          <path d="M 24 86 L 126 86" stroke="#8cb5a3" stroke-width="3.5" stroke-linecap="round" />
+          <circle cx="50" cy="86" r="3" fill="#0e6548" />
+          <circle cx="85" cy="86" r="3" fill="#0e6548" />
+
+          <!-- Read 3 -->
+          <path d="M 16 104 L 134 104" stroke="#8cb5a3" stroke-width="3.5" stroke-linecap="round" />
+          <circle cx="85" cy="104" r="3" fill="#0e6548" />
+          <circle cx="102" cy="104" r="3" fill="#c98a2c" />
+
+          <!-- Read 4 -->
+          <path d="M 30 122 L 120 122" stroke="#8cb5a3" stroke-width="3.5" stroke-linecap="round" />
+          <circle cx="50" cy="122" r="3" fill="#0e6548" />
+          <circle cx="102" cy="122" r="3" fill="#c98a2c" />
+
+          <text x="75" y="160" font-size="11" fill="#65786e" text-anchor="middle">长读长保留杂合变异位点</text>
+        </g>
+
+        <!-- 箭头 1: 重叠与图构建 -->
+        <g transform="translate(185, 80)">
+          <path d="M 5 18 L 65 18" stroke="#0e6548" stroke-width="2.2" stroke-dasharray="3,3" marker-end="url(#arrow)" />
+          <rect x="8" y="-12" width="54" height="20" rx="4" fill="#ecf7ef" />
+          <text x="35" y="2" font-size="11.5" font-weight="600" fill="#0e6548" text-anchor="middle">重叠与</text>
+          <text x="35" y="32" font-size="11.5" font-weight="600" fill="#0e6548" text-anchor="middle">图构建</text>
+        </g>
+
+        <!-- 阶段二：相位组装图 (PAG) -->
+        <g transform="translate(270, 20)">
+          <!-- 阶段标题 -->
+          <text x="145" y="22" font-size="14" font-weight="700" fill="#104a36" text-anchor="middle">相位组装图</text>
+          <text x="145" y="38" font-size="11.5" fill="#65786e" text-anchor="middle">(Phased Assembly Graph, PAG)</text>
+
+          <!-- 背景框 -->
+          <rect x="0" y="50" width="290" height="96" rx="8" fill="#fdfbf7" stroke="#e8dfce" stroke-width="1.2" />
+
+          <!-- PAG 组装图网络 -->
+          <!-- 骨干和气泡分支连接线 -->
+          <!-- 进线 -->
+          <path d="M 25 98 L 70 98" stroke="#1b332a" stroke-width="2.8" stroke-linecap="round" />
+          
+          <!-- 上气泡分支 (Hap1 路径) -->
+          <path d="M 70 98 Q 100 70 145 70 T 220 98" stroke="#0e6548" stroke-width="3" fill="none" />
+          
+          <!-- 下气泡分支 (Hap2 路径) -->
+          <path d="M 70 98 Q 100 126 145 126 T 220 98" stroke="#c98a2c" stroke-width="3" fill="none" />
+          
+          <!-- 出线 -->
+          <path d="M 220 98 L 265 98" stroke="#1b332a" stroke-width="2.8" stroke-linecap="round" />
+
+          <!-- 图节点 Circles -->
+          <circle cx="25" cy="98" r="6" fill="#fff" stroke="#104a36" stroke-width="2" />
+          <circle cx="70" cy="98" r="6.5" fill="#fff" stroke="#104a36" stroke-width="2.2" />
+          
+          <!-- 上分支节点 -->
+          <circle cx="145" cy="70" r="6" fill="#ecf7ef" stroke="#0e6548" stroke-width="2" />
+          <text x="145" y="62" font-size="10.5" font-weight="700" fill="#0e6548" text-anchor="middle">等位型 A</text>
+
+          <!-- 下分支节点 -->
+          <circle cx="145" cy="126" r="6" fill="#fdf6ec" stroke="#c98a2c" stroke-width="2" />
+          <text x="145" y="145" font-size="10.5" font-weight="700" fill="#c98a2c" text-anchor="middle">等位型 B</text>
+
+          <!-- 合流节点 -->
+          <circle cx="220" cy="98" r="6.5" fill="#fff" stroke="#104a36" stroke-width="2.2" />
+          <circle cx="265" cy="98" r="6" fill="#fff" stroke="#104a36" stroke-width="2" />
+
+          <text x="145" y="160" font-size="11" fill="#65786e" text-anchor="middle">在图中保留等位基因分支路径而不坍缩</text>
+        </g>
+
+        <!-- 箭头 2: 图解析解开 -->
+        <g transform="translate(575, 80)">
+          <path d="M 5 18 L 55 18" stroke="#0e6548" stroke-width="2.2" marker-end="url(#arrow)" />
+          <text x="30" y="8" font-size="11" font-weight="600" fill="#0e6548" text-anchor="middle">气泡解开</text>
+          <text x="30" y="32" font-size="10" fill="#65786e" text-anchor="middle">路径分相</text>
+        </g>
+
+        <!-- 阶段三：单倍型组装结果 -->
+        <g transform="translate(645, 20)">
+          <!-- 阶段标题 -->
+          <text x="95" y="22" font-size="14" font-weight="700" fill="#104a36" text-anchor="middle">单倍型组装</text>
+          <text x="95" y="38" font-size="11.5" fill="#65786e" text-anchor="middle">(Haplotype-resolved Assembly)</text>
+
+          <!-- 背景框 -->
+          <rect x="0" y="50" width="190" height="96" rx="8" fill="#f4faf6" stroke="#dfebe3" stroke-width="1.2" />
+
+          <!-- Hap 1 染色体 -->
+          <g transform="translate(20, 72)">
+            <text x="0" y="10" font-size="12" font-weight="750" fill="#0e6548">Hap1</text>
+            <rect x="42" y="0" width="112" height="13" rx="6.5" fill="url(#hap1Grad)" />
+            <circle cx="85" cy="6.5" r="3.5" fill="#fff" opacity="0.8" />
+          </g>
+
+          <!-- Hap 2 染色体 -->
+          <g transform="translate(20, 108)">
+            <text x="0" y="10" font-size="12" font-weight="750" fill="#c98a2c">Hap2</text>
+            <rect x="42" y="0" width="112" height="13" rx="6.5" fill="url(#hap2Grad)" />
+            <circle cx="85" cy="6.5" r="3.5" fill="#fff" opacity="0.8" />
+          </g>
+
+          <text x="95" y="160" font-size="11" fill="#65786e" text-anchor="middle">输出两套染色体级完整单倍型</text>
+        </g>
+      </g>
+    </svg>
+  </div>
+  <figcaption class="paper-figure-caption">
+    <strong>图 1 ｜ hifiasm 算法核心流程与单倍型解析机制示意</strong>。以高准确度（QV > 30）PacBio HiFi reads 为输入，算法直接利用长读长跨越杂合位点，在重叠图中保留等位变异分支，构建相位感知组装图（PAG）。随后通过气泡解开与分相路径追踪（亦可结合亲本特异 k-mer 或 Hi-C 接触数据），分别输出两套高连续性、低切换错误率的二倍体单倍型组装序列（Hap1 与 Hap2）。
+  </figcaption>
+</figure>

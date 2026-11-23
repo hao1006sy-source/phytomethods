@@ -1,0 +1,81 @@
+---
+interface Props {
+  bibtex: string;
+  apa: string;
+  gb7714: string;
+  title: string;
+}
+
+const { bibtex, apa, gb7714 } = Astro.props;
+---
+
+<dialog id="citation-dialog" class="citation-dialog" aria-labelledby="citation-title">
+  <div class="citation-header">
+    <h3 id="citation-title" class="citation-title">引用这篇文献</h3>
+    <button type="button" id="citation-close" class="citation-close-btn" aria-label="关闭引用窗口">✕</button>
+  </div>
+  <div class="citation-tabs" role="tablist">
+    <button type="button" class="citation-tab-btn is-active" data-format="bibtex" role="tab" aria-selected="true">BibTeX</button>
+    <button type="button" class="citation-tab-btn" data-format="apa" role="tab" aria-selected="false">APA</button>
+    <button type="button" class="citation-tab-btn" data-format="gb7714" role="tab" aria-selected="false">GB/T 7714</button>
+  </div>
+  <div id="citation-text" class="citation-box" tabindex="0">{bibtex}</div>
+  <button type="button" id="citation-copy-btn" class="citation-copy-btn">复制引用文本</button>
+</dialog>
+
+<script define:vars={{ bibtex, apa, gb7714 }}>
+  const dialog = document.getElementById('citation-dialog');
+  const closeBtn = document.getElementById('citation-close');
+  const copyBtn = document.getElementById('citation-copy-btn');
+  const citationBox = document.getElementById('citation-text');
+  const tabBtns = document.querySelectorAll('.citation-tab-btn');
+
+  const formats = {
+    bibtex,
+    apa,
+    gb7714
+  };
+
+  let currentFormat = 'bibtex';
+
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabBtns.forEach(b => {
+        b.classList.remove('is-active');
+        b.setAttribute('aria-selected', 'false');
+      });
+      btn.classList.add('is-active');
+      btn.setAttribute('aria-selected', 'true');
+      currentFormat = btn.dataset.format || 'bibtex';
+      if (citationBox) {
+        citationBox.textContent = formats[currentFormat] || '';
+      }
+      if (copyBtn) {
+        copyBtn.textContent = '复制引用文本';
+      }
+    });
+  });
+
+  closeBtn?.addEventListener('click', () => {
+    dialog?.close();
+  });
+
+  dialog?.addEventListener('click', (e) => {
+    if (e.target === dialog) {
+      dialog.close();
+    }
+  });
+
+  copyBtn?.addEventListener('click', async () => {
+    const text = formats[currentFormat] || '';
+    try {
+      await navigator.clipboard.writeText(text);
+      copyBtn.textContent = '✓ 已复制到剪贴板';
+      setTimeout(() => {
+        copyBtn.textContent = '复制引用文本';
+      }, 2500);
+    } catch (err) {
+      copyBtn.textContent = '复制失败，请手动选择复制';
+    }
+  });
+</script>

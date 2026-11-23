@@ -1,0 +1,85 @@
+---
+import type { PaperSection } from './hifiasm-paper';
+
+interface Props {
+  sections: PaperSection[];
+}
+
+const { sections } = Astro.props;
+---
+
+<!-- 桌面端左侧固定目录 -->
+<aside class="paper-sidebar" aria-label="文章快速导航">
+  <div class="paper-sidebar-title">
+    <span aria-hidden="true">📑</span>
+    <span>文章导航</span>
+  </div>
+  <nav class="paper-nav">
+    {sections.map((section, index) => (
+      <a
+        href={`#${section.id}`}
+        class:list={['paper-nav-item', { 'is-active': index === 2 }]}
+        data-paper-nav={section.id}
+      >
+        <span class="paper-nav-num">{section.number}</span>
+        <span>{section.title}</span>
+      </a>
+    ))}
+  </nav>
+</aside>
+
+<!-- 移动端可折叠目录 -->
+<details class="paper-mobile-toc" aria-label="移动端文章导航">
+  <summary>📋 文章导航</summary>
+  <nav class="paper-nav">
+    {sections.map((section) => (
+      <a href={`#${section.id}`} class="paper-nav-item" data-paper-mobile-nav={section.id}>
+        <span class="paper-nav-num">{section.number}</span>
+        <span>{section.title}</span>
+      </a>
+    ))}
+  </nav>
+</details>
+
+<script>
+  // 滚动监听高亮
+  const navLinks = document.querySelectorAll<HTMLAnchorElement>('[data-paper-nav]');
+  const mobileNavLinks = document.querySelectorAll<HTMLAnchorElement>('[data-paper-mobile-nav]');
+  const mobileToc = document.querySelector<HTMLDetailsElement>('.paper-mobile-toc');
+
+  // 点击移动端链接自动关闭折叠菜单
+  mobileNavLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      if (mobileToc) {
+        mobileToc.removeAttribute('open');
+      }
+    });
+  });
+
+  // 使用 IntersectionObserver 监听章节
+  if ('IntersectionObserver' in window) {
+    const sectionIds = Array.from(navLinks).map(link => link.getAttribute('href')?.replace('#', '')).filter(Boolean) as string[];
+    const targetElements = sectionIds.map(id => document.getElementById(id)).filter(Boolean) as HTMLElement[];
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const currentId = entry.target.id;
+          navLinks.forEach(link => {
+            const isActive = link.getAttribute('href') === `#${currentId}`;
+            link.classList.toggle('is-active', isActive);
+            if (isActive) {
+              link.setAttribute('aria-current', 'location');
+            } else {
+              link.removeAttribute('aria-current');
+            }
+          });
+        }
+      });
+    }, {
+      rootMargin: '-10% 0px -70% 0px'
+    });
+
+    targetElements.forEach(el => observer.observe(el));
+  }
+</script>
