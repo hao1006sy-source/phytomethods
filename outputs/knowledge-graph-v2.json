@@ -4,6 +4,7 @@
   "stats": {
     "nodesCount": 303,
     "edgesCount": 740,
+    "evidenceEntriesCount": 798,
     "nodesByType": {
       "domain": 9,
       "method": 58,
@@ -19,17 +20,74 @@
       "extends_method": 3,
       "introduces_method": 58,
       "studies_species": 64,
-      "uses_method": 66,
-      "references_method": 3,
+      "uses_method": 68,
+      "references_method": 1,
       "evaluates_method": 5,
       "features_method": 111,
       "references_paper": 220,
       "guides_method": 10
     },
     "evidenceByStatus": {
+      "source_checked": 541,
       "structurally_valid": 257,
-      "source_checked": 539,
-      "needs_review": 2
+      "needs_review": 0
+    },
+    "evidenceRatiosByStatus": {
+      "source_checked": "67.8%",
+      "structurally_valid": "32.2%",
+      "needs_review": "0.0%"
+    },
+    "evidenceByRelationAndStatus": {
+      "belongs_to_domain": {
+        "source_checked": 0,
+        "structurally_valid": 200,
+        "needs_review": 0
+      },
+      "extends_method": {
+        "source_checked": 3,
+        "structurally_valid": 0,
+        "needs_review": 0
+      },
+      "introduces_method": {
+        "source_checked": 116,
+        "structurally_valid": 0,
+        "needs_review": 0
+      },
+      "studies_species": {
+        "source_checked": 64,
+        "structurally_valid": 0,
+        "needs_review": 0
+      },
+      "uses_method": {
+        "source_checked": 11,
+        "structurally_valid": 57,
+        "needs_review": 0
+      },
+      "references_method": {
+        "source_checked": 1,
+        "structurally_valid": 0,
+        "needs_review": 0
+      },
+      "evaluates_method": {
+        "source_checked": 5,
+        "structurally_valid": 0,
+        "needs_review": 0
+      },
+      "features_method": {
+        "source_checked": 111,
+        "structurally_valid": 0,
+        "needs_review": 0
+      },
+      "references_paper": {
+        "source_checked": 220,
+        "structurally_valid": 0,
+        "needs_review": 0
+      },
+      "guides_method": {
+        "source_checked": 10,
+        "structurally_valid": 0,
+        "needs_review": 0
+      }
     }
   },
   "nodes": [
@@ -8846,21 +8904,6 @@
       ]
     },
     {
-      "id": "paper:mam-positive-selection-2006|references_method|method:paml",
-      "source": "paper:mam-positive-selection-2006",
-      "target": "method:paml",
-      "relation": "references_method",
-      "evidence": [
-        {
-          "sourceType": "frontmatter",
-          "sourceId": "mam-positive-selection-2006",
-          "doi": "10.1073/pnas.0601738103",
-          "note": "[时序冲突警告] 论文发表于 2006 年，早于工具基准文献发布年份 (2007 年)，标记为待核实。",
-          "verificationStatus": "needs_review"
-        }
-      ]
-    },
-    {
       "id": "paper:mam-positive-selection-2006|studies_species|species:arabidopsis",
       "source": "paper:mam-positive-selection-2006",
       "target": "species:arabidopsis",
@@ -8870,6 +8913,21 @@
           "sourceType": "frontmatter",
           "sourceId": "mam-positive-selection-2006",
           "note": "论文 \"mam-positive-selection-2006\" 聚焦植物材料 \"拟南芥\" 展开研究。",
+          "verificationStatus": "source_checked"
+        }
+      ]
+    },
+    {
+      "id": "paper:mam-positive-selection-2006|uses_method|method:paml",
+      "source": "paper:mam-positive-selection-2006",
+      "target": "method:paml",
+      "relation": "uses_method",
+      "evidence": [
+        {
+          "sourceType": "paper",
+          "sourceId": "mam-positive-selection-2006",
+          "doi": "10.1073/pnas.0601738103",
+          "note": "Benderoth 等 (PNAS 2006) 明确使用 PAML 3.14 的 codeml 程序比较 M1a 空模型与 branch-site Model A，开展密码子演化与正选择分析。",
           "verificationStatus": "source_checked"
         }
       ]
@@ -10393,21 +10451,6 @@
       ]
     },
     {
-      "id": "paper:rice-roots-population|references_method|method:gapit",
-      "source": "paper:rice-roots-population",
-      "target": "method:gapit",
-      "relation": "references_method",
-      "evidence": [
-        {
-          "sourceType": "frontmatter",
-          "sourceId": "rice-roots-population",
-          "doi": "10.1371/journal.pgen.1007521",
-          "note": "[时序冲突警告] 论文发表于 2018 年，早于工具基准文献发布年份 (2021 年)，标记为待核实。",
-          "verificationStatus": "needs_review"
-        }
-      ]
-    },
-    {
       "id": "paper:rice-roots-population|studies_species|species:rice",
       "source": "paper:rice-roots-population",
       "target": "species:rice",
@@ -10433,6 +10476,21 @@
           "doi": "10.1371/journal.pgen.1007521",
           "note": "植物应用研究 \"Loci and natural alleles underlying robust roots and adaptive domestication of upland ecotype rice in aerobic conditions\" 在生物信息学分析流程中使用了算法 \"admixture\"。",
           "verificationStatus": "structurally_valid"
+        }
+      ]
+    },
+    {
+      "id": "paper:rice-roots-population|uses_method|method:gapit",
+      "source": "paper:rice-roots-population",
+      "target": "method:gapit",
+      "relation": "uses_method",
+      "evidence": [
+        {
+          "sourceType": "paper",
+          "sourceId": "rice-roots-population",
+          "doi": "10.1371/journal.pgen.1007521",
+          "note": "Zhao 等 (PLOS Genetics 2018) 在 795 份水稻材料中实际使用 GAPIT 计算主成分 (PCA 前 3 个 PC) 与亲缘矩阵 (kinship matrix)，作为 GWAS 混合模型协变量。",
+          "verificationStatus": "source_checked"
         }
       ]
     },

@@ -195,9 +195,14 @@ console.log(`关系类型明细:`);
 for (const [rel, count] of Object.entries(graph.stats.edgesByRelation)) {
   console.log(`  - ${rel}: ${count}`);
 }
-console.log(`科学证据状态统计:`);
+console.log(`科学证据条目统计 (总证据条目数: ${graph.stats.evidenceEntriesCount}):`);
 for (const [status, count] of Object.entries(graph.stats.evidenceByStatus)) {
-  console.log(`  - ${status}: ${count}`);
+  const ratio = graph.stats.evidenceRatiosByStatus?.[status] || '';
+  console.log(`  - ${status}: ${count} (${ratio})`);
+}
+console.log(`关系类型之证据状态分布:`);
+for (const [rel, stMap] of Object.entries(graph.stats.evidenceByRelationAndStatus || {})) {
+  console.log(`  - ${rel}: source_checked=${stMap.source_checked || 0}, structurally_valid=${stMap.structurally_valid || 0}, needs_review=${stMap.needs_review || 0}`);
 }
 
 console.log(`\n=== 完整性校验结果 ===`);

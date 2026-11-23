@@ -179,6 +179,24 @@ export const curatedRelations: CuratedRelationEntry[] = [
     doi: '10.1093/gigascience/giaf121',
     verificationStatus: 'source_checked',
     note: '实际使用 ODGI 进行图展平、覆盖度与图增长统计分析。'
+  },
+  // 19. 拟南芥 MAM 基因簇次生代谢演化分析 -> PAML (明确真实使用历史版本 PAML 3.14)
+  {
+    paperId: 'mam-positive-selection-2006',
+    methodId: 'paml',
+    relation: 'uses_method',
+    doi: '10.1073/pnas.0601738103',
+    verificationStatus: 'source_checked',
+    note: 'Benderoth 等 (PNAS 2006) 明确使用 PAML 3.14 的 codeml 程序比较 M1a 空模型与 branch-site Model A，开展密码子演化与正选择分析。'
+  },
+  // 20. 水稻根系群体适应性演化分析 -> GAPIT (明确真实使用 GAPIT 进行群体结构协变量与亲缘矩阵构建)
+  {
+    paperId: 'rice-roots-population',
+    methodId: 'gapit',
+    relation: 'uses_method',
+    doi: '10.1371/journal.pgen.1007521',
+    verificationStatus: 'source_checked',
+    note: 'Zhao 等 (PLOS Genetics 2018) 在 795 份水稻材料中实际使用 GAPIT 计算主成分 (PCA 前 3 个 PC) 与亲缘矩阵 (kinship matrix)，作为 GWAS 混合模型协变量。'
   }
 ];
 

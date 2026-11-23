@@ -332,12 +332,35 @@ export function buildKnowledgeGraph({
   }
 
   const edgesByRelation: Record<string, number> = {};
-  const evidenceByStatus: Record<string, number> = {};
+  const evidenceByStatus: Record<string, number> = {
+    source_checked: 0,
+    structurally_valid: 0,
+    needs_review: 0
+  };
+  const evidenceByRelationAndStatus: Record<string, Record<string, number>> = {};
+  let totalEvidenceCount = 0;
+
   for (const e of edges) {
     edgesByRelation[e.relation] = (edgesByRelation[e.relation] || 0) + 1;
-    for (const ev of e.evidence) {
-      evidenceByStatus[ev.verificationStatus] = (evidenceByStatus[ev.verificationStatus] || 0) + 1;
+    if (!evidenceByRelationAndStatus[e.relation]) {
+      evidenceByRelationAndStatus[e.relation] = {
+        source_checked: 0,
+        structurally_valid: 0,
+        needs_review: 0
+      };
     }
+    for (const ev of e.evidence) {
+      totalEvidenceCount++;
+      evidenceByStatus[ev.verificationStatus] = (evidenceByStatus[ev.verificationStatus] || 0) + 1;
+      evidenceByRelationAndStatus[e.relation][ev.verificationStatus] =
+        (evidenceByRelationAndStatus[e.relation][ev.verificationStatus] || 0) + 1;
+    }
+  }
+
+  const evidenceRatiosByStatus: Record<string, string> = {};
+  for (const [st, cnt] of Object.entries(evidenceByStatus)) {
+    const ratio = totalEvidenceCount > 0 ? ((cnt / totalEvidenceCount) * 100).toFixed(1) + '%' : '0.0%';
+    evidenceRatiosByStatus[st] = ratio;
   }
 
   return {
@@ -346,9 +369,12 @@ export function buildKnowledgeGraph({
     stats: {
       nodesCount: nodes.length,
       edgesCount: edges.length,
+      evidenceEntriesCount: totalEvidenceCount,
       nodesByType: nodesByType as Record<NodeType, number>,
       edgesByRelation: edgesByRelation as Record<RelationType, number>,
-      evidenceByStatus: evidenceByStatus as Record<VerificationStatus, number>
+      evidenceByStatus: evidenceByStatus as Record<VerificationStatus, number>,
+      evidenceRatiosByStatus: evidenceRatiosByStatus as Record<VerificationStatus, string>,
+      evidenceByRelationAndStatus: evidenceByRelationAndStatus as any
     },
     nodes,
     edges

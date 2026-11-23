@@ -1,5 +1,5 @@
 /**
- * PhytoMethods 知识图谱数据完整性与科学语义准确性自动化测试 V1.1.1
+ * PhytoMethods 知识图谱数据完整性与科学语义准确性自动化测试 V1.1.2
  * (纯数据断言，零外部依赖，毫秒级运行)
  */
 
@@ -10,10 +10,12 @@ import assert from 'node:assert/strict';
 
 import { buildKnowledgeGraph } from '../src/lib/knowledge/graph-builder.ts';
 import { validateKnowledgeGraph } from '../src/lib/knowledge/graph-validator.ts';
+import { methodChronologies, getMethodFirstReleaseYear } from '../src/lib/knowledge/chronology.ts';
+import { resolvePaperMethodRelation } from '../src/lib/knowledge/relation-resolver.ts';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 
-console.log('=== PhytoMethods 知识图谱完整性与科学语义测试 V1.1.1 ===\n');
+console.log('=== PhytoMethods 知识图谱完整性与科学语义测试 V1.1.2 ===\n');
 
 // 1. 读取 outputs/knowledge-graph-v2.json
 const graphPath = join(root, 'outputs/knowledge-graph-v2.json');
@@ -24,7 +26,9 @@ const graph = JSON.parse(rawGraph);
 assert.strictEqual(graph.version, '2.1.0', '图谱 Schema 版本应为 2.1.0');
 assert.ok(Array.isArray(graph.nodes), 'nodes 应为数组');
 assert.ok(Array.isArray(graph.edges), 'edges 应为数组');
-console.log('✓ 断言 1 通过: 图谱 Schema 版本与基础结构规范');
+assert.strictEqual(graph.nodes.length, 303, '节点总数必须为 303');
+assert.strictEqual(graph.edges.length, 740, '关系边总数必须为 740');
+console.log('✓ 断言 1 通过: 图谱 Schema 版本与基础结构规范 (303 节点, 740 关系边)');
 
 // 断言 2: 完整性校验器 0 错误
 const validation = validateKnowledgeGraph(graph);
@@ -119,7 +123,7 @@ const g2 = buildKnowledgeGraph({ papers: pMap, methods: mMap, topics: topMap, tu
 assert.strictEqual(JSON.stringify(g1), JSON.stringify(g2), '图谱构建必须保证 100% 确定性');
 console.log('✓ 断言 6 通过: 图谱构建算法具有完全确定性 (两次构建输出哈希 100% 一致)');
 
-// 断言 7: 科学关系语义与人工策展审核规则断言 (V1.1.1 核心专项)
+// 断言 7: 科学关系语义与人工策展审核规则断言 (3 条 extends, 5 条 evaluates)
 const extendsEdges = graph.edges.filter(e => e.relation === 'extends_method');
 assert.strictEqual(extendsEdges.length, 3, '严格核实后的 extends_method 关系数必须为 3');
 const extendsExpected = [
@@ -145,18 +149,95 @@ for (const exp of evaluatesExpected) {
 }
 console.log('✓ 断言 7 通过: 经文献核准的 3 条 extends_method 与 5 条 evaluates_method 语义精准');
 
-// 断言 8: 历史时序倒置消除与时序冲突防御
+// 断言 8 (V1.1.2 专项测试 1 & 2): PAML (2006) 与 GAPIT (2018) 历史版本使用关系恢复
+const pamlEdge = graph.edges.find(e => e.source === 'paper:mam-positive-selection-2006' && e.target === 'method:paml');
+assert.ok(pamlEdge, 'mam-positive-selection-2006 到 paml 的关系边必须存在');
+assert.strictEqual(pamlEdge.relation, 'uses_method', 'mam-positive-selection-2006 对 paml 的关系必须为 uses_method');
+assert.ok(pamlEdge.evidence.some(ev => ev.verificationStatus === 'source_checked' && ev.note?.includes('PAML 3.14')), '必须包含 PAML 3.14 的 source_checked 证据');
+
+const gapitEdge = graph.edges.find(e => e.source === 'paper:rice-roots-population' && e.target === 'method:gapit');
+assert.ok(gapitEdge, 'rice-roots-population 到 gapit 的关系边必须存在');
+assert.strictEqual(gapitEdge.relation, 'uses_method', 'rice-roots-population 对 gapit 的关系必须为 uses_method');
+assert.ok(gapitEdge.evidence.some(ev => ev.verificationStatus === 'source_checked' && ev.note?.includes('PCA') && ev.note?.includes('亲缘矩阵')), '必须包含 GAPIT 实际运行任务的 source_checked 证据');
+console.log('✓ 断言 8 通过 (V1.1.2 专项 1 & 2): PAML 3.14 (2006) 与 GAPIT (2018) 真实使用关系精准恢复');
+
+// 断言 9 (V1.1.2 专项测试 3): XP-EHH (2007) 与 selscan (2014) 无错误关联
 const xpehhEdges = graph.edges.filter(e => e.source === 'paper:xpehh-paper' && e.target === 'method:selscan');
-assert.strictEqual(xpehhEdges.length, 0, '2007 年的 xpehh-paper 严禁指向 2014 年发布的 selscan 工具');
+assert.strictEqual(xpehhEdges.length, 0, '2007 年的 xpehh-paper 严禁指向 2014 年首发的 selscan 工具');
+console.log('✓ 断言 9 通过 (V1.1.2 专项 3): xpehh-paper 与 selscan 之间无虚假时间倒置关系');
 
-const needsReviewEdges = graph.edges.filter(e => e.evidence.some(ev => ev.verificationStatus === 'needs_review'));
-assert.ok(needsReviewEdges.length > 0, '时序倒置案例必须被自动识别并标记为 needs_review');
-for (const nre of needsReviewEdges) {
-  assert.ok(nre.evidence.some(ev => ev.note?.includes('时序冲突警告')), '时序冲突边必须附带明确警告');
+// 断言 10 (V1.1.2 专项测试 4): 软件时序模型 (MethodChronology) 严谨性
+assert.strictEqual(methodChronologies.paml.firstReleaseYear, 1997, 'PAML 首发年份必须为 1997');
+assert.strictEqual(methodChronologies.paml.canonicalPaperYear, 2007, 'PAML 代表论文年份必须为 2007 (PAML 4)');
+assert.ok(methodChronologies.paml.firstReleaseYear < methodChronologies.paml.canonicalPaperYear, 'PAML 首发时间早于 PAML 4 论文');
+
+assert.strictEqual(methodChronologies.gapit.firstReleaseYear, 2012, 'GAPIT 首发年份必须为 2012');
+assert.strictEqual(methodChronologies.gapit.canonicalPaperYear, 2021, 'GAPIT 代表论文年份必须为 2021 (GAPIT 3)');
+assert.ok(methodChronologies.gapit.firstReleaseYear < methodChronologies.gapit.canonicalPaperYear, 'GAPIT 首发时间早于 GAPIT 3 论文');
+
+assert.strictEqual(methodChronologies.selscan.firstReleaseYear, 2014, 'selscan 首发年份必须为 2014');
+
+const pamlInfo = getMethodFirstReleaseYear('paml', 2007);
+assert.strictEqual(pamlInfo.firstReleaseYear, 1997, 'getMethodFirstReleaseYear 查询 PAML 首发年份必须为 1997');
+assert.strictEqual(pamlInfo.isExplicitReleaseYear, true, 'PAML 必须标记为具有确凿核实首发年份');
+
+const gapitInfo = getMethodFirstReleaseYear('gapit', 2021);
+assert.strictEqual(gapitInfo.firstReleaseYear, 2012, 'getMethodFirstReleaseYear 查询 GAPIT 首发年份必须为 2012');
+assert.strictEqual(gapitInfo.isExplicitReleaseYear, true, 'GAPIT 必须标记为具有确凿核实首发年份');
+console.log('✓ 断言 10 通过 (V1.1.2 专项 4): PAML (1997 vs 2007)、GAPIT (2012 vs 2021) 软件首发与后续版本论文时序模型建立');
+
+// 断言 11 (V1.1.2 专项测试 5 & 6): 关系类型独立性与未知版本处理单元测试
+// 11.1 时序警告绝不能篡改 uses_method 语义为 references_method
+const conflictTestResult = resolvePaperMethodRelation({
+  paperId: 'hypothetical-early-app',
+  paperType: 'application',
+  paperYear: 2010,
+  targetMethodId: 'selscan',
+  canonicalMethodPaperId: 'selscan-paper',
+  isMethodCanonicalPaper: false
+});
+assert.strictEqual(conflictTestResult.relation, 'uses_method', '发生首发时序冲突时，科学关系必须保持 uses_method，不可被篡改');
+assert.strictEqual(conflictTestResult.evidence.verificationStatus, 'needs_review', '首发时序冲突证据状态必须为 needs_review');
+assert.ok(conflictTestResult.evidence.note?.includes('时序冲突警告'), '冲突证据必须带有详细时序告警说明');
+
+// 11.2 未知明确首发年份的工具不编造冲突
+const unknownYearResult = resolvePaperMethodRelation({
+  paperId: 'hypothetical-app-2',
+  paperType: 'application',
+  paperYear: 2015,
+  targetMethodId: 'unregistered-tool',
+  targetMethodYear: 2020,
+  canonicalMethodPaperId: 'unregistered-tool-paper',
+  isMethodCanonicalPaper: false
+});
+assert.strictEqual(unknownYearResult.relation, 'uses_method', '未登记首发年份的工具不篡改关系类型');
+assert.strictEqual(unknownYearResult.evidence.verificationStatus, 'structurally_valid', '无确凿首发冲突证据时不误报 needs_review');
+console.log('✓ 断言 11 通过 (V1.1.2 专项 5 & 6): 关系类型与时序警告完全解耦，未知首发年份不编造冲突');
+
+// 断言 12 (V1.1.2 专项测试 7): 证据数量与百分比基准一致性
+let totalEvidenceCount = 0;
+const statusCounts = { structurally_valid: 0, source_checked: 0, needs_review: 0 };
+for (const e of graph.edges) {
+  totalEvidenceCount += e.evidence.length;
+  for (const ev of e.evidence) {
+    if (ev.verificationStatus in statusCounts) {
+      statusCounts[ev.verificationStatus]++;
+    }
+  }
 }
-console.log('✓ 断言 8 通过: 历史时间倒置彻底根除，时序冲突自动拦截防御系统生效');
+assert.strictEqual(graph.stats.evidenceEntriesCount, totalEvidenceCount, '图谱统计中的证据总数必须严格等于各边证据记录数之和');
+assert.strictEqual(totalEvidenceCount, 798, '证据记录总数必须为 798');
+assert.strictEqual(statusCounts.source_checked, 541, 'source_checked 证据记录数必须为 541');
+assert.strictEqual(statusCounts.structurally_valid, 257, 'structurally_valid 证据记录数必须为 257');
+assert.strictEqual(statusCounts.needs_review, 0, '所有真实科学争议解决后，needs_review 允许并实现为 0');
 
-// 断言 9: 反向标题关键词误判拦截断言
+const scRatio = ((statusCounts.source_checked / totalEvidenceCount) * 100).toFixed(1) + '%';
+const svRatio = ((statusCounts.structurally_valid / totalEvidenceCount) * 100).toFixed(1) + '%';
+assert.strictEqual(graph.stats.evidenceRatiosByStatus.source_checked, scRatio, 'source_checked 占比分母必须为总证据数');
+assert.strictEqual(graph.stats.evidenceRatiosByStatus.structurally_valid, svRatio, 'structurally_valid 占比分母必须为总证据数');
+console.log(`✓ 断言 12 通过 (V1.1.2 专项 7): 证据总数与比例分母基准一致 (总证据条目: ${totalEvidenceCount}, source_checked: 541 (${scRatio}), structurally_valid: 257 (${svRatio}), needs_review: 0 (0.0%))`);
+
+// 断言 13: 反向标题关键词误判拦截断言
 const clarifiedUsesCases = [
   { p: 'rice-gapit-2023', m: 'gapit', label: '含 improve 关键词的水稻 GWAS 应用' },
   { p: 'maize-drought-deseq2-2019', m: 'deseq2', label: '含 comparative 关键词的玉米干旱实验' },
@@ -168,20 +249,6 @@ for (const c of clarifiedUsesCases) {
   assert.ok(edge, `${c.label} 的边必须存在`);
   assert.strictEqual(edge.relation, 'uses_method', `${c.label} 绝不可误判为 extends 或 evaluates，必须为 uses_method`);
 }
-console.log('✓ 断言 9 通过: 标题关键词正则推断已彻底废除，所有生物学改良与比较研究均正确归类为 uses_method');
+console.log('✓ 断言 13 通过: 标题关键词正则推断已彻底废除，所有生物学改良与比较研究均正确归类为 uses_method');
 
-// 断言 10: 科学证据分级机制断言
-const statusCounts = { structurally_valid: 0, source_checked: 0, needs_review: 0 };
-for (const e of graph.edges) {
-  for (const ev of e.evidence) {
-    if (ev.verificationStatus in statusCounts) {
-      statusCounts[ev.verificationStatus]++;
-    }
-  }
-}
-assert.ok(statusCounts.source_checked > 500, '官方与人工策展验证证据应占主体 (>500)');
-assert.ok(statusCounts.structurally_valid > 200, '未经全文核实的 frontmatter 结构关系应归为 structurally_valid (>200)');
-assert.ok(statusCounts.needs_review >= 1, '必须存在需要人工审核的潜在冲突证据');
-console.log(`✓ 断言 10 通过: 证据分级健康 (source_checked: ${statusCounts.source_checked}, structurally_valid: ${statusCounts.structurally_valid}, needs_review: ${statusCounts.needs_review})`);
-
-console.log('\n🎉 全部 10 项数据与科学语义断言 100% 通过！知识图谱达到发布级科学准确性！');
+console.log('\n🎉 全部 13 项数据、时序模型与科学语义断言 100% 通过！知识图谱达到发布级科学准确性！');
