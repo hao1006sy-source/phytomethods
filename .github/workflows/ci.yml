@@ -32,3 +32,6 @@ jobs:
 
       - name: Check tutorial scientific verification records
         run: npm run check:tutorial-science
+
+      - name: Check CAFE5 reproducibility evidence
+        run: npm run check:cafe5

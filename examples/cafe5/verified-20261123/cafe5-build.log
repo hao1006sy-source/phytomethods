@@ -1,0 +1,64 @@
+g++ -std=c++11 -I. -O3 -include config.h -DDOCTEST_CONFIG_DISABLE -fopenmp  -c src/base_model.cpp -o obj/base_model.o
+g++ -std=c++11 -I. -O3 -include config.h -DDOCTEST_CONFIG_DISABLE -fopenmp  -c src/cafexp.cpp -o obj/cafexp.o
+g++ -std=c++11 -I. -O3 -include config.h -DDOCTEST_CONFIG_DISABLE -fopenmp  -c src/clade.cpp -o obj/clade.o
+g++ -std=c++11 -I. -O3 -include config.h -DDOCTEST_CONFIG_DISABLE -fopenmp  -c src/core.cpp -o obj/core.o
+g++ -std=c++11 -I. -O3 -include config.h -DDOCTEST_CONFIG_DISABLE -fopenmp  -c src/easylogging++.cpp -o obj/easylogging++.o
+g++ -std=c++11 -I. -O3 -include config.h -DDOCTEST_CONFIG_DISABLE -fopenmp  -c src/error_model.cpp -o obj/error_model.o
+g++ -std=c++11 -I. -O3 -include config.h -DDOCTEST_CONFIG_DISABLE -fopenmp  -c src/execute.cpp -o obj/execute.o
+g++ -std=c++11 -I. -O3 -include config.h -DDOCTEST_CONFIG_DISABLE -fopenmp  -c src/gamma.cpp -o obj/gamma.o
+g++ -std=c++11 -I. -O3 -include config.h -DDOCTEST_CONFIG_DISABLE -fopenmp  -c src/gamma_core.cpp -o obj/gamma_core.o
+In file included from /usr/include/features.h:539,
+                 from /usr/include/x86_64-linux-gnu/c++/15/bits/os_defines.h:39,
+                 from /usr/include/x86_64-linux-gnu/c++/15/bits/c++config.h:727,
+                 from /usr/include/c++/15/ctime:46,
+                 from src/easylogging++.h:353,
+                 from src/easylogging++.cpp:17:
+In function ‘size_t wcstombs(char*, const wchar_t*, size_t)’,
+    inlined from ‘static char* el::base::utils::Str::wcharPtrToCharPtr(const wchar_t*)’ at src/easylogging++.cpp:1022:16:
+/usr/include/x86_64-linux-gnu/bits/stdlib.h:163:10: warning: ‘size_t __wcstombs_alias(char*, const wchar_t*, size_t)’ specified size 18446744073709551614 exceeds maximum object size 9223372036854775807 [-Wstringop-overflow=]
+  163 |   return __glibc_fortify (wcstombs, __len, sizeof (char),
+      |          ^~~~~~~~~~~~~~~
+/usr/include/x86_64-linux-gnu/bits/stdlib.h: In static member function ‘static char* el::base::utils::Str::wcharPtrToCharPtr(const wchar_t*)’:
+/usr/include/x86_64-linux-gnu/bits/stdlib.h:147:15: note: in a call to function ‘size_t __wcstombs_alias(char*, const wchar_t*, size_t)’ declared with attribute ‘access (read_only, 2)’
+  147 | extern size_t __REDIRECT_NTH (__wcstombs_alias,
+      |               ^~~~~~~~~~~~~~
+In function ‘size_t wcstombs(char*, const wchar_t*, size_t)’,
+    inlined from ‘static char* el::base::utils::Str::wcharPtrToCharPtr(const wchar_t*)’ at src/easylogging++.cpp:1022:16,
+    inlined from ‘el::base::MessageBuilder& el::base::MessageBuilder::operator<<(const wchar_t*)’ at src/easylogging++.cpp:2520:52:
+/usr/include/x86_64-linux-gnu/bits/stdlib.h:163:10: warning: ‘size_t __wcstombs_alias(char*, const wchar_t*, size_t)’ specified size 18446744073709551614 exceeds maximum object size 9223372036854775807 [-Wstringop-overflow=]
+  163 |   return __glibc_fortify (wcstombs, __len, sizeof (char),
+      |          ^~~~~~~~~~~~~~~
+/usr/include/x86_64-linux-gnu/bits/stdlib.h: In member function ‘el::base::MessageBuilder& el::base::MessageBuilder::operator<<(const wchar_t*)’:
+/usr/include/x86_64-linux-gnu/bits/stdlib.h:147:15: note: in a call to function ‘size_t __wcstombs_alias(char*, const wchar_t*, size_t)’ declared with attribute ‘access (read_only, 2)’
+  147 | extern size_t __REDIRECT_NTH (__wcstombs_alias,
+      |               ^~~~~~~~~~~~~~
+src/gamma_core.cpp: In member function ‘std::vector<double> gamma_model::get_posterior_probabilities(std::vector<double>)’:
+src/gamma_core.cpp:106:93: warning: ‘std::binder2nd<_Operation> std::bind2nd(const _Operation&, const _Tp&) [with _Operation = divides<double>; _Tp = double]’ is deprecated: use 'std::bind' instead [-Wdeprecated-declarations]
+  106 |     transform(numerators.begin(), numerators.end(), posterior_probabilities.begin(), bind2nd(divides<double>(), denominator));
+      |                                                                                      ~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from /usr/include/c++/15/bits/stl_function.h:1480,
+                 from /usr/include/c++/15/string:51,
+                 from /usr/include/c++/15/bits/locale_classes.h:42,
+                 from /usr/include/c++/15/bits/ios_base.h:43,
+                 from /usr/include/c++/15/iomanip:47,
+                 from src/gamma_core.cpp:3:
+/usr/include/c++/15/backward/binders.h:172:5: note: declared here
+  172 |     bind2nd(const _Operation& __fn, const _Tp& __x)
+      |     ^~~~~~~
+g++ -std=c++11 -I. -O3 -include config.h -DDOCTEST_CONFIG_DISABLE -fopenmp  -c src/gene_family.cpp -o obj/gene_family.o
+g++ -std=c++11 -I. -O3 -include config.h -DDOCTEST_CONFIG_DISABLE -fopenmp  -c src/gene_family_reconstructor.cpp -o obj/gene_family_reconstructor.o
+g++ -std=c++11 -I. -O3 -include config.h -DDOCTEST_CONFIG_DISABLE -fopenmp  -c src/io.cpp -o obj/io.o
+g++ -std=c++11 -I. -O3 -include config.h -DDOCTEST_CONFIG_DISABLE -fopenmp  -c src/lambda.cpp -o obj/lambda.o
+g++ -std=c++11 -I. -O3 -include config.h -DDOCTEST_CONFIG_DISABLE -fopenmp  -c src/likelihood_ratio.cpp -o obj/likelihood_ratio.o
+g++ -std=c++11 -I. -O3 -include config.h -DDOCTEST_CONFIG_DISABLE -fopenmp  -c src/matrix_cache.cpp -o obj/matrix_cache.o
+g++ -std=c++11 -I. -O3 -include config.h -DDOCTEST_CONFIG_DISABLE -fopenmp  -c src/newick_ape_loader.cpp -o obj/newick_ape_loader.o
+g++ -std=c++11 -I. -O3 -include config.h -DDOCTEST_CONFIG_DISABLE -fopenmp  -c src/optimizer.cpp -o obj/optimizer.o
+g++ -std=c++11 -I. -O3 -include config.h -DDOCTEST_CONFIG_DISABLE -fopenmp  -c src/optimizer_scorer.cpp -o obj/optimizer_scorer.o
+g++ -std=c++11 -I. -O3 -include config.h -DDOCTEST_CONFIG_DISABLE -fopenmp  -c src/poisson.cpp -o obj/poisson.o
+g++ -std=c++11 -I. -O3 -include config.h -DDOCTEST_CONFIG_DISABLE -fopenmp  -c src/probability.cpp -o obj/probability.o
+g++ -std=c++11 -I. -O3 -include config.h -DDOCTEST_CONFIG_DISABLE -fopenmp  -c src/report.cpp -o obj/report.o
+g++ -std=c++11 -I. -O3 -include config.h -DDOCTEST_CONFIG_DISABLE -fopenmp  -c src/root_equilibrium_distribution.cpp -o obj/root_equilibrium_distribution.o
+g++ -std=c++11 -I. -O3 -include config.h -DDOCTEST_CONFIG_DISABLE -fopenmp  -c src/simulator.cpp -o obj/simulator.o
+g++ -std=c++11 -I. -O3 -include config.h -DDOCTEST_CONFIG_DISABLE -fopenmp  -c src/user_data.cpp -o obj/user_data.o
+g++ -std=c++11 -I. -O3 -include config.h -DDOCTEST_CONFIG_DISABLE -fopenmp -c main.cpp -o obj/main.o
+g++ -std=c++11 -O3 -fopenmp -o bin/cafe5 -I. obj/base_model.o obj/cafexp.o obj/clade.o obj/core.o obj/easylogging++.o obj/error_model.o obj/execute.o obj/gamma.o obj/gamma_core.o obj/gene_family.o obj/gene_family_reconstructor.o obj/io.o obj/lambda.o obj/likelihood_ratio.o obj/matrix_cache.o obj/newick_ape_loader.o obj/optimizer.o obj/optimizer_scorer.o obj/poisson.o obj/probability.o obj/report.o obj/root_equilibrium_distribution.o obj/simulator.o obj/user_data.o obj/main.o -lm  
