@@ -49,3 +49,27 @@ if (errors.length) {
 } else {
   console.log(`Home curation validated: ${ids.length} published method IDs, ${config.popularQueries.length} search terms.`);
 }
+
+// Domain order in Frontmatter is authoritative; never select by global domain order.
+const domainSource = readFileSync(join(root, 'src/data/domains.ts'), 'utf8');
+const domainMap = new Map([...domainSource.matchAll(/\['(M\d+)','([^']+)'/g)].map(m => [m[2], m[1]]));
+for (const id of ids) {
+  const text = readFileSync(join(methodsPath, `${id}.md`), 'utf8');
+  const primary = text.match(/^domainIds:\s*\[\s*["']?([^,"'\]\s]+)/m)?.[1];
+  if (!domainMap.has(primary)) throw new Error(`${id}: invalid primary domain ${primary}`);
+  if (id === 'orthofinder' && domainMap.get(primary) !== 'M04') throw new Error('OrthoFinder must display M04');
+}
+const home = readFileSync(join(root, 'src/pages/index.astro'), 'utf8');
+if (!home.includes('item[1] === method.data.domainIds[0]')) throw new Error('Homepage must use the first domain');
+// YAML date-only values are UTC midnight. Keep their calendar date, independent of runner TZ.
+const today = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Shanghai', year:'numeric', month:'2-digit', day:'2-digit' }).format(new Date());
+for (const collection of ['methods','papers','tutorials','topics']) {
+  for (const file of (await import('node:fs')).readdirSync(join(root,'src/content',collection)).filter(f=>f.endsWith('.md'))) {
+    const text=readFileSync(join(root,'src/content',collection,file),'utf8');
+    if (/^status: draft$/m.test(text)) continue;
+    const raw=text.match(/^updatedAt:\s*(\d{4}-\d{2}-\d{2})\s*$/m)?.[1];
+    if (!raw || !Number.isFinite(Date.parse(raw)) || new Date(raw).toISOString().slice(0,10)!==raw) throw new Error(`${collection}/${file}: invalid updatedAt`);
+    if (raw>today) throw new Error(`${collection}/${file}: future date in Asia/Shanghai`);
+  }
+}
+console.log(`Homepage primary domains and calendar dates validated; today=${today}, timezone=Asia/Shanghai`);
