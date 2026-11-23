@@ -1,0 +1,32 @@
+---
+import type { WorkflowStep } from './tutorial-data';
+const { steps, id, caption } = Astro.props as { steps: WorkflowStep[]; id: string; caption: string };
+const markerId = `tv3-arrow-${id}`;
+const nodeWidth = 112;
+const gap = 19;
+const width = Math.max(520, 24 + steps.length * (nodeWidth + gap));
+const height = 156;
+---
+<div class="tv3-workflow-block">
+  <div class="tv3-workflow tv3-workflow-generic" role="figure" aria-label={`${id} 教学流程`}>
+    <header><h3>分析流程概览</h3><button type="button" class="tv3-zoom" aria-haspopup="dialog">放大流程图</button></header>
+    <div class="tv3-svg-scroll" tabindex="0" aria-label="工作流图，可横向滚动查看">
+      <svg viewBox={`0 0 ${width} ${height}`} role="img" aria-label={steps.map(step => step[0]).join('，')}>
+        <defs><marker id={markerId} markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0 0L6 3L0 6" fill="none" stroke="#0e6548" /></marker></defs>
+        {steps.map(([name, sub], index) => {
+          const x = 8 + index * (nodeWidth + gap);
+          return <g transform={`translate(${x},12)`}>
+            <rect x="0" y="0" width={nodeWidth} height="124" rx="12" fill="#f0faf3" stroke="#bfddca" />
+            <circle cx={nodeWidth / 2} cy="34" r="21" fill="#fff" stroke="#0e6548" stroke-width="1.8" />
+            <text x={nodeWidth / 2} y="39" text-anchor="middle" font-size="13" font-weight="700" fill="#0e6548">{String(index + 1).padStart(2, '0')}</text>
+            <text x={nodeWidth / 2} y="78" text-anchor="middle" font-size="12" font-weight="700" fill="#104a36">{name}</text>
+            <text x={nodeWidth / 2} y="101" text-anchor="middle" font-size="10" fill="#65786e">{sub}</text>
+            {index < steps.length - 1 && <path d={`M${nodeWidth + 2} 61h${gap - 5}`} stroke="#0e6548" stroke-width="1.7" marker-end={`url(#${markerId})`} />}
+          </g>;
+        })}
+      </svg>
+    </div>
+    <p class="tv3-caption">{caption}</p>
+  </div>
+  <dialog class="tv3-figure-dialog" aria-label="放大教学流程图"><button type="button" class="tv3-close">关闭流程图</button><div class="tv3-figure-target" tabindex="0"></div><p>{caption}</p></dialog>
+</div>

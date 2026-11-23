@@ -1,9 +1,16 @@
 ---
 import TutorialSidebar from './TutorialSidebar.astro';
 import './tutorial-v3.css';
-const {ids,titles}=Astro.props;
+const { ids, titles } = Astro.props;
 ---
-<div class="tutorial-v3"><div class="tv3-page-header"><slot name="header"/></div><div class="tv3-columns"><TutorialSidebar ids={ids} titles={titles}/><article class="tv3-main"><slot/></article><aside class="tv3-resources"><slot name="resources"/></aside></div></div>
+<div class="tutorial-v3">
+  <div class="tv3-page-header"><slot name="header" /></div>
+  <div class="tv3-columns">
+    <TutorialSidebar ids={ids} titles={titles} />
+    <article class="tv3-main"><slot /></article>
+    <aside class="tv3-resources"><slot name="resources" /></aside>
+  </div>
+</div>
 <script>
 const root=document.querySelector('.tutorial-v3');
 if(root){
@@ -15,6 +22,22 @@ if(root){
  const links=[...root.querySelectorAll<HTMLAnchorElement>('.tv3-sidebar a')];const sections=links.map(l=>document.getElementById(l.hash.slice(1))).filter((s):s is HTMLElement=>!!s);
  function active(){const current=sections.filter(s=>s.getBoundingClientRect().top<=135).at(-1)??sections[0];links.forEach(l=>{if(l.hash===`#${current?.id}`)l.setAttribute('aria-current','location');else l.removeAttribute('aria-current');});}let pending=false;window.addEventListener('scroll',()=>{if(!pending){pending=true;requestAnimationFrame(()=>{active();pending=false;});}},{passive:true});active();
  root.querySelectorAll<HTMLButtonElement>('.tv3-copy').forEach(button=>button.addEventListener('click',async()=>{const box=button.closest('.tv3-code')!;const code=box.querySelector('code')!.textContent??'';const status=box.querySelector('.tv3-copy-status')!;try{await navigator.clipboard.writeText(code);status.textContent='已复制';setTimeout(()=>status.textContent='',1800);}catch{status.textContent='复制失败，请选择代码手动复制';}}));
- const dialog=root.querySelector<HTMLDialogElement>('.tv3-figure-dialog');const trigger=root.querySelector<HTMLButtonElement>('.tv3-zoom');trigger?.addEventListener('click',()=>{const target=dialog!.querySelector('.tv3-figure-target')!;target.replaceChildren(root.querySelector('.tv3-workflow svg')!.cloneNode(true));target.querySelectorAll('[id]').forEach(el=>el.id+='-zoom');target.querySelectorAll('[marker-end]').forEach(el=>el.setAttribute('marker-end','url(#tv3-arrow-zoom)'));dialog!.showModal();});dialog?.querySelector('button')?.addEventListener('click',()=>dialog.close());dialog?.addEventListener('click',e=>{if(e.target===dialog)dialog.close();});dialog?.addEventListener('close',()=>trigger?.focus());
+ root.querySelectorAll<HTMLElement>('.tv3-workflow-block').forEach((block,index)=>{
+  const dialog=block.querySelector<HTMLDialogElement>('.tv3-figure-dialog');
+  const trigger=block.querySelector<HTMLButtonElement>('.tv3-zoom');
+  const source=block.querySelector<SVGSVGElement>('.tv3-workflow svg');
+  const target=dialog?.querySelector<HTMLElement>('.tv3-figure-target');
+  trigger?.addEventListener('click',()=>{
+   if(!dialog||!target||!source)return;
+   const clone=source.cloneNode(true) as SVGSVGElement;
+   const ids=new Map<string,string>();
+   clone.querySelectorAll<SVGElement>('[id]').forEach(el=>{const old=el.id;const next=`${old}-zoom-${index}`;ids.set(old,next);el.id=next;});
+   clone.querySelectorAll<SVGElement>('[marker-end]').forEach(el=>{const old=el.getAttribute('marker-end')?.match(/#([^)]+)/)?.[1];if(old&&ids.has(old))el.setAttribute('marker-end',`url(#${ids.get(old)})`);});
+   target.replaceChildren(clone);dialog.showModal();target.focus();
+  });
+  dialog?.querySelector<HTMLButtonElement>('.tv3-close')?.addEventListener('click',()=>dialog.close());
+  dialog?.addEventListener('click',event=>{if(event.target===dialog)dialog.close();});
+  dialog?.addEventListener('close',()=>trigger?.focus());
+ });
 }
 </script>
