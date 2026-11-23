@@ -188,13 +188,17 @@ export function buildKnowledgeGraph({
       if (!methods.has(mId)) continue;
       const m = methods.get(mId);
       const isCanonical = m.data.paper === pId;
+      const canonicalPaper = m.data.paper ? papers.get(m.data.paper) : undefined;
+      const targetMethodYear = canonicalPaper?.data?.year;
 
       const { relation, evidence } = resolvePaperMethodRelation({
         paperId: pId,
         paperType: p.data.type,
         paperTitle: p.data.title,
         paperDoi: p.data.doi,
+        paperYear: p.data.year,
         targetMethodId: mId,
+        targetMethodYear,
         canonicalMethodPaperId: m.data.paper,
         isMethodCanonicalPaper: isCanonical
       });

@@ -10,7 +10,7 @@ export function createEvidence({
   sourceUrl,
   doi,
   note,
-  verificationStatus = 'source_checked'
+  verificationStatus = 'structurally_valid'
 }: {
   sourceType: EvidenceSourceType;
   sourceId?: string;
