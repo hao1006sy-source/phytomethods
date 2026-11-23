@@ -1,0 +1,27 @@
+PLINK v1.9.1 64-bit (11 Nov 2026)                  cog-genomics.org/plink/1.9/
+(C) 2005-2026 Shaun Purcell, Christopher Chang   GNU General Public License v3
+Logging to outputs\tutorial-science-v3.1\final\simulated.log.
+Options in effect:
+  --make-bed
+  --out outputs\tutorial-science-v3.1\final\simulated
+  --vcf outputs\tutorial-science-v3.1\final\simulated.vcf
+
+16070 MB RAM detected; reserving 8035 MB for main workspace.
+
+--vcf: outputs\tutorial-science-v3.1\final\simulated-temporary.bed +
+outputs\tutorial-science-v3.1\final\simulated-temporary.bim +
+outputs\tutorial-science-v3.1\final\simulated-temporary.fam written.
+6 variants loaded from .bim file.
+8 people (0 males, 0 females, 8 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to
+outputs\tutorial-science-v3.1\final\simulated.nosex .
+Using 1 thread (no multithreaded calculations invoked).
+Before main variant filters, 8 founders and 0 nonfounders present.
+Calculating allele frequencies... 0%1%2%3%4%5%6%7%8%9%10%11%12%13%14%15%16%17%18%19%20%21%22%23%24%25%26%27%28%29%30%31%32%33%34%35%36%37%38%39%40%41%42%43%44%45%46%47%48%49%50%51%52%53%54%55%56%57%58%59%60%61%62%63%64%65%66%67%68%69%70%71%72%73%74%75%76%77%78%79%80%81%82%83%84%85%86%87%88%89%90%91%92%93%94%95%96%97%98%99% done.
+Total genotyping rate is exactly 1.
+6 variants and 8 people pass filters and QC.
+Note: No phenotypes present.
+--make-bed to outputs\tutorial-science-v3.1\final\simulated.bed +
+outputs\tutorial-science-v3.1\final\simulated.bim +
+outputs\tutorial-science-v3.1\final\simulated.fam ... 0%1%2%3%4%5%6%7%8%9%10%11%12%13%14%15%16%17%18%19%20%21%22%23%24%25%26%27%28%29%30%31%32%33%34%35%36%37%38%39%40%41%42%43%44%45%46%47%48%49%50%51%52%53%54%55%56%57%58%59%60%61%62%63%64%65%66%67%68%69%70%71%72%73%74%75%76%77%78%79%80%81%82%83%84%85%86%87%88%89%90%91%92%93%94%95%96%97%98%99%done.
+

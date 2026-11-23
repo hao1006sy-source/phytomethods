@@ -1,6 +1,7 @@
 ---
 import { domains } from '../../data/domains';
-import { markdownLinks, sectionExcerpt, type MarkdownSection } from './tutorial-data';
+import verificationRecords from './tutorial-verification.json';
+import { markdownLinks, type MarkdownSection } from './tutorial-data';
 const { entry, method, paper, sections } = Astro.props as {
   entry: any;
   method: any;
@@ -11,17 +12,15 @@ const base = import.meta.env.BASE_URL;
 const domainRows = (method?.data.domainIds ?? [])
   .map((id: string) => domains.find((domain) => domain[1] === id))
   .filter(Boolean);
-const environment = sectionExcerpt(sections, /环境|安装|软件/, '运行环境与依赖说明见教程正文。');
-const input = sectionExcerpt(sections, /数据|输入/, '输入数据说明见教程正文。');
-const output = sectionExcerpt(sections, /输出|结果/, '输出文件与结果说明见教程正文。');
+const verification = verificationRecords[entry.id as keyof typeof verificationRecords];
+if (!verification || verification.status !== entry.data.tested) throw new Error(`Invalid verification record: ${entry.id}`);
+const environment = `${verification.softwareVersion}。${verification.environment}`;
+const input = verification.dataSource;
+const output = verification.expectedOutputs.join('；');
 const sourceLinks = markdownLinks(entry.body ?? '')
   .filter(({ href }) => !/doi\.org\//i.test(href) && href !== method?.data.repository)
   .slice(0, 5);
-const statusLabel = entry.data.tested === 'verified'
-  ? '已验证'
-  : entry.data.tested === 'template'
-    ? '命令模板已核对 · 真实数据待验证'
-    : '尚未验证';
+const statusLabel = verification.verificationScope;
 ---
 <section>
   <h2>ⓘ 教程信息</h2>
@@ -32,6 +31,7 @@ const statusLabel = entry.data.tested === 'verified'
     <dd>{method ? <a href={`${base}methods/${method.id}/`}>{method.data.name}</a> : entry.data.method}</dd>
     <dt>验证状态</dt>
     <dd><mark class={entry.data.tested === 'verified' ? 'tv3-status-verified' : ''}>{statusLabel}</mark></dd>
+    <dt>待验证</dt><dd>{verification.unverifiedScope}</dd>
     <dt>更新时间</dt>
     <dd>{entry.data.updatedAt.toISOString().slice(0, 10)}</dd>
   </dl>

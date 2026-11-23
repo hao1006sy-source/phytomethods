@@ -1,0 +1,294 @@
+{
+  "hifiasm-intro": {
+    "tutorialId": "hifiasm-intro",
+    "status": "template",
+    "verificationScope": "命令模板已核对 · 真实数据待验证",
+    "softwareVersion": "Hifiasm HiFi-only；实际构建版本须记录",
+    "environment": "Linux；C++、Make、zlib",
+    "dataSource": "PacBio HiFi FASTA/FASTQ；官方 chr11-2M 安装示例",
+    "expectedOutputs": [
+      "test.bp.p_ctg.gfa、test.log、导出的 FASTA"
+    ],
+    "evidencePaths": [],
+    "sourceUrls": [
+      "https://github.com/chhylp123/hifiasm"
+    ],
+    "verifiedAt": null,
+    "reviewedAt": "2026-11-23",
+    "unverifiedScope": "真实植物独立样本上的完整科研结论；参数敏感性与实验验证；本模板全部运行步骤尚待执行",
+    "documentedCommands": [
+      "hifiasm -o sample.asm -t 32 sample.hifi.fastq.gz 2> sample.asm.log",
+      "git clone https://github.com/chhylp123/hifiasm.git\ncd hifiasm\nmake -j 4\n./hifiasm --version\ncurl -L -o chr11-2M.fa.gz https://github.com/chhylp123/hifiasm/releases/download/v0.7/chr11-2M.fa.gz\n./hifiasm -o test -t 4 -f 0 chr11-2M.fa.gz 2> test.log",
+      "awk '/^S/{print \">\"$2;print $3}' test.bp.p_ctg.gfa > test.p_ctg.fa"
+    ],
+    "executionEvidenceScope": "历史运行命令以 evidencePaths 中原始日志为准；documentedCommands 为教程代码清单，安装命令未逐条重新执行。"
+  },
+  "orthofinder-intro": {
+    "tutorialId": "orthofinder-intro",
+    "status": "verified",
+    "verificationScope": "官方非植物小型示例已验证",
+    "softwareVersion": "OrthoFinder 3.2；Python 3.12.16",
+    "environment": "WSL Ubuntu；micromamba；brotli 1.2.1",
+    "dataSource": "官方 v3.2 ExampleData：4 个支原体蛋白 FASTA",
+    "expectedOutputs": [
+      "Orthogroups.tsv、SpeciesTree_rooted.txt、Statistics_Overall.tsv"
+    ],
+    "evidencePaths": [
+      "examples/orthofinder/verified-20261121/input-sha256.txt",
+      "examples/orthofinder/verified-20261121/Log.txt",
+      "examples/orthofinder/verified-20261121/README.md",
+      "examples/orthofinder/verified-20261121/run.stdout.log",
+      "examples/orthofinder/verified-20261121/SpeciesTree_rooted.txt",
+      "examples/orthofinder/verified-20261121/Statistics_Overall.tsv",
+      "examples/orthofinder/verified-20261121/version.log"
+    ],
+    "sourceUrls": [
+      "https://github.com/OrthoFinder/OrthoFinder"
+    ],
+    "verifiedAt": "2026-11-21",
+    "reviewedAt": "2026-11-23",
+    "unverifiedScope": "真实植物独立样本上的完整科研结论；参数敏感性与实验验证",
+    "documentedCommands": [
+      "micromamba create -n orthofinder-demo -c conda-forge -c bioconda \\\n  python=3.12 orthofinder=3.2\nmicromamba activate orthofinder-demo\northofinder --version",
+      "curl -L https://github.com/OrthoFinder/OrthoFinder/releases/download/v3.2/ExampleData.tar.gz -o ExampleData.tar.gz\nsha256sum ExampleData.tar.gz\ntar -xzf ExampleData.tar.gz",
+      "orthofinder -f ExampleData -t 2 -a 2"
+    ],
+    "executionEvidenceScope": "历史运行命令以 evidencePaths 中原始日志为准；documentedCommands 为教程代码清单，安装命令未逐条重新执行。"
+  },
+  "syri-intro": {
+    "tutorialId": "syri-intro",
+    "status": "verified",
+    "verificationScope": "官方拟南芥染色体示例已验证",
+    "softwareVersion": "SyRI 1.8.2；MUMmer 3.23 / NUCmer 3.1",
+    "environment": "WSL Ubuntu；Python 3.11.18",
+    "dataSource": "官方固定提交 acf72cc：TAIR10 与 Ler 第 4 染色体",
+    "expectedOutputs": [
+      "mummer_syri.out、mummer_syri.vcf、mummer_syri.summary、映射日志"
+    ],
+    "evidencePaths": [
+      "examples/syri/verified-20261121/input-sha256.txt",
+      "examples/syri/verified-20261121/mummer_mapids.txt",
+      "examples/syri/verified-20261121/mummer_syri.log",
+      "examples/syri/verified-20261121/mummer_syri.summary",
+      "examples/syri/verified-20261121/nucmer.stderr.log",
+      "examples/syri/verified-20261121/output-sha256.txt",
+      "examples/syri/verified-20261121/README.md",
+      "examples/syri/verified-20261121/stderr.log",
+      "examples/syri/verified-20261121/syri.stderr.log",
+      "examples/syri/verified-20261121/verified_syri.summary",
+      "examples/syri/verified-20261121/versions.txt"
+    ],
+    "sourceUrls": [
+      "https://schneebergerlab.github.io/syri/example.html"
+    ],
+    "verifiedAt": "2026-11-21",
+    "reviewedAt": "2026-11-23",
+    "unverifiedScope": "真实植物独立样本上的完整科研结论；参数敏感性与实验验证",
+    "documentedCommands": [
+      "micromamba create -n syri-demo -c conda-forge -c bioconda \\\n  python=3.11 syri=1.8.2 mummer=3.23\nmicromamba activate syri-demo",
+      "git clone https://github.com/schneebergerlab/syri.git syri-source\ngit -C syri-source checkout acf72ccf47beffaaeade849fd258827ef24bedf4\nmkdir syri-example\ncd syri-example\ngzip -cd ../syri-source/test/test_data/tair10_chr4.fa.gz > ref.fa\ngzip -cd ../syri-source/test/test_data/ler_chr4.fa.gz > query.fa",
+      "nucmer --maxmatch -c 500 -b 500 -l 100 ref.fa query.fa\ndelta-filter -m -i 90 -l 100 out.delta > out_m_i90_l100.delta\nshow-coords -THrd out_m_i90_l100.delta > out_m_i90_l100.coords",
+      "syri -c out_m_i90_l100.coords -r ref.fa -q query.fa \\\n  -d out_m_i90_l100.delta --prefix mummer_"
+    ],
+    "executionEvidenceScope": "历史运行命令以 evidencePaths 中原始日志为准；documentedCommands 为教程代码清单，安装命令未逐条重新执行。"
+  },
+  "bismark-synthetic": {
+    "tutorialId": "bismark-synthetic",
+    "status": "verified",
+    "verificationScope": "模拟数据流程已验证并对照真值",
+    "softwareVersion": "Bismark Rust suite 3.3.0；Bowtie2 2.5.5",
+    "environment": "WSL Ubuntu；单端正链模拟数据",
+    "dataSource": "1000 bp 虚构参考；90 条 100 bp reads；已知胞嘧啶真值",
+    "expectedOutputs": [
+      "reads_bismark_bt2.bam、CX_report.txt、比对和提取日志"
+    ],
+    "evidencePaths": [
+      "examples/methylation/verified-20261121/align.stderr.log",
+      "examples/methylation/verified-20261121/extract-cx.stderr.log",
+      "examples/methylation/verified-20261121/input-sha256.txt",
+      "examples/methylation/verified-20261121/prepare.stderr.log",
+      "examples/methylation/verified-20261121/README.md",
+      "examples/methylation/verified-20261121/reads_bismark_bt2.bam",
+      "examples/methylation/verified-20261121/reads_bismark_bt2.CX_report.txt",
+      "examples/methylation/verified-20261121/reads_bismark_bt2_SE_report.txt",
+      "examples/methylation/verified-20261121/reads_bismark_bt2_splitting_report.txt",
+      "examples/methylation/verified-20261121/versions.txt"
+    ],
+    "sourceUrls": [
+      "https://github.com/FelixKrueger/Bismark"
+    ],
+    "verifiedAt": "2026-11-21",
+    "reviewedAt": "2026-11-23",
+    "unverifiedScope": "真实植物独立样本上的完整科研结论；参数敏感性与实验验证",
+    "documentedCommands": [
+      "python examples/methylation/generate_synthetic.py --output simulated-input\nmkdir reference align extracted\ncp simulated-input/reference.fa reference/\nbismark --version\nbowtie2 --version\nsamtools --version",
+      "bismark prepare reference\nbismark align --genome reference -o align simulated-input/reads.fastq\nbismark extract --single-end --comprehensive --bedGraph \\\n  --cytosine_report --CX --genome_folder reference \\\n  -o extracted align/reads_bismark_bt2.bam"
+    ],
+    "executionEvidenceScope": "历史运行命令以 evidencePaths 中原始日志为准；documentedCommands 为教程代码清单，安装命令未逐条重新执行。"
+  },
+  "plink-synthetic": {
+    "tutorialId": "plink-synthetic",
+    "status": "verified",
+    "verificationScope": "模拟数据转换、统计与 PCA 已验证",
+    "softwareVersion": "PLINK 1.9.1（11 Nov 2026）",
+    "environment": "Windows；官方 PLINK 二进制；Python 绘图",
+    "dataSource": "8 个虚构二倍体样本、6 个 SNP 的模拟 VCF",
+    "expectedOutputs": [
+      "simulated.bed/bim/fam；analysis.frq/imiss/lmiss/eigenvec/eigenval"
+    ],
+    "evidencePaths": [
+      "examples/population/verified-plink-20261121/analysis.eigenval",
+      "examples/population/verified-plink-20261121/analysis.eigenvec",
+      "examples/population/verified-plink-20261121/analysis.frq",
+      "examples/population/verified-plink-20261121/analysis.imiss",
+      "examples/population/verified-plink-20261121/analysis.lmiss",
+      "examples/population/verified-plink-20261121/analysis.log",
+      "examples/population/verified-plink-20261121/plink-pca-v2.png",
+      "examples/population/verified-plink-20261121/plink-pca.png",
+      "examples/population/verified-plink-20261121/README.md",
+      "examples/population/verified-plink-20261121/simulated.log"
+    ],
+    "sourceUrls": [
+      "https://www.cog-genomics.org/plink/1.9/"
+    ],
+    "verifiedAt": "2026-11-21",
+    "reviewedAt": "2026-11-23",
+    "unverifiedScope": "真实植物独立样本上的完整科研结论；参数敏感性与实验验证",
+    "documentedCommands": [
+      "python examples/population/generate_vcf.py --output simulated.vcf\nplink --version",
+      "plink --vcf simulated.vcf --make-bed --out simulated\nplink --bfile simulated --freq --missing --pca 2 --out analysis",
+      "python examples/population/plot_plink.py --input analysis.eigenvec --output plink-pca.png\npython scripts/check-plink-example.py"
+    ],
+    "executionEvidenceScope": "历史运行命令以 evidencePaths 中原始日志为准；documentedCommands 为教程代码清单，安装命令未逐条重新执行。"
+  },
+  "gwas-synthetic": {
+    "tutorialId": "gwas-synthetic",
+    "status": "verified",
+    "verificationScope": "模拟单标记 OLS 已验证并独立复算",
+    "softwareVersion": "Python 3.13.9；SciPy 1.18.1；NumPy 2.5.2",
+    "environment": "Windows；matplotlib 3.11.1",
+    "dataSource": "固定种子 20261121；80 样本 × 60 标记的模拟剂量与连续表型",
+    "expectedOutputs": [
+      "associations.csv、gwas.png、run.json、基因型及表型 CSV"
+    ],
+    "evidencePaths": [
+      "examples/gwas/verified-20261121/associations.csv",
+      "examples/gwas/verified-20261121/genotypes.csv",
+      "examples/gwas/verified-20261121/gwas.png",
+      "examples/gwas/verified-20261121/phenotypes.csv",
+      "examples/gwas/verified-20261121/run.json"
+    ],
+    "sourceUrls": [
+      "https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.linregress.html"
+    ],
+    "verifiedAt": "2026-11-21",
+    "reviewedAt": "2026-11-23",
+    "unverifiedScope": "真实植物独立样本上的完整科研结论；参数敏感性与实验验证",
+    "documentedCommands": [
+      "python examples/gwas/gwas_demo.py --output results-gwas-demo"
+    ],
+    "executionEvidenceScope": "历史运行命令以 evidencePaths 中原始日志为准；documentedCommands 为教程代码清单，安装命令未逐条重新执行。"
+  },
+  "scanpy-synthetic": {
+    "tutorialId": "scanpy-synthetic",
+    "status": "verified",
+    "verificationScope": "模拟数据 QC、聚类与 UMAP 已验证",
+    "softwareVersion": "Scanpy 1.13.0；Python 3.13.9",
+    "environment": "Windows；igraph、leidenalg；版本见 run.json",
+    "dataSource": "61 个观测 × 20 基因的模拟 Poisson 计数",
+    "expectedOutputs": [
+      "simulated_counts.csv、qc_before.csv、cell_results.csv、umap.png、run.json"
+    ],
+    "evidencePaths": [
+      "examples/single-cell/verified-20261121/cell_results.csv",
+      "examples/single-cell/verified-20261121/qc_before.csv",
+      "examples/single-cell/verified-20261121/run.json",
+      "examples/single-cell/verified-20261121/simulated_counts.csv",
+      "examples/single-cell/verified-20261121/umap.png"
+    ],
+    "sourceUrls": [
+      "https://scanpy.readthedocs.io/en/stable/api/generated/scanpy.tl.leiden.html"
+    ],
+    "verifiedAt": "2026-11-21",
+    "reviewedAt": "2026-11-23",
+    "unverifiedScope": "真实植物独立样本上的完整科研结论；参数敏感性与实验验证",
+    "documentedCommands": [
+      "python -m venv .venv-scanpy\n# 在当前 shell 中激活该虚拟环境\npython -m pip install scanpy==1.13.0 python-igraph==1.0.0 leidenalg==0.12.0 matplotlib\npython examples/single-cell/scanpy_demo.py --output results-scanpy-demo"
+    ],
+    "executionEvidenceScope": "历史运行命令以 evidencePaths 中原始日志为准；documentedCommands 为教程代码清单，安装命令未逐条重新执行。"
+  },
+  "wgcna-synthetic": {
+    "tutorialId": "wgcna-synthetic",
+    "status": "verified",
+    "verificationScope": "模拟有符号共表达网络已验证",
+    "softwareVersion": "WGCNA 1.74；R 4.5.1",
+    "environment": "Windows；独立 R 库；单线程",
+    "dataSource": "36 样本 × 60 基因的模拟连续表达；预设潜在信号",
+    "expectedOutputs": [
+      "modules.csv、module_eigengenes.csv、gene_correlations.csv、热图、run.txt"
+    ],
+    "evidencePaths": [
+      "examples/coexpression/verified-20261121/correlation-heatmap.png",
+      "examples/coexpression/verified-20261121/gene_correlations.csv",
+      "examples/coexpression/verified-20261121/module_eigengenes.csv",
+      "examples/coexpression/verified-20261121/modules.csv",
+      "examples/coexpression/verified-20261121/run.txt",
+      "examples/coexpression/verified-20261121/synthetic_expression.tsv"
+    ],
+    "sourceUrls": [
+      "https://cran.r-project.org/package=WGCNA"
+    ],
+    "verifiedAt": "2026-11-21",
+    "reviewedAt": "2026-11-23",
+    "unverifiedScope": "真实植物独立样本上的完整科研结论；参数敏感性与实验验证",
+    "documentedCommands": [
+      "dir.create('R-library', showWarnings = FALSE)\n.libPaths(c(normalizePath('R-library'), .libPaths()))\ninstall.packages('BiocManager', repos = 'https://cloud.r-project.org', lib = 'R-library')\nBiocManager::install(c('impute', 'preprocessCore', 'WGCNA'),\n                     lib = 'R-library', ask = FALSE, update = FALSE)",
+      "Rscript examples/coexpression/wgcna_demo.R results-wgcna-demo"
+    ],
+    "executionEvidenceScope": "历史运行命令以 evidencePaths 中原始日志为准；documentedCommands 为教程代码清单，安装命令未逐条重新执行。"
+  },
+  "edta-tutorial": {
+    "tutorialId": "edta-tutorial",
+    "status": "template",
+    "verificationScope": "命令模板已核对 · 真实数据待验证",
+    "softwareVersion": "EDTA 2 系列用法；实际版本与依赖须记录",
+    "environment": "Linux；按官方依赖清单建立环境",
+    "dataSource": "基因组 FASTA；可用官方 test/ 安装示例",
+    "expectedOutputs": [
+      "*.EDTA.TElib.fa；--anno 1 对应 TEanno.gff3 和 TEanno.sum"
+    ],
+    "evidencePaths": [],
+    "sourceUrls": [
+      "https://github.com/oushujun/EDTA"
+    ],
+    "verifiedAt": null,
+    "reviewedAt": "2026-11-23",
+    "unverifiedScope": "真实植物独立样本上的完整科研结论；参数敏感性与实验验证；本模板全部运行步骤尚待执行",
+    "documentedCommands": [
+      "EDTA.pl --genome genome.fa --species others --step all --anno 1 --threads 8"
+    ],
+    "executionEvidenceScope": "历史运行命令以 evidencePaths 中原始日志为准；documentedCommands 为教程代码清单，安装命令未逐条重新执行。"
+  },
+  "cafe5-intro": {
+    "tutorialId": "cafe5-intro",
+    "status": "template",
+    "verificationScope": "命令模板已核对 · 真实数据待验证",
+    "softwareVersion": "CAFE5 1.1 命令格式；实际构建须记录",
+    "environment": "Linux / 兼容编译环境；安装后 cafe5 -h",
+    "dataSource": "非负整数家族计数表；名称匹配且分支长度有时间尺度的 Newick 物种树",
+    "expectedOutputs": [
+      "Base_report.cafe 或 Gamma_report.cafe；模型与分支报告"
+    ],
+    "evidencePaths": [],
+    "sourceUrls": [
+      "https://github.com/hahnlab/CAFE5"
+    ],
+    "verifiedAt": null,
+    "reviewedAt": "2026-11-23",
+    "unverifiedScope": "真实植物独立样本上的完整科研结论；参数敏感性与实验验证；本模板全部运行步骤尚待执行",
+    "documentedCommands": [
+      "cafe5 -t data/mammals_integral_tree.txt \\\n  -i data/filtered_cafe_input.txt \\\n  -p -k 2 -c 4 -o cafe5_results"
+    ],
+    "executionEvidenceScope": "历史运行命令以 evidencePaths 中原始日志为准；documentedCommands 为教程代码清单，安装命令未逐条重新执行。"
+  }
+}

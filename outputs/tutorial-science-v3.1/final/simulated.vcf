@@ -1,0 +1,10 @@
+##fileformat=VCFv4.2
+##contig=<ID=1,length=1000>
+##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	A1	A2	A3	A4	B1	B2	B3	B4
+1	100	snp1	A	G	.	PASS	.	GT	0/0	0/0	0/1	0/0	1/1	1/1	0/1	1/1
+1	200	snp2	A	G	.	PASS	.	GT	0/0	0/1	0/0	0/0	1/1	0/1	1/1	1/1
+1	300	snp3	A	G	.	PASS	.	GT	0/1	0/1	0/0	0/1	0/1	0/1	1/1	0/1
+1	400	snp4	A	G	.	PASS	.	GT	0/0	0/0	0/0	0/1	1/1	1/1	1/1	0/1
+1	500	snp5	A	G	.	PASS	.	GT	0/0	0/1	0/0	0/0	1/1	0/1	1/1	1/1
+1	600	snp6	A	G	.	PASS	.	GT	0/1	0/1	1/1	0/1	0/1	0/1	0/0	0/1

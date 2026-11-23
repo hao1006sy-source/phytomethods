@@ -1,0 +1,30 @@
+PLINK v1.9.1 64-bit (11 Nov 2026)
+Options in effect:
+  --make-bed
+  --out outputs\tutorial-science-v3.1\final\simulated
+  --vcf outputs\tutorial-science-v3.1\final\simulated.vcf
+
+Hostname: 三秋树
+Working directory: C:\Users\31764\Documents\Codex\2026-11-20\phytomethods-phytomethods-v1-0-1-2
+Start time: Mon Nov 23 23:01:59 2026
+
+Random number seed: 1795446119
+16070 MB RAM detected; reserving 8035 MB for main workspace.
+--vcf: outputs\tutorial-science-v3.1\final\simulated-temporary.bed +
+outputs\tutorial-science-v3.1\final\simulated-temporary.bim +
+outputs\tutorial-science-v3.1\final\simulated-temporary.fam written.
+6 variants loaded from .bim file.
+8 people (0 males, 0 females, 8 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to
+outputs\tutorial-science-v3.1\final\simulated.nosex .
+Using 1 thread (no multithreaded calculations invoked).
+Before main variant filters, 8 founders and 0 nonfounders present.
+Calculating allele frequencies... done.
+Total genotyping rate is exactly 1.
+6 variants and 8 people pass filters and QC.
+Note: No phenotypes present.
+--make-bed to outputs\tutorial-science-v3.1\final\simulated.bed +
+outputs\tutorial-science-v3.1\final\simulated.bim +
+outputs\tutorial-science-v3.1\final\simulated.fam ... done.
+
+End time: Mon Nov 23 23:01:59 2026

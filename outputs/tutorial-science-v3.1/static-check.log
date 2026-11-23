@@ -1,0 +1,86 @@
+{
+  "tutorials": 10,
+  "commands": 53,
+  "rows": [
+    {
+      "id": "bismark-synthetic",
+      "status": "verified",
+      "codeBlocks": 2,
+      "commandLines": 9,
+      "evidenceFiles": 10,
+      "scope": "模拟数据流程已验证并对照真值"
+    },
+    {
+      "id": "cafe5-intro",
+      "status": "template",
+      "codeBlocks": 1,
+      "commandLines": 1,
+      "evidenceFiles": 0,
+      "scope": "命令模板已核对 · 真实数据待验证"
+    },
+    {
+      "id": "edta-tutorial",
+      "status": "template",
+      "codeBlocks": 1,
+      "commandLines": 1,
+      "evidenceFiles": 0,
+      "scope": "命令模板已核对 · 真实数据待验证"
+    },
+    {
+      "id": "gwas-synthetic",
+      "status": "verified",
+      "codeBlocks": 1,
+      "commandLines": 1,
+      "evidenceFiles": 5,
+      "scope": "模拟单标记 OLS 已验证并独立复算"
+    },
+    {
+      "id": "hifiasm-intro",
+      "status": "template",
+      "codeBlocks": 3,
+      "commandLines": 8,
+      "evidenceFiles": 0,
+      "scope": "命令模板已核对 · 真实数据待验证"
+    },
+    {
+      "id": "orthofinder-intro",
+      "status": "verified",
+      "codeBlocks": 3,
+      "commandLines": 7,
+      "evidenceFiles": 7,
+      "scope": "官方非植物小型示例已验证"
+    },
+    {
+      "id": "plink-synthetic",
+      "status": "verified",
+      "codeBlocks": 4,
+      "commandLines": 6,
+      "evidenceFiles": 10,
+      "scope": "模拟数据转换、统计与 PCA 已验证"
+    },
+    {
+      "id": "scanpy-synthetic",
+      "status": "verified",
+      "codeBlocks": 1,
+      "commandLines": 3,
+      "evidenceFiles": 5,
+      "scope": "模拟数据 QC、聚类与 UMAP 已验证"
+    },
+    {
+      "id": "syri-intro",
+      "status": "verified",
+      "codeBlocks": 4,
+      "commandLines": 12,
+      "evidenceFiles": 11,
+      "scope": "官方拟南芥染色体示例已验证"
+    },
+    {
+      "id": "wgcna-synthetic",
+      "status": "verified",
+      "codeBlocks": 2,
+      "commandLines": 5,
+      "evidenceFiles": 6,
+      "scope": "模拟有符号共表达网络已验证"
+    }
+  ]
+}

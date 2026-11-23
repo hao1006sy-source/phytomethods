@@ -1,0 +1,245 @@
+{
+  "checks": 40,
+  "rows": [
+    {
+      "id": "hifiasm-intro",
+      "width": 1600,
+      "height": 900,
+      "metadataMatches": true
+    },
+    {
+      "id": "hifiasm-intro",
+      "width": 1280,
+      "height": 800,
+      "metadataMatches": true
+    },
+    {
+      "id": "hifiasm-intro",
+      "width": 1024,
+      "height": 768,
+      "metadataMatches": true
+    },
+    {
+      "id": "hifiasm-intro",
+      "width": 390,
+      "height": 844,
+      "metadataMatches": true
+    },
+    {
+      "id": "orthofinder-intro",
+      "width": 1600,
+      "height": 900,
+      "metadataMatches": true
+    },
+    {
+      "id": "orthofinder-intro",
+      "width": 1280,
+      "height": 800,
+      "metadataMatches": true
+    },
+    {
+      "id": "orthofinder-intro",
+      "width": 1024,
+      "height": 768,
+      "metadataMatches": true
+    },
+    {
+      "id": "orthofinder-intro",
+      "width": 390,
+      "height": 844,
+      "metadataMatches": true
+    },
+    {
+      "id": "syri-intro",
+      "width": 1600,
+      "height": 900,
+      "metadataMatches": true
+    },
+    {
+      "id": "syri-intro",
+      "width": 1280,
+      "height": 800,
+      "metadataMatches": true
+    },
+    {
+      "id": "syri-intro",
+      "width": 1024,
+      "height": 768,
+      "metadataMatches": true
+    },
+    {
+      "id": "syri-intro",
+      "width": 390,
+      "height": 844,
+      "metadataMatches": true
+    },
+    {
+      "id": "bismark-synthetic",
+      "width": 1600,
+      "height": 900,
+      "metadataMatches": true
+    },
+    {
+      "id": "bismark-synthetic",
+      "width": 1280,
+      "height": 800,
+      "metadataMatches": true
+    },
+    {
+      "id": "bismark-synthetic",
+      "width": 1024,
+      "height": 768,
+      "metadataMatches": true
+    },
+    {
+      "id": "bismark-synthetic",
+      "width": 390,
+      "height": 844,
+      "metadataMatches": true
+    },
+    {
+      "id": "plink-synthetic",
+      "width": 1600,
+      "height": 900,
+      "metadataMatches": true
+    },
+    {
+      "id": "plink-synthetic",
+      "width": 1280,
+      "height": 800,
+      "metadataMatches": true
+    },
+    {
+      "id": "plink-synthetic",
+      "width": 1024,
+      "height": 768,
+      "metadataMatches": true
+    },
+    {
+      "id": "plink-synthetic",
+      "width": 390,
+      "height": 844,
+      "metadataMatches": true
+    },
+    {
+      "id": "gwas-synthetic",
+      "width": 1600,
+      "height": 900,
+      "metadataMatches": true
+    },
+    {
+      "id": "gwas-synthetic",
+      "width": 1280,
+      "height": 800,
+      "metadataMatches": true
+    },
+    {
+      "id": "gwas-synthetic",
+      "width": 1024,
+      "height": 768,
+      "metadataMatches": true
+    },
+    {
+      "id": "gwas-synthetic",
+      "width": 390,
+      "height": 844,
+      "metadataMatches": true
+    },
+    {
+      "id": "scanpy-synthetic",
+      "width": 1600,
+      "height": 900,
+      "metadataMatches": true
+    },
+    {
+      "id": "scanpy-synthetic",
+      "width": 1280,
+      "height": 800,
+      "metadataMatches": true
+    },
+    {
+      "id": "scanpy-synthetic",
+      "width": 1024,
+      "height": 768,
+      "metadataMatches": true
+    },
+    {
+      "id": "scanpy-synthetic",
+      "width": 390,
+      "height": 844,
+      "metadataMatches": true
+    },
+    {
+      "id": "wgcna-synthetic",
+      "width": 1600,
+      "height": 900,
+      "metadataMatches": true
+    },
+    {
+      "id": "wgcna-synthetic",
+      "width": 1280,
+      "height": 800,
+      "metadataMatches": true
+    },
+    {
+      "id": "wgcna-synthetic",
+      "width": 1024,
+      "height": 768,
+      "metadataMatches": true
+    },
+    {
+      "id": "wgcna-synthetic",
+      "width": 390,
+      "height": 844,
+      "metadataMatches": true
+    },
+    {
+      "id": "edta-tutorial",
+      "width": 1600,
+      "height": 900,
+      "metadataMatches": true
+    },
+    {
+      "id": "edta-tutorial",
+      "width": 1280,
+      "height": 800,
+      "metadataMatches": true
+    },
+    {
+      "id": "edta-tutorial",
+      "width": 1024,
+      "height": 768,
+      "metadataMatches": true
+    },
+    {
+      "id": "edta-tutorial",
+      "width": 390,
+      "height": 844,
+      "metadataMatches": true
+    },
+    {
+      "id": "cafe5-intro",
+      "width": 1600,
+      "height": 900,
+      "metadataMatches": true
+    },
+    {
+      "id": "cafe5-intro",
+      "width": 1280,
+      "height": 800,
+      "metadataMatches": true
+    },
+    {
+      "id": "cafe5-intro",
+      "width": 1024,
+      "height": 768,
+      "metadataMatches": true
+    },
+    {
+      "id": "cafe5-intro",
+      "width": 390,
+      "height": 844,
+      "metadataMatches": true
+    }
+  ]
+}

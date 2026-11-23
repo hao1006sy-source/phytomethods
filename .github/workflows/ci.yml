@@ -29,3 +29,6 @@ jobs:
 
       - name: Validate site, content, search index, and links
         run: npm run validate
+
+      - name: Check tutorial scientific verification records
+        run: npm run check:tutorial-science

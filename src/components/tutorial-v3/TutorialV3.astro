@@ -1,4 +1,5 @@
 ---
+import verificationRecords from './tutorial-verification.json';
 import { domains } from '../../data/domains';
 import { topicMetadata } from '../../data/topics';
 import TutorialPageLayout from './TutorialPageLayout.astro';
@@ -18,11 +19,9 @@ const titles = ['教程概览', ...sections.map(section => section.title), '关�
 const workflow = tutorialWorkflows[entry.id] ?? [['输入准备', '见正文'], ['运行分析', method.data.name], ['检查输出', '见正文']];
 const domainTags = method.data.domainIds.map((id: string) => domains.find(domain => domain[1] === id)).filter(Boolean);
 const topics = topicMetadata.filter(topic => (topic.status === 'published' || import.meta.env.DEV) && topic.tutorialIds.includes(entry.id));
-const testedLabel = entry.data.tested === 'verified'
-  ? (/模拟|虚构/.test(sections[0]?.body ?? '') ? '模拟数据流程已验证' : '官方示例流程已验证')
-  : entry.data.tested === 'template'
-    ? '命令模板已核对 · 真实数据待验证'
-    : '尚未完成运行验证';
+const verification = verificationRecords[entry.id as keyof typeof verificationRecords];
+if (!verification || verification.status !== entry.data.tested) throw new Error(`Invalid verification record: ${entry.id}`);
+const testedLabel = verification.verificationScope;
 const caption = entry.data.tested === 'template'
   ? '方法流程示意；命令模板已核对，真实数据待验证。'
   : '方法流程示意，具体结果和验证边界见教程正文。';

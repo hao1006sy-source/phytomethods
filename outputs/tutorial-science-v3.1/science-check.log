@@ -1,0 +1,18 @@
+
+> phytomethods@0.1.0 check
+> astro check
+
+23:00:39 [content] Syncing content
+23:00:39 [content] Synced content
+23:00:39 [types] Generated 1.15s
+23:00:39 [check] Getting diagnostics for Astro files in C:\Users\31764\Documents\Codex\phytomethods-sidebar-fix-validation...
+[96msrc/components/tutorial-v3/TutorialResourceCards.astro[0m:[93m5[0m:[93m31[0m - [93mwarning[0m[90m ts(6133): [0m'sections' is declared but its value is never read.
+
+[7m5[0m const { entry, method, paper, sections } = Astro.props as {
+[7m [0m [93m                              ~~~~~~~~[0m
+
+Result (145 files): 
+- 0 errors
+- 0 warnings
+- 1 hint
+
