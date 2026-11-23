@@ -1,6 +1,36 @@
 ---
-import Base from '../../layouts/Base.astro';import DraftPreview from '../../components/DraftPreview.astro';import {topicMetadata} from '../../data/topics';import {getCollection,render} from 'astro:content';
-export async function getStaticPaths(){return (await getCollection('papers',({data})=>data.status==='published'||import.meta.env.DEV)).map(entry=>({params:{slug:entry.id},props:{entry}}));}const {entry}=Astro.props;const {Content}=await render(entry);const base=import.meta.env.BASE_URL;const methods=await getCollection('methods',({data})=>data.status==='published'||import.meta.env.DEV);const relatedMethods=methods.filter(method=>entry.data.methodIds.includes(method.id));
+import Base from '../../layouts/Base.astro';
+import DraftPreview from '../../components/DraftPreview.astro';
+import PaperPageLayout from '../../components/paper-v3/PaperPageLayout.astro';
+import {topicMetadata} from '../../data/topics';
+import {getCollection,render} from 'astro:content';
+
+export async function getStaticPaths(){
+  return (await getCollection('papers',({data})=>data.status==='published'||import.meta.env.DEV)).map(entry=>({params:{slug:entry.id},props:{entry}}));
+}
+
+const {entry}=Astro.props;
+const {Content}=await render(entry);
+const base=import.meta.env.BASE_URL;
+const methods=await getCollection('methods',({data})=>data.status==='published'||import.meta.env.DEV);
+const relatedMethods=methods.filter(method=>entry.data.methodIds.includes(method.id));
 ---
-<Base title={entry.data.title}><article class="reading-main prose paper-entry"><DraftPreview status={entry.data.status}/><p><a href={`${base}papers/`}>文献索引</a></p><h1>{entry.data.title}</h1><p>{entry.data.authors} · {entry.data.journal} · {entry.data.year}</p><p>{entry.data.type==='method'?'方法论文':'研究案例'} · <a href={`https://doi.org/${entry.data.doi}`}>DOI: {entry.data.doi}</a></p><Content/>{relatedMethods.length>0 && <p>相关方法：{relatedMethods.map(method=><a href={`${base}methods/${method.id}/`}>{method.data.name}　</a>)}</p>}<h2>相关专题</h2><ul>{topicMetadata.filter(t=>(t.status==='published'||import.meta.env.DEV)&&t.paperIds.includes(entry.id)).map(t=><li><a href={`${base}topics/${t.domainId}/${t.id}/`}>{t.title}</a></li>)}</ul></article></Base>
+<Base title={entry.data.title} description={entry.data.summary}>
+  {entry.id === 'hifiasm' ? (
+    <PaperPageLayout entry={entry} methods={methods} />
+  ) : (
+    <article class="reading-main prose paper-entry">
+      <DraftPreview status={entry.data.status}/>
+      <p><a href={`${base}papers/`}>文献索引</a></p>
+      <h1>{entry.data.title}</h1>
+      <p>{entry.data.authors} · {entry.data.journal} · {entry.data.year}</p>
+      <p>{entry.data.type==='method'?'方法论文':'研究案例'} · <a href={`https://doi.org/${entry.data.doi}`}>DOI: {entry.data.doi}</a></p>
+      <Content/>
+      {relatedMethods.length>0 && <p>相关方法：{relatedMethods.map(method=><a href={`${base}methods/${method.id}/`}>{method.data.name}　</a>)}</p>}
+      <h2>相关专题</h2>
+      <ul>{topicMetadata.filter(t=>(t.status==='published'||import.meta.env.DEV)&&t.paperIds.includes(entry.id)).map(t=><li><a href={`${base}topics/${t.domainId}/${t.id}/`}>{t.title}</a></li>)}</ul>
+    </article>
+  )}
+</Base>
 <style>.paper-entry{width:100%;max-width:920px;margin:2rem auto 3rem}</style>
+

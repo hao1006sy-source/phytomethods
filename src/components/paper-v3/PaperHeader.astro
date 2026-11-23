@@ -1,0 +1,93 @@
+---
+interface Props {
+  meta: any;
+}
+
+const { meta } = Astro.props;
+const base = import.meta.env.BASE_URL;
+---
+
+<header id="paper-info" class="paper-header">
+  <nav class="paper-crumb" aria-label="文献路径导航">
+    <a href={base}>首页</a>
+    <span aria-hidden="true">/</span>
+    <a href={`${base}papers/`}>文献索引</a>
+    <span aria-hidden="true">/</span>
+    <span aria-current="page">文献详情</span>
+  </nav>
+
+  <div class="paper-header-main">
+    <div class="paper-badge-wrap">
+      <span class="paper-badge">{meta.badge}</span>
+    </div>
+
+    <h1 class="paper-title">{meta.title}</h1>
+
+    <div class="paper-meta-row">
+      <span class="authors" title={meta.fullAuthors}>{meta.shortAuthors}</span>
+      <span class="journal-info">
+        {meta.journal} · {meta.year} · {meta.volumePages}
+      </span>
+      <a href={meta.doiUrl} target="_blank" rel="noreferrer" class="doi-link">
+        DOI: {meta.doi} <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+
+    <div class="paper-actions-bar">
+      <div class="paper-tags" aria-label="研究关键词">
+        {meta.tags.map((tag: string) => (
+          <span class="paper-tag">{tag}</span>
+        ))}
+      </div>
+
+      <div class="paper-buttons">
+        <button type="button" id="open-citation-btn" class="paper-btn" aria-haspopup="dialog">
+          <span aria-hidden="true">❝</span> 引用
+        </button>
+        <button type="button" id="favorite-btn" class="paper-btn" aria-label="收藏该文献">
+          <span id="favorite-icon" aria-hidden="true">☆</span> <span id="favorite-text">收藏</span>
+        </button>
+        <a href={meta.doiUrl} target="_blank" rel="noreferrer" class="paper-btn paper-btn-primary">
+          阅读原文 <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  // 引用弹窗与收藏交互
+  const citeBtn = document.getElementById('open-citation-btn');
+  const dialog = document.getElementById('citation-dialog') as HTMLDialogElement | null;
+  const favBtn = document.getElementById('favorite-btn');
+  const favIcon = document.getElementById('favorite-icon');
+  const favText = document.getElementById('favorite-text');
+
+  citeBtn?.addEventListener('click', () => {
+    dialog?.showModal();
+  });
+
+  // 本地存储收藏功能
+  const paperKey = 'pm_fav_paper_hifiasm';
+  const isFav = localStorage.getItem(paperKey) === 'true';
+  if (isFav && favIcon && favText && favBtn) {
+    favIcon.textContent = '★';
+    favText.textContent = '已收藏';
+    favBtn.classList.add('is-active');
+  }
+
+  favBtn?.addEventListener('click', () => {
+    const currentlyFav = localStorage.getItem(paperKey) === 'true';
+    if (currentlyFav) {
+      localStorage.removeItem(paperKey);
+      if (favIcon) favIcon.textContent = '☆';
+      if (favText) favText.textContent = '收藏';
+      favBtn.classList.remove('is-active');
+    } else {
+      localStorage.setItem(paperKey, 'true');
+      if (favIcon) favIcon.textContent = '★';
+      if (favText) favText.textContent = '已收藏';
+      favBtn.classList.add('is-active');
+    }
+  });
+</script>

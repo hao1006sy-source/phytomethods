@@ -1,0 +1,122 @@
+---
+interface Props {
+  meta: any;
+}
+
+const { meta } = Astro.props;
+const base = import.meta.env.BASE_URL;
+---
+
+<aside class="paper-resources" aria-label="文献元数据与关联科研资源">
+  <!-- 卡片 1: 文献信息 -->
+  <section class="paper-card" aria-labelledby="card-meta-title">
+    <div class="paper-card-header">
+      <span aria-hidden="true">📄</span>
+      <h3 id="card-meta-title" class="paper-card-title">文献信息</h3>
+    </div>
+    <div class="paper-card-body">
+      <dl class="paper-meta-list">
+        <dt class="paper-meta-dt">文献类型</dt>
+        <dd class="paper-meta-dd"><span class="paper-badge" style="padding: 2px 8px; font-size: 11px;">{meta.badge}</span></dd>
+        
+        <dt class="paper-meta-dt">发表期刊</dt>
+        <dd class="paper-meta-dd">{meta.journal}</dd>
+        
+        <dt class="paper-meta-dt">发表年份</dt>
+        <dd class="paper-meta-dd">{meta.year}</dd>
+        
+        <dt class="paper-meta-dt">卷期页码</dt>
+        <dd class="paper-meta-dd">{meta.volumePages}</dd>
+        
+        <dt class="paper-meta-dt">DOI</dt>
+        <dd class="paper-meta-dd">
+          <a href={meta.doiUrl} target="_blank" rel="noreferrer">
+            {meta.doi} <span aria-hidden="true">↗</span>
+          </a>
+        </dd>
+      </dl>
+    </div>
+  </section>
+
+  <!-- 卡片 2: 关联内容 -->
+  <section class="paper-card" aria-labelledby="card-linked-title">
+    <div class="paper-card-header">
+      <span aria-hidden="true">🔀</span>
+      <h3 id="card-linked-title" class="paper-card-title">关联内容</h3>
+    </div>
+    <div class="paper-card-body">
+      <!-- 关联算法与工具 -->
+      <div class="paper-linked-group">
+        <div class="paper-linked-heading">
+          <span aria-hidden="true">🛠️</span> 相关算法与工具
+        </div>
+        <div class="paper-linked-list">
+          <a href={`${base}methods/hifiasm/`} class="paper-linked-item">
+            <span class="paper-linked-title">🍃 Hifiasm</span>
+            <span class="paper-linked-desc">基因组组装与单倍型解析算法详情</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- 关联专题 -->
+      <div class="paper-linked-group">
+        <div class="paper-linked-heading">
+          <span aria-hidden="true">📖</span> 相关专题
+        </div>
+        <div class="paper-linked-list">
+          <a href={`${base}topics/genome-assembly/sequencing-data/`} class="paper-linked-item">
+            <span class="paper-linked-title">长读长基因组组装方法综述</span>
+            <span class="paper-linked-desc">测序数据基础与第三代长读长组装</span>
+          </a>
+          <a href={`${base}topics/pangenomics-structural-variation/m03-topic-02/`} class="paper-linked-item">
+            <span class="paper-linked-title">单倍型解析与结构变异分析</span>
+            <span class="paper-linked-desc">多单倍型基因组图构建与变异检测</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- 关联分析教程 -->
+      <div class="paper-linked-group">
+        <div class="paper-linked-heading">
+          <span aria-hidden="true">🧪</span> 相关分析教程
+        </div>
+        <div class="paper-linked-list">
+          <a href={`${base}tutorials/hifiasm-intro/`} class="paper-linked-item">
+            <span class="paper-linked-title">使用 Hifiasm 进行植物基因组组装</span>
+            <span class="paper-linked-desc">从 HiFi 数据到高质量染色体级单倍型</span>
+            <span class="paper-linked-badge">已验证</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 卡片 3: 植物研究应用 -->
+  <section class="paper-card" aria-labelledby="card-plant-title">
+    <div class="paper-card-header">
+      <span aria-hidden="true">🌱</span>
+      <h3 id="card-plant-title" class="paper-card-title">植物研究应用</h3>
+    </div>
+    <div class="paper-card-body">
+      <div class="paper-plant-card">
+        <div class="paper-plant-spotlight">
+          <div class="paper-plant-img" aria-hidden="true">
+            🌰
+          </div>
+          <div class="paper-plant-info">
+            <h4 class="paper-plant-name">
+              澳洲坚果
+              <em>Macadamia jansenii</em>
+            </h4>
+            <p class="paper-plant-desc">
+              利用 hifiasm 进行高质量单倍型基因组组装，14条染色体中8条由单一contig覆盖，解析濒危植物基因组结构...
+            </p>
+          </div>
+        </div>
+        <a href={`${base}papers/macadamia/`} class="paper-plant-link">
+          查看案例详情 →
+        </a>
+      </div>
+    </div>
+  </section>
+</aside>

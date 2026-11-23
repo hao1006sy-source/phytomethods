@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "checks": [
+    "Viewport 1600x900: layout OK, no overflow",
+    "Viewport 1280x800: layout OK, no overflow",
+    "Viewport 1024x768: layout OK, no overflow",
+    "Viewport 768x1024: layout OK, no overflow",
+    "Viewport 390x844: layout OK, no overflow",
+    "Captured: 核心贡献区",
+    "Captured: 方法原理与流程图",
+    "Captured: 精读笔记区",
+    "Captured: 右侧关联资源卡片区",
+    "Citation dialog: BibTeX/APA/GB7714 switch and clipboard copy OK",
+    "Favorite button local interaction OK",
+    "Captured: 改造前旧版文献页对照",
+    "Remaining papers strictly retain legacy renderer",
+    "Regression check: Home, Topics, Methods and Tutorials intact"
+  ],
+  "errors": [],
+  "timestamp": "2026-11-23T08:43:02.024Z"
+}
