@@ -1,0 +1,69 @@
+---
+import Diagram from '../Diagram.astro';
+import ScientificFigure from '../ScientificFigure.astro';
+import HaplotypeDemo from '../HaplotypeDemo.astro';
+import AssemblyFigures from '../AssemblyFigures.astro';
+import AnnotationFigure from '../AnnotationFigure.astro';
+import PangenomeDemo from '../PangenomeDemo.astro';
+import AnchorChainDemo from '../AnchorChainDemo.astro';
+import GraphMappingDemo from '../GraphMappingDemo.astro';
+import PangenomeFigure from '../PangenomeFigure.astro';
+import GeneEvolutionDemo from '../GeneEvolutionDemo.astro';
+import PhylogenyDemo from '../PhylogenyDemo.astro';
+import CollinearityDemo from '../CollinearityDemo.astro';
+import WgdDemo from '../WgdDemo.astro';
+import PopulationPcaDemo from '../PopulationPcaDemo.astro';
+import MixedModelFigure from '../MixedModelFigure.astro';
+import GwasDemo from '../GwasDemo.astro';
+import CoalescentFigure from '../CoalescentFigure.astro';
+import DomesticationFigure from '../DomesticationFigure.astro';
+import MethylationFigure from '../MethylationFigure.astro';
+import SingleCellDemo from '../SingleCellDemo.astro';
+import PseudotimeDemo from '../PseudotimeDemo.astro';
+import CoexpressionDemo from '../CoexpressionDemo.astro';
+
+interface Props { topicId: string; domainId: string }
+const {topicId,domainId}=Astro.props;
+const isAssembly=domainId==='genome-assembly';
+---
+{isAssembly && topicId==='sequencing-data' && <Diagram kind="assembly"/>}
+{isAssembly && topicId==='assembly-basics' && <Diagram kind="assembly"/>}
+{isAssembly && topicId==='assembly-graphs' && <><Diagram kind="graphs"/><section class="assembly-graph-demo" data-assembly-graph-demo><h3>组装图交互示意</h3><p>原理示意：查看重叠片段如何连接，并在重复或变异位置形成候选分支。</p><svg viewBox="0 0 600 110" role="img" aria-label="组装图从重叠到候选分支的教学示意"><path data-graph-path d="M30 55 H170 M200 55 H320" stroke="#087a50" stroke-width="5" fill="none"/><text x="25" y="40">Read A</text><text x="180" y="40">Read B</text><text x="330" y="40">候选路径</text></svg><p data-graph-explanation aria-live="polite">第 1 步：读取重叠的序列片段。</p><div class="figure-actions"><button type="button" data-graph-prev>上一步</button><button type="button" data-graph-next>下一步</button><button type="button" data-graph-reset>重置</button></div></section></>}
+{isAssembly && topicId==='haplotype-resolution' && <><Diagram kind="haplotypes"/><ScientificFigure kind="haplotypes"/><HaplotypeDemo/></>}
+{isAssembly && topicId==='hic-scaffolding' && <AssemblyFigures kind="hic-scaffolding"/>}
+{isAssembly && topicId==='complete-assembly' && <AssemblyFigures kind="complete-assembly"/>}
+{isAssembly && topicId==='assembly-quality' && <><Diagram kind="merqury"/><ScientificFigure kind="spectrum"/></>}
+{domainId==='genome-annotation' && <AnnotationFigure kind={topicId}/>}
+{topicId==='m03-topic-02' && <AnchorChainDemo/>}
+{topicId==='m03-topic-05' && <PangenomeDemo/>}
+{topicId==='m03-topic-06' && <GraphMappingDemo/>}
+{['m03-topic-01','m03-topic-03','m03-topic-04','m03-topic-07'].includes(topicId) && <PangenomeFigure kind={topicId}/>}
+{topicId==='m04-topic-01' && <GeneEvolutionDemo/>}
+{topicId==='m04-topic-03' && <CollinearityDemo/>}
+{topicId==='m04-topic-04' && <PhylogenyDemo/>}
+{topicId==='m04-topic-06' && <WgdDemo/>}
+{topicId==='m05-topic-03' && <PopulationPcaDemo/>}
+{topicId==='m05-topic-06' && <CoalescentFigure/>}
+{topicId==='m05-topic-07' && <DomesticationFigure/>}
+{topicId==='m06-topic-04' && <MixedModelFigure/>}
+{topicId==='m06-topic-05' && <GwasDemo/>}
+{topicId==='m07-topic-02' && <MethylationFigure/>}
+{topicId==='m08-topic-03' && <SingleCellDemo/>}
+{topicId==='m08-topic-05' && <PseudotimeDemo/>}
+{topicId==='m09-topic-02' && <CoexpressionDemo/>}
+
+<script>
+for(const root of document.querySelectorAll<HTMLElement>('[data-assembly-graph-demo]')){
+  let step=0;
+  const paths=['M30 55 H170 M200 55 H320','M30 55 H320','M30 55 H320 M320 55 L520 20 M320 55 L520 90'];
+  const labels=['第 1 步：读取重叠的序列片段。','第 2 步：识别重叠并连接片段。','第 3 步：重复序列或变异形成候选分叉。'];
+  const draw=()=>{root.querySelector('[data-graph-path]')?.setAttribute('d',paths[step]);const label=root.querySelector('[data-graph-explanation]');if(label)label.textContent=labels[step];const previous=root.querySelector<HTMLButtonElement>('[data-graph-prev]');const next=root.querySelector<HTMLButtonElement>('[data-graph-next]');if(previous)previous.disabled=step===0;if(next)next.disabled=step===paths.length-1;};
+  root.querySelector('[data-graph-prev]')?.addEventListener('click',()=>{step=Math.max(0,step-1);draw()});
+  root.querySelector('[data-graph-next]')?.addEventListener('click',()=>{step=Math.min(paths.length-1,step+1);draw()});
+  root.querySelector('[data-graph-reset]')?.addEventListener('click',()=>{step=0;draw()});
+  draw();
+}
+</script>
+<style>
+.assembly-graph-demo{margin:1.5rem 0;padding:1rem;border:1px solid #dce8e0;border-radius:10px;background:#fff}.assembly-graph-demo h3{margin-top:0;color:#123f2d}.assembly-graph-demo svg{display:block;width:100%;height:auto;overflow:visible}.assembly-graph-demo .figure-actions{display:flex;gap:.5rem;flex-wrap:wrap}.assembly-graph-demo button{border:1px solid #087a50;border-radius:6px;background:#edf6f0;color:#087a50;padding:.45rem .8rem;cursor:pointer}.assembly-graph-demo button:disabled{opacity:.55;cursor:default}
+</style>
