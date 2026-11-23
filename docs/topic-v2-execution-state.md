@@ -19,9 +19,9 @@
 
 ## 待处理
 
-1. 提交无障碍提示和测试修复。
-2. 推送新提交并等待 PR CI 完成；PR 保持打开且不合并。
-3. 更新报告中的最终提交与 CI 状态，制作最终交付 ZIP 并复制到本任务输出目录。
+1. 整理截图和验证结果，复制交付 ZIP 与报告到任务输出目录。
+2. PR #16 `https://github.com/hao1006sy-source/phytomethods/pull/16` 已创建，最新提交 `8c6a7b2899ce755605131cbf7010a7f3ad67aec2`。
+3. CI `validate` 已通过：`https://github.com/hao1006sy-source/phytomethods/actions/runs/45091141957/job/137420719518`。PR 保持打开且未合并。
 
 ## 当前边界
 

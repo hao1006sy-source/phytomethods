@@ -68,4 +68,4 @@
 
 ## 发布状态
 
-开发分支已推送，PR #16 已创建并保持打开状态。第一轮 CI `validate` 通过；新增的手机宽表提示及无障碍测试更新已在 PR 后续提交中，后续 CI 结果待更新。依照本任务要求，PR 保持未合并。
+开发分支：`feat/topic-article-v2-full-rollout`。最终提交：`8c6a7b2899ce755605131cbf7010a7f3ad67aec2`。PR #16：<https://github.com/hao1006sy-source/phytomethods/pull/16>，状态 Open，目标 `main`，未合并。最新 CI `validate` 于 2026-11-23 通过：<https://github.com/hao1006sy-source/phytomethods/actions/runs/45091141957/job/137420719518>。
