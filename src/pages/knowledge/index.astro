@@ -17,8 +17,8 @@ const networks=records.map(({method,topics,papers,tutorials})=>{
 });
 const shorten=(value:string)=>value.length>14?`${value.slice(0,13)}…`:value;
 ---
-<Base title="算法原理与知识关联">
-  <p class="breadcrumb"><a href={base}>首页</a> / 算法原理与知识关联</p>
+<Base title="算法原理与知识关联"><section class="nav-v3 knowledge-v3">
+  <p class="nav-overline">KNOWLEDGE GRAPH</p>
   <h1>算法原理与知识关联</h1>
   <p class="page-lead">从计算思想或研究领域出发，查找已发布的工具，以及它们关联的专题、文献和教程。关联来自本站内容记录。</p>
   <form id="knowledge-filters" class="filters">
@@ -27,27 +27,27 @@ const shorten=(value:string)=>value.length>14?`${value.slice(0,13)}…`:value;
     <button type="reset">重置筛选</button>
   </form>
   <p id="knowledge-count" aria-live="polite"></p>
-  <section class="knowledge-graph" aria-labelledby="graph-title">
+  <div class="knowledge-workspace"><aside class="knowledge-chooser" aria-label="选择方法"><h2>选择方法</h2>{records.map(({method})=><button type="button" data-method-choice={method.id}>{method.data.name}</button>)}</aside><section class="knowledge-graph" aria-labelledby="graph-title">
     <h2 id="graph-title">知识关联图</h2>
     <p>选择工具查看其所属领域、算法原理、专题、文献和教程；连线表示内容记录中的关联。</p>
     <label>选择工具 <select id="knowledge-selected">{records.map(({method})=><option value={method.id}>{method.data.name}</option>)}</select></label>
     <p class="graph-legend">图例：领域 · 算法原理 · 专题 · 工具 · 文献 · 教程。选择节点可访问对应内容；选择原理可筛选工具。</p>
     <div class="graph-scroller">{networks.map(({method,left,right,height},index)=><div data-knowledge-graph={method.id} hidden={index!==0}>
       <svg viewBox={`0 0 960 ${height}`} role="img" aria-label={`${method.data.name} 的知识关联图`}>
-        {left.map((_node,i)=><line x1="300" y1={32+i*52} x2="480" y2={height/2} stroke="#b9cbd0" stroke-width="1.5"/>)}
-        {right.map((_node,i)=><line x1="660" y1={32+i*52} x2="480" y2={height/2} stroke="#b9cbd0" stroke-width="1.5"/>)}
-        {left.map((node,i)=><a href={node.href} data-graph-principle={node.principle || undefined} aria-label={`${node.type}：${node.label}`}><title>{node.type}：{node.label}</title><rect x="12" y={12+i*52} width="288" height="40" rx="8" fill="#edf6f3" stroke="#b8d9d0"/><text x="24" y={38+i*52} fill="#17324d" font-size="15">{node.type} · {shorten(node.label)}</text></a>)}
-        <a href={`${base}methods/${method.id}/`} aria-label={`工具：${method.data.name}`}><rect x="375" y={height/2-23} width="210" height="46" rx="9" fill="#17324d"/><text x="480" y={height/2+5} text-anchor="middle" fill="#fff" font-size="17">{method.data.name}</text></a>
-        {right.map((node,i)=><a href={node.href} aria-label={`${node.type}：${node.label}`}><title>{node.type}：{node.label}</title><rect x="660" y={12+i*52} width="288" height="40" rx="8" fill="#f4f7fa" stroke="#cddbe2"/><text x="672" y={38+i*52} fill="#17324d" font-size="15">{node.type} · {shorten(node.label)}</text></a>)}
+        {left.map((_node,i)=><line x1="300" y1={32+i*52} x2="480" y2={height/2} stroke="#bfd9c9" stroke-width="1.5"/>)}
+        {right.map((_node,i)=><line x1="660" y1={32+i*52} x2="480" y2={height/2} stroke="#bfd9c9" stroke-width="1.5"/>)}
+        {left.map((node,i)=><a href={node.href} data-graph-principle={node.principle || undefined} aria-label={`${node.type}：${node.label}`}><title>{node.type}：{node.label}</title><rect x="12" y={12+i*52} width="288" height="40" rx="8" fill="#edf6f3" stroke="#b8d9d0"/><text x="24" y={38+i*52} fill="#104a36" font-size="15">{node.type} · {shorten(node.label)}</text></a>)}
+        <a href={`${base}methods/${method.id}/`} aria-label={`工具：${method.data.name}`}><rect x="375" y={height/2-23} width="210" height="46" rx="9" fill="#104a36"/><text x="480" y={height/2+5} text-anchor="middle" fill="#fff" font-size="17">{method.data.name}</text></a>
+        {right.map((node,i)=><a href={node.href} aria-label={`${node.type}：${node.label}`}><title>{node.type}：{node.label}</title><rect x="660" y={12+i*52} width="288" height="40" rx="8" fill="#f7fbf8" stroke="#cddbe2"/><text x="672" y={38+i*52} fill="#104a36" font-size="15">{node.type} · {shorten(node.label)}</text></a>)}
       </svg>
     </div>)}</div>
     <p id="knowledge-graph-empty" hidden>当前筛选条件没有可展示的工具。</p>
-  </section>
+  </section></div>
   <div class="knowledge-list">{records.map(({method,domain,topics,papers,tutorials})=><article class="knowledge-row" data-knowledge-domain={method.data.domainIds.join('|')} data-knowledge-principle={method.data.principleIds.join('|')}>
     <div><span class="knowledge-label">{domain?.[2] ?? '研究领域'}</span><h2><a href={`${base}methods/${method.id}/`}>{method.data.name}</a></h2><p>{method.data.summary}</p><p><strong>算法原理：</strong>{method.data.principleIds.map(id=>principleLabels[id] ?? id).join('、')}</p></div>
-    <div class="knowledge-links"><p><strong>所属专题</strong> {topics.length ? topics.map(t=><a href={`${base}topics/${t.domainId}/${t.id}/`}>{t.title}</a>) : '暂无'}</p><p><strong>相关文献</strong> {papers.length ? papers.map(p=><a href={`${base}papers/${p.id}/`}>{p.data.title}</a>) : '暂无'}</p><p><strong>分析教程</strong> {tutorials.length ? tutorials.map(t=><a href={`${base}tutorials/${t.id}/`}>{t.data.title}</a>) : '暂无'}</p></div>
+    <details class="knowledge-links"><summary>展开专题、文献与教程关系</summary><p><strong>所属专题</strong> {topics.length ? topics.map(t=><a href={`${base}topics/${t.domainId}/${t.id}/`}>{t.title}</a>) : '暂无'}</p><p><strong>相关文献</strong> {papers.length ? papers.map(p=><a href={`${base}papers/${p.id}/`}>{p.data.title}</a>) : '暂无'}</p><p><strong>分析教程</strong> {tutorials.length ? tutorials.map(t=><a href={`${base}tutorials/${t.id}/`}>{t.data.title}</a>) : '暂无'}</p></details>
   </article>)}</div>
-</Base>
+</section></Base>
 <script>
   const form=document.querySelector<HTMLFormElement>('#knowledge-filters');
   const rows=[...document.querySelectorAll<HTMLElement>('[data-knowledge-domain]')];
@@ -55,12 +55,13 @@ const shorten=(value:string)=>value.length>14?`${value.slice(0,13)}…`:value;
   const chooser=document.querySelector<HTMLSelectElement>('#knowledge-selected');
   const graphs=[...document.querySelectorAll<HTMLElement>('[data-knowledge-graph]')];
   const empty=document.querySelector<HTMLElement>('#knowledge-graph-empty');
-  const draw=()=>{const id=chooser?.value;for(const graph of graphs)graph.hidden=!id||graph.dataset.knowledgeGraph!==id;if(empty)empty.hidden=!!id;};
+  const choices=[...document.querySelectorAll<HTMLButtonElement>('[data-method-choice]')];for(const choice of choices)choice.addEventListener('click',()=>{if(chooser){chooser.value=choice.dataset.methodChoice??'';draw();}});
+  const draw=()=>{const id=chooser?.value;for(const choice of choices){const selected=choice.dataset.methodChoice===id;choice.hidden=!!chooser?.querySelector<HTMLOptionElement>(`option[value="${choice.dataset.methodChoice}"]`)?.hidden;choice.setAttribute('aria-pressed',String(selected));} for(const graph of graphs)graph.hidden=!id||graph.dataset.knowledgeGraph!==id;if(empty)empty.hidden=!!id;};
   const update=()=>{if(!form)return;const data=new FormData(form);const domain=String(data.get('domain') || '');const principle=String(data.get('principle') || '');let visible=0;const allowed:string[]=[];for(const row of rows){const match=(!domain||row.dataset.knowledgeDomain?.split('|').includes(domain))&&(!principle||row.dataset.knowledgePrinciple?.split('|').includes(principle));row.hidden=!match;if(match){visible++;const link=row.querySelector<HTMLAnchorElement>('h2 a');if(link){const parts=new URL(link.href).pathname.split('/').filter(Boolean);allowed.push(parts[parts.length-1]);}}}if(count)count.textContent=visible?`找到 ${visible} 项工具`:'没有符合条件的工具，请调整筛选条件。';if(chooser){for(const option of chooser.options)option.hidden=!allowed.includes(option.value);if(!allowed.includes(chooser.value))chooser.value=allowed[0]??'';chooser.disabled=allowed.length===0;}draw();};
   chooser?.addEventListener('change',draw);
   for(const link of document.querySelectorAll<HTMLAnchorElement>('[data-graph-principle]'))link.addEventListener('click',event=>{event.preventDefault();const select=form?.elements.namedItem('principle') as HTMLSelectElement|null;if(select){select.value=link.dataset.graphPrinciple??'';update();form?.scrollIntoView({block:'start'});}});
   form?.addEventListener('change',update);form?.addEventListener('reset',()=>setTimeout(update,0));update();
 </script>
 <style>
-.knowledge-graph{margin:2rem 0;padding:1.25rem;border:1px solid var(--border);border-radius:12px;background:#fff}.knowledge-graph h2{margin-top:0}.graph-legend{font-size:.85rem;color:var(--muted)}.graph-scroller{overflow-x:auto}.graph-scroller svg{width:100%;min-width:850px;height:auto;display:block}.graph-scroller a:focus-visible rect{stroke:#d67c29;stroke-width:4}[data-knowledge-graph][hidden],#knowledge-graph-empty[hidden]{display:none}@media(max-width:700px){.knowledge-graph{display:none}}.knowledge-list{border-top:1px solid var(--border)}.knowledge-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;padding:24px 0;border-bottom:1px solid var(--border)}.knowledge-row[hidden]{display:none}.knowledge-row h2{margin:4px 0 8px;font-size:1.2rem}.knowledge-row p{margin:8px 0;font-size:.9rem}.knowledge-label{color:var(--teal);font-size:.8rem;font-weight:700}.knowledge-links p{display:flex;flex-wrap:wrap;gap:6px 12px}.knowledge-links strong{flex-basis:100%;color:var(--navy)}@media(max-width:700px){.knowledge-row{grid-template-columns:1fr;gap:8px}}
+.knowledge-graph{margin:2rem 0;padding:1.25rem;border:1px solid var(--border);border-radius:12px;background:#fff}.knowledge-graph h2{margin-top:0}.graph-legend{font-size:.85rem;color:var(--muted)}.graph-scroller{overflow-x:auto}.graph-scroller svg{width:100%;min-width:850px;height:auto;display:block}.graph-scroller a:focus-visible rect{stroke:#d67c29;stroke-width:4}[data-knowledge-graph][hidden],#knowledge-graph-empty[hidden]{display:none}@media(max-width:700px){.knowledge-graph{display:block}}.knowledge-list{border-top:1px solid var(--border)}.knowledge-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;padding:24px 0;border-bottom:1px solid var(--border)}.knowledge-row[hidden]{display:none}.knowledge-row h2{margin:4px 0 8px;font-size:1.2rem}.knowledge-row p{margin:8px 0;font-size:.9rem}.knowledge-label{color:var(--teal);font-size:.8rem;font-weight:700}.knowledge-links p{display:flex;flex-wrap:wrap;gap:6px 12px}.knowledge-links strong{flex-basis:100%;color:var(--navy)}@media(max-width:700px){.knowledge-row{grid-template-columns:1fr;gap:8px}}
 </style>
