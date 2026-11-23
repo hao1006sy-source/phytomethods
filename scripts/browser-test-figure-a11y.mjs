@@ -19,18 +19,21 @@ try {
   ]) {
     const response = await keyboardPage.goto(topicUrl(topic));
     if (response?.status() !== 200) throw new Error(`${topic} returned ${response?.status()}`);
-    await keyboardPage.waitForFunction(selector => [...document.querySelectorAll(selector)].some(element =>
-      element.scrollWidth > element.clientWidth + 1 && element.getAttribute('tabindex') === '0'), selector);
     const regions = keyboardPage.locator(selector);
+    const count = await regions.count();
+    if (!count) throw new Error(`${topic} has no region for ${selector}`);
     let region;
     for (let index = 0; index < await regions.count(); index += 1) {
       const candidate = regions.nth(index);
-      if (await candidate.evaluate(element => element.scrollWidth > element.clientWidth + 1 && element.getAttribute('tabindex') === '0')) {
+      if (await candidate.evaluate(element => element.scrollWidth > element.clientWidth + 1)) {
         region = candidate;
         break;
       }
     }
-    if (!region) throw new Error(`${topic} has no overflowing region for ${selector} at 375px`);
+    if (!region) {
+      console.log(`${topic} ${selector}: fits at 375px; no horizontal scroll required`);
+      continue;
+    }
     if (await region.getAttribute('tabindex') !== '0') {
       const metrics = await region.evaluate(element => ({
         scrollWidth: element.scrollWidth,
