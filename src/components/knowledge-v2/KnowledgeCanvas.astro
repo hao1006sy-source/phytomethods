@@ -1,0 +1,75 @@
+---
+---
+
+<section class="panel-center" aria-label="知识网络画布">
+  <!-- 网格背景 -->
+  <div class="canvas-bg-grid"></div>
+
+  <!-- 工具栏 -->
+  <div class="graph-toolbar" role="toolbar" aria-label="画布缩放与视图控制">
+    <button type="button" id="btn-zoom-in" class="tool-btn" title="放大 (+)" aria-label="放大">+</button>
+    <button type="button" id="btn-zoom-out" class="tool-btn" title="缩小 (-)" aria-label="缩小">-</button>
+    <button type="button" id="btn-reset-view" class="tool-btn" title="复位居中 (R)" aria-label="复位居中">⟲</button>
+    <button type="button" id="btn-fullscreen" class="tool-btn" title="全屏查看" aria-label="全屏查看">⤢</button>
+    <button type="button" id="btn-view-toggle" class="tool-btn" style="width:auto;padding:0 8px;font-size:11.5px;" title="切换图谱/列表视图" aria-label="切换图谱与列表视图">⚏ 列表</button>
+  </div>
+
+  <!-- SVG 交互视口 -->
+  <svg class="svg-viewport" viewBox="0 0 1040 720" role="img" aria-label="科研知识网络拓扑图">
+    <rect id="bg-rect" width="100%" height="100%" fill="transparent" pointer-events="all"/>
+    <g id="viewport-g">
+      <g id="edges-g"></g>
+      <g id="nodes-g"></g>
+    </g>
+  </svg>
+
+  <!-- 图例浮层 -->
+  <div class="graph-legend-overlay">
+    <div class="legend-item">
+      <span class="color-dot" style="background:#104A36;"></span>
+      <span>算法工具</span>
+    </div>
+    <div class="legend-item">
+      <span class="color-dot" style="background:#226C9C;"></span>
+      <span>奠基论文</span>
+    </div>
+    <div class="legend-item">
+      <span class="color-dot" style="background:#7A5600;"></span>
+      <span>植物应用</span>
+    </div>
+    <div class="legend-item">
+      <span class="color-dot" style="background:#0D7377;"></span>
+      <span>专题</span>
+    </div>
+    <div class="legend-item">
+      <span class="color-dot" style="background:#853A12;"></span>
+      <span>教程</span>
+    </div>
+    <div class="legend-item">
+      <span class="color-dot" style="background:#2E7D32;"></span>
+      <span>物种</span>
+    </div>
+    <div class="legend-item" style="border-left:1px solid var(--border-light);padding-left:10px;">
+      <span style="color:var(--primary-deep);font-weight:600;">● 来源已核实</span>
+    </div>
+  </div>
+
+  <!-- 结构化列表视图容器（无障碍与小屏备选模式） -->
+  <div class="list-view-container" aria-label="知识关系列表视图">
+    <div style="padding:16px 20px 8px;font-weight:700;color:var(--primary-deep);border-bottom:1px solid var(--border-light);">
+      当前子网语义关系列表（无障碍与表格检索模式）
+    </div>
+    <table class="list-view-table">
+      <thead>
+        <tr>
+          <th style="width:25%;">起始实体</th>
+          <th style="width:15%;">关系类型</th>
+          <th style="width:25%;">目标实体</th>
+          <th style="width:15%;">证据状态</th>
+          <th style="width:20%;">说明与出处</th>
+        </tr>
+      </thead>
+      <tbody id="list-view-tbody"></tbody>
+    </table>
+  </div>
+</section>

@@ -14,6 +14,7 @@
     "audit:knowledge": "node scripts/audit-knowledge-relations.mjs",
     "test:knowledge-integrity": "node scripts/test-knowledge-integrity.mjs",
     "test:knowledge": "node scripts/browser-test-knowledge-relations.mjs",
+    "test:knowledge-v2": "node scripts/browser-test-knowledge-v2.mjs",
     "test:topic-markdown": "node scripts/browser-test-topic-markdown-rendering.mjs",
     "test:papers-v3": "node scripts/browser-test-paper-v3-full-rollout.mjs",
     "test:figure-a11y": "node scripts/browser-test-figure-a11y.mjs",
