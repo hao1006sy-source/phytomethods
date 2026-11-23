@@ -1,0 +1,10 @@
+---
+const {sections}=Astro.props;
+---
+<aside class="method-sidebar"><details open><summary>章节导航</summary><nav aria-label="算法章节导航">{sections.map((s:{id:string,title:string},i:number)=><a href={`#method-${s.id}`} data-method-section={s.id}><span class="method-nav-number">{String(i+1).padStart(2,'0')}</span>{s.title.split('：')[0]}</a>)}</nav></details></aside>
+<script>
+const sidebar=document.querySelector<HTMLDetailsElement>('.method-sidebar details');if(matchMedia('(max-width:1023px)').matches)sidebar?.removeAttribute('open');
+const links=[...document.querySelectorAll<HTMLAnchorElement>('[data-method-section]')];const sections=links.map(a=>document.querySelector<HTMLElement>(a.hash)).filter((e):e is HTMLElement=>!!e);
+function activate(id:string){for(const link of links){const current=link.dataset.methodSection===id;link.classList.toggle('is-active',current);if(current)link.setAttribute('aria-current','location');else link.removeAttribute('aria-current');}}
+function onScroll(){const current=sections.filter(s=>s.getBoundingClientRect().top<=120).at(-1)??sections[0];if(current)activate(current.id.replace('method-',''));}let pending=false;window.addEventListener('scroll',()=>{if(!pending){pending=true;requestAnimationFrame(()=>{pending=false;onScroll();});}},{passive:true});for(const link of links)link.addEventListener('click',()=>activate(link.dataset.methodSection??''));onScroll();
+</script>

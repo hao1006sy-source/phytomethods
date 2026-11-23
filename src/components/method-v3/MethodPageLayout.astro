@@ -1,0 +1,27 @@
+---
+import {createMarkdownProcessor} from '@astrojs/markdown-remark';
+import {domains} from '../../data/domains';
+import {topicMetadata} from '../../data/topics';
+import MethodHeader from './MethodHeader.astro';
+import MethodSidebar from './MethodSidebar.astro';
+import MethodResources from './MethodResources.astro';
+import MethodWorkflow from './MethodWorkflow.astro';
+import HifiasmPrincipleFigure from './HifiasmPrincipleFigure.astro';
+import {hifiasmSections,hifiasmSteps} from './hifiasm';
+import './method-v3.css';
+const {entry,papers,tutorials,methods,sections=hifiasmSections,steps=hifiasmSteps}=Astro.props;
+const base=import.meta.env.BASE_URL;
+const domain=domains.find(d=>d[1]===entry.data.domainIds[0])!;
+const paper=papers.find((p:any)=>p.id===entry.data.paper);
+const application=papers.find((p:any)=>p.data.doi==='10.1111/tpj.15583'&&p.data.methodIds.includes(entry.id));
+const tutorial=tutorials.find((t:any)=>t.data.method===entry.id);
+const relatedTopics=topicMetadata.filter(t=>t.status==='published'&&t.methodIds.includes(entry.id));
+const processor=await createMarkdownProcessor();
+const source=(entry.body??'').trim();
+const chunks=source.split(/^## /m).filter(Boolean).map((chunk:string)=>{const i=chunk.indexOf('\n');return {heading:chunk.slice(0,i).trim(),body:chunk.slice(i+1).trim()};});
+const assigned=sections.flatMap((s:any)=>s.headings);
+if(chunks.some((c:any)=>!assigned.includes(c.heading))||new Set(assigned).size!==assigned.length)throw new Error('Method V3: original section mapping is incomplete or repeated');
+const content=await Promise.all(sections.map(async(s:any)=>({...s,blocks:await Promise.all(s.headings.map(async(heading:string)=>{const chunk=chunks.find((c:any)=>c.heading===heading);if(!chunk)throw new Error('Missing source heading '+heading);return {heading,html:(await processor.render(chunk.body)).code};}))})));
+const command=(await processor.render('```bash\nhifiasm -o sample -t 32 reads.fq.gz\n```')).code;
+---
+<div class="method-v3"><MethodHeader entry={entry} domain={domain} paper={paper}/><div class="method-columns"><MethodSidebar sections={sections}/><article class="method-main" aria-label={`${entry.data.name} 算法文档`}>{content.map((s:any)=><section id={`method-${s.id}`} class="method-section"><h2>{s.title}</h2>{s.id==='principle'&&<HifiasmPrincipleFigure/>}{s.id==='workflow'&&<MethodWorkflow steps={steps}/>}{s.id==='principle'?<details class="method-principle-details"><summary>展开算法原理与开发背景</summary>{s.blocks.map((block:any)=><div><h3>{block.heading}</h3><div class="method-source prose" data-source-heading={block.heading} set:html={block.html}/></div>)}</details>:<div class:list={['method-source-blocks',{'method-advanced':s.blocks.length>1}]}>{s.blocks.map((block:any,index:number)=>s.blocks.length>1?<details open={index===0}><summary>{block.heading}</summary><div class="method-source prose" data-source-heading={block.heading} set:html={block.html}/></details>:<div class="method-source prose" data-source-heading={block.heading} set:html={block.html}/>)}</div>}{s.id==='input-output'&&<><div class="table-scroll method-io-table"><table><caption>输入输出速查（具体文件依软件版本与运行模式）</caption><thead><tr><th>类型</th><th>文件 / 参数</th><th>含义与使用</th></tr></thead><tbody><tr><td>输入</td><td>HiFi FASTA / FASTQ（gzip）</td><td>同一样本的高准确度长读段</td></tr><tr><td>基本参数</td><td><code>-o</code> / <code>-t</code></td><td>输出前缀 / 线程数</td></tr><tr><td>图与序列</td><td>GFA / 选定 contig FASTA</td><td>按模式选择图文件，再按文档导出序列</td></tr><tr><td>HiFi-only</td><td><code>*.bp.p_ctg.gfa</code> / <code>*.bp.hap*.p_ctg.gfa</code></td><td>primary 图 / 部分相位 contig 图</td></tr><tr><td>下游评估</td><td>Merqury、BUSCO、回贴与结构证据</td><td>联合报告质量、完整度及相位局限</td></tr></tbody></table></div><h3>基本命令</h3><div class="method-command" set:html={command}/><p class="method-caption">教学命令模板；{tutorial?.data.tested==='verified'?'关联教程已用示例数据运行验证':tutorial?.data.tested==='template'?'命令已核对，真实数据待验证':'尚未运行验证'}。请替换真实输入路径，记录软件版本并核对运行模式。</p></>}{s.id==='applications'&&application&&<p class="method-inline-links"><a href={`${base}papers/${application.id}/`}>阅读本站案例解读 →</a><a href={`https://doi.org/${application.data.doi}`} target="_blank" rel="noreferrer">DOI: {application.data.doi} ↗</a></p>}{s.id==='tutorial'&&tutorial&&<div class="method-tutorial"><h3><a href={`${base}tutorials/${tutorial.id}/`}>{tutorial.data.title} →</a></h3><p>{tutorial.data.summary}</p><span class="method-state">{tutorial.data.tested==='verified'?'已用示例数据运行验证':tutorial.data.tested==='template'?'命令已核对，真实数据待验证':'尚未运行验证'}</span></div>}{s.id==='resources'&&<ul>{relatedTopics.map(t=><li><a href={`${base}topics/${t.domainId}/${t.id}/`}>{t.title}</a></li>)}</ul>}</section>)}</article><MethodResources paper={paper} application={application} entry={entry} tutorial={tutorial} methods={methods} relatedTopics={relatedTopics}/></div></div>
