@@ -1,0 +1,61 @@
+---
+import { domains } from '../../data/domains';
+import { markdownLinks, sectionExcerpt, type MarkdownSection } from './tutorial-data';
+const { entry, method, paper, sections } = Astro.props as {
+  entry: any;
+  method: any;
+  paper?: any;
+  sections: MarkdownSection[];
+};
+const base = import.meta.env.BASE_URL;
+const domainRows = (method?.data.domainIds ?? [])
+  .map((id: string) => domains.find((domain) => domain[1] === id))
+  .filter(Boolean);
+const environment = sectionExcerpt(sections, /环境|安装|软件/, '运行环境与依赖说明见教程正文。');
+const input = sectionExcerpt(sections, /数据|输入/, '输入数据说明见教程正文。');
+const output = sectionExcerpt(sections, /输出|结果/, '输出文件与结果说明见教程正文。');
+const sourceLinks = markdownLinks(entry.body ?? '')
+  .filter(({ href }) => !/doi\.org\//i.test(href) && href !== method?.data.repository)
+  .slice(0, 5);
+const statusLabel = entry.data.tested === 'verified'
+  ? '已验证'
+  : entry.data.tested === 'template'
+    ? '命令模板已核对 · 真实数据待验证'
+    : '尚未验证';
+---
+<section>
+  <h2>ⓘ 教程信息</h2>
+  <dl>
+    <dt>所属领域</dt>
+    <dd>{domainRows.length ? domainRows.map((domain: any, index: number) => <Fragment>{index > 0 && '、'}<a href={`${base}topics/${domain[1]}/`}>{domain[0]} {domain[2]}</a></Fragment>) : '教程正文'}</dd>
+    <dt>关联工具</dt>
+    <dd>{method ? <a href={`${base}methods/${method.id}/`}>{method.data.name}</a> : entry.data.method}</dd>
+    <dt>验证状态</dt>
+    <dd><mark class={entry.data.tested === 'verified' ? 'tv3-status-verified' : ''}>{statusLabel}</mark></dd>
+    <dt>更新时间</dt>
+    <dd>{entry.data.updatedAt.toISOString().slice(0, 10)}</dd>
+  </dl>
+</section>
+
+<section>
+  <h2>▣ 运行环境</h2>
+  <div class="tv3-resource-copy">{environment}</div>
+</section>
+
+<section>
+  <h2>▱ 输入与输出</h2>
+  <dl class="tv3-resource-io">
+    <dt>输入数据</dt><dd>{input}</dd>
+    <dt>主要输出</dt><dd>{output}</dd>
+  </dl>
+</section>
+
+<section>
+  <h2>↗ 相关资源</h2>
+  <ul>
+    {method && <li><a href={`${base}methods/${method.id}/`}>{method.data.name} 算法与工具详情 ↗</a></li>}
+    {paper && <li><a href={`${base}papers/${paper.id}/`}>方法学论文 · {paper.data.journal} · {paper.data.year} ↗</a><br /><a href={`https://doi.org/${paper.data.doi}`}>DOI: {paper.data.doi}</a></li>}
+    {method?.data.repository && <li><a href={method.data.repository}>官方代码与项目仓库 ↗</a></li>}
+    {sourceLinks.map(({ label, href }) => <li><a href={href}>{label} ↗</a></li>)}
+  </ul>
+</section>

@@ -1,0 +1,99 @@
+---
+import { domains } from '../../data/domains';
+import { topicMetadata } from '../../data/topics';
+import TutorialPageLayout from './TutorialPageLayout.astro';
+import TutorialStep from './TutorialStep.astro';
+import TutorialMarkdown from './TutorialMarkdown.astro';
+import TutorialWorkflowGeneric from './TutorialWorkflowGeneric.astro';
+import TutorialResourceCards from './TutorialResourceCards.astro';
+import { splitTutorialMarkdown, tutorialWorkflows } from './tutorial-data';
+
+const { entry, method, paper } = Astro.props as { entry: any; method: any; paper?: any };
+if (!method) throw new Error(`Tutorial ${entry.id} refers to a missing method collection entry: ${entry.data.method}`);
+if (entry.data.tested === 'template' && !entry.body?.trim()) throw new Error(`Template tutorial ${entry.id} must retain its command and verification notes.`);
+const base = import.meta.env.BASE_URL;
+const sections = splitTutorialMarkdown(entry.body ?? '');
+const ids = ['overview', ...sections.map(section => section.id), 'resources'];
+const titles = ['教程概览', ...sections.map(section => section.title), '关联资源'];
+const workflow = tutorialWorkflows[entry.id] ?? [['输入准备', '见正文'], ['运行分析', method.data.name], ['检查输出', '见正文']];
+const domainTags = method.data.domainIds.map((id: string) => domains.find(domain => domain[1] === id)).filter(Boolean);
+const topics = topicMetadata.filter(topic => (topic.status === 'published' || import.meta.env.DEV) && topic.tutorialIds.includes(entry.id));
+const testedLabel = entry.data.tested === 'verified'
+  ? (/模拟|虚构/.test(sections[0]?.body ?? '') ? '模拟数据流程已验证' : '官方示例流程已验证')
+  : entry.data.tested === 'template'
+    ? '命令模板已核对 · 真实数据待验证'
+    : '尚未完成运行验证';
+const caption = entry.data.tested === 'template'
+  ? '方法流程示意；命令模板已核对，真实数据待验证。'
+  : '方法流程示意，具体结果和验证边界见教程正文。';
+---
+<TutorialPageLayout ids={ids} titles={titles}>
+  <Fragment slot="header">
+    <nav class="tv3-breadcrumb" aria-label="面包屑">
+      <a href={base}>首页</a> / <a href={`${base}tutorials/`}>分析教程</a> / <span>{entry.data.title}</span>
+    </nav>
+    <div class="tv3-hero tv3-hero-generic">
+      <div>
+        <h1>{entry.data.title}</h1>
+        <p class="tv3-english">{method.data.name} Analysis Tutorial</p>
+        <p>{entry.data.summary}</p>
+        <div class="tv3-tags">
+          {domainTags.map((domain: any) => <span>{domain[0]} {domain[2]}</span>)}
+          <span>{method.data.name}</span>
+          <span>{entry.data.tested === 'verified' ? '已验证' : entry.data.tested === 'template' ? '命令模板' : '待验证'}</span>
+        </div>
+      </div>
+      <div class="tv3-hero-side">
+        <div class={`tv3-status ${entry.data.tested === 'verified' ? 'tv3-status-confirmed' : ''}`}>
+          <b>{testedLabel}</b>
+          <p>{entry.data.tested === 'verified'
+            ? '验证数据来源、软件环境、实际运行范围与结果边界，均按教程原始记录展示。'
+            : entry.data.tested === 'template'
+              ? '页面展示与官方文档核对后的命令模板；真实数据运行与结果检查仍待完成。'
+              : '教程所列内容尚未完成运行验证。'}</p>
+        </div>
+        <div class="tv3-actions">
+          <a href={`${base}methods/${method.id}/`}>查看 {method.data.name} 方法 →</a>
+          {paper && <a href={`${base}papers/${paper.id}/`}>方法学论文 ↗</a>}
+          <a href={method.data.repository}>查看官方代码 ↗</a>
+        </div>
+      </div>
+    </div>
+  </Fragment>
+
+  <TutorialResourceCards slot="resources" entry={entry} method={method} paper={paper} sections={sections} />
+
+  <TutorialStep id="overview" title="教程概览">
+    <div class="tv3-generic-overview">
+      <div class="tv3-generic-summary">
+        <p>{entry.data.summary}</p>
+        <p class="tv3-scope-note">验证状态：<strong>{testedLabel}</strong>。具体数据、软件版本、运行范围及结果限制以各章节原始记录为准。</p>
+        <h3>学习目标</h3>
+        <ul>
+          <li>理解本教程输入数据和核心分析方法。</li>
+          <li>按记录的参数组织运行步骤与中间结果。</li>
+          <li>识别输出文件的含义及适用边界。</li>
+        </ul>
+      </div>
+      <TutorialWorkflowGeneric steps={workflow} id={entry.id} caption={caption} />
+    </div>
+  </TutorialStep>
+
+  {sections.map((section, index) => <TutorialStep id={section.id} title={section.title} number={index > 0 ? index : undefined}>
+    {index === 0 && <div class={`tv3-section-status ${entry.data.tested === 'verified' ? 'is-verified' : 'is-template'}`}>
+      <strong>{testedLabel}</strong>
+      <span>以下内容来自本教程原始验证记录。</span>
+    </div>}
+    {/常见问题|常见错误|FAQ/i.test(section.title)
+      ? <details class="tv3-faq tv3-source-faq"><summary>展开查看问题、排查方式与延伸阅读</summary><TutorialMarkdown text={section.body} /></details>
+      : <TutorialMarkdown text={section.body} />}
+  </TutorialStep>)}
+
+  <TutorialStep id="resources" title="站内关联与延伸阅读">
+    <ul class="tv3-related-list">
+      <li><a href={`${base}methods/${method.id}/`}>{method.data.name} 算法与工具详情 →</a></li>
+      {paper && <li><a href={`${base}papers/${paper.id}/`}>{paper.data.title} →</a></li>}
+      {topics.map(topic => <li><a href={`${base}topics/${topic.domainId}/${topic.id}/`}>{topic.title} →</a></li>)}
+    </ul>
+  </TutorialStep>
+</TutorialPageLayout>

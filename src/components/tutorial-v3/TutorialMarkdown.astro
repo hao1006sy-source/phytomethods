@@ -1,10 +1,12 @@
 ---
 import {createMarkdownProcessor} from '@astrojs/markdown-remark';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
 import TutorialCodeBlock from './TutorialCodeBlock.astro';
 const {text}=Astro.props;
-const processor=await createMarkdownProcessor();
+const processor=await createMarkdownProcessor({remarkPlugins:[remarkMath],rehypePlugins:[rehypeKatex]});
 const parts=[];const expression=/```(\w+)\s*\n([\s\S]*?)\n```/g;let position=0;
-for(const match of text.matchAll(expression)){if(match.index>position)parts.push({html:(await processor.render(text.slice(position,match.index))).code});parts.push({code:match[2],lang:match[1]});position=match.index+match[0].length;}
+for(const match of text.matchAll(expression)){if(match.index>position)parts.push({html:(await processor.render(text.slice(position,match.index))).code});parts.push({code:match[2],lang:match[1]||'text'});position=match.index+match[0].length;}
 if(position<text.length)parts.push({html:(await processor.render(text.slice(position))).code});
 ---
 {parts.map(part=>part.code!==undefined?<TutorialCodeBlock code={part.code} lang={part.lang}/>:<div class="tv3-prose" set:html={part.html}/>)}

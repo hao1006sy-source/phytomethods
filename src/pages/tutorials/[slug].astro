@@ -1,5 +1,22 @@
 ---
 import HifiasmTutorial from '../../components/tutorial-v3/HifiasmTutorial.astro';
-import Base from '../../layouts/Base.astro';import DraftPreview from '../../components/DraftPreview.astro';import {topicMetadata} from '../../data/topics';import ArticleShell from '../../components/ArticleShell.astro';import {getCollection,render} from 'astro:content';export async function getStaticPaths(){return (await getCollection('tutorials',({data})=>data.status==='published'||import.meta.env.DEV)).map(entry=>({params:{slug:entry.id},props:{entry}}));}const {entry}=Astro.props;const {Content,headings}=await render(entry);const base=import.meta.env.BASE_URL;const method=(await getCollection('methods')).find(m=>m.id===entry.data.method);const domain=method?.data.domainIds[0];const paper=entry.id==='hifiasm-intro'?(await getCollection('papers')).find(p=>p.id===method?.data.paper):undefined;
+import TutorialV3 from '../../components/tutorial-v3/TutorialV3.astro';
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  return (await getCollection('tutorials', ({ data }) => data.status === 'published' || import.meta.env.DEV))
+    .map(entry => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const methods = await getCollection('methods');
+const papers = await getCollection('papers');
+const method = methods.find(item => item.id === entry.data.method);
+const paper = method ? papers.find(item => item.id === method.data.paper) : undefined;
 ---
-<Base title={entry.data.title} description={entry.data.summary}>{entry.id==='hifiasm-intro'?<HifiasmTutorial entry={entry} method={method} paper={paper}/>:<><DraftPreview status={entry.data.status}/><p class="breadcrumb"><a href={`${base}tutorials/`}>分析教程</a></p><h1>{entry.data.title}</h1><p class="page-lead">{entry.data.summary}</p><ArticleShell headings={headings} domain={domain}><Content/><p><a href={`${base}methods/${entry.data.method}/`}>相关工具</a></p><h2>相关专题</h2><ul>{topicMetadata.filter(t=>(t.status==='published'||import.meta.env.DEV)&&t.tutorialIds.includes(entry.id)).map(t=><li><a href={`${base}topics/${t.domainId}/${t.id}/`}>{t.title}</a></li>)}</ul></ArticleShell></>}</Base>
+<Base title={entry.data.title} description={entry.data.summary}>
+  {entry.id === 'hifiasm-intro'
+    ? <HifiasmTutorial entry={entry} method={method} paper={paper} />
+    : <TutorialV3 entry={entry} method={method} paper={paper} />}
+</Base>

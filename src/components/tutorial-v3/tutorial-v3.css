@@ -3,3 +3,33 @@ main.wrap:has(.tutorial-v3){max-width:1580px;padding:18px 28px 48px}.tutorial-v3
 .tutorial-v3 .tv3-caption{font-size:11px!important;color:#65786e;border-top:1px solid #e1efe6;padding:8px 0;margin:0!important}.tutorial-v3 .tv3-workflow{display:flex;flex-direction:column;justify-content:space-between}.tutorial-v3 .tv3-overview-grid{align-items:stretch}.tutorial-v3 .tv3-goals{padding:14px}.tutorial-v3 .tv3-goals li{margin:6px 0}.tutorial-v3 .tv3-svg-scroll{width:100%;min-width:0}.tutorial-v3 .tv3-figure-target:focus-visible{outline:3px solid #0e6548}
 
 .tutorial-v3 .tv3-preflight summary{font-size:13px;color:#0e6548;cursor:pointer}.tutorial-v3 .tv3-preflight[open] summary{margin-bottom:12px}.tutorial-v3 .tv3-goals li{line-height:1.6;margin:5px 0}.tutorial-v3 .tv3-goals p{line-height:1.5;margin-bottom:8px}.tutorial-v3 .tv3-goals h3{margin-bottom:8px}@media(min-width:1351px){.tutorial-v3 .tv3-workflow svg{height:150px}.tutorial-v3 .tv3-step:first-child{padding-bottom:18px}}
+
+/* Shared V3 presentation for the nine data-driven tutorials. */
+.tutorial-v3 .tv3-status-confirmed{background:#eef8f0}
+.tutorial-v3 .tv3-status-confirmed b{color:#145c3d}
+.tutorial-v3 .tv3-generic-overview{display:grid;grid-template-columns:minmax(250px,.85fr) minmax(0,1.7fr);gap:14px;align-items:stretch;margin-top:16px}
+.tutorial-v3 .tv3-generic-summary{border:1px solid #e1efe6;border-radius:10px;background:#f7fbf8;padding:16px}
+.tutorial-v3 .tv3-generic-summary p{margin:0 0 12px}
+.tutorial-v3 .tv3-generic-summary .tv3-scope-note{border-left:3px solid #8ab69c;padding-left:10px;color:#526c5e;font-size:12px}
+.tutorial-v3 .tv3-generic-summary h3{margin:14px 0 8px}
+.tutorial-v3 .tv3-generic-summary ul{padding-left:18px;margin:0;font-size:12px;line-height:1.7}
+.tutorial-v3 .tv3-section-status{display:flex;flex-wrap:wrap;align-items:center;gap:8px;border-radius:8px;padding:9px 12px;margin:0 0 14px;background:#fff8df;color:#695315;font-size:12px}
+.tutorial-v3 .tv3-section-status.is-verified{background:#eff8f2;color:#145c3d}
+.tutorial-v3 .tv3-section-status span{color:#65786e}
+.tutorial-v3 .tv3-source-faq{margin:8px 0 14px;background:#fbfdfb}
+.tutorial-v3 .tv3-source-faq[open]>summary{margin-bottom:12px}
+.tutorial-v3 .tv3-source-faq .tv3-prose>*:last-child{margin-bottom:0}
+.tutorial-v3 .tv3-related-list{padding-left:20px;line-height:1.9}
+.tutorial-v3 .tv3-resource-copy{padding:12px 14px;font-size:12px;line-height:1.7}
+.tutorial-v3 .tv3-resource-io{grid-template-columns:58px minmax(0,1fr)!important;font-size:11px!important}
+.tutorial-v3 .tv3-resources mark.tv3-status-verified{background:#e7f5eb;color:#145c3d}
+.tutorial-v3 .tv3-workflow-block{min-width:0}
+.tutorial-v3 .tv3-workflow-generic svg{height:auto;min-width:520px;max-height:170px}
+.tutorial-v3 .tv3-figure-target{min-height:80px}
+.tutorial-v3 .tv3-prose{min-width:0;overflow-wrap:anywhere}
+.tutorial-v3 .tv3-prose a{overflow-wrap:anywhere}
+.tutorial-v3 .tv3-prose pre{max-width:100%;overflow-x:auto}
+.tutorial-v3 .tv3-prose table{display:block;max-width:100%;overflow-x:auto}
+@media(max-width:1350px){.tutorial-v3 .tv3-generic-overview{grid-template-columns:1fr}}
+@media(max-width:1000px){.tutorial-v3 .tv3-generic-overview{grid-template-columns:250px minmax(0,1fr)}}
+@media(max-width:700px){.tutorial-v3 .tv3-generic-overview{grid-template-columns:1fr}.tutorial-v3 .tv3-generic-summary{padding:14px}.tutorial-v3 .tv3-section-status{align-items:flex-start;flex-direction:column;gap:3px}.tutorial-v3 .tv3-resource-copy{padding:12px}.tutorial-v3 .tv3-step .katex-display{max-width:100%;overflow-x:auto;overflow-y:hidden}}
