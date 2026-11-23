@@ -1,18 +1,37 @@
 ---
 interface Props {
-  totalNodes: number;
-  totalEdges: number;
-  totalEvidence: number;
+  stats: {
+    nodesCount: number;
+    edgesCount: number;
+    evidenceEntriesCount?: number;
+    nodesByType: Record<string, number>;
+    edgesByRelation: Record<string, number>;
+    evidenceByStatus: Record<string, number>;
+    evidenceRatiosByStatus?: Record<string, string>;
+  };
 }
 
-const { totalNodes, totalEdges, totalEvidence } = Astro.props;
+const { stats } = Astro.props;
+
+const totalNodes = stats.nodesCount;
+const totalEdges = stats.edgesCount;
+const totalEvidence = stats.evidenceEntriesCount || 798;
+const methodCount = stats.nodesByType?.method || 58;
+const paperCount = (stats.nodesByType?.paper_method || 0) + (stats.nodesByType?.paper_application || 0) + (stats.nodesByType?.paper_review || 0);
+const topicCount = stats.nodesByType?.topic || 63;
+const tutorialCount = stats.nodesByType?.tutorial || 10;
+
+const sourceCheckedCount = stats.evidenceByStatus?.source_checked || 0;
+const structurallyValidCount = stats.evidenceByStatus?.structurally_valid || 0;
+const sourceCheckedRatio = stats.evidenceRatiosByStatus?.source_checked || `${((sourceCheckedCount / totalEvidence) * 100).toFixed(1)}%`;
+const structurallyValidRatio = stats.evidenceRatiosByStatus?.structurally_valid || `${((structurallyValidCount / totalEvidence) * 100).toFixed(1)}%`;
 ---
 
 <aside class="panel-right" aria-label="实体属性与科学证据详情">
   <div id="inspector-content">
     <div class="panel-header-badge">
       <span class="type-tag domain">科研知识图谱概览</span>
-      <span class="status-badge source_checked">Schema V2.1</span>
+      <span class="meta-badge">Schema V2.1</span>
     </div>
     <h2 class="entity-title">PhytoMethods 知识探索器</h2>
     <p class="entity-summary">
@@ -25,7 +44,7 @@ const { totalNodes, totalEdges, totalEvidence } = Astro.props;
     <div class="detail-attr-list">
       <div class="attr-row">
         <span class="attr-label">收录节点</span>
-        <span class="attr-val"><strong>{totalNodes}</strong> 个（算法 58、文献 130、专题 63、教程 10）</span>
+        <span class="attr-val"><strong>{totalNodes}</strong> 个（算法 {methodCount}、文献 {paperCount}、专题 {topicCount}、教程 {tutorialCount}）</span>
       </div>
       <div class="attr-row">
         <span class="attr-label">语义关系</span>
@@ -48,16 +67,16 @@ const { totalNodes, totalEdges, totalEvidence } = Astro.props;
       <div class="evidence-card" style="border-left-color:var(--primary-interactive)">
         <div class="evidence-card-title">
           <span>来源已核实 (source_checked)</span>
-          <span class="status-badge source_checked">541 条 (67.8%)</span>
+          <span class="status-badge source_checked">{sourceCheckedCount} 条 ({sourceCheckedRatio})</span>
         </div>
-        <div class="evidence-card-note">经人工精读核对期刊发表论文、官方 GitHub 仓库或官方文档证实。</div>
+        <div class="evidence-card-note">来源已核实：该关联具有已核对的文献、官方资料或明确策展记录。</div>
       </div>
       <div class="evidence-card" style="border-left-color:#3C4043">
         <div class="evidence-card-title">
           <span>结构有效 (structurally_valid)</span>
-          <span class="status-badge structurally_valid">257 条 (32.2%)</span>
+          <span class="status-badge structurally_valid">{structurallyValidCount} 条 ({structurallyValidRatio})</span>
         </div>
-        <div class="evidence-card-note">Frontmatter 与双向实体关系严格校验有效。</div>
+        <div class="evidence-card-note">结构有效：Frontmatter 与双向实体关系严格校验有效。</div>
       </div>
     </div>
   </div>

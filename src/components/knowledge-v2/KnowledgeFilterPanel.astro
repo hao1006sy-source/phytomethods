@@ -2,26 +2,52 @@
 import { domains } from '../../data/domains';
 
 interface Props {
-  nodesByType: Record<string, number>;
+  stats: {
+    nodesCount: number;
+    edgesCount: number;
+    evidenceEntriesCount?: number;
+    nodesByType: Record<string, number>;
+    edgesByRelation: Record<string, number>;
+    evidenceByStatus: Record<string, number>;
+    evidenceRatiosByStatus?: Record<string, string>;
+  };
 }
 
-const { nodesByType } = Astro.props;
+const { stats } = Astro.props;
 
 const nodeTypeConfigs = [
   { type: 'method', label: '算法与工具', color: '#104A36' },
   { type: 'paper_method', label: '方法学论文', color: '#226C9C' },
   { type: 'paper_application', label: '植物应用论文', color: '#7A5600' },
+  { type: 'paper_review', label: '综述论文', color: '#584573' },
   { type: 'topic', label: '科研专题', color: '#0D7377' },
   { type: 'tutorial', label: '分析教程', color: '#853A12' },
   { type: 'species', label: '植物物种', color: '#2E7D32' },
   { type: 'domain', label: '研究领域', color: '#0E6548' }
 ];
+
+const relationTypeConfigs = [
+  { type: 'introduces_method', label: '提出方法' },
+  { type: 'uses_method', label: '实际使用' },
+  { type: 'extends_method', label: '改进扩展' },
+  { type: 'evaluates_method', label: '评测对比' },
+  { type: 'references_method', label: '引用参考' },
+  { type: 'features_method', label: '专题收录' },
+  { type: 'references_paper', label: '专题引证' },
+  { type: 'guides_method', label: '指导使用' },
+  { type: 'studies_species', label: '研究物种' },
+  { type: 'belongs_to_domain', label: '归属领域' }
+];
+
+const totalEvidence = stats.evidenceEntriesCount || 798;
+const sourceCheckedCount = stats.evidenceByStatus?.source_checked || 0;
+const structurallyValidCount = stats.evidenceByStatus?.structurally_valid || 0;
 ---
 
 <aside class="panel-left" aria-label="知识探索控制台">
-  <!-- 搜索框 -->
-  <div class="search-box-wrap">
-    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <!-- 搜索框 (支持 Combobox 无障碍键盘操作) -->
+  <div class="search-box-wrap" role="combobox" aria-expanded="false" aria-haspopup="listbox" id="search-combobox">
+    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <circle cx="11" cy="11" r="8"></circle>
       <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
     </svg>
@@ -32,9 +58,11 @@ const nodeTypeConfigs = [
       placeholder="搜索工具、论文、物种或领域..." 
       autocomplete="off"
       aria-label="搜索知识实体"
+      aria-autocomplete="list"
+      aria-controls="search-dropdown"
     />
     <button type="button" id="search-clear" class="search-clear-btn" aria-label="清除搜索">×</button>
-    <div id="search-dropdown" class="search-results-dropdown" role="listbox"></div>
+    <div id="search-dropdown" class="search-results-dropdown" role="listbox" aria-label="搜索候选实体"></div>
   </div>
 
   <!-- 经典预设网络 -->
@@ -43,16 +71,16 @@ const nodeTypeConfigs = [
       <span>经典网络探索</span>
     </div>
     <div class="preset-chips">
-      <button type="button" class="preset-chip active" data-seed="method:hifiasm">
+      <button type="button" class="preset-chip active" data-seed="method:hifiasm" aria-pressed="true">
         <span>🌱 Hifiasm 组装</span>
       </button>
-      <button type="button" class="preset-chip" data-seed="method:orthofinder">
+      <button type="button" class="preset-chip" data-seed="method:orthofinder" aria-pressed="false">
         <span>🌿 OrthoFinder 同源</span>
       </button>
-      <button type="button" class="preset-chip" data-seed="method:minigraph-cactus">
+      <button type="button" class="preset-chip" data-seed="method:minigraph-cactus" aria-pressed="false">
         <span>🌾 泛基因组分析</span>
       </button>
-      <button type="button" class="preset-chip" data-seed="method:plink">
+      <button type="button" class="preset-chip" data-seed="method:plink" aria-pressed="false">
         <span>🍃 群体遗传学</span>
       </button>
     </div>
@@ -85,7 +113,29 @@ const nodeTypeConfigs = [
             <span class="color-dot" style={`background-color: ${item.color}`}></span>
             <span>{item.label}</span>
           </div>
-          <span class="filter-item-count">{nodesByType[item.type] || 0}</span>
+          <span class="filter-item-count">{stats.nodesByType?.[item.type] || 0}</span>
+        </label>
+      ))}
+    </div>
+  </div>
+
+  <!-- 科学关系类型筛选 -->
+  <div class="filter-section">
+    <div class="filter-group-header">
+      <span>科学关系类型筛选</span>
+      <div style="display:flex;gap:8px;">
+        <button type="button" id="btn-select-all-relations" class="filter-reset-link">全选</button>
+        <button type="button" id="btn-clear-all-relations" class="filter-reset-link">清空</button>
+      </div>
+    </div>
+    <div class="filter-list">
+      {relationTypeConfigs.map(item => (
+        <label class="filter-checkbox-label">
+          <div class="filter-label-left">
+            <input type="checkbox" class="filter-relation-checkbox" value={item.type} checked />
+            <span>{item.label}</span>
+          </div>
+          <span class="filter-item-count">{stats.edgesByRelation?.[item.type] || 0}</span>
         </label>
       ))}
     </div>
@@ -97,9 +147,9 @@ const nodeTypeConfigs = [
       <span>科学证据可信度</span>
     </div>
     <select id="filter-evidence-select" class="domain-select" aria-label="筛选科学证据级别">
-      <option value="all">全部证据记录 (798 条)</option>
-      <option value="source_checked">来源已核实 source_checked (541 条)</option>
-      <option value="structurally_valid">结构有效 structurally_valid (257 条)</option>
+      <option value="all">全部证据记录 ({totalEvidence} 条)</option>
+      <option value="source_checked">来源已核实 source_checked ({sourceCheckedCount} 条)</option>
+      <option value="structurally_valid">结构有效 structurally_valid ({structurallyValidCount} 条)</option>
     </select>
   </div>
 </aside>

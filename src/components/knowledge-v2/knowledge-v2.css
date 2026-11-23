@@ -483,6 +483,7 @@
 /* 节点卡片样式 */
 .node-g {
   cursor: pointer;
+  outline: none;
   transition: opacity 0.2s, transform 0.2s;
 }
 
@@ -512,6 +513,12 @@
   stroke-width: 2;
 }
 
+.node-g:focus-visible .node-card {
+  stroke: var(--primary-deep);
+  stroke-width: 2.5;
+  filter: drop-shadow(0 0 0 3px rgba(16, 74, 54, 0.35));
+}
+
 .node-badge-rect {
   rx: 4;
 }
@@ -537,6 +544,7 @@
 
 .node-expand-btn {
   cursor: pointer;
+  outline: none;
   fill: #FFFFFF;
   stroke: var(--border-light);
   stroke-width: 1;
@@ -548,12 +556,44 @@
   stroke: var(--primary-interactive);
 }
 
+.node-expand-btn:focus-visible rect {
+  stroke: var(--primary-interactive);
+  stroke-width: 2;
+  fill: var(--bg-mint);
+}
+
 .dimmed {
   opacity: 0.18 !important;
   pointer-events: none !important;
 }
 
-/* 右侧：实体属性与科学证据溯源抽屉 */
+.edge-group {
+  cursor: pointer;
+  outline: none;
+  transition: opacity 0.2s;
+}
+
+.edge-group:focus-visible .edge-line {
+  stroke: var(--primary-interactive);
+  stroke-width: 3;
+}
+
+.edge-group:focus-visible .edge-label-bg {
+  stroke: var(--primary-deep);
+  stroke-width: 2;
+  fill: var(--bg-mint-deep);
+}
+
+.list-view-table tr {
+  cursor: pointer;
+  outline: none;
+  transition: background 0.15s;
+}
+
+.list-view-table tr:focus-visible {
+  background: var(--bg-mint);
+  outline: 2px solid var(--primary-interactive);
+}
 .panel-right {
   border-left: 1px solid var(--border-light);
   background: #FFFFFF;
@@ -586,10 +626,26 @@
 .type-tag.method { background: #E6F4EA; color: #137333; }
 .type-tag.paper_method { background: #E8F0FE; color: #1967D2; }
 .type-tag.paper_application { background: #FEF7E0; color: #B06000; }
+.type-tag.paper_review { background: #F3E8FD; color: #7B1FA2; }
 .type-tag.topic { background: #E0F2F1; color: #00796B; }
 .type-tag.tutorial { background: #FCE8E6; color: #C5221F; }
 .type-tag.domain { background: #E6F4EA; color: #104A36; }
 .type-tag.species { background: #E8F5E9; color: #2E7D32; }
+
+/* 普通元数据中性标签（非科学证据状态） */
+.meta-badge {
+  font-size: 11px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-weight: 500;
+  background: #F1F3F4;
+  color: #5F6368;
+  border: 1px solid #DADCE0;
+  font-family: "Inter", var(--font-family);
+}
 
 .status-badge {
   font-size: 11px;
