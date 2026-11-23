@@ -1,0 +1,175 @@
+{
+  "reports": [
+    {
+      "accession": "GCF_000003195.3",
+      "current_accession": "GCF_000003195.3",
+      "paired_accession": "GCA_000003195.3",
+      "source_database": "SOURCE_DATABASE_REFSEQ",
+      "organism": {
+        "tax_id": 4558,
+        "organism_name": "Sorghum bicolor",
+        "common_name": "sorghum",
+        "infraspecific_names": {
+          "cultivar": "BTx623"
+        }
+      },
+      "assembly_info": {
+        "assembly_level": "Chromosome",
+        "assembly_status": "current",
+        "paired_assembly": {
+          "accession": "GCA_000003195.3",
+          "status": "current",
+          "annotation_name": "Annotation submitted by Sorghum Consortium",
+          "only_refseq": "chromosomes MT and Pltd",
+          "refseq_genbank_are_different": true,
+          "differences": "Added chromosomes MT and Pltd"
+        },
+        "assembly_name": "Sorghum_bicolor_NCBIv3",
+        "assembly_type": "haploid",
+        "bioproject_lineage": [
+          {
+            "bioprojects": [
+              {
+                "accession": "PRJNA13876",
+                "title": "drought-tolerant, cultivated crop"
+              }
+            ]
+          }
+        ],
+        "bioproject_accession": "PRJNA13876",
+        "release_date": "2017-04-07",
+        "submitter": "Sorghum Consortium",
+        "refseq_category": "reference genome",
+        "sequencing_tech": "Sanger; Illumina",
+        "assembly_method": "ARACHNE_modified v. 200721016",
+        "biosample": {
+          "accession": "SAMN02953738",
+          "last_updated": "2016-07-14T17:25:15.747",
+          "publication_date": "2014-08-06T15:40:50.063",
+          "submission_date": "2014-08-06T15:40:50.063",
+          "sample_ids": [
+            {
+              "db": "SRA",
+              "value": "SRS1564925"
+            },
+            {
+              "db": "GenBank",
+              "value": "gb|ABXC00000000.1"
+            }
+          ],
+          "description": {
+            "title": "Sample from Sorghum bicolor",
+            "organism": {
+              "tax_id": 4558,
+              "organism_name": "Sorghum bicolor"
+            }
+          },
+          "owner": {
+            "name": "US DOE Joint Genome Institute"
+          },
+          "models": [
+            "Generic"
+          ],
+          "bioprojects": [
+            {
+              "accession": "PRJNA13876"
+            }
+          ],
+          "package": "Generic.1.0",
+          "attributes": [
+            {
+              "name": "cultivar",
+              "value": "BTx623"
+            }
+          ],
+          "status": {
+            "status": "live",
+            "when": "2014-08-06T15:40:50.063"
+          },
+          "cultivar": "BTx623"
+        },
+        "blast_url": "https://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastSearch&PROG_DEF=blastn&BLAST_SPEC=GDH_GCF_000003195.3",
+        "comments": "Assembly name: Sorghum_bicolor_NCBIv3\nThe genomic sequence for this RefSeq record is from the whole-genome assembly released by the Sorghum Consortium on 2017/04/07. The original whole-genome shotgun project has the accession ABXC00000000.3."
+      },
+      "assembly_stats": {
+        "total_number_of_chromosomes": 10,
+        "total_sequence_length": "708735318",
+        "total_ungapped_length": "675363888",
+        "number_of_contigs": 4773,
+        "contig_n50": 1310030,
+        "contig_l50": 78,
+        "number_of_scaffolds": 867,
+        "scaffold_n50": 68658214,
+        "scaffold_l50": 5,
+        "number_of_component_sequences": 4773,
+        "atgc_count": "675363888",
+        "gc_count": "296359988",
+        "gc_percent": 44,
+        "genome_coverage": "8",
+        "number_of_organelles": 2
+      },
+      "organelle_info": [
+        {
+          "description": "Mitochondrion",
+          "total_seq_length": "468628",
+          "submitter": "Sorghum Consortium"
+        },
+        {
+          "description": "Chloroplast",
+          "total_seq_length": "140754",
+          "submitter": "Sorghum Consortium"
+        }
+      ],
+      "additional_submitters": [
+        {
+          "genbank_accession": "DQ984518.1",
+          "refseq_accession": "NC_008360.1",
+          "chr_name": "MT",
+          "molecule_type": "Mitochondrion",
+          "submitter": "Genome Sequencing Center, Washington University School of Medicine"
+        },
+        {
+          "genbank_accession": "EF115542.1",
+          "refseq_accession": "NC_008602.1",
+          "chr_name": "Pltd",
+          "molecule_type": "Chloroplast",
+          "submitter": "Molecular Biology & Microbiology, University of Central Florida"
+        }
+      ],
+      "annotation_info": {
+        "name": "NCBI Sorghum bicolor Annotation Release 101",
+        "provider": "NCBI RefSeq",
+        "release_date": "2017-06-02",
+        "report_url": "https://www.ncbi.nlm.nih.gov/genome/annotation_euk/Sorghum_bicolor/101",
+        "stats": {
+          "gene_counts": {
+            "total": 32945,
+            "protein_coding": 28236,
+            "non_coding": 3461,
+            "pseudogene": 1248
+          }
+        },
+        "busco": {
+          "busco_lineage": "poales_odb10",
+          "busco_ver": "4.0.2",
+          "complete": 0.9965278,
+          "single_copy": 0.98386437,
+          "duplicated": 0.012663399,
+          "fragmented": 0.0006127451,
+          "missing": 0.0028594772,
+          "total_count": "4896"
+        },
+        "method": "Best-placed RefSeq; Gnomon",
+        "pipeline": "NCBI Eukaryotic Genome Annotation Pipeline (EGAP)",
+        "software_version": "7.4",
+        "status": "Full annotation"
+      },
+      "wgs_info": {
+        "wgs_project_accession": "ABXC03",
+        "master_wgs_url": "https://www.ncbi.nlm.nih.gov/nuccore/ABXC00000000.3",
+        "wgs_contigs_url": "https://www.ncbi.nlm.nih.gov/Traces/wgs/ABXC03"
+      }
+    }
+  ],
+  "total_count": 1
+}

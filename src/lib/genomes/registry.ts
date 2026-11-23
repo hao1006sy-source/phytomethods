@@ -1,0 +1,17 @@
+import speciesData from '../../data/genomes/species.json';
+import assemblyData from '../../data/genomes/assemblies.json';
+import annotationData from '../../data/genomes/annotations.json';
+import fileData from '../../data/genomes/files.json';
+import databaseData from '../../data/genomes/databases.json';
+export const species=speciesData;
+export const assemblies=assemblyData;
+export const annotations=annotationData;
+export const files=fileData;
+export const databases=databaseData;
+export type Assembly=typeof assemblies[number];
+export type ResourceFile=typeof files[number];
+export const fileLabels:Record<string,string>={genome:'Genome FASTA',gff3:'全部模型 GFF3',gtf:'GTF',cds:'CDS FASTA',protein:'Protein FASTA',transcript:'Transcript FASTA',functional:'功能注释',repeat:'重复序列注释'};
+export const accessLabels:Record<string,string>={direct:'直接下载',portal:'官方页面',login_required:'需要登录',unverified:'暂无核实链接'};
+export const getSpecies=(id:string)=>species.find(s=>s.id===id);
+export const getAssembly=(id:string)=>assemblies.find(a=>a.id===id);
+export const getFiles=(id:string)=>files.filter(f=>f.assemblyId===id);

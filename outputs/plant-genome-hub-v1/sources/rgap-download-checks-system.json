@@ -1,0 +1,44 @@
+[
+  {
+    "gzip": true,
+    "url": "https://rice.uga.edu/osa1r7_download/osa1_r7.asm.fa.gz",
+    "status": 206,
+    "contentType": "application/x-gzip"
+  },
+  {
+    "gzip": true,
+    "url": "https://rice.uga.edu/osa1r7_download/osa1_r7.all_models.gff3.gz",
+    "status": 206,
+    "contentType": "application/x-gzip"
+  },
+  {
+    "gzip": true,
+    "url": "https://rice.uga.edu/osa1r7_download/osa1_r7.all_models.cds.fa.gz",
+    "status": 206,
+    "contentType": "application/x-gzip"
+  },
+  {
+    "gzip": true,
+    "url": "https://rice.uga.edu/osa1r7_download/osa1_r7.all_models.pep.fa.gz",
+    "status": 206,
+    "contentType": "application/x-gzip"
+  },
+  {
+    "gzip": true,
+    "url": "https://rice.uga.edu/osa1r7_download/osa1_r7.all_models.cdna.fa.gz",
+    "status": 206,
+    "contentType": "application/x-gzip"
+  },
+  {
+    "gzip": true,
+    "url": "https://rice.uga.edu/osa1r7_download/osa1_r7.all_models.functional_annotation.txt.gz",
+    "status": 206,
+    "contentType": "application/x-gzip"
+  },
+  {
+    "gzip": true,
+    "url": "https://rice.uga.edu/osa1r7_download/osa1_r7.asm.repeat_masked.gff3.gz",
+    "status": 206,
+    "contentType": "application/x-gzip"
+  }
+]

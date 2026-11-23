@@ -1,0 +1,116 @@
+{
+  "reports": [
+    {
+      "accession": "GCA_028009825.2",
+      "current_accession": "GCA_028009825.2",
+      "source_database": "SOURCE_DATABASE_GENBANK",
+      "organism": {
+        "tax_id": 3702,
+        "organism_name": "Arabidopsis thaliana",
+        "common_name": "thale cress",
+        "infraspecific_names": {
+          "ecotype": "Col-0"
+        }
+      },
+      "assembly_info": {
+        "assembly_level": "Complete Genome",
+        "assembly_status": "current",
+        "assembly_name": "Col-CC",
+        "assembly_type": "haploid",
+        "bioproject_lineage": [
+          {
+            "bioprojects": [
+              {
+                "accession": "PRJNA915353",
+                "title": "Arabidopsis thaliana Genome sequencing"
+              }
+            ]
+          }
+        ],
+        "bioproject_accession": "PRJNA915353",
+        "release_date": "2023-10-18",
+        "submitter": "Community-Consensus Arabidopsis Thaliana Reference Genome Assembly Consortium",
+        "sequencing_tech": "PacBio; Oxford Nanopore; Illumina",
+        "assembly_method": "Consensus assembly of 13 independent assemblies v. Dec-2022",
+        "biosample": {
+          "accession": "SAMN32386944",
+          "last_updated": "2026-09-01T17:08:57.030",
+          "publication_date": "2022-12-23T00:00:00.000",
+          "submission_date": "2022-12-23T10:49:03.643",
+          "sample_ids": [
+            {
+              "label": "Sample name",
+              "value": "Col-CC"
+            }
+          ],
+          "description": {
+            "title": "Plant sample from Arabidopsis thaliana",
+            "organism": {
+              "tax_id": 3702,
+              "organism_name": "Arabidopsis thaliana"
+            }
+          },
+          "owner": {
+            "name": "Max Planck Institute for Plant Breeding Research",
+            "contacts": [
+              {}
+            ]
+          },
+          "models": [
+            "Plant"
+          ],
+          "bioprojects": [
+            {
+              "accession": "PRJNA915353"
+            }
+          ],
+          "package": "Plant.1.0",
+          "attributes": [
+            {
+              "name": "ecotype",
+              "value": "Col-0"
+            },
+            {
+              "name": "dev_stage",
+              "value": "missing"
+            },
+            {
+              "name": "geo_loc_name",
+              "value": "Poland"
+            },
+            {
+              "name": "tissue",
+              "value": "missing"
+            }
+          ],
+          "status": {
+            "status": "live",
+            "when": "2022-12-23T10:49:03.645"
+          },
+          "dev_stage": "missing",
+          "ecotype": "Col-0",
+          "geo_loc_name": "Poland",
+          "tissue": "missing"
+        },
+        "blast_url": "https://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastSearch&PROG_DEF=blastn&BLAST_SPEC=GDH_GCA_028009825.2"
+      },
+      "assembly_stats": {
+        "total_number_of_chromosomes": 5,
+        "total_sequence_length": "142481245",
+        "total_ungapped_length": "142481245",
+        "number_of_contigs": 5,
+        "contig_n50": 27782540,
+        "contig_l50": 3,
+        "number_of_scaffolds": 5,
+        "scaffold_n50": 27782540,
+        "scaffold_l50": 3,
+        "number_of_component_sequences": 5,
+        "atgc_count": "142481245",
+        "gc_count": "53153758",
+        "gc_percent": 37.5,
+        "genome_coverage": "1000"
+      }
+    }
+  ],
+  "total_count": 1
+}

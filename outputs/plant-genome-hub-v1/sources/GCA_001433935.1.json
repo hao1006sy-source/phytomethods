@@ -1,0 +1,176 @@
+{
+  "reports": [
+    {
+      "accession": "GCA_001433935.1",
+      "current_accession": "GCA_001433935.1",
+      "paired_accession": "GCF_001433935.1",
+      "source_database": "SOURCE_DATABASE_GENBANK",
+      "organism": {
+        "tax_id": 39947,
+        "organism_name": "Oryza sativa Japonica Group",
+        "common_name": "Japanese rice",
+        "infraspecific_names": {
+          "cultivar": "Nipponbare"
+        }
+      },
+      "assembly_info": {
+        "assembly_level": "Chromosome",
+        "assembly_status": "current",
+        "paired_assembly": {
+          "accession": "GCF_001433935.1",
+          "status": "suppressed",
+          "annotation_name": "NCBI Oryza sativa Japonica Group Annotation Release 102",
+          "only_refseq": "chromosomes MT, Pltd, B1",
+          "refseq_genbank_are_different": true,
+          "differences": "Added chromosomes MT, Pltd, B1"
+        },
+        "assembly_name": "IRGSP-1.0",
+        "assembly_type": "haploid",
+        "bioproject_lineage": [
+          {
+            "bioprojects": [
+              {
+                "accession": "PRJDB1747",
+                "title": "Update of genome assembly of Oryza sativa L. Nipponbare (Os-Nipponbare-Reference-IRGSP-1.0)"
+              }
+            ]
+          }
+        ],
+        "bioproject_accession": "PRJDB1747",
+        "release_date": "2015-10-10",
+        "description": "Os-Nipponbare-Reference-IRGSP-1.0",
+        "submitter": "National Institute of Agrobiological Sciences",
+        "genome_notes": [
+          "superseded by newer assembly for species"
+        ],
+        "biosample": {
+          "accession": "SAMD00000397",
+          "last_updated": "2026-09-28T01:24:13.000",
+          "publication_date": "2014-04-24T00:00:00.000",
+          "submission_date": "2014-04-24T00:00:00.000",
+          "description": {
+            "title": "MIGS Eukaryotic sample from Oryza sativa Japonica Group",
+            "organism": {
+              "tax_id": 39947,
+              "organism_name": "Oryza sativa Japonica Group"
+            },
+            "comment": "Keywords: GSC:MIxS;MIGS:6.0"
+          },
+          "owner": {
+            "name": "National Institute of Agrobiological Sciences"
+          },
+          "models": [
+            "MIGS.eu"
+          ],
+          "bioprojects": [
+            {
+              "accession": "PRJDB1747"
+            }
+          ],
+          "package": "MIGS.eu.6.0",
+          "attributes": [
+            {
+              "name": "sample_name",
+              "value": "Oryza sativa L. Nipponbare"
+            },
+            {
+              "name": "collection_date",
+              "value": "not applicable"
+            },
+            {
+              "name": "cultivar",
+              "value": "Nipponbare"
+            },
+            {
+              "name": "env_broad_scale",
+              "value": "cropland biome"
+            },
+            {
+              "name": "env_local_scale",
+              "value": "missing"
+            },
+            {
+              "name": "env_medium",
+              "value": "missing"
+            },
+            {
+              "name": "estimated_size",
+              "value": "385000000"
+            },
+            {
+              "name": "geo_loc_name",
+              "value": "not applicable"
+            },
+            {
+              "name": "isol_growth_condt",
+              "value": "24280374"
+            },
+            {
+              "name": "lat_lon",
+              "value": "missing"
+            },
+            {
+              "name": "locus_tag_prefix",
+              "value": "OSNPB"
+            },
+            {
+              "name": "num_replicons",
+              "value": "not applicable"
+            },
+            {
+              "name": "ploidy",
+              "value": "diploid"
+            },
+            {
+              "name": "project_name",
+              "value": "Update of genome assembly of Oryza sativa L. Nipponbare"
+            },
+            {
+              "name": "propagation",
+              "value": "not applicable"
+            }
+          ],
+          "status": {
+            "status": "live",
+            "when": "2014-04-24T00:00:00.000"
+          },
+          "collection_date": "not applicable",
+          "cultivar": "Nipponbare",
+          "geo_loc_name": "not applicable",
+          "lat_lon": "missing",
+          "project_name": "Update of genome assembly of Oryza sativa L. Nipponbare",
+          "sample_name": "Oryza sativa L. Nipponbare"
+        },
+        "blast_url": "https://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastSearch&PROG_DEF=blastn&BLAST_SPEC=GDH_GCA_001433935.1"
+      },
+      "assembly_stats": {
+        "total_number_of_chromosomes": 12,
+        "total_sequence_length": "373795655",
+        "total_ungapped_length": "373678170",
+        "number_of_contigs": 302,
+        "contig_n50": 7711345,
+        "contig_l50": 17,
+        "number_of_scaffolds": 55,
+        "scaffold_n50": 29958434,
+        "scaffold_l50": 6,
+        "number_of_component_sequences": 55,
+        "atgc_count": "373677401",
+        "gc_count": "162801608",
+        "gc_percent": 43.5
+      },
+      "annotation_info": {
+        "name": "Annotation submitted by National Institute of Agrobiological Sciences",
+        "provider": "National Institute of Agrobiological Sciences",
+        "release_date": "2024-04-04",
+        "stats": {
+          "gene_counts": {
+            "total": 45984,
+            "protein_coding": 43795,
+            "non_coding": 2189
+          }
+        }
+      }
+    }
+  ],
+  "total_count": 1
+}

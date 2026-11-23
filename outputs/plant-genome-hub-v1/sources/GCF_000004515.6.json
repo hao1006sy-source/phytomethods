@@ -1,0 +1,182 @@
+{
+  "reports": [
+    {
+      "accession": "GCF_000004515.6",
+      "current_accession": "GCF_000004515.6",
+      "paired_accession": "GCA_000004515.5",
+      "source_database": "SOURCE_DATABASE_REFSEQ",
+      "organism": {
+        "tax_id": 3847,
+        "organism_name": "Glycine max",
+        "common_name": "soybean",
+        "infraspecific_names": {
+          "cultivar": "Williams 82"
+        }
+      },
+      "assembly_info": {
+        "assembly_level": "Chromosome",
+        "assembly_status": "current",
+        "paired_assembly": {
+          "accession": "GCA_000004515.5",
+          "status": "current",
+          "annotation_name": "Annotation submitted by US DOE Joint Genome Institute (JGI-PGF)",
+          "only_refseq": "chromosomes MT and Pltd",
+          "refseq_genbank_are_different": true,
+          "differences": "Added chromosomes MT and Pltd"
+        },
+        "assembly_name": "Glycine_max_v4.0",
+        "assembly_type": "haploid",
+        "bioproject_lineage": [
+          {
+            "bioprojects": [
+              {
+                "accession": "PRJNA19861",
+                "title": "Soybean WGS sequencing project"
+              }
+            ]
+          }
+        ],
+        "bioproject_accession": "PRJNA19861",
+        "release_date": "2021-03-10",
+        "submitter": "US DOE Joint Genome Institute (JGI-PGF)",
+        "refseq_category": "reference genome",
+        "sequencing_tech": "ABI 3739",
+        "assembly_method": "ARACHNE v. 200721016_modified",
+        "biosample": {
+          "accession": "SAMN00002965",
+          "last_updated": "2017-12-12T12:01:00.512",
+          "publication_date": "2009-08-25T00:00:00.000",
+          "submission_date": "2011-06-15T12:49:19.316",
+          "sample_ids": [
+            {
+              "db": "DOE Joint Genome Institute",
+              "label": "Sample name",
+              "value": "4044095"
+            },
+            {
+              "db": "SRA",
+              "value": "SRS004659"
+            }
+          ],
+          "description": {
+            "title": "Glycine max cv. Williams 82 callus from plants grown in dark condition",
+            "organism": {
+              "tax_id": 3847,
+              "organism_name": "Glycine max"
+            },
+            "comment": "Glycine max callus grown in dark condition"
+          },
+          "owner": {
+            "name": "Joint Genome Institute, U.S. Department of Energy"
+          },
+          "models": [
+            "Generic"
+          ],
+          "package": "Generic.1.0",
+          "attributes": [
+            {
+              "name": "cultivar",
+              "value": "Williams 82"
+            },
+            {
+              "name": "tissue",
+              "value": "callus"
+            },
+            {
+              "name": "IN_VIVO_CONDITION",
+              "value": "dark condition"
+            }
+          ],
+          "status": {
+            "status": "live",
+            "when": "2011-06-15T12:49:19.317"
+          },
+          "cultivar": "Williams 82",
+          "tissue": "callus"
+        },
+        "blast_url": "https://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastSearch&PROG_DEF=blastn&BLAST_SPEC=GDH_GCF_000004515.6",
+        "comments": "Assembly name: Glycine_max_v4.0\nThe genomic sequence for this RefSeq record is from the whole-genome assembly released by the US DOE Joint Genome Institute (JGI-PGF) on 2021/03/10. The original whole-genome shotgun project has the accession ACUP00000000.4."
+      },
+      "assembly_stats": {
+        "total_number_of_chromosomes": 20,
+        "total_sequence_length": "978386919",
+        "total_ungapped_length": "952478023",
+        "number_of_contigs": 9197,
+        "contig_n50": 419290,
+        "contig_l50": 650,
+        "number_of_scaffolds": 345,
+        "scaffold_n50": 20441467,
+        "scaffold_l50": 18,
+        "gaps_between_scaffolds_count": 64,
+        "number_of_component_sequences": 9197,
+        "atgc_count": "952478021",
+        "gc_count": "330805652",
+        "gc_percent": 34.5,
+        "genome_coverage": "8.05",
+        "number_of_organelles": 2
+      },
+      "organelle_info": [
+        {
+          "description": "Chloroplast",
+          "total_seq_length": "152218",
+          "submitter": "US DOE Joint Genome Institute (JGI-PGF)"
+        },
+        {
+          "description": "Mitochondrion",
+          "total_seq_length": "402558",
+          "submitter": "US DOE Joint Genome Institute (JGI-PGF)"
+        }
+      ],
+      "additional_submitters": [
+        {
+          "genbank_accession": "DQ317523.1",
+          "refseq_accession": "NC_007942.1",
+          "chr_name": "Pltd",
+          "molecule_type": "Chloroplast",
+          "submitter": "Molecular Biology & Microbiology, Univeristy of Central Florida"
+        },
+        {
+          "genbank_accession": "JX463295.1",
+          "refseq_accession": "NC_020455.1",
+          "chr_name": "MT",
+          "molecule_type": "Mitochondrion",
+          "submitter": "National Center for Soybean Improvement, Key Laboratory of Biology and Genetic Improvement of Soybean, Ministry of Agriculture, Nanjing Agricultural University"
+        }
+      ],
+      "annotation_info": {
+        "name": "GCF_000004515.6-RS_2025_01",
+        "provider": "NCBI RefSeq",
+        "release_date": "2025-01-28",
+        "report_url": "https://www.ncbi.nlm.nih.gov/genome/annotation_euk/Glycine_max/GCF_000004515.6-RS_2025_01.html",
+        "stats": {
+          "gene_counts": {
+            "total": 59048,
+            "protein_coding": 47068,
+            "non_coding": 7219,
+            "pseudogene": 4761
+          }
+        },
+        "busco": {
+          "busco_lineage": "fabales_odb10",
+          "busco_ver": "5.7.1",
+          "complete": 0.99180025,
+          "single_copy": 0.3911666,
+          "duplicated": 0.6006336,
+          "fragmented": 0.0031680954,
+          "missing": 0.005031681,
+          "total_count": "5366"
+        },
+        "method": "Best-placed RefSeq; Gnomon; cmsearch; tRNAscan-SE",
+        "pipeline": "NCBI Eukaryotic Genome Annotation Pipeline (EGAP)",
+        "software_version": "10.3",
+        "status": "Updated annotation"
+      },
+      "wgs_info": {
+        "wgs_project_accession": "ACUP04",
+        "master_wgs_url": "https://www.ncbi.nlm.nih.gov/nuccore/ACUP00000000.4",
+        "wgs_contigs_url": "https://www.ncbi.nlm.nih.gov/Traces/wgs/ACUP04"
+      }
+    }
+  ],
+  "total_count": 1
+}

@@ -1,0 +1,7 @@
+---
+import Base from '../../layouts/Base.astro';
+import {databases} from '../../lib/genomes/registry';
+import '../../styles/genome-hub.css';
+const base=import.meta.env.BASE_URL;
+---
+<Base title="植物基因组数据库导航"><div class="gh"><nav><a href={`${base}genomes/`}>Plant Genome Hub</a> / 数据库导航</nav><section class="gh-hero"><div class="eyebrow">OFFICIAL DATABASES</div><h1>植物基因组数据库导航</h1><p>按物种、正式发布与访问要求选择数据来源。核实日期与服务状态独立记录。</p></section><div class="gh-grid">{databases.map(d=><article class="gh-card"><h2>{d.name}</h2><p>{d.scope}</p><p>{d.resources}</p><p class="gh-muted">账号要求：{d.account}<br/>核实日期：{d.verifiedAt}</p><p>{d.note}</p><div class="gh-actions"><a href={d.url}>官方入口 ↗</a><a href={d.documentation}>文档 / 数据入口 ↗</a></div></article>)}</div></div></Base>

@@ -1,0 +1,5 @@
+
+> phytomethods@0.1.0 check:genome-hub
+> node scripts/check-genome-hub-data.mjs
+
+{"species":10,"assemblies":11,"annotations":11,"files":85,"direct":7,"loginRequired":0,"unverified":28,"portals":50,"compatibilityAssertions":6}

@@ -1,0 +1,85 @@
+{
+  "taxonomy_nodes": [
+    {
+      "query": [
+        "4513"
+      ],
+      "taxonomy": {
+        "tax_id": 4513,
+        "organism_name": "Hordeum vulgare",
+        "common_name": "barley",
+        "blast_name": "monocots",
+        "lineage": [
+          1,
+          131567,
+          2759,
+          33090,
+          35493,
+          131221,
+          3193,
+          58023,
+          78536,
+          58024,
+          3398,
+          1437183,
+          4447,
+          1437197,
+          4734,
+          38820,
+          4479,
+          359160,
+          147368,
+          1648038,
+          147389,
+          1648017,
+          4512
+        ],
+        "children": [
+          2881371,
+          112509,
+          77009
+        ],
+        "rank": "SPECIES",
+        "counts": [
+          {
+            "type": "COUNT_TYPE_ASSEMBLY",
+            "count": 222
+          },
+          {
+            "type": "COUNT_TYPE_GENE",
+            "count": 58706
+          },
+          {
+            "type": "COUNT_TYPE_tRNA",
+            "count": 2024
+          },
+          {
+            "type": "COUNT_TYPE_rRNA",
+            "count": 14695
+          },
+          {
+            "type": "COUNT_TYPE_snRNA",
+            "count": 168
+          },
+          {
+            "type": "COUNT_TYPE_snoRNA",
+            "count": 934
+          },
+          {
+            "type": "COUNT_TYPE_PROTEIN_CODING",
+            "count": 31618
+          },
+          {
+            "type": "COUNT_TYPE_ncRNA",
+            "count": 3481
+          },
+          {
+            "type": "COUNT_TYPE_OTHER",
+            "count": 2
+          }
+        ],
+        "genomic_moltype": "dsDNA"
+      }
+    }
+  ]
+}
