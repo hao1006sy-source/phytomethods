@@ -1,6 +1,6 @@
 {
   "version": "2.1.0",
-  "generatedAt": "2026-11-23T14:58:21.028Z",
+  "generatedAt": "2026-11-23T15:33:21.524Z",
   "integrityPassed": true,
   "stats": {
     "nodesCount": 303,
@@ -21,22 +21,22 @@
       "extends_method": 3,
       "introduces_method": 58,
       "studies_species": 64,
-      "uses_method": 68,
+      "uses_method": 67,
       "references_method": 1,
-      "evaluates_method": 5,
+      "evaluates_method": 6,
       "features_method": 111,
       "references_paper": 220,
       "guides_method": 10
     },
     "evidenceByStatus": {
-      "source_checked": 541,
-      "structurally_valid": 257,
-      "needs_review": 0
+      "source_checked": 597,
+      "structurally_valid": 200,
+      "needs_review": 1
     },
     "evidenceRatiosByStatus": {
-      "source_checked": "67.8%",
-      "structurally_valid": "32.2%",
-      "needs_review": "0.0%"
+      "source_checked": "74.8%",
+      "structurally_valid": "25.1%",
+      "needs_review": "0.1%"
     },
     "evidenceByRelationAndStatus": {
       "belongs_to_domain": {
@@ -60,9 +60,9 @@
         "needs_review": 0
       },
       "uses_method": {
-        "source_checked": 11,
-        "structurally_valid": 57,
-        "needs_review": 0
+        "source_checked": 66,
+        "structurally_valid": 0,
+        "needs_review": 1
       },
       "references_method": {
         "source_checked": 1,
@@ -70,7 +70,7 @@
         "needs_review": 0
       },
       "evaluates_method": {
-        "source_checked": 5,
+        "source_checked": 6,
         "structurally_valid": 0,
         "needs_review": 0
       },

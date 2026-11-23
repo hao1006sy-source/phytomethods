@@ -136,18 +136,19 @@ for (const exp of extendsExpected) {
 }
 
 const evaluatesEdges = graph.edges.filter(e => e.relation === 'evaluates_method');
-assert.strictEqual(evaluatesEdges.length, 5, '严格核实后的 evaluates_method 关系数必须为 5');
+assert.strictEqual(evaluatesEdges.length, 6, '严格核实后的 evaluates_method 关系数必须为 6');
 const evaluatesExpected = [
   'paper:plant-sv-benchmark-2026|evaluates_method|method:cutesv',
   'paper:plant-sv-benchmark-2026|evaluates_method|method:sniffles2',
   'paper:sorghum-graph-benchmark|evaluates_method|method:minigraph',
   'paper:sorghum-graph-benchmark|evaluates_method|method:minigraph-cactus',
-  'paper:sorghum-graph-benchmark|evaluates_method|method:pggb'
+  'paper:sorghum-graph-benchmark|evaluates_method|method:pggb',
+  'paper:rice-variant-comparison|evaluates_method|method:bcftools'
 ];
 for (const exp of evaluatesExpected) {
   assert.ok(evaluatesEdges.some(e => e.id === exp), `必须包含核实的基准评测关系: ${exp}`);
 }
-console.log('✓ 断言 7 通过: 经文献核准的 3 条 extends_method 与 5 条 evaluates_method 语义精准');
+console.log('✓ 断言 7 通过: 经文献核准的 3 条 extends_method 与 6 条 evaluates_method 语义精准');
 
 // 断言 8 (V1.1.2 专项测试 1 & 2): PAML (2006) 与 GAPIT (2018) 历史版本使用关系恢复
 const pamlEdge = graph.edges.find(e => e.source === 'paper:mam-positive-selection-2006' && e.target === 'method:paml');
@@ -214,7 +215,7 @@ assert.strictEqual(unknownYearResult.relation, 'uses_method', '未登记首发�
 assert.strictEqual(unknownYearResult.evidence.verificationStatus, 'structurally_valid', '无确凿首发冲突证据时不误报 needs_review');
 console.log('✓ 断言 11 通过 (V1.1.2 专项 5 & 6): 关系类型与时序警告完全解耦，未知首发年份不编造冲突');
 
-// 断言 12 (V1.1.2 专项测试 7): 证据数量与百分比基准一致性
+// 断言 12 (V1.2 证据审核后基准一致性): 证据数量与百分比基准一致性
 let totalEvidenceCount = 0;
 const statusCounts = { structurally_valid: 0, source_checked: 0, needs_review: 0 };
 for (const e of graph.edges) {
@@ -227,15 +228,16 @@ for (const e of graph.edges) {
 }
 assert.strictEqual(graph.stats.evidenceEntriesCount, totalEvidenceCount, '图谱统计中的证据总数必须严格等于各边证据记录数之和');
 assert.strictEqual(totalEvidenceCount, 798, '证据记录总数必须为 798');
-assert.strictEqual(statusCounts.source_checked, 541, 'source_checked 证据记录数必须为 541');
-assert.strictEqual(statusCounts.structurally_valid, 257, 'structurally_valid 证据记录数必须为 257');
-assert.strictEqual(statusCounts.needs_review, 0, '所有真实科学争议解决后，needs_review 允许并实现为 0');
+assert.strictEqual(statusCounts.source_checked, 597, 'source_checked 证据记录数必须为 597 (V1.2 新增 56 条已核查证据与评测)');
+assert.strictEqual(statusCounts.structurally_valid, 200, 'structurally_valid 证据记录数必须为 200 (全部归属领域关系)');
+assert.strictEqual(statusCounts.needs_review, 1, '针对跨代版本疑问 (Cubry et al. 2018 使用 MSMC v1 对应 msmc2)，精确标记 1 条 needs_review');
 
 const scRatio = ((statusCounts.source_checked / totalEvidenceCount) * 100).toFixed(1) + '%';
 const svRatio = ((statusCounts.structurally_valid / totalEvidenceCount) * 100).toFixed(1) + '%';
+const nrRatio = ((statusCounts.needs_review / totalEvidenceCount) * 100).toFixed(1) + '%';
 assert.strictEqual(graph.stats.evidenceRatiosByStatus.source_checked, scRatio, 'source_checked 占比分母必须为总证据数');
 assert.strictEqual(graph.stats.evidenceRatiosByStatus.structurally_valid, svRatio, 'structurally_valid 占比分母必须为总证据数');
-console.log(`✓ 断言 12 通过 (V1.1.2 专项 7): 证据总数与比例分母基准一致 (总证据条目: ${totalEvidenceCount}, source_checked: 541 (${scRatio}), structurally_valid: 257 (${svRatio}), needs_review: 0 (0.0%))`);
+console.log(`✓ 断言 12 通过 (V1.2 审核后证据体系): 证据总数与比例分母基准一致 (总证据条目: ${totalEvidenceCount}, source_checked: ${statusCounts.source_checked} (${scRatio}), structurally_valid: ${statusCounts.structurally_valid} (${svRatio}), needs_review: ${statusCounts.needs_review} (${nrRatio}))`);
 
 // 断言 13: 反向标题关键词误判拦截断言
 const clarifiedUsesCases = [

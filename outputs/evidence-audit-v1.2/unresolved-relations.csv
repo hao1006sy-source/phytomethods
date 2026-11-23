@@ -1,0 +1,2 @@
+paperId,paperTitle,paperYear,paperDOI,methodId,methodName,issueType,auditedSource,findings,missingRequirement
+african-rice-246-genomes,The Rise and Fall of African Rice Cultivation Revealed by Analysis of 246 New Genomes,2018,10.1016/j.cub.2018.05.066,msmc2,MSMC2,版本代际差异 (MSMC v1 vs MSMC2),STAR Methods (DOI: 10.1016/j.cub.2018.05.066),论文发表于 2018 年，实际运行 MSMC 1.1.0，而 MSMC2 发布于 2020 年。,建议新增 msmc 工具节点或建立严格历史版本别名映射机制；当前标记 needs_review 避免证据虚假升级。
