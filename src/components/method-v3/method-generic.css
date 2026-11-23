@@ -1,0 +1,35 @@
+body:has(.method-generic){background:#fff;color:#1b332a;font-family:Inter,"Noto Sans SC","Microsoft YaHei",sans-serif}
+.method-v3.method-generic{--navy:#104a36;--teal:#0e6548;--ink:#1b332a;--muted:#65786e;--soft:#ecf7ef;--border:#dfebe3}
+.method-generic .method-original-section>h2,.method-generic .method-related-section>h2{font-size:23px;letter-spacing:-.3px;line-height:1.45;border-left:4px solid #259447;padding-left:13px;margin:0 0 13px;scroll-margin-top:25px;overflow-wrap:anywhere}
+.method-generic .method-overview>h2{font-size:23px;letter-spacing:-.3px;line-height:1.45;border-left:4px solid #259447;padding-left:13px;margin:0 0 10px}
+.method-generic .method-overview>p{font-size:15px;line-height:1.85;margin:0}
+.method-generic .method-original-section{overflow-wrap:anywhere;min-width:0}
+.method-generic .method-source{min-width:0;overflow-wrap:anywhere}
+.method-generic .method-source :is(p,li,blockquote){font-size:15px;line-height:1.85}
+.method-generic .method-source h3{font-size:19px;line-height:1.5;margin:22px 0 9px;scroll-margin-top:25px}
+.method-generic .method-source h4{font-size:16px;line-height:1.5;margin:18px 0 7px;color:#104a36}
+.method-generic .method-source :is(a,code){overflow-wrap:anywhere}
+.method-generic .method-source .katex-display{max-width:100%;overflow-x:auto;overflow-y:hidden;padding:.45rem .25rem .7rem;margin:1.2rem 0}
+.method-generic .method-source pre{max-width:100%;overflow:auto;border:1px solid #dfebe3;border-radius:7px;background:#f6f9f7!important;color:#1b332a!important}
+.method-generic .method-source table{display:block;max-width:100%;overflow:auto;border-collapse:collapse;font-size:13px}
+.method-generic .method-source :is(th,td){padding:8px 10px;border:1px solid #dfebe3;text-align:left;vertical-align:top}
+.method-generic .method-source th{background:#ecf7ef;color:#104a36}
+.method-generic .method-source blockquote{margin:14px 0;padding:8px 15px;border-left:3px solid #0e6548;background:#f6faf7;color:#435b4e}
+.method-generic .method-source img,.method-generic .method-source figure{max-width:100%}
+.method-generic .method-related-links{display:flex;flex-wrap:wrap;gap:9px}
+.method-generic .method-related-links a{border:1px solid #dfebe3;border-radius:6px;padding:7px 11px;color:#0e6548;text-decoration:none;font-size:13px}
+.method-generic .method-related-links a:hover{background:#ecf7ef}
+.method-generic :is(a,button,summary):focus-visible{outline:2px solid #0e6548;outline-offset:3px}
+.method-generic .diagram{border-color:#dfebe3;background:#fff}
+.method-generic .diagram svg rect{fill:#ecf7ef;stroke:#b8d5c3}
+.method-generic .diagram svg text{fill:#104a36}
+.method-generic .scientific{border-color:#dfebe3;background:#fff}
+.method-generic .scientific svg :is(path,circle){stroke:#0e6548}
+.method-generic .scientific svg text{fill:#104a36}
+.method-generic .method-sidebar nav a{overflow-wrap:anywhere;line-height:1.45}
+.method-generic .method-header{font-family:Inter,"Noto Sans SC","Microsoft YaHei",sans-serif}
+@media(max-width:600px){
+  .method-generic .method-original-section>h2,.method-generic .method-related-section>h2,.method-generic .method-overview>h2{font-size:21px}
+  .method-generic .method-source :is(p,li,blockquote){font-size:15px;line-height:1.85}
+  .method-generic .method-related-links a{max-width:100%}
+}
