@@ -39,3 +39,5 @@
 浏览器脚本：scripts/browser-test-tutorial-index-v4.mjs，使用 node 直接运行；可通过 PHYTOMETHODS_PREVIEW_BASE 和 EDGE_PATH 配置预览地址与浏览器。截图和 browser-results.json 保存于 outputs/tutorial-index-v4，最终成果同步 D 盘任务目录。
 
 目前无阻断性问题。PR 保持未合并，等待视觉验收。
+
+提交：b2258ca。PR：https://github.com/hao1006sy-source/phytomethods/pull/24（保持未合并）。
