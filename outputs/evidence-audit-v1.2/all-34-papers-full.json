@@ -1,0 +1,818 @@
+[
+  {
+    "paperId": "african-rice-246-genomes",
+    "title": "The Rise and Fall of African Rice Cultivation Revealed by Analysis of 246 New Genomes",
+    "doi": "10.1016/j.cub.2018.05.066",
+    "year": 2018,
+    "methods": [
+      {
+        "methodId": "msmc2",
+        "methodName": "MSMC2",
+        "edgeId": "paper:african-rice-246-genomes|uses_method|method:msmc2",
+        "currentStatus": "structurally_valid",
+        "isCurated": false
+      },
+      {
+        "methodId": "psmc",
+        "methodName": "PSMC",
+        "edgeId": "paper:african-rice-246-genomes|uses_method|method:psmc",
+        "currentStatus": "structurally_valid",
+        "isCurated": false
+      },
+      {
+        "methodId": "smcpp",
+        "methodName": "SMC++",
+        "edgeId": "paper:african-rice-246-genomes|uses_method|method:smcpp",
+        "currentStatus": "structurally_valid",
+        "isCurated": false
+      }
+    ],
+    "contentLength": 1315,
+    "fullContent": "---\r\ntitle: \"The Rise and Fall of African Rice Cultivation Revealed by Analysis of 246 New Genomes\"\r\nsummary: \"使用非洲栽培稻和野生祖先的群体基因组数据重建栽培历史与种群变化。\"\r\nauthors: \"Cubry P, Tranchant-Dubreuil C, Thuillet AC, et al.\"\r\nyear: 2018\r\njournal: Current Biology\r\ndoi: 10.1016/j.cub.2018.05.066\r\ntype: application\r\nmethodIds: [psmc, msmc2, smcpp]\r\ndomainIds: [population-genetics]\r\nspeciesIds: [rice]\r\nstatus: published\r\nupdatedAt: 2026-11-22\r\n---\r\n\r\n## 研究问题与样本\r\n\r\n研究分析 246 份新测序材料，包括 163 份非洲栽培稻 *Oryza glaberrima* 和 83 份野生祖先 *O. barthii*，以研究非洲稻种群历史、地理扩张和驯化相关基因组变化。[PubMed 摘要](https://pubmed.ncbi.nlm.nih.gov/29983312/)；[论文全文](https://rbca.africarice.org/files/doc/journal/10.1016j.cub.2018.05.066.pdf)。\r\n\r\n## 群体历史方法和论文结果\r\n\r\n作者采用 PSMC、MSMC 和 SMC++。针对自交背景，PSMC/MSMC 输入由单倍型组合得到伪二倍体；栽培稻的 16 条单倍型组成 8 个伪二倍体，PSMC 分别分析并汇总，MSMC 联合分析并以 6 次 bootstrap 检查估计变化。SMC++ 使用 79 个伪二倍体与 5 条区分谱系，采用每代每位点 $6.5\\times10^{-9}$ 突变率、100,000 代上界和 25 个样条结点，并按一年世代时间展示时间轴。相关设置详见论文 STAR Methods。\r\n\r\n论文报告栽培稻与野生稻均有始于一万年前以上的有效群体规模下降；栽培稻历史曲线约在 3,400 年前达到低点，在约 1,847 年前出现增加信号。作者结合地理数据、单倍型、基因组选择扫描和空间模型解释该变化。曲线的日期受突变率、世代时间和伪二倍体构造影响，代表论文模型尺度下的估计。\r\n\r\n资源关联：[PSMC](../../methods/psmc/)、[MSMC2](../../methods/msmc2/)、[SMC++](../../methods/smcpp/)与[群体历史专题](../../topics/population-genetics/m05-topic-06/)。此处 MSMC/MSMC2 的链接指该研究所用的顺序马尔可夫共祖家族流程；具体脚本版本与样本步骤以原文 STAR Methods 为准。\r\n"
+  },
+  {
+    "paperId": "angiosperm-phylogenomics-2024",
+    "title": "Phylogenomics and the rise of the angiosperms",
+    "doi": "10.1038/s41586-024-07324-0",
+    "year": 2024,
+    "methods": [
+      {
+        "methodId": "iqtree2",
+        "methodName": "IQ-TREE 2",
+        "edgeId": "paper:angiosperm-phylogenomics-2024|uses_method|method:iqtree2",
+        "currentStatus": "structurally_valid",
+        "isCurated": false
+      }
+    ],
+    "contentLength": 679,
+    "fullContent": "---\r\ntitle: \"Phylogenomics and the rise of the angiosperms\"\r\nsummary: \"以 Angiosperms353 核基因数据研究被子植物深层系统发育和分化时间。\"\r\nauthors: \"Zuntini AR, Carruthers T, Maurin O, et al.\"\r\nyear: 2024\r\njournal: Nature\r\ndoi: 10.1038/s41586-024-07324-0\r\ntype: application\r\nmethodIds: [iqtree2]\r\ndomainIds: [comparative-genomics]\r\nspeciesIds: []\r\nstatus: published\r\nupdatedAt: 2026-11-22\r\n---\r\n## 研究范围与分析流程\r\n该研究整合 353 个核基因探针数据，覆盖被子植物 64 个目、416 个科以及 7,923 个属（9,506 个物种）。研究采用分层的基因树推断和 ASTRAL III 多物种共祖汇总物种树，并在单独的时间定标分析中使用 200 项化石校准与 treePL。IQ-TREE 用于若干基因树及枝长估计步骤；软件使用必须结合具体分析步骤阅读，不能将全篇流程概括成单一工具。[Nature 原文](https://doi.org/10.1038/s41586-024-07324-0)、[PubMed](https://pubmed.ncbi.nlm.nih.gov/38658746/)。\r\n"
+  },
+  {
+    "paperId": "arabidopsis-69-pangenome",
+    "title": "A pan-genome of 69 Arabidopsis thaliana accessions reveals a conserved genome structure throughout the global species range",
+    "doi": "10.1038/s41588-024-01715-9",
+    "year": 2024,
+    "methods": [
+      {
+        "methodId": "edta",
+        "methodName": "EDTA",
+        "edgeId": "paper:arabidopsis-69-pangenome|uses_method|method:edta",
+        "currentStatus": "structurally_valid",
+        "isCurated": false
+      },
+      {
+        "methodId": "hifiasm",
+        "methodName": "Hifiasm",
+        "edgeId": "paper:arabidopsis-69-pangenome|uses_method|method:hifiasm",
+        "currentStatus": "structurally_valid",
+        "isCurated": false
+      },
+      {
+        "methodId": "interproscan",
+        "methodName": "InterProScan",
+        "edgeId": "paper:arabidopsis-69-pangenome|uses_method|method:interproscan",
+        "currentStatus": "structurally_valid",
+        "isCurated": false
+      },
+      {
+        "methodId": "merqury",
+        "methodName": "Merqury",
+        "edgeId": "paper:arabidopsis-69-pangenome|uses_method|method:merqury",
+        "currentStatus": "structurally_valid",
+        "isCurated": false
+      },
+      {
+        "methodId": "orthofinder",
+        "methodName": "OrthoFinder",
+        "edgeId": "paper:arabidopsis-69-pangenome|uses_method|method:orthofinder",
+        "currentStatus": "structurally_valid",
+        "isCurated": false
+      },
+      {
+        "methodId": "syri",
+        "methodName": "SyRI",
+        "edgeId": "paper:arabidopsis-69-pangenome|uses_method|method:syri",
+        "currentStatus": "structurally_valid",
+        "isCurated": false
+      }
+    ],
+    "contentLength": 4589,
+    "fullContent": "---\r\ntitle: \"A pan-genome of 69 Arabidopsis thaliana accessions reveals a conserved genome structure throughout the global species range\"\r\nsummary: \"以 69 个拟南芥组装比较基因内容和基因组结构。\"\r\nauthors: \"Qichao Lian, Bruno Huettel, Birgit Walkemeier, Baptiste Mayjonade, Céline Lopez-Roques, Lisa Gil, Fabrice Roux, Korbinian Schneeberger, Raphael Mercier\"\r\nyear: 2024\r\njournal: Nature Genetics\r\ndoi: 10.1038/s41588-024-01715-9\r\ntype: application\r\nmethodIds: [hifiasm, orthofinder, syri, merqury, edta, interproscan]\r\ndomainIds: [pangenomics-structural-variation, comparative-genomics]\r\nspeciesIds: [arabidopsis]\r\nstatus: published\r\nupdatedAt: 2026-11-22\r\n---\r\n## 研究问题与材料范围\r\n\r\n研究以全球分布的拟南芥（*Arabidopsis thaliana*）材料为对象，检验染色体结构在不同地理群体间的保守程度，并估计基因家族组成的核心与可变部分。研究最初选取 72 份材料进行群体变异分析，其中 48 份使用 PacBio HiFi（平均深度约 45×）、24 份使用 Oxford Nanopore（平均深度约 67×）测长读段，并获得短读段数据。作者根据近交性评估排除 3 份显示杂合信号的材料；染色体级组装比较和基因泛基因组分析使用其余 69 份。群体结构分析以最初的 72 份材料为单位，组装和泛基因组分析以 69 份材料为单位。\r\n\r\n## 组装与群体分析\r\n\r\nHiFi 材料先分别使用 Canu v2.1.1、Flye v2.7 和 Hifiasm v0.16.1 组装；随后对其中部分组装去除 haplotig/重叠，并用 quickmerge 合并不同组装结果，再以 Col-CEN 为参考进行 RaGOO 排序和定向、人工检查，并用 MaSuRCA 补闭缺口。ONT 材料先用 SMARTdenovo 与 Flye 组装，再经长读段和 Illumina 短读段抛光、purge_dups 和 scaffold 校正。这里的 Hifiasm 是该研究多个 HiFi 组装方案之一，最终分析流程还包括组装合并与后续处理。\r\n\r\n69 份最终材料的 contig N50 为 6.1–21.3 Mb，平均 13.3 Mb，随后构建到染色体级。用于比较的组装长度为 128–148 Mb，平均 135 Mb。作者还以短读段 k-mer 估计组装完整性，并针对最完整的 46 份材料分析着丝粒重复；该子集的五条染色体着丝粒重复总长平均约 14 Mb，范围 10–22 Mb，并与组装长度呈高度相关（文中报告 Pearson *r* = 0.93）。这些数值描述本研究的材料及筛选子集。\r\n\r\n组装评价综合了多种互补指标：以 Brassicales OrthoDB 数据集运行 compleasm，BUSCO 完整度均值为 99.8%；Merqury 基于 Illumina k-mer 报告平均 QV 53.4 和 k-mer 完整度 98.5%；参考基因比对与 Liftoff 结果分别报告平均 97.3% 和 98.4% 的参考蛋白编码基因成功组装；LTR Assembly Index（LAI）均值为 22，着丝粒重复完整度均值为 96%。这些指标的定义和数据来源不同，不能相互替代。\r\n\r\n72 份材料的短读段 SNP 经 PLINK v1.90b6.18 连锁不平衡剪枝（`--indep-pairwise 50 10 0.1`）后用于主成分分析；ADMIXTURE v1.3.0 在 K=2–5 范围内估计群体结构。作者观察到地理来源与遗传聚类大体对应，并标出欧洲、非洲、马德拉和亚洲群体，同时保留若干混合来源材料。该群体结构步骤回答的是样本间遗传关系问题，与后续的基因家族聚类不是同一分析。\r\n\r\n## 基因家族泛基因组方法\r\n\r\n研究将 69 份组装的预测蛋白编码基因，与 Col-0 TAIR10、Col-PEK、近缘种 *Arabidopsis lyrata* 和 *Capsella rubella* 的代表基因共同输入 OrthoFinder v2.5.4，并使用 DIAMOND ultra-sensitive 搜索设置（`-S diamond_ultra_sens`）推断基因家族。初始聚类后，作者检查同源基因及潜在的基因模型拆分/合并情形，再调整相关 orthogroup。论文报告 73 个基因组的最终聚类数为 36,991；只统计 69 份拟南芥组装时，得到 32,986 个基因家族。泛基因组和核心基因组累积曲线通过不同样本数下各进行 2,000 次随机抽样估计。\r\n\r\n作者将所有 69 份材料共有的家族定义为核心；63–68 份材料中出现的家族为 softcore；2–62 份材料中出现的家族为可变（dispensable）；仅在一份材料中检出的家族为私有（private）。这些分类依据本研究的基因预测、家族聚类方法和样本集合定义。\r\n\r\n## 主要结果及解释边界\r\n\r\n- **染色体结构：** 染色体臂总体高度共线，大型臂部重排较少；较强的结构动态集中在着丝粒及其周边。研究在染色体臂报告 7 个倒位，绝大多数只见于单份材料。作者据多组装比较提出拟南芥核型在全球分布范围内近乎固定，而着丝粒差异是组装大小差异的重要来源。\r\n- **基因家族组成：** 32,986 个家族中，19,721 个（约 60%）为核心，1,613 个（约 5%）为 softcore，5,582 个（约 17%）为可变，6,070 个（约 18%）为私有。样本累积曲线在本研究采样范围内仍未达到平台，提示增加群体材料可能继续发现新的基因家族。\r\n- **注释对“私有家族”的影响：** 作者识别出 6,954 个家族涉及不同材料间基因模型拆分或合并；此类情形占私有家族的 78.9%。排除可由序列同源性检测到的拆并情形后，另有 1,281 个私有家族未在其他材料中检测到序列相似性。因此，私有类别同时受到注释拆并和材料特异序列信号影响，功能判断还需结合后续证据。\r\n- **基因特征：** 核心基因编码蛋白总体较长、Pfam 结构域匹配较多，在 Col-0 的 79 个器官/发育阶段表达数据中也整体表现出较高表达；核心基因的 *K*ₐ/*K*ₛ 比值较低。作者报告可变基因家族富集于防御相关功能；其与适应性表型之间的具体关系可由后续遗传和功能研究检验。\r\n\r\n## 软件在研究中的具体作用\r\n\r\n| 软件 | 论文中的任务 | 结果解释 |\r\n| --- | --- | --- |\r\n| OrthoFinder v2.5.4 | 跨材料蛋白编码基因家族/orthogroup 聚类；作者进一步检查并调整部分拆分、合并情形 | 家族聚类为基因内容比较提供分组基础，功能解释结合后续注释 |\r\n| Hifiasm v0.16.1 | 48 份 HiFi 材料的三种初始 de novo 组装方案之一；后续组装经评估、去冗余和 quickmerge 整合 | 在 HiFi 组装器比较流程中承担初始组装步骤 |\r\n| SyRI v1.6 | 对 minimap2 v2.21-r1071 的全基因组组装比对识别结构变异，随后按长度范围使用 SURVIVOR 合并 | 结构变异集合对应指定参考、比对及合并流程 |\r\n| Merqury v1.3 | 根据 Illumina reads 的 k-mer 频谱评估共识 QV 和 k-mer 完整度 | 反映 k-mer 一致性和完整度维度，与其他组装评价指标互补 |\r\n| EDTA v2.0.1 | 在各组装中注释转座元件并建立 pan-TE 库 | 泛转座元件库用于跨材料的重复序列注释 |\r\n| InterProScan v5.59-91.0 | 为预测蛋白提供结构域及功能签名注释 | 注释为序列功能解释提供计算证据 |\r\n| IQ-TREE v1.6.12 | 对单拷贝直系同源基因 CDS、SNP 及 PAV 矩阵构建系统树 | 各类数据矩阵形成对应的系统发育结果 |\r\n| PLINK v1.90b6.18 | 72 份材料 SNP 的 LD 剪枝和 PCA | 用于遗传变异降维和样本关系可视化 |\r\n| ADMIXTURE v1.3.0 | 72 份材料在 K=2–5 下的群体结构估计 | 展示不同 K 模型下的样本成分比例 |\r\n\r\n论文还使用 BUSCO、基因同源比对和 LTR Assembly Index 等指标评估组装，分别考察保守单拷贝基因、参考基因映射或重复序列组装情况。工具关系字段列出本知识库已有详情页、且在原文中有明确用途的工具；其他流水线依赖也在正文按原文记录。\r\n\r\n## 阅读与复现资源\r\n\r\n- [论文原文及方法](https://doi.org/10.1038/s41588-024-01715-9)\r\n- [作者开放版 PDF](https://www.mpipz.mpg.de/5602936/lian_nat_gen_2024_OA.pdf)\r\n- [PubMed 书目信息](https://pubmed.ncbi.nlm.nih.gov/38605175/)\r\n- [测序原始数据 ENA：PRJEB62038](https://www.ebi.ac.uk/ena/browser/view/PRJEB62038)\r\n- [组装数据 NCBI：PRJNA1033522](https://www.ncbi.nlm.nih.gov/bioproject/PRJNA1033522)\r\n\r\n书目信息：Lian Q, Huettel B, Walkemeier B, Mayjonade B, Lopez-Roques C, Gil L, Roux F, Schneeberger K, Mercier R. *Nature Genetics* 56, 982–991 (2024). DOI: 10.1038/s41588-024-01715-9。\r\n\r\n本条为植物应用论文记录，结果按 72 份群体分析和 69 份组装泛基因组分析的实际样本范围分别表述，并区分群体关系、基因家族和染色体结构等分析层级。\r\n"
+  },
+  {
+    "paperId": "arabidopsis-adaptation",
+    "title": "The pan-genome and local adaptation of Arabidopsis thaliana",
+    "doi": "10.1038/s41467-023-42029-4",
+    "year": 2023,
+    "methods": [
+      {
+        "methodId": "edta",
+        "methodName": "EDTA",
+        "edgeId": "paper:arabidopsis-adaptation|uses_method|method:edta",
+        "currentStatus": "structurally_valid",
+        "isCurated": false
+      },
+      {
+        "methodId": "hifiasm",
+        "methodName": "Hifiasm",
+        "edgeId": "paper:arabidopsis-adaptation|uses_method|method:hifiasm",
+        "currentStatus": "structurally_valid",
+        "isCurated": false
+      },
+      {
+        "methodId": "minigraph",
+        "methodName": "Minigraph",
+        "edgeId": "paper:arabidopsis-adaptation|uses_method|method:minigraph",
+        "currentStatus": "structurally_valid",
+        "isCurated": false
+      },
+      {
+        "methodId": "orthofinder",
+        "methodName": "OrthoFinder",
+        "edgeId": "paper:arabidopsis-adaptation|uses_method|method:orthofinder",
+        "currentStatus": "structurally_valid",
+        "isCurated": false
+      },
+      {
+        "methodId": "vg",
+        "methodName": "vg",
+        "edgeId": "paper:arabidopsis-adaptation|uses_method|method:vg",
+        "currentStatus": "structurally_valid",
+        "isCurated": false
+      }
+    ],
+    "contentLength": 4261,
+    "fullContent": "---\r\ntitle: \"The pan-genome and local adaptation of Arabidopsis thaliana\"\r\nsummary: \"比较拟南芥多材料泛基因组、结构变异及环境适应。\"\r\nauthors: \"Minghui Kang, Haolin Wu, Huanhuan Liu, Wenyu Liu, Mingjia Zhu, Yu Han, Wei Liu, Chunlin Chen, Yan Song, Luna Tan, Kangqun Yin, Yusen Zhao, Zhen Yan, Shangling Lou, Yanjun Zan, Jianquan Liu\"\r\nyear: 2023\r\njournal: Nature Communications\r\ndoi: 10.1038/s41467-023-42029-4\r\ntype: application\r\nmethodIds: [hifiasm, orthofinder, edta, minigraph, vg]\r\ndomainIds: [pangenomics-structural-variation, comparative-genomics]\r\nspeciesIds: [arabidopsis]\r\nstatus: published\r\nupdatedAt: 2026-11-22\r\n---\r\n## 研究问题与基因组材料\r\n\r\n研究考察拟南芥基因存在/缺失变异（presence/absence variation, PAV）和结构变异（structural variation, SV）如何扩展物种基因组多样性，并与环境适应性状相关。作者选择覆盖主要谱系与多样生境的 32 份生态型（ecotype），其中包括 6 份遗存谱系材料。PacBio HiFi 数据量为每份 2.18–8.28 Gb，约 15–60×。Hifiasm v0.18 以 `-l0` 关闭 haplotig 清除，后续使用 primary contig（p_ctg）；RagTag v2.1.0 以 Col-PEK T2T 组装为参照构建五条拟染色体。最终组装大小为 129.4–144.9 Mb，contig N50 为 5.91–20.3 Mb；染色体尺度组装 BUSCO 完整度为 99.0–99.3%。\r\n\r\n## 基因家族泛基因组\r\n\r\n研究整合转录组、ab initio 和同源蛋白证据预测基因，并将 *Arabidopsis lyrata* 作为外群。作者以 OrthoFinder 的 Markov clustering 方法聚类 887,723 个基因，结果部分报告 31,318 个基因家族。随着组装数量增加，泛基因组曲线在 n 接近 26 时趋于平台，新增家族比例低于 1%。按 32 份材料中的出现频率，21,545 个（68.8%）为核心家族，3,743 个（12.0%）为 softcore，3,929 个（12.6%）为可变家族，2,101 个（6.7%）为私有家族。\r\n\r\n环境关联分析将可变家族与 19 个 BIOCLIM 变量进行比较；平均昼夜温差（BIO2）和年温度范围（BIO7）与部分家族出现/缺失显著相关，其中 215 个相关家族富集于不同胁迫响应功能。核心家族富集于花发育、RNA 结合、转录调控、运输和细胞稳态等类别；可变家族富集于次生代谢、细胞分化和胁迫响应类别。该研究还观察到可变家族表达较低、Ka/Ks 较高的整体趋势。\r\n\r\n## Minigraph 图泛基因组与结构变异\r\n\r\n作者以本研究的 Col-0 组装为参考，按顺序将其余 31 个组装加入 Minigraph（`-cxggs`）参考引导图。输入比对采用 Minigraph 中基于 minimap2 的序列到图定位流程；不同材料相对参考的片段作为 GFA 图路径表示，图中的多路径结构形成 bubble。研究报告图长 243.27 Mb，含 468,168 个节点和 649,692 条边，其中非参考节点 203,747 个、合计 108.90 Mb。gfatools 使用 bubble-popping 方法提取变异，过滤小于 50 bp 的事件后，结果部分报告 61,322 个至少出现在一份生态型中的 SV，涉及 18,883 个基因。该集合以 Col-0 参考路径为坐标框架；双等位变异按参考路径关系分为 insertion、deletion、divergent 等类型，多等位 bubble 单独计数。\r\n\r\n## 群体读段映射与性状分析\r\n\r\n研究将 Illumina 短读段映射至图泛基因组，以 vg toolkit v1.40.0 对图上的 SV 进行分型，再用 PLINK v1.90b6.7 按缺失率和次要等位基因频率筛选，随后进行 Beagle 填补。方法与数据可用性段记录了来自 NCBI SRA BioProject PRJNA273563 的 1,135 份群体重测序数据，并说明 Tibet-0 与 Yilong-0 是本研究新增测序材料；过滤后报告 1,073 份个体与 20,326 个 SV 进入后续分析。图 6 图注将这一分析集合描述为 1,071 份全球材料加上 Tibet-0 和 Yilong-0。此处保留论文各部分对原始和过滤后样本集合的表述层级。\r\n\r\n研究比较 61 项性状，包括 21 项环境指标、两个温度条件下的开花时间和 38 项离子组学性状。SV 在 48 项性状（78.69%）上的解释方差比例高于 SNP；跨性状平均 SV 解释比例为 57.98%。在 LD >0.6 的标准下，3,369 个 SV（16.57%）被 SNP 标记。SV-GWAS 对 10 °C 开花时间和 11 项离子组学表型检出 SNP-GWAS 未检出的关联信号；论文以包含群体亲缘关系的线性混合模型进行 GWAS。\r\n\r\n## 生态型案例与功能验证\r\n\r\n- **KNAT3：** Tibet-0 启动子区域存在 566 bp 转座元件插入；研究报告其与 KNAT3 表达增加相关，并用 qRT-PCR 与双荧光素酶试验支持调控效应。作者将该变异与高海拔强光环境适应联系起来。\r\n- **WH1：** 启动子区域的 180 bp 插入与表达降低和 UV-B 抗性表型相关，研究提供了生态型分布、表达和双荧光素酶结果。\r\n- **HPCA1：** Tibet-0 启动子区域的 332 bp 转座元件插入与 HPCA1 表达增加及干旱抗性表型相关；作者结合表达测定、双荧光素酶和植株胁迫试验报告该结果。\r\n\r\n这些案例把图上变异发现与候选基因表达、表型实验连接起来。具体解释对应论文中的拟南芥材料与实验条件。\r\n\r\n## 软件在该研究中的作用\r\n\r\n| 软件 | 论文中的任务 |\r\n| --- | --- |\r\n| Hifiasm v0.18 | 32 份 HiFi reads 初始组装，使用 p_ctg 进入后续参考引导 scaffold |\r\n| OrthoFinder | 基因家族聚类及单拷贝直系同源基因提取 |\r\n| IQ-TREE v2.0.3 | 根据 17,183 个单拷贝家族构建最大似然系统树 |\r\n| EDTA v2.1.0 / pan-EDTA | 生态型级转座元件注释与泛转座元件库构建 |\r\n| Minigraph | 以 Col-0 为骨架、逐份加入 31 个组装构建参考引导图泛基因组 |\r\n| vg toolkit v1.40.0 | 群体短读段图上映射及 SV 分型 |\r\n| PLINK v1.90b6.7 | SV 个体缺失率/MAF筛选；SNP 数据另用于过滤 |\r\n| MCScanX | 通过基因共线性检查 SV 与基因对应关系 |\r\n\r\n该文使用独立 Minigraph 构图，vg 承担图上 reads 映射和基因型分析；两者在研究流程中分属不同步骤。\r\n\r\n## 统计口径与资料来源\r\n\r\n原文不同段落存在两组汇总数差异：摘要写 61,332 个 SV，结果段写 61,322 个；OrthoFinder 基因家族结果段写 31,318 个，方法段写 31,317 个，结果段四类计数合计为 31,318。本文依据结果段和分类计数表述，并在内容审核台账保留差异记录。\r\n\r\n- [论文原文及书目信息](https://doi.org/10.1038/s41467-023-42029-4)\r\n- [PMC 全文与方法](https://pmc.ncbi.nlm.nih.gov/articles/PMC10558531/)\r\n- [PubMed 书目信息](https://pubmed.ncbi.nlm.nih.gov/37802986/)\r\n- [原始测序数据：GSA PRJCA012695](https://ngdc.cncb.ac.cn/bioproject/browse/PRJCA012695)\r\n- [组装、注释、图泛基因组及家族矩阵：Figshare](https://figshare.com/articles/dataset/32_ecotypes_Arabidopsis_thaliana_genomes_gene_annotation_pan-TE_library_graph_pan-genome_gene_family_and_gene_presence_absence_matrices_files_/21673895)\r\n- [群体重测序数据：SRA PRJNA273563](https://www.ncbi.nlm.nih.gov/bioproject/PRJNA273563)\r\n\r\n书目信息：Kang M, Wu H, Liu H, Liu W, Zhu M, Han Y, Liu W, Chen C, Song Y, Tan L, Yin K, Zhao Y, Yan Z, Lou S, Zan Y, Liu J. *Nature Communications* 14, 6259 (2023). DOI: 10.1038/s41467-023-42029-4。\r\n"
+  },
+  {
+    "paperId": "arabidopsis-heat-hic-2020",
+    "title": "Heat stress-induced transposon activation correlates with 3D chromatin organization rearrangement in Arabidopsis",
+    "doi": "10.1038/s41467-020-15809-5",
+    "year": 2020,
+    "methods": [
+      {
+        "methodId": "hicexplorer",
+        "methodName": "HiCExplorer",
+        "edgeId": "paper:arabidopsis-heat-hic-2020|uses_method|method:hicexplorer",
+        "currentStatus": "structurally_valid",
+        "isCurated": false
+      }
+    ],
+    "contentLength": 891,
+    "fullContent": "---\r\ntitle: \"Heat stress-induced transposon activation correlates with 3D chromatin organization rearrangement in Arabidopsis\"\r\nsummary: \"拟南芥热胁迫 Hi-C 研究将 HiC-Pro 输出转换后用 HiCExplorer 处理与检查接触矩阵。\"\r\nauthors: \"Sun L, Jing Y, Liu X, Li Q, Xue Z, Cheng Z, Wang D, He H, Qian W\"\r\nyear: 2020\r\njournal: Nature Communications\r\ndoi: 10.1038/s41467-020-15809-5\r\ntype: application\r\nmethodIds: [hicexplorer]\r\ndomainIds: [epigenomics-3d-genome]\r\nspeciesIds: [arabidopsis]\r\nstatus: published\r\nupdatedAt: 2026-11-22\r\n---\r\n## 植物研究与软件分工\r\n该研究比较拟南芥对照、热处理与恢复期的 Hi-C 数据，并报告热胁迫相关的染色质互作重排及转座子激活关联。原文先由 HiC-Pro 处理配对 reads 和构建 contact maps，再将矩阵用 HiCExplorer 转换；研究记录了 `hicPlotDistVsCounts`、`hicNormalize`、`hicCorrectMatrix` 和 `hicTransform` 的使用。PCA compartment 调用则使用 HOMER，工具之间的任务在本站分开记录。[Nature Communications 原文](https://doi.org/10.1038/s41467-020-15809-5)；[PMC 全文](https://pmc.ncbi.nlm.nih.gov/articles/PMC7170881/)。\r\n"
+  },
+  {
+    "paperId": "arabidopsis-stomata-accessibility-2022",
+    "title": "Dynamic chromatin accessibility deploys heterotypic cis/trans-acting factors driving stomatal cell-fate commitment",
+    "doi": "10.1038/s41477-022-01304-w",
+    "year": 2022,
+    "methods": [
+      {
+        "methodId": "meme-suite",
+        "methodName": "MEME Suite",
+        "edgeId": "paper:arabidopsis-stomata-accessibility-2022|uses_method|method:meme-suite",
+        "currentStatus": "structurally_valid",
+        "isCurated": false
+      }
+    ],
+    "contentLength": 567,
+    "fullContent": "---\r\ntitle: \"Dynamic chromatin accessibility deploys heterotypic cis/trans-acting factors driving stomatal cell-fate commitment\"\r\nsummary: \"研究气孔细胞命运决定过程中的动态染色质可及性与顺反调控因子。\"\r\nauthors: \"Kim ED, Dorrity MW, Fitzgerald BA, et al.\"\r\nyear: 2022\r\njournal: Nature Plants\r\ndoi: 10.1038/s41477-022-01304-w\r\ntype: application\r\nmethodIds: [meme-suite]\r\ndomainIds: [regulatory-genomics-ai, epigenomics-3d-genome]\r\nspeciesIds: [arabidopsis]\r\nstatus: published\r\nupdatedAt: 2026-11-22\r\n---\r\n## 研究价值\r\n研究气孔细胞命运决定过程中的动态染色质可及性与顺反调控因子。 [期刊原文](https://doi.org/10.1038/s41477-022-01304-w)。\r\n"
+  },
+  {
+    "paperId": "cycas-evolution",
+    "title": "The Cycas genome and the early evolution of seed plants",
+    "doi": "10.1038/s41477-022-01129-7",
+    "year": 2022,
+    "methods": [
+      {
+        "methodId": "orthofinder",
+        "methodName": "OrthoFinder",
+        "edgeId": "paper:cycas-evolution|uses_method|method:orthofinder",
+        "currentStatus": "structurally_valid",
+        "isCurated": false
+      }
+    ],
+    "contentLength": 626,
+    "fullContent": "---\r\ntitle: \"The Cycas genome and the early evolution of seed plants\"\r\nsummary: \"构建攀枝花苏铁基因组并比较种子植物的基因组与演化。\"\r\nauthors: \"Liu Y, Wang S, Li L, et al.\"\r\nyear: 2022\r\njournal: Nature Plants\r\ndoi: 10.1038/s41477-022-01129-7\r\ntype: application\r\nmethodIds: [orthofinder]\r\ndomainIds: [comparative-genomics]\r\nspeciesIds: [cycas]\r\nstatus: published\r\nupdatedAt: 2026-11-21\r\n---\r\n## 研究问题与方法\r\n研究构建攀枝花苏铁（*Cycas panzhihuaensis*）基因组，结合其他植物基因组研究种子植物的演化历史。论文方法部分描述使用 OrthoFinder 构建多个植物基因组的基因家族，作为后续演化分析的基础。该研究包含其他工具和多种证据，不能把其完整结论归因于单一软件。[论文原文](https://doi.org/10.1038/s41477-022-01129-7)；[全文](https://pmc.ncbi.nlm.nih.gov/articles/PMC9023351/)。\r\n"
+  },
+  {
+    "paperId": "macadamia-mcscanx",
+    "title": "The genome of the endangered Macadamia jansenii displays little diversity but represents an important genetic resource for plant breeding",
+    "doi": "10.1002/pld3.364",
+    "year": 2021,
+    "methods": [
+      {
+        "methodId": "mcscanx",
+        "methodName": "MCScanX",
+        "edgeId": "paper:macadamia-mcscanx|uses_method|method:mcscanx",
+        "currentStatus": "structurally_valid",
+        "isCurated": false
+      }
+    ],
+    "contentLength": 716,
+    "fullContent": "---\r\ntitle: \"The genome of the endangered Macadamia jansenii displays little diversity but represents an important genetic resource for plant breeding\"\r\nsummary: \"使用 MCScanX 对澳洲坚果属基因组注释开展重复基因与共线分析。\"\r\nauthors: \"Sharma P, Murigneux V, Haimovitz J, et al.\"\r\nyear: 2021\r\njournal: Plant Direct\r\ndoi: 10.1002/pld3.364\r\ntype: application\r\nmethodIds: [mcscanx]\r\ndomainIds: [comparative-genomics]\r\nspeciesIds: [macadamia]\r\nstatus: published\r\nupdatedAt: 2026-11-22\r\n---\r\n## 方法与案例\r\n论文对 *Macadamia jansenii* 蛋白序列进行 all-versus-all BLASTP，再以基因注释与同源结果运行 MCScanX 的 duplicate gene classifier，分析复制基因类型及共线关系。此处记录的是论文报告的软件步骤；结果不能单独作为 WGD 证明。[期刊原文](https://doi.org/10.1002/pld3.364)、[PubMed](https://pubmed.ncbi.nlm.nih.gov/34938939/)。\r\n"
+  },
+  {
+    "paperId": "macadamia",
+    "title": "De novo chromosome level assembly of a plant genome from long read sequence data",
+    "doi": "10.1111/tpj.15583",
+    "year": 2022,
+    "methods": [
+      {
+        "methodId": "hifiasm",
+        "methodName": "Hifiasm",
+        "edgeId": "paper:macadamia|uses_method|method:hifiasm",
+        "currentStatus": "structurally_valid",
+        "isCurated": false
+      }
+    ],
+    "contentLength": 1275,
+    "fullContent": "---\r\ntitle: \"De novo chromosome level assembly of a plant genome from long read sequence data\"\r\nsummary: \"使用 HiFi reads 和 Hifiasm 构建 Macadamia jansenii 基因组组装。\"\r\nauthors: \"Sharma P et al.\"\r\nyear: 2022\r\njournal: The Plant Journal\r\ndoi: 10.1111/tpj.15583\r\ntype: application\r\nmethod: hifiasm\r\nmethodIds: [hifiasm]\r\ndomainIds: [genome-assembly]\r\nspeciesIds: [macadamia]\r\nupdatedAt: 2026-11-20\r\n---\r\n## 研究解读\r\n该研究利用长读长数据组装 Macadamia jansenii 基因组。论文方法部分报告使用 Hifiasm 处理 HiFi reads，结合额外数据构建染色体级组装。\r\n\r\n[期刊原文及方法](https://doi.org/10.1111/tpj.15583)。\r\n\r\n## 研究背景与分析目标\r\nMacadamia jansenii 是受威胁的澳大利亚坚果属植物，研究目标是评估 HiFi 长读段和 Hifiasm 能否在不依赖染色体图谱的情况下产生高连续植物组装，并比较其与 Hi-C 伪分子构建结果。\r\n\r\n## 数据与计算方法\r\n论文使用 PacBio HiFi 数据组装，报告 Hifiasm 默认设置、内置重复清理；高性能计算环境为 24 核与 120 GB 内存。作者将两个 haploid、primary contig 与 alternate haplotig GFA 转为 FASTA，并与 Hi-C 伪分子比较。单独使用 10× 与 18× runs 的结果较碎片化，合并 28× 得到更连续组装，报告 contig N50 46.1 Mb、BUSCO 99.6%。\r\n\r\n## 主要发现与解读\r\n14 条染色体中有 8 条由一个大型 contig 覆盖，其中 6 条两端带端粒重复；其余 6 条由 2–4 个主要 contig 覆盖，整体共 17 个主要 contig。作者指出残余断点与核糖体基因等高重复区有关。该研究说明在约 800 Mb、其数据质量和遗传背景下 HiFi/Hifiasm 可实现近染色体级连续性，不能将其覆盖度或连续性直接作为其他物种的保证。\r\n\r\n## 方法限制与精读重点\r\n研究目标为近完整染色体级组装，不是全部 14 条染色体 T2T；摘要和结果需区分 Hifiasm contig 与 Hi-C pseudo-molecule。复读时关注不同数据量的组装比较、GFA 到 FASTA 的转换、重复区断点、BUSCO 对比和可复用数据 BioProject PRJNA694456。\r\n\r\n"
+  },
+  {
+    "paperId": "maize-domestication",
+    "title": "Comparative population genomics of maize domestication and improvement",
+    "doi": "10.1038/ng.2309",
+    "year": 2012,
+    "methods": [
+      {
+        "methodId": "xpclr",
+        "methodName": "XP-CLR",
+        "edgeId": "paper:maize-domestication|uses_method|method:xpclr",
+        "currentStatus": "source_checked",
+        "isCurated": true
+      }
+    ],
+    "contentLength": 1243,
+    "fullContent": "---\r\ntitle: \"Comparative population genomics of maize domestication and improvement\"\r\nsummary: \"比较野生、地方和改良玉米材料的群体基因组变化。\"\r\nauthors: \"Hufford MB, Xu X, van Heerwaarden J, et al.\"\r\nyear: 2012\r\njournal: Nature Genetics\r\ndoi: 10.1038/ng.2309\r\ntype: application\r\nmethodIds: [xpclr]\r\ndomainIds: [population-genetics]\r\nspeciesIds: [maize]\r\nstatus: published\r\nupdatedAt: 2026-11-22\r\n---\r\n## 研究问题与样本设计\r\n\r\nHufford 等使用 75 份野生近缘、地方品种和改良玉米材料，按研究中的材料类别包括 35 个改良系、23 个地方品种和 17 个野生近缘材料。野生组中包括 14 份 *Zea mays* ssp. *parviglumis*、2 份 *Z. mays* ssp. *mexicana* 和 1 份 *Tripsacum dactyloides* var. *meridionale*。各样本平均测序深度超过 5×；读段比对到 B73 参考基因组 release 4a.53，最终分析使用 21,141,953 个高质量 SNP。[原文全文](https://pmc.ncbi.nlm.nih.gov/articles/PMC5531767/)。\r\n\r\n研究将驯化与现代改良分开比较，并结合核苷酸多样性、分化、衍生等位基因频率及转录组表达分析。选择候选由 XP-CLR 复合似然扫描形成连续窗口区域，再按论文设置的统计范围筛选；作者报告驯化阶段总体选择信号强于改良阶段，并观察到地方材料多样性部分恢复及其与野生近缘种渗入相容的模式。这里的 484 个驯化特征与 695 个改良特征是该论文定义下的候选区域集合，候选列表并不等同于全部已验证因果基因。[XP-CLR 方法页](../../methods/xpclr/)；[M05-05 选择性清除](../../topics/population-genetics/m05-topic-05/)；[M05-07 驯化与环境适应](../../topics/population-genetics/m05-topic-07/)。\r\n\r\n研究对玉米演化阶段进行群体基因组比较，适合展示如何把野生近缘种、地方品种和现代材料放入同一分析框架。候选区域的解释依赖样本分组、B73 参考坐标、窗口定义及研究所用 XP-CLR 实现；本站关联 XP-CLR 指向统计方法及当前工具介绍，不表示论文复现了当前 `hardingnj/xpclr` 软件版本。\r\n"
+  },
+  {
+    "paperId": "maize-drought-deseq2-2019",
+    "title": "Maize leaves drought-responsive genes revealed by comparative transcriptome of two cultivars during the filling stage",
+    "doi": "10.1371/journal.pone.0223786",
+    "year": 2019,
+    "methods": [
+      {
+        "methodId": "deseq2",
+        "methodName": "DESeq2",
+        "edgeId": "paper:maize-drought-deseq2-2019|uses_method|method:deseq2",
+        "currentStatus": "source_checked",
+        "isCurated": true
+      }
+    ],
+    "contentLength": 563,
+    "fullContent": "---\r\ntitle: \"Maize leaves drought-responsive genes revealed by comparative transcriptome of two cultivars during the filling stage\"\r\nsummary: 玉米灌浆期叶片干旱响应转录组比较使用 DESeq2 进行差异表达分析。\r\nauthors: \"Jin H, Liu S, Zenda T, et al.\"\r\nyear: 2019\r\njournal: PLOS ONE\r\ndoi: 10.1371/journal.pone.0223786\r\ntype: application\r\nmethodIds: [deseq2]\r\ndomainIds: [regulatory-genomics-ai]\r\nspeciesIds: [maize]\r\nstatus: published\r\nupdatedAt: 2026-11-22\r\n---\r\n## 植物研究\r\n该研究比较两个玉米品种在灌浆期干旱和供水条件下的叶片转录组，使用 DESeq2 分析差异表达，并对候选基因进行 qRT-PCR 分析。[论文原文](https://doi.org/10.1371/journal.pone.0223786)。\r\n"
+  },
+  {
+    "paperId": "maize-zeas-adaptation",
+    "title": "Population genomics of Zea species identifies selection signatures during maize domestication and adaptation",
+    "doi": "10.1186/s12870-022-03427-w",
+    "year": 2022,
+    "methods": [
+      {
+        "methodId": "admixture",
+        "methodName": "ADMIXTURE",
+        "edgeId": "paper:maize-zeas-adaptation|uses_method|method:admixture",
+        "currentStatus": "structurally_valid",
+        "isCurated": false
+      },
+      {
+        "methodId": "xpclr",
+        "methodName": "XP-CLR",
+        "edgeId": "paper:maize-zeas-adaptation|uses_method|method:xpclr",
+        "currentStatus": "structurally_valid",
+        "isCurated": false
+      }
+    ],
+    "contentLength": 1702,
+    "fullContent": "---\r\ntitle: \"Population genomics of Zea species identifies selection signatures during maize domestication and adaptation\"\r\nsummary: \"以 teosinte—玉米和热带—温带玉米的分组比较研究驯化与环境适应信号。\"\r\nauthors: \"Xu G, Zhang X, Chen W, et al.\"\r\nyear: 2022\r\njournal: BMC Plant Biology\r\ndoi: 10.1186/s12870-022-03427-w\r\ntype: application\r\nmethodIds: [admixture, xpclr]\r\ndomainIds: [population-genetics]\r\nspeciesIds: [maize]\r\nstatus: published\r\nupdatedAt: 2026-11-22\r\n---\r\n\r\n## 研究问题与材料\r\n\r\n研究收集 982 份玉米自交系和 190 份 teosinte 材料，使用 MaizeSNP50 芯片获取全基因组标记；质量过滤后使用 42,204 个 SNP 分析属内关系、驯化和适应。作者以 teosinte—玉米比较研究驯化，以热带—温带玉米比较研究环境适应，并使用 ADMIXTURE、主成分与系统发育分析检视样本关系。[出版方全文](https://link.springer.com/article/10.1186/s12870-022-03427-w)。\r\n\r\n## 统计方法与论文结果\r\n\r\n选择扫描结合窗口化 $F_{ST}$ 和 XP-CLR，使用 100 kb 窗口、10 kb 步长；论文将两种统计方法各自最高 0.5% 的区域作为候选，并分别合并连续窗口。作者报告 394 个驯化特征区域和 360 个适应特征区域，分别覆盖约 5.7% 和 5.5% 基因组；两方法的候选重叠比例有限，体现单标记分化与多位点频率模型关注信号有所不同。相关数值依赖本研究群体、芯片位点和阈值，不能与其他论文的窗口数直接比较。\r\n\r\n作者将公开开花期 GWAS 信号与候选区间共定位，再通过置换评估富集，并提出十个与开花期适应相关的候选基因。论文举例的 `GRMZM2G169293` 位于一个适应候选区，与光周期响应相关，其效应在不同海拔关联背景下存在差异。该证据把群体统计与性状关联相连，因果变异及其作用仍需遗传和功能验证。研究未纳入地方品种，因此作者明确指出该样本设计不能把所有驯化特征与改良特征完整分开。\r\n\r\n本文是玉米驯化与适应案例，关联 ADMIXTURE 的群体关系分析及 XP-CLR 的群体选择扫描；FST 与芯片数据等任务不归为这两个工具单独完成。相关专题：[M05-03 群体结构](../../topics/population-genetics/m05-topic-03/)、[M05-05 选择性清除](../../topics/population-genetics/m05-topic-05/)和[驯化与环境适应案例](../../topics/population-genetics/m05-topic-07/)。\r\n\r\n## 参考记录\r\n\r\nXu G, Zhang X, Chen W, Zhang R, Li Z, Wen W, Warburton ML, Li J, Li H, Yang X. Population genomics of Zea species identifies selection signatures during maize domestication and adaptation. *BMC Plant Biology*. 2022;22:72. [doi:10.1186/s12870-022-03427-w](https://doi.org/10.1186/s12870-022-03427-w).\r\n"
+  },
+  {
+    "paperId": "mam-positive-selection-2006",
+    "title": "Positive selection driving diversification in plant secondary metabolism",
+    "doi": "10.1073/pnas.0601738103",
+    "year": 2006,
+    "methods": [
+      {
+        "methodId": "paml",
+        "methodName": "PAML",
+        "edgeId": "paper:mam-positive-selection-2006|uses_method|method:paml",
+        "currentStatus": "source_checked",
+        "isCurated": true
+      }
+    ],
+    "contentLength": 694,
+    "fullContent": "---\r\ntitle: \"Positive selection driving diversification in plant secondary metabolism\"\r\nsummary: \"结合拟南芥 MAM 基因簇的演化分析与酶功能实验研究代谢多样化。\"\r\nauthors: \"Benderoth M, Textor S, Windsor AJ, et al.\"\r\nyear: 2006\r\njournal: Proceedings of the National Academy of Sciences\r\ndoi: 10.1073/pnas.0601738103\r\ntype: application\r\nmethodIds: [paml]\r\ndomainIds: [comparative-genomics]\r\nspeciesIds: [arabidopsis]\r\nstatus: published\r\nupdatedAt: 2026-11-22\r\n---\r\n## 研究问题与方法\r\n研究结合 *Arabidopsis* 近缘种 MAM 基因簇序列、异源表达的酶活分析及密码子演化检验，探讨复制后功能变化和选择信号。论文使用 PAML 3.14 比较 M1a 空模型与 branch-site Model A；功能解释另由酶实验提供证据。[PNAS 论文](https://doi.org/10.1073/pnas.0601738103)、[PubMed Central](https://pmc.ncbi.nlm.nih.gov/articles/PMC1482576/)。\r\n"
+  },
+  {
+    "paperId": "mango-annotation",
+    "title": "A chromosome-level genome of mango exclusively from long-read sequence data",
+    "doi": "10.1002/tpg2.20441",
+    "year": 2024,
+    "methods": [
+      {
+        "methodId": "braker3",
+        "methodName": "BRAKER3",
+        "edgeId": "paper:mango-annotation|uses_method|method:braker3",
+        "currentStatus": "structurally_valid",
+        "isCurated": false
+      },
+      {
+        "methodId": "interproscan",
+        "methodName": "InterProScan",
+        "edgeId": "paper:mango-annotation|uses_method|method:interproscan",
+        "currentStatus": "structurally_valid",
+        "isCurated": false
+      }
+    ],
+    "contentLength": 1087,
+    "fullContent": "---\r\ntitle: \"A chromosome-level genome of mango exclusively from long-read sequence data\"\r\nsummary: \"芒果染色体级基因组应用研究，报告重复屏蔽、BRAKER3 结构预测及蛋白功能注释流程。\"\r\nauthors: \"Wijesundara UK et al.\"\r\nyear: 2024\r\njournal: The Plant Genome\r\ndoi: 10.1002/tpg2.20441\r\ntype: application\r\nmethodIds: [braker3, interproscan]\r\ndomainIds: [genome-annotation, genome-assembly]\r\nspeciesIds: [mango]\r\nupdatedAt: 2026-11-22\r\n---\r\n## 研究背景\r\n\r\n芒果基因组研究的目标之一是建立染色体级参考资源，以支持基因组结构和基因功能研究。该研究使用长读长数据构建基因组，并报告结构注释和功能注释步骤，为植物注释方法在真实项目中的组合提供案例。\r\n\r\n## 方法流程与工具角色\r\n\r\n论文方法部分报告以 RepeatModeler2/RepeatMasker 处理重复序列，使用叶和花 RNA-seq 证据，并采用 BRAKER3 v3.0.3 预测基因结构；预测蛋白的功能注释使用 InterProScan 与其他资源。工具分别承担重复序列识别、结构预测和蛋白功能分类任务。该研究没有报告 EDTA 作为其重复序列流程，故不作为 EDTA 应用证据。\r\n\r\n## 主要结果与限制\r\n\r\n文章提供芒果染色体级基因组及相应注释资源。其完整度和基因模型统计属于该样本、组装版本和流程设置。长读长组装本身不能消除全部重复解析和结构注释误差；功能注释来自计算证据，不等同于功能实验。复用时应核对论文补充材料中的数据、版本、样本和参数，并将组装评估与注释评估分开。\r\n\r\n## 阅读重点\r\n\r\n阅读时沿着重复屏蔽、转录证据、BRAKER3 预测、蛋白功能映射的顺序追踪输入输出，并查看文章如何报告组装与基因集完整性。方法页面分别链接 [BRAKER3](../../methods/braker3/) 与 [InterProScan](../../methods/interproscan/)。\r\n\r\n原始论文：[The Plant Genome](https://doi.org/10.1002/tpg2.20441)。\r\n"
+  },
+  {
+    "paperId": "plant-induced-sv-2025",
+    "title": "A simple method to efficiently generate structural variation in plants",
+    "doi": "10.1371/journal.pgen.1011977",
+    "year": 2025,
+    "methods": [
+      {
+        "methodId": "cutesv",
+        "methodName": "cuteSV",
+        "edgeId": "paper:plant-induced-sv-2025|uses_method|method:cutesv",
+        "currentStatus": "structurally_valid",
+        "isCurated": false
+      }
+    ],
+    "contentLength": 1144,
+    "fullContent": "---\r\ntitle: \"A simple method to efficiently generate structural variation in plants\"\r\nsummary: \"在拟南芥中评估依托泊苷诱导遗传结构变异，并以长读长测序和遗传分析验证候选事件。\"\r\nauthors: \"Bechen LL, Ahsan N, Bahrainwala A, Gehring M, Satyaki PRV\"\r\nyear: 2025\r\njournal: \"PLoS Genetics 21(12):e1011977\"\r\ndoi: 10.1371/journal.pgen.1011977\r\ntype: application\r\nmethodIds: [cutesv]\r\ndomainIds: [pangenomics-structural-variation]\r\nspeciesIds: [arabidopsis]\r\nstatus: published\r\nupdatedAt: 2026-11-21\r\n---\r\n## 研究问题与数据\r\nBechen 等研究依托泊苷处理后是否可在拟南芥中诱导可遗传的结构变异，并将候选变异与植株表型联系。研究以 Nanopore 长读长分析多个表型材料、无表型同系材料和对照；测序 reads 比对至 Col-CEN v1.2 后使用 cuteSV 检测 SV，并按对照、重复出现与质量条件过滤候选。\r\n\r\n## 软件与结果边界\r\n研究报告 12 个候选 SV，包括 7 个缺失、2 个插入、2 个倒位和 1 个易位；部分事件以 PCR 验证。短节间矮化材料中的 1.52 Mb 倒位与附近差异表达结果共同支持对候选影响的分析；斑叶材料中 IMMUTANS 第三外显子的 37 bp 缺失引入移码，互补杂交结果支持其致因关系。软件负责从比对信号识别候选，候选的生物学解释来自论文所报告的对照、PCR、表达和遗传实验，不能只归结为 caller 输出。\r\n\r\n## 文献与数据\r\n- [PLOS Genetics 出版方全文](https://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1011977)\r\n- [DOI](https://doi.org/10.1371/journal.pgen.1011977)\r\n- [GEO 长读段数据 GSE284456](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE284456)\r\n- 相关工具：[cuteSV](../../methods/cutesv/)\r\n"
+  },
+  {
+    "paperId": "plant-wgd-timing-2017",
+    "title": "Constraining the timing of whole genome duplication in plant evolutionary history",
+    "doi": "10.1098/rspb.2017.0912",
+    "year": 2017,
+    "methods": [
+      {
+        "methodId": "paml",
+        "methodName": "PAML",
+        "edgeId": "paper:plant-wgd-timing-2017|uses_method|method:paml",
+        "currentStatus": "structurally_valid",
+        "isCurated": false
+      }
+    ],
+    "contentLength": 633,
+    "fullContent": "---\r\ntitle: \"Constraining the timing of whole genome duplication in plant evolutionary history\"\r\nsummary: \"结合串联基因家族、化石校准与分子钟估计种子植物和被子植物古复制事件。\"\r\nauthors: \"Clark JW, Donoghue PCJ\"\r\nyear: 2017\r\njournal: Proceedings of the Royal Society B\r\ndoi: 10.1098/rspb.2017.0912\r\ntype: application\r\nmethodIds: [paml]\r\ndomainIds: [comparative-genomics]\r\nspeciesIds: []\r\nstatus: published\r\nupdatedAt: 2026-11-22\r\n---\r\n## 研究问题与方法\r\n研究汇集含 ζ、ε 复制信号的基因家族，构建拼接比对，并在 35 项化石校准和固定拓扑下使用 PAML MCMCTree 正态近似方法估计节点时间。作者报告的年龄区间对应其基因家族集合、校准分布和时钟假设。[PubMed 原文记录](https://pubmed.ncbi.nlm.nih.gov/28679730/)、[开放全文](https://pmc.ncbi.nlm.nih.gov/articles/PMC5524505/)。\r\n"
+  },
+  {
+    "paperId": "populus-euphratica-demography",
+    "title": "Genome resequencing reveals demographic history and genetic architecture of seed salinity tolerance in Populus euphratica",
+    "doi": "10.1093/jxb/eraa172",
+    "year": 2020,
+    "methods": [
+      {
+        "methodId": "psmc",
+        "methodName": "PSMC",
+        "edgeId": "paper:populus-euphratica-demography|uses_method|method:psmc",
+        "currentStatus": "structurally_valid",
+        "isCurated": false
+      }
+    ],
+    "contentLength": 908,
+    "fullContent": "---\r\ntitle: \"Genome resequencing reveals demographic history and genetic architecture of seed salinity tolerance in Populus euphratica\"\r\nsummary: \"以全基因组重测序研究胡杨群体结构、PSMC 历史轨迹和种子耐盐性。\"\r\nauthors: \"Jia H, Liu G, Li J, et al.\"\r\nyear: 2020\r\njournal: Journal of Experimental Botany\r\ndoi: 10.1093/jxb/eraa172\r\ntype: application\r\nmethodIds: [psmc]\r\ndomainIds: [population-genetics]\r\nspeciesIds: [populus-euphratica]\r\nstatus: published\r\nupdatedAt: 2026-11-22\r\n---\r\n\r\nJia 等对胡杨（*Populus euphratica*）开展全基因组重测序和群体变异分析，识别出约 3.15 百万个 SNP，报告西北中国天然群体划分为具有地理结构的四个遗传支系。作者用 PSMC 描述四个支系的历史有效群体大小，并另外用 fastsimcoal26 拟合群体间包含迁移的模型；因此 PSMC 曲线和迁移率来自不同分析步骤。研究还开展种子耐盐性表型关联和候选基因验证。[PubMed 书目与摘要](https://pubmed.ncbi.nlm.nih.gov/32242238/)；[全文](https://pmc.ncbi.nlm.nih.gov/articles/PMC7475257/)；[DOI](https://doi.org/10.1093/jxb/eraa172)。\r\n\r\n相关资源：[PSMC 工具](../../methods/psmc/)；[群体历史动态专题](../../topics/population-genetics/m05-topic-06/)。\r\n"
+  },
+  {
+    "paperId": "populus-repeats-demography",
+    "title": "Repetitive genomic regions and the inference of demographic history",
+    "doi": "10.1038/s41437-021-00443-8",
+    "year": 2021,
+    "methods": [
+      {
+        "methodId": "psmc",
+        "methodName": "PSMC",
+        "edgeId": "paper:populus-repeats-demography|uses_method|method:psmc",
+        "currentStatus": "structurally_valid",
+        "isCurated": false
+      },
+      {
+        "methodId": "smcpp",
+        "methodName": "SMC++",
+        "edgeId": "paper:populus-repeats-demography|uses_method|method:smcpp",
+        "currentStatus": "structurally_valid",
+        "isCurated": false
+      }
+    ],
+    "contentLength": 885,
+    "fullContent": "---\r\ntitle: \"Repetitive genomic regions and the inference of demographic history\"\r\nsummary: \"以美洲黑杨分析重复区域掩蔽对多类人口历史估计的影响。\"\r\nauthors: \"Patil AB, Vijay N\"\r\nyear: 2021\r\njournal: Heredity\r\ndoi: 10.1038/s41437-021-00443-8\r\ntype: application\r\nmethodIds: [psmc, smcpp]\r\ndomainIds: [population-genetics]\r\nspeciesIds: [populus-trichocarpa]\r\nstatus: published\r\nupdatedAt: 2026-11-22\r\n---\r\n\r\nPatil 与 Vijay 以美洲黑杨（*Populus trichocarpa*）参考基因组评估重复序列对人口历史推断的影响，比较 PSMC、MSMC、SMC++ 与基于 SFS 的 Stairway Plot，并检查全基因组及重复序列类别的掩蔽策略。该杨树分析显示，遮蔽重复区域后远古时期有效群体大小估计降低，而近期估计上升；重复类型与染色体分布会改变结果。论文将其作为数据可调用性和重复序列对人口史估计影响的研究，而非对某一软件排名的基准测试。[期刊全文](https://www.nature.com/articles/s41437-021-00443-8)；[PubMed](https://pubmed.ncbi.nlm.nih.gov/34002046/)；[DOI](https://doi.org/10.1038/s41437-021-00443-8)。\r\n\r\n关联工具：[PSMC](../../methods/psmc/)、[SMC++](../../methods/smcpp/)。MSMC 在该研究中作为共祖方法出现；本记录仅列出与本站工具页对应的 PSMC 和 SMC++ 实现。\r\n"
+  },
+  {
+    "paperId": "purple-rice-wgcna",
+    "title": "Transcriptome analysis of the coexpression network of genes related to antioxidant characteristics after grain filling in purple rice",
+    "doi": "10.1038/s41598-024-73698-w",
+    "year": 2024,
+    "methods": [
+      {
+        "methodId": "wgcna",
+        "methodName": "WGCNA",
+        "edgeId": "paper:purple-rice-wgcna|uses_method|method:wgcna",
+        "currentStatus": "structurally_valid",
+        "isCurated": false
+      }
+    ],
+    "contentLength": 597,
+    "fullContent": "---\r\ntitle: \"Transcriptome analysis of the coexpression network of genes related to antioxidant characteristics after grain filling in purple rice\"\r\nsummary: \"使用加权基因共表达网络研究紫米籽粒灌浆后的抗氧化相关性状。\"\r\nauthors: \"Sun C, Zhu J, Zhu Y, et al.\"\r\nyear: 2024\r\njournal: Scientific Reports\r\ndoi: 10.1038/s41598-024-73698-w\r\ntype: application\r\nmethodIds: [wgcna]\r\ndomainIds: [regulatory-genomics-ai]\r\nspeciesIds: [rice]\r\nstatus: published\r\nupdatedAt: 2026-11-22\r\n---\r\n## 植物研究\r\n研究利用 WGCNA 将表达网络与紫米灌浆过程的抗氧化相关性状相联系。[原始论文](https://doi.org/10.1038/s41598-024-73698-w)、[PubMed](https://pubmed.ncbi.nlm.nih.gov/39349620/)。\r\n"
+  },
+  {
+    "paperId": "rice-3010-pangenome",
+    "title": "Genomic variation in 3,010 diverse accessions of Asian cultivated rice",
+    "doi": "10.1038/s41586-018-0063-9",
+    "year": 2018,
+    "methods": [
+      {
+        "methodId": "eupan",
+        "methodName": "EUPAN",
+        "edgeId": "paper:rice-3010-pangenome|uses_method|method:eupan",
+        "currentStatus": "structurally_valid",
+        "isCurated": false
+      }
+    ],
+    "contentLength": 1970,
+    "fullContent": "---\r\ntitle: \"Genomic variation in 3,010 diverse accessions of Asian cultivated rice\"\r\nsummary: \"分析亚洲栽培稻群体遗传变异和泛基因组基因存在缺失。\"\r\nauthors: \"Wang W, Mauleon R, Hu Z, et al.\"\r\nyear: 2018\r\njournal: Nature\r\ndoi: 10.1038/s41586-018-0063-9\r\ntype: application\r\nmethodIds: [eupan]\r\ndomainIds: [pangenomics-structural-variation, population-genetics]\r\nspeciesIds: [rice]\r\nstatus: published\r\nupdatedAt: 2026-11-22\r\n---\r\n## 研究问题与方法价值\r\nWang 等分析 3,010 份亚洲栽培稻的序列变异、群体结构和遗传多样性，并将短读段重测序与新增序列整合为水稻泛基因组，以减少单一 Nipponbare 参考基因组造成的变异遗漏。原文报告 29,399,875 个 SNP（其中 27,024,796 个为双等位 SNP）和 2,467,043 个长度小于 40 bp 的 indel。论文对 3,010 份材料进行了结构变异调用，并在 453 份高测序深度样本中报告 93,683 个 SV；该子集与全群体 SNP/indel 统计及后续 PAV 分析的样本范围不同。3,010 份组装产生 268 Mb 非冗余新序列，并预测 12,465 个新全长基因。\r\n\r\n## 计算流程与软件关系\r\n短读段 SNP/indel 分析以 Nipponbare RefSeq 为参考，使用 BWA-MEM 0.7.10 与 GATK 3.2-2；PLINK 用于连锁不平衡剪枝并生成核心 SNP 集，ADMIXTURE 对候选 K 值进行重复拟合，最终以 K=9 描述群体结构，Q 矩阵再由 CLUMPP 对齐。本站的 ADMIXTURE 与 PLINK 关联分别对应群体结构和 SNP 数据筛选/LD 分析，不代表这些工具完成了所有变异检测步骤。\r\n\r\n结构变异由定制的 novoBreak-germline 流程检测。泛基因组采用 Map-to-pan 思路：把 Nipponbare RefSeq 与 3,010 份组装产生的非冗余新序列整合，再将 reads 映射到 pan-genome，按基因体与 CDS 覆盖计算 PAV。论文把测序深度 >20× 且参考比对深度 >15× 的 453 份材料用于 SV 与 PAV 重点分析；基因存在判定采用 CDS 覆盖 >95% 且基因体覆盖 >85%。代码说明将基因与基因家族 PAV 流程归入 EUPAN；本站将 EUPAN 单列为相应方法资源。[PMC 全文与方法](https://pmc.ncbi.nlm.nih.gov/articles/PMC6784863/)。\r\n\r\n## 结果解读与限制\r\n在 453 份高覆盖材料上，研究将参考基因和全长新基因聚为 23,876 个基因家族；其中 12,770 个家族出现在全部 453 份材料中，2,056 个列为候选核心家族，9,050 个列为可变家族。模拟结果显示，9,050 个可变家族可能低估实际的可变泛基因组规模。新基因核验中，11,792 个（94.6%）在至少两份水稻材料上达到论文使用的 CDS 与基因体覆盖标准；论文还指出，约四分之一新基因因组装片段化而出现偏短预测。研究结果说明群体规模、测序深度、基因模型与覆盖阈值共同影响变异和 PAV 估计。PAV 结论应结合读段覆盖、注释质量及独立证据解读；该研究的 453 份样本筛选和覆盖阈值适用于其原始分析设计，不作为其他作物的通用默认值。\r\n\r\n## 资料来源\r\n本文是稻属栽培群体和基因 PAV 的植物应用案例，链接 ADMIXTURE、PLINK 与 EUPAN，分别指向论文明确使用的群体结构、SNP/LD 和 Map-to-pan PAV 工具。它不是 Minigraph、PGGB 或 Minigraph-Cactus 的图泛基因组案例。[PubMed 记录](https://pubmed.ncbi.nlm.nih.gov/29695866/)；[PMC 全文](https://pmc.ncbi.nlm.nih.gov/articles/PMC6784863/)；[数据论文 DOI](https://doi.org/10.1038/s41586-018-0063-9)。\r\n"
+  },
+  {
+    "paperId": "rice-deleterious-domestication",
+    "title": "Deleterious Variants in Asian Rice and the Potential Cost of Domestication",
+    "doi": "10.1093/molbev/msw296",
+    "year": 2017,
+    "methods": [
+      {
+        "methodId": "xpclr",
+        "methodName": "XP-CLR",
+        "edgeId": "paper:rice-deleterious-domestication|uses_method|method:xpclr",
+        "currentStatus": "structurally_valid",
+        "isCurated": false
+      }
+    ],
+    "contentLength": 1067,
+    "fullContent": "---\r\ntitle: \"Deleterious Variants in Asian Rice and the Potential Cost of Domestication\"\r\nsummary: \"比较野生与栽培亚洲稻的有害变异，并以 XP-CLR 和 SweeD 等方法分析潜在扫荡区域。\"\r\nauthors: \"Liu Q, Zhou Y, Morrell PL, Gaut BS\"\r\nyear: 2017\r\njournal: Molecular Biology and Evolution\r\ndoi: 10.1093/molbev/msw296\r\ntype: application\r\nmethodIds: [xpclr]\r\ndomainIds: [population-genetics]\r\nspeciesIds: [rice]\r\nstatus: published\r\nupdatedAt: 2026-11-22\r\n---\r\n## 研究问题与选择扫描方法\r\n\r\nLiu 等研究亚洲栽培稻及其野生近缘种中的有害变异频率、负荷和基因组分布，并检验驯化瓶颈、自交、连锁选择等过程是否与观察模式相容。论文使用 Huang 等此前定义的低多样性区域作为一种参考，同时用 SweeD 和 XP-CLR 重新扫描候选清除区；XP-CLR 对比栽培与野生材料间多位点频率变化。[出版方原文](https://academic.oup.com/mbe/article/34/4/908/2897207)；[DOI](https://doi.org/10.1093/molbev/msw296)。\r\n\r\n作者指出，XP-CLR 需要显式基因型，因此扫描采用 3K 数据集；两种方法使用论文规定的前 5%阈值。以 indica 3K 子集为例，Huang 区域、SweeD 和 XP-CLR 得到的候选区数量及位置并不相同，统计方法之间重叠有限。这种差异说明候选范围依赖所选信号和校准过程，并不直接判定其中某种扫描为“真值”。\r\n\r\n本文所述是对群体数据的统计分析，不是单一因果基因验证。有关有害变异变化的推断还依赖功能预测、祖先状态、群体抽样和人口史模拟设定。\r\n\r\n相关资源：[XP-CLR 工具页](../../methods/xpclr/)、[XP-CLR 方法论文](../xpclr-paper/)、[M05-05 选择性清除专题](../../topics/population-genetics/m05-topic-05/)。\r\n"
+  },
+  {
+    "paperId": "rice-gapit-2023",
+    "title": "Gene based markers improve precision of genome-wide association studies and accuracy of genomic predictions in rice breeding",
+    "doi": "10.1038/s41437-023-00599-5",
+    "year": 2023,
+    "methods": [
+      {
+        "methodId": "gapit",
+        "methodName": "GAPIT",
+        "edgeId": "paper:rice-gapit-2023|uses_method|method:gapit",
+        "currentStatus": "source_checked",
+        "isCurated": true
+      }
+    ],
+    "contentLength": 611,
+    "fullContent": "---\r\ntitle: \"Gene based markers improve precision of genome-wide association studies and accuracy of genomic predictions in rice breeding\"\r\nsummary: \"比较水稻基因相关标记在关联分析与基因组预测中的应用。\"\r\nauthors: \"Anilkumar C, Muhammed Azharudheen TP, Sah RP, et al.\"\r\nyear: 2023\r\njournal: Heredity\r\ndoi: 10.1038/s41437-023-00599-5\r\ntype: application\r\nmethodIds: [gapit]\r\ndomainIds: [gwas-breeding]\r\nspeciesIds: [rice]\r\nstatus: published\r\nupdatedAt: 2026-11-22\r\n---\r\n## 植物研究\r\n研究利用多种模型比较水稻籽粒性状关联及基因组预测，其中 MLM 与 FarmCPU 等关联分析使用 GAPIT。[原论文](https://doi.org/10.1038/s41437-023-00599-5)、[PubMed](https://pubmed.ncbi.nlm.nih.gov/36792661/)。\r\n"
+  },
+  {
+    "paperId": "rice-root-single-cell-2021",
+    "title": "Single-cell transcriptome atlas and chromatin accessibility landscape reveal differentiation trajectories in the rice root",
+    "doi": "10.1038/s41467-021-22352-4",
+    "year": 2021,
+    "methods": [
+      {
+        "methodId": "scanpy",
+        "methodName": "Scanpy",
+        "edgeId": "paper:rice-root-single-cell-2021|uses_method|method:scanpy",
+        "currentStatus": "structurally_valid",
+        "isCurated": false
+      }
+    ],
+    "contentLength": 847,
+    "fullContent": "---\r\ntitle: \"Single-cell transcriptome atlas and chromatin accessibility landscape reveal differentiation trajectories in the rice root\"\r\nsummary: \"结合单细胞转录组和染色质可及性研究水稻根细胞分化。\"\r\nauthors: \"Zhang TQ, Chen Y, Liu Y, et al.\"\r\nyear: 2021\r\njournal: Nature Communications\r\ndoi: 10.1038/s41467-021-22352-4\r\ntype: application\r\nmethodIds: [scanpy]\r\ndomainIds: [single-cell-spatial-omics]\r\nspeciesIds: [rice]\r\nstatus: published\r\nupdatedAt: 2026-11-21\r\n---\r\n## 植物研究\r\n水稻根研究结合 scRNA-seq 和 scATAC-seq 分析根尖分化轨迹及调控网络。论文中 Scanpy 1.4.5.1 用于表达分析的 ComBat、特征选择、PCA、邻近图、Diffusion Map 和 ForceAtlas2；拟时序分析使用 Palantir 0.2.2，RNA velocity 使用 velocyto。RNA 与 ATAC 是分别测得的模态，不应标作同细胞配对 multiome。[Nature Communications 原文及软件分工](https://doi.org/10.1038/s41467-021-22352-4)、[PubMed](https://pubmed.ncbi.nlm.nih.gov/33824350/)、[PMC](https://pmc.ncbi.nlm.nih.gov/articles/PMC8024345/)。\r\n"
+  },
+  {
+    "paperId": "rice-root-soil-single-cell-2025",
+    "title": "Single-cell transcriptomics reveal how root tissues adapt to soil stress",
+    "doi": "10.1038/s41586-025-08941-z",
+    "year": 2025,
+    "methods": [
+      {
+        "methodId": "doubletfinder",
+        "methodName": "DoubletFinder",
+        "edgeId": "paper:rice-root-soil-single-cell-2025|uses_method|method:doubletfinder",
+        "currentStatus": "structurally_valid",
+        "isCurated": false
+      },
+      {
+        "methodId": "sc-kb-copilot",
+        "methodName": "scKB/COPILOT",
+        "edgeId": "paper:rice-root-soil-single-cell-2025|uses_method|method:sc-kb-copilot",
+        "currentStatus": "structurally_valid",
+        "isCurated": false
+      }
+    ],
+    "contentLength": 858,
+    "fullContent": "---\r\ntitle: \"Single-cell transcriptomics reveal how root tissues adapt to soil stress\"\r\nsummary: \"结合单细胞 RNA 测序与空间转录组研究水稻根对土壤环境的响应。\"\r\nauthors: \"Zhu M, Hsu CW, Peralta Ogorek LL, et al.\"\r\nyear: 2025\r\njournal: Nature\r\ndoi: 10.1038/s41586-025-08941-z\r\ntype: application\r\nmethodIds: [sc-kb-copilot, doubletfinder]\r\ndomainIds: [single-cell-spatial-omics]\r\nspeciesIds: [rice]\r\nstatus: published\r\nupdatedAt: 2026-11-21\r\n---\r\n## 研究价值\r\n研究比较水稻 Xkitaake 根在 gel、非压实土和压实土条件下的响应。scRNA-seq 数据整合超过 79,000 个高质量细胞；研究报告外层细胞群对土壤条件变化的显著表达响应，并用 Molecular Cartography 靶向原位检测根细胞 marker mRNA。空间实验不是 cell2location spot 反卷积；压实土样本的 RNA 原位信号还受组织固定和细胞壁变化影响。[Nature 原文](https://doi.org/10.1038/s41586-025-08941-z)；[PMC 全文](https://pmc.ncbi.nlm.nih.gov/articles/PMC12176638/)；[Methods 与流程](https://backoffice.biblio.ugent.be/download/01JTFTDSPSTXD7PSHX8DN1MBRQ/01JYNVVT7JZFM02KA6CAWCKTRM)。\r\n"
+  },
+  {
+    "paperId": "rice-roots-population",
+    "title": "Loci and natural alleles underlying robust roots and adaptive domestication of upland ecotype rice in aerobic conditions",
+    "doi": "10.1371/journal.pgen.1007521",
+    "year": 2018,
+    "methods": [
+      {
+        "methodId": "admixture",
+        "methodName": "ADMIXTURE",
+        "edgeId": "paper:rice-roots-population|uses_method|method:admixture",
+        "currentStatus": "structurally_valid",
+        "isCurated": false
+      },
+      {
+        "methodId": "gapit",
+        "methodName": "GAPIT",
+        "edgeId": "paper:rice-roots-population|uses_method|method:gapit",
+        "currentStatus": "source_checked",
+        "isCurated": true
+      },
+      {
+        "methodId": "plink",
+        "methodName": "PLINK",
+        "edgeId": "paper:rice-roots-population|uses_method|method:plink",
+        "currentStatus": "structurally_valid",
+        "isCurated": false
+      }
+    ],
+    "contentLength": 1379,
+    "fullContent": "---\r\ntitle: \"Loci and natural alleles underlying robust roots and adaptive domestication of upland ecotype rice in aerobic conditions\"\r\nsummary: \"结合水稻群体数据和表型研究根系变异与适应。\"\r\nauthors: \"Zhao Y, Zhang H, Xu J, et al.\"\r\nyear: 2018\r\njournal: PLOS Genetics\r\ndoi: 10.1371/journal.pgen.1007521\r\ntype: application\r\nmethodIds: [plink, admixture, gapit]\r\ndomainIds: [population-genetics, gwas-breeding]\r\nspeciesIds: [rice]\r\nstatus: published\r\nupdatedAt: 2026-11-22\r\n---\r\n## 研究问题与数据\r\n\r\nZhao 等研究 795 份栽培稻材料的根系性状、群体结构与适应相关遗传变异。作者以参考基因组比对获得 SNP，先按缺失率不高于 50% 和次要等位基因频率不低于 5%筛选，再在该集合中按论文的 LD 阈值构建群体结构标记。该研究的统计结果针对其材料集合和分析设计。\r\n\r\n## 软件任务与结果\r\n\r\n| 工具 | 原文中执行的任务 |\r\n| --- | --- |\r\n| PLINK | 从 3.3 百万个未填补 SNP 中提取 154,516 个缺失率不高于 50%、次要等位基因频率不低于 5% 且 $r^2\\leq0.3$ 的 SNP，用于群体结构分析的 LD 剪枝集合。 |\r\n| ADMIXTURE 1.3 | 对 $K=1$–10 的模型进行拟合；作者将 $K=8$ 作为一个合适的结构模型，并结合主成分图与籼稻/粳稻分群进行解释。 |\r\n| GAPIT | 用 3.3 百万个未填补 SNP 计算 795 份材料的 PCA 和亲缘矩阵，前 3 个 PC 用于 GWAS 协变量；作者报告 CMLM 使用 PC 与 kinship，GLM 使用 PC。 |\r\n\r\nPLINK 的 154,516 个 LD 剪枝 SNP 集与 GAPIT 计算前三个 PC、亲缘矩阵所用的 3.3 百万个 SNP 集合是不同步骤。ADMIXTURE 的 $K=8$、PCA 坐标和 GWAS 混合模型各自回答不同问题，不能互换解释。[出版方原文](https://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1007521)；[DOI](https://doi.org/10.1371/journal.pgen.1007521)。\r\n\r\n## 研究边界\r\n\r\n论文的 SNP 缺失率、频率、LD 条件和 $K$ 值均对应 795 份栽培稻样本及其研究目标。本站关联 PLINK、ADMIXTURE 与 GAPIT，分别表示原文报告的 LD 标记筛选、祖先成分估计和 PCA/亲缘及关联模型步骤；工具关联不表示这些程序彼此包含其算法实现。\r\n"
+  },
+  {
+    "paperId": "rice-temarker-sweeps",
+    "title": "Exploring transposable element-based markers to identify allelic variations underlying agronomic traits in rice",
+    "doi": "10.1016/j.xplc.2021.100270",
+    "year": 2022,
+    "methods": [
+      {
+        "methodId": "sweepfinder2",
+        "methodName": "SweepFinder2",
+        "edgeId": "paper:rice-temarker-sweeps|uses_method|method:sweepfinder2",
+        "currentStatus": "structurally_valid",
+        "isCurated": false
+      }
+    ],
+    "contentLength": 1165,
+    "fullContent": "---\r\ntitle: \"Exploring transposable element-based markers to identify allelic variations underlying agronomic traits in rice\"\r\nsummary: \"在 176 份水稻材料中构建转座子插入基因型，并用 SweepFinder2 比较 SNP 与 TE 标记的扫荡信号。\"\r\nauthors: \"Yan H, Haak DC, Li S, Huang L, Bombarely A\"\r\nyear: 2022\r\njournal: Plant Communications\r\ndoi: 10.1016/j.xplc.2021.100270\r\ntype: application\r\nmethodIds: [sweepfinder2]\r\ndomainIds: [population-genetics]\r\nspeciesIds: [rice]\r\nstatus: published\r\nupdatedAt: 2026-11-22\r\n---\r\n## 研究设计与软件任务\r\n\r\nYan 等使用 176 份日本稻材料的公开全基因组数据，开发 TEmarker 流程，从转座子插入读段证据生成群体基因型，并比较 TE 标记与 SNP 标记在 GWAS 和选择扫描中的表现。TEmarker 与 SweepFinder2 回答不同问题：前者构建 TE 存在/缺失基因型，后者使用群体位点频率谱扫描候选清除信号。\r\n\r\n论文对 SNP 与 TE 标记分别用 SweepFinder2 计算复合似然比，扫描网格间距为 10 kb；将每类标记最高 1%窗口定义为候选扫荡区，并将相邻超阈值分数合并。该研究还把 TE 信号与农艺性状、GWAS 区域和候选基因进行比较。最高 1%属于研究设定，不能作为跨物种默认阈值。[PMC 全文](https://pmc.ncbi.nlm.nih.gov/articles/PMC9251385/)；[DOI](https://doi.org/10.1016/j.xplc.2021.100270)。\r\n\r\n该案例说明 SFS 扫描输入不局限于传统 SNP，但标记编码、位点计数、缺失和频率谱定义必须与软件要求兼容。选择扫描候选与 GWAS 峰、具体因果变异和功能机制之间需要分别建立证据。\r\n\r\n相关资源：[SweepFinder2 方法页](../../methods/sweepfinder2/)、[方法论文](../sweepfinder2-paper/)、[M05-05 选择性清除专题](../../topics/population-genetics/m05-topic-05/)。\r\n"
+  },
+  {
+    "paperId": "rice-variant-comparison",
+    "title": "Accurate detections of the heterozygous SNPs with rice genomic data and prediction of de novo spontaneous mutation rate",
+    "doi": "10.1186/s13007-025-01437-x",
+    "year": 2025,
+    "methods": [
+      {
+        "methodId": "bcftools",
+        "methodName": "BCFtools",
+        "edgeId": "paper:rice-variant-comparison|uses_method|method:bcftools",
+        "currentStatus": "structurally_valid",
+        "isCurated": false
+      }
+    ],
+    "contentLength": 1600,
+    "fullContent": "---\r\ntitle: \"Accurate detections of the heterozygous SNPs with rice genomic data and prediction of de novo spontaneous mutation rate\"\r\nsummary: \"比较水稻基因组中杂合变异检测流程的表现。\"\r\nauthors: \"Balimponya EG, Dwiyanti MS, Yamamori K, et al.\"\r\nyear: 2025\r\njournal: Plant Methods\r\ndoi: 10.1186/s13007-025-01437-x\r\ntype: application\r\nmethodIds: [bcftools]\r\ndomainIds: [population-genetics]\r\nspeciesIds: [rice]\r\nstatus: published\r\nupdatedAt: 2026-11-22\r\n---\r\n## 研究问题与设计\r\n\r\nBalimponya 等研究如何从 Illumina 短读段中减少水稻杂合 SNP 的假阳性，并用同 DNA 的独立测序试验评估比对与变异调用流程的一致性。论文包括 Nipponbare、Kitaake 和 Hinohikari 材料；方法部分的同 DNA 重复试验用于比较候选流程，后续样本分析、亲本—子代设计和 Sanger 验证分别回答不同问题。正文提及的材料数按各分析步骤区分，不将不同样本组混成一个统一分母。\r\n\r\n研究比较 Bowtie2 或 BWA-MEM2 与 GATK4.3 HaplotypeCaller 或 BCFtools mpileup 的四种组合，并另用 CLC Genomics Workbench 进行验证。试验读长为 150 bp；用于杂合变异筛选的深度范围为 8–100 reads，杂合等位基因比例设为 0.41–0.59。该比例阈值针对研究中杂合 SNP 的定义与验证设计，不是通用基因型过滤阈值。\r\n\r\n## 结果与解释范围\r\n\r\n在相同 gDNA 的独立测序组合比较中，BWA-MEM2 与 GATK4.3 HaplotypeCaller 获得最高的跨重复相似度，四项比较为 99.74%、99.63%、99.02% 和 99.37%。BWA-MEM2 与 BCFtools mpileup 的相应相似度为 71.52%、71.43%、70.97% 和 66.51%。论文后续采用 BWA-MEM2 与 GATK4.3 HaplotypeCaller，并结合多轮调用、IGV 检视及 Sanger 测序验证杂合位点。\r\n\r\n这些结果是特定材料、测序深度、调用版本、过滤定义与重复设计下的比较。论文展示的是一项水稻杂合位点识别流程研究，不能据此推断所有作物、遗传背景、深度和变异类型都由同一调用器取得相同排序。本站关联 BCFtools 是因为原文将 `mpileup` 纳入比较；文章结论没有将 BCFtools 选为最终组合。\r\n\r\n## 来源与工具关系\r\n\r\n[出版方全文](https://doi.org/10.1186/s13007-025-01437-x)；[Plant Methods 页面](https://link.springer.com/article/10.1186/s13007-025-01437-x)。本文与[BCFtools 工具页](../../methods/bcftools/)及[SNP 检测、过滤与 VCF 专题](../../topics/population-genetics/m05-topic-02/)关联。原始流程中用于最终分析的 BWA-MEM2 与 GATK 不代表本站已验证或运行相应软件。\r\n"
+  },
+  {
+    "paperId": "rice-weedy-selection",
+    "title": "Population genomics identifies the origin and signatures of selection of Korean weedy rice",
+    "doi": "10.1111/pbi.12630",
+    "year": 2017,
+    "methods": [
+      {
+        "methodId": "plink",
+        "methodName": "PLINK",
+        "edgeId": "paper:rice-weedy-selection|uses_method|method:plink",
+        "currentStatus": "structurally_valid",
+        "isCurated": false
+      },
+      {
+        "methodId": "selscan",
+        "methodName": "selscan",
+        "edgeId": "paper:rice-weedy-selection|uses_method|method:selscan",
+        "currentStatus": "structurally_valid",
+        "isCurated": false
+      },
+      {
+        "methodId": "xpclr",
+        "methodName": "XP-CLR",
+        "edgeId": "paper:rice-weedy-selection|uses_method|method:xpclr",
+        "currentStatus": "structurally_valid",
+        "isCurated": false
+      }
+    ],
+    "contentLength": 1365,
+    "fullContent": "---\r\ntitle: \"Population genomics identifies the origin and signatures of selection of Korean weedy rice\"\r\nsummary: \"使用重测序和多种互补扫描统计分析韩国杂草稻的群体来源与选择候选。\"\r\nauthors: \"He Q, Kim K-W, Park Y-J\"\r\nyear: 2017\r\njournal: Plant Biotechnology Journal\r\ndoi: 10.1111/pbi.12630\r\ntype: application\r\nmethodIds: [xpclr, selscan, plink]\r\ndomainIds: [population-genetics]\r\nspeciesIds: [rice]\r\nstatus: published\r\nupdatedAt: 2026-11-22\r\n---\r\n## 研究设计与软件任务\r\n\r\nHe 等对 30 份韩国杂草稻、30 份地方稻和 10 份野生稻开展全基因组重测序，比较材料间的系统关系、群体结构和适应性候选区域。论文报告 70 份材料中超过 800 万个杂草稻/地方稻 SNP，并在后续群体分析中过滤缺失和低频位点。\r\n\r\n| 方法或工具 | 原文报告的任务 |\r\n| --- | --- |\r\n| PLINK | 计算不同稻群体间的 SNP 基因型 LD $r^2$ 衰减。 |\r\n| XP-CLR | 比较杂草稻与地方稻的跨群体多位点频率差异。 |\r\n| `selscan` | 计算 XP-EHH 和 iHS 单倍型扫描统计量。 |\r\n| ROD、FST | 分析群体内多样性降低与分化信号。 |\r\n\r\n研究用 100 kb 滑动窗或逐位点统计的经验前 2.5%界定各方法离群区，再将至少被两种扫描方法支持的基因作为候选集合之一；论文列出的各方法命中基因数不同。此阈值是原研究的分析选择，候选基因不是经功能实验确认的因果基因。[PubMed 书目与摘要](https://pubmed.ncbi.nlm.nih.gov/27589078/)；[PMC 全文](https://pmc.ncbi.nlm.nih.gov/articles/PMC5316921/)；[DOI](https://doi.org/10.1111/pbi.12630)。\r\n\r\n论文正文将韩国杂草稻的遗传来源与地方稻及现代栽培稻联系起来。群体结构、选择扫描和因果功能判断是不同证据层次。该论文实际使用的 XP-CLR 程序与 `hardingnj/xpclr` Python 实现应分开记录。\r\n\r\n相关资源：[M05-05 专题](../../topics/population-genetics/m05-topic-05/)、[XP-CLR 工具页](../../methods/xpclr/)、[selscan 工具页](../../methods/selscan/)、[PLINK](../../methods/plink/)、[XP-CLR 方法论文](../xpclr-paper/)、[XP-EHH 方法论文](../xpehh-paper/)。\r\n"
+  },
+  {
+    "paperId": "sorghum-graph-benchmark",
+    "title": "Toward a standardized framework for pangenome graph evaluation: assessing crop plant pangenome variation graph construction from multiple assemblies",
+    "doi": "10.1093/gigascience/giaf121",
+    "year": 2025,
+    "methods": [
+      {
+        "methodId": "odgi",
+        "methodName": "ODGI",
+        "edgeId": "paper:sorghum-graph-benchmark|uses_method|method:odgi",
+        "currentStatus": "source_checked",
+        "isCurated": true
+      },
+      {
+        "methodId": "syri",
+        "methodName": "SyRI",
+        "edgeId": "paper:sorghum-graph-benchmark|uses_method|method:syri",
+        "currentStatus": "source_checked",
+        "isCurated": true
+      },
+      {
+        "methodId": "vg",
+        "methodName": "vg",
+        "edgeId": "paper:sorghum-graph-benchmark|uses_method|method:vg",
+        "currentStatus": "source_checked",
+        "isCurated": true
+      }
+    ],
+    "contentLength": 5481,
+    "fullContent": "---\r\ntitle: \"Toward a standardized framework for pangenome graph evaluation: assessing crop plant pangenome variation graph construction from multiple assemblies\"\r\nsummary: \"以高粱为主模型，分开评估多种泛基因组图的内容覆盖、结构变异检测和读段映射，并将部分分析扩展到三种作物。\"\r\nauthors: \"Venkataramana Kopalli, Kübra Arslan, Noemia Morales-Díaz, Silvia F Zanini, Agnieszka A Golicz\"\r\nyear: 2025\r\njournal: GigaScience\r\ndoi: 10.1093/gigascience/giaf121\r\ntype: application\r\nmethodIds: [minigraph, pggb, minigraph-cactus, syri, vg, odgi]\r\ndomainIds: [pangenomics-structural-variation]\r\nspeciesIds: [sorghum]\r\nstatus: published\r\nupdatedAt: 2026-11-21\r\n---\r\n\r\n## 研究问题与数据\r\n\r\nKopalli、Arslan、Morales-Díaz、Zanini 与 Golicz 比较 Minigraph、PGGB 和 Minigraph-Cactus 在作物多组装泛基因组中的图内容、变异检测与下游读段映射表现，并提出从图完整度、重复水平和结构变异一致性等方面开展评价的框架。论文以六份高粱组装为主要数据集，材料覆盖 *Sorghum bicolor* 的不同亚种及近缘种 *S. propinquum*；作者报告这些组装均采用混合测序方案，contig N50 最高约 3.5 Mb，BUSCO 完整度均高于 95%。高粱分析另将 *S. bicolor* v3.0.1 作为图构建和读段映射的线性参考。扩展分析使用大豆、大麦和油菜组装。\r\n\r\n研究包含两类证据任务。模拟组装具有已知结构变异真值，可用于计算变异检测 F1 和模拟读段定位正确率；真实组装及公开真实读段用于比较组装覆盖、图内容、变异重叠和实际映射指标。两类任务的评价目标与分母不同，以下分开报告。\r\n\r\n## 计算流程与工具版本\r\n\r\n| 分析环节 | 论文使用的方法 | 版本或用途 |\r\n| --- | --- | --- |\r\n| 图构建 | Minigraph、PGGB、Minigraph-Cactus | 0.21、0.5.4、2.7.2；按染色体构图 |\r\n| 图处理与统计 | ODGI、Panacus | ODGI 0.8.6；图展平、路径/覆盖与图增长统计；Panacus 0.2.3 |\r\n| 图路径变异提取 | VG deconstruct | VG 1.54.0；以参考路径为坐标并处理图中的 snarl |\r\n| 组装间变异比较 | Minimap2、SyRI、SVIM-asm | Minimap2 2.26-r1175 提供全基因组比对；SyRI 1.6.3 与 SVIM-asm 1.0.3 调用组装间变异 |\r\n| 模拟真值评估 | Truvari bench | 4.1.0；将调用结果与已知变异真值比较并计算 F1 |\r\n| 图完整度与读段映射 | BUSCO、VG Giraffe、Minimap2 | BUSCO 6.0.0 使用 poales_odb10；Giraffe 1.58.0；线性参考比对使用 Minimap2 |\r\n\r\n图构建与下游变异识别属于不同层级：图流程以多个组装建立序列图，再由 VG deconstruct 从图中解析路径变异；SyRI 与 SVIM-asm 则依据组装对线性比对结果分析差异。论文的工具清单还包括 bcftools、Jasmine、EDTA、BLASTN、Liftoff 和 regioneR，这些工具分别服务于变异规范化/合并、重复序列相似性、基因映射和区域重叠统计。\r\n\r\n## 模拟组装：结构变异检测与图内容\r\n\r\n对含已知结构变异的模拟组装，SVIM-asm 的总体 F1 为 0.93，SyRI 为 0.91，Minigraph-Cactus 为 0.89，PGGB 为 0.83。Minigraph 在该模拟设置中检出的变异数量过少，论文未据此给出可解释的 F1。该结果只衡量此模拟真值、输入与参数下的 SV 检测表现。\r\n\r\n模拟组装图的总碱基规模分别为 PGGB 851 Mb、Minigraph-Cactus 795 Mb、Minigraph 878 Mb；平均节点数约为 190,000、220,000 和 950。Minigraph 的平均节点长度约 968,806 bp，PGGB 和 Minigraph-Cactus 则分别约 4,517 bp 与 3,714 bp。六份模拟输入组装的平均 BUSCO 完整度和重复率为 98.4% 与 1.6%，相应三种模拟图展平序列的均值为 98.4% 与 1.7%。节点规模和长度描述图表示粒度，不等同于结构变异准确率。\r\n\r\n## 真实组装：图规模、覆盖和完整度\r\n\r\n以六份真实高粱组装构图时，PGGB、Minigraph-Cactus 与 Minigraph 的报告图规模分别约为 4.7 Gb、4.2 Gb 和 920 Mb；线性参考约为 688 Mb。Minigraph 在该分析中仅纳入长度大于 50 bp 的变异，PGGB 与 Minigraph-Cactus 采用的长度过滤设置不同。阅读图规模时需结合这些筛选条件。\r\n\r\n| 评价项 | 输入组装均值 | Minigraph-Cactus | PGGB | Minigraph |\r\n| --- | ---: | ---: | ---: | ---: |\r\n| BUSCO 完整度 | 95.4% | 94.5% | 98.7% | 99.4% |\r\n| BUSCO 重复率 | 2.0% | 16.5% | 16.0% | 2.7% |\r\n| 输入组装在图中的覆盖 | — | 各组装均高于 94% | 各组装均高于 94% | 平均约 83% |\r\n\r\nBUSCO 在此用于评估从图路径展平得到的序列。论文另以参考 BUSCO CDS 产生的 21-mer 检查图展平序列的单拷贝与多重映射情况，作为图中重复表示的补充指标。图节点切分方式会影响基因在展平结果中的呈现，组装覆盖、BUSCO 和 k-mer 结果需合并解读。\r\n\r\n在图中未恢复的组装区域，作者逐份检查了缺失基因数：AusTRCF317961 为 1，IS19953 和 IS8525 各 4，PI532566 为 14，Rio 为 3，S369-1 为 25；这些计数来自图中未回收的相应组装区域。该项与整条组装覆盖比例共同反映输入序列的图表示情况。\r\n\r\n## 真实组装：变异结果\r\n\r\n真实组装分析采用已发表高粱变异集进行 100 次区域置换重叠检验。三种图流程与已发表变异集的重叠均达到置换检验 *P* = 0.0099；该统计量衡量观察区域重叠相对于随机化背景的显著性。逐变异精确率与召回率由带真值的模拟数据 F1 任务衡量。\r\n\r\n小变异结果也随方法而变。Minigraph-Cactus 报告约 770 万 SNP 和 230 万小于 50 bp 的 indel；PGGB 约 760 万 SNP 和 260 万小 indel；SyRI 约 320 万 SNP 和 93 万小 indel；SVIM-asm 不调用 SNP，并报告约 1.1 万小 indel。Minigraph-Cactus、PGGB 和 Minigraph 分别报告约 59 万、56 万和 4.6 万个多等位位点。不同调用器的变异类别和过滤流程不同，数量表示各流程在该数据集上的输出规模。\r\n\r\n重复序列分析显示，PGGB 与 Minigraph-Cactus 的全部变异中约 28% 与高粱重复序列库匹配；在覆盖度大于 80% 的匹配条件下，比例分别为 7.5% 和 11%。两种方法各自独有的变异集合中，与重复位置相似的序列比例分别为 PGGB 48%、Minigraph-Cactus 38%。这些结果说明重复序列区域是图变异解释与独有调用复核的重要对象。\r\n\r\n## 读段映射：模拟数据与真实数据\r\n\r\n### 带定位真值的模拟读段\r\n\r\n作者从包含六份输入组装和参考组装的泛基因组图生成 100 万条 150 bp 模拟读段；模拟错误率为 0.24%，indel 率为 0.029%，插入片段均值 570 bp、标准差 165 bp。图索引映射使用 VG Giraffe，线性参考映射使用 Minimap2。论文以读段是否回到其模拟来源基因组位置定义正确映射，并分别报告不同最小 mapping quality（min_mapQ）阈值下的指标。\r\n\r\n| 图/参考与映射器 | min_mapQ = 60 的报告结果 | min_mapQ = 1 的总读段正确映射比例 |\r\n| --- | --- | ---: |\r\n| Minigraph-Cactus 图 / Giraffe | 映射 38.27%；正确映射率 99.68% | 79.60% |\r\n| Minigraph 图 / Giraffe | 映射 74.62%；正确映射率 95.08% | 91.91% |\r\n| 线性参考 / Minimap2 | 映射 48.67%；正确映射率 58.18% | 35.49% |\r\n\r\n论文将 Minigraph 图的较高模拟读段映射表现与其较低图复杂度联系起来；该图构建设置主要纳入大于 50 bp 的变异，小变异由此未进入图表示。图复杂度、过滤阈值和 min_mapQ 会共同影响映射率与正确率，结果需结合这些设定解读。\r\n\r\n### 公开真实 paired-end reads\r\n\r\n真实读段比较报告的总比对率与完美比对比例如下。Minimap2 的总比对率为 82.47%，图方法 Minigraph-Cactus 与 Minigraph 分别为 73.44% 和 73.27%；完美比对比例分别为 Minigraph-Cactus 82.77%、Minigraph 78.13%、Minimap2 68.77%。这两组指标描述不同读段对齐属性，应并列阅读。PGGB 索引构建因计算和内存需求未完成，论文映射比较覆盖 Minigraph-Cactus、Minigraph 与 Minimap2 三种方案。\r\n\r\n## 跨作物扩展与方法适用范围\r\n\r\n作者将图规模、完整度、重复和变异分析扩展到大豆、大麦与油菜，并对部分物种开展图上映射比较。主文报告的趋势与高粱分析相近：PGGB 和 Minigraph-Cactus 图通常比 Minigraph 图包含更多节点与序列，Minigraph 在多个作物中缺失的组装序列比例较高。跨作物结果支持这些指标在不同植物基因组中的比较用途，细节数值见原文补充表。\r\n\r\n研究使用逐染色体构图，以降低资源负担并简化结果管理；跨染色体连接可使用全基因组图等设计另行分析。作者报告的运行代码为 [Benchmarking_graph_pipelines](https://github.com/KopalliV/Benchmarking_graph_pipelines)，仓库标示 GPL-3.0；论文系统要求列出 Linux、至少 32 CPU 核、128 GB RAM 与约 2 TB 存储。\r\n\r\n## 阅读结果时应区分的指标\r\n\r\n1. 图文件大小、节点数和路径覆盖描述图的表示规模与输入序列回收情况。\r\n2. BUSCO 与 21-mer 映射分别从保守基因完整度和序列重复角度评估展平图，联合阅读可补充两类信息。\r\n3. 模拟数据 F1 依赖已知真值，可比较特定模拟设置下的调用结果；真实数据的置换检验评估与既有变异区域的重叠。\r\n4. 读段映射需同时阅读总比对率、正确映射率或完美比对比例，并注明真实/模拟数据和 min_mapQ。\r\n5. 变异长度过滤不同会改变图大小、可表示变异和映射复杂度；解释比较时应连同输入组装、过滤条件及计算资源一起报告。\r\n\r\n## 文献与数据\r\n\r\n- [出版方论文与 DOI](https://doi.org/10.1093/gigascience/giaf121)\r\n- [PMC 开放全文及补充材料入口](https://pmc.ncbi.nlm.nih.gov/articles/PMC12676463/)\r\n- [作者提供的分析代码](https://github.com/KopalliV/Benchmarking_graph_pipelines)\r\n\r\n本页面依据出版方全文和 PMC 正文整理，仍保持草稿，待完成全站跨领域关联闭包和发布态审核后再公开。\r\n"
+  },
+  {
+    "paperId": "sorghum-pangenome-reference-2026",
+    "title": "A sorghum pangenome reference improves global crop trait discovery",
+    "doi": "10.1038/s41586-026-10229-9",
+    "year": 2026,
+    "methods": [
+      {
+        "methodId": "minigraph-cactus",
+        "methodName": "Minigraph-Cactus",
+        "edgeId": "paper:sorghum-pangenome-reference-2026|uses_method|method:minigraph-cactus",
+        "currentStatus": "source_checked",
+        "isCurated": true
+      },
+      {
+        "methodId": "odgi",
+        "methodName": "ODGI",
+        "edgeId": "paper:sorghum-pangenome-reference-2026|uses_method|method:odgi",
+        "currentStatus": "source_checked",
+        "isCurated": true
+      },
+      {
+        "methodId": "vg",
+        "methodName": "vg",
+        "edgeId": "paper:sorghum-pangenome-reference-2026|uses_method|method:vg",
+        "currentStatus": "source_checked",
+        "isCurated": true
+      }
+    ],
+    "contentLength": 1177,
+    "fullContent": "---\r\ntitle: \"A sorghum pangenome reference improves global crop trait discovery\"\r\nsummary: \"以 33 个基因组构建高粱泛基因组参考，并连接群体多样性与作物性状分析。\"\r\nauthors: \"Morris GP, Harder AM, Healey AL, et al.\"\r\nyear: 2026\r\njournal: Nature 652:1245–1253\r\ndoi: 10.1038/s41586-026-10229-9\r\ntype: application\r\nmethodIds: [minigraph-cactus, vg, odgi]\r\ndomainIds: [pangenomics-structural-variation]\r\nspeciesIds: [sorghum]\r\nstatus: published\r\nupdatedAt: 2026-11-22\r\n---\r\n\r\n## 研究范围\r\n\r\nMorris 等建立了一个由 33 个基因组组成的高粱泛基因组参考，并构建包含 1,984 份栽培种和地方品种的多样性面板，用于研究泛基因组遗传差异与作物性状发现。本文作为植物泛基因组图的应用案例，书目信息依据 Nature 与 PubMed 核实。\r\n\r\n## 图构建与可视化职责\r\n\r\n作者以 BTx623 V5 为主参考，按染色体使用 Minigraph-Cactus v2.9.3 构建图；使用 vg v1.59.0 合并和准备裁剪后的染色体图。ODGI v0.9.0 用于检查不同基因组在图中的表示，sequenceTubeMap v0.1.0 用于展示目标区域的变异。这些功能分别对应构图、图处理、图中路径检查和区域可视化，不能归并为单一 ODGI 分析步骤。\r\n\r\n在 dhurrin 生物合成基因簇与 SH1 位点，研究继续使用 vg 和 vcfwave 筛选特定大小以上的等位变异。相关方法及性状结论遵循论文设定；本案例不表示本文网站已重新运行原始流程。\r\n\r\n原文：[Nature](https://www.nature.com/articles/s41586-026-10229-9)；[PubMed](https://pubmed.ncbi.nlm.nih.gov/41813899/)；[PMC 全文](https://pmc.ncbi.nlm.nih.gov/articles/PMC13128447/)。书目信息：Morris GP, Harder AM, Healey AL, et al. *Nature* 652, 1245–1253 (2026). DOI: 10.1038/s41586-026-10229-9.\r\n"
+  },
+  {
+    "paperId": "tea-comparative",
+    "title": "Genomic analyses of agronomic traits in tea plants and related Camellia species",
+    "doi": "10.3389/fpls.2024.1449006",
+    "year": 2024,
+    "methods": [
+      {
+        "methodId": "cafe5",
+        "methodName": "CAFE5",
+        "edgeId": "paper:tea-comparative|uses_method|method:cafe5",
+        "currentStatus": "structurally_valid",
+        "isCurated": false
+      },
+      {
+        "methodId": "mcscanx",
+        "methodName": "MCScanX",
+        "edgeId": "paper:tea-comparative|uses_method|method:mcscanx",
+        "currentStatus": "structurally_valid",
+        "isCurated": false
+      },
+      {
+        "methodId": "orthofinder",
+        "methodName": "OrthoFinder",
+        "edgeId": "paper:tea-comparative|uses_method|method:orthofinder",
+        "currentStatus": "structurally_valid",
+        "isCurated": false
+      },
+      {
+        "methodId": "paml",
+        "methodName": "PAML",
+        "edgeId": "paper:tea-comparative|uses_method|method:paml",
+        "currentStatus": "structurally_valid",
+        "isCurated": false
+      }
+    ],
+    "contentLength": 625,
+    "fullContent": "---\r\ntitle: \"Genomic analyses of agronomic traits in tea plants and related Camellia species\"\r\nsummary: \"结合山茶属基因组与群体数据研究农艺性状及基因家族演化。\"\r\nauthors: \"Duan S, Yan L, Shen Z, et al.\"\r\nyear: 2024\r\njournal: Frontiers in Plant Science\r\ndoi: 10.3389/fpls.2024.1449006\r\ntype: application\r\nmethodIds: [orthofinder, mcscanx, cafe5, paml]\r\ndomainIds: [comparative-genomics]\r\nspeciesIds: [tea]\r\nstatus: published\r\nupdatedAt: 2026-11-21\r\n---\r\n## 研究流程与方法\r\n研究对茶树和山茶属材料开展基因组比较。论文方法部分说明使用 OrthoFinder 识别基因家族，用 PAML 中的 MCMCTree 估计分化时间，使用 CAFE5 分析家族大小变化，并以 MCScanX 识别共线区域。这些方法承担不同分析步骤；具体物种、数据与参数见[论文原文](https://doi.org/10.3389/fpls.2024.1449006)。\r\n"
+  },
+  {
+    "paperId": "wheat-methylome-2015",
+    "title": "A genome-wide survey of DNA methylation in hexaploid wheat",
+    "doi": "10.1186/s13059-015-0838-3",
+    "year": 2015,
+    "methods": [
+      {
+        "methodId": "bismark",
+        "methodName": "Bismark",
+        "edgeId": "paper:wheat-methylome-2015|uses_method|method:bismark",
+        "currentStatus": "structurally_valid",
+        "isCurated": false
+      }
+    ],
+    "contentLength": 557,
+    "fullContent": "---\r\ntitle: \"A genome-wide survey of DNA methylation in hexaploid wheat\"\r\nsummary: \"采用亚硫酸氢盐处理和靶向基因富集研究六倍体小麦亚基因组甲基化。\"\r\nauthors: \"Gardiner LJ, Quinton-Tulloch M, Olohan L, et al.\"\r\nyear: 2015\r\njournal: Genome Biology\r\ndoi: 10.1186/s13059-015-0838-3\r\ntype: application\r\nmethodIds: [bismark]\r\ndomainIds: [epigenomics-3d-genome]\r\nspeciesIds: [wheat]\r\nstatus: published\r\nupdatedAt: 2026-11-21\r\n---\r\n## 研究与方法\r\n研究以靶向富集的亚硫酸氢盐测序调查六倍体小麦的亚基因组甲基化，使用 Bismark 比对和提取状态。[原始论文](https://doi.org/10.1186/s13059-015-0838-3)、[PubMed](https://pubmed.ncbi.nlm.nih.gov/26653535/)。\r\n"
+  },
+  {
+    "paperId": "wild-rice-pangenome-2025",
+    "title": "A pangenome reference of wild and cultivated rice",
+    "doi": "10.1038/s41586-025-08883-6",
+    "year": 2025,
+    "methods": [
+      {
+        "methodId": "hifiasm",
+        "methodName": "Hifiasm",
+        "edgeId": "paper:wild-rice-pangenome-2025|uses_method|method:hifiasm",
+        "currentStatus": "structurally_valid",
+        "isCurated": false
+      },
+      {
+        "methodId": "minigraph",
+        "methodName": "Minigraph",
+        "edgeId": "paper:wild-rice-pangenome-2025|uses_method|method:minigraph",
+        "currentStatus": "structurally_valid",
+        "isCurated": false
+      },
+      {
+        "methodId": "minigraph-cactus",
+        "methodName": "Minigraph-Cactus",
+        "edgeId": "paper:wild-rice-pangenome-2025|uses_method|method:minigraph-cactus",
+        "currentStatus": "structurally_valid",
+        "isCurated": false
+      },
+      {
+        "methodId": "minimap2",
+        "methodName": "minimap2",
+        "edgeId": "paper:wild-rice-pangenome-2025|uses_method|method:minimap2",
+        "currentStatus": "structurally_valid",
+        "isCurated": false
+      },
+      {
+        "methodId": "mummer4",
+        "methodName": "MUMmer4",
+        "edgeId": "paper:wild-rice-pangenome-2025|uses_method|method:mummer4",
+        "currentStatus": "structurally_valid",
+        "isCurated": false
+      },
+      {
+        "methodId": "syri",
+        "methodName": "SyRI",
+        "edgeId": "paper:wild-rice-pangenome-2025|uses_method|method:syri",
+        "currentStatus": "structurally_valid",
+        "isCurated": false
+      },
+      {
+        "methodId": "vg",
+        "methodName": "vg",
+        "edgeId": "paper:wild-rice-pangenome-2025|uses_method|method:vg",
+        "currentStatus": "structurally_valid",
+        "isCurated": false
+      },
+      {
+        "methodId": "yahs",
+        "methodName": "YaHS",
+        "edgeId": "paper:wild-rice-pangenome-2025|uses_method|method:yahs",
+        "currentStatus": "structurally_valid",
+        "isCurated": false
+      }
+    ],
+    "contentLength": 3697,
+    "fullContent": "---\r\ntitle: \"A pangenome reference of wild and cultivated rice\"\r\nsummary: \"整合野生稻与栽培稻的多组装、基因家族矩阵和图泛基因组，展示群体采样与表示层级对结果的影响。\"\r\nauthors: \"Guo D, Li Y, Lu H, Zhao Y, Kurata N, Wei X, Wang A, Wang Y, Zhan Q, et al.\"\r\nyear: 2025\r\njournal: Nature\r\ndoi: 10.1038/s41586-025-08883-6\r\ntype: application\r\nmethodIds: [hifiasm, yahs, syri, minigraph, minigraph-cactus, vg, mummer4, minimap2]\r\ndomainIds: [pangenomics-structural-variation]\r\nspeciesIds: [rice]\r\nstatus: published\r\nupdatedAt: 2026-11-21\r\n---\r\n\r\n## 研究问题与样本集合\r\n\r\nGuo 等构建野生稻（*Oryza rufipogon*）与栽培稻（*O. sativa*）的高质量泛基因组资源，研究野生材料的基因和结构变异多样性，并分析栽培稻的演化关系。论文从既有群体中选择 149 份材料；叶绿体序列复核后，将其中 3 份材料归为 *O. longistaminata*、1 份归为 *O. meridionalis* 外群。主要稻属泛基因组由 129 份 *O. rufipogon* 和 16 份 *O. sativa* 构成。正文的不同分析使用不同子集，不能将样本量互换。\r\n\r\n## 测序、组装与染色体级锚定\r\n\r\n研究对 133 份材料进行 PacBio HiFi 测序，对另外 16 份材料进行 Oxford Nanopore Technologies（ONT）测序。HiFi 材料使用 Hifiasm v0.16.0 默认参数组装，生成 primary contigs（p-contigs）和 alternate contigs（a-contigs）；ONT 数据中 7 份使用 NECAT，其余 9 份使用 NextDenovo，后续以长读段和 Illumina 短读段抛光。全体材料先用 ALLMAPS 结合遗传或共线性信息锚定至伪染色体；另有 30 份代表材料具有 Hi-C 数据，作者用 Chromap 比对、YaHS v1.1 挂载，并用 JuiceBox Assembly Tools 人工检查和优化。\r\n\r\n作者报告平均 contig N50 为 14.95 Mb、BUSCO 完整度为 98.55%、LTR Assembly Index（LAI）为 24.13；按测序平台分组的组装 QV 均值为 HiFi 57.92、ONT 24.55。它们是本研究数据和流程的结果，不是其他物种的默认验收阈值。a-contigs 保留了未进入主组装的杂合等位序列信息；该设计使后续基因集合不限于 p-contigs 的单一主路径。\r\n\r\n## 基因家族泛基因组与序列图分别回答的问题\r\n\r\n### 基因家族层面\r\n\r\n作者使用全对全 CDS 比对建立 16 份栽培稻与 129 份野生稻的基因集合，并以至少 95% 序列一致性及至少 50% 覆盖度作为论文中的基因存在判据。合并 145 份材料后共报告 69,531 个 pan-genes，其中 28,907 个为所有材料均检测到的核心基因，5,181 个为单一材料的 private genes，13,728 个被定义为野生稻特异基因。三种标签分别依据全样本频率或物种分组定义，不能互作同义词。\r\n\r\n### 序列图层面\r\n\r\n论文的基因家族矩阵使用 145 份材料；图泛基因组则用 Minigraph-Cactus 构建，栽培稻图使用 15 份材料、野生稻图使用 129 份材料、合并图使用 144 份材料。流程先由 Minigraph v0.19-r551 建立含结构变异的初始图，再将组装映射回图并用 Cactus v2.2.1 生成最终图。作者把不在参考序列中的图节点总长度报告为 3.87 Gb。该值是节点序列总长指标，不等同于新增基因数或去冗余新序列长度。\r\n\r\n论文还将短读段映射至合并图，以 vg Giraffe v1.43.0 执行图上比对，再用 DeepVariant v1.6.1 及 GLnexus v1.4.1 汇总变异调用；这一步纳入 142 份本研究材料及另一研究的 407 份材料。图构建、图上比对和群体变异调用是相连但不同的分析阶段。\r\n\r\n## 主要发现及解释边界\r\n\r\n野生稻和栽培稻之间存在广泛的基因、结构变异与转座元件差异；作者报告野生稻中抗性基因类似物的多样性较高，并提出其稻属系统发育和基因流证据支持亚洲栽培稻初始驯化的单一起源模型。这些结论来自论文所选材料、基因注释、家族定义、图表示和群体分析，应按对应分析集合解释。尤其是“野生稻特异”基因需结合样本覆盖、注释一致性及家族分类阈值判断，不能仅由数据库中未检出推断为生物学上的绝对缺失。\r\n\r\n## 本知识库中的方法关联\r\n\r\n| 工具 | 论文中的具体任务 |\r\n| --- | --- |\r\n| Hifiasm v0.16.0 | 组装 133 份 HiFi 材料，生成 p-contigs 与 a-contigs |\r\n| YaHS v1.1 | 将 Hi-C 联系用于 30 份代表材料的染色体级 scaffold |\r\n| MUMmer v4.0.0beta2 | 过滤候选细胞器 contig；用 `nucmer` 比较 Nipponbare 与四个代表材料的基因组共线性；将组装 contig 比对参考，经 `delta-filter` 和 `show-snps` 完成组装比对变异识别 |\r\n| minimap2 v2.21-r1071 | 作为长读段比对步骤的比对器，为 Longshot SNP calling 及 PAV 分析流程提供比对结果；论文方法未给出该流程的 preset |\r\n| SyRI v1.4 | 比较 Hi-C 与 ALLMAPS 染色体组装并识别结构差异 |\r\n| Minigraph v0.19-r551 与 Cactus v2.2.1（Minigraph-Cactus 流程） | 先建立含结构变异的初始图，再进行碱基级比对及整理；分别用于栽培、野生和合并材料的图构建 |\r\n| vg Giraffe v1.43.0 | 将短读段映射到合并图，为后续变异调用提供比对 |\r\n\r\n## 数据、代码与延伸阅读\r\n\r\n- [PubMed 书目记录](https://pubmed.ncbi.nlm.nih.gov/40240605/)\r\n- [PMC 全文与方法](https://pmc.ncbi.nlm.nih.gov/articles/PMC12176639/)\r\n- [DOI](https://doi.org/10.1038/s41586-025-08883-6)\r\n- 测序数据：ENA BioProject [PRJEB73710](https://www.ebi.ac.uk/ena/browser/view/PRJEB73710)\r\n- 组装、注释、VCF 与图文件：[Figshare 数据集](https://doi.org/10.25452/figshare.plus.25697817)及 [RicePandb](http://ricepandb.ncgr.ac.cn)\r\n- 分析代码：[Wild-rice-Pangenome-Project](https://github.com/dongling-hub/Wild-rice-Pangenome-Project)；归档版本：[Zenodo 10.5281/zenodo.14881729](https://doi.org/10.5281/zenodo.14881729)\r\n\r\n本研究可与[泛基因组概念专题](../../topics/pangenomics-structural-variation/m03-topic-01/)、[PAV 专题](../../topics/pangenomics-structural-variation/m03-topic-04/)及[图泛基因组构建专题](../../topics/pangenomics-structural-variation/m03-topic-05/)共同阅读。跨样本基因集合、单样本主/替代组装和全序列图是不同的数据对象；在复现时应记录材料 ID、测序平台、组装版本和进入各分析的样本子集。\r\n"
+  },
+  {
+    "paperId": "xanthoceras",
+    "title": "Two haplotype-resolved telomere-to-telomere genome assemblies of Xanthoceras sorbifolium",
+    "doi": "10.1038/s41597-025-05057-x",
+    "year": 2025,
+    "methods": [
+      {
+        "methodId": "hifiasm",
+        "methodName": "Hifiasm",
+        "edgeId": "paper:xanthoceras|uses_method|method:hifiasm",
+        "currentStatus": "structurally_valid",
+        "isCurated": false
+      },
+      {
+        "methodId": "verkko",
+        "methodName": "Verkko",
+        "edgeId": "paper:xanthoceras|uses_method|method:verkko",
+        "currentStatus": "structurally_valid",
+        "isCurated": false
+      }
+    ],
+    "contentLength": 525,
+    "fullContent": "---\r\ntitle: \"Two haplotype-resolved telomere-to-telomere genome assemblies of Xanthoceras sorbifolium\"\r\nsummary: \"黄花木单倍型解析组装研究使用 Verkko 组装结果辅助填补缺口。\"\r\nauthors: \"Liu Y et al.\"\r\nyear: 2025\r\njournal: Scientific Data\r\ndoi: 10.1038/s41597-025-05057-x\r\ntype: application\r\nmethod: verkko\r\nmethodIds: [hifiasm, verkko]\r\ndomainIds: [genome-assembly]\r\nspeciesIds: [xanthoceras]\r\nupdatedAt: 2026-11-20\r\n---\r\n## 研究解读\r\n论文报告黄花木的单倍型解析组装；方法部分描述利用 Verkko 组装、Hifiasm 组装和 HiFi reads 辅助缺口闭合。[期刊原文](https://doi.org/10.1038/s41597-025-05057-x)。\r\n\r\n"
+  }
+]

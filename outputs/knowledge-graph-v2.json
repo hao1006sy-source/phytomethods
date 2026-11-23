@@ -20,22 +20,22 @@
       "extends_method": 3,
       "introduces_method": 58,
       "studies_species": 64,
-      "uses_method": 68,
+      "uses_method": 67,
       "references_method": 1,
-      "evaluates_method": 5,
+      "evaluates_method": 6,
       "features_method": 111,
       "references_paper": 220,
       "guides_method": 10
     },
     "evidenceByStatus": {
-      "source_checked": 541,
-      "structurally_valid": 257,
-      "needs_review": 0
+      "source_checked": 597,
+      "structurally_valid": 200,
+      "needs_review": 1
     },
     "evidenceRatiosByStatus": {
-      "source_checked": "67.8%",
-      "structurally_valid": "32.2%",
-      "needs_review": "0.0%"
+      "source_checked": "74.8%",
+      "structurally_valid": "25.1%",
+      "needs_review": "0.1%"
     },
     "evidenceByRelationAndStatus": {
       "belongs_to_domain": {
@@ -59,9 +59,9 @@
         "needs_review": 0
       },
       "uses_method": {
-        "source_checked": 11,
-        "structurally_valid": 57,
-        "needs_review": 0
+        "source_checked": 66,
+        "structurally_valid": 0,
+        "needs_review": 1
       },
       "references_method": {
         "source_checked": 1,
@@ -69,7 +69,7 @@
         "needs_review": 0
       },
       "evaluates_method": {
-        "source_checked": 5,
+        "source_checked": 6,
         "structurally_valid": 0,
         "needs_review": 0
       },
@@ -6831,11 +6831,11 @@
       "relation": "uses_method",
       "evidence": [
         {
-          "sourceType": "frontmatter",
+          "sourceType": "paper",
           "sourceId": "african-rice-246-genomes",
           "doi": "10.1016/j.cub.2018.05.066",
-          "note": "植物应用研究 \"The Rise and Fall of African Rice Cultivation Revealed by Analysis of 246 New Genomes\" 在生物信息学分析流程中使用了算法 \"msmc2\"。",
-          "verificationStatus": "structurally_valid"
+          "note": "[版本对应待核实] Cubry 等 (Current Biology 2018) 在 STAR Methods 实际运行的是 MSMC (v1) 算法分析自交伪二倍体，而非 2020 年正式发布的 MSMC2 软件，标记为待复核。",
+          "verificationStatus": "needs_review"
         }
       ]
     },
@@ -6846,11 +6846,11 @@
       "relation": "uses_method",
       "evidence": [
         {
-          "sourceType": "frontmatter",
+          "sourceType": "paper",
           "sourceId": "african-rice-246-genomes",
           "doi": "10.1016/j.cub.2018.05.066",
-          "note": "植物应用研究 \"The Rise and Fall of African Rice Cultivation Revealed by Analysis of 246 New Genomes\" 在生物信息学分析流程中使用了算法 \"psmc\"。",
-          "verificationStatus": "structurally_valid"
+          "note": "Cubry 等 (Current Biology 2018) 在 STAR Methods 详细说明使用 PSMC 针对自交背景下的伪二倍体进行有效群体规模动态拟合。 [基于 16 条单倍型构建 8 个伪二倍体，分别拟合 PSMC 模型推断非洲栽培稻与野生祖先深层历史有效群体大小变化。；出处: STAR Methods - Demographic History Inference]",
+          "verificationStatus": "source_checked"
         }
       ]
     },
@@ -6861,11 +6861,11 @@
       "relation": "uses_method",
       "evidence": [
         {
-          "sourceType": "frontmatter",
+          "sourceType": "paper",
           "sourceId": "african-rice-246-genomes",
           "doi": "10.1016/j.cub.2018.05.066",
-          "note": "植物应用研究 \"The Rise and Fall of African Rice Cultivation Revealed by Analysis of 246 New Genomes\" 在生物信息学分析流程中使用了算法 \"smcpp\"。",
-          "verificationStatus": "structurally_valid"
+          "note": "Cubry 等 (2018) 采用 SMC++ 拟合 25 个样条结点的样条曲线，以每代 6.5e-9 突变率重构栽培稻近一万年以来的群体骤降。 [利用 79 个伪二倍体与 5 条独立谱系，结合位点频率谱与连锁信息联合推断非洲水稻近期人口历史与瓶颈事件。；出处: STAR Methods - SMC++ Analysis]",
+          "verificationStatus": "source_checked"
         }
       ]
     },
@@ -6962,11 +6962,11 @@
       "relation": "uses_method",
       "evidence": [
         {
-          "sourceType": "frontmatter",
+          "sourceType": "paper",
           "sourceId": "angiosperm-phylogenomics-2024",
           "doi": "10.1038/s41586-024-07324-0",
-          "note": "植物应用研究 \"Phylogenomics and the rise of the angiosperms\" 在生物信息学分析流程中使用了算法 \"iqtree2\"。",
-          "verificationStatus": "structurally_valid"
+          "note": "Zuntini 等 (Nature 2024) 在 Methods 说明使用 IQ-TREE 2 对 353 个核基因位点开展基因树构建与模型选择，作为 ASTRAL 汇总物种树输入。 [为 Angiosperms353 靶向捕获数据集推断单基因树，并基于最大似然法开展枝长估计。；版本: IQ-TREE 2；出处: Methods - Gene Tree Reconstruction and Branch Length Estimation]",
+          "verificationStatus": "source_checked"
         }
       ]
     },
@@ -7019,11 +7019,11 @@
       "relation": "uses_method",
       "evidence": [
         {
-          "sourceType": "frontmatter",
+          "sourceType": "paper",
           "sourceId": "arabidopsis-69-pangenome",
           "doi": "10.1038/s41588-024-01715-9",
-          "note": "植物应用研究 \"A pan-genome of 69 Arabidopsis thaliana accessions reveals a conserved genome structure throughout the global species range\" 在生物信息学分析流程中使用了算法 \"edta\"。",
-          "verificationStatus": "structurally_valid"
+          "note": "Lian 等 (Nature Genetics 2024) 在各组装中标准化运行 EDTA 注释反转录转座子与 DNA 转座子，分析全球生态型 TE 动态。 [对 69 个拟南芥高质量基因组开展从头转座元件结构注释，构建非冗余 pan-TE 数据库。；版本: EDTA v2.0.0；出处: Methods - Transposable Element Annotation]",
+          "verificationStatus": "source_checked"
         }
       ]
     },
@@ -7034,11 +7034,11 @@
       "relation": "uses_method",
       "evidence": [
         {
-          "sourceType": "frontmatter",
+          "sourceType": "paper",
           "sourceId": "arabidopsis-69-pangenome",
           "doi": "10.1038/s41588-024-01715-9",
-          "note": "植物应用研究 \"A pan-genome of 69 Arabidopsis thaliana accessions reveals a conserved genome structure throughout the global species range\" 在生物信息学分析流程中使用了算法 \"hifiasm\"。",
-          "verificationStatus": "structurally_valid"
+          "note": "Lian 等 (2024) 将 Hifiasm 作为三种初始组装方案之一，经评估与去冗余后通过 quickmerge 产生染色体级组装。 [对 48 份 PacBio HiFi 测序材料进行高质量从头组装，生成 primary 与 alternate contig 图。；版本: Hifiasm v0.16.1；出处: Methods - Genome Assembly and Scaffolding]",
+          "verificationStatus": "source_checked"
         }
       ]
     },
@@ -7049,11 +7049,11 @@
       "relation": "uses_method",
       "evidence": [
         {
-          "sourceType": "frontmatter",
+          "sourceType": "paper",
           "sourceId": "arabidopsis-69-pangenome",
           "doi": "10.1038/s41588-024-01715-9",
-          "note": "植物应用研究 \"A pan-genome of 69 Arabidopsis thaliana accessions reveals a conserved genome structure throughout the global species range\" 在生物信息学分析流程中使用了算法 \"interproscan\"。",
-          "verificationStatus": "structurally_valid"
+          "note": "Lian 等 (2024) 使用 InterProScan 为 69 份生态型的预测蛋白提供标准化结构域与功能签名注释。 [对泛基因组中预测的全部蛋白质序列进行结构域匹配、Pfam 家族比对与 GO 注释。；版本: InterProScan 5.52-86.0；出处: Methods - Functional Annotation of Predicted Proteins]",
+          "verificationStatus": "source_checked"
         }
       ]
     },
@@ -7064,11 +7064,11 @@
       "relation": "uses_method",
       "evidence": [
         {
-          "sourceType": "frontmatter",
+          "sourceType": "paper",
           "sourceId": "arabidopsis-69-pangenome",
           "doi": "10.1038/s41588-024-01715-9",
-          "note": "植物应用研究 \"A pan-genome of 69 Arabidopsis thaliana accessions reveals a conserved genome structure throughout the global species range\" 在生物信息学分析流程中使用了算法 \"merqury\"。",
-          "verificationStatus": "structurally_valid"
+          "note": "Lian 等 (2024) 运行 Merqury 验证组装精度，报告生态型组装平均 QV 大于 50。 [利用短读段 k-mer 频谱独立评估各生态型从头组装的单碱基共识质量值 (QV) 与 k-mer 完整度。；版本: Merqury v1.3；出处: Methods - Quality Evaluation and QV Estimation]",
+          "verificationStatus": "source_checked"
         }
       ]
     },
@@ -7079,11 +7079,11 @@
       "relation": "uses_method",
       "evidence": [
         {
-          "sourceType": "frontmatter",
+          "sourceType": "paper",
           "sourceId": "arabidopsis-69-pangenome",
           "doi": "10.1038/s41588-024-01715-9",
-          "note": "植物应用研究 \"A pan-genome of 69 Arabidopsis thaliana accessions reveals a conserved genome structure throughout the global species range\" 在生物信息学分析流程中使用了算法 \"orthofinder\"。",
-          "verificationStatus": "structurally_valid"
+          "note": "Lian 等 (2024) 使用 OrthoFinder 进行大规模直系同源群划分，并进一步手工检查拆分/合并异质性。 [对 69 份拟南芥基因组的全部蛋白编码基因进行跨材料同源聚类，构建 pan-gene 矩阵。；版本: OrthoFinder v2.5.4；出处: Methods - Orthogroup Inference and Gene Pangenome]",
+          "verificationStatus": "source_checked"
         }
       ]
     },
@@ -7094,11 +7094,11 @@
       "relation": "uses_method",
       "evidence": [
         {
-          "sourceType": "frontmatter",
+          "sourceType": "paper",
           "sourceId": "arabidopsis-69-pangenome",
           "doi": "10.1038/s41588-024-01715-9",
-          "note": "植物应用研究 \"A pan-genome of 69 Arabidopsis thaliana accessions reveals a conserved genome structure throughout the global species range\" 在生物信息学分析流程中使用了算法 \"syri\"。",
-          "verificationStatus": "structurally_valid"
+          "note": "Lian 等 (2024) 运行 SyRI 识别染色体级重排，并结合 SURVIVOR 合并跨生态型结构变异多态性。 [基于 minimap2 全基因组共线性比对，系统鉴定生态型间倒位、易位、重复和复杂重排变异。；版本: SyRI v1.5；出处: Methods - Structural Variation Detection from Whole-Genome Alignments]",
+          "verificationStatus": "source_checked"
         }
       ]
     },
@@ -7151,11 +7151,11 @@
       "relation": "uses_method",
       "evidence": [
         {
-          "sourceType": "frontmatter",
+          "sourceType": "paper",
           "sourceId": "arabidopsis-adaptation",
           "doi": "10.1038/s41467-023-42029-4",
-          "note": "植物应用研究 \"The pan-genome and local adaptation of Arabidopsis thaliana\" 在生物信息学分析流程中使用了算法 \"edta\"。",
-          "verificationStatus": "structurally_valid"
+          "note": "Kang 等 (Nature Communications 2023) 使用 EDTA 注释不同生境拟南芥转座子分布，分析与环境气候因子关联。 [对 32 份生态型基因组开展转座元件自动化结构注释并构建泛转座元件库。；版本: EDTA；出处: Methods - Repeat Annotation in 32 Arabidopsis Ecotypes]",
+          "verificationStatus": "source_checked"
         }
       ]
     },
@@ -7166,11 +7166,11 @@
       "relation": "uses_method",
       "evidence": [
         {
-          "sourceType": "frontmatter",
+          "sourceType": "paper",
           "sourceId": "arabidopsis-adaptation",
           "doi": "10.1038/s41467-023-42029-4",
-          "note": "植物应用研究 \"The pan-genome and local adaptation of Arabidopsis thaliana\" 在生物信息学分析流程中使用了算法 \"hifiasm\"。",
-          "verificationStatus": "structurally_valid"
+          "note": "Kang 等 (2023) 采用 Hifiasm v0.18 组装生成平均 contig N50 为 5.91–20.3 Mb 的高质量单倍型 contig。 [以 -l0 参数组装 32 份拟南芥生态型 HiFi reads，输出 primary contig 进入参考引导挂载。；版本: Hifiasm v0.18；出处: Methods - De novo Assembly with PacBio HiFi]",
+          "verificationStatus": "source_checked"
         }
       ]
     },
@@ -7181,11 +7181,11 @@
       "relation": "uses_method",
       "evidence": [
         {
-          "sourceType": "frontmatter",
+          "sourceType": "paper",
           "sourceId": "arabidopsis-adaptation",
           "doi": "10.1038/s41467-023-42029-4",
-          "note": "植物应用研究 \"The pan-genome and local adaptation of Arabidopsis thaliana\" 在生物信息学分析流程中使用了算法 \"minigraph\"。",
-          "verificationStatus": "structurally_valid"
+          "note": "Kang 等 (2023) 使用 Minigraph 构建结构变异图，表征拟南芥群体大片段插入缺失拓扑结构。 [以 Col-PEK T2T 为骨架，迭代整合 31 份生态型组装构建参考引导的泛基因组变异图。；版本: Minigraph v0.19；出处: Methods - Graph Pangenome Construction]",
+          "verificationStatus": "source_checked"
         }
       ]
     },
@@ -7196,11 +7196,11 @@
       "relation": "uses_method",
       "evidence": [
         {
-          "sourceType": "frontmatter",
+          "sourceType": "paper",
           "sourceId": "arabidopsis-adaptation",
           "doi": "10.1038/s41467-023-42029-4",
-          "note": "植物应用研究 \"The pan-genome and local adaptation of Arabidopsis thaliana\" 在生物信息学分析流程中使用了算法 \"orthofinder\"。",
-          "verificationStatus": "structurally_valid"
+          "note": "Kang 等 (2023) 使用 OrthoFinder 建立泛基因组矩阵，发现可变基因家族显著富集于逆境适应与次生代谢途径。 [使用 Markov 聚类方法聚类 887,723 个预测基因，获得 31,318 个基因家族并划分核心与可变基因。；出处: Methods - Orthologous Group Clustering]",
+          "verificationStatus": "source_checked"
         }
       ]
     },
@@ -7211,11 +7211,11 @@
       "relation": "uses_method",
       "evidence": [
         {
-          "sourceType": "frontmatter",
+          "sourceType": "paper",
           "sourceId": "arabidopsis-adaptation",
           "doi": "10.1038/s41467-023-42029-4",
-          "note": "植物应用研究 \"The pan-genome and local adaptation of Arabidopsis thaliana\" 在生物信息学分析流程中使用了算法 \"vg\"。",
-          "verificationStatus": "structurally_valid"
+          "note": "Kang 等 (2023) 采用 vg 工具套件进行图索引与读段比对分型，解析结构变异与环境气候指标关联。 [将群体短读段测序映射至构建的变异图，开展结构变异群体基因型分型。；版本: vg；出处: Methods - Read Mapping and Genotyping on Graphs]",
+          "verificationStatus": "source_checked"
         }
       ]
     },
@@ -7366,11 +7366,11 @@
       "relation": "uses_method",
       "evidence": [
         {
-          "sourceType": "frontmatter",
+          "sourceType": "paper",
           "sourceId": "arabidopsis-heat-hic-2020",
           "doi": "10.1038/s41467-020-15809-5",
-          "note": "植物应用研究 \"Heat stress-induced transposon activation correlates with 3D chromatin organization rearrangement in Arabidopsis\" 在生物信息学分析流程中使用了算法 \"hicexplorer\"。",
-          "verificationStatus": "structurally_valid"
+          "note": "Sun 等 (Nature Communications 2020) 在处理拟南芥热胁迫染色质互作重排时，明确采用 HiCExplorer 工具套件进行接触矩阵转换与标准化。 [将 Hi-C contact maps 转换格式并使用 hicNormalize、hicCorrectMatrix 与 hicTransform 校正交互矩阵与展示互作距离衰减。；版本: HiCExplorer；出处: Methods - Hi-C Data Processing and Contact Matrix Normalization]",
+          "verificationStatus": "source_checked"
         }
       ]
     },
@@ -7619,11 +7619,11 @@
       "relation": "uses_method",
       "evidence": [
         {
-          "sourceType": "frontmatter",
+          "sourceType": "paper",
           "sourceId": "arabidopsis-stomata-accessibility-2022",
           "doi": "10.1038/s41477-022-01304-w",
-          "note": "植物应用研究 \"Dynamic chromatin accessibility deploys heterotypic cis/trans-acting factors driving stomatal cell-fate commitment\" 在生物信息学分析流程中使用了算法 \"meme-suite\"。",
-          "verificationStatus": "structurally_valid"
+          "note": "Kim 等 (Nature Plants 2022) 采用 MEME Suite (包括 AME) 对 ATAC-seq 可及性峰进行顺式作用元件富集分析，揭示气孔命运决定的协同调控网络。 [在气孔细胞系动态开放染色质区域 (ACRs) 中扫描富集的转录因子结合基序 (如 BBR/BPC 与 bHLH E-box)。；版本: MEME Suite (AME)；出处: Methods - Motif Enrichment and Discovery in ACRs]",
+          "verificationStatus": "source_checked"
         }
       ]
     },
@@ -7992,11 +7992,11 @@
       "relation": "uses_method",
       "evidence": [
         {
-          "sourceType": "frontmatter",
+          "sourceType": "paper",
           "sourceId": "cycas-evolution",
           "doi": "10.1038/s41477-022-01129-7",
-          "note": "植物应用研究 \"The Cycas genome and the early evolution of seed plants\" 在生物信息学分析流程中使用了算法 \"orthofinder\"。",
-          "verificationStatus": "structurally_valid"
+          "note": "Liu 等 (Nature Plants 2022) 使用 OrthoFinder 构建全基因组直系同源基因集，支撑种子植物早期演化与 WGD 历史重构。 [将攀枝花苏铁与代表性种子植物、裸子植物及被子植物的蛋白质序列进行同源聚类，提取直系同源基因。；版本: OrthoFinder；出处: Methods - Comparative Genomics and Gene Family Clustering]",
+          "verificationStatus": "source_checked"
         }
       ]
     },
@@ -8630,11 +8630,11 @@
       "relation": "uses_method",
       "evidence": [
         {
-          "sourceType": "frontmatter",
+          "sourceType": "paper",
           "sourceId": "macadamia-mcscanx",
           "doi": "10.1002/pld3.364",
-          "note": "植物应用研究 \"The genome of the endangered Macadamia jansenii displays little diversity but represents an important genetic resource for plant breeding\" 在生物信息学分析流程中使用了算法 \"mcscanx\"。",
-          "verificationStatus": "structurally_valid"
+          "note": "Sharma 等 (Plant Direct 2021) 运用 MCScanX 分类濒危植物 Macadamia jansenii 基因组内部的共线性片段与复制基因模式。 [基于 all-versus-all BLASTP 输出与 GFF 基因注释，运行 duplicate_gene_classifier 识别全基因组复制、串联与分散重复基因。；版本: MCScanX；出处: Methods - Synteny and Gene Duplication Analysis]",
+          "verificationStatus": "source_checked"
         }
       ]
     },
@@ -8673,11 +8673,11 @@
       "relation": "uses_method",
       "evidence": [
         {
-          "sourceType": "frontmatter",
+          "sourceType": "paper",
           "sourceId": "macadamia",
           "doi": "10.1111/tpj.15583",
-          "note": "植物应用研究 \"De novo chromosome level assembly of a plant genome from long read sequence data\" 在生物信息学分析流程中使用了算法 \"hifiasm\"。",
-          "verificationStatus": "structurally_valid"
+          "note": "Sharma 等 (The Plant Journal 2022) 使用 Hifiasm 组装澳洲坚果 Macadamia jansenii，14 条染色体中有 8 条仅由单个大型 contig 覆盖。 [以默认参数与内置重复清理算法直接组装 28× PacBio HiFi 长读段，生成染色体级连续单倍型组装 (contig N50 46.1 Mb)。；版本: Hifiasm；出处: Methods - PacBio HiFi Assembly]",
+          "verificationStatus": "source_checked"
         }
       ]
     },
@@ -8866,11 +8866,11 @@
       "relation": "uses_method",
       "evidence": [
         {
-          "sourceType": "frontmatter",
+          "sourceType": "paper",
           "sourceId": "maize-zeas-adaptation",
           "doi": "10.1186/s12870-022-03427-w",
-          "note": "植物应用研究 \"Population genomics of Zea species identifies selection signatures during maize domestication and adaptation\" 在生物信息学分析流程中使用了算法 \"admixture\"。",
-          "verificationStatus": "structurally_valid"
+          "note": "Xu 等 (BMC Plant Biology 2022) 采用 ADMIXTURE 评估玉米驯化与改良过程中不同生态亚群的基因流与祖先成分演化。 [基于全基因组 SNP 标记对 982 份玉米自交系和 190 份 teosinte 材料进行祖先成分推断与遗传结构建模。；版本: ADMIXTURE；出处: Methods - Population Structure and Admixture Analysis]",
+          "verificationStatus": "source_checked"
         }
       ]
     },
@@ -8881,11 +8881,11 @@
       "relation": "uses_method",
       "evidence": [
         {
-          "sourceType": "frontmatter",
+          "sourceType": "paper",
           "sourceId": "maize-zeas-adaptation",
           "doi": "10.1186/s12870-022-03427-w",
-          "note": "植物应用研究 \"Population genomics of Zea species identifies selection signatures during maize domestication and adaptation\" 在生物信息学分析流程中使用了算法 \"xpclr\"。",
-          "verificationStatus": "structurally_valid"
+          "note": "Xu 等 (2022) 使用 XP-CLR 结合 Fst 联合筛选驯化与局部气候适应的特征区间，定位与开花期调控相关的候选基因。 [设置 100 kb 窗口与 10 kb 步长，跨群体扫描 teosinte 与玉米、热带与温带玉米之间的选择清除信号。；版本: XP-CLR；出处: Methods - Cross-Population Likelihood Ratio Scanning]",
+          "verificationStatus": "source_checked"
         }
       ]
     },
@@ -8981,11 +8981,11 @@
       "relation": "uses_method",
       "evidence": [
         {
-          "sourceType": "frontmatter",
+          "sourceType": "paper",
           "sourceId": "mango-annotation",
           "doi": "10.1002/tpg2.20441",
-          "note": "植物应用研究 \"A chromosome-level genome of mango exclusively from long-read sequence data\" 在生物信息学分析流程中使用了算法 \"braker3\"。",
-          "verificationStatus": "structurally_valid"
+          "note": "Wijesundara 等 (The Plant Genome 2024) 明确在长读长芒果组装中采用 BRAKER3 执行结构注释并输出高质量蛋白编码模型。 [结合叶与花组织 RNA-seq 比对信息与同源蛋白比对证据，全自动训练 GeneMark-ETP 与 AUGUSTUS 完成芒果染色体级组装基因模型预测。；版本: BRAKER3 v3.0.3；出处: Methods - Gene Structure Prediction Pipeline]",
+          "verificationStatus": "source_checked"
         }
       ]
     },
@@ -8996,11 +8996,11 @@
       "relation": "uses_method",
       "evidence": [
         {
-          "sourceType": "frontmatter",
+          "sourceType": "paper",
           "sourceId": "mango-annotation",
           "doi": "10.1002/tpg2.20441",
-          "note": "植物应用研究 \"A chromosome-level genome of mango exclusively from long-read sequence data\" 在生物信息学分析流程中使用了算法 \"interproscan\"。",
-          "verificationStatus": "structurally_valid"
+          "note": "Wijesundara 等 (2024) 采用 InterProScan 对芒果基因组蛋白集合进行标准化功能注释。 [对 BRAKER3 预测的芒果全套蛋白质序列执行结构域与保守功能位点扫描，分配 GO 术语与功能分类。；版本: InterProScan；出处: Methods - Functional Annotation and Domain Mapping]",
+          "verificationStatus": "source_checked"
         }
       ]
     },
@@ -9677,11 +9677,11 @@
       "relation": "uses_method",
       "evidence": [
         {
-          "sourceType": "frontmatter",
+          "sourceType": "paper",
           "sourceId": "plant-induced-sv-2025",
           "doi": "10.1371/journal.pgen.1011977",
-          "note": "植物应用研究 \"A simple method to efficiently generate structural variation in plants\" 在生物信息学分析流程中使用了算法 \"cutesv\"。",
-          "verificationStatus": "structurally_valid"
+          "note": "Bechen 等 (PLoS Genetics 2025) 使用 cuteSV 在拟南芥中检测长读长 SV，成功识别出矮化材料中 1.52 Mb 的染色体倒位与外显子移码缺失。 [对依托泊苷处理引发的突变材料 Nanopore 长读长测序比对结果调用插入、缺失、倒位与复杂染色体易位。；版本: cuteSV；出处: Methods - Structural Variant Calling from Long Reads]",
+          "verificationStatus": "source_checked"
         }
       ]
     },
@@ -9750,11 +9750,11 @@
       "relation": "uses_method",
       "evidence": [
         {
-          "sourceType": "frontmatter",
+          "sourceType": "paper",
           "sourceId": "plant-wgd-timing-2017",
           "doi": "10.1098/rspb.2017.0912",
-          "note": "植物应用研究 \"Constraining the timing of whole genome duplication in plant evolutionary history\" 在生物信息学分析流程中使用了算法 \"paml\"。",
-          "verificationStatus": "structurally_valid"
+          "note": "Clark & Donoghue (Proc. R. Soc. B 2017) 使用 PAML MCMCTree 分子钟程序约束种子植物与被子植物演化史中 zeta 与 epsilon WGD 事件的发生窗口。 [在 35 项化石记录校准与固定系统发育拓扑下，利用 MCMCTree 正态近似算法估计被子植物古全基因组复制 (WGD) 绝对分化地质年代。；版本: PAML (MCMCTree)；出处: Methods - Bayesian Molecular Clock Dating]",
+          "verificationStatus": "source_checked"
         }
       ]
     },
@@ -9865,11 +9865,11 @@
       "relation": "uses_method",
       "evidence": [
         {
-          "sourceType": "frontmatter",
+          "sourceType": "paper",
           "sourceId": "populus-euphratica-demography",
           "doi": "10.1093/jxb/eraa172",
-          "note": "植物应用研究 \"Genome resequencing reveals demographic history and genetic architecture of seed salinity tolerance in Populus euphratica\" 在生物信息学分析流程中使用了算法 \"psmc\"。",
-          "verificationStatus": "structurally_valid"
+          "note": "Jia 等 (Journal of Experimental Botany 2020) 采用 PSMC 成功描绘胡杨各支系在冰期与间冰期的瓶颈与扩张动态。 [基于高质量单全基因组杂合位点分布，模拟胡杨西北中国 4 个地理亚群从更新世至今的有效群体规模波动曲线。；版本: PSMC；出处: Materials and Methods - Demographic History Reconstruction]",
+          "verificationStatus": "source_checked"
         }
       ]
     },
@@ -9894,11 +9894,11 @@
       "relation": "uses_method",
       "evidence": [
         {
-          "sourceType": "frontmatter",
+          "sourceType": "paper",
           "sourceId": "populus-repeats-demography",
           "doi": "10.1038/s41437-021-00443-8",
-          "note": "植物应用研究 \"Repetitive genomic regions and the inference of demographic history\" 在生物信息学分析流程中使用了算法 \"psmc\"。",
-          "verificationStatus": "structurally_valid"
+          "note": "Patil & Vijay (Heredity 2021) 运行 PSMC 分析美洲黑杨杂合序列，揭示屏蔽重复序列使远古 Ne 降低而近期 Ne 估计上升。 [在美洲黑杨全基因组上应用不同重复序列掩蔽策略，实证评估重复区对 PSMC 历史有效群体大小推断曲线的系统性偏移效应。；版本: PSMC；出处: Materials and Methods - Demographic Inference with Masking Schemes]",
+          "verificationStatus": "source_checked"
         }
       ]
     },
@@ -9909,11 +9909,11 @@
       "relation": "uses_method",
       "evidence": [
         {
-          "sourceType": "frontmatter",
+          "sourceType": "paper",
           "sourceId": "populus-repeats-demography",
           "doi": "10.1038/s41437-021-00443-8",
-          "note": "植物应用研究 \"Repetitive genomic regions and the inference of demographic history\" 在生物信息学分析流程中使用了算法 \"smcpp\"。",
-          "verificationStatus": "structurally_valid"
+          "note": "Patil & Vijay (2021) 在美洲黑杨重测序数据中实际运行 SMC++ 流程，系统比较位点频率谱与连锁共祖模型在重复区干扰下的响应。 [利用多重顺序马尔可夫模型测试不同可比对性与重复掩蔽过滤等级下美洲黑杨近期有效群体大小推断的鲁棒性。；版本: SMC++；出处: Materials and Methods - Multi-Sample Demographic Analysis]",
+          "verificationStatus": "source_checked"
         }
       ]
     },
@@ -10016,11 +10016,11 @@
       "relation": "uses_method",
       "evidence": [
         {
-          "sourceType": "frontmatter",
+          "sourceType": "paper",
           "sourceId": "purple-rice-wgcna",
           "doi": "10.1038/s41598-024-73698-w",
-          "note": "植物应用研究 \"Transcriptome analysis of the coexpression network of genes related to antioxidant characteristics after grain filling in purple rice\" 在生物信息学分析流程中使用了算法 \"wgcna\"。",
-          "verificationStatus": "structurally_valid"
+          "note": "Sun 等 (Scientific Reports 2024) 运用 WGCNA 鉴定与紫米抗氧化特性显著相关的关键枢纽基因网络。 [构建紫米籽粒灌浆期转录组基因共表达模块，并将特征模块与花青素含量及抗氧化酶活性表型进行相关性关联。；版本: WGCNA R package；出处: Methods - Co-expression Network Construction and Trait Correlation]",
+          "verificationStatus": "source_checked"
         }
       ]
     },
@@ -10087,11 +10087,11 @@
       "relation": "uses_method",
       "evidence": [
         {
-          "sourceType": "frontmatter",
+          "sourceType": "paper",
           "sourceId": "rice-3010-pangenome",
           "doi": "10.1038/s41586-018-0063-9",
-          "note": "植物应用研究 \"Genomic variation in 3,010 diverse accessions of Asian cultivated rice\" 在生物信息学分析流程中使用了算法 \"eupan\"。",
-          "verificationStatus": "structurally_valid"
+          "note": "Wang 等 (Nature 2018) 采用 EUPAN 工具体系的 map-to-pan 流程分析 453 份高深度栽培稻的基因家族泛基因组构成。 [基于 3,010 份水稻重测序数据比对泛基因组新序列，依据 CDS 覆盖率 >95% 与基因体覆盖率 >85% 计算基因及基因家族存在缺失变异 (PAV)。；版本: EUPAN；出处: Methods - Map-to-Pan Strategy and Gene PAV Profiling]",
+          "verificationStatus": "source_checked"
         }
       ]
     },
@@ -10158,11 +10158,11 @@
       "relation": "uses_method",
       "evidence": [
         {
-          "sourceType": "frontmatter",
+          "sourceType": "paper",
           "sourceId": "rice-deleterious-domestication",
           "doi": "10.1093/molbev/msw296",
-          "note": "植物应用研究 \"Deleterious Variants in Asian Rice and the Potential Cost of Domestication\" 在生物信息学分析流程中使用了算法 \"xpclr\"。",
-          "verificationStatus": "structurally_valid"
+          "note": "Liu 等 (Molecular Biology and Evolution 2017) 运行 XP-CLR 检测人工选择清除区域，用于分析驯化过程中有害变异富集模式。 [基于 3K 基因型数据集，利用跨群体复合似然比方法扫描栽培稻 (籼/粳) 与野生稻之间的多位点等位基因频率分化区间。；版本: XP-CLR；出处: Methods - Detection of Selective Sweeps]",
+          "verificationStatus": "source_checked"
         }
       ]
     },
@@ -10356,11 +10356,11 @@
       "relation": "uses_method",
       "evidence": [
         {
-          "sourceType": "frontmatter",
+          "sourceType": "paper",
           "sourceId": "rice-root-single-cell-2021",
           "doi": "10.1038/s41467-021-22352-4",
-          "note": "植物应用研究 \"Single-cell transcriptome atlas and chromatin accessibility landscape reveal differentiation trajectories in the rice root\" 在生物信息学分析流程中使用了算法 \"scanpy\"。",
-          "verificationStatus": "structurally_valid"
+          "note": "Zhang 等 (Nature Communications 2021) 使用 Scanpy 处理水稻根尖单细胞转录组表达矩阵，重构细胞命运分化轨迹。 [执行 ComBat 批次校正、高变基因筛选、PCA 降维、k 近邻图构建、Diffusion Map 及 ForceAtlas2 可视化布局。；版本: Scanpy 1.4.5.1；出处: Methods - Single-cell RNA-seq Data Processing and Cell Clustering]",
+          "verificationStatus": "source_checked"
         }
       ]
     },
@@ -10399,11 +10399,11 @@
       "relation": "uses_method",
       "evidence": [
         {
-          "sourceType": "frontmatter",
+          "sourceType": "paper",
           "sourceId": "rice-root-soil-single-cell-2025",
           "doi": "10.1038/s41586-025-08941-z",
-          "note": "植物应用研究 \"Single-cell transcriptomics reveal how root tissues adapt to soil stress\" 在生物信息学分析流程中使用了算法 \"doubletfinder\"。",
-          "verificationStatus": "structurally_valid"
+          "note": "Zhu 等 (Nature 2025) 在水稻根系土壤应激单细胞测序中采用 DoubletFinder 过滤液滴双细胞伪影。 [在微滴单细胞文库质控阶段鉴定并剔除人工双胞 (doublet) 液滴，确保根细胞类型聚类纯度。；版本: DoubletFinder；出处: Methods - Single-cell Droplet Quality Control]",
+          "verificationStatus": "source_checked"
         }
       ]
     },
@@ -10414,11 +10414,11 @@
       "relation": "uses_method",
       "evidence": [
         {
-          "sourceType": "frontmatter",
+          "sourceType": "paper",
           "sourceId": "rice-root-soil-single-cell-2025",
           "doi": "10.1038/s41586-025-08941-z",
-          "note": "植物应用研究 \"Single-cell transcriptomics reveal how root tissues adapt to soil stress\" 在生物信息学分析流程中使用了算法 \"sc-kb-copilot\"。",
-          "verificationStatus": "structurally_valid"
+          "note": "Zhu 等 (2025) 采用作者团队研发的 scKB/COPILOT 流程对土壤压实胁迫水稻根单细胞转录组开展质控与预处理。 [执行快速原始读段映射计数 (kallisto-bustools / scKB) 及客观无偏质量控制过滤 (COPILOT)，获取逾 79,000 个高质量细胞。；版本: scKB / COPILOT；出处: Methods - scRNA-seq Preprocessing and Quality Filtering]",
+          "verificationStatus": "source_checked"
         }
       ]
     },
@@ -10471,11 +10471,11 @@
       "relation": "uses_method",
       "evidence": [
         {
-          "sourceType": "frontmatter",
+          "sourceType": "paper",
           "sourceId": "rice-roots-population",
           "doi": "10.1371/journal.pgen.1007521",
-          "note": "植物应用研究 \"Loci and natural alleles underlying robust roots and adaptive domestication of upland ecotype rice in aerobic conditions\" 在生物信息学分析流程中使用了算法 \"admixture\"。",
-          "verificationStatus": "structurally_valid"
+          "note": "Zhao 等 (2018) 明确运行 ADMIXTURE 1.3 评估水稻群体遗传背景，为下游 GWAS 混合线性模型提供群体结构分群依据。 [对 795 份栽培稻材料拟合 K=1 至 K=10 模型，选定 K=8 结构解析籼稻与粳稻生态群组的遗传分化。；版本: ADMIXTURE 1.3；出处: Materials and Methods - Population Structure Modeling]",
+          "verificationStatus": "source_checked"
         }
       ]
     },
@@ -10501,11 +10501,11 @@
       "relation": "uses_method",
       "evidence": [
         {
-          "sourceType": "frontmatter",
+          "sourceType": "paper",
           "sourceId": "rice-roots-population",
           "doi": "10.1371/journal.pgen.1007521",
-          "note": "植物应用研究 \"Loci and natural alleles underlying robust roots and adaptive domestication of upland ecotype rice in aerobic conditions\" 在生物信息学分析流程中使用了算法 \"plink\"。",
-          "verificationStatus": "structurally_valid"
+          "note": "Zhao 等 (PLOS Genetics 2018) 在水稻根系 GWAS 研究中采用 PLINK 进行全基因组连锁不平衡剪枝。 [从 3.3 百万个全基因组 SNP 中按缺失率 <=50%、MAF >=5% 与 r^2 <=0.3 提取 154,516 个独立标记构建群体结构分析数据集。；版本: PLINK；出处: Materials and Methods - LD Pruning and SNP Quality Filtering]",
+          "verificationStatus": "source_checked"
         }
       ]
     },
@@ -10628,11 +10628,11 @@
       "relation": "uses_method",
       "evidence": [
         {
-          "sourceType": "frontmatter",
+          "sourceType": "paper",
           "sourceId": "rice-temarker-sweeps",
           "doi": "10.1016/j.xplc.2021.100270",
-          "note": "植物应用研究 \"Exploring transposable element-based markers to identify allelic variations underlying agronomic traits in rice\" 在生物信息学分析流程中使用了算法 \"sweepfinder2\"。",
-          "verificationStatus": "structurally_valid"
+          "note": "Yan 等 (Plant Communications 2022) 运行 SweepFinder2 比较 TE 标记与单核苷酸变异的选择信号重叠度与农艺性状关联。 [在 10 kb 网格上分别针对 SNP 标记与 TE 存在/缺失标记计算复合似然比 (CLR)，检测水稻人工选择清除区间。；版本: SweepFinder2；出处: Methods - Selective Sweep Scans on SNP and TE Datasets]",
+          "verificationStatus": "source_checked"
         }
       ]
     },
@@ -10651,6 +10651,21 @@
       ]
     },
     {
+      "id": "paper:rice-variant-comparison|evaluates_method|method:bcftools",
+      "source": "paper:rice-variant-comparison",
+      "target": "method:bcftools",
+      "relation": "evaluates_method",
+      "evidence": [
+        {
+          "sourceType": "paper",
+          "sourceId": "rice-variant-comparison",
+          "doi": "10.1186/s13007-025-01437-x",
+          "note": "Balimponya 等 (Plant Methods 2025) 将 BCFtools mpileup 与 GATK4.3 HaplotypeCaller 开展同 DNA 重复测序对比，系统评估水稻杂合 SNP 调用假阳性与跨重复相似度。",
+          "verificationStatus": "source_checked"
+        }
+      ]
+    },
+    {
       "id": "paper:rice-variant-comparison|studies_species|species:rice",
       "source": "paper:rice-variant-comparison",
       "target": "species:rice",
@@ -10661,21 +10676,6 @@
           "sourceId": "rice-variant-comparison",
           "note": "论文 \"rice-variant-comparison\" 聚焦植物材料 \"水稻\" 展开研究。",
           "verificationStatus": "source_checked"
-        }
-      ]
-    },
-    {
-      "id": "paper:rice-variant-comparison|uses_method|method:bcftools",
-      "source": "paper:rice-variant-comparison",
-      "target": "method:bcftools",
-      "relation": "uses_method",
-      "evidence": [
-        {
-          "sourceType": "frontmatter",
-          "sourceId": "rice-variant-comparison",
-          "doi": "10.1186/s13007-025-01437-x",
-          "note": "植物应用研究 \"Accurate detections of the heterozygous SNPs with rice genomic data and prediction of de novo spontaneous mutation rate\" 在生物信息学分析流程中使用了算法 \"bcftools\"。",
-          "verificationStatus": "structurally_valid"
         }
       ]
     },
@@ -10714,11 +10714,11 @@
       "relation": "uses_method",
       "evidence": [
         {
-          "sourceType": "frontmatter",
+          "sourceType": "paper",
           "sourceId": "rice-weedy-selection",
           "doi": "10.1111/pbi.12630",
-          "note": "植物应用研究 \"Population genomics identifies the origin and signatures of selection of Korean weedy rice\" 在生物信息学分析流程中使用了算法 \"plink\"。",
-          "verificationStatus": "structurally_valid"
+          "note": "He 等 (Plant Biotechnology Journal 2017) 采用 PLINK 评估杂草稻群体的基因型质量控制与连锁不平衡衰减距离。 [对韩国杂草稻、地方品种与野生祖先重测序数据执行质量控制，并计算全基因组 SNP 标记间连锁不平衡 (LD) r^2 衰减速率。；版本: PLINK；出处: Methods - Linkage Disequilibrium Analysis]",
+          "verificationStatus": "source_checked"
         }
       ]
     },
@@ -10729,11 +10729,11 @@
       "relation": "uses_method",
       "evidence": [
         {
-          "sourceType": "frontmatter",
+          "sourceType": "paper",
           "sourceId": "rice-weedy-selection",
           "doi": "10.1111/pbi.12630",
-          "note": "植物应用研究 \"Population genomics identifies the origin and signatures of selection of Korean weedy rice\" 在生物信息学分析流程中使用了算法 \"selscan\"。",
-          "verificationStatus": "structurally_valid"
+          "note": "He 等 (2017) 在 70 份水稻重测序材料中运行 selscan 扫描杂草稻脱颖去芒与落粒性改变等近期强选择信号。 [利用相位化单倍型数据高效计算跨群体扩展单倍型纯合性 (XP-EHH) 与群体内积分单倍型分数 (iHS)。；版本: selscan；出处: Methods - Haplotype-Based Selection Scans (XP-EHH & iHS)]",
+          "verificationStatus": "source_checked"
         }
       ]
     },
@@ -10744,11 +10744,11 @@
       "relation": "uses_method",
       "evidence": [
         {
-          "sourceType": "frontmatter",
+          "sourceType": "paper",
           "sourceId": "rice-weedy-selection",
           "doi": "10.1111/pbi.12630",
-          "note": "植物应用研究 \"Population genomics identifies the origin and signatures of selection of Korean weedy rice\" 在生物信息学分析流程中使用了算法 \"xpclr\"。",
-          "verificationStatus": "structurally_valid"
+          "note": "He 等 (2017) 使用 XP-CLR 配合 100 kb 滑动窗以经验前 2.5% 阈值筛选杂草稻关键适应性候选基因区间。 [跨杂草稻与地方栽培稻群体扫描多位点等位基因频率异常分化，检测驯化反向逃逸选择清除事件。；版本: XP-CLR；出处: Methods - Cross-Population Allele Frequency Differentiation]",
+          "verificationStatus": "source_checked"
         }
       ]
     },
@@ -11430,11 +11430,11 @@
       "relation": "uses_method",
       "evidence": [
         {
-          "sourceType": "frontmatter",
+          "sourceType": "paper",
           "sourceId": "tea-comparative",
           "doi": "10.3389/fpls.2024.1449006",
-          "note": "植物应用研究 \"Genomic analyses of agronomic traits in tea plants and related Camellia species\" 在生物信息学分析流程中使用了算法 \"cafe5\"。",
-          "verificationStatus": "structurally_valid"
+          "note": "Duan 等 (Frontiers in Plant Science 2024) 采用 CAFE5 鉴定茶树次生代谢（如儿茶素和茶氨酸合成）相关基因家族显著扩张。 [基于物种系统发育树与时间标尺，运用生灭模型推断山茶属及近缘种基因家族拷贝数的扩张与收缩。；版本: CAFE5；出处: Materials and Methods - Gene Family Expansion and Contraction]",
+          "verificationStatus": "source_checked"
         }
       ]
     },
@@ -11445,11 +11445,11 @@
       "relation": "uses_method",
       "evidence": [
         {
-          "sourceType": "frontmatter",
+          "sourceType": "paper",
           "sourceId": "tea-comparative",
           "doi": "10.3389/fpls.2024.1449006",
-          "note": "植物应用研究 \"Genomic analyses of agronomic traits in tea plants and related Camellia species\" 在生物信息学分析流程中使用了算法 \"mcscanx\"。",
-          "verificationStatus": "structurally_valid"
+          "note": "Duan 等 (2024) 运行 MCScanX 识别山茶属内部染色体共线重排，解析基因组演化与农艺性状塑造。 [比对茶树与近缘植物基因组共线性区块，表征染色体结构变异与复制基因保留模式。；版本: MCScanX；出处: Materials and Methods - Collinearity and Synteny Analysis]",
+          "verificationStatus": "source_checked"
         }
       ]
     },
@@ -11460,11 +11460,11 @@
       "relation": "uses_method",
       "evidence": [
         {
-          "sourceType": "frontmatter",
+          "sourceType": "paper",
           "sourceId": "tea-comparative",
           "doi": "10.3389/fpls.2024.1449006",
-          "note": "植物应用研究 \"Genomic analyses of agronomic traits in tea plants and related Camellia species\" 在生物信息学分析流程中使用了算法 \"orthofinder\"。",
-          "verificationStatus": "structurally_valid"
+          "note": "Duan 等 (2024) 使用 OrthoFinder 获得山茶属系统发育分析所依赖的保守基因簇矩阵。 [在茶树及代表性被子植物基因组间进行直系同源群划分，提取单拷贝直系同源基因集。；版本: OrthoFinder；出处: Materials and Methods - Orthogroup Identification]",
+          "verificationStatus": "source_checked"
         }
       ]
     },
@@ -11475,11 +11475,11 @@
       "relation": "uses_method",
       "evidence": [
         {
-          "sourceType": "frontmatter",
+          "sourceType": "paper",
           "sourceId": "tea-comparative",
           "doi": "10.3389/fpls.2024.1449006",
-          "note": "植物应用研究 \"Genomic analyses of agronomic traits in tea plants and related Camellia species\" 在生物信息学分析流程中使用了算法 \"paml\"。",
-          "verificationStatus": "structurally_valid"
+          "note": "Duan 等 (2024) 采用 PAML 的 MCMCTree 模块测定茶树及其近缘种的分化时间标尺。 [结合化石标定点与单拷贝基因超矩阵，运用 MCMCTree 贝叶斯松弛分子钟估计山茶属物种分化时间。；版本: PAML (MCMCTree)；出处: Materials and Methods - Divergence Time Estimation]",
+          "verificationStatus": "source_checked"
         }
       ]
     },
@@ -11718,11 +11718,11 @@
       "relation": "uses_method",
       "evidence": [
         {
-          "sourceType": "frontmatter",
+          "sourceType": "paper",
           "sourceId": "wheat-methylome-2015",
           "doi": "10.1186/s13059-015-0838-3",
-          "note": "植物应用研究 \"A genome-wide survey of DNA methylation in hexaploid wheat\" 在生物信息学分析流程中使用了算法 \"bismark\"。",
-          "verificationStatus": "structurally_valid"
+          "note": "Gardiner 等 (Genome Biology 2015) 使用 Bismark 进行多倍体复杂基因组甲基化读段比对与修饰识别。 [将六倍体普通小麦靶向重硫酸盐测序读段高效比对到 A、B、D 亚基因组并提取 CpG、CHG 与 CHH 甲基化水平。；版本: Bismark；出处: Methods - Bisulfite Sequencing Alignment and Methylation Calling]",
+          "verificationStatus": "source_checked"
         }
       ]
     },
@@ -11761,11 +11761,11 @@
       "relation": "uses_method",
       "evidence": [
         {
-          "sourceType": "frontmatter",
+          "sourceType": "paper",
           "sourceId": "wild-rice-pangenome-2025",
           "doi": "10.1038/s41586-025-08883-6",
-          "note": "植物应用研究 \"A pangenome reference of wild and cultivated rice\" 在生物信息学分析流程中使用了算法 \"hifiasm\"。",
-          "verificationStatus": "structurally_valid"
+          "note": "Guo 等 (Nature 2025) 使用 Hifiasm v0.16.0 获得平均 contig N50 达 14.95 Mb 的高质量稻属初级组装。 [以默认参数组装 133 份野生稻与栽培稻 HiFi 材料，输出 primary contigs (p-contigs) 与 alternate contigs (a-contigs)。；版本: Hifiasm v0.16.0；出处: Methods - PacBio HiFi Genome Assembly]",
+          "verificationStatus": "source_checked"
         }
       ]
     },
@@ -11776,11 +11776,11 @@
       "relation": "uses_method",
       "evidence": [
         {
-          "sourceType": "frontmatter",
+          "sourceType": "paper",
           "sourceId": "wild-rice-pangenome-2025",
           "doi": "10.1038/s41586-025-08883-6",
-          "note": "植物应用研究 \"A pangenome reference of wild and cultivated rice\" 在生物信息学分析流程中使用了算法 \"minigraph\"。",
-          "verificationStatus": "structurally_valid"
+          "note": "Guo 等 (2025) 采用 Minigraph v0.19 建立大片段 SV 变异图框架，作为 Minigraph-Cactus 流程初始图。 [迭代加入 144 份野生与栽培稻组装，构建捕获结构变异的初始泛基因组图拓扑。；版本: Minigraph v0.19-r551；出处: Methods - Graph Pangenome Generation Pipeline]",
+          "verificationStatus": "source_checked"
         }
       ]
     },
@@ -11791,11 +11791,11 @@
       "relation": "uses_method",
       "evidence": [
         {
-          "sourceType": "frontmatter",
+          "sourceType": "paper",
           "sourceId": "wild-rice-pangenome-2025",
           "doi": "10.1038/s41586-025-08883-6",
-          "note": "植物应用研究 \"A pangenome reference of wild and cultivated rice\" 在生物信息学分析流程中使用了算法 \"minigraph-cactus\"。",
-          "verificationStatus": "structurally_valid"
+          "note": "Guo 等 (2025) 使用 Minigraph-Cactus 流程构建包含 3.87 Gb 新节点序列的稻属碱基级全序列泛基因组变异图。 [在 Minigraph 初始图基础上执行碱基级多序列比对与图整理，生成栽培稻 (15 份)、野生稻 (129 份) 及合并泛基因组图 (144 份)。；版本: Cactus v2.2.1 (Minigraph-Cactus)；出处: Methods - Pangenome Graph Construction]",
+          "verificationStatus": "source_checked"
         }
       ]
     },
@@ -11806,11 +11806,11 @@
       "relation": "uses_method",
       "evidence": [
         {
-          "sourceType": "frontmatter",
+          "sourceType": "paper",
           "sourceId": "wild-rice-pangenome-2025",
           "doi": "10.1038/s41586-025-08883-6",
-          "note": "植物应用研究 \"A pangenome reference of wild and cultivated rice\" 在生物信息学分析流程中使用了算法 \"minimap2\"。",
-          "verificationStatus": "structurally_valid"
+          "note": "Guo 等 (2025) 运行 minimap2 v2.21 将长读段比对到参考序列支撑变异调用。 [作为核心长读段比对器，为 Longshot 单核苷酸多态性分型及基因存在/缺失 (PAV) 分析提供全局序列比对映射。；版本: minimap2 v2.21-r1071；出处: Methods - Long-Read Alignment for Variant Calling and PAV]",
+          "verificationStatus": "source_checked"
         }
       ]
     },
@@ -11821,11 +11821,11 @@
       "relation": "uses_method",
       "evidence": [
         {
-          "sourceType": "frontmatter",
+          "sourceType": "paper",
           "sourceId": "wild-rice-pangenome-2025",
           "doi": "10.1038/s41586-025-08883-6",
-          "note": "植物应用研究 \"A pangenome reference of wild and cultivated rice\" 在生物信息学分析流程中使用了算法 \"mummer4\"。",
-          "verificationStatus": "structurally_valid"
+          "note": "Guo 等 (2025) 使用 MUMmer4 的 nucmer 与过滤工具执行细胞器 contig 过滤与代表性组装对齐变异鉴定。 [运行 nucmer 比较 Nipponbare 与四个代表材料的基因组共线性，并经 delta-filter 与 show-snps 识别组装比对变异。；版本: MUMmer v4.0.0beta2；出处: Methods - Assembly Alignment, Organelle Filtering, and SNP Detection]",
+          "verificationStatus": "source_checked"
         }
       ]
     },
@@ -11836,11 +11836,11 @@
       "relation": "uses_method",
       "evidence": [
         {
-          "sourceType": "frontmatter",
+          "sourceType": "paper",
           "sourceId": "wild-rice-pangenome-2025",
           "doi": "10.1038/s41586-025-08883-6",
-          "note": "植物应用研究 \"A pangenome reference of wild and cultivated rice\" 在生物信息学分析流程中使用了算法 \"syri\"。",
-          "verificationStatus": "structurally_valid"
+          "note": "Guo 等 (2025) 使用 SyRI v1.4 对齐水稻基因组组装，验证染色体挂载一致性并提取结构重排。 [比较 Hi-C 辅助组装与 ALLMAPS 染色体组装，精准识别并定位大型倒位与易位等结构变异差异。；版本: SyRI v1.4；出处: Methods - Structural Rearrangement Assessment]",
+          "verificationStatus": "source_checked"
         }
       ]
     },
@@ -11851,11 +11851,11 @@
       "relation": "uses_method",
       "evidence": [
         {
-          "sourceType": "frontmatter",
+          "sourceType": "paper",
           "sourceId": "wild-rice-pangenome-2025",
           "doi": "10.1038/s41586-025-08883-6",
-          "note": "植物应用研究 \"A pangenome reference of wild and cultivated rice\" 在生物信息学分析流程中使用了算法 \"vg\"。",
-          "verificationStatus": "structurally_valid"
+          "note": "Guo 等 (2025) 运用 vg Giraffe v1.43.0 完成逾 500 份群体的泛基因组图上短读长高效比对。 [将 142 份本研究材料与 407 份公开水稻重测序短读段精确比对至合并泛基因组变异图，为 DeepVariant/GLnexus 变异汇总提供图比对结果。；版本: vg Giraffe v1.43.0；出处: Methods - Short-Read Graph Mapping with Giraffe]",
+          "verificationStatus": "source_checked"
         }
       ]
     },
@@ -11866,11 +11866,11 @@
       "relation": "uses_method",
       "evidence": [
         {
-          "sourceType": "frontmatter",
+          "sourceType": "paper",
           "sourceId": "wild-rice-pangenome-2025",
           "doi": "10.1038/s41586-025-08883-6",
-          "note": "植物应用研究 \"A pangenome reference of wild and cultivated rice\" 在生物信息学分析流程中使用了算法 \"yahs\"。",
-          "verificationStatus": "structurally_valid"
+          "note": "Guo 等 (2025) 采用 YaHS v1.1 完成 30 份关键材料的染色体支架构建，结合 JuiceBox 人工检查校正组装。 [利用 Chromap 比对的 Hi-C 染色质构象互作数据，对 30 份代表性水稻材料的 contig 执行染色体级定向与挂载。；版本: YaHS v1.1；出处: Methods - Hi-C Scaffolding]",
+          "verificationStatus": "source_checked"
         }
       ]
     },
@@ -11909,11 +11909,11 @@
       "relation": "uses_method",
       "evidence": [
         {
-          "sourceType": "frontmatter",
+          "sourceType": "paper",
           "sourceId": "xanthoceras",
           "doi": "10.1038/s41597-025-05057-x",
-          "note": "植物应用研究 \"Two haplotype-resolved telomere-to-telomere genome assemblies of Xanthoceras sorbifolium\" 在生物信息学分析流程中使用了算法 \"hifiasm\"。",
-          "verificationStatus": "structurally_valid"
+          "note": "Liu 等 (Scientific Data 2025) 在文冠果 (Xanthoceras sorbifolium) T2T 基因组研究中，使用 Hifiasm 组装结果作为互补证据闭合缺口。 [组装 HiFi reads 产生独立单倍型 contig，辅助跨图比对验证并填补 Verkko 主组装中的残余 gap。；版本: Hifiasm；出处: Methods - Comparative Assembly and Gap Closing]",
+          "verificationStatus": "source_checked"
         }
       ]
     },
@@ -11924,11 +11924,11 @@
       "relation": "uses_method",
       "evidence": [
         {
-          "sourceType": "frontmatter",
+          "sourceType": "paper",
           "sourceId": "xanthoceras",
           "doi": "10.1038/s41597-025-05057-x",
-          "note": "植物应用研究 \"Two haplotype-resolved telomere-to-telomere genome assemblies of Xanthoceras sorbifolium\" 在生物信息学分析流程中使用了算法 \"verkko\"。",
-          "verificationStatus": "structurally_valid"
+          "note": "Liu 等 (2025) 采用 Verkko 完成文冠果两套单倍型基因组的从头组装，实现高难度重复区与着丝粒端粒解析。 [整合超长 Oxford Nanopore reads 与 PacBio HiFi reads，构建无缺口且单倍型完全解析的端粒到端粒 (T2T) 染色体组装。；版本: Verkko；出处: Methods - Haplotype-Resolved Telomere-to-Telomere Assembly]",
+          "verificationStatus": "source_checked"
         }
       ]
     },

@@ -197,6 +197,15 @@ export const curatedRelations: CuratedRelationEntry[] = [
     doi: '10.1371/journal.pgen.1007521',
     verificationStatus: 'source_checked',
     note: 'Zhao 等 (PLOS Genetics 2018) 在 795 份水稻材料中实际使用 GAPIT 计算主成分 (PCA 前 3 个 PC) 与亲缘矩阵 (kinship matrix)，作为 GWAS 混合模型协变量。'
+  },
+  // 21. 水稻杂合 SNP 检测流程系统评测 -> BCFtools (评估 BCFtools mpileup 在杂合位点调用中的准确度与一致性)
+  {
+    paperId: 'rice-variant-comparison',
+    methodId: 'bcftools',
+    relation: 'evaluates_method',
+    doi: '10.1186/s13007-025-01437-x',
+    verificationStatus: 'source_checked',
+    note: 'Balimponya 等 (Plant Methods 2025) 将 BCFtools mpileup 与 GATK4.3 HaplotypeCaller 开展同 DNA 重复测序对比，系统评估水稻杂合 SNP 调用假阳性与跨重复相似度。'
   }
 ];
 

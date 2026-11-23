@@ -14,7 +14,11 @@ const port = 4488;
 const basePrefix = '/phytomethods';
 const base = `http://127.0.0.1:${port}${basePrefix}`;
 const outDir = path.resolve('outputs/knowledge-v2-test');
-const artifactDir = path.resolve('C:/Users/31764/.gemini/antigravity/brain/d149be35-849f-46ab-996a-3d160ac92565');
+const artifactDir = process.env.ARTIFACT_DIR
+  ? path.resolve(process.env.ARTIFACT_DIR)
+  : (process.platform === 'win32' && fs.existsSync('C:/Users/31764/.gemini/antigravity/brain/d149be35-849f-46ab-996a-3d160ac92565')
+      ? path.resolve('C:/Users/31764/.gemini/antigravity/brain/d149be35-849f-46ab-996a-3d160ac92565')
+      : null);
 
 if (!fs.existsSync(outDir)) {
   fs.mkdirSync(outDir, { recursive: true });
@@ -107,7 +111,7 @@ async function saveScreenshot(filename) {
   await page.screenshot({ path: localPath });
   console.log(`[Screenshot] Saved: ${localPath}`);
 
-  if (fs.existsSync(artifactDir)) {
+  if (artifactDir && fs.existsSync(artifactDir)) {
     try {
       const artPath = path.join(artifactDir, filename);
       fs.copyFileSync(localPath, artPath);
