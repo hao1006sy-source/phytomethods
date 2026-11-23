@@ -68,4 +68,4 @@
 
 ## 发布状态
 
-开发分支：`feat/topic-article-v2-full-rollout`。报告提交：`a606bc0`。PR #16：<https://github.com/hao1006sy-source/phytomethods/pull/16>，状态 Open，目标 `main`，未合并。最新 CI `validate` 于 2026-11-23 通过：<https://github.com/hao1006sy-source/phytomethods/actions/runs/45091507319/job/137421894220>。
+开发分支：`feat/topic-article-v2-full-rollout`。PR #16：<https://github.com/hao1006sy-source/phytomethods/pull/16>，状态 Open，目标 `main`，未合并。GitHub Actions `validate` 已通过，运行状态持续更新于 PR 检查页。

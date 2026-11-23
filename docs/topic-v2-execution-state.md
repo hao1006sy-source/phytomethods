@@ -20,8 +20,8 @@
 ## 待处理
 
 1. 整理截图和验证结果，复制交付 ZIP 与报告到任务输出目录。
-2. PR #16 `https://github.com/hao1006sy-source/phytomethods/pull/16` 已创建，报告提交 `a606bc0`。
-3. 最新 CI `validate` 已通过：`https://github.com/hao1006sy-source/phytomethods/actions/runs/45091507319/job/137421894220`。PR 保持打开且未合并。
+2. PR #16 `https://github.com/hao1006sy-source/phytomethods/pull/16` 已创建。
+3. GitHub Actions `validate` 已通过；当前状态见 PR 检查页。PR 保持打开且未合并。
 
 ## 当前边界
 
