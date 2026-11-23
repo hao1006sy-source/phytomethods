@@ -1,5 +1,280 @@
 ---
-import Base from '../../layouts/Base.astro';import {getCollection} from 'astro:content';import {domains} from '../../data/domains';import {principleLabels,dataLabels} from '../../data/tags';
-const entries=await getCollection('methods',({data})=>data.status==='published');const topics=await getCollection('topics',({data})=>data.status==='published');const base=import.meta.env.BASE_URL;
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+import { domains } from '../../data/domains';
+import { principleLabels, dataLabels } from '../../data/tags';
+import '../../styles/methods-index-v4.css';
+
+// 动态获取全部已发布的算法与工具和专题
+const entries = await getCollection('methods', ({ data }) => data.status === 'published');
+const topics = await getCollection('topics', ({ data }) => data.status === 'published');
+const base = import.meta.env.BASE_URL;
+
+// 按名称初始升序排序
+const sortedEntries = [...entries].sort((a, b) => a.data.name.localeCompare(b.data.name));
+
+// 构建领域字典方便根据 domainId 获取名称
+const domainMap = new Map<string, string>(domains.map(d => [d[1], d[2]]));
+
+// 过滤仅在已收录方法中出现的专题
+const usedTopicIds = new Set(entries.flatMap(e => e.data.topicIds || []));
+const filteredTopics = topics.filter(t => usedTopicIds.has(t.id));
+
+// 过滤仅在已收录方法中出现的原理和数据类型
+const usedPrincipleIds = new Set(entries.flatMap(e => e.data.principleIds || []));
+const usedDataIds = new Set(entries.flatMap(e => e.data.dataIds || []));
 ---
-<Base title="算法与工具" description="植物基因组学常用算法与生信工具索引，收录 Hifiasm、EDTA、OrthoFinder、PLINK 等 58 款主流软件，支持按研究领域、算法原理和数据类型多维筛选。"><section class="nav-v3"><header class="nav-intro"><div><p class="nav-overline">METHODS & TOOLS</p><h1>算法与工具</h1><p>按研究领域、底层计算原理和数据类型寻找适用的方法，并进入详细原理与文献页面。</p></div><p class="nav-metric"><b>{entries.length}</b> 已收录记录</p></header><div class="nav-explorer"><form id="filters" class="filters"><h2>精确筛选</h2><label>研究领域 <select name="domain"><option value="">全部</option>{domains.map(d=><option value={d[1]}>{d[2]}</option>)}</select></label><label>专题 <select name="topic"><option value="">全部</option>{topics.map(t=><option value={t.id}>{t.data.title}</option>)}</select></label><label>算法原理 <select name="principle"><option value="">全部</option>{Object.entries(principleLabels).map(([id,label])=><option value={id}>{label}</option>)}</select></label><label>输入数据 <select name="data"><option value="">全部</option>{Object.entries(dataLabels).map(([id,label])=><option value={id}>{label}</option>)}</select></label><button type="reset">重置筛选</button></form><div class="nav-results"><div class="nav-searchbar"><label>关键词 <input form="filters" name="q" id="filter" type="search" placeholder="工具名称或关键词"/></label></div><p id="filter-count" aria-live="polite"></p><div class="list-view">{entries.map((e,index)=><article class="card filter-item" data-q={`${e.data.name} ${e.data.summary} ${e.data.principle} ${e.data.dataType}`} data-domain={e.data.domainIds.join('|')} data-topic={e.data.topicIds.join('|')} data-principle={e.data.principleIds.join('|')} data-data={e.data.dataIds.join('|')}><span class="result-index">{String(index+1).padStart(2,'0')}</span><h2><a href={`${base}methods/${e.id}/`}>{e.data.name}</a></h2><p>{e.data.summary}</p><p><span class="nav-tag">{e.data.dataType}</span> {e.data.principle}</p><a class="result-go" href={`${base}methods/${e.id}/`}>查看方法 →</a></article>)}</div></div></div></section><script src="../../scripts/filters.ts"></script></Base>
+
+<Base 
+  title="算法与工具" 
+  description="植物基因组学常用算法与生信工具高密度学术目录，收录主流分析软件，支持按研究领域、关联专题、算法原理与输入数据多维筛选检索。"
+>
+  <div class="methods-v4">
+    <!-- 1. 顶部介绍区：紧凑干练，去除多余留白 -->
+    <header class="methods-intro">
+      <div class="methods-intro-main">
+        <p class="methods-overline">METHODS & TOOLS</p>
+        <h1>算法与工具</h1>
+        <p class="methods-lead">
+          按研究领域、底层计算原理和数据类型寻找适用的方法，并进入详细原理与文献页面。
+        </p>
+      </div>
+      <div class="methods-metric">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+        </svg>
+        <span id="metric-text"><b>{entries.length}</b> 个方法与工具</span>
+      </div>
+    </header>
+
+    <!-- 2. 主工作区布局：左侧筛选 + 右侧高密度检索结果 -->
+    <div class="methods-workspace">
+      <!-- 移动端筛选折叠触发栏 -->
+      <button 
+        type="button" 
+        id="mobile-filter-toggle" 
+        class="mobile-filter-toggle" 
+        aria-expanded="false" 
+        aria-controls="filter-sidebar"
+      >
+        <span class="toggle-text">展开筛选条件</span>
+        <svg class="toggle-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </button>
+
+      <!-- 左侧筛选面板 (240px) -->
+      <aside id="filter-sidebar" class="filters-sidebar">
+        <div class="filters-header">
+          <h2 class="filters-title">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+            </svg>
+            筛选条件
+          </h2>
+        </div>
+
+        <form id="filters" class="filters-form" onsubmit="return false;">
+          <!-- 领域筛选 -->
+          <div class="filter-group">
+            <label class="filter-label" for="filter-domain">研究领域</label>
+            <select id="filter-domain" name="domain" class="filter-select">
+              <option value="">全部领域</option>
+              {domains.map(d => (
+                <option value={d[1]}>{d[2]}</option>
+              ))}
+            </select>
+          </div>
+
+          <!-- 专题筛选 (支持与领域动态联动) -->
+          <div class="filter-group">
+            <label class="filter-label" for="filter-topic">研究专题</label>
+            <select id="filter-topic" name="topic" class="filter-select">
+              <option value="">全部专题</option>
+              {filteredTopics.map(t => (
+                <option value={t.id} data-domain={t.data.domain}>{t.data.title}</option>
+              ))}
+            </select>
+          </div>
+
+          <!-- 算法原理筛选 -->
+          <div class="filter-group">
+            <label class="filter-label" for="filter-principle">算法原理</label>
+            <select id="filter-principle" name="principle" class="filter-select">
+              <option value="">全部原理</option>
+              {Object.entries(principleLabels)
+                .filter(([id]) => usedPrincipleIds.has(id))
+                .map(([id, label]) => (
+                  <option value={id}>{label}</option>
+                ))}
+            </select>
+          </div>
+
+          <!-- 输入数据筛选 -->
+          <div class="filter-group">
+            <label class="filter-label" for="filter-data">输入数据</label>
+            <select id="filter-data" name="data" class="filter-select">
+              <option value="">全部数据类型</option>
+              {Object.entries(dataLabels)
+                .filter(([id]) => usedDataIds.has(id))
+                .map(([id, label]) => (
+                  <option value={id}>{label}</option>
+                ))}
+            </select>
+          </div>
+
+          <!-- 重置按钮 -->
+          <button type="button" id="filter-reset" class="filter-reset-btn">
+            重置筛选条件
+          </button>
+        </form>
+      </aside>
+
+      <!-- 右侧高密度学术检索结果区 -->
+      <main class="methods-main">
+        <!-- 搜索栏 -->
+        <div class="search-panel">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input 
+            type="search" 
+            id="method-search" 
+            name="q" 
+            class="search-input" 
+            placeholder="搜索算法、工具名称、计算原理或数据类型……" 
+            autocomplete="off"
+            aria-label="搜索算法工具"
+          />
+          <button type="button" id="search-clear" class="search-clear-btn" aria-label="清空搜索词">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+
+        <!-- 已选条件标签栏 (Active Tags Bar) -->
+        <div id="active-filters-bar" class="active-filters-bar" style="display: none;">
+          <span class="active-filters-label">已选条件：</span>
+          <div id="active-tags-list" style="display: inline-flex; flex-wrap: wrap; gap: 6px;"></div>
+          <button type="button" id="clear-all-tags" class="clear-all-btn">清除全部</button>
+        </div>
+
+        <!-- 结果统计与排序条 -->
+        <div class="results-toolbar">
+          <p id="results-count" class="results-count" aria-live="polite">
+            找到 <strong>{entries.length}</strong> 条结果 <span style="color:#668576;font-weight:normal;">（共 {entries.length} 条）</span>
+          </p>
+          <div class="sort-control">
+            <label for="sort-order">排序：</label>
+            <select id="sort-order" name="sort" class="sort-select">
+              <option value="name-asc">方法名称 A–Z</option>
+              <option value="name-desc">方法名称 Z–A</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- 高密度学术工具列表 (唯一默认核心布局，支持纵向高速扫描) -->
+        <div class="methods-list-table">
+          <!-- 桌面端表头 -->
+          <div class="table-header">
+            <div class="th-col-index">#</div>
+            <div class="th-col-name">方法名称</div>
+            <div class="th-col-desc">简介 / 研究领域 · 输入数据 · 算法原理</div>
+            <div class="th-col-action">操作</div>
+          </div>
+
+          <!-- 工具列表数据项 -->
+          <div id="methods-list" class="table-body">
+            {sortedEntries.map((e, index) => {
+              const primaryDomainName = e.data.domainIds.length > 0 
+                ? (domainMap.get(e.data.domainIds[0]) || e.data.domainIds[0]) 
+                : '';
+              
+              const primaryPrinciple = e.data.principleIds.length > 0
+                ? (principleLabels[e.data.principleIds[0]] || e.data.principle)
+                : e.data.principle;
+
+              const primaryData = e.data.dataIds.length > 0
+                ? (dataLabels[e.data.dataIds[0]] || e.data.dataType)
+                : e.data.dataType;
+
+              return (
+                <article 
+                  class="table-row method-row" 
+                  data-name={e.data.name}
+                  data-id={e.id}
+                  data-q={`${e.data.name} ${e.data.summary} ${e.data.principle} ${e.data.dataType} ${primaryPrinciple} ${primaryData}`}
+                  data-domain={e.data.domainIds.join('|')}
+                  data-topic={e.data.topicIds.join('|')}
+                  data-principle={e.data.principleIds.join('|')}
+                  data-data={e.data.dataIds.join('|')}
+                >
+                  <!-- 序号徽章 -->
+                  <div class="col-index">
+                    {String(index + 1).padStart(2, '0')}
+                  </div>
+
+                  <!-- 方法名称 -->
+                  <div class="col-name">
+                    <a href={`${base}methods/${e.id}/`}>{e.data.name}</a>
+                  </div>
+
+                  <!-- 综合学术信息 -->
+                  <div class="col-content">
+                    <p class="method-summary">{e.data.summary}</p>
+                    <div class="method-meta-row">
+                      {primaryDomainName && (
+                        <span class="domain-pill">{primaryDomainName}</span>
+                      )}
+                      {primaryData && (
+                        <>
+                          <span class="meta-separator">·</span>
+                          <span class="meta-item">
+                            <span class="meta-label">输入:</span>
+                            <span class="meta-value">{primaryData}</span>
+                          </span>
+                        </>
+                      )}
+                      {primaryPrinciple && (
+                        <>
+                          <span class="meta-separator">·</span>
+                          <span class="meta-item meta-principle">{primaryPrinciple}</span>
+                        </>
+                      )}
+                    </div>
+                  </div>
+
+                  <!-- 操作列 -->
+                  <div class="col-action">
+                    <a href={`${base}methods/${e.id}/`} class="details-link" aria-label={`查看 ${e.data.name} 详情`}>
+                      查看详情 →
+                    </a>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+
+          <!-- 无匹配空状态 -->
+          <div id="empty-state" class="empty-state">
+            <svg class="empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              <line x1="8" y1="11" x2="14" y2="11"></line>
+            </svg>
+            <h3 class="empty-title">未找到匹配的算法或工具</h3>
+            <p class="empty-desc">尝试缩减搜索词长度，或放宽领域、专题与数据类型筛选条件。</p>
+            <button type="button" id="empty-reset" class="empty-reset-btn">
+              清空所有筛选条件
+            </button>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="../../scripts/filters-methods-v4.ts"></script>
+</Base>
