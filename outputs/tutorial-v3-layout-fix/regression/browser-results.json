@@ -1,0 +1,1071 @@
+{
+  "base": "http://127.0.0.1:4334/phytomethods",
+  "tutorials": {
+    "hifiasm-intro": {
+      "status": "template",
+      "originalHeadings": [
+        "目的与环境",
+        "安装与版本",
+        "组装",
+        "输出与后续评估",
+        "常见问题",
+        "数据准备与官方示例",
+        "输出解释与排查",
+        "查看组装图与质量评估"
+      ],
+      "originalCodeBlocks": 3,
+      "testedWidths": [
+        {
+          "width": 1600,
+          "height": 900,
+          "pageWidth": 1600,
+          "scrollWidth": 1600
+        },
+        {
+          "width": 1440,
+          "height": 900,
+          "pageWidth": 1440,
+          "scrollWidth": 1440
+        },
+        {
+          "width": 1280,
+          "height": 800,
+          "pageWidth": 1280,
+          "scrollWidth": 1280
+        },
+        {
+          "width": 1024,
+          "height": 768,
+          "pageWidth": 1024,
+          "scrollWidth": 1024
+        },
+        {
+          "width": 768,
+          "height": 1024,
+          "pageWidth": 768,
+          "scrollWidth": 768
+        },
+        {
+          "width": 390,
+          "height": 844,
+          "pageWidth": 390,
+          "scrollWidth": 390
+        },
+        {
+          "width": 375,
+          "height": 812,
+          "pageWidth": 375,
+          "scrollWidth": 375
+        }
+      ],
+      "codeCopied": 0,
+      "navigationLinks": 10,
+      "internalLinks": [
+        "http://127.0.0.1:4334/phytomethods/",
+        "http://127.0.0.1:4334/phytomethods/tutorials/",
+        "http://127.0.0.1:4334/phytomethods/topics/genome-assembly/",
+        "http://127.0.0.1:4334/phytomethods/methods/hifiasm/",
+        "http://127.0.0.1:4334/phytomethods/papers/hifiasm/",
+        "http://127.0.0.1:4334/phytomethods/methods/merqury/"
+      ]
+    },
+    "orthofinder-intro": {
+      "status": "verified",
+      "originalHeadings": [
+        "目的与验证状态",
+        "环境与数据来源",
+        "运行",
+        "输出和解释",
+        "常见问题与阅读"
+      ],
+      "originalCodeBlocks": 3,
+      "testedWidths": [
+        {
+          "width": 1600,
+          "height": 900,
+          "pageWidth": 1600,
+          "scrollWidth": 1600
+        },
+        {
+          "width": 1440,
+          "height": 900,
+          "pageWidth": 1440,
+          "scrollWidth": 1440
+        },
+        {
+          "width": 1280,
+          "height": 800,
+          "pageWidth": 1280,
+          "scrollWidth": 1280
+        },
+        {
+          "width": 1024,
+          "height": 768,
+          "pageWidth": 1024,
+          "scrollWidth": 1024
+        },
+        {
+          "width": 768,
+          "height": 1024,
+          "pageWidth": 768,
+          "scrollWidth": 768
+        },
+        {
+          "width": 390,
+          "height": 844,
+          "pageWidth": 390,
+          "scrollWidth": 390
+        },
+        {
+          "width": 375,
+          "height": 812,
+          "pageWidth": 375,
+          "scrollWidth": 375
+        }
+      ],
+      "codeCopied": 3,
+      "navigationLinks": 7,
+      "internalLinks": [
+        "http://127.0.0.1:4334/phytomethods/",
+        "http://127.0.0.1:4334/phytomethods/tutorials/",
+        "http://127.0.0.1:4334/phytomethods/methods/orthofinder/",
+        "http://127.0.0.1:4334/phytomethods/papers/orthofinder-paper/",
+        "http://127.0.0.1:4334/phytomethods/topics/comparative-genomics/m04-topic-01/",
+        "http://127.0.0.1:4334/phytomethods/topics/comparative-genomics/m04-topic-02/",
+        "http://127.0.0.1:4334/phytomethods/topics/comparative-genomics/",
+        "http://127.0.0.1:4334/phytomethods/topics/pangenomics-structural-variation/"
+      ]
+    },
+    "syri-intro": {
+      "status": "verified",
+      "originalHeadings": [
+        "目的与验证状态",
+        "环境及数据",
+        "比对和过滤",
+        "运行 SyRI",
+        "结果解释和检查",
+        "常见问题与参考"
+      ],
+      "originalCodeBlocks": 4,
+      "testedWidths": [
+        {
+          "width": 1600,
+          "height": 900,
+          "pageWidth": 1600,
+          "scrollWidth": 1600
+        },
+        {
+          "width": 1440,
+          "height": 900,
+          "pageWidth": 1440,
+          "scrollWidth": 1440
+        },
+        {
+          "width": 1280,
+          "height": 800,
+          "pageWidth": 1280,
+          "scrollWidth": 1280
+        },
+        {
+          "width": 1024,
+          "height": 768,
+          "pageWidth": 1024,
+          "scrollWidth": 1024
+        },
+        {
+          "width": 768,
+          "height": 1024,
+          "pageWidth": 768,
+          "scrollWidth": 768
+        },
+        {
+          "width": 390,
+          "height": 844,
+          "pageWidth": 390,
+          "scrollWidth": 390
+        },
+        {
+          "width": 375,
+          "height": 812,
+          "pageWidth": 375,
+          "scrollWidth": 375
+        }
+      ],
+      "codeCopied": 4,
+      "navigationLinks": 8,
+      "internalLinks": [
+        "http://127.0.0.1:4334/phytomethods/",
+        "http://127.0.0.1:4334/phytomethods/tutorials/",
+        "http://127.0.0.1:4334/phytomethods/methods/syri/",
+        "http://127.0.0.1:4334/phytomethods/papers/syri-paper/",
+        "http://127.0.0.1:4334/phytomethods/topics/pangenomics-structural-variation/m03-topic-02/",
+        "http://127.0.0.1:4334/phytomethods/topics/pangenomics-structural-variation/m03-topic-03/",
+        "http://127.0.0.1:4334/phytomethods/topics/pangenomics-structural-variation/"
+      ]
+    },
+    "bismark-synthetic": {
+      "status": "verified",
+      "originalHeadings": [
+        "目标与验证范围",
+        "输入与环境",
+        "比对与甲基化提取",
+        "结果与独立核对",
+        "常见问题与延伸阅读"
+      ],
+      "originalCodeBlocks": 2,
+      "testedWidths": [
+        {
+          "width": 1600,
+          "height": 900,
+          "pageWidth": 1600,
+          "scrollWidth": 1600
+        },
+        {
+          "width": 1440,
+          "height": 900,
+          "pageWidth": 1440,
+          "scrollWidth": 1440
+        },
+        {
+          "width": 1280,
+          "height": 800,
+          "pageWidth": 1280,
+          "scrollWidth": 1280
+        },
+        {
+          "width": 1024,
+          "height": 768,
+          "pageWidth": 1024,
+          "scrollWidth": 1024
+        },
+        {
+          "width": 768,
+          "height": 1024,
+          "pageWidth": 768,
+          "scrollWidth": 768
+        },
+        {
+          "width": 390,
+          "height": 844,
+          "pageWidth": 390,
+          "scrollWidth": 390
+        },
+        {
+          "width": 375,
+          "height": 812,
+          "pageWidth": 375,
+          "scrollWidth": 375
+        }
+      ],
+      "codeCopied": 2,
+      "navigationLinks": 7,
+      "internalLinks": [
+        "http://127.0.0.1:4334/phytomethods/",
+        "http://127.0.0.1:4334/phytomethods/tutorials/",
+        "http://127.0.0.1:4334/phytomethods/methods/bismark/",
+        "http://127.0.0.1:4334/phytomethods/papers/bismark-paper/",
+        "http://127.0.0.1:4334/phytomethods/topics/epigenomics-3d-genome/m07-topic-02/",
+        "http://127.0.0.1:4334/phytomethods/topics/epigenomics-3d-genome/m07-topic-03/",
+        "http://127.0.0.1:4334/phytomethods/topics/epigenomics-3d-genome/"
+      ]
+    },
+    "plink-synthetic": {
+      "status": "verified",
+      "originalHeadings": [
+        "目的与验证状态",
+        "数据与软件",
+        "格式转换和统计",
+        "实际输出与解释",
+        "常见问题与延伸"
+      ],
+      "originalCodeBlocks": 4,
+      "testedWidths": [
+        {
+          "width": 1600,
+          "height": 900,
+          "pageWidth": 1600,
+          "scrollWidth": 1600
+        },
+        {
+          "width": 1440,
+          "height": 900,
+          "pageWidth": 1440,
+          "scrollWidth": 1440
+        },
+        {
+          "width": 1280,
+          "height": 800,
+          "pageWidth": 1280,
+          "scrollWidth": 1280
+        },
+        {
+          "width": 1024,
+          "height": 768,
+          "pageWidth": 1024,
+          "scrollWidth": 1024
+        },
+        {
+          "width": 768,
+          "height": 1024,
+          "pageWidth": 768,
+          "scrollWidth": 768
+        },
+        {
+          "width": 390,
+          "height": 844,
+          "pageWidth": 390,
+          "scrollWidth": 390
+        },
+        {
+          "width": 375,
+          "height": 812,
+          "pageWidth": 375,
+          "scrollWidth": 375
+        }
+      ],
+      "codeCopied": 4,
+      "navigationLinks": 7,
+      "internalLinks": [
+        "http://127.0.0.1:4334/phytomethods/",
+        "http://127.0.0.1:4334/phytomethods/tutorials/",
+        "http://127.0.0.1:4334/phytomethods/methods/plink/",
+        "http://127.0.0.1:4334/phytomethods/papers/plink-paper/",
+        "http://127.0.0.1:4334/phytomethods/topics/population-genetics/m05-topic-01/",
+        "http://127.0.0.1:4334/phytomethods/topics/population-genetics/m05-topic-02/",
+        "http://127.0.0.1:4334/phytomethods/topics/population-genetics/m05-topic-03/",
+        "http://127.0.0.1:4334/phytomethods/topics/population-genetics/"
+      ]
+    },
+    "gwas-synthetic": {
+      "status": "verified",
+      "originalHeadings": [
+        "目标与验证范围",
+        "数据与环境",
+        "模型与计算",
+        "输出与结果解释",
+        "独立检查与延伸"
+      ],
+      "originalCodeBlocks": 1,
+      "testedWidths": [
+        {
+          "width": 1600,
+          "height": 900,
+          "pageWidth": 1600,
+          "scrollWidth": 1600
+        },
+        {
+          "width": 1440,
+          "height": 900,
+          "pageWidth": 1440,
+          "scrollWidth": 1440
+        },
+        {
+          "width": 1280,
+          "height": 800,
+          "pageWidth": 1280,
+          "scrollWidth": 1280
+        },
+        {
+          "width": 1024,
+          "height": 768,
+          "pageWidth": 1024,
+          "scrollWidth": 1024
+        },
+        {
+          "width": 768,
+          "height": 1024,
+          "pageWidth": 768,
+          "scrollWidth": 768
+        },
+        {
+          "width": 390,
+          "height": 844,
+          "pageWidth": 390,
+          "scrollWidth": 390
+        },
+        {
+          "width": 375,
+          "height": 812,
+          "pageWidth": 375,
+          "scrollWidth": 375
+        }
+      ],
+      "codeCopied": 1,
+      "navigationLinks": 7,
+      "internalLinks": [
+        "http://127.0.0.1:4334/phytomethods/",
+        "http://127.0.0.1:4334/phytomethods/tutorials/",
+        "http://127.0.0.1:4334/phytomethods/methods/scipy/",
+        "http://127.0.0.1:4334/phytomethods/papers/scipy-paper/",
+        "http://127.0.0.1:4334/phytomethods/topics/gwas-breeding/m06-topic-03/",
+        "http://127.0.0.1:4334/phytomethods/topics/gwas-breeding/m06-topic-05/",
+        "http://127.0.0.1:4334/phytomethods/topics/gwas-breeding/"
+      ]
+    },
+    "scanpy-synthetic": {
+      "status": "verified",
+      "originalHeadings": [
+        "目标与验证状态",
+        "输入与运行环境",
+        "计算步骤",
+        "输出与解释",
+        "常见问题和资料"
+      ],
+      "originalCodeBlocks": 1,
+      "testedWidths": [
+        {
+          "width": 1600,
+          "height": 900,
+          "pageWidth": 1600,
+          "scrollWidth": 1600
+        },
+        {
+          "width": 1440,
+          "height": 900,
+          "pageWidth": 1440,
+          "scrollWidth": 1440
+        },
+        {
+          "width": 1280,
+          "height": 800,
+          "pageWidth": 1280,
+          "scrollWidth": 1280
+        },
+        {
+          "width": 1024,
+          "height": 768,
+          "pageWidth": 1024,
+          "scrollWidth": 1024
+        },
+        {
+          "width": 768,
+          "height": 1024,
+          "pageWidth": 768,
+          "scrollWidth": 768
+        },
+        {
+          "width": 390,
+          "height": 844,
+          "pageWidth": 390,
+          "scrollWidth": 390
+        },
+        {
+          "width": 375,
+          "height": 812,
+          "pageWidth": 375,
+          "scrollWidth": 375
+        }
+      ],
+      "codeCopied": 1,
+      "navigationLinks": 7,
+      "internalLinks": [
+        "http://127.0.0.1:4334/phytomethods/",
+        "http://127.0.0.1:4334/phytomethods/tutorials/",
+        "http://127.0.0.1:4334/phytomethods/methods/scanpy/",
+        "http://127.0.0.1:4334/phytomethods/papers/scanpy-paper/",
+        "http://127.0.0.1:4334/phytomethods/topics/single-cell-spatial-omics/m08-topic-01/",
+        "http://127.0.0.1:4334/phytomethods/topics/single-cell-spatial-omics/m08-topic-02/",
+        "http://127.0.0.1:4334/phytomethods/topics/single-cell-spatial-omics/m08-topic-03/",
+        "http://127.0.0.1:4334/phytomethods/topics/single-cell-spatial-omics/m08-topic-04/",
+        "http://127.0.0.1:4334/phytomethods/topics/single-cell-spatial-omics/m08-topic-05/",
+        "http://127.0.0.1:4334/phytomethods/topics/single-cell-spatial-omics/"
+      ]
+    },
+    "wgcna-synthetic": {
+      "status": "verified",
+      "originalHeadings": [
+        "目标与验证范围",
+        "输入与运行环境",
+        "分析步骤",
+        "结果解释",
+        "常见问题与资料"
+      ],
+      "originalCodeBlocks": 2,
+      "testedWidths": [
+        {
+          "width": 1600,
+          "height": 900,
+          "pageWidth": 1600,
+          "scrollWidth": 1600
+        },
+        {
+          "width": 1440,
+          "height": 900,
+          "pageWidth": 1440,
+          "scrollWidth": 1440
+        },
+        {
+          "width": 1280,
+          "height": 800,
+          "pageWidth": 1280,
+          "scrollWidth": 1280
+        },
+        {
+          "width": 1024,
+          "height": 768,
+          "pageWidth": 1024,
+          "scrollWidth": 1024
+        },
+        {
+          "width": 768,
+          "height": 1024,
+          "pageWidth": 768,
+          "scrollWidth": 768
+        },
+        {
+          "width": 390,
+          "height": 844,
+          "pageWidth": 390,
+          "scrollWidth": 390
+        },
+        {
+          "width": 375,
+          "height": 812,
+          "pageWidth": 375,
+          "scrollWidth": 375
+        }
+      ],
+      "codeCopied": 2,
+      "navigationLinks": 7,
+      "internalLinks": [
+        "http://127.0.0.1:4334/phytomethods/",
+        "http://127.0.0.1:4334/phytomethods/tutorials/",
+        "http://127.0.0.1:4334/phytomethods/methods/wgcna/",
+        "http://127.0.0.1:4334/phytomethods/papers/wgcna-paper/",
+        "http://127.0.0.1:4334/phytomethods/topics/regulatory-genomics-ai/m09-topic-02/",
+        "http://127.0.0.1:4334/phytomethods/topics/regulatory-genomics-ai/"
+      ]
+    },
+    "edta-tutorial": {
+      "status": "template",
+      "originalHeadings": [
+        "目的与验证状态",
+        "数据来源与准备",
+        "运行模板",
+        "输出与解释",
+        "常见问题",
+        "官方测试数据和预期文件"
+      ],
+      "originalCodeBlocks": 1,
+      "testedWidths": [
+        {
+          "width": 1600,
+          "height": 900,
+          "pageWidth": 1600,
+          "scrollWidth": 1600
+        },
+        {
+          "width": 1440,
+          "height": 900,
+          "pageWidth": 1440,
+          "scrollWidth": 1440
+        },
+        {
+          "width": 1280,
+          "height": 800,
+          "pageWidth": 1280,
+          "scrollWidth": 1280
+        },
+        {
+          "width": 1024,
+          "height": 768,
+          "pageWidth": 1024,
+          "scrollWidth": 1024
+        },
+        {
+          "width": 768,
+          "height": 1024,
+          "pageWidth": 768,
+          "scrollWidth": 768
+        },
+        {
+          "width": 390,
+          "height": 844,
+          "pageWidth": 390,
+          "scrollWidth": 390
+        },
+        {
+          "width": 375,
+          "height": 812,
+          "pageWidth": 375,
+          "scrollWidth": 375
+        }
+      ],
+      "codeCopied": 1,
+      "navigationLinks": 8,
+      "internalLinks": [
+        "http://127.0.0.1:4334/phytomethods/",
+        "http://127.0.0.1:4334/phytomethods/tutorials/",
+        "http://127.0.0.1:4334/phytomethods/methods/edta/",
+        "http://127.0.0.1:4334/phytomethods/papers/edta-paper/",
+        "http://127.0.0.1:4334/phytomethods/topics/genome-annotation/m02-topic-02/",
+        "http://127.0.0.1:4334/phytomethods/topics/genome-annotation/"
+      ]
+    },
+    "cafe5-intro": {
+      "status": "template",
+      "originalHeadings": [
+        "目标与验证状态",
+        "环境与数据",
+        "基础命令",
+        "输出检查与解释",
+        "常见错误",
+        "延伸阅读"
+      ],
+      "originalCodeBlocks": 1,
+      "testedWidths": [
+        {
+          "width": 1600,
+          "height": 900,
+          "pageWidth": 1600,
+          "scrollWidth": 1600
+        },
+        {
+          "width": 1440,
+          "height": 900,
+          "pageWidth": 1440,
+          "scrollWidth": 1440
+        },
+        {
+          "width": 1280,
+          "height": 800,
+          "pageWidth": 1280,
+          "scrollWidth": 1280
+        },
+        {
+          "width": 1024,
+          "height": 768,
+          "pageWidth": 1024,
+          "scrollWidth": 1024
+        },
+        {
+          "width": 768,
+          "height": 1024,
+          "pageWidth": 768,
+          "scrollWidth": 768
+        },
+        {
+          "width": 390,
+          "height": 844,
+          "pageWidth": 390,
+          "scrollWidth": 390
+        },
+        {
+          "width": 375,
+          "height": 812,
+          "pageWidth": 375,
+          "scrollWidth": 375
+        }
+      ],
+      "codeCopied": 1,
+      "navigationLinks": 8,
+      "internalLinks": [
+        "http://127.0.0.1:4334/phytomethods/",
+        "http://127.0.0.1:4334/phytomethods/tutorials/",
+        "http://127.0.0.1:4334/phytomethods/methods/cafe5/",
+        "http://127.0.0.1:4334/phytomethods/papers/cafe5-paper/",
+        "http://127.0.0.1:4334/phytomethods/topics/comparative-genomics/m04-topic-02/",
+        "http://127.0.0.1:4334/phytomethods/topics/comparative-genomics/"
+      ]
+    }
+  },
+  "viewports": [
+    [
+      1600,
+      900
+    ],
+    [
+      1440,
+      900
+    ],
+    [
+      1280,
+      800
+    ],
+    [
+      1024,
+      768
+    ],
+    [
+      768,
+      1024
+    ],
+    [
+      390,
+      844
+    ],
+    [
+      375,
+      812
+    ]
+  ],
+  "internalLinks": [
+    {
+      "tutorial": "hifiasm-intro",
+      "href": "http://127.0.0.1:4334/phytomethods/",
+      "status": 200
+    },
+    {
+      "tutorial": "hifiasm-intro",
+      "href": "http://127.0.0.1:4334/phytomethods/tutorials/",
+      "status": 200
+    },
+    {
+      "tutorial": "hifiasm-intro",
+      "href": "http://127.0.0.1:4334/phytomethods/topics/genome-assembly/",
+      "status": 200
+    },
+    {
+      "tutorial": "hifiasm-intro",
+      "href": "http://127.0.0.1:4334/phytomethods/methods/hifiasm/",
+      "status": 200
+    },
+    {
+      "tutorial": "hifiasm-intro",
+      "href": "http://127.0.0.1:4334/phytomethods/papers/hifiasm/",
+      "status": 200
+    },
+    {
+      "tutorial": "hifiasm-intro",
+      "href": "http://127.0.0.1:4334/phytomethods/methods/merqury/",
+      "status": 200
+    },
+    {
+      "tutorial": "orthofinder-intro",
+      "href": "http://127.0.0.1:4334/phytomethods/",
+      "status": 200
+    },
+    {
+      "tutorial": "orthofinder-intro",
+      "href": "http://127.0.0.1:4334/phytomethods/tutorials/",
+      "status": 200
+    },
+    {
+      "tutorial": "orthofinder-intro",
+      "href": "http://127.0.0.1:4334/phytomethods/methods/orthofinder/",
+      "status": 200
+    },
+    {
+      "tutorial": "orthofinder-intro",
+      "href": "http://127.0.0.1:4334/phytomethods/papers/orthofinder-paper/",
+      "status": 200
+    },
+    {
+      "tutorial": "orthofinder-intro",
+      "href": "http://127.0.0.1:4334/phytomethods/topics/comparative-genomics/m04-topic-01/",
+      "status": 200
+    },
+    {
+      "tutorial": "orthofinder-intro",
+      "href": "http://127.0.0.1:4334/phytomethods/topics/comparative-genomics/m04-topic-02/",
+      "status": 200
+    },
+    {
+      "tutorial": "orthofinder-intro",
+      "href": "http://127.0.0.1:4334/phytomethods/topics/comparative-genomics/",
+      "status": 200
+    },
+    {
+      "tutorial": "orthofinder-intro",
+      "href": "http://127.0.0.1:4334/phytomethods/topics/pangenomics-structural-variation/",
+      "status": 200
+    },
+    {
+      "tutorial": "syri-intro",
+      "href": "http://127.0.0.1:4334/phytomethods/",
+      "status": 200
+    },
+    {
+      "tutorial": "syri-intro",
+      "href": "http://127.0.0.1:4334/phytomethods/tutorials/",
+      "status": 200
+    },
+    {
+      "tutorial": "syri-intro",
+      "href": "http://127.0.0.1:4334/phytomethods/methods/syri/",
+      "status": 200
+    },
+    {
+      "tutorial": "syri-intro",
+      "href": "http://127.0.0.1:4334/phytomethods/papers/syri-paper/",
+      "status": 200
+    },
+    {
+      "tutorial": "syri-intro",
+      "href": "http://127.0.0.1:4334/phytomethods/topics/pangenomics-structural-variation/m03-topic-02/",
+      "status": 200
+    },
+    {
+      "tutorial": "syri-intro",
+      "href": "http://127.0.0.1:4334/phytomethods/topics/pangenomics-structural-variation/m03-topic-03/",
+      "status": 200
+    },
+    {
+      "tutorial": "syri-intro",
+      "href": "http://127.0.0.1:4334/phytomethods/topics/pangenomics-structural-variation/",
+      "status": 200
+    },
+    {
+      "tutorial": "bismark-synthetic",
+      "href": "http://127.0.0.1:4334/phytomethods/",
+      "status": 200
+    },
+    {
+      "tutorial": "bismark-synthetic",
+      "href": "http://127.0.0.1:4334/phytomethods/tutorials/",
+      "status": 200
+    },
+    {
+      "tutorial": "bismark-synthetic",
+      "href": "http://127.0.0.1:4334/phytomethods/methods/bismark/",
+      "status": 200
+    },
+    {
+      "tutorial": "bismark-synthetic",
+      "href": "http://127.0.0.1:4334/phytomethods/papers/bismark-paper/",
+      "status": 200
+    },
+    {
+      "tutorial": "bismark-synthetic",
+      "href": "http://127.0.0.1:4334/phytomethods/topics/epigenomics-3d-genome/m07-topic-02/",
+      "status": 200
+    },
+    {
+      "tutorial": "bismark-synthetic",
+      "href": "http://127.0.0.1:4334/phytomethods/topics/epigenomics-3d-genome/m07-topic-03/",
+      "status": 200
+    },
+    {
+      "tutorial": "bismark-synthetic",
+      "href": "http://127.0.0.1:4334/phytomethods/topics/epigenomics-3d-genome/",
+      "status": 200
+    },
+    {
+      "tutorial": "plink-synthetic",
+      "href": "http://127.0.0.1:4334/phytomethods/",
+      "status": 200
+    },
+    {
+      "tutorial": "plink-synthetic",
+      "href": "http://127.0.0.1:4334/phytomethods/tutorials/",
+      "status": 200
+    },
+    {
+      "tutorial": "plink-synthetic",
+      "href": "http://127.0.0.1:4334/phytomethods/methods/plink/",
+      "status": 200
+    },
+    {
+      "tutorial": "plink-synthetic",
+      "href": "http://127.0.0.1:4334/phytomethods/papers/plink-paper/",
+      "status": 200
+    },
+    {
+      "tutorial": "plink-synthetic",
+      "href": "http://127.0.0.1:4334/phytomethods/topics/population-genetics/m05-topic-01/",
+      "status": 200
+    },
+    {
+      "tutorial": "plink-synthetic",
+      "href": "http://127.0.0.1:4334/phytomethods/topics/population-genetics/m05-topic-02/",
+      "status": 200
+    },
+    {
+      "tutorial": "plink-synthetic",
+      "href": "http://127.0.0.1:4334/phytomethods/topics/population-genetics/m05-topic-03/",
+      "status": 200
+    },
+    {
+      "tutorial": "plink-synthetic",
+      "href": "http://127.0.0.1:4334/phytomethods/topics/population-genetics/",
+      "status": 200
+    },
+    {
+      "tutorial": "gwas-synthetic",
+      "href": "http://127.0.0.1:4334/phytomethods/",
+      "status": 200
+    },
+    {
+      "tutorial": "gwas-synthetic",
+      "href": "http://127.0.0.1:4334/phytomethods/tutorials/",
+      "status": 200
+    },
+    {
+      "tutorial": "gwas-synthetic",
+      "href": "http://127.0.0.1:4334/phytomethods/methods/scipy/",
+      "status": 200
+    },
+    {
+      "tutorial": "gwas-synthetic",
+      "href": "http://127.0.0.1:4334/phytomethods/papers/scipy-paper/",
+      "status": 200
+    },
+    {
+      "tutorial": "gwas-synthetic",
+      "href": "http://127.0.0.1:4334/phytomethods/topics/gwas-breeding/m06-topic-03/",
+      "status": 200
+    },
+    {
+      "tutorial": "gwas-synthetic",
+      "href": "http://127.0.0.1:4334/phytomethods/topics/gwas-breeding/m06-topic-05/",
+      "status": 200
+    },
+    {
+      "tutorial": "gwas-synthetic",
+      "href": "http://127.0.0.1:4334/phytomethods/topics/gwas-breeding/",
+      "status": 200
+    },
+    {
+      "tutorial": "scanpy-synthetic",
+      "href": "http://127.0.0.1:4334/phytomethods/",
+      "status": 200
+    },
+    {
+      "tutorial": "scanpy-synthetic",
+      "href": "http://127.0.0.1:4334/phytomethods/tutorials/",
+      "status": 200
+    },
+    {
+      "tutorial": "scanpy-synthetic",
+      "href": "http://127.0.0.1:4334/phytomethods/methods/scanpy/",
+      "status": 200
+    },
+    {
+      "tutorial": "scanpy-synthetic",
+      "href": "http://127.0.0.1:4334/phytomethods/papers/scanpy-paper/",
+      "status": 200
+    },
+    {
+      "tutorial": "scanpy-synthetic",
+      "href": "http://127.0.0.1:4334/phytomethods/topics/single-cell-spatial-omics/m08-topic-01/",
+      "status": 200
+    },
+    {
+      "tutorial": "scanpy-synthetic",
+      "href": "http://127.0.0.1:4334/phytomethods/topics/single-cell-spatial-omics/m08-topic-02/",
+      "status": 200
+    },
+    {
+      "tutorial": "scanpy-synthetic",
+      "href": "http://127.0.0.1:4334/phytomethods/topics/single-cell-spatial-omics/m08-topic-03/",
+      "status": 200
+    },
+    {
+      "tutorial": "scanpy-synthetic",
+      "href": "http://127.0.0.1:4334/phytomethods/topics/single-cell-spatial-omics/m08-topic-04/",
+      "status": 200
+    },
+    {
+      "tutorial": "scanpy-synthetic",
+      "href": "http://127.0.0.1:4334/phytomethods/topics/single-cell-spatial-omics/m08-topic-05/",
+      "status": 200
+    },
+    {
+      "tutorial": "scanpy-synthetic",
+      "href": "http://127.0.0.1:4334/phytomethods/topics/single-cell-spatial-omics/",
+      "status": 200
+    },
+    {
+      "tutorial": "wgcna-synthetic",
+      "href": "http://127.0.0.1:4334/phytomethods/",
+      "status": 200
+    },
+    {
+      "tutorial": "wgcna-synthetic",
+      "href": "http://127.0.0.1:4334/phytomethods/tutorials/",
+      "status": 200
+    },
+    {
+      "tutorial": "wgcna-synthetic",
+      "href": "http://127.0.0.1:4334/phytomethods/methods/wgcna/",
+      "status": 200
+    },
+    {
+      "tutorial": "wgcna-synthetic",
+      "href": "http://127.0.0.1:4334/phytomethods/papers/wgcna-paper/",
+      "status": 200
+    },
+    {
+      "tutorial": "wgcna-synthetic",
+      "href": "http://127.0.0.1:4334/phytomethods/topics/regulatory-genomics-ai/m09-topic-02/",
+      "status": 200
+    },
+    {
+      "tutorial": "wgcna-synthetic",
+      "href": "http://127.0.0.1:4334/phytomethods/topics/regulatory-genomics-ai/",
+      "status": 200
+    },
+    {
+      "tutorial": "edta-tutorial",
+      "href": "http://127.0.0.1:4334/phytomethods/",
+      "status": 200
+    },
+    {
+      "tutorial": "edta-tutorial",
+      "href": "http://127.0.0.1:4334/phytomethods/tutorials/",
+      "status": 200
+    },
+    {
+      "tutorial": "edta-tutorial",
+      "href": "http://127.0.0.1:4334/phytomethods/methods/edta/",
+      "status": 200
+    },
+    {
+      "tutorial": "edta-tutorial",
+      "href": "http://127.0.0.1:4334/phytomethods/papers/edta-paper/",
+      "status": 200
+    },
+    {
+      "tutorial": "edta-tutorial",
+      "href": "http://127.0.0.1:4334/phytomethods/topics/genome-annotation/m02-topic-02/",
+      "status": 200
+    },
+    {
+      "tutorial": "edta-tutorial",
+      "href": "http://127.0.0.1:4334/phytomethods/topics/genome-annotation/",
+      "status": 200
+    },
+    {
+      "tutorial": "cafe5-intro",
+      "href": "http://127.0.0.1:4334/phytomethods/",
+      "status": 200
+    },
+    {
+      "tutorial": "cafe5-intro",
+      "href": "http://127.0.0.1:4334/phytomethods/tutorials/",
+      "status": 200
+    },
+    {
+      "tutorial": "cafe5-intro",
+      "href": "http://127.0.0.1:4334/phytomethods/methods/cafe5/",
+      "status": 200
+    },
+    {
+      "tutorial": "cafe5-intro",
+      "href": "http://127.0.0.1:4334/phytomethods/papers/cafe5-paper/",
+      "status": 200
+    },
+    {
+      "tutorial": "cafe5-intro",
+      "href": "http://127.0.0.1:4334/phytomethods/topics/comparative-genomics/m04-topic-02/",
+      "status": 200
+    },
+    {
+      "tutorial": "cafe5-intro",
+      "href": "http://127.0.0.1:4334/phytomethods/topics/comparative-genomics/",
+      "status": 200
+    }
+  ],
+  "pageErrors": [],
+  "summary": {
+    "tutorials": 10,
+    "verified": 7,
+    "template": 3,
+    "pageLoads": 70,
+    "responsiveChecks": 70,
+    "codeBlocksCopied": 19,
+    "navigationJumps": 76,
+    "internalLinkChecks": 71,
+    "pageErrors": 0
+  }
+}
