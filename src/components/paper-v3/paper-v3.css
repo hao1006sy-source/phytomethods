@@ -573,6 +573,19 @@ main.wrap:has(.paper-v3) {
   font-weight: 700;
 }
 
+.paper-related-reason {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--paper-forest);
+  background: var(--paper-mint);
+  border: 1px solid var(--paper-mint-border);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
 .paper-related-title {
   font-size: 15px;
   font-weight: 650;

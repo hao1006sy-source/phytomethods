@@ -2,6 +2,7 @@
 import { paperTypeBadgeMap, type PaperSection } from './config/paper-types';
 import { generateCitations } from './config/citation-helper';
 import { hifiasmCustomData } from './config/hifiasm-custom';
+import { resolvePaperRelations } from './config/paper-relations';
 import PaperHeader from './PaperHeader.astro';
 import PaperSidebar from './PaperSidebar.astro';
 import PaperHighlights from './PaperHighlights.astro';
@@ -9,7 +10,6 @@ import PaperResources from './PaperResources.astro';
 import PaperFigureRegistry from './PaperFigureRegistry.astro';
 import PaperNotes from './PaperNotes.astro';
 import CitationModal from './CitationModal.astro';
-import { topicMetadata } from '../../data/topics';
 import './paper-v3.css';
 
 interface Props {
@@ -51,42 +51,22 @@ const paperMeta = {
 // 2. 动态生成引用文本
 const citations = generateCitations(paperMeta);
 
-// 3. 动态关联真实资源
-const relatedMethods = allMethods.filter(m => paperMeta.methodIds.includes(m.id));
-const relatedTopics = topicMetadata.filter(t => 
-  t.status === 'published' && (
-    t.paperIds.includes(entry.id) ||
-    t.methodIds.some(mId => paperMeta.methodIds.includes(mId))
-  )
-);
-const relatedTutorials = allTutorials.filter(tut =>
-  paperMeta.methodIds.includes(tut.data.method)
-);
+// 3. 动态解析科学知识关联（彻底解耦与修复 ID 类型混用）
+const {
+  relatedMethods,
+  relatedTopics,
+  relatedTutorials,
+  plantApplications,
+  originMethodPapers,
+  recommendedPapers
+} = resolvePaperRelations({
+  entry,
+  allPapers,
+  allMethods,
+  allTutorials
+});
 
-// 查找关联的植物应用案例（用于 method 论文）
-let plantApplicationPaper: any = null;
-if (entry.data.type === 'method') {
-  if (isHifiasm) {
-    plantApplicationPaper = allPapers.find(p => p.id === 'macadamia');
-  } else {
-    plantApplicationPaper = allPapers.find(p => 
-      p.id !== entry.id &&
-      p.data.type === 'application' &&
-      p.data.methodIds.includes(entry.id) &&
-      p.data.speciesIds.length > 0
-    );
-  }
-}
-
-// 推荐相关文献（同领域或同工具）
-const relatedPapers = allPapers.filter(p =>
-  p.id !== entry.id &&
-  p.data.status === 'published' &&
-  (
-    (p.data.methodIds.length > 0 && p.data.methodIds.some((m: string) => paperMeta.methodIds.includes(m))) ||
-    (p.data.domainIds.some((d: string) => paperMeta.domainIds.includes(d)))
-  )
-).slice(0, 2);
+const plantApplicationPaper = plantApplications.length > 0 ? plantApplications[0] : null;
 
 // 4. 动态构建文章目录 sections
 const numberSymbols = ['①', '②', '③', '④', '⑤', '⑥', '⑦', '⑧', '⑨', '⑩', '⑪', '⑫'];
@@ -138,7 +118,7 @@ sections.push({
 numIdx++;
 
 // 相关文献推荐节点
-if (relatedPapers.length > 0) {
+if (recommendedPapers.length > 0) {
   sections.push({
     id: 'paper-related-papers',
     number: numberSymbols[numIdx % numberSymbols.length],
@@ -163,50 +143,49 @@ const nextPaper = currentIndex < sortedPapers.length - 1 ? sortedPapers[currentI
     <PaperSidebar sections={sections} />
 
     <!-- 中间：文献核心正文 -->
-    <main class="paper-main" aria-label="文献深度解读">
-      <!-- 1. 核心贡献 / 研究亮点卡片 -->
-      <PaperHighlights
-        paperId={entry.id}
-        type={entry.data.type}
-        summary={entry.data.summary}
-        highlights={isHifiasm ? hifiasmCustomData.highlights : []}
-        customSummary={isHifiasm ? hifiasmCustomData.coreContributionSummary : undefined}
-      />
+    <main class="paper-content" id="paper-main-content">
+      <!-- 1. 核心贡献 / 研究发现 / 综述要点卡片 -->
+      <section id="paper-contributions" class="paper-section">
+        <h2 class="paper-section-title">
+          <span aria-hidden="true">🎯</span> {highlightTitle}
+        </h2>
+        <PaperHighlights type={entry.data.type} summary={entry.data.summary} paperId={entry.id} />
+      </section>
 
-      <!-- 2. Hifiasm 专属科研图解 -->
+      <!-- 2. 原生 Markdown 正文（完整保留全部公式、表格与结构化内容） -->
+      <article class="paper-markdown-body">
+        <slot />
+      </article>
+
+      <!-- 3. 科研图解分发中心（当前接入已验收的 Hifiasm 矢量流程图） -->
       {isHifiasm && (
         <section id="hifiasm-workflow-figure" class="paper-section">
           <h2 class="paper-section-title">
-            <span aria-hidden="true">⚙️</span> 核心算法思想与流程图解
+            <span aria-hidden="true">⚙️</span> 算法流程图解
           </h2>
           <PaperFigureRegistry paperId={entry.id} />
         </section>
       )}
 
-      <!-- 3. 完整 Markdown 正文内容 (100% 保留原生段落、公式、表格与链接) -->
-      <article class="paper-prose prose" data-pagefind-body>
-        <slot />
-      </article>
-
-      <!-- 4. Hifiasm 专属评测指标表格 (保持原样) -->
-      {isHifiasm && (
+      <!-- 4. Hifiasm 专属基准评估保留 -->
+      {isHifiasm && hifiasmCustomData.benchmarkResults && (
         <section id="hifiasm-benchmarks" class="paper-section">
           <h2 class="paper-section-title">
-            <span aria-hidden="true">📊</span> 关键评估结果与科学意义
+            <span aria-hidden="true">📊</span> 算法评测基准
           </h2>
           <div class="paper-table-wrapper">
             <table class="paper-table">
               <thead>
                 <tr>
-                  <th>测试数据集</th>
-                  <th>基因组特性</th>
-                  <th>Contig N50 (Mb)</th>
-                  <th>开关错误率 (Switch Error)</th>
-                  <th>计算耗时 (CPU 小时)</th>
+                  <th>数据集</th>
+                  <th>测序特征</th>
+                  <th>Contig N50</th>
+                  <th>Switch Error</th>
+                  <th>计算耗时</th>
                 </tr>
               </thead>
               <tbody>
-                {hifiasmCustomData.benchmarkResults.map(row => (
+                {hifiasmCustomData.benchmarkResults.map((row: any) => (
                   <tr>
                     <td><strong>{row.dataset}</strong></td>
                     <td>{row.features}</td>
@@ -229,18 +208,21 @@ const nextPaper = currentIndex < sortedPapers.length - 1 ? sortedPapers[currentI
         <PaperNotes paperId={entry.id} />
       </section>
 
-      <!-- 6. 延伸阅读与相关文献 -->
-      {relatedPapers.length > 0 && (
+      <!-- 6. 延伸阅读与相关文献（基于高精度科学依据推荐） -->
+      {recommendedPapers.length > 0 && (
         <section id="paper-related-papers" class="paper-section">
           <h2 class="paper-section-title">
             <span aria-hidden="true">📚</span> 延伸阅读与相关文献
           </h2>
           <div class="paper-related-grid">
-            {relatedPapers.map(p => (
+            {recommendedPapers.map(p => (
               <a href={`${base}papers/${p.id}/`} class="paper-related-item">
-                <span class="paper-related-tag">{paperTypeBadgeMap[p.data.type as keyof typeof paperTypeBadgeMap] || '科研文献'} ｜ {p.data.journal} {p.data.year}</span>
-                <h3 class="paper-related-title">{p.data.title}</h3>
-                <p class="paper-related-meta">{p.data.authors} ｜ {p.data.summary}</p>
+                <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
+                  <span class="paper-related-tag">{paperTypeBadgeMap[p.type] || '科研文献'} ｜ {p.journal} {p.year}</span>
+                  <span class="paper-related-reason">🎯 {p.reason}</span>
+                </div>
+                <h3 class="paper-related-title">{p.title}</h3>
+                <p class="paper-related-meta">DOI: {p.doi}</p>
               </a>
             ))}
           </div>
@@ -273,6 +255,7 @@ const nextPaper = currentIndex < sortedPapers.length - 1 ? sortedPapers[currentI
       relatedTopics={relatedTopics}
       relatedTutorials={relatedTutorials}
       plantApplicationPaper={plantApplicationPaper}
+      originMethodPapers={originMethodPapers}
     />
   </div>
 

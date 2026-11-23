@@ -18,6 +18,7 @@ interface Props {
   relatedTopics?: any[];
   relatedTutorials?: any[];
   plantApplicationPaper?: any;
+  originMethodPapers?: any[];
 }
 
 const {
@@ -25,7 +26,8 @@ const {
   relatedMethods = [],
   relatedTopics = [],
   relatedTutorials = [],
-  plantApplicationPaper
+  plantApplicationPaper,
+  originMethodPapers = []
 } = Astro.props;
 
 const base = import.meta.env.BASE_URL;
@@ -38,9 +40,34 @@ const testedLabelMap: Record<string, string> = {
   'not-tested': '待验证'
 };
 
+const plantEmojiMap: Record<string, string> = {
+  rice: '🌾',
+  wheat: '🌾',
+  maize: '🌽',
+  soybean: '🫘',
+  arabidopsis: '🌿',
+  macadamia: '🌰',
+  tea: '🍃',
+  cycas: '🌴',
+  mungbean: '🌱',
+  sorghum: '🌾',
+  watermelon: '🍉',
+  mango: '🥭',
+  tomato: '🍅',
+  potato: '🥔',
+  'populus-euphratica': '🌳',
+  'populus-trichocarpa': '🌳'
+};
+
 // 获取植物应用物种信息（用于 application 论文自身展示）
 const primarySpeciesId = paper.speciesIds?.[0];
 const speciesName = primarySpeciesId ? (speciesLabels[primarySpeciesId] || primarySpeciesId) : null;
+const selfEmoji = (primarySpeciesId && plantEmojiMap[primarySpeciesId]) || '🌱';
+
+// 方法学论文匹配到的植物应用案例信息
+const appSpeciesId = plantApplicationPaper?.data.speciesIds?.[0];
+const appSpeciesName = appSpeciesId ? (speciesLabels[appSpeciesId] || appSpeciesId) : '植物应用研究';
+const appEmoji = (appSpeciesId && plantEmojiMap[appSpeciesId]) || '🌱';
 ---
 
 <aside class="paper-resources" aria-label="文献元数据与关联科研资源">
@@ -79,7 +106,7 @@ const speciesName = primarySpeciesId ? (speciesLabels[primarySpeciesId] || prima
   </section>
 
   <!-- 卡片 2: 关联内容 -->
-  {(relatedMethods.length > 0 || relatedTopics.length > 0 || relatedTutorials.length > 0) && (
+  {(relatedMethods.length > 0 || relatedTopics.length > 0 || relatedTutorials.length > 0 || originMethodPapers.length > 0) && (
     <section class="paper-card" aria-labelledby="card-linked-title">
       <div class="paper-card-header">
         <span aria-hidden="true">🔀</span>
@@ -97,6 +124,23 @@ const speciesName = primarySpeciesId ? (speciesLabels[primarySpeciesId] || prima
                 <a href={`${base}methods/${m.id}/`} class="paper-linked-item">
                   <span class="paper-linked-title">🍃 {m.data.name}</span>
                   <span class="paper-linked-desc">{m.data.summary}</span>
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <!-- 针对应用论文：回溯所用算法之原始方法学论文 -->
+        {originMethodPapers.length > 0 && (
+          <div class="paper-linked-group">
+            <div class="paper-linked-heading">
+              <span aria-hidden="true">📜</span> 所用算法之原始文献
+            </div>
+            <div class="paper-linked-list">
+              {originMethodPapers.slice(0, 2).map(orig => (
+                <a href={`${base}papers/${orig.id}/`} class="paper-linked-item">
+                  <span class="paper-linked-title">{orig.data.title}</span>
+                  <span class="paper-linked-desc">{orig.data.journal} ({orig.data.year}) ｜ {orig.data.authors}</span>
                 </a>
               ))}
             </div>
@@ -153,12 +197,12 @@ const speciesName = primarySpeciesId ? (speciesLabels[primarySpeciesId] || prima
         <div class="paper-plant-card">
           <div class="paper-plant-spotlight">
             <div class="paper-plant-img" aria-hidden="true">
-              🌰
+              {appEmoji}
             </div>
             <div class="paper-plant-info">
               <h4 class="paper-plant-name">
-                {plantApplicationPaper.data.title.includes('Macadamia') ? '澳洲坚果' : '植物应用研究'}
-                <em>{speciesLabels[plantApplicationPaper.data.speciesIds?.[0]] || ''}</em>
+                {appSpeciesName}
+                {plantApplicationPaper.data.title.includes('Macadamia') && <em>Macadamia integrifolia</em>}
               </h4>
               <p class="paper-plant-desc">
                 {plantApplicationPaper.data.summary}
@@ -184,7 +228,7 @@ const speciesName = primarySpeciesId ? (speciesLabels[primarySpeciesId] || prima
         <div class="paper-plant-card">
           <div class="paper-plant-spotlight">
             <div class="paper-plant-img" aria-hidden="true">
-              🌱
+              {selfEmoji}
             </div>
             <div class="paper-plant-info">
               <h4 class="paper-plant-name">
