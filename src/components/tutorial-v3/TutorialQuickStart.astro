@@ -29,21 +29,21 @@ const dataset = tutorialTestDatasets.find((d) => d.tutorialId === tutorialId);
     <div class="quickstart-meta-grid">
       <div class="meta-item">
         <span class="meta-label">文件名称与格式</span>
-        <span class="meta-value font-mono">{dataset.fileName ?? '按目录或归档打包'} ({dataset.format})</span>
+        <span class="meta-value font-mono">{dataset.fileName ?? '暂无核实数据'} ({dataset.format ?? '暂无核实数据'})</span>
       </div>
       <div class="meta-item">
         <span class="meta-label">大小与耗时预估</span>
         <span class="meta-value">
-          {dataset.compressedBytes ? `${(dataset.compressedBytes / (1024 * 1024)).toFixed(1)} MB` : '约数兆至数百兆'} · {dataset.estimatedDuration ?? '极速秒级/分钟级'}
+          {dataset.compressedBytes ? `${(dataset.compressedBytes / (1024 * 1024)).toFixed(1)} MB` : '暂无核实数据'} · {dataset.estimatedDuration ?? '暂无核实数据'}
         </span>
       </div>
       <div class="meta-item">
         <span class="meta-label">推荐算力</span>
-        <span class="meta-value">{dataset.cpuRecommendation ?? '2~4 核心'} · {dataset.memoryRecommendation ?? '2~4 GB 内存'}</span>
+        <span class="meta-value">{dataset.cpuRecommendation && dataset.memoryRecommendation ? `${dataset.cpuRecommendation} · ${dataset.memoryRecommendation}` : (dataset.cpuRecommendation || dataset.memoryRecommendation || '暂无核实数据')}</span>
       </div>
       <div class="meta-item">
         <span class="meta-label">软件目标版本</span>
-        <span class="meta-value font-mono">{dataset.softwareVersion ?? '最新稳定版'}</span>
+        <span class="meta-value font-mono">{dataset.softwareVersion ?? '暂无核实数据'}</span>
       </div>
     </div>
 

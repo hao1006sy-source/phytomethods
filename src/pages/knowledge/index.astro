@@ -21,9 +21,12 @@ try {
 }
 
 const stats = graphData.stats;
+if (!stats || typeof stats.nodesCount !== 'number' || typeof stats.edgesCount !== 'number' || typeof stats.evidenceEntriesCount !== 'number') {
+  throw new Error(`知识图谱统计数据 (stats) 缺失或不完整，必须包含真实的 nodesCount, edgesCount, evidenceEntriesCount！`);
+}
 const totalNodes = stats.nodesCount;
 const totalEdges = stats.edgesCount;
-const totalEvidence = stats.evidenceEntriesCount || 798;
+const totalEvidence = stats.evidenceEntriesCount;
 const baseUrl = import.meta.env.BASE_URL;
 ---
 

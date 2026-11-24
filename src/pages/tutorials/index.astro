@@ -10,7 +10,7 @@ const labels={verified:'示例运行已验证',template:'命令模板已核对',
 const icons=['m01-genome-assembly','m02-genome-annotation','m03-pangenome-sv','m04-comparative-evolution','m05-population-genetics','m06-gwas-breeding','m07-epigenome-3d','m08-single-cell-spatial','m09-regulatory-ai'];
 const tasks=[{id:'construction',label:'基因组组装与注释',domains:['genome-assembly','genome-annotation']},{id:'evolution',label:'比较基因组与结构变异',domains:['comparative-genomics','pangenomics-structural-variation']},{id:'population',label:'群体遗传与 GWAS',domains:['population-genetics','gwas-breeding']},{id:'omics',label:'表观与单细胞分析',domains:['epigenomics-3d-genome','single-cell-spatial-omics']},{id:'regulation',label:'基因调控与网络分析',domains:['regulatory-genomics-ai']}];
 // Labels are audited against each tutorial body; absence means no asserted data source.
-const sources:Record<string,string>={'bismark-synthetic':'模拟数据','gwas-synthetic':'模拟数据','plink-synthetic':'模拟数据','scanpy-synthetic':'模拟数据','wgcna-synthetic':'模拟数据','syri-intro':'官方拟南芥测试数据','orthofinder-intro':'官方非植物示例','cafe5-intro':'官方非植物示例（模板）'};
+const sources:Record<string,string>={'bismark-synthetic':'模拟数据','gwas-synthetic':'模拟数据','plink-synthetic':'模拟数据','scanpy-synthetic':'模拟数据','wgcna-synthetic':'模拟数据','syri-intro':'官方拟南芥测试数据','orthofinder-intro':'官方非植物示例','cafe5-intro':'官方非植物示例'};
 const cards=entries.map(e=>{const method=methods.find(m=>m.id===e.data.method);const ds=method?.data.domainIds??[];const domain=domains.find(d=>d[1]===ds[0]);return {e,method,ds,domain,groups:tasks.filter(t=>t.domains.some(d=>ds.includes(d))).map(t=>t.id),icon:icons[domains.findIndex(d=>d===domain)]??icons[0]};});
 const linkedMethods=[...new Set(entries.map(e=>e.data.method))].map(id=>({id,name:methods.find(m=>m.id===id)?.data.name??id}));
 ---

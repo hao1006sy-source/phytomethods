@@ -94,15 +94,18 @@ async function runMethodsV4Tests() {
   const { server, url } = await startStaticServer();
   console.log(`[Test Server] 启动就绪: ${url}\n`);
 
+  const launchOptions = {
+    headless: true,
+    args: ['--no-sandbox']
+  };
   const executablePath = process.env.BROWSER_PATH || 
     process.env.EDGE_PATH || 
-    (fs.existsSync('C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe') ? 'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe' : undefined);
+    (process.platform === 'win32' && fs.existsSync('C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe') ? 'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe' : undefined);
+  if (executablePath) {
+    launchOptions.executablePath = executablePath;
+  }
 
-  const browser = await chromium.launch({
-    headless: true,
-    executablePath,
-    args: ['--no-sandbox']
-  });
+  const browser = await chromium.launch(launchOptions);
 
   const context = await browser.newContext();
   const page = await context.newPage();

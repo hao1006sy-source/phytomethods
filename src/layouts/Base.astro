@@ -41,6 +41,18 @@ const isCurrent = (href: string) => href ? path.startsWith(`${base}${href}`) : p
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
     <title>{title} | PhytoMethods</title>
+    <script is:inline>
+      (function() {
+        try {
+          var t = localStorage.getItem('pm-theme');
+          if (t === 'dark' || t === 'light') {
+            document.documentElement.setAttribute('data-theme', t);
+          } else {
+            document.documentElement.removeAttribute('data-theme');
+          }
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body class:list={['site-body', { 'home-body': home }]}>
     <header class:list={['site-header', { 'home-header': home }]}>
