@@ -24,4 +24,17 @@ const testDatasets=fs.readFileSync('src/data/tutorial-test-datasets.ts','utf8');
 assert.ok(testDatasets.includes('188 秒') && testDatasets.includes('828 秒'),'tutorial-test-datasets.ts must record actual verified 188s and 828s');
 assert.ok(!testDatasets.includes('1 分 18 秒'),'tutorial-test-datasets.ts must not contain unverified 1 分 18 秒');
 assert.ok(testDatasets.includes('CAFE5_BIN'),'tutorial-test-datasets.ts quickStartCommand must reference CAFE5_BIN');
-console.log(`CAFE5 evidence passed: ${manifest.files.length} hashes; 2 model runs; 12653 input / 10956 retained; 8 verified / 2 template`);
+
+// V2.1 动态数值联动与计算画像一致性断言
+const computeProfiles=fs.readFileSync('src/data/method-compute-profiles.ts','utf8');
+const baseModel = validation.models.find(m => m.model === 'base');
+assert.ok(baseModel, 'validation-results.json must contain base model');
+const inputStr = String(baseModel.inputFamilies);
+const inputLocale = baseModel.inputFamilies.toLocaleString('en-US');
+assert.ok(computeProfiles.includes(inputStr) || computeProfiles.includes(inputLocale), `method-compute-profiles.ts must record inputFamilies: ${baseModel.inputFamilies}`);
+const retainedStr = String(baseModel.retainedFamilies);
+const retainedLocale = baseModel.retainedFamilies.toLocaleString('en-US');
+assert.ok(computeProfiles.includes(retainedStr) || computeProfiles.includes(retainedLocale), `method-compute-profiles.ts must record retainedFamilies: ${baseModel.retainedFamilies}`);
+assert.ok(!computeProfiles.includes('13,879') && !computeProfiles.includes('13879'), 'method-compute-profiles.ts must not contain unverified 13,879');
+assert.ok(computeProfiles.includes('暂无峰值内存实测记录'), 'method-compute-profiles.ts cafe5 must explicitly note no empirical peak memory measured');
+console.log(`CAFE5 evidence passed: ${manifest.files.length} hashes; 2 model runs; ${baseModel.inputFamilies} input / ${baseModel.retainedFamilies} retained; 8 verified / 2 template; compute profiles matched`);

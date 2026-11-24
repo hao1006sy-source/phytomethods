@@ -2,7 +2,7 @@
   "version": "2.1.0",
   "description": "PhytoMethods Scientific Knowledge Graph Schema V2.1 with Evidence & Integrity",
   "stats": {
-    "nodesCount": 304,
+    "nodesCount": 305,
     "edgesCount": 743,
     "evidenceEntriesCount": 801,
     "nodesByType": {
@@ -11,7 +11,7 @@
       "paper_method": 70,
       "paper_application": 59,
       "paper_review": 1,
-      "species": 33,
+      "species": 34,
       "topic": 63,
       "tutorial": 10
     },
@@ -4234,6 +4234,15 @@
       "slug": "proteins",
       "meta": {
         "key": "proteins"
+      }
+    },
+    {
+      "id": "species:pseudoalignment",
+      "type": "species",
+      "label": "转录本伪比对",
+      "slug": "pseudoalignment",
+      "meta": {
+        "key": "pseudoalignment"
       }
     },
     {

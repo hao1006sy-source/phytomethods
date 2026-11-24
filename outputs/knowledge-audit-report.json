@@ -1,9 +1,9 @@
 {
   "version": "2.1.0",
-  "generatedAt": "2026-11-24T11:44:56.395Z",
+  "generatedAt": "2026-11-24T12:13:51.807Z",
   "integrityPassed": true,
   "stats": {
-    "nodesCount": 304,
+    "nodesCount": 305,
     "edgesCount": 743,
     "evidenceEntriesCount": 801,
     "nodesByType": {
@@ -12,7 +12,7 @@
       "paper_method": 70,
       "paper_application": 59,
       "paper_review": 1,
-      "species": 33,
+      "species": 34,
       "topic": 63,
       "tutorial": 10
     },

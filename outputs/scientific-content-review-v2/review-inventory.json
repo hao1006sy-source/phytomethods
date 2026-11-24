@@ -1,6 +1,6 @@
 {
   "summary": {
-    "reviewVersion": "Scientific Content Review V2",
+    "reviewVersion": "Scientific Content Review V2 & V2.1",
     "reviewedAt": "2026-11-24",
     "scopeCounts": {
       "topics": 63,
@@ -10,11 +10,16 @@
       "computeProfiles": 12,
       "workflows": 3,
       "genomeSpecies": 10,
-      "inventoryTotal": 287
+      "taxonomyAudited": 59,
+      "taxonomyCorrected": 3,
+      "computeDisputesCorrected": 2,
+      "workflowThresholdsAudited": 3,
+      "crossPageChecks": 4,
+      "inventoryTotal": 292
     },
     "evidenceIntegrity": {
       "totalGraphEdges": 743,
-      "totalGraphNodes": 304,
+      "totalGraphNodes": 305,
       "totalEvidenceRecords": 801,
       "sourceCheckedRecords": 600,
       "structurallyValidRecords": 201,
@@ -23,12 +28,24 @@
     "tutorialVerification": {
       "verifiedCount": 8,
       "templateCount": 2,
-      "cafe5PathFix": "CONFIRMED_UNIFIED"
+      "cafe5PathFix": "CONFIRMED_UNIFIED",
+      "cafe5DiscrepancyResolved": "CONFIRMED_12653_INPUT_FAMILIES_AND_UNCERTIFIED_RAM"
     },
     "searchAndInteraction": {
       "searchPureTextResult": "CONFIRMED_ZERO_THUMBS",
       "searchCountScopeSplit": "CONFIRMED_DISTINGUISHED",
       "paperFiltersHistoryRestore": "CONFIRMED_DEBOUNCED_AND_RESTORED"
+    },
+    "scientificRefinementsV21": {
+      "dnngpCorrected": "deep-learning-genomic-prediction",
+      "rrblupCorrected": "ridge-regression-blup",
+      "scKbCopilotCorrected": "pseudoalignment, barcode-filtering",
+      "orthofinderSpeedupCleaned": "heuristic clustering and normalized distance",
+      "workflowsStandardsIntegrated": [
+        "EBP/VGP Q40",
+        "Bonferroni Manhattan Formula",
+        "Sample-specific DEG Note"
+      ]
     },
     "overallConclusion": "ALL_PASS"
   },
@@ -1872,7 +1889,7 @@
       "id": "hifiasm",
       "title": "Hifiasm",
       "status": "AUDITED_PASS",
-      "note": "植物高杂合全基因组组装 (玉米 B73, ~2.3 Gb, 30x PacBio HiFi reads)"
+      "note": "植物高杂合全基因组组装 (玉米 B73 等中大型植物参考组装，~2.3 Gb，30x PacBio HiFi reads)"
     },
     {
       "category": "compute_profile",
@@ -1893,7 +1910,7 @@
       "id": "cafe5",
       "title": "CAFE 5",
       "status": "AUDITED_PASS",
-      "note": "基因家族收缩与扩张演化分析 (官方 12 物种基准，Base 单 λ 模型与 Gamma 离散模型)"
+      "note": "基因家族收缩与扩张演化分析 (官方 12 物种基准，12,653 原始家族，Base 单 λ 与 2 类别 Gamma 离散模型)"
     },
     {
       "category": "compute_profile",
@@ -2031,6 +2048,41 @@
       "id": "poplar",
       "status": "AUDITED",
       "note": ""
+    },
+    {
+      "category": "taxonomy_correction",
+      "id": "dnngp",
+      "title": "DNNGP",
+      "status": "CORRECTED_PASS",
+      "note": "DNNGP采用深度神经网络学习复杂非线性标记-表型关系，非经典GWAS混合线性模型"
+    },
+    {
+      "category": "taxonomy_correction",
+      "id": "rrblup",
+      "title": "rrBLUP",
+      "status": "CORRECTED_PASS",
+      "note": "基于岭回归最佳线性无偏预测(rrBLUP)，属于基因组选择(GS)/预测(GP)，非GWAS单标记关联分析"
+    },
+    {
+      "category": "taxonomy_correction",
+      "id": "sc-kb-copilot",
+      "title": "scKB 与 COPILOT",
+      "status": "CORRECTED_PASS",
+      "note": "两阶段单细胞转录组分析流水线：scKB负责kallisto/bustools伪比对，COPILOT负责条形码过滤与质控"
+    },
+    {
+      "category": "compute_correction",
+      "id": "cafe5",
+      "title": "CAFE 5",
+      "status": "CORRECTED_CONFIRMED",
+      "note": "更正为真实输入12,653家族(保留10,956); 内存修正为实事求是「暂无峰值内存实测记录 (推荐配置 ≥ 4 GB RAM)」"
+    },
+    {
+      "category": "compute_correction",
+      "id": "orthofinder",
+      "title": "OrthoFinder",
+      "status": "CORRECTED_CONFIRMED",
+      "note": "清理未经验证的加速百分比声明，规范为基于BLAST启发式聚类与规范化距离的严谨算法描述"
     }
   ]
 }

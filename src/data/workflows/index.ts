@@ -69,9 +69,9 @@ export const researchWorkflows: ResearchWorkflow[] = [
         inputData: ['Primary Contig FASTA', '原始高精度测序 reads (HiFi 或 Illumina Short reads)'],
         outputData: ['QV 质量报告 (Phred 分数)', 'k-mer 拷贝数频谱图 (Spectra-cn plot)', 'BUSCO 统计报告'],
         qualityCheckpoints: [
-          'QV 预期达到 Q40 以上（99.99% 碱基正确率）',
-          'k-mer 谱图应显示单拷贝与二拷贝峰完全对应单倍型，无明显人工嵌合或杂合未分相双峰',
-          'BUSCO (Embryophyta / Poales 等谱系) 完整度应 > 97%'
+          '碱基准确度：依据 Earth BioGenome Project (EBP) / VGP 参考标准，推荐评估 QV ≥ Q40（对应 99.99% 单碱基精度，以无偏 k-mer 谱测量为准）',
+          '单倍型分离度：k-mer 拷贝数谱 (Spectra-cn) 需明确展现单倍型纯合与杂合双峰，无未分相塌陷或嵌合',
+          '基因空间完整性：经验性评估中 BUSCO (选取 Embryophyta 等对应谱系) 完整度通常应 > 95%~97%，多倍体需结合亚基因组拷贝数解释重复率'
         ],
         estimatedDuration: '约 1~4 小时'
       },
@@ -92,8 +92,8 @@ export const researchWorkflows: ResearchWorkflow[] = [
         inputData: ['高质量 Primary Contig FASTA', 'Hi-C 比对与过滤后 BAM 文件 (已去重)'],
         outputData: ['染色体水平 Scaffolds (chr*.fasta)', 'Juicebox / HiC-Pro 交互热图 (.hic / .assembly)'],
         qualityCheckpoints: [
-          '全基因组 Hi-C 热图沿对角线呈清晰强连续带，无跨染色体异常大范围异位互作',
-          '挂载到染色体的序列长度占总基因组比率通常应 > 95%'
+          '染色体连续性：全基因组 Hi-C 热图沿对角线呈清晰强连续带，无跨染色体异常大范围异位互作',
+          '染色体挂载率：EBP 建议挂载至拟染色体序列占比通常应达到 90%~95% 以上，端粒/着丝粒超长重复缺失需视数据支撑度评估'
         ],
         estimatedDuration: '约 2~8 小时'
       },
@@ -202,7 +202,7 @@ export const researchWorkflows: ResearchWorkflow[] = [
         inputData: ['参考基因组 FASTA (含索引)', '全样本 Illumina 双端测序 FASTQ (推荐平均覆盖度 5x~15x)'],
         outputData: ['群体原始多样本 VCF (raw.vcf.gz)', '比对 BAM 文件及覆盖深度统计'],
         qualityCheckpoints: [
-          '平均比对率 > 95%，基因组覆盖率 > 90%',
+          '比对率与覆盖度：同质近交系重测序经验上推荐 mapping rate > 90%~95%，全基因组覆盖率 > 90%（分化较大或富含转座子/PAV 的材料应结合局部结构变异解释实际覆盖）',
           '重复序列标记比例正常（避免 PCR 过度扩增）'
         ],
         estimatedDuration: '根据样本量，数百样本通常需 1~3 天'
@@ -275,8 +275,8 @@ export const researchWorkflows: ResearchWorkflow[] = [
         inputData: ['多年多点农艺表型矩阵 (含最佳线性无偏预测值 BLUP)', '高质量 SNP 基因型矩阵', 'Q 矩阵或 PCA 协变量', 'Kinship 矩阵'],
         outputData: ['GWAS 显著性结果表 (包含 SNP 物理位置、P-value、效应值 Effect)', '曼哈顿图 (Manhattan Plot)', '分位数-分位数图 (QQ Plot)'],
         qualityCheckpoints: [
-          'QQ 图在期望直线 (y=x) 上紧密拟合，且尾部显著位点翘起，表明假阳性与通货膨胀系数 (λ) 得到良好控制 (0.95 ≤ λ ≤ 1.10)',
-          '显著性阈值通常采用 Bonferroni 矫正 (-log10 P > 6~7) 或 FDR 阈值'
+          '分位数图拟合：QQ 图在期望中性线 (y=x) 上紧密拟合且尾部关联信号翘起，基因组通货膨胀因子应良好受控 (通常 0.95 ≤ λGC ≤ 1.05)',
+          '显著性阈值推导：严禁使用机械固定经验值；严格 Bonferroni 阈值取决于目标家族错误率 α 与实际独立检验数 M ($P_{\\mathrm{threshold}} = \\alpha / M$，曼哈顿图阈线为 $-\\log_{10}(\\alpha / M)$)，高密度标记群常利用 LD 剪枝估计有效标记数 $M_{\\mathrm{eff}}$ 或采用 Benjamini-Hochberg FDR 控制'
         ],
         tutorialId: 'gwas-synthetic',
         estimatedDuration: '约 30 分钟 ~ 3 小时'
@@ -370,7 +370,7 @@ export const researchWorkflows: ResearchWorkflow[] = [
         inputData: ['DESeqDataSet 对象 (含负二项分布离散度估计)'],
         outputData: ['差异表达结果统计表 (包含 baseMean, log2FoldChange, lfcSE, stat, pvalue, padj)', '差异基因火山图 (Volcano Plot)', '显著上调与下调基因清单'],
         qualityCheckpoints: [
-          '采用 Benjamini-Hochberg 矫正后 padj < 0.05 且 |log2FC| ≥ 1.0 作为严格阈值',
+          '筛选阈值科学界定：明确区分多重检验校正后统计显著性 (Benjamini-Hochberg FDR padj < 0.05) 与生物学效应幅度 (如 |log2FC| ≥ 1.0 即 2 倍表达差异)；该组合为特定分析示例设定，实际研究应依据组织异质性与生物学背景科学划定，非绝对强制标准',
           '检查离散度拟合曲线（Dispersion plot）是否呈平滑收缩，无异常离群点'
         ],
         estimatedDuration: '约 10~30 分钟'
