@@ -50,6 +50,32 @@
         "https://hao1006sy-source.github.io/phytomethods/methods/braker3/",
         "https://hao1006sy-source.github.io/phytomethods/methods/interproscan/"
       ]
+    },
+    {
+      "milestone": "M03",
+      "domainId": "pangenomics-structural-variation",
+      "prNumber": 55,
+      "prTitle": "docs(v2.3): M03 泛基因组与结构变异科研知识深度建设",
+      "mergeCommit": "aece25d",
+      "mergedAt": "2026-11-24T17:21:52Z",
+      "githubPagesRunId": 45447742843,
+      "deployedAt": "2026-11-24T17:22:50Z",
+      "deploymentStatus": "SUCCESS",
+      "liveUrl": "https://hao1006sy-source.github.io/phytomethods/topics/pangenomics-structural-variation/",
+      "verifiedPages": [
+        "https://hao1006sy-source.github.io/phytomethods/topics/pangenomics-structural-variation/m03-topic-01/",
+        "https://hao1006sy-source.github.io/phytomethods/topics/pangenomics-structural-variation/m03-topic-02/",
+        "https://hao1006sy-source.github.io/phytomethods/topics/pangenomics-structural-variation/m03-topic-03/",
+        "https://hao1006sy-source.github.io/phytomethods/topics/pangenomics-structural-variation/m03-topic-04/",
+        "https://hao1006sy-source.github.io/phytomethods/topics/pangenomics-structural-variation/m03-topic-05/",
+        "https://hao1006sy-source.github.io/phytomethods/topics/pangenomics-structural-variation/m03-topic-06/",
+        "https://hao1006sy-source.github.io/phytomethods/topics/pangenomics-structural-variation/m03-topic-07/",
+        "https://hao1006sy-source.github.io/phytomethods/methods/syri/",
+        "https://hao1006sy-source.github.io/phytomethods/methods/minigraph-cactus/",
+        "https://hao1006sy-source.github.io/phytomethods/methods/cutesv/",
+        "https://hao1006sy-source.github.io/phytomethods/methods/odgi/",
+        "https://hao1006sy-source.github.io/phytomethods/methods/anchorwave/"
+      ]
     }
   ]
 }

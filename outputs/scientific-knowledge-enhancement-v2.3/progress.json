@@ -2,7 +2,7 @@
   "version": "2.3.0",
   "project": "PhytoMethods Scientific Knowledge Enhancement & Continuous Delivery",
   "startedAt": "2026-11-25T00:20:00+08:00",
-  "currentMilestone": "M03",
+  "currentMilestone": "M04",
   "milestones": {
     "M01": {
       "name": "测序与基因组组装",
@@ -26,16 +26,16 @@
       "name": "泛基因组与结构变异",
       "domainId": "pangenomics-structural-variation",
       "branch": "docs/v2.3-m03-pangenomics",
-      "status": "in_progress",
-      "prNumber": null,
-      "deployedUrl": null,
-      "completedAt": null
+      "status": "completed",
+      "prNumber": 55,
+      "deployedUrl": "https://hao1006sy-source.github.io/phytomethods/topics/pangenomics-structural-variation/",
+      "completedAt": "2026-11-25T01:22:50+08:00"
     },
     "M04": {
       "name": "比较基因组学与演化",
       "domainId": "comparative-genomics",
       "branch": "docs/v2.3-m04-comparative-genomics",
-      "status": "pending",
+      "status": "in_progress",
       "prNumber": null,
       "deployedUrl": null,
       "completedAt": null
