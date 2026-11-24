@@ -18,8 +18,19 @@ const popularKeywords = ['Hifiasm', 'GWAS', '泛基因组', '转座子', '单细
         <button id="search-submit" type="button">搜索</button>
       </div>
 
-      <!-- 热门同义词与快速标签 -->
-      <div class="search-suggestions">
+      <!-- 资源类型筛选胶囊栏 (纯文字设计 V2) -->
+      <div class="search-filter-pills" id="search-filter-pills" style="display:none;" data-pagefind-ignore>
+        <button type="button" class="filter-pill active" data-type="all">全部</button>
+        <button type="button" class="filter-pill" data-type="domain">研究领域</button>
+        <button type="button" class="filter-pill" data-type="topic">专题</button>
+        <button type="button" class="filter-pill" data-type="method">方法与工具</button>
+        <button type="button" class="filter-pill" data-type="paper">文献</button>
+        <button type="button" class="filter-pill" data-type="tutorial">教程</button>
+        <button type="button" class="filter-pill" data-type="workflow">路线图</button>
+      </div>
+
+      <!-- 热门同义词与快速标签 (未搜索时显示) -->
+      <div class="search-suggestions" id="search-suggestions">
         <span class="suggestions-label">快速检索：</span>
         {popularKeywords.map(q => (
           <a href={`${base}search/?q=${encodeURIComponent(q)}`} class="suggestion-pill">{q}</a>
@@ -72,21 +83,238 @@ const popularKeywords = ['Hifiasm', 'GWAS', '泛基因组', '转座子', '单细
     script.src = base + 'pagefind-search/pagefind-ui.js';
     
     script.onload = () => {
-      // 初始化 Pagefind UI
+      // 9 大研究领域中英文映射表
+      const domainMap = {
+        'genome-assembly': 'M01 基因组组装',
+        'genome-annotation': 'M02 基因组结构与功能注释',
+        'pangenomics-structural-variation': 'M03 泛基因组与结构变异',
+        'comparative-genomics': 'M04 比较基因组学与演化',
+        'population-genetics': 'M05 群体遗传学基础与前沿',
+        'gwas-breeding': 'M06 全基因组关联分析与分子育种',
+        'epigenomics-3d-genome': 'M07 表观基因组与三维基因组学',
+        'single-cell-spatial-omics': 'M08 单细胞与空间组学技术',
+        'regulatory-genomics-ai': 'M09 基因调控网络与人工智能'
+      };
+
+      // 初始化 Pagefind UI (纯文字配置：严格移除图片与嵌套子标题)
       new PagefindUI({
         element: '#search',
-        showSubResults: true,
+        showImages: false,
+        showSubResults: false,
         baseUrl: base,
+        bundlePath: base + 'pagefind-search/',
         translations: {
-          placeholder: '搜索算法、专题、文献或中英文术语 (如 GWAS / 泛基因组)',
+          placeholder: '搜索算法、专题、文献或中英文术语 (如 泛基因组 / GWAS)',
           zero_results: '未找到匹配结果，建议尝试中英文缩写或放宽搜索词'
         }
       });
 
       const inputEl = document.querySelector('.pagefind-ui__search-input');
       const searchGuide = document.getElementById('search-guide');
+      const searchSuggestions = document.getElementById('search-suggestions');
+      const filterPillsContainer = document.getElementById('search-filter-pills');
       const synonymHint = document.getElementById('synonym-hint');
       const synonymTerms = document.getElementById('synonym-terms');
+
+      let currentActiveFilter = 'all';
+
+      // 资源类型与路径面包屑智能推断函数
+      function getResourceInfo(url, title) {
+        let type = 'other';
+        let category = '其他资源';
+        let breadcrumb = '';
+
+        const cleanUrl = url.replace(base, '').replace(/^\//, '');
+
+        if (cleanUrl.startsWith('topics/')) {
+          const parts = cleanUrl.split('/').filter(Boolean);
+          if (parts.length === 1) {
+            type = 'domain';
+            category = '研究领域';
+            breadcrumb = '研究领域 / 领域概览';
+          } else if (parts.length === 2) {
+            type = 'domain';
+            category = '研究领域';
+            const dName = domainMap[parts[1]] || parts[1];
+            breadcrumb = `研究领域 / ${dName}`;
+          } else {
+            type = 'topic';
+            category = '专题';
+            const dName = domainMap[parts[1]] || parts[1];
+            breadcrumb = `专题 / ${dName} / ${title}`;
+          }
+        } else if (cleanUrl.startsWith('methods/')) {
+          type = 'method';
+          category = '方法与工具';
+          const parts = cleanUrl.split('/').filter(Boolean);
+          if (parts.length > 1) {
+            breadcrumb = `方法与工具 / ${title}`;
+          } else {
+            breadcrumb = '方法与工具 / 算法与工具学术目录';
+          }
+        } else if (cleanUrl.startsWith('tutorials/')) {
+          type = 'tutorial';
+          category = '教程';
+          const parts = cleanUrl.split('/').filter(Boolean);
+          if (parts.length > 1) {
+            breadcrumb = `教程 / ${title}`;
+          } else {
+            breadcrumb = '教程 / 实战分析教程';
+          }
+        } else if (cleanUrl.startsWith('workflows/')) {
+          type = 'workflow';
+          category = '路线图';
+          breadcrumb = '路线图 / 端到端科研工作流';
+        } else if (cleanUrl.startsWith('papers/')) {
+          type = 'paper';
+          category = '文献';
+          breadcrumb = `文献 / ${title}`;
+        } else if (cleanUrl.startsWith('genomes/')) {
+          type = 'genome';
+          category = '基因组资源';
+          breadcrumb = `基因组资源 / ${title}`;
+        } else if (cleanUrl.startsWith('about/')) {
+          type = 'other';
+          category = '关于';
+          breadcrumb = '关于 / 关于 PhytoMethods';
+        } else {
+          type = 'other';
+          category = '页面';
+          breadcrumb = `页面 / ${title}`;
+        }
+
+        return { type, category, breadcrumb };
+      }
+
+      let isEnhancing = false;
+
+      // 纯文字高密度搜索结果 DOM 结构增强与美化
+      function enhanceResultsDOM() {
+        if (isEnhancing) return;
+        isEnhancing = true;
+
+        try {
+          const resultsArea = document.querySelector('.pagefind-ui__results');
+          const messageEl = document.querySelector('.pagefind-ui__message');
+          const query = inputEl ? inputEl.value.trim() : '';
+
+          if (!resultsArea) {
+            if (filterPillsContainer) filterPillsContainer.style.display = 'none';
+            return;
+          }
+
+          const resultItems = resultsArea.querySelectorAll('.pagefind-ui__result');
+          if (resultItems.length === 0) {
+            if (filterPillsContainer) filterPillsContainer.style.display = 'none';
+            return;
+          }
+
+          // 展示资源类型筛选胶囊栏
+          if (filterPillsContainer) filterPillsContainer.style.display = 'flex';
+
+          let visibleCount = 0;
+
+          resultItems.forEach((item) => {
+            // 彻底移除任何图片或占位节点
+            const thumbs = item.querySelectorAll('.pagefind-ui__result-thumb');
+            thumbs.forEach((t) => t.remove());
+
+            // 若尚未增强，进行单次结构包装
+            if (!item.classList.contains('enhanced-v2')) {
+              item.classList.add('enhanced-v2');
+
+              const linkEl = item.querySelector('.pagefind-ui__result-link');
+              const titleEl = item.querySelector('.pagefind-ui__result-title');
+              const innerEl = item.querySelector('.pagefind-ui__result-inner');
+
+              if (linkEl && innerEl) {
+                const url = linkEl.getAttribute('href') || '';
+                const title = linkEl.textContent?.trim() || '';
+                const info = getResourceInfo(url, title);
+                item.setAttribute('data-resource-type', info.type);
+
+                // 注入面包屑元数据行
+                if (!item.querySelector('.result-meta-breadcrumbs')) {
+                  const breadcrumbEl = document.createElement('div');
+                  breadcrumbEl.className = 'result-meta-breadcrumbs';
+                  breadcrumbEl.textContent = info.breadcrumb;
+                  if (titleEl && titleEl.nextSibling) {
+                    innerEl.insertBefore(breadcrumbEl, titleEl.nextSibling);
+                  } else {
+                    innerEl.appendChild(breadcrumbEl);
+                  }
+                }
+
+                // 注入右侧查看详情入口
+                if (!item.querySelector('.result-details-link') && titleEl) {
+                  const detailBtn = document.createElement('a');
+                  detailBtn.className = 'result-details-link';
+                  detailBtn.href = url;
+                  detailBtn.innerHTML = '查看详情 &rarr;';
+                  detailBtn.setAttribute('aria-label', `查看 ${title} 详情`);
+
+                  const headerRow = document.createElement('div');
+                  headerRow.className = 'result-header-row';
+                  titleEl.parentNode.insertBefore(headerRow, titleEl);
+                  headerRow.appendChild(titleEl);
+                  headerRow.appendChild(detailBtn);
+                }
+              }
+            }
+
+            // 根据当前筛选状态控制显示
+            const matchFilter = (currentActiveFilter === 'all' || item.getAttribute('data-resource-type') === currentActiveFilter);
+            if (matchFilter) {
+              item.style.display = 'block';
+              visibleCount++;
+            } else {
+              item.style.display = 'none';
+            }
+          });
+
+          // 格式化顶部结果数量显示 (与设计图一致)
+          if (messageEl && query) {
+            const formatted = `找到 <strong>${visibleCount}</strong> 个与 “<strong>${query}</strong>” 相关的结果`;
+            if (messageEl.innerHTML !== formatted) {
+              messageEl.innerHTML = formatted;
+            }
+          }
+        } finally {
+          setTimeout(() => {
+            isEnhancing = false;
+          }, 60);
+        }
+      }
+
+      // 筛选胶囊点击切换逻辑
+      filterPillsContainer?.addEventListener('click', (e) => {
+        const target = e.target;
+        if (target && target.classList.contains('filter-pill')) {
+          const type = target.getAttribute('data-type');
+          if (!type) return;
+
+          filterPillsContainer.querySelectorAll('.filter-pill').forEach((btn) => btn.classList.remove('active'));
+          target.classList.add('active');
+          currentActiveFilter = type;
+
+          enhanceResultsDOM();
+        }
+      });
+
+      // 监听 Pagefind 结果区域 DOM 变动 (节流防抖处理，防止 DOM 增强死循环)
+      let observerTimeout = null;
+      const observer = new MutationObserver(() => {
+        if (isEnhancing) return;
+        if (observerTimeout) clearTimeout(observerTimeout);
+        observerTimeout = setTimeout(() => {
+          enhanceResultsDOM();
+        }, 50);
+      });
+
+      const searchContainer = document.getElementById('search');
+      if (searchContainer) {
+        observer.observe(searchContainer, { childList: true, subtree: true });
+      }
 
       // 同义词查询匹配函数
       function checkSynonyms(query) {
@@ -105,17 +333,31 @@ const popularKeywords = ['Hifiasm', 'GWAS', '泛基因组', '转座子', '单细
         if (matched) {
           synonymHint.style.display = 'flex';
           synonymTerms.innerHTML = matched.terms
-            .map(t => `<a href="${base}search/?q=${encodeURIComponent(t)}" class="synonym-link">${t}</a>`)
+            .map(t => `<a href="${base}search/?q=${encodeURIComponent(t)}" data-term="${t}" class="synonym-link">${t}</a>`)
             .join(' · ');
         } else {
           synonymHint.style.display = 'none';
         }
       }
 
+      // 点击同义词免刷新直接填入搜索框并触发实时检索
+      synonymTerms?.addEventListener('click', (e) => {
+        const target = e.target;
+        if (target && target.tagName === 'A') {
+          e.preventDefault();
+          const term = target.getAttribute('data-term') || target.textContent;
+          if (term && inputEl) {
+            inputEl.value = term;
+            inputEl.dispatchEvent(new Event('input', { bubbles: true }));
+          }
+        }
+      });
+
       // 输入联动与 URL 同步
       inputEl?.addEventListener('input', () => {
         const val = inputEl.value.trim();
         if (searchGuide) searchGuide.hidden = !!val;
+        if (searchSuggestions) searchSuggestions.style.display = val ? 'none' : 'flex';
         checkSynonyms(val);
 
         const url = new URL(location.href);
@@ -142,60 +384,183 @@ const popularKeywords = ['Hifiasm', 'GWAS', '泛基因组', '转座子', '单细
 </Base>
 
 <style>
+/* ========================================================
+   全站搜索 V2 纯文字学术高密度样式规范
+   ======================================================== */
 .search-page-wrap {
   max-width: 960px;
   margin: 0 auto;
+  padding-bottom: 3.5rem;
 }
+
+/* 核心输入区排版 */
+.nav-search-hero {
+  margin-top: 1.5rem;
+}
+
+.search-entry {
+  display: flex;
+  align-items: stretch;
+  gap: 0.5rem;
+}
+
+#search {
+  flex: 1;
+}
+
+#search-submit {
+  background: var(--color-primary, #166534);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 0 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+#search-submit:hover {
+  background: #14532d;
+}
+
+/* 资源类型筛选胶囊栏 */
+.search-filter-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.15rem;
+  padding-bottom: 0.25rem;
+}
+
+.filter-pill {
+  padding: 0.35rem 0.9rem;
+  background: var(--color-surface, #ffffff);
+  border: 1px solid var(--color-border, #cbd5e1);
+  border-radius: 9999px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--color-text-muted, #475569);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.filter-pill:hover {
+  border-color: #15803d;
+  color: #15803d;
+}
+
+.filter-pill.active {
+  background: #166534;
+  border-color: #166534;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+:global(.dark) .filter-pill {
+  background: #1e293b;
+  border-color: #334155;
+  color: #cbd5e1;
+}
+
+:global(.dark) .filter-pill:hover {
+  border-color: #4ade80;
+  color: #4ade80;
+}
+
+:global(.dark) .filter-pill.active {
+  background: #15803d;
+  border-color: #15803d;
+  color: #ffffff;
+}
+
+/* 同义词与快速建议模块 */
+.search-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.suggestions-label {
+  font-size: 0.85rem;
+  color: var(--color-text-muted, #64748b);
+}
+
+.suggestion-pill {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background: var(--color-surface, #ffffff);
+  border: 1px solid var(--color-border, #cbded0);
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  text-decoration: none;
+  color: var(--color-text-main, #224233);
+  transition: all 0.15s ease;
+}
+
+.suggestion-pill:hover {
+  background: #eaf4ed;
+  border-color: #0e6548;
+}
+
 .synonym-hint-box {
-  margin-top: 14px;
-  padding: 8px 14px;
-  background: var(--teal-soft, #eef7f2);
-  border: 1px dashed var(--teal-border, #cbded0);
+  margin-top: 0.85rem;
+  padding: 0.5rem 0.9rem;
+  background: #eef7f2;
+  border: 1px dashed #cbded0;
   border-radius: 6px;
-  font-size: 13px;
+  font-size: 0.85rem;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 0.5rem;
 }
+
+:global(.dark) .synonym-hint-box {
+  background: #064e3b33;
+  border-color: #064e3b88;
+}
+
 .hint-title {
-  color: var(--teal, #0e6548);
+  color: #0e6548;
   font-weight: 600;
 }
+
+:global(.dark) .hint-title {
+  color: #4ade80;
+}
+
 .hint-terms :global(.synonym-link) {
-  color: var(--text, #1e4533);
+  color: #1e4533;
   text-decoration: underline;
   text-underline-offset: 3px;
+  cursor: pointer;
 }
+
+:global(.dark) .hint-terms :global(.synonym-link) {
+  color: #a7f3d0;
+}
+
 .hint-terms :global(.synonym-link:hover) {
-  color: var(--teal, #0e6548);
+  color: #0e6548;
 }
-.suggestion-pill {
-  display: inline-block;
-  padding: 3px 10px;
-  background: var(--bg-card, #ffffff);
-  border: 1px solid var(--border, #cbded0);
-  border-radius: 14px;
-  font-size: 12px;
-  text-decoration: none;
-  color: var(--text, #224233);
-  transition: all 0.15s ease;
-}
-.suggestion-pill:hover {
-  background: var(--teal-soft, #eaf4ed);
-  border-color: var(--teal, #0e6548);
-}
+
+/* 推荐导航卡片 */
 .search-shortcuts {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 16px;
   margin-top: 16px;
 }
+
 .search-shortcuts > a {
-  border: 1px solid var(--border);
+  border: 1px solid var(--color-border, #e2e8f0);
   padding: 20px;
   border-radius: 10px;
-  background: var(--bg-card, #ffffff);
+  background: var(--color-surface, #ffffff);
   text-decoration: none;
   display: flex;
   flex-direction: column;
@@ -203,31 +568,211 @@ const popularKeywords = ['Hifiasm', 'GWAS', '泛基因组', '转座子', '单细
   min-height: 140px;
   transition: all 0.15s ease;
 }
+
 .search-shortcuts > a:hover {
-  border-color: var(--teal);
+  border-color: #166534;
   transform: translateY(-2px);
-  box-shadow: var(--shadow);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
+
 .search-shortcuts h2 {
   font-size: 16px;
   font-weight: 700;
   margin: 0 0 6px;
-  color: var(--text-heading);
+  color: var(--color-text-main, #0f172a);
 }
+
 .search-shortcuts p {
   font-size: 13px;
-  color: var(--text-muted);
+  color: var(--color-text-muted, #64748b);
   line-height: 1.5;
   margin: 0 0 12px;
 }
+
 .search-shortcuts span {
   font-size: 12.5px;
   font-weight: 600;
-  color: var(--teal);
+  color: #166534;
 }
+
 @media(max-width: 600px) {
   .search-shortcuts {
     grid-template-columns: 1fr;
   }
+}
+
+/* ========================================================
+   Pagefind UI 纯文字高密度文献样式重写 (关键核心)
+   ======================================================== */
+
+/* 1. 结果统计栏 */
+:global(.pagefind-ui__message) {
+  font-size: 0.95rem !important;
+  font-weight: 500 !important;
+  color: var(--color-text-main, #1e293b) !important;
+  margin: 1.25rem 0 0.5rem !important;
+  padding: 0 !important;
+}
+
+:global(.pagefind-ui__message strong) {
+  font-weight: 700 !important;
+  color: var(--color-text-main, #0f172a) !important;
+}
+
+/* 2. 彻底移除所有图片与嵌套子标题 */
+:global(.pagefind-ui__result-thumb) {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+:global(.pagefind-ui__result-nested) {
+  display: none !important;
+}
+
+/* 3. 单条结果项：高密度纯文字列表结构 */
+:global(.pagefind-ui__result) {
+  border-bottom: 1px solid var(--color-border, #e2e8f0) !important;
+  border-top: none !important;
+  padding: 1.25rem 0 !important;
+  margin: 0 !important;
+  list-style: none !important;
+}
+
+:global(.pagefind-ui__result:first-child) {
+  border-top: 1px solid var(--color-border, #e2e8f0) !important;
+}
+
+:global(.pagefind-ui__result-inner) {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.35rem !important;
+}
+
+/* 4. 标题与操作按钮水平排版行 */
+:global(.result-header-row) {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: baseline !important;
+  gap: 1rem !important;
+}
+
+:global(.pagefind-ui__result-title) {
+  margin: 0 !important;
+  font-size: 1.15rem !important;
+  font-weight: 700 !important;
+  line-height: 1.4 !important;
+  flex: 1 !important;
+}
+
+:global(.pagefind-ui__result-link) {
+  color: var(--color-text-main, #0f172a) !important;
+  text-decoration: none !important;
+  transition: color 0.15s ease !important;
+}
+
+:global(.pagefind-ui__result-link:hover) {
+  color: #166534 !important;
+  text-decoration: underline !important;
+  text-underline-offset: 3px !important;
+}
+
+:global(.dark) .pagefind-ui__result-link {
+  color: #f8fafc !important;
+}
+
+:global(.dark) .pagefind-ui__result-link:hover {
+  color: #4ade80 !important;
+}
+
+/* 5. 详情入口按钮 (设计图右侧 "查看详情 →") */
+:global(.result-details-link) {
+  font-size: 0.88rem !important;
+  font-weight: 600 !important;
+  color: #15803d !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+  align-self: flex-start !important;
+  transition: all 0.15s ease !important;
+}
+
+:global(.result-details-link:hover) {
+  color: #166534 !important;
+  transform: translateX(2px) !important;
+}
+
+:global(.dark) .result-details-link {
+  color: #4ade80 !important;
+}
+
+/* 6. 资源分类与面包屑标签行 */
+:global(.result-meta-breadcrumbs) {
+  font-size: 0.82rem !important;
+  color: var(--color-text-muted, #64748b) !important;
+  line-height: 1.4 !important;
+  margin-bottom: 0.25rem !important;
+}
+
+:global(.dark) .result-meta-breadcrumbs {
+  color: #94a3b8 !important;
+}
+
+/* 7. 摘要控制在 2–3 行 */
+:global(.pagefind-ui__result-excerpt) {
+  font-size: 0.9rem !important;
+  color: var(--color-text-main, #334155) !important;
+  line-height: 1.6 !important;
+  margin: 0 !important;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 3 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+}
+
+:global(.dark) .pagefind-ui__result-excerpt {
+  color: #cbd5e1 !important;
+}
+
+/* 8. 浅绿色关键词高亮替代刺眼黄色 */
+:global(.pagefind-ui mark) {
+  background-color: #dcfce7 !important; /* 柔和浅绿背景 */
+  color: #14532d !important;           /* 鲜明深绿文字 */
+  padding: 0.1em 0.35em !important;
+  border-radius: 4px !important;
+  font-weight: 600 !important;
+}
+
+:global(.dark) .pagefind-ui mark {
+  background-color: #14532d66 !important;
+  color: #86efac !important;
+}
+
+/* 9. 加载更多按钮学术风格 */
+:global(.pagefind-ui__button) {
+  border-radius: 8px !important;
+  border: 1px solid var(--color-border, #cbd5e1) !important;
+  background: var(--color-surface, #ffffff) !important;
+  color: var(--color-text-main, #334155) !important;
+  font-weight: 600 !important;
+  padding: 0.65rem 1.25rem !important;
+  margin-top: 1.5rem !important;
+  transition: all 0.15s ease !important;
+}
+
+:global(.pagefind-ui__button:hover) {
+  background: #f8fafc !important;
+  border-color: #166534 !important;
+  color: #166534 !important;
+}
+
+:global(.dark) .pagefind-ui__button {
+  background: #1e293b !important;
+  border-color: #334155 !important;
+  color: #cbd5e1 !important;
 }
 </style>
