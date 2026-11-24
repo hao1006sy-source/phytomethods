@@ -1,3 +1,1214 @@
-.gh{--gh-ink:#104a36;--gh-muted:#65786e;--gh-line:#dfebe3;--gh-soft:#ecf7ef;color:var(--gh-ink);font-family:Inter,"Noto Sans SC",sans-serif;padding:12px 0 40px}.gh h1{font-size:clamp(30px,4vw,48px);margin:10px 0}.gh p{line-height:1.8}.gh .eyebrow{font-size:12px;letter-spacing:.15em;color:#0e6548}.gh-hero{background:var(--gh-soft);border:1px solid var(--gh-line);border-radius:14px;padding:28px 32px;margin-bottom:24px}.gh a{color:var(--gh-ink)}.gh button,.gh select,.gh input{font:inherit;padding:10px 13px;border:1px solid var(--gh-line);border-radius:8px;background:white;color:var(--gh-ink);max-width:100%}.gh button{cursor:pointer}.gh button.primary{background:#0e6548;color:white}.gh button:disabled{opacity:.5;cursor:default}.gh :focus-visible{outline:3px solid #31a57b;outline-offset:3px}.gh-controls{display:flex;flex-wrap:wrap;gap:12px;align-items:end;margin:20px 0}.gh-controls label{display:flex;flex-direction:column;gap:6px;font-size:13px}.gh-controls .search{flex:1;min-width:220px}.gh-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.gh-card{border:1px solid var(--gh-line);border-radius:12px;padding:22px;background:white;min-width:0}.gh-card h2{font-size:21px;margin:8px 0}.gh-card a{text-decoration:none}.gh-card:hover{border-color:#84b79d}.gh-muted{color:var(--gh-muted);font-size:13px}.gh-tags{display:flex;flex-wrap:wrap;gap:8px}.gh-tag{background:var(--gh-soft);border-radius:20px;padding:4px 10px;font-size:12px}.gh-meta{display:grid;grid-template-columns:150px minmax(0,1fr);gap:12px;font-size:14px}.gh-meta dt{color:var(--gh-muted)}.gh-meta dd{margin:0;overflow-wrap:anywhere}.gh-block{border:1px solid var(--gh-line);border-radius:12px;padding:24px;margin:20px 0}.gh-files{width:100%;border-collapse:collapse;font-size:14px}.gh-files th,.gh-files td{padding:14px 10px;text-align:left;border-bottom:1px solid var(--gh-line);overflow-wrap:anywhere}.gh-scroll{overflow:auto}.gh-actions{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}.gh-warning{background:#fff8e7;border-left:3px solid #b78c2d;padding:14px;line-height:1.7}.gh-status{padding:14px;background:var(--gh-soft);border-radius:8px;margin:14px 0}.gh-status[data-status=incompatible]{background:#ffefeb;color:#922c1c}.gh pre{background:#f4f8f5;padding:18px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere}.gh [hidden]{display:none!important}.gh-empty{padding:40px;text-align:center;border:1px dashed var(--gh-line)}@media(max-width:1050px){.gh-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:600px){.gh-grid{grid-template-columns:1fr}.gh-hero,.gh-block{padding:18px}.gh-meta{grid-template-columns:1fr;gap:5px}.gh-meta dd{margin-bottom:12px}.gh-controls>*{width:100%}.gh-files{min-width:560px}}@media(prefers-color-scheme:dark){.gh{--gh-ink:#d7f1e2;--gh-muted:#acc5b6;--gh-line:#355545;--gh-soft:#193b2b;background:#10271c}.gh-card,.gh input,.gh select,.gh button{background:#163222;color:var(--gh-ink)}.gh pre{background:#173025}.gh-warning{background:#3b331d}.gh-status[data-status=incompatible]{background:#4a261e;color:#ffcdc2}}
+/* ==========================================================================
+   PhytoMethods Plant Genome Hub V1.1 / V2 Design System
+   定位：简洁、现代、专业、紧凑、清晰的植物基因组科研资源数据库
+   ========================================================================== */
 
-.gh h1,.gh h2,.gh h3{color:var(--gh-ink)}.gh-files th{background:var(--gh-soft);color:var(--gh-ink)}@media(prefers-color-scheme:dark){.gh .eyebrow{color:#9cdbb8}}
+:root {
+  --gh-primary: #166534;
+  --gh-primary-hover: #14532d;
+  --gh-primary-light: #f0fdf4;
+  --gh-primary-border: #bbf7d0;
+  
+  --gh-bg: #ffffff;
+  --gh-surface: #ffffff;
+  --gh-surface-alt: #f8fafc;
+  --gh-surface-soft: #f1f5f9;
+  
+  --gh-border: #e2e8f0;
+  --gh-border-light: #cbd5e1;
+  --gh-border-subtle: #f1f5f9;
+  
+  --gh-text-main: #0f172a;
+  --gh-text-muted: #64748b;
+  --gh-text-soft: #94a3b8;
+  
+  --gh-status-confirmed-bg: #dcfce7;
+  --gh-status-confirmed-text: #14532d;
+  --gh-status-confirmed-border: #86efac;
+  
+  --gh-status-unverified-bg: #fef9c3;
+  --gh-status-unverified-text: #854d0e;
+  --gh-status-unverified-border: #fde047;
+  
+  --gh-status-incompatible-bg: #fee2e2;
+  --gh-status-incompatible-text: #991b1b;
+  --gh-status-incompatible-border: #fca5a5;
+  
+  --gh-font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+/* 全站深色模式适配 (联动 html[data-theme="dark"] 与系统深色) */
+[data-theme="dark"] .gh,
+.dark .gh {
+  --gh-primary: #22c55e;
+  --gh-primary-hover: #4ade80;
+  --gh-primary-light: #14532d33;
+  --gh-primary-border: #166534;
+  
+  --gh-bg: #0b131e;
+  --gh-surface: #1e293b;
+  --gh-surface-alt: #0f172a;
+  --gh-surface-soft: #162032;
+  
+  --gh-border: #334155;
+  --gh-border-light: #475569;
+  --gh-border-subtle: #1e293b;
+  
+  --gh-text-main: #f8fafc;
+  --gh-text-muted: #94a3b8;
+  --gh-text-soft: #64748b;
+  
+  --gh-status-confirmed-bg: #14532d55;
+  --gh-status-confirmed-text: #86efac;
+  --gh-status-confirmed-border: #15803d;
+  
+  --gh-status-unverified-bg: #713f1244;
+  --gh-status-unverified-text: #fef08a;
+  --gh-status-unverified-border: #a16207;
+  
+  --gh-status-incompatible-bg: #7f1d1d44;
+  --gh-status-incompatible-text: #fca5a5;
+  --gh-status-incompatible-border: #b91c1c;
+}
+
+/* 兼容当未显式选择 data-theme 时的原生系统深色 */
+@media (prefers-color-scheme: dark) {
+  :not([data-theme="light"]) .gh {
+    --gh-primary: #22c55e;
+    --gh-primary-hover: #4ade80;
+    --gh-primary-light: #14532d33;
+    --gh-primary-border: #166534;
+    
+    --gh-bg: #0b131e;
+    --gh-surface: #1e293b;
+    --gh-surface-alt: #0f172a;
+    --gh-surface-soft: #162032;
+    
+    --gh-border: #334155;
+    --gh-border-light: #475569;
+    --gh-border-subtle: #1e293b;
+    
+    --gh-text-main: #f8fafc;
+    --gh-text-muted: #94a3b8;
+    --gh-text-soft: #64748b;
+    
+    --gh-status-confirmed-bg: #14532d55;
+    --gh-status-confirmed-text: #86efac;
+    --gh-status-confirmed-border: #15803d;
+    
+    --gh-status-unverified-bg: #713f1244;
+    --gh-status-unverified-text: #fef08a;
+    --gh-status-unverified-border: #a16207;
+    
+    --gh-status-incompatible-bg: #7f1d1d44;
+    --gh-status-incompatible-text: #fca5a5;
+    --gh-status-incompatible-border: #b91c1c;
+  }
+}
+
+/* ==========================================================================
+   页面顶层容器与基础排版
+   ========================================================================== */
+.gh {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 1rem 4rem;
+  color: var(--gh-text-main);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans SC", sans-serif;
+  line-height: 1.6;
+}
+
+.gh * {
+  box-sizing: border-box;
+}
+
+.gh h1, .gh h2, .gh h3, .gh h4 {
+  color: var(--gh-text-main);
+  margin-top: 0;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.gh a {
+  color: var(--gh-primary);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.gh a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.gh :focus-visible {
+  outline: 2px solid var(--gh-primary);
+  outline-offset: 2px;
+}
+
+.gh [hidden] {
+  display: none !important;
+}
+
+.gh-mono {
+  font-family: var(--gh-font-mono);
+  font-size: 0.9em;
+}
+
+/* 面包屑导航 */
+.gh-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--gh-text-muted);
+  margin-bottom: 1rem;
+}
+
+.gh-breadcrumb a {
+  color: var(--gh-text-muted);
+}
+
+.gh-breadcrumb a:hover {
+  color: var(--gh-primary);
+}
+
+.gh-breadcrumb-sep {
+  color: var(--gh-text-soft);
+}
+
+/* ==========================================================================
+   Hero 紧凑学术标题与统计指标
+   ========================================================================== */
+.gh-hero-compact {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1.5rem;
+  padding: 1.5rem 0 1.25rem;
+  border-bottom: 1px solid var(--gh-border);
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.gh-hero-info {
+  flex: 1;
+  min-width: 280px;
+}
+
+.gh-overline {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gh-primary);
+  margin: 0 0 0.35rem 0;
+}
+
+.gh-hero-info h1 {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  margin: 0 0 0.5rem 0;
+  line-height: 1.25;
+}
+
+.gh-hero-lead {
+  font-size: 0.95rem;
+  color: var(--gh-text-muted);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.gh-hero-stats {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.gh-stat-card {
+  background: var(--gh-surface);
+  border: 1px solid var(--gh-border);
+  border-radius: 8px;
+  padding: 0.5rem 0.85rem;
+  display: flex;
+  flex-direction: column;
+  min-width: 100px;
+  text-align: left;
+}
+
+.gh-stat-num {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--gh-primary);
+  line-height: 1.2;
+}
+
+.gh-stat-label {
+  font-size: 0.75rem;
+  color: var(--gh-text-muted);
+  white-space: nowrap;
+}
+
+/* 顶部快速导航小条 */
+.gh-nav-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.gh-nav-links {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.88rem;
+}
+
+/* ==========================================================================
+   搜索输入与控制区
+   ========================================================================== */
+.gh-search-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.gh-search-input-wrap {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.gh-search-icon {
+  position: absolute;
+  left: 0.85rem;
+  width: 1.1rem;
+  height: 1.1rem;
+  color: var(--gh-text-muted);
+  pointer-events: none;
+}
+
+.gh-search-input {
+  width: 100%;
+  padding: 0.75rem 2.5rem 0.75rem 2.4rem;
+  font-size: 0.95rem;
+  border: 1px solid var(--gh-border);
+  border-radius: 8px;
+  background: var(--gh-surface);
+  color: var(--gh-text-main);
+  transition: all 0.15s ease;
+}
+
+.gh-search-input:focus {
+  border-color: var(--gh-primary);
+  box-shadow: 0 0 0 3px var(--gh-primary-light);
+}
+
+.gh-search-clear {
+  position: absolute;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  padding: 0.25rem;
+  color: var(--gh-text-muted);
+  cursor: pointer;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gh-search-clear:hover {
+  color: var(--gh-text-main);
+  background: var(--gh-surface-soft);
+}
+
+/* 移动端筛选切换按钮 */
+.gh-mobile-filter-btn {
+  display: none;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.75rem 1rem;
+  background: var(--gh-surface);
+  border: 1px solid var(--gh-border);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--gh-text-main);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+@media (max-width: 860px) {
+  .gh-mobile-filter-btn {
+    display: inline-flex;
+  }
+}
+
+/* 已选条件标签胶囊栏 */
+.gh-active-tags-wrap {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+  min-height: 28px;
+}
+
+.gh-active-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.2rem 0.6rem;
+  background: var(--gh-primary-light);
+  border: 1px solid var(--gh-primary-border);
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  color: var(--gh-primary);
+  font-weight: 500;
+}
+
+.gh-tag-remove {
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--gh-primary);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.gh-clear-all-btn {
+  background: none;
+  border: none;
+  font-size: 0.8rem;
+  color: var(--gh-text-muted);
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0.2rem 0.4rem;
+}
+
+.gh-clear-all-btn:hover {
+  color: var(--gh-primary);
+}
+
+/* ==========================================================================
+   两栏布局 (左侧筛选区 + 右侧主资源列表)
+   ========================================================================== */
+.gh-two-col {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  gap: 1.5rem;
+  align-items: start;
+}
+
+@media (max-width: 860px) {
+  .gh-two-col {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 左侧紧凑筛选栏 */
+.gh-filter-sidebar {
+  background: var(--gh-surface);
+  border: 1px solid var(--gh-border);
+  border-radius: 10px;
+  padding: 1.15rem;
+}
+
+@media (max-width: 860px) {
+  .gh-filter-sidebar {
+    display: none;
+    margin-bottom: 1.25rem;
+  }
+  .gh-filter-sidebar.is-open {
+    display: block;
+  }
+}
+
+.gh-filter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--gh-border-light);
+}
+
+.gh-filter-header h2 {
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.gh-filter-group {
+  margin-bottom: 1rem;
+}
+
+.gh-filter-label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--gh-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.35rem;
+}
+
+.gh-filter-select {
+  width: 100%;
+  padding: 0.45rem 0.65rem;
+  font-size: 0.85rem;
+  border: 1px solid var(--gh-border);
+  border-radius: 6px;
+  background: var(--gh-surface);
+  color: var(--gh-text-main);
+  cursor: pointer;
+}
+
+.gh-filter-checkboxes {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.gh-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.85rem;
+  color: var(--gh-text-main);
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   目录页高密度学术资源列表
+   ========================================================================== */
+.gh-results-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.88rem;
+  color: var(--gh-text-muted);
+  margin-bottom: 0.85rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid var(--gh-border);
+}
+
+.gh-results-count strong {
+  color: var(--gh-text-main);
+  font-weight: 700;
+}
+
+.gh-resource-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* 单个物种分组容器 */
+.gh-species-card {
+  background: var(--gh-surface);
+  border: 1px solid var(--gh-border);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.gh-species-card:hover {
+  border-color: var(--gh-primary);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+/* 物种主组装条目 (高密度三行结构) */
+.gh-assembly-entry {
+  padding: 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+/* 第一行：物种名、学名、品系、等级 */
+.gh-entry-row-1 {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.gh-name-group {
+  display: flex;
+  align-items: baseline;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+}
+
+.gh-species-name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--gh-text-main);
+  margin: 0;
+}
+
+.gh-species-name a {
+  color: var(--gh-text-main);
+}
+
+.gh-species-name a:hover {
+  color: var(--gh-primary);
+}
+
+.gh-scientific-name {
+  font-style: italic;
+  font-size: 0.9rem;
+  color: var(--gh-text-muted);
+}
+
+.gh-badges-group {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.gh-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.gh-badge-strain {
+  background: var(--gh-surface-soft);
+  color: var(--gh-text-muted);
+  border: 1px solid var(--gh-border);
+}
+
+.gh-badge-level {
+  background: var(--gh-primary-light);
+  color: var(--gh-primary);
+  border: 1px solid var(--gh-primary-border);
+}
+
+.gh-badge-source {
+  background: var(--gh-surface-alt);
+  color: var(--gh-text-muted);
+  border: 1px solid var(--gh-border);
+  text-transform: uppercase;
+}
+
+/* 第二行：Assembly 名称、Accession、注释版本 */
+.gh-entry-row-2 {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.88rem;
+  flex-wrap: wrap;
+  color: var(--gh-text-muted);
+}
+
+.gh-assembly-name {
+  font-weight: 600;
+  color: var(--gh-text-main);
+}
+
+.gh-accession-code {
+  font-family: var(--gh-font-mono);
+  background: var(--gh-surface-soft);
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+  color: var(--gh-text-main);
+  font-size: 0.82rem;
+}
+
+.gh-annotation-tag {
+  color: var(--gh-text-muted);
+}
+
+.gh-annotation-tag strong {
+  color: var(--gh-text-main);
+}
+
+/* 第三行：4 大状态徽章 + 右侧入口 */
+.gh-entry-row-3 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.25rem;
+  flex-wrap: wrap;
+}
+
+.gh-statuses-group {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.gh-file-status-pill {
+  font-size: 0.75rem;
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  border: 1px solid var(--gh-border);
+  background: var(--gh-surface-alt);
+  color: var(--gh-text-muted);
+}
+
+.gh-file-status-pill.is-direct {
+  background: var(--gh-status-confirmed-bg);
+  color: var(--gh-status-confirmed-text);
+  border-color: var(--gh-status-confirmed-border);
+  font-weight: 600;
+}
+
+.gh-file-status-pill.is-portal {
+  background: var(--gh-surface-soft);
+  color: var(--gh-text-muted);
+}
+
+.gh-compatibility-pill {
+  font-size: 0.75rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.gh-compatibility-pill.confirmed {
+  background: var(--gh-status-confirmed-bg);
+  color: var(--gh-status-confirmed-text);
+  border: 1px solid var(--gh-status-confirmed-border);
+}
+
+.gh-compatibility-pill.unverified {
+  background: var(--gh-status-unverified-bg);
+  color: var(--gh-status-unverified-text);
+  border: 1px solid var(--gh-status-unverified-border);
+}
+
+.gh-compatibility-pill.incompatible {
+  background: var(--gh-status-incompatible-bg);
+  color: var(--gh-status-incompatible-text);
+  border: 1px solid var(--gh-status-incompatible-border);
+}
+
+.gh-entry-action-link {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--gh-primary);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  white-space: nowrap;
+}
+
+.gh-entry-action-link:hover {
+  transform: translateX(2px);
+}
+
+/* 历史版本折叠容器 (如拟南芥 TAIR10/Araport11) */
+.gh-history-drawer {
+  border-top: 1px dashed var(--gh-border);
+  background: var(--gh-surface-alt);
+}
+
+.gh-history-toggle {
+  width: 100%;
+  padding: 0.5rem 1.25rem;
+  background: none;
+  border: none;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--gh-text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+}
+
+.gh-history-toggle:hover {
+  color: var(--gh-primary);
+}
+
+.gh-history-content {
+  padding: 0.5rem 1.25rem 1rem;
+  border-top: 1px solid var(--gh-border-light);
+}
+
+/* 空状态提示 */
+.gh-empty-notice {
+  padding: 3rem 1.5rem;
+  text-align: center;
+  background: var(--gh-surface);
+  border: 1px dashed var(--gh-border);
+  border-radius: 10px;
+  color: var(--gh-text-muted);
+}
+
+/* ==========================================================================
+   物种详情页 ([species].astro) 视觉架构
+   ========================================================================== */
+
+/* 顶部概览与版本切换器 */
+.gh-detail-header-card {
+  background: var(--gh-surface);
+  border: 1px solid var(--gh-border);
+  border-radius: 12px;
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.gh-detail-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.gh-detail-title-group h1 {
+  font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+  margin: 0 0 0.35rem;
+}
+
+.gh-detail-subtitle {
+  font-size: 1rem;
+  color: var(--gh-text-muted);
+  margin: 0;
+}
+
+.gh-detail-subtitle em {
+  font-style: italic;
+  color: var(--gh-text-main);
+}
+
+/* 版本切换选择器控件 */
+.gh-version-select-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 260px;
+}
+
+.gh-version-select-box label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--gh-text-muted);
+  text-transform: uppercase;
+}
+
+.gh-version-select-box select {
+  padding: 0.6rem 0.85rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: 1.5px solid var(--gh-primary);
+  border-radius: 8px;
+  background: var(--gh-surface);
+  color: var(--gh-text-main);
+  cursor: pointer;
+}
+
+/* 配套状态大提示横幅 */
+.gh-status-banner {
+  margin-top: 1.25rem;
+  padding: 0.85rem 1.15rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+}
+
+.gh-status-banner.confirmed {
+  background: var(--gh-status-confirmed-bg);
+  border: 1px solid var(--gh-status-confirmed-border);
+  color: var(--gh-status-confirmed-text);
+}
+
+.gh-status-banner.unverified {
+  background: var(--gh-status-unverified-bg);
+  border: 1px solid var(--gh-status-unverified-border);
+  color: var(--gh-status-unverified-text);
+}
+
+.gh-status-banner.incompatible {
+  background: var(--gh-status-incompatible-bg);
+  border: 1px solid var(--gh-status-incompatible-border);
+  color: var(--gh-status-incompatible-text);
+}
+
+.gh-status-icon {
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+.gh-status-body strong {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 0.15rem;
+}
+
+/* 首屏优先展示 4 大最常用下载资源 (最高优先级) */
+.gh-section-title-wrap {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin: 1.75rem 0 0.85rem;
+  border-bottom: 1px solid var(--gh-border);
+  padding-bottom: 0.4rem;
+}
+
+.gh-section-title {
+  font-size: 1.25rem;
+  margin: 0;
+}
+
+.gh-section-note {
+  font-size: 0.82rem;
+  color: var(--gh-text-muted);
+}
+
+/* 2x2 常用下载模块 */
+.gh-core-downloads-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 720px) {
+  .gh-core-downloads-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.gh-download-card {
+  background: var(--gh-surface);
+  border: 1px solid var(--gh-border);
+  border-radius: 10px;
+  padding: 1.15rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.15s ease;
+}
+
+.gh-download-card:hover {
+  border-color: var(--gh-primary);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.gh-download-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.gh-card-file-type {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--gh-text-main);
+  margin: 0;
+}
+
+.gh-card-file-meta {
+  font-size: 0.82rem;
+  color: var(--gh-text-muted);
+  margin-bottom: 0.85rem;
+  line-height: 1.4;
+}
+
+.gh-card-file-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: auto;
+}
+
+.gh-btn-download-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.45rem 0.9rem;
+  background: var(--gh-primary);
+  color: #ffffff !important;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.15s ease;
+}
+
+.gh-btn-download-primary:hover {
+  background: var(--gh-primary-hover);
+  text-decoration: none;
+}
+
+.gh-btn-copy-small {
+  padding: 0.45rem 0.75rem;
+  background: var(--gh-surface-soft);
+  border: 1px solid var(--gh-border);
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--gh-text-main);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.gh-btn-copy-small:hover {
+  border-color: var(--gh-primary);
+  color: var(--gh-primary);
+}
+
+/* 详情页完整文件表格与操作 */
+.gh-table-container {
+  overflow-x: auto;
+  border: 1px solid var(--gh-border);
+  border-radius: 8px;
+  background: var(--gh-surface);
+  margin-bottom: 1rem;
+}
+
+.gh-data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  text-align: left;
+}
+
+.gh-data-table th,
+.gh-data-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--gh-border);
+}
+
+.gh-data-table th {
+  background: var(--gh-surface-alt);
+  font-weight: 700;
+  color: var(--gh-text-main);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.gh-data-table tr:last-child td {
+  border-bottom: none;
+}
+
+.gh-data-table tr:hover td {
+  background: var(--gh-surface-soft);
+}
+
+/* 详情元数据网格列表 */
+.gh-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 680px) {
+  .gh-meta-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.gh-meta-box {
+  background: var(--gh-surface);
+  border: 1px solid var(--gh-border);
+  border-radius: 10px;
+  padding: 1.15rem;
+}
+
+.gh-meta-box h3 {
+  font-size: 0.95rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--gh-border);
+}
+
+.gh-meta-dl {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  gap: 0.5rem 0.75rem;
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.gh-meta-dl dt {
+  color: var(--gh-text-muted);
+  font-weight: 500;
+}
+
+.gh-meta-dl dd {
+  margin: 0;
+  color: var(--gh-text-main);
+  word-break: break-all;
+}
+
+/* NCBI Datasets 命令卡 */
+.gh-cli-box {
+  background: var(--gh-surface-alt);
+  border: 1px solid var(--gh-border);
+  border-radius: 8px;
+  padding: 1.15rem;
+  margin-bottom: 1.5rem;
+}
+
+.gh-cli-pre {
+  background: var(--gh-surface-soft);
+  border: 1px solid var(--gh-border);
+  border-radius: 6px;
+  padding: 0.85rem 1rem;
+  font-family: var(--gh-font-mono);
+  font-size: 0.85rem;
+  overflow-x: auto;
+  margin: 0.5rem 0 0.85rem;
+  color: var(--gh-text-main);
+}
+
+/* 警告与科学提示框 */
+.gh-alert {
+  padding: 0.85rem 1.15rem;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  margin: 1rem 0;
+  line-height: 1.6;
+}
+
+.gh-alert.warning {
+  background: #fffbeb;
+  border: 1px solid #fef3c7;
+  border-left: 4px solid #f59e0b;
+  color: #92400e;
+}
+
+[data-theme="dark"] .gh-alert.warning,
+.dark .gh-alert.warning {
+  background: #78350f33;
+  border-color: #92400e;
+  border-left-color: #f59e0b;
+  color: #fde68a;
+}
+
+/* 导出操作条 */
+.gh-manifest-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin: 1rem 0;
+}
+
+/* ==========================================================================
+   官方数据库导航页 (databases.astro) 视觉架构
+   ========================================================================== */
+.gh-databases-container {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .gh-databases-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.gh-db-card {
+  background: var(--gh-surface);
+  border: 1px solid var(--gh-border);
+  border-radius: 10px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.15s ease;
+}
+
+.gh-db-card:hover {
+  border-color: var(--gh-primary);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.gh-db-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.5rem;
+}
+
+.gh-db-title {
+  font-size: 1.2rem;
+  margin: 0;
+  color: var(--gh-text-main);
+}
+
+.gh-db-account-pill {
+  font-size: 0.75rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.gh-db-account-pill.free {
+  background: var(--gh-status-confirmed-bg);
+  color: var(--gh-status-confirmed-text);
+  border: 1px solid var(--gh-status-confirmed-border);
+}
+
+.gh-db-account-pill.login {
+  background: var(--gh-status-unverified-bg);
+  color: var(--gh-status-unverified-text);
+  border: 1px solid var(--gh-status-unverified-border);
+}
+
+.gh-db-scope {
+  font-size: 0.88rem;
+  color: var(--gh-text-main);
+  margin-bottom: 0.5rem;
+}
+
+.gh-db-resources {
+  font-size: 0.82rem;
+  color: var(--gh-text-muted);
+  margin-bottom: 0.75rem;
+  line-height: 1.5;
+}
+
+.gh-db-note {
+  font-size: 0.82rem;
+  color: var(--gh-text-muted);
+  border-left: 2px solid var(--gh-border);
+  padding-left: 0.5rem;
+  margin: 0.5rem 0 1rem;
+}
+
+.gh-db-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  font-size: 0.82rem;
+  color: var(--gh-text-soft);
+  border-top: 1px solid var(--gh-border-light);
+  padding-top: 0.75rem;
+  margin-top: auto;
+  flex-wrap: wrap;
+}
+
+.gh-db-actions {
+  display: flex;
+  gap: 0.5rem;
+}

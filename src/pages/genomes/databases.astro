@@ -1,7 +1,116 @@
 ---
 import Base from '../../layouts/Base.astro';
-import {databases} from '../../lib/genomes/registry';
+import { databases } from '../../lib/genomes/registry';
 import '../../styles/genome-hub.css';
-const base=import.meta.env.BASE_URL;
+
+const base = import.meta.env.BASE_URL;
+const verifiedDates = [...new Set(databases.map(d => d.verifiedAt))].sort().join(' / ');
 ---
-<Base title="植物基因组数据库导航"><div class="gh"><nav><a href={`${base}genomes/`}>Plant Genome Hub</a> / 数据库导航</nav><section class="gh-hero"><div class="eyebrow">OFFICIAL DATABASES</div><h1>植物基因组数据库导航</h1><p>按物种、正式发布与访问要求选择数据来源。核实日期与服务状态独立记录。</p></section><div class="gh-grid">{databases.map(d=><article class="gh-card"><h2>{d.name}</h2><p>{d.scope}</p><p>{d.resources}</p><p class="gh-muted">账号要求：{d.account}<br/>核实日期：{d.verifiedAt}</p><p>{d.note}</p><div class="gh-actions"><a href={d.url}>官方入口 ↗</a><a href={d.documentation}>文档 / 数据入口 ↗</a></div></article>)}</div></div></Base>
+
+<Base title="植物基因组官方数据库导航 | Plant Genome Hub" description="系统梳理 NCBI Datasets、TAIR、Ensembl Plants、Phytozome、CNCB GWH 与 RGAP 等核心植物基因组数据库的收录物种、资源类型与访问权限。">
+  <div class="gh">
+    <!-- 面包屑导航 -->
+    <nav class="gh-breadcrumb" aria-label="Breadcrumb">
+      <a href={base}>首页</a>
+      <span class="gh-breadcrumb-sep">/</span>
+      <a href={`${base}genomes/`}>Plant Genome Hub</a>
+      <span class="gh-breadcrumb-sep">/</span>
+      <span>数据库导航</span>
+    </nav>
+
+    <!-- 顶部紧凑 Hero -->
+    <section class="gh-hero-compact">
+      <div class="gh-hero-info">
+        <p class="gh-overline">OFFICIAL DATABASES DIRECTORY</p>
+        <h1>植物参考基因组官方数据库导航</h1>
+        <p class="gh-hero-lead">
+          系统梳理 6 大核心植物基因组数据库。帮助学者快速判断：“收录了哪些物种？能下载什么格式？是否需要注册登录？”
+        </p>
+      </div>
+
+      <div class="gh-hero-stats">
+        <div class="gh-stat-card">
+          <span class="gh-stat-num">{databases.length}</span>
+          <span class="gh-stat-label">收录官方库</span>
+        </div>
+        <div class="gh-stat-card">
+          <span class="gh-stat-num">全部公开</span>
+          <span class="gh-stat-label">科研公益访问</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 快捷导航小条 -->
+    <div class="gh-nav-strip">
+      <div class="gh-nav-links">
+        <a href={`${base}genomes/`}>&larr; 返回植物参考基因组目录</a>
+        <a href={`${base}workflows/`}>端到端分析路线图 &rarr;</a>
+        <a href={`${base}tutorials/`}>实战教程 &rarr;</a>
+      </div>
+      <div style="font-size: 0.82rem; color: var(--gh-text-muted);">
+        数据核查基准：{verifiedDates}
+      </div>
+    </div>
+
+    <!-- 数据库双列结构化比较卡片列表 (保持 .gh-card 兼容测试) -->
+    <div class="gh-databases-container">
+      {databases.map(d => {
+        const isFree = d.account.includes('无需') || d.account.includes('免');
+        return (
+          <article class="gh-card gh-db-card">
+            <div>
+              <div class="gh-db-header">
+                <h2 class="gh-db-title">{d.name}</h2>
+                <span class={`gh-db-account-pill ${isFree ? 'free' : 'login'}`}>
+                  {d.account}
+                </span>
+              </div>
+
+              <!-- 数据库定位与物种范围 -->
+              <p class="gh-db-scope">
+                <strong>覆盖物种与定位：</strong>{d.scope}
+              </p>
+
+              <!-- 可获取资源类型 -->
+              <p class="gh-db-resources">
+                <strong>可获取资源：</strong>{d.resources}
+              </p>
+
+              <!-- 维护与使用说明 -->
+              <div class="gh-db-note">
+                {d.note}
+              </div>
+            </div>
+
+            <!-- 卡片底部元数据与直达操作 -->
+            <div class="gh-db-footer">
+              <div>
+                <span>核验日期：{d.verifiedAt}</span>
+              </div>
+              <div class="gh-db-actions">
+                <a
+                  href={d.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  class="gh-btn-download-primary"
+                  style="font-size:0.82rem; padding: 0.35rem 0.75rem;"
+                >
+                  官方入口 ↗
+                </a>
+                <a
+                  href={d.documentation}
+                  target="_blank"
+                  rel="noreferrer"
+                  class="gh-btn-copy-small"
+                  style="text-decoration:none; display:inline-flex; align-items:center;"
+                >
+                  数据/文档 ↗
+                </a>
+              </div>
+            </div>
+          </article>
+        );
+      })}
+    </div>
+  </div>
+</Base>
