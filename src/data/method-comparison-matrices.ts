@@ -195,6 +195,26 @@ export const methodComparisonMatrices: Record<string, DomainComparisonMatrix> = 
         advantages: '对中低覆盖度长读段检测敏感度高，算法成熟，计算资源友好',
         limitations: '仅针对单样本比对进行断裂点启发式推断，不提供组装水平的共线性连续图谱',
         recommendedScenario: '大规模植物长读长重测序群体的结构变异 (SV) 快速批量筛查与基因分型'
+      },
+      {
+        methodId: 'anchorwave',
+        name: 'AnchorWave',
+        inputType: '染色体级组装 FASTA + 参考结构注释 GFF3',
+        corePrinciple: '保守编码外显子共线锚定 + 两段仿射间隙惩罚 (2-piece WFA) 全局比对',
+        computeProfile: '16~32 线程, 32~64 GB RAM, 支持大片段倒位与全基因组复制 (WGD) 模式',
+        advantages: '专为植物高转座子与多倍化设计，完美容忍数万碱基的超长转座子插入',
+        limitations: '必须依赖高质量的参考基因组结构注释作为先验锚点',
+        recommendedScenario: '玉米、小麦等高重复作物单倍型组装的高精度全基因组共线比对'
+      },
+      {
+        methodId: 'odgi',
+        name: 'ODGI',
+        inputType: 'GFAv1 / GFA1.1 变异诱导图',
+        corePrinciple: '紧凑动态图内存模型 + Hilbert 空间填充拓扑排序 + 多单倍型路径平铺投影',
+        computeProfile: '8~16 线程, 16~32 GB RAM, 支持亿级碱基大型植物变异图毫秒级查询',
+        advantages: '内存占用极低，支持全景一维无偏平铺可视化与局部候选基因子图切片',
+        limitations: '侧重于图数据分析与操作，本身不承担 reads 原始比对与分型职责',
+        recommendedScenario: '泛基因组图拓扑指标统计、样本路径检查与目标基因候选区间可视化'
       }
     ],
     decisionTrees: [
@@ -207,6 +227,16 @@ export const methodComparisonMatrices: Record<string, DomainComparisonMatrix> = 
         condition: '仅有群体个体的 PacBio HiFi 或 ONT 测序 reads，比对到单一参考基因组',
         recommendation: '选择 CuteSV 或 Sniffles2',
         rationale: '直接利用读段跨越和 CIGAR 异常快速调用群体的插入/缺失变异。'
+      },
+      {
+        condition: '面对转座子含量极高或经历多轮古多倍化的复杂植物基因组之间的全比对',
+        recommendation: '选择 AnchorWave',
+        rationale: '利用保守编码外显子锚定与两段仿射间隙模型，彻底解决长转座子插入截断比对的难题。'
+      },
+      {
+        condition: '需要对 GFA 图泛基因组进行宏观可视化、拓扑排序或提取局部候选基因子图',
+        recommendation: '选择 ODGI',
+        rationale: '提供极低内存占用的紧凑图表示与 Hilbert 空间填充排序，支持全景一维平铺可视化与子图切片。'
       }
     ]
   },

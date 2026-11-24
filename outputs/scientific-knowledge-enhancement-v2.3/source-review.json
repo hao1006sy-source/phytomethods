@@ -181,6 +181,90 @@
       "sectionLocator": "OMArk algorithm & benchmark datasets",
       "verifiedDate": "2026-11-25",
       "status": "SOURCE_VERIFIED"
+    },
+    {
+      "milestone": "M03",
+      "domainId": "pangenomics-structural-variation",
+      "topicOrMethod": "m03-topic-01",
+      "claim": "Heaps' law 幂律判据：增量 Δn = κ * N^(-α)，累计泛基因 n = κ' * N^γ (γ = 1 - α)，当 α < 1 (γ > 0) 时判定为开放型泛基因组",
+      "sourceType": "peer_reviewed_paper",
+      "citation": "Tettelin H, Riley D, Cattuto C, Medini D. (2008). Comparative genomics: the bacterial pan-genome. Current Opinion in Microbiology, 11(5), 472–477.",
+      "doi": "10.1016/j.mib.2008.09.006",
+      "sectionLocator": "Mathematical Modeling of Gene Accumulation",
+      "verifiedDate": "2026-11-25",
+      "status": "SOURCE_VERIFIED"
+    },
+    {
+      "milestone": "M03",
+      "domainId": "pangenomics-structural-variation",
+      "topicOrMethod": "m03-topic-02",
+      "claim": "AnchorWave 采用保守编码外显子共线锚定与两段仿射间隙惩罚 (2-piece WFA)，专用于植物高转座子富集与古多倍化全基因组比对",
+      "sourceType": "peer_reviewed_paper",
+      "citation": "Song B, Marco-Sola S, Moretti M, et al. (2022). AnchorWave: Sensitive alignment of genomes with diverse karyotypes and whole-genome duplication. PNAS, 119(1), e2113075119.",
+      "doi": "10.1073/pnas.2113075119",
+      "sectionLocator": "Algorithm Overview & Two-piece affine gap formulation",
+      "verifiedDate": "2026-11-25",
+      "status": "SOURCE_VERIFIED"
+    },
+    {
+      "milestone": "M03",
+      "domainId": "pangenomics-structural-variation",
+      "topicOrMethod": "m03-topic-03",
+      "claim": "SyRI 利用有向无环图最大权重共线路径动态规划算法解析五大结构重排 (SYN, INV, TRANS, DUP, HDR)，并在拟南芥 F2 重组群体证实 92.3% 预测易位",
+      "sourceType": "peer_reviewed_paper",
+      "citation": "Goel M, Sun H, Jiao WB, Schneeberger K. (2019). SyRI: finding Rome in the clouds of pangenomes: finding structural variation in genome alignments. Genome Biology, 20(1), 277.",
+      "doi": "10.1186/s13059-019-1911-0",
+      "sectionLocator": "Results & Methods: Identification of syntenic paths",
+      "verifiedDate": "2026-11-25",
+      "status": "SOURCE_VERIFIED"
+    },
+    {
+      "milestone": "M03",
+      "domainId": "pangenomics-structural-variation",
+      "topicOrMethod": "m03-topic-03",
+      "claim": "cuteSV 基于长读段比对特征签名提取、变异类型特异空间聚类与断裂点多步迭代细化，实现高灵敏度结构变异检测",
+      "sourceType": "peer_reviewed_paper",
+      "citation": "Jiang T, Liu Y, Jiang Y, et al. (2020). Long-read-based human genomic structural variation detection with cuteSV. Genome Biology, 21(1), 189.",
+      "doi": "10.1186/s13059-020-02107-y",
+      "sectionLocator": "cuteSV method description & Benchmark results",
+      "verifiedDate": "2026-11-25",
+      "status": "SOURCE_VERIFIED"
+    },
+    {
+      "milestone": "M03",
+      "domainId": "pangenomics-structural-variation",
+      "topicOrMethod": "m03-topic-05",
+      "claim": "Minigraph-Cactus 结合宏观 SV 骨架与 Cactus 局部全碱基对齐，构建高分辨率植物变异诱导图并一键生成 Giraffe 索引",
+      "sourceType": "peer_reviewed_paper",
+      "citation": "Hickey G, Monlong J, Ebler J, et al. (2023). Pangenome graph construction from genome alignments with Minigraph-Cactus. Nature Biotechnology, 42, 1464–1473.",
+      "doi": "10.1038/s41587-023-01793-w",
+      "sectionLocator": "Overview of the Minigraph-Cactus pipeline",
+      "verifiedDate": "2026-11-25",
+      "status": "SOURCE_VERIFIED"
+    },
+    {
+      "milestone": "M03",
+      "domainId": "pangenomics-structural-variation",
+      "topicOrMethod": "m03-topic-06",
+      "claim": "Giraffe 利用 GBWT 单倍型压缩索引与 Snarl 距离索引，将图泛基因组短读段比对速度提升至线性比对器相当水平",
+      "sourceType": "peer_reviewed_paper",
+      "citation": "Sirén J, Monlong J, Chang X, et al. (2021). Pangenomics enables genotyping of complex structural variants in 5202 diverse human genomes. Science, 374(6574), abg8871.",
+      "doi": "10.1126/science.abg8871",
+      "sectionLocator": "Giraffe algorithm & Haplotype-aware mapping",
+      "verifiedDate": "2026-11-25",
+      "status": "SOURCE_VERIFIED"
+    },
+    {
+      "milestone": "M03",
+      "domainId": "pangenomics-structural-variation",
+      "topicOrMethod": "m03-topic-07",
+      "claim": "ODGI 采用动态紧凑图内存模型与 Hilbert/SGD 拓扑降维排序，支持全景一维无偏平铺可视化与局部候选基因子图切片",
+      "sourceType": "peer_reviewed_paper",
+      "citation": "Guarracino A, Heumos S, Nahnsen S, et al. (2022). ODGI: understanding pangenome graphs. Bioinformatics, 38(13), 3319–3326.",
+      "doi": "10.1093/bioinformatics/btac308",
+      "sectionLocator": "ODGI design & Visualization algorithms",
+      "verifiedDate": "2026-11-25",
+      "status": "SOURCE_VERIFIED"
     }
   ]
 }

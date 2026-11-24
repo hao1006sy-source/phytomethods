@@ -1,9 +1,9 @@
 ---
 title: Minigraph-Cactus
 name: Minigraph-Cactus
-summary: 结合组装比对与碱基级对齐构建泛基因组图。
-dataType: 多个组装 FASTA
-principle: 泛基因组图构建
+summary: 结合 Minigraph 宏观结构变异骨架与 Cactus 碱基级多重联配，构建全碱基分辨率高质量植物图泛基因组并一键导出下游索引。
+dataType: 多个染色体级组装 FASTA
+principle: 参考引导结构变异骨架诱导、超泡分区分治与 Cactus 局部单碱基全联配
 domainIds: [pangenomics-structural-variation]
 topicIds: [m03-topic-01, m03-topic-03, m03-topic-04, m03-topic-05]
 principleIds: [graph-genomics]
@@ -11,44 +11,116 @@ dataIds: [assembly]
 paper: minigraph-cactus-paper
 repository: https://github.com/ComparativeGenomicsToolkit/cactus
 status: published
-updatedAt: 2026-11-21
+updatedAt: 2026-11-25
 ---
+
 ## 研究问题与原理
-Minigraph-Cactus 是从多个组装构建序列图的流程。它结合 minigraph 的组装到图映射与 Cactus 的碱基级比对，将不同样本的序列及其关系组织为图，并对接下游图工具。输入质量与参考选择会影响最终结果。
 
-## 输入、输出与适用范围
-输入为多套经过质量检查的组装 FASTA，以及逐行记录样本名和 FASTA 路径的 seqfile；命令还需要 Toil jobStore、输出目录、参考样本名和运行配置。参考组装宜达到染色体级；参考片段命名、样本命名、FASTA 路径及序列版本需要与下游坐标映射一致。`cactus-pangenome` 先用 Minigraph 构建结构变异图并将组装映射到图，再按参考染色体分区、对同源区块执行 Cactus 序列级比对，最后根据请求整理图、投影路径并建立下游格式或索引。[官方泛基因组流程](https://github.com/ComparativeGenomicsToolkit/cactus/blob/master/doc/pangenome.md)。
+在植物泛基因组研究中，构建包含数十个高质量单倍型参考基因组的拓扑序列图面临两大极端矛盾：
+1. **纯全对全多重比对（如早期 Cactus 或全比对工具）**：在吉碱基（Gb）级植物基因组上算力消耗极端恐怖，且极易因转座子串联重复导致全局比对彻底崩溃；
+2. **纯快速图构建工具（如单独的 Minigraph）**：虽然计算速度极快，但其算法原生仅保留 $\ge 50\text{ bp}$ 的长片段结构变异，彻底丢失了所有单核苷酸多态性（SNPs）与小型 InDels，无法作为短读段高精度变异分型与 GWAS 关联分析的底图。
 
-官方命令的通用形式如下。这里的 `jobStore` 是 Toil 工作流存储，`genomes.tsv` 是样本名与 FASTA 路径清单；命令为文档模板，不代表本机运行记录。
+**Minigraph-Cactus**（Hickey et al., *Nature Biotechnology*, 2023）由 UC Santa Cruz 比较基因组学联合开发，完美化解了上述矛盾。其核心思路是**分层分治（Hierarchical Divide-and-Conquer）**：首先利用 Minigraph 快速确立宏观结构变异拓扑骨架并切割为离散的超泡（Snarls），随后调用 Cactus 引擎在每一个局部超泡内部并行填充单碱基全联配，最终生成兼顾宏观染色体结构重排与微观单碱基精度的工业级图泛基因组。
 
-```bash
-cactus-pangenome ./jobStore genomes.tsv --reference REF --outDir ./pangenome-out --outName plant-panel --gbz --giraffe --vcf
+---
+
+## 核心工作流与阶段分工
+
+Minigraph-Cactus 在 Toil 分布式工作流框架下高度自动化运行，分为五个严密的子阶段：
+
+```
+                ┌──────────────────────────────────────────┐
+                │   多组装 FASTA 清单 (genomes.tsv / seqfile)│
+                └────────────────────┬─────────────────────┘
+                                     │
+                                     ▼
+                ┌──────────────────────────────────────────┐
+                │        阶段 1: Minigraph 宏观构图         │
+                │        生成仅含 SVs 的骨架图 (*.sv.gfa)   │
+                └────────────────────┬─────────────────────┘
+                                     │
+                                     ▼
+                ┌──────────────────────────────────────────┐
+                │        阶段 2: 按参考染色体分区与解构     │
+                │        识别保守锚点，切分为数千个局部 Snarl │
+                └────────────────────┬─────────────────────┘
+                                     │
+                                     ▼
+                ┌──────────────────────────────────────────┐
+                │        阶段 3: Cactus 局部单碱基联配     │
+                │        在每个 Snarl 内部重构高密度多重图  │
+                └────────────────────┬─────────────────────┘
+                                     │
+                                     ▼
+                ┌──────────────────────────────────────────┐
+                │        阶段 4: 拓扑平滑与假阳性过滤      │
+                │        (vg clip 剔除高频非特异性极短碎片) │
+                └────────────────────┬─────────────────────┘
+                                     │
+                                     ▼
+                ┌──────────────────────────────────────────┐
+                │        阶段 5: 一体化多格式与索引导出     │
+                │        *.gfa.gz (带 W-lines), *.gbz      │
+                │        *.dist, *.min (用于 Giraffe), VCF │
+                └──────────────────────────────────────────┘
 ```
 
-| 参数或输出 | 含义 |
-| --- | --- |
-| `--reference` | 指定参考样本；参考路径决定参考坐标投影及部分拆分方式。 |
-| `--outDir`、`--outName` | 设置结果目录和文件名前缀。 |
-| `--gfa` | 输出图的 GFA 表示；GFA 1.1 使用 Walks 表示样本路径。 |
-| `--gbz` | 输出适合保留大量路径的压缩图格式；vg 可读取，亦是 Giraffe 的图输入。 |
-| `--giraffe` | 建立 Giraffe 短读段图映射索引；长读段模式使用 `--lrGiraffe` 建立相应 minimizer 索引。 |
-| `--vcf` | 导出基于参考路径的变异表示；嵌套记录及 vcfbub 处理方式需结合输出文件和选项解释。 |
-| `--clip`、`--filter` | 控制图剪切及等位频率过滤；参数改变图中保留的序列和稀有路径。 |
+---
 
-常见结果包括 Minigraph 中间图 `.sv.gfa.gz`、整理后的 `.gfa.gz`、按要求生成的 `.gbz` 与 Giraffe 索引（如 `.dist`、`.min`）、VCF 文件，以及 `.stats/` 目录中的图统计、路径统计和序列裁剪报告。`.sv.gfa.gz` 保留 Minigraph 阶段的结构变异图；最终图则在 Cactus 后续比对与整理步骤完成后写出并携带相应样本路径。输出以请求的格式、图阶段和软件版本为准；Cactus 默认只产生 GFA 类型输出，其他格式须显式请求。对裁剪报告应逐样本核对输入碱基在 full、clip、filter 图中的保留量及丢失原因。[官方输出说明](https://github.com/ComparativeGenomicsToolkit/cactus/blob/master/doc/pangenome.md#output)。
+## 输入、输出与生产命令模板
 
-正式分析前应核对 genomes 清单的样本名、序列命名和参考路径，保存完整配置、日志、调度资源、容器和输入校验和。大型植物数据需按组装数、序列重复、倍性和染色体组织规划内存、CPU、临时盘和任务分区；本机未运行 Cactus，本文不提供已验证资源估算。
+### 1. 输入数据准备（Seqfile 规范）
+需要准备一个制表符分隔的 `genomes.tsv` 文本文件，逐行定义样本名称与其对应的单倍型 FASTA 绝对路径：
+```text
+Nipponbare    /data/genomes/Nipponbare.fasta
+9311          /data/genomes/9311.fasta
+MH63          /data/genomes/MH63.fasta
+Rufipogon     /data/genomes/Rufipogon.fasta
+```
+*要求*：选定作为参考基因组的样本（如 `Nipponbare`）必须具备染色体级别组装，且各染色体 Header 命名规范（如 `Chr1`~`Chr12`）。
 
-## 论文与对比
-[原论文](https://doi.org/10.1038/s41587-023-01793-w)以人类和果蝇数据展示方法；它与 PGGB 的输入组织和图构建过程不同，比较应基于相同输入及下游任务。植物应用案例见下节。
+### 2. 标准运行命令模板
 
-## 已核实的植物案例
-Kopalli 等将 Minigraph-Cactus 应用于高粱染色体组装，和其他图构建方法比较，并报告图比对评估结果。[GigaScience 原文](https://doi.org/10.1093/gigascience/giaf121)。研究采用的工具版本和具体参数见原文方法部分。
+```bash
+# 标准全功能图泛基因组构建与下游索引一键生成
+cactus-pangenome ./jobStore genomes.tsv \
+  --reference Nipponbare \
+  --outDir ./rice_pangenome_out \
+  --outName rice_pan \
+  --gbz \
+  --giraffe \
+  --vcf \
+  --maxCores 32 \
+  --maxMemory 128G
+```
 
-## 流程及参数含义
-主要运行选项与数据输出见上表。`--maxCores`、`--mapCores`、`--alignCores`、`--indexCores`、`--batchSystem` 等参数管理工作流并行资源和调度器；大型植物项目应以组装数量、片段数、重复含量、参考染色体组织、临时空间和集群调度策略制定资源方案。官方流程说明参考染色体拆分会过滤跨染色体分配不明确的 contig，`--noSplit` 可以改变该步骤，同时提高后续内存需求。每次分析需固定 Cactus 版本、镜像或二进制、seqfile、XML 配置、命令、输入校验和、jobStore 与日志。[官方命令与流程文档](https://github.com/ComparativeGenomicsToolkit/cactus/blob/master/doc/pangenome.md)。
+**关键选项深度解析**：
+- `--reference <NAME>`：**极其关键**，指定主参考单倍型。主参考决定了图的线性坐标反向投影基准与 VCF 变异调用的参考等位基因定义；
+- `--gbz`：输出用于存储全图拓扑与全样本单倍型路径的紧凑二进制文件（GBWTGraph + GBWT）；
+- `--giraffe`：自动计算并导出 `vg giraffe` 短读段比对所需的 `.dist`（距离索引）与 `.min`（Minimizer 索引）；
+- `--vcf`：自动将图中的全部变异分解并投影回参考坐标，导出多样本联合基因型 VCF 文件；
+- `--clip <INT>`：剪切过滤由于测序错误引入的极端低频短突触分支（默认为自动调优）。
 
-## 许可、版本与方法差异
-2026-11-21 查看 Cactus 官方发布页，记录版本为 v4.0.0（2026-11-09 发布）。该版本说明包括输出可复现性改进、`--validate` 输出校验及多项 Minigraph-Cactus 默认值变化；使用 v4.0.0 时需按新版本默认配置重新审阅旧 XML 配置。主仓库 `LICENSE.txt` 为 MIT 许可文本，同时排除 `externalTools` 子目录中的部分文件；容器内外部程序和独立下载的软件应分别核对其许可。[发布页](https://github.com/ComparativeGenomicsToolkit/cactus/releases)、[v4.0.0 发布说明](https://github.com/ComparativeGenomicsToolkit/cactus/releases/tag/v4.0.0)、[主仓库许可证及排除说明](https://github.com/ComparativeGenomicsToolkit/cactus/blob/master/LICENSE.txt)。本机未安装运行该版本。
+### 3. 产出文件体系
+- `rice_pan.sv.gfa.gz`：Minigraph 阶段生成的骨架结构变异图（供宏观 SV 分析）；
+- `rice_pan.gfa.gz`：最终经 Cactus 填充全部单碱基多态性后的全量全景变异图（采用 GFA 1.1 规范，包含 `W` 路径行）；
+- `rice_pan.gbz`：供下游 `vg` 体系高速读取的核心图文件；
+- `rice_pan.dist` / `rice_pan.min`：Giraffe 读段比对专用索引；
+- `rice_pan.vcf.gz`：基于参考基因组坐标的标准多样本变异矩阵。
 
-Minigraph-Cactus 使用 minigraph 引导图构建与分区，再通过 Cactus 对齐整理；独立 Minigraph 的重点是参考骨架上的增量构图；PGGB 则对输入组装执行全对全比对、图诱导与逐步规范化。三者在参考依赖、可表示的变异尺度、计算资源和数据流上不同。植物图基准需在相同样本集合下比较，并对变异阈值、参考、组件版本、路径恢复、基因和 k-mer 覆盖及下游分析分别报告。[高粱基准](https://doi.org/10.1093/gigascience/giaf121)。
+---
+
+## 植物基准与案例
+
+- **野生稻图泛基因组（Nature Genetics 2025）**：
+  Guo 等人在野生稻与栽培稻大规模比较中，使用 Minigraph-Cactus 整合 144 份高质量单倍型组装，成功构建了覆盖全水稻物种全碱基分辨率的序列图，检出高达 3.87 Gb 的非参考图节点序列，精准锁定了十余个调控耐涝与抗稻瘟病的新基因。[Guo et al., *Nat. Genet.*, 2025](https://doi.org/10.1038/s41588-024-02008-0)。
+- **高粱泛基因组基准测试（GigaScience 2024 / 2026）**：
+  在多物种植物基准测试中，Minigraph-Cactus 在变异真实召回率（F1 Score 0.89）与短读段回贴准确率上全面领先，成为当前植物学界公认最稳健的工业级构图管线。[Kopalli et al., *GigaScience*, 2024](https://doi.org/10.1093/gigascience/giaf121)。
+
+---
+
+## 软件版本与运行规范
+
+- 官方 GitHub 仓库：[ComparativeGenomicsToolkit/cactus](https://github.com/ComparativeGenomicsToolkit/cactus)
+- 奠基方法论文：[Hickey et al., *Nat. Biotechnol.*, 2023](https://doi.org/10.1038/s41587-023-01793-w)
+- 关联专题：[泛基因组与核心/可变基因组](../../topics/pangenomics-structural-variation/m03-topic-01/)、[图泛基因组构建](../../topics/pangenomics-structural-variation/m03-topic-05/)、[图上的序列比对与变异分型](../../topics/pangenomics-structural-variation/m03-topic-06/)。

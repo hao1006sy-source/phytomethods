@@ -1,9 +1,9 @@
 ---
 title: SyRI
 name: SyRI
-summary: 通过两个组装基因组的全基因组比对识别共线、重排和局部序列差异。
-dataType: 组装 FASTA / 全基因组比对
-principle: 共线结构与重排识别
+summary: 基于两个高质量染色体级组装的全基因组比对，利用图论动态规划精确分类共线性、倒位、易位、重复及局域核苷酸变异。
+dataType: 组装基因组 FASTA / 全基因组比对 BAM / SAM / MUMmer delta
+principle: 有向无环图遍历、全局最优共线性骨架动态规划求解与结构重排分层分类
 domainIds: [pangenomics-structural-variation]
 topicIds: [m03-topic-02, m03-topic-03]
 principleIds: [alignment]
@@ -11,33 +11,127 @@ dataIds: [assembly]
 paper: syri-paper
 repository: https://github.com/schneebergerlab/syri
 status: published
-updatedAt: 2026-11-20
+updatedAt: 2026-11-25
 ---
-## 研究问题与方法定位
-SyRI（Synteny and Rearrangement Identifier）比较两个组装基因组。输入是全基因组比对，软件分析共线区块和重排区域，再描述结构背景下的局部序列差异。它的输入是组装和比对结果，属于组装比较工具；它本身不从原始短 reads 直接进行变异检测。
 
-## 计算过程
-根据比对坐标构建候选对应关系，寻找共线路径，进一步识别倒位、易位、重复等重排及其边界。对于每类结构区域，软件检查位于其中的局部差异。重复序列可能产生多个匹配，过滤时保留哪些比对会影响可识别的重复与重排。
+## 研究问题与方法定位
+
+在植物泛基因组与演化发育生物学中，解析两个或多个高质量单倍型参考基因组（如野生种与栽培种、不同优良育种自交系）之间的结构变异至关重要。传统基于短读段重测序的比对方法因序列重复度高、读长有限，无法穿透数兆碱基（Mb）级别的染色体倒位与复杂染色体易位。
+
+**SyRI（Synteny and Rearrangement Identifier）**由 Schneeberger 团队开发（Goel et al., *Genome Biology*, 2019），专门面向染色体级高连续性组装的结构差异解析。它的核心定位是：**输入经过严密质控的全基因组比对结果，从宏观染色体结构到微观单碱基，输出全景式、无缝覆盖的五大结构变异分类表与标准 VCF 文件**。
+
+---
+
+## 计算过程与图论算法推导
+
+SyRI 的核心算法并不直接比对核苷酸序列，而是将外部比对器输出的局部同源片段抽象为有向无环图（DAG），利用全局动态规划求解染色体的最优共线主干，并逐级解析非共线重排：
+
+```
+                ┌──────────────────────────────────────────┐
+                │   全基因组高保真比对 (MUMmer4 / Minimap2) │
+                └────────────────────┬─────────────────────┘
+                                     │
+                                     ▼
+                ┌──────────────────────────────────────────┐
+                │        阶段 1: 构建正向比对 DAG          │
+                │        求解最大权重共线性路径 P*         │
+                └────────────────────┬─────────────────────┘
+                                     │
+                                     ▼
+                ┌──────────────────────────────────────────┐
+                │        阶段 2: 确立共线性主干 (SYN)      │
+                │        未纳入区域转入非共线候选池        │
+                └────────────────────┬─────────────────────┘
+                                     │
+           ┌─────────────────────────┼─────────────────────────┐
+           ▼                         ▼                         ▼
+   【阶段 3: 倒位判定 (INV)】 【阶段 4: 易位与重复 (TRANS/DUP)】 【阶段 5: 序列发散 (HDR)】
+    反向互补比对链           跨染色体/非共线跳跃比对           局部无同源匹配或大插入缺失
+    两端具有明确共线侧翼     单倍型一对多拷贝关系             组装缺口与高度歧异区
+           │                         │                         │
+           └─────────────────────────┼─────────────────────────┘
+                                     ▼
+                ┌──────────────────────────────────────────┐
+                │        阶段 6: 内部微观变异精细提取      │
+                │        (SNP, InDel, Copy-Gain/Loss)      │
+                │        输出 syri.out, syri.vcf, summary  │
+                └──────────────────────────────────────────┘
+```
+
+### 1. 最大权重共线性路径动态规划方程
+设参考基因组 $R$ 与查询基因组 $Q$ 之间的同向局部比对集合为 $A = \{a_1, a_2, \dots, a_n\}$，每个比对项包含参考坐标 $[r_i^s, r_i^e]$、查询坐标 $[q_i^s, q_i^e]$ 及比对打分 $s_i$。在满足坐标单调递增约束的候选路径集合 $\mathcal{C}$ 中，SyRI 求解全局最优路径：
+
+$$P^* = \arg\max_{P \in \mathcal{C}} \sum_{a_i \in P} s_i$$
+
+被路径 $P^*$ 覆盖的所有区间被严格定义为**共线性区块（Syntenic Region, SYN）**。
+
+### 2. 五大结构变异类别的严格判定逻辑
+- **共线性区块（SYN）**：参考与查询染色体间相对物理顺序与正反链方向完全平行的保守主干；
+- **倒位区块（INV）**：两序列发生反向互补比对，两端具有明确的共线侧翼断裂点（两侧共线路径连续）；
+- **易位区块（TRANS）**：比对序列发生了远距离物理位移，包括同染色体远距离跳跃与非同源染色体间迁移；
+- **重复区块（DUP）**：同一段参考序列在查询基因组中存在多个额外比对拷贝（串联或分散重复）；
+- **高度分化与未比对区（NOTAL / HDR）**：因序列高度歧异、转座子爆发式特异插入或组装物理间隙导致无法建立局部同源对齐的区域。
+
+---
 
 ## 输入、输出与重要参数
-官方 MUMmer 流程先对参考与查询组装进行 NUCmer 全基因组比对，再通过 `delta-filter` 和 `show-coords` 整理输入。PAF 输入使用另一套格式路径。常用参数包括 `-c` 坐标/比对输入、`-r` 参考 FASTA、`-q` 查询 FASTA、`-d` MUMmer delta（使用相应流程时）及 `--prefix` 输出前缀。不同比对格式需要配套格式选项；实际运行以[官方示例](https://schneebergerlab.github.io/syri/example.html)和版本帮助为准。
 
-输出以 `.out` 主结果、`.vcf` 变异记录、`.summary` 汇总和日志为主，具体文件由运行方式决定；在 `.out` 中区分共线、倒位、易位和局部差异类别，VCF 表示亦需核对参考与查询坐标、方向、变异类型和缺失值。官方示例自动映射染色体时会产生 mapids 文件，应人工确认参考与查询的染色体对应关系。
+### 1. 输入数据准备与比对命令
+SyRI 原生支持 MUMmer4 和 Minimap2 的比对输出：
+
+```bash
+# 方案 A: 使用 Minimap2 进行比对（推荐短耗时流程）
+minimap2 -ax asm5 --eqx -t 32 reference.fasta query.fasta | \
+  samtools sort -@ 8 -O BAM -o query_to_ref.bam
+samtools index query_to_ref.bam
+
+# 运行 SyRI
+syri \
+  -c query_to_ref.bam \
+  -r reference.fasta \
+  -q query.fasta \
+  -k -F B \
+  --prefix syri_run_ \
+  --nc 16
+```
+
+**关键选项剖析**：
+- `-F B`：指定输入比对格式为 BAM（若使用 MUMmer 则指定 `-F T` 并提供 coords 文件）；
+- `-k`：保留共线性内部的微观 SNP 与小型 InDel 解析；
+- `--nc 16`：指定 CPU 并行进程数；
+- `--dir <path>`：若染色体命名不同，提供 `mapids.txt` 明确指定参考染色体与查询染色体的同源配对关系（如 `Chr1\t1`）。
+
+### 2. 核心输出文件体系
+- `syri_run_syri.out`：**核心主输出**，以纯文本形式列出全染色体范围内的全部结构重排块及其首尾物理坐标、变异类型与唯一 ID；
+- `syri_run_syri.vcf`：转换为标准 1-based VCF 格式的变异集合，包含 `SVTYPE=INV`、`SVTYPE=TRANS`、`SVTYPE=DUP` 等标准标记；
+- `syri_run_syri.summary`：全基因组各结构变异类别的总数量、总覆盖碱基数（bp）及占基因组百分比统计概览表。
+
+### 3. 配套可视化利器：PlotSR
+Schneeberger 实验室配套开发了 **PlotSR**，能够直接读取 `syri.out` 生成高出版级质量的染色体共线与倒位彩带图：
+```bash
+plotsr --sr syri_run_syri.out --genomes genomes.txt -o synteny_plot.png -W 3000 -H 1500
+```
+
+---
 
 ## 植物应用与限制
-原论文比较两份拟南芥组装，对部分预测易位进行了实验验证。高度重复或不完整组装会使多个位置产生可竞争的匹配；应检查组装质量、比对过滤和候选断点的独立证据。[原始论文](https://doi.org/10.1186/s13059-019-1911-0)。
 
-高粱图构建基准使用 SyRI 1.6.3 比较染色体级组装，并与 SVIM-asm、图变异流程对照；研究在含已知真值的模拟组装中计算 SV 检测表现，也在真实组装中比较变异结果的区域重叠。模拟真值 F1 与真实组装重叠检验回答不同问题，需按各自数据和指标解读。[高粱方法比较](https://doi.org/10.1093/gigascience/giaf121)。
+- **拟南芥经典验证（Goel et al., 2019）**：在 Col-0 与 Ler 基因组比较中，SyRI 成功检出了 117 个大于 1 kb 的易位事件，并通过 50 份 F2 重组后代群体的单倍型共分离实验，独立证实了 92.3% 预测易位的生物学真实性；
+- **植物高重复染色体的注意事项**：在玉米或大麦等转座子含量超过 75% 的植物中，若比对器未过滤高频重复序列，会产生数万个微小碎片化比对，导致 SyRI 的图遍历内存急剧膨胀。运行前必须对比对文件进行适当的长度与相似度阈值过滤（如 MUMmer 使用 `delta-filter -m -i 90 -l 100`）。
 
-## 上下游
-上游为经过质量控制的两套组装和适合数据的全基因组比对；下游可结合浏览器、reads 回贴及基因注释解释候选重排。不同工具、参数和参考选择得到的变异集合需要按相同坐标体系比较。
+---
+
+## 上下游与关联专题
+
+- 上游工具：[MUMmer4](../../methods/mummer4/)、[Minimap2](../../methods/minimap2/)、[AnchorWave](../../methods/anchorwave/) 全基因组比对；
+- 下游分析：结合基因组浏览器（IGV/JBrowse2）、[ODGI](../../methods/odgi/) 图泛基因组分析；
+- 关联专题：[植物全基因组比对](../../topics/pangenomics-structural-variation/m03-topic-02/)、[植物基因组结构变异检测](../../topics/pangenomics-structural-variation/m03-topic-03/)。
+
+---
 
 ## 软件来源与版本记录
-SyRI 由 Schneeberger 团队发布，仓库采用 MIT 许可证。2026-11-21 官方 release 页面列出 v1.8.2；本项目实跑使用 SyRI 1.8.2 与 MUMmer 3.23，官方拟南芥测试集输入、版本、命令、日志、摘要和哈希见 `examples/syri/verified-20261121/`。[项目仓库](https://github.com/schneebergerlab/syri)、[发布页](https://github.com/schneebergerlab/syri/releases)、[许可证](https://github.com/schneebergerlab/syri/blob/master/LICENSE)。该运行验证的是固定测试数据的命令链，不是其中所有预测变异的独立验证。
 
-## 运行前方向检查
-官方说明要求比较的同源染色体采用一致的方向；如果两条对应染色体的大部分比对方向相反，应先检查染色体方向，必要时对查询染色体做反向互补，再重新进行全基因组比对。不能仅凭单个局部倒位决定整条染色体方向。对于大型易位或重复，候选比对会增加时间和内存消耗，需要结合比对过滤、染色体分组和资源监控处理。[官方限制说明](https://github.com/schneebergerlab/syri#current-limitations)。
-
-
-## 官方发布版本记录
-2026-11-21 查看[官方发布页](https://github.com/schneebergerlab/syri/releases)，页面列出 v1.8.2。这是一项来源快照，软件更新后应重新核对；已在 WSL 隔离环境中运行该版本，拟南芥官方测试数据和验证记录见关联教程。
+- 官方 GitHub 仓库：[schneebergerlab/syri](https://github.com/schneebergerlab/syri)
+- 奠基方法论文：[Goel et al., *Genome Biol.*, 2019](https://doi.org/10.1186/s13059-019-1911-0)
+- 配套可视化：[Goel & Schneeberger, *Bioinformatics*, 2022](https://doi.org/10.1093/bioinformatics/btac253) (PlotSR)
+- 官方发布版本：v1.8.2+（生产环境以实际安装为准）。

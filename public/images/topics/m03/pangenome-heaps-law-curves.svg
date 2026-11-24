@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 520" width="100%" height="100%" style="background:#0f172a; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;">
+  <defs>
+    <linearGradient id="pangeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0284c7" />
+      <stop offset="100%" stop-color="#38bdf8" />
+    </linearGradient>
+    <linearGradient id="coreGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10b981" />
+      <stop offset="100%" stop-color="#34d399" />
+    </linearGradient>
+    <linearGradient id="closedGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#fbbf24" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Title -->
+  <text x="500" y="38" text-anchor="middle" fill="#f8fafc" font-size="20" font-weight="700" letter-spacing="0.5">植物泛基因组建模与 Heaps' Law 幂律演化曲线</text>
+  <text x="500" y="62" text-anchor="middle" fill="#94a3b8" font-size="13">Mathematical Modeling of Core &amp; Pan-genome Dynamics: Open vs Closed Pangenomes</text>
+
+  <!-- Left: Coordinate Axes & Curves -->
+  <g transform="translate(70, 90)">
+    <!-- Grid lines -->
+    <line x1="60" y1="50" x2="520" y2="50" stroke="#334155" stroke-dasharray="3,3" stroke-width="1" />
+    <line x1="60" y1="120" x2="520" y2="120" stroke="#334155" stroke-dasharray="3,3" stroke-width="1" />
+    <line x1="60" y1="190" x2="520" y2="190" stroke="#334155" stroke-dasharray="3,3" stroke-width="1" />
+    <line x1="60" y1="260" x2="520" y2="260" stroke="#334155" stroke-dasharray="3,3" stroke-width="1" />
+
+    <!-- Axes -->
+    <line x1="60" y1="260" x2="530" y2="260" stroke="#94a3b8" stroke-width="2" />
+    <line x1="60" y1="260" x2="60" y2="30" stroke="#94a3b8" stroke-width="2" />
+
+    <!-- Axis Labels -->
+    <text x="535" y="265" fill="#cbd5e1" font-size="12" font-weight="600">基因组数 (N)</text>
+    <text x="55" y="22" fill="#cbd5e1" font-size="12" font-weight="600" text-anchor="end">基因家族总数 (n)</text>
+
+    <!-- Ticks -->
+    <text x="60" y="278" fill="#64748b" font-size="11" text-anchor="middle">1</text>
+    <text x="175" y="278" fill="#64748b" font-size="11" text-anchor="middle">10</text>
+    <text x="290" y="278" fill="#64748b" font-size="11" text-anchor="middle">25</text>
+    <text x="405" y="278" fill="#64748b" font-size="11" text-anchor="middle">50</text>
+    <text x="500" y="278" fill="#64748b" font-size="11" text-anchor="middle">100+</text>
+
+    <!-- Curve 1: Open Pan-genome (e.g. Rice, Maize, Brassica) -->
+    <path d="M 60 170 Q 150 110, 280 80 T 520 48" fill="none" stroke="url(#pangeGradient)" stroke-width="3.5" filter="url(#glow)" />
+    <text x="420" y="42" fill="#38bdf8" font-size="12" font-weight="700">开放型泛基因组 (Open)</text>
+    <text x="420" y="58" fill="#7dd3fc" font-size="10">n = κ · N^γ (γ &gt; 0, α &lt; 1)</text>
+
+    <!-- Curve 2: Closed Pan-genome (e.g. selfing, narrow diversity) -->
+    <path d="M 60 170 Q 160 135, 290 128 T 520 125" fill="none" stroke="url(#closedGradient)" stroke-width="2.5" stroke-dasharray="6,4" />
+    <text x="420" y="118" fill="#fbbf24" font-size="11" font-weight="600">封闭型泛基因组 (Closed)</text>
+    <text x="420" y="134" fill="#fde68a" font-size="10">逐渐趋向渐近线 (γ ≤ 0, α &gt; 1)</text>
+
+    <!-- Curve 3: Core Genome Decay -->
+    <path d="M 60 170 Q 140 225, 270 235 T 520 238" fill="none" stroke="url(#coreGradient)" stroke-width="3" />
+    <text x="420" y="228" fill="#34d399" font-size="12" font-weight="700">核心基因组 (Core Decay)</text>
+    <text x="420" y="244" fill="#a7f3d0" font-size="10">F_core = Ω + A · exp(-N / τ)</text>
+
+    <!-- Formula Box bottom-left -->
+    <rect x="60" y="300" width="460" height="90" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1.5" />
+    <text x="75" y="324" fill="#38bdf8" font-size="13" font-weight="700">Heaps' Law 幂律数学判据 (Tettelin et al., 2008)</text>
+    <text x="75" y="346" fill="#f8fafc" font-size="12">新增基因数公式：<tspan fill="#fbbf24">Δn = κ · N^(-α)</tspan>  |  累计泛基因数：<tspan fill="#38bdf8">n = κ' · N^γ</tspan>  (其中 γ = 1 - α)</text>
+    <text x="75" y="368" fill="#94a3b8" font-size="11">• <tspan fill="#38bdf8" font-weight="600">α &lt; 1 (γ &gt; 0)</tspan>：开放型，随着测序基因组增加，新基因发现速率不收敛（植物极普遍）</text>
+    <text x="75" y="384" fill="#94a3b8" font-size="11">• <tspan fill="#fbbf24" font-weight="600">α &gt; 1 (γ &lt; 0)</tspan>：封闭型，泛基因组总量具有理论上限，增加样本不再带来新基因</text>
+  </g>
+
+  <!-- Right: Pangenome Partition Architecture -->
+  <g transform="translate(640, 90)">
+    <rect x="0" y="0" width="310" height="390" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1.5" />
+    <text x="155" y="28" fill="#f8fafc" font-size="15" font-weight="700" text-anchor="middle">泛基因组四大组分层级划分</text>
+    <text x="155" y="46" fill="#94a3b8" font-size="11" text-anchor="middle">Four-tier Genomic Partition Framework</text>
+
+    <!-- Stacked bar visualization -->
+    <!-- Tier 1: Core Genome -->
+    <g transform="translate(25, 65)">
+      <rect x="0" y="0" width="260" height="58" rx="6" fill="#065f46" stroke="#10b981" stroke-width="1.5" />
+      <text x="12" y="22" fill="#34d399" font-size="13" font-weight="700">核心基因组 (Core Genome)</text>
+      <text x="12" y="38" fill="#a7f3d0" font-size="11">存在于 99%~100% 的全部个体中</text>
+      <text x="12" y="51" fill="#6ee7b7" font-size="10">功能：光合作用、基础生化代谢、DNA复制等必需生理程序</text>
+    </g>
+
+    <!-- Tier 2: Soft-Core -->
+    <g transform="translate(25, 133)">
+      <rect x="0" y="0" width="260" height="54" rx="6" fill="#0f766e" stroke="#14b8a6" stroke-width="1.5" />
+      <text x="12" y="20" fill="#2dd4bf" font-size="13" font-weight="700">软核心基因组 (Soft-Core)</text>
+      <text x="12" y="36" fill="#99f6e4" font-size="11">存在于 90%~99% 的个体中</text>
+      <text x="12" y="48" fill="#5eead4" font-size="10">容忍技术性组装断裂、剪接未识别或假基因化波动</text>
+    </g>
+
+    <!-- Tier 3: Dispensable / Shell -->
+    <g transform="translate(25, 197)">
+      <rect x="0" y="0" width="260" height="62" rx="6" fill="#1e3a8a" stroke="#3b82f6" stroke-width="1.5" />
+      <text x="12" y="20" fill="#60a5fa" font-size="13" font-weight="700">可变/外壳基因组 (Shell / Dispensable)</text>
+      <text x="12" y="36" fill="#bfdbfe" font-size="11">存在于 1%~90% 的部分个体中</text>
+      <text x="12" y="50" fill="#93c5fd" font-size="10">功能：环境逆境耐受（抗旱/抗盐）、生物防御（NLR 家族）、驯化特异性</text>
+    </g>
+
+    <!-- Tier 4: Private / Cloud -->
+    <g transform="translate(25, 269)">
+      <rect x="0" y="0" width="260" height="54" rx="6" fill="#4c1d95" stroke="#8b5cf6" stroke-width="1.5" />
+      <text x="12" y="20" fill="#c084fc" font-size="13" font-weight="700">特有/云基因组 (Cloud / Private)</text>
+      <text x="12" y="36" fill="#e9d5ff" font-size="11">仅在极少数（&lt;1% 或单个）材料中检测</text>
+      <text x="12" y="48" fill="#d8b4fe" font-size="10">来源：近期新基因发生、近缘野生种杂交渐渗、局部转座捕获</text>
+    </g>
+
+    <!-- Plant Features Summary -->
+    <g transform="translate(25, 332)">
+      <rect x="0" y="0" width="260" height="46" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1" />
+      <text x="8" y="16" fill="#e2e8f0" font-size="10" font-weight="600">植物典型特征（水稻/玉米/大豆）：</text>
+      <text x="8" y="32" fill="#94a3b8" font-size="9.5">可变基因占比高达 30%~50%，是农艺抗逆基因挖掘的主战场</text>
+    </g>
+  </g>
+</svg>

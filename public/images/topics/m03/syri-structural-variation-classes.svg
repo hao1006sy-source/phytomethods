@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 520" width="100%" height="100%" style="background:#0f172a; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;">
+  <defs>
+    <linearGradient id="synGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7" stop-opacity="0.7" />
+      <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.3" />
+    </linearGradient>
+    <linearGradient id="invGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.7" />
+      <stop offset="100%" stop-color="#fbbf24" stop-opacity="0.3" />
+    </linearGradient>
+    <linearGradient id="transGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.7" />
+      <stop offset="100%" stop-color="#c084fc" stop-opacity="0.3" />
+    </linearGradient>
+    <linearGradient id="dupGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0.7" />
+      <stop offset="100%" stop-color="#34d399" stop-opacity="0.3" />
+    </linearGradient>
+  </defs>
+
+  <!-- Title -->
+  <text x="500" y="38" text-anchor="middle" fill="#f8fafc" font-size="20" font-weight="700" letter-spacing="0.5">SyRI 全基因组共线性比对与五大结构变异分类体系</text>
+  <text x="500" y="62" text-anchor="middle" fill="#94a3b8" font-size="13">Genome-wide Synteny Identification &amp; Structural Rearrangement Classification (Goel et al., 2019)</text>
+
+  <!-- Main Chromosome Comparison Canvas -->
+  <g transform="translate(60, 95)">
+    <!-- Reference Chromosome Top Bar -->
+    <text x="0" y="16" fill="#38bdf8" font-size="13" font-weight="700">参考基因组 (Reference / Col-0 / Nipponbare)</text>
+    <rect x="0" y="26" width="880" height="26" rx="6" fill="#1e293b" stroke="#38bdf8" stroke-width="2" />
+    <!-- Markers on Ref -->
+    <text x="60" y="43" fill="#cbd5e1" font-size="11" font-weight="600" text-anchor="middle">A</text>
+    <text x="180" y="43" fill="#cbd5e1" font-size="11" font-weight="600" text-anchor="middle">B</text>
+    <text x="320" y="43" fill="#fbbf24" font-size="11" font-weight="700" text-anchor="middle">C (Inv)</text>
+    <text x="490" y="43" fill="#cbd5e1" font-size="11" font-weight="600" text-anchor="middle">D</text>
+    <text x="610" y="43" fill="#c084fc" font-size="11" font-weight="700" text-anchor="middle">E (Trans)</text>
+    <text x="730" y="43" fill="#34d399" font-size="11" font-weight="700" text-anchor="middle">F (Dup)</text>
+    <text x="830" y="43" fill="#cbd5e1" font-size="11" font-weight="600" text-anchor="middle">G</text>
+
+    <!-- Query Chromosome Bottom Bar -->
+    <text x="0" y="200" fill="#34d399" font-size="13" font-weight="700">查询基因组 (Query / Ler / 93-11)</text>
+    <rect x="0" y="210" width="880" height="26" rx="6" fill="#1e293b" stroke="#34d399" stroke-width="2" />
+    <!-- Markers on Query -->
+    <text x="60" y="227" fill="#cbd5e1" font-size="11" font-weight="600" text-anchor="middle">A'</text>
+    <text x="180" y="227" fill="#cbd5e1" font-size="11" font-weight="600" text-anchor="middle">B'</text>
+    <text x="320" y="227" fill="#fbbf24" font-size="11" font-weight="700" text-anchor="middle">C' (反向倒位)</text>
+    <text x="490" y="227" fill="#cbd5e1" font-size="11" font-weight="600" text-anchor="middle">D'</text>
+    <text x="730" y="227" fill="#34d399" font-size="11" font-weight="700" text-anchor="middle">F1'</text>
+    <text x="780" y="227" fill="#34d399" font-size="11" font-weight="700" text-anchor="middle">F2' (复制)</text>
+    <text x="840" y="227" fill="#c084fc" font-size="11" font-weight="700" text-anchor="middle">E' (易位)</text>
+
+    <!-- Alignment Ribbons (Polygons) -->
+    <!-- 1. Synteny Ribbons A and B -->
+    <polygon points="20,52 100,52 100,210 20,210" fill="url(#synGrad)" stroke="#38bdf8" stroke-width="0.8" />
+    <polygon points="130,52 230,52 230,210 130,210" fill="url(#synGrad)" stroke="#38bdf8" stroke-width="0.8" />
+
+    <!-- 2. Inversion Ribbon (Twisted Ribbon) -->
+    <polygon points="260,52 380,52 260,210 380,210" fill="url(#invGrad)" stroke="#fbbf24" stroke-width="1.2" />
+
+    <!-- 3. Synteny Ribbon D -->
+    <polygon points="440,52 540,52 540,210 440,210" fill="url(#synGrad)" stroke="#38bdf8" stroke-width="0.8" />
+
+    <!-- 4. Translocation Ribbon E (Jumps across) -->
+    <polygon points="570,52 650,52 870,210 810,210" fill="url(#transGrad)" stroke="#c084fc" stroke-width="1.2" stroke-dasharray="3,2" />
+
+    <!-- 5. Duplication Ribbon F (One to two) -->
+    <polygon points="690,52 770,52 755,210 705,210" fill="url(#dupGrad)" stroke="#34d399" stroke-width="1" />
+    <polygon points="690,52 770,52 805,210 755,210" fill="url(#dupGrad)" stroke="#34d399" stroke-width="1" stroke-dasharray="4,2" />
+
+    <!-- Labels on Ribbons -->
+    <text x="60" y="130" fill="#bae6fd" font-size="11" font-weight="600" text-anchor="middle">共线性 (SYN)</text>
+    <text x="320" y="130" fill="#fef08a" font-size="11" font-weight="700" text-anchor="middle">倒位 (INV)</text>
+    <text x="490" y="130" fill="#bae6fd" font-size="11" font-weight="600" text-anchor="middle">共线性 (SYN)</text>
+    <text x="670" y="150" fill="#e9d5ff" font-size="11" font-weight="700" text-anchor="middle">易位 (TRANS)</text>
+    <text x="750" y="115" fill="#a7f3d0" font-size="11" font-weight="700" text-anchor="middle">复制 (DUP)</text>
+  </g>
+
+  <!-- Bottom Details & Biological Significance Grid -->
+  <g transform="translate(60, 370)">
+    <rect x="0" y="0" width="880" height="120" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1.5" />
+    
+    <!-- Column 1: SyRI Graph Formulation -->
+    <g transform="translate(20, 20)">
+      <text x="0" y="0" fill="#38bdf8" font-size="13" font-weight="700">1. SyRI 图论模型与动态规划寻优</text>
+      <text x="0" y="22" fill="#cbd5e1" font-size="11">• 将双基因组局部比对转换为有向无环图 (DAG) 节点；</text>
+      <text x="0" y="40" fill="#cbd5e1" font-size="11">• 边的权重结合比对长度、相似性得分与间隙惩罚；</text>
+      <text x="0" y="58" fill="#cbd5e1" font-size="11">• 全局动态规划求解骨干共线路径，剩余区域分类为倒位/易位/重复。</text>
+    </g>
+
+    <!-- Column 2: Recombination Suppression in Plants -->
+    <g transform="translate(460, 20)">
+      <text x="0" y="0" fill="#fbbf24" font-size="13" font-weight="700">2. 植物大片段倒位对减数分裂重组的抑制</text>
+      <text x="0" y="22" fill="#cbd5e1" font-size="11">• <tspan fill="#fef08a" font-weight="600">重组抑制效应 (Inversion Recombination Suppression)</tspan>：倒位杂合体在减数分裂配对形成倒位环；</text>
+      <text x="0" y="40" fill="#cbd5e1" font-size="11">• 环内发生单次互换产生不平衡配子（双着丝粒/无着丝粒染色体），导致配子败育；</text>
+      <text x="0" y="58" fill="#cbd5e1" font-size="11">• 最终将倒位区间内数百个基因锁定为“超级基因（Supergene）”，主导驯化与生态适应性。</text>
+    </g>
+  </g>
+</svg>

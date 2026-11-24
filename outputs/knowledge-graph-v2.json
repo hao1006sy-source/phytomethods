@@ -224,11 +224,11 @@
       "domainIds": [
         "pangenomics-structural-variation"
       ],
-      "summary": "以保守基因锚点和复制背景组织植物全基因组比对。",
+      "summary": "专门针对植物全基因组复制（WGD）背景、染色体大尺度重排与超高转座子富集特征设计的保守基因锚定波前全基因组比对算法。",
       "meta": {
         "repository": "https://github.com/baoxingsong/AnchorWave",
-        "dataType": "基因组 FASTA / GFF3 或 GTF 注释",
-        "principle": "共线锚点与两段仿射区块比对",
+        "dataType": "基因组 FASTA / GFF3 或 GTF 注释文件",
+        "principle": "保守编码外显子共线锚定、全基因组复制矩阵约束与两段仿射波前比对 (WFA)",
         "canonicalPaperId": "anchorwave-paper"
       }
     },
@@ -360,11 +360,11 @@
       "domainIds": [
         "pangenomics-structural-variation"
       ],
-      "summary": "从长读段比对中提取结构变异信号，通过类型特异聚类和迭代细化生成 VCF 候选。",
+      "summary": "基于第三代长读段比对签名提取、类型特异性聚类与断裂点迭代细化的高灵敏度结构变异检测工具。",
       "meta": {
         "repository": "https://github.com/tjiangHIT/cuteSV",
-        "dataType": "坐标排序的长读段 BAM；参考 FASTA",
-        "principle": "断点信号聚类与迭代细化",
+        "dataType": "坐标排序的 PacBio HiFi / ONT 长读段比对 BAM；参考基因组 FASTA",
+        "principle": "长读段断裂点与大 InDel 签名提取、变异类型特异空间聚类与断点局部迭代细化",
         "canonicalPaperId": "cutesv-paper"
       }
     },
@@ -684,11 +684,11 @@
       "domainIds": [
         "pangenomics-structural-variation"
       ],
-      "summary": "结合组装比对与碱基级对齐构建泛基因组图。",
+      "summary": "结合 Minigraph 宏观结构变异骨架与 Cactus 碱基级多重联配，构建全碱基分辨率高质量植物图泛基因组并一键导出下游索引。",
       "meta": {
         "repository": "https://github.com/ComparativeGenomicsToolkit/cactus",
-        "dataType": "多个组装 FASTA",
-        "principle": "泛基因组图构建",
+        "dataType": "多个染色体级组装 FASTA",
+        "principle": "参考引导结构变异骨架诱导、超泡分区分治与 Cactus 局部单碱基全联配",
         "canonicalPaperId": "minigraph-cactus-paper"
       }
     },
@@ -786,11 +786,11 @@
       "domainIds": [
         "pangenomics-structural-variation"
       ],
-      "summary": "处理、统计和可视化泛基因组图及样本路径。",
+      "summary": "高性能图泛基因组处理与多尺度分析套件，提供图格式转换、拓扑统计、路径降维排序及一维全景平铺可视化。",
       "meta": {
         "repository": "https://github.com/pangenome/odgi",
-        "dataType": "GFA / 泛基因组图",
-        "principle": "图存储与路径可视化",
+        "dataType": "GFAv1 / GFA1.1 变异图；ODGI 紧凑二进制图 (.og)",
+        "principle": "动态紧凑图内存模型、一维空间填充拓扑排序与多单倍型路径无偏投影",
         "canonicalPaperId": "odgi-paper"
       }
     },
@@ -1076,11 +1076,11 @@
       "domainIds": [
         "pangenomics-structural-variation"
       ],
-      "summary": "通过两个组装基因组的全基因组比对识别共线、重排和局部序列差异。",
+      "summary": "基于两个高质量染色体级组装的全基因组比对，利用图论动态规划精确分类共线性、倒位、易位、重复及局域核苷酸变异。",
       "meta": {
         "repository": "https://github.com/schneebergerlab/syri",
-        "dataType": "组装 FASTA / 全基因组比对",
-        "principle": "共线结构与重排识别",
+        "dataType": "组装基因组 FASTA / 全基因组比对 BAM / SAM / MUMmer delta",
+        "principle": "有向无环图遍历、全局最优共线性骨架动态规划求解与结构重排分层分类",
         "canonicalPaperId": "syri-paper"
       }
     },
