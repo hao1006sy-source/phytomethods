@@ -1,0 +1,22 @@
+[
+  {
+    "task": "check",
+    "exitCode": 0
+  },
+  {
+    "task": "build",
+    "exitCode": 0
+  },
+  {
+    "task": "validate",
+    "exitCode": 0
+  },
+  {
+    "task": "coverage",
+    "exitCode": 0
+  },
+  {
+    "task": "check:genome-hub",
+    "exitCode": 0
+  }
+]

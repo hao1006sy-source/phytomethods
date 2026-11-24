@@ -1,0 +1,30 @@
+---
+import Base from '../../layouts/Base.astro';
+import {species,assemblies,annotations,files,databases} from '../../lib/genomes/registry';
+import '../../styles/genome-hub.css';
+const base=import.meta.env.BASE_URL;
+const verifiedDates=[...new Set(assemblies.map(a=>a.verifiedAt))].sort().join(' / ');
+---
+<Base title="Plant Genome Hub" description="按 Assembly accession 查找植物参考基因组、官方注释与配套下载资源。">
+<div class="gh">
+<section class="gh-hero"><div class="eyebrow">REFERENCE GENOMES · VERSION-AWARE DISCOVERY</div><h1>Plant Genome Hub</h1><p>查找植物参考基因组、官方注释及配套序列文件。</p><div class="gh-tags"><span class="gh-tag">{species.length} 个物种</span><span class="gh-tag">{assemblies.length} 套参考组装</span><span class="gh-tag">按坐标体系核对配套关系</span><a href={`${base}genomes/databases/`}>官方数据库导航 →</a></div></section>
+<form class="gh-controls" id="genome-search" role="search">
+<label class="search">搜索物种 / 品系 / accession / Taxonomy ID<input type="search" id="genome-query" placeholder="拟南芥、Nipponbare、B73、GCA_028009825.2…" /></label>
+<label>物种类别<select id="genome-category"><option value="">全部类别</option>{[...new Set(species.map(s=>s.category))].map(v=><option>{v}</option>)}</select></label>
+<label>来源<select id="genome-source"><option value="">全部来源</option>{databases.map(d=><option value={d.id}>{d.name}</option>)}</select></label>
+<label>组装级别<select id="genome-level"><option value="">全部级别</option>{['Complete Genome','Chromosome','Scaffold','Contig'].map(v=><option>{v}</option>)}</select></label>
+<label>组装版本<select id="genome-version"><option value="">全部版本</option>{assemblies.map(a=><option value={a.id}>{a.assemblyName} · {a.accession}</option>)}</select></label>
+<label>获取方式<select id="genome-access"><option value="">全部方式</option><option value="direct">直接下载</option><option value="portal">官方页面</option><option value="login_required">需要登录</option></select></label>
+{[['gff3','有 GFF3'],['protein','有 Protein'],['cds','有 CDS']].map(([type,label])=><label><span><input type="checkbox" data-file-filter={type} /> {label}</span></label>)}<button type="reset">重置筛选</button>
+</form>
+<p class="gh-muted" id="genome-result-count" role="status">{assemblies.length} 套参考组装。核实日期：{verifiedDates}；历史版本保留用于复现。</p>
+<div class="gh-grid">{assemblies.map(a=>{const s=species.find(s=>s.id===a.speciesId)!;const f=files.filter(f=>f.assemblyId===a.id);const search=[s.chineseName,s.scientificName,...s.aliases,s.strain,s.taxonomyId,s.assemblyTaxonomyId,a.accession,a.assemblyName,...a.searchAliases,...annotations.filter(n=>n.assemblyId===a.id).map(n=>n.releaseName),a.sourceDatabase,...s.databaseIds.map(id=>databases.find(d=>d.id===id)?.name??id)].join(' ');return <article class="gh-card" data-genome-card data-search={search} data-category={s.category} data-source={[a.sourceDatabase,...f.map(f=>annotations.find(n=>n.id===f.annotationId)?.sourceDatabase??'')].join(' ')} data-level={a.assemblyLevel} data-version={a.id} data-access={f.map(f=>f.accessType).join(' ')} data-files={f.filter(f=>f.accessType!=='unverified').map(f=>f.type).join(' ')}><div class="gh-tags"><span class="gh-tag">{s.category}</span><span class="gh-tag">{a.assemblyLevel}</span></div><h2><a href={`${base}genomes/${s.id}/?assembly=${a.id}`}>{s.chineseName} <span aria-hidden="true">↗</span></a></h2><p><i>{s.scientificName}</i><br/>{s.strain}</p><strong>{a.assemblyName}</strong><p class="gh-muted">{a.accession}<br/>来源：{databases.find(d=>d.id===a.sourceDatabase)?.name}<br/>Taxonomy ID：{s.taxonomyId}</p><a href={`${base}genomes/${s.id}/?assembly=${a.id}`}>版本、配套与下载 →</a></article>})}</div>
+<div class="gh-empty" id="genome-empty" hidden>没有匹配的参考组装。请尝试学名或清除筛选条件。</div>
+</div>
+<script>
+const form=document.querySelector<HTMLFormElement>('#genome-search')!;
+const normalize=(s:string)=>s.normalize('NFKC').toLowerCase().replace(/[\s\p{P}]+/gu,'');
+function filter(){const q=normalize((document.querySelector('#genome-query') as HTMLInputElement).value);let count=0;document.querySelectorAll<HTMLElement>('[data-genome-card]').forEach(card=>{let show=normalize(card.dataset.search??'').includes(q);for(const key of ['category','source','level','version','access']){const value=(document.querySelector(`#genome-${key}`)as HTMLSelectElement).value;if(value)show=show&&(card.dataset[key]??'').split(['access','source'].includes(key)?' ':'\u0000').includes(value);}document.querySelectorAll<HTMLInputElement>('[data-file-filter]:checked').forEach(input=>{show=show&&(card.dataset.files??'').split(' ').includes(input.dataset.fileFilter!);});card.hidden=!show;if(show)count++;});document.querySelector('#genome-result-count')!.textContent=`找到 ${count} 套参考组装 · 组装版本、注释版本与数据库发布版本分别记录`; (document.querySelector('#genome-empty') as HTMLElement).hidden=count>0;}
+form.addEventListener('submit',e=>e.preventDefault());form.addEventListener('input',filter);form.addEventListener('reset',()=>setTimeout(filter,0));
+</script>
+</Base>

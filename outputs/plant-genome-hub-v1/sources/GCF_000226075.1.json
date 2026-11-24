@@ -1,0 +1,158 @@
+{
+  "reports": [
+    {
+      "accession": "GCF_000226075.1",
+      "current_accession": "GCF_000226075.1",
+      "paired_accession": "GCA_000226075.1",
+      "source_database": "SOURCE_DATABASE_REFSEQ",
+      "organism": {
+        "tax_id": 4113,
+        "organism_name": "Solanum tuberosum",
+        "common_name": "potato",
+        "infraspecific_names": {
+          "cultivar": "DM 1-3 516 R44"
+        }
+      },
+      "assembly_info": {
+        "assembly_level": "Scaffold",
+        "assembly_status": "current",
+        "paired_assembly": {
+          "accession": "GCA_000226075.1",
+          "status": "current",
+          "only_refseq": "chromosome Pltd",
+          "refseq_genbank_are_different": true,
+          "differences": "Added chromosome Pltd"
+        },
+        "assembly_name": "SolTub_3.0",
+        "assembly_type": "haploid",
+        "bioproject_lineage": [
+          {
+            "bioprojects": [
+              {
+                "accession": "PRJNA63145",
+                "title": "Solanum tuberosum strain:DM1-3 516 R44 Genome sequencing and assembly"
+              }
+            ]
+          }
+        ],
+        "bioproject_accession": "PRJNA63145",
+        "release_date": "2011-09-19",
+        "submitter": "Potato Genome Sequencing Consortium",
+        "refseq_category": "reference genome",
+        "sequencing_tech": "Illumina GA2",
+        "assembly_method": "SOAPdenovo v. 1014",
+        "biosample": {
+          "accession": "SAMN02981305",
+          "last_updated": "2014-08-11T11:22:18.963",
+          "publication_date": "2014-08-11T11:22:18.963",
+          "submission_date": "2014-08-11T11:22:18.963",
+          "sample_ids": [
+            {
+              "db": "GenBank",
+              "value": "gb|AEWC00000000.1"
+            }
+          ],
+          "description": {
+            "title": "Sample from Solanum tuberosum",
+            "organism": {
+              "tax_id": 4113,
+              "organism_name": "Solanum tuberosum"
+            }
+          },
+          "owner": {
+            "name": "Beijing Genomics Institute in Shenzhen, China, Biotechnology"
+          },
+          "models": [
+            "Generic"
+          ],
+          "bioprojects": [
+            {
+              "accession": "PRJNA63145"
+            }
+          ],
+          "package": "Generic.1.0",
+          "attributes": [
+            {
+              "name": "cultivar",
+              "value": "DM 1-3 516 R44"
+            }
+          ],
+          "status": {
+            "status": "live",
+            "when": "2014-08-11T11:22:18.963"
+          },
+          "cultivar": "DM 1-3 516 R44"
+        },
+        "blast_url": "https://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastSearch&PROG_DEF=blastn&BLAST_SPEC=GDH_GCF_000226075.1",
+        "comments": "Assembly name: SolTub_3.0\nThe genomic sequence for this RefSeq record is from the whole-genome assembly released by the Potato Genome Sequencing Consortium on 2011/09/19. The original whole-genome shotgun project has the accession AEWC00000000.1."
+      },
+      "assembly_stats": {
+        "total_sequence_length": "705779115",
+        "total_ungapped_length": "663134508",
+        "number_of_contigs": 60068,
+        "contig_n50": 31914,
+        "contig_l50": 6191,
+        "number_of_scaffolds": 14853,
+        "scaffold_n50": 1344915,
+        "scaffold_l50": 160,
+        "number_of_component_sequences": 60068,
+        "atgc_count": "663134508",
+        "gc_count": "230938044",
+        "gc_percent": 35,
+        "genome_coverage": "114",
+        "number_of_organelles": 1
+      },
+      "organelle_info": [
+        {
+          "description": "Chloroplast",
+          "total_seq_length": "155296",
+          "submitter": "Potato Genome Sequencing Consortium"
+        }
+      ],
+      "additional_submitters": [
+        {
+          "genbank_accession": "DQ386163.2",
+          "refseq_accession": "NC_008096.2",
+          "chr_name": "Pltd",
+          "molecule_type": "Chloroplast",
+          "submitter": "CNR-IGV, Institute of Plant Genetics"
+        }
+      ],
+      "annotation_info": {
+        "name": "GCF_000226075.1-RS_2025_04",
+        "provider": "NCBI RefSeq",
+        "release_date": "2025-04-03",
+        "report_url": "https://www.ncbi.nlm.nih.gov/genome/annotation_euk/Solanum_tuberosum/GCF_000226075.1-RS_2025_04.html",
+        "stats": {
+          "gene_counts": {
+            "total": 32873,
+            "protein_coding": 28404,
+            "non_coding": 2434,
+            "pseudogene": 2027,
+            "other": 8
+          }
+        },
+        "busco": {
+          "busco_lineage": "solanales_odb10",
+          "busco_ver": "5.7.1",
+          "complete": 0.9882353,
+          "single_copy": 0.96789914,
+          "duplicated": 0.020336134,
+          "fragmented": 0.00302521,
+          "missing": 0.008739496,
+          "total_count": "5950"
+        },
+        "method": "Best-placed RefSeq; Gnomon; tRNAscan-SE",
+        "pipeline": "NCBI Eukaryotic Genome Annotation Pipeline (EGAP)",
+        "software_version": "10.3",
+        "status": "Updated annotation"
+      },
+      "wgs_info": {
+        "wgs_project_accession": "AEWC01",
+        "master_wgs_url": "https://www.ncbi.nlm.nih.gov/nuccore/AEWC00000000.1",
+        "wgs_contigs_url": "https://www.ncbi.nlm.nih.gov/Traces/wgs/AEWC01"
+      }
+    }
+  ],
+  "total_count": 1
+}

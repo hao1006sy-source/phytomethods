@@ -27,6 +27,7 @@ const nav = [
   ['知识关联', 'knowledge/'],
   ['文献索引', 'papers/'],
   ['分析教程', 'tutorials/'],
+  ['基因组资源', 'genomes/'],
   ['搜索', 'search/'],
 ] as const;
 const githubUrl = 'https://github.com/hao1006sy-source/phytomethods';
@@ -76,6 +77,8 @@ const isCurrent = (href: string) => href ? path.startsWith(`${base}${href}`) : p
 
     <main class:list={['wrap', { 'home-main': home }]} data-pagefind-body>
       <slot />
+      {['topics/','tutorials/','workflows/','search/'].some(route=>path===`${base}${route}`) && <aside style="margin-top:24px;padding:18px;border:1px solid #dfebe3;border-radius:10px"><a href={`${base}genomes/`}>基因组资源 · 查找参考序列与配套注释 →</a></aside>}
+      {path.includes(`${base}tutorials/`) && path!==`${base}tutorials/` && <aside style="margin-top:24px;padding:18px;border:1px solid #dfebe3;border-radius:10px"><a href={`${base}genomes/`}>查找植物参考基因组与配套注释 →</a><p>组装、VCF、基因模型和重复序列分析应使用一致的参考坐标与染色体命名。</p></aside>}
       {synonyms.length > 0 && (
         <div class="sr-only search-synonyms-index" data-pagefind-meta="synonyms" aria-hidden="true" style="display:none;">
           {synonyms.join(' ')}

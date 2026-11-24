@@ -1,0 +1,198 @@
+{
+  "reports": [
+    {
+      "accession": "GCF_036512215.1",
+      "current_accession": "GCF_036512215.1",
+      "paired_accession": "GCA_036512215.2",
+      "source_database": "SOURCE_DATABASE_REFSEQ",
+      "organism": {
+        "tax_id": 4081,
+        "organism_name": "Solanum lycopersicum",
+        "common_name": "tomato"
+      },
+      "assembly_info": {
+        "assembly_level": "Chromosome",
+        "assembly_status": "current",
+        "paired_assembly": {
+          "accession": "GCA_036512215.2",
+          "status": "current",
+          "only_refseq": "chromosomes MT and Pltd",
+          "refseq_genbank_are_different": true,
+          "differences": "Added chromosomes MT and Pltd"
+        },
+        "assembly_name": "SLM_r2.1",
+        "assembly_type": "haploid",
+        "bioproject_lineage": [
+          {
+            "bioprojects": [
+              {
+                "accession": "PRJDB16644",
+                "title": "Chromosome-scale genome assembly of Micro-Tom",
+                "parent_accessions": [
+                  "PRJDB20515"
+                ]
+              },
+              {
+                "accession": "PRJDB20515",
+                "title": "Kazusa Genome Project: genome sequencing and assembly of Viridiplantae",
+                "parent_accessions": [
+                  "PRJNA533106"
+                ]
+              },
+              {
+                "accession": "PRJNA533106",
+                "title": "Earth BioGenome Project (EBP)"
+              }
+            ]
+          }
+        ],
+        "bioproject_accession": "PRJDB16644",
+        "release_date": "2024-09-03",
+        "submitter": "Kazusa DNA Research Institute",
+        "refseq_category": "reference genome",
+        "sequencing_tech": "PacBio Sequel II",
+        "assembly_method": "Hifiasm v. 0.16.1",
+        "biosample": {
+          "accession": "SAMD00644211",
+          "last_updated": "2024-06-02T16:53:59.420",
+          "publication_date": "2023-11-01T00:00:00.000",
+          "submission_date": "2023-11-01T13:06:18.043",
+          "sample_ids": [
+            {
+              "db": "SRA",
+              "value": "DRS339199"
+            }
+          ],
+          "description": {
+            "title": "Micro-Tom",
+            "organism": {
+              "tax_id": 4081,
+              "organism_name": "Solanum lycopersicum"
+            },
+            "comment": "TOMJPF00001"
+          },
+          "owner": {
+            "name": "Kazusa DNA Research Institute"
+          },
+          "models": [
+            "Plant"
+          ],
+          "package": "Plant.1.0",
+          "attributes": [
+            {
+              "name": "sample_name",
+              "value": "Micro-Tom"
+            },
+            {
+              "name": "age",
+              "value": "missing: control sample"
+            },
+            {
+              "name": "collection_date",
+              "value": "2022-11-02"
+            },
+            {
+              "name": "cultivar",
+              "value": "Micro-Tom"
+            },
+            {
+              "name": "geo_loc_name",
+              "value": "Japan:Ibaraki, Tsukuba"
+            },
+            {
+              "name": "tissue",
+              "value": "Leaf"
+            }
+          ],
+          "status": {
+            "status": "live",
+            "when": "2023-11-01T14:06:42.540"
+          },
+          "age": "missing: control sample",
+          "collection_date": "2022-11-02",
+          "cultivar": "Micro-Tom",
+          "geo_loc_name": "Japan:Ibaraki, Tsukuba",
+          "sample_name": "Micro-Tom",
+          "tissue": "Leaf"
+        },
+        "blast_url": "https://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastSearch&PROG_DEF=blastn&BLAST_SPEC=GDH_GCF_036512215.1",
+        "comments": "Assembly name: SLM_r2.1\nThe genomic sequence for this RefSeq record is from the whole-genome assembly released by the Kazusa DNA Research Institute on 2024/09/03."
+      },
+      "assembly_stats": {
+        "total_number_of_chromosomes": 12,
+        "total_sequence_length": "832773323",
+        "total_ungapped_length": "832715554",
+        "number_of_contigs": 178,
+        "contig_n50": 20171672,
+        "contig_l50": 13,
+        "number_of_scaffolds": 12,
+        "scaffold_n50": 69564429,
+        "scaffold_l50": 6,
+        "number_of_component_sequences": 12,
+        "atgc_count": "832715554",
+        "gc_count": "292805890",
+        "gc_percent": 35,
+        "genome_coverage": "87",
+        "number_of_organelles": 2
+      },
+      "organelle_info": [
+        {
+          "description": "Mitochondrion",
+          "total_seq_length": "446257",
+          "submitter": "Kazusa DNA Research Institute"
+        },
+        {
+          "description": "Chloroplast",
+          "total_seq_length": "155461",
+          "submitter": "Kazusa DNA Research Institute"
+        }
+      ],
+      "additional_submitters": [
+        {
+          "genbank_accession": "DQ347959.1",
+          "refseq_accession": "NC_007898.3",
+          "chr_name": "Pltd",
+          "molecule_type": "Chloroplast",
+          "submitter": "Molecular Biology & Microbiology, University of Central Florida"
+        },
+        {
+          "genbank_accession": "MF034192.1",
+          "refseq_accession": "NC_035963.1",
+          "chr_name": "MT",
+          "molecule_type": "Mitochondrion",
+          "submitter": "Department of Horticultural Science, Kyungpook university"
+        }
+      ],
+      "annotation_info": {
+        "name": "GCF_036512215.1-RS_2024_09",
+        "provider": "NCBI RefSeq",
+        "release_date": "2024-09-20",
+        "report_url": "https://www.ncbi.nlm.nih.gov/genome/annotation_euk/Solanum_lycopersicum/GCF_036512215.1-RS_2024_09.html",
+        "stats": {
+          "gene_counts": {
+            "total": 41476,
+            "protein_coding": 28611,
+            "non_coding": 11404,
+            "pseudogene": 1457,
+            "other": 4
+          }
+        },
+        "busco": {
+          "busco_lineage": "solanales_odb10",
+          "busco_ver": "5.7.1",
+          "complete": 0.98689073,
+          "single_copy": 0.9680672,
+          "duplicated": 0.018823529,
+          "fragmented": 0.0013445378,
+          "missing": 0.011764706,
+          "total_count": "5950"
+        },
+        "method": "Best-placed RefSeq; Gnomon; cmsearch; tRNAscan-SE",
+        "pipeline": "NCBI Eukaryotic Genome Annotation Pipeline (EGAP)",
+        "software_version": "10.3",
+        "status": "Full annotation"
+      }
+    }
+  ],
+  "total_count": 1
+}

@@ -110,7 +110,13 @@
 
 ## 六、GitHub Actions 浏览器 CI 配置与运行验证
 
-在 `.github/workflows/ci.yml` 中新增 Chromium 运行环境与回归测试阶段：
+1. **测试脚本与依赖就绪**：
+   - 在 `package.json` 中配置并锁定了 `playwright` 驱动支持；
+   - 编写了完整的无头浏览器回归套件 `scripts/browser-test-platform-v1.mjs`，覆盖 About、深色模式、同义词双向高召回、教程数据卡片真实状态、Workflows 本地 Mermaid 零 CDN 渲染、方法页计算画像与排查指南、选型对比矩阵、7 种视口 0 溢出校验；
+   - 本地端到端全量通过（测试耗时约 25 秒，产出完整截图凭证至 `outputs/platform-v1-test/`）。
+
+2. **CI 配置指南与 Token 权限说明**：
+   - 建议在 GitHub Actions 的 `.github/workflows/ci.yml` 中新增以下运行步骤：
 ```yaml
       - name: Install Playwright Chromium dependencies
         run: npx playwright install --with-deps chromium
@@ -126,8 +132,8 @@
           path: outputs/platform-v1-test/
           if-no-files-found: ignore
 ```
-- 测试覆盖 About 页面、深色模式三态持久化、同义词双向高召回、教程数据卡片真实状态、Workflows 本地 Mermaid 渲染、方法页计算画像与排查指南、选型对比矩阵、7 种视口 0 溢出校验；
-- 测试失败将直接使 GitHub Actions CI 失败并上传失败截图；成功时自动持久化测试截图作为验收凭据。
+   > [!NOTE]
+   > 由于当前推送使用的 Personal Access Token (PAT) 未勾选 `workflow` scope（GitHub 严格限制未授权 PAT 更改 `.github/workflows/` 下的 workflow 文件），为保证功能分支能够顺畅推送并创建 PR，本分支未直接包含 `.github/workflows/ci.yml` 的文件修改。管理员可在 GitHub 仓库设置中开启 PAT 的 `workflow` 权限或直接在网页端合并以上配置片段。
 
 ---
 

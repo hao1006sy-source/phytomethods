@@ -1,0 +1,37 @@
+[
+  {
+    "url": "https://rice.uga.edu/osa1r7_download/osa1_r7.asm.fa.gz",
+    "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1032)>",
+    "gzip": false
+  },
+  {
+    "url": "https://rice.uga.edu/osa1r7_download/osa1_r7.all_models.gff3.gz",
+    "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1032)>",
+    "gzip": false
+  },
+  {
+    "url": "https://rice.uga.edu/osa1r7_download/osa1_r7.all_models.cds.fa.gz",
+    "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1032)>",
+    "gzip": false
+  },
+  {
+    "url": "https://rice.uga.edu/osa1r7_download/osa1_r7.all_models.pep.fa.gz",
+    "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1032)>",
+    "gzip": false
+  },
+  {
+    "url": "https://rice.uga.edu/osa1r7_download/osa1_r7.all_models.cdna.fa.gz",
+    "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1032)>",
+    "gzip": false
+  },
+  {
+    "url": "https://rice.uga.edu/osa1r7_download/osa1_r7.all_models.functional_annotation.txt.gz",
+    "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1032)>",
+    "gzip": false
+  },
+  {
+    "url": "https://rice.uga.edu/osa1r7_download/osa1_r7.asm.repeat_masked.gff3.gz",
+    "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1032)>",
+    "gzip": false
+  }
+]

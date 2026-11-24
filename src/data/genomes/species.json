@@ -1,0 +1,184 @@
+[
+  {
+    "id": "arabidopsis",
+    "chineseName": "拟南芥",
+    "scientificName": "Arabidopsis thaliana",
+    "aliases": [
+      "thale",
+      "cress",
+      "Col-0",
+      "Columbia"
+    ],
+    "taxonomyId": 3702,
+    "assemblyTaxonomyId": 3702,
+    "category": "双子叶",
+    "strain": "Col-0",
+    "databaseIds": [
+      "ncbi",
+      "tair"
+    ]
+  },
+  {
+    "id": "rice",
+    "chineseName": "水稻",
+    "scientificName": "Oryza sativa",
+    "aliases": [
+      "rice",
+      "Nipponbare",
+      "japonica",
+      "粳稻",
+      "日本晴"
+    ],
+    "taxonomyId": 4530,
+    "assemblyTaxonomyId": 39947,
+    "category": "单子叶",
+    "strain": "Nipponbare",
+    "databaseIds": [
+      "ncbi",
+      "rgap"
+    ]
+  },
+  {
+    "id": "maize",
+    "chineseName": "玉米",
+    "scientificName": "Zea mays",
+    "aliases": [
+      "maize",
+      "corn",
+      "B73"
+    ],
+    "taxonomyId": 4577,
+    "assemblyTaxonomyId": 4577,
+    "category": "单子叶",
+    "strain": "B73",
+    "databaseIds": [
+      "ncbi",
+      "ensembl"
+    ]
+  },
+  {
+    "id": "wheat",
+    "chineseName": "小麦",
+    "scientificName": "Triticum aestivum",
+    "aliases": [
+      "wheat",
+      "Chinese",
+      "Spring",
+      "中国春"
+    ],
+    "taxonomyId": 4565,
+    "assemblyTaxonomyId": 4565,
+    "category": "单子叶",
+    "strain": "Chinese Spring",
+    "databaseIds": [
+      "ncbi",
+      "ensembl"
+    ]
+  },
+  {
+    "id": "soybean",
+    "chineseName": "大豆",
+    "scientificName": "Glycine max",
+    "aliases": [
+      "soybean",
+      "Williams",
+      "82"
+    ],
+    "taxonomyId": 3847,
+    "assemblyTaxonomyId": 3847,
+    "category": "双子叶",
+    "strain": "Williams 82",
+    "databaseIds": [
+      "ncbi",
+      "ensembl"
+    ]
+  },
+  {
+    "id": "tomato",
+    "chineseName": "番茄",
+    "scientificName": "Solanum lycopersicum",
+    "aliases": [
+      "tomato",
+      "Micro-Tom",
+      "SLM_r2.1"
+    ],
+    "taxonomyId": 4081,
+    "assemblyTaxonomyId": 4081,
+    "category": "双子叶",
+    "strain": "Micro-Tom",
+    "databaseIds": [
+      "ncbi",
+      "ensembl"
+    ]
+  },
+  {
+    "id": "potato",
+    "chineseName": "马铃薯",
+    "scientificName": "Solanum tuberosum",
+    "aliases": [
+      "potato",
+      "DM1-3"
+    ],
+    "taxonomyId": 4113,
+    "assemblyTaxonomyId": 4113,
+    "category": "双子叶",
+    "strain": "DM 1-3 516 R44",
+    "databaseIds": [
+      "ncbi",
+      "ensembl"
+    ]
+  },
+  {
+    "id": "sorghum",
+    "chineseName": "高粱",
+    "scientificName": "Sorghum bicolor",
+    "aliases": [
+      "sorghum",
+      "BTx623"
+    ],
+    "taxonomyId": 4558,
+    "assemblyTaxonomyId": 4558,
+    "category": "单子叶",
+    "strain": "BTx623",
+    "databaseIds": [
+      "ncbi",
+      "ensembl"
+    ]
+  },
+  {
+    "id": "barley",
+    "chineseName": "大麦",
+    "scientificName": "Hordeum vulgare",
+    "aliases": [
+      "barley",
+      "Morex"
+    ],
+    "taxonomyId": 4513,
+    "assemblyTaxonomyId": 112509,
+    "category": "单子叶",
+    "strain": "Morex",
+    "databaseIds": [
+      "ncbi",
+      "ensembl"
+    ]
+  },
+  {
+    "id": "poplar",
+    "chineseName": "美洲黑杨",
+    "scientificName": "Populus trichocarpa",
+    "aliases": [
+      "black",
+      "cottonwood",
+      "poplar",
+      "Nisqually-1"
+    ],
+    "taxonomyId": 3694,
+    "assemblyTaxonomyId": 3694,
+    "category": "双子叶",
+    "strain": "Nisqually-1",
+    "databaseIds": [
+      "ncbi",
+      "ensembl"
+    ]
+  }
+]

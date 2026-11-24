@@ -11,7 +11,7 @@
     "check:platform-data": "node scripts/check-platform-data.mjs",
     "test:platform-browser": "node scripts/browser-test-platform-v1.mjs",
     "check:topic-markdown": "node scripts/check-topic-markdown-rendering.mjs",
-    "validate": "npm run build && node scripts/check-home-curation.mjs && node scripts/check-domain-v2.mjs && python scripts/check-links.py && npm run audit:knowledge && npm run test:knowledge-integrity && npm run test:application-evidence && npm run test:msmc-chronology && npm run test:independent-evidence && npm run check:topic-markdown && npm run check:platform-data",
+    "validate": "npm run build && node scripts/check-home-curation.mjs && node scripts/check-domain-v2.mjs && python scripts/check-links.py && npm run audit:knowledge && npm run test:knowledge-integrity && npm run test:application-evidence && npm run test:msmc-chronology && npm run test:independent-evidence && npm run check:topic-markdown && npm run check:platform-data && npm run check:genome-hub",
     "coverage": "node scripts/content-coverage.mjs",
     "audit:knowledge": "node scripts/audit-knowledge-relations.mjs",
     "test:knowledge-integrity": "node scripts/test-knowledge-integrity.mjs",
@@ -26,7 +26,9 @@
     "test:methods-v3": "node scripts/browser-test-method-v3-full-rollout.mjs",
     "test:methods-index-v4": "node scripts/browser-test-methods-index-v4.mjs",
     "check:tutorial-science": "node scripts/check-tutorial-scientific-quality.mjs",
-    "check:cafe5": "node scripts/check-cafe5-reproducibility.mjs"
+    "check:cafe5": "node scripts/check-cafe5-reproducibility.mjs",
+    "check:genome-hub": "node scripts/check-genome-hub-data.mjs",
+    "test:genome-hub": "node scripts/browser-test-genome-hub.mjs"
   },
   "dependencies": {
     "@astrojs/markdown-remark": "^7.3.10",

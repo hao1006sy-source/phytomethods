@@ -1,0 +1,154 @@
+{
+  "searchCases": 8,
+  "speciesRoutes": 10,
+  "viewports": [
+    {
+      "route": "genomes/",
+      "width": 1600,
+      "height": 900,
+      "overflow": false
+    },
+    {
+      "route": "genomes/arabidopsis/",
+      "width": 1600,
+      "height": 900,
+      "overflow": false
+    },
+    {
+      "route": "genomes/rice/",
+      "width": 1600,
+      "height": 900,
+      "overflow": false
+    },
+    {
+      "route": "genomes/databases/",
+      "width": 1600,
+      "height": 900,
+      "overflow": false
+    },
+    {
+      "route": "genomes/",
+      "width": 1280,
+      "height": 800,
+      "overflow": false
+    },
+    {
+      "route": "genomes/arabidopsis/",
+      "width": 1280,
+      "height": 800,
+      "overflow": false
+    },
+    {
+      "route": "genomes/rice/",
+      "width": 1280,
+      "height": 800,
+      "overflow": false
+    },
+    {
+      "route": "genomes/databases/",
+      "width": 1280,
+      "height": 800,
+      "overflow": false
+    },
+    {
+      "route": "genomes/",
+      "width": 1024,
+      "height": 768,
+      "overflow": false
+    },
+    {
+      "route": "genomes/arabidopsis/",
+      "width": 1024,
+      "height": 768,
+      "overflow": false
+    },
+    {
+      "route": "genomes/rice/",
+      "width": 1024,
+      "height": 768,
+      "overflow": false
+    },
+    {
+      "route": "genomes/databases/",
+      "width": 1024,
+      "height": 768,
+      "overflow": false
+    },
+    {
+      "route": "genomes/",
+      "width": 768,
+      "height": 1024,
+      "overflow": false
+    },
+    {
+      "route": "genomes/arabidopsis/",
+      "width": 768,
+      "height": 1024,
+      "overflow": false
+    },
+    {
+      "route": "genomes/rice/",
+      "width": 768,
+      "height": 1024,
+      "overflow": false
+    },
+    {
+      "route": "genomes/databases/",
+      "width": 768,
+      "height": 1024,
+      "overflow": false
+    },
+    {
+      "route": "genomes/",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "route": "genomes/arabidopsis/",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "route": "genomes/rice/",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "route": "genomes/databases/",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "route": "genomes/",
+      "width": 375,
+      "height": 812,
+      "overflow": false
+    },
+    {
+      "route": "genomes/arabidopsis/",
+      "width": 375,
+      "height": 812,
+      "overflow": false
+    },
+    {
+      "route": "genomes/rice/",
+      "width": 375,
+      "height": 812,
+      "overflow": false
+    },
+    {
+      "route": "genomes/databases/",
+      "width": 375,
+      "height": 812,
+      "overflow": false
+    }
+  ],
+  "manifest": true,
+  "clipboard": true,
+  "darkMode": true,
+  "pageErrors": []
+}

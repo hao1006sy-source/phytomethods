@@ -1,0 +1,249 @@
+{
+  "reports": [
+    {
+      "accession": "GCF_902167145.1",
+      "current_accession": "GCF_902167145.1",
+      "paired_accession": "GCA_902167145.1",
+      "source_database": "SOURCE_DATABASE_REFSEQ",
+      "organism": {
+        "tax_id": 4577,
+        "organism_name": "Zea mays",
+        "infraspecific_names": {
+          "cultivar": "B73"
+        }
+      },
+      "assembly_info": {
+        "assembly_level": "Chromosome",
+        "assembly_status": "current",
+        "paired_assembly": {
+          "accession": "GCA_902167145.1",
+          "status": "current",
+          "only_refseq": "chromosomes MT and Pltd",
+          "refseq_genbank_are_different": true,
+          "differences": "Added chromosomes MT and Pltd"
+        },
+        "assembly_name": "Zm-B73-REFERENCE-NAM-5.0",
+        "assembly_type": "haploid",
+        "bioproject_lineage": [
+          {
+            "bioprojects": [
+              {
+                "accession": "PRJEB32225",
+                "title": "Long-read sequencing and assembly of version 5 of the B73 maize genome"
+              }
+            ]
+          }
+        ],
+        "bioproject_accession": "PRJEB32225",
+        "release_date": "2020-03-21",
+        "submitter": "MaizeGDB",
+        "refseq_category": "reference genome",
+        "sequencing_tech": "PacBio SEQUEL",
+        "assembly_method": "Canu 1.8",
+        "biosample": {
+          "accession": "SAMEA5569141",
+          "last_updated": "2024-02-06T20:47:36.000",
+          "publication_date": "2020-01-09T00:00:00.000",
+          "submission_date": "2020-01-10T12:08:29.083",
+          "sample_ids": [
+            {
+              "db": "SRA",
+              "value": "ERS3371164"
+            }
+          ],
+          "description": {
+            "title": "whole genome assembly of B73 version 5",
+            "organism": {
+              "tax_id": 4577,
+              "organism_name": "Zea mays"
+            },
+            "comment": "this sample was derived from the same seed stock as biosample SAMN04296295"
+          },
+          "owner": {
+            "name": "EBI"
+          },
+          "models": [
+            "Generic"
+          ],
+          "package": "Generic.1.0",
+          "attributes": [
+            {
+              "name": "ENA-CHECKLIST",
+              "value": "ERC000035"
+            },
+            {
+              "name": "ENA-FIRST-PUBLIC",
+              "value": "2020-01-09T06:47:23Z"
+            },
+            {
+              "name": "ENA-LAST-UPDATE",
+              "value": "2020-01-08T20:38:09Z"
+            },
+            {
+              "name": "External Id",
+              "value": "SAMEA5569141"
+            },
+            {
+              "name": "INSDC center name",
+              "value": "MaizeGDB"
+            },
+            {
+              "name": "INSDC first public",
+              "value": "2020-01-09T06:47:23Z"
+            },
+            {
+              "name": "INSDC last update",
+              "value": "2020-01-08T20:38:09Z"
+            },
+            {
+              "name": "INSDC status",
+              "value": "public"
+            },
+            {
+              "name": "Submitter Id",
+              "value": "Zm00001e"
+            },
+            {
+              "name": "age",
+              "value": "same as dev stage"
+            },
+            {
+              "name": "biomaterial_provider",
+              "value": "GRIN-Global"
+            },
+            {
+              "name": "common name",
+              "value": "maize"
+            },
+            {
+              "name": "cultivar",
+              "value": "B73"
+            },
+            {
+              "name": "dev_stage",
+              "value": "2-Leaf (V2)"
+            },
+            {
+              "name": "genotype",
+              "value": "Inbred line"
+            },
+            {
+              "name": "geo_location",
+              "value": "USA: Ames"
+            },
+            {
+              "name": "phenotype",
+              "value": "wild type"
+            },
+            {
+              "name": "sample_name",
+              "value": "Zm00001e"
+            },
+            {
+              "name": "scientific_name",
+              "value": "Zea mays"
+            },
+            {
+              "name": "source_material_id",
+              "value": "PI 677128"
+            },
+            {
+              "name": "time",
+              "value": "48 hour dark treatment was done before tissue harvest to reduce carbohydrates, additional tissue was harvested after two new leaves emerged. Total of 35g tissue was harvested from each line for high molecular weight sequencing"
+            }
+          ],
+          "status": {
+            "status": "live",
+            "when": "2020-01-11T12:07:53.990"
+          },
+          "age": "same as dev stage",
+          "biomaterial_provider": "GRIN-Global",
+          "cultivar": "B73",
+          "dev_stage": "2-Leaf (V2)",
+          "sample_name": "Zm00001e"
+        },
+        "blast_url": "https://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastSearch&PROG_DEF=blastn&BLAST_SPEC=GDH_GCF_902167145.1",
+        "comments": "Assembly name: Zm-B73-REFERENCE-NAM-5.0\nThe genomic sequence for this RefSeq record is from the whole-genome assembly released by the MaizeGDB on 2020/03/21. The original whole-genome shotgun project has the accession CABHLF000000000.1."
+      },
+      "assembly_stats": {
+        "total_number_of_chromosomes": 10,
+        "total_sequence_length": "2182075994",
+        "total_ungapped_length": "2178268108",
+        "number_of_contigs": 1393,
+        "contig_n50": 47037903,
+        "contig_l50": 16,
+        "number_of_scaffolds": 685,
+        "scaffold_n50": 226353449,
+        "scaffold_l50": 5,
+        "number_of_component_sequences": 695,
+        "atgc_count": "2178268108",
+        "gc_count": "1018782667",
+        "gc_percent": 47,
+        "genome_coverage": "83",
+        "number_of_organelles": 2
+      },
+      "organelle_info": [
+        {
+          "description": "Chloroplast",
+          "total_seq_length": "140384",
+          "submitter": "MaizeGDB"
+        },
+        {
+          "description": "Mitochondrion",
+          "total_seq_length": "569630",
+          "submitter": "MaizeGDB"
+        }
+      ],
+      "additional_submitters": [
+        {
+          "genbank_accession": "X86563.2",
+          "refseq_accession": "NC_001666.2",
+          "chr_name": "Pltd",
+          "molecule_type": "Chloroplast",
+          "submitter": "K. Neckermann, Institut f. Biologie III, Schaenzlestr. 1, D- 79104 Freiburg i.Br., FRG"
+        },
+        {
+          "genbank_accession": "AY506529.1",
+          "refseq_accession": "NC_007982.1",
+          "chr_name": "MT",
+          "molecule_type": "Mitochondrion",
+          "submitter": "Eccles Institute of Human Genetics, University of Utah"
+        }
+      ],
+      "annotation_info": {
+        "name": "GCF_902167145.1-RS_2025_02",
+        "provider": "NCBI RefSeq",
+        "release_date": "2025-02-14",
+        "report_url": "https://www.ncbi.nlm.nih.gov/genome/annotation_euk/Zea_mays/GCF_902167145.1-RS_2025_02.html",
+        "stats": {
+          "gene_counts": {
+            "total": 49888,
+            "protein_coding": 34313,
+            "non_coding": 10353,
+            "pseudogene": 5222
+          }
+        },
+        "busco": {
+          "busco_lineage": "poales_odb10",
+          "busco_ver": "5.7.1",
+          "complete": 0.9781454,
+          "single_copy": 0.8251634,
+          "duplicated": 0.15298203,
+          "fragmented": 0.005514706,
+          "missing": 0.01633987,
+          "total_count": "4896"
+        },
+        "method": "Best-placed RefSeq; Gnomon; cmsearch; tRNAscan-SE",
+        "pipeline": "NCBI Eukaryotic Genome Annotation Pipeline (EGAP)",
+        "software_version": "10.3",
+        "status": "Updated annotation"
+      },
+      "wgs_info": {
+        "wgs_project_accession": "CABHLF01",
+        "master_wgs_url": "https://www.ncbi.nlm.nih.gov/nuccore/CABHLF000000000.1",
+        "wgs_contigs_url": "https://www.ncbi.nlm.nih.gov/Traces/wgs/CABHLF01"
+      }
+    }
+  ],
+  "total_count": 1
+}
