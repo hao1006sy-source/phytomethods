@@ -137,8 +137,8 @@ const taxonomyReviewRows = [];
 const methodAuditRegistry = {
   dnngp: {
     status: 'corrected',
-    evidenceSource: 'González-Camacho et al. (2018) Genetics 209(1):245-267',
-    locator: 'Genetics 209(1):245-267 Methods & Discussion',
+    evidenceSource: 'Wang et al. (2023) Molecular Plant 16(1):279-293 (DOI: 10.1016/j.molp.2022.11.004)',
+    locator: 'Molecular Plant 16(1):279-293 Model Architecture & Benchmark',
     reason: 'DNNGP采用深度神经网络学习非线性标记-表型关联，专用于基因组预测(GP/GS)，非单位点GWAS混合线性模型',
     originalPrincipleIds: 'gwas-mixed-model',
     updatedPrincipleIds: 'deep-learning-genomic-prediction',
@@ -442,15 +442,46 @@ const tutorialReviewRows = Object.values(tutorialVerification).map(t => {
 });
 
 // =========================================================================
-// 6. 计算资源基准审查 (12 项真实 profiles: Hifiasm, OrthoFinder, EDTA, CAFE5, PLINK, GAPIT, SyRI, Minigraph-Cactus, DESeq2, WGCNA, Bismark, Scanpy)
+// 6. 计算资源基准审查 (汇总 outputs/compute-benchmark-review/ 独立核查记录)
+// 审核生成脚本只能汇总实际单项 Markdown 记录，不得自行生成科学审核结论
 // =========================================================================
+const benchmarkReviewDir = path.join(rootDir, 'outputs', 'compute-benchmark-review');
+const benchmarkReviewFiles = fs.readdirSync(benchmarkReviewDir).filter(f => f.endsWith('.md'));
+
+const parseBenchmarkMarkdown = (filePath) => {
+  const content = fs.readFileSync(filePath, 'utf8');
+  const getMatch = (regex) => content.match(regex)?.[1]?.trim() || '';
+  
+  const methodId = getMatch(/methodId:\s*`([^`]+)`/);
+  const name = getMatch(/审核工具\*\*：([^(]+)/);
+  const auditStatus = getMatch(/核查状态\*\*：`([^`]+)`/);
+  const logOrTablePath = getMatch(/## 3\. 对应表格与具体日志位置[\s\S]*?(?:- \*\*[^:]+\*\*：|\n\n)([\s\S]*?)(?=\n## 4)/);
+  const revisedInputScale = getMatch(/- \*\*数据规模\*\*：([^\n]+)/);
+  const correctionResult = getMatch(/- \*\*运行时间\*\*：([^\n]+)/);
+  const evidenceSource = getMatch(/- \*\*证据出处\*\*：([^\n]+)/) || getMatch(/## 2\. 实际查阅来源[\s\S]*?引用:\s*([^\n]+)/);
+  const disputedField = getMatch(/## 7\. 尚未核实的字段与保留问题[\s\S]*?-\s*([^\n]+)/);
+
+  return {
+    methodId,
+    name,
+    auditStatus,
+    logOrTablePath: logOrTablePath.replace(/\r?\n/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 120),
+    revisedInputScale: revisedInputScale.trim(),
+    evidenceSource: evidenceSource.trim(),
+    correctionResult: correctionResult.trim(),
+    disputedField: disputedField.trim() || '无争议'
+  };
+};
+
+const parsedBenchmarks = benchmarkReviewFiles.map(f => parseBenchmarkMarkdown(path.join(benchmarkReviewDir, f)));
+
+// 结合 method-compute-profiles.ts 真实注册表
 const computeProfileSrc = fs.readFileSync(path.join(rootDir, 'src', 'data', 'method-compute-profiles.ts'), 'utf8');
 const computeProfileMatches = [...computeProfileSrc.matchAll(/['"]?([\w-]+)['"]?:\s*{\s*methodId:\s*['"]([^'"]+)['"],\s*name:\s*['"]([^'"]+)['"],\s*hasBenchmark:\s*(true|false),[\s\S]*?benchmarkType:\s*['"]([^'"]+)['"],\s*verifiedDate:\s*['"]([^'"]+)['"],[\s\S]*?scenario:\s*['"]([^'"]+)['"],\s*hardware:\s*['"]([^'"]+)['"],\s*peakMemory:\s*['"]([^'"]+)['"],\s*runtime:\s*['"]([^'"]+)['"],[\s\S]*?evidenceSource:\s*['"]([^'"]+)['"]/g)];
 
 const computeProfileRows = computeProfileMatches.map(m => {
   const id = m[2];
-  let auditStatus = 'source_checked';
-  if (id === 'cafe5' || id === 'orthofinder') auditStatus = 'corrected';
+  const bm = parsedBenchmarks.find(b => b.methodId === id);
   return {
     methodId: id,
     name: m[3],
@@ -462,133 +493,25 @@ const computeProfileRows = computeProfileMatches.map(m => {
     peakMemory: m[9],
     runtime: m[10],
     evidenceSource: m[11],
-    auditStatus
+    auditStatus: bm ? bm.auditStatus : 'not_reviewed'
   };
 });
 
-// 6.1 compute-evidence-review.csv: 详细核验与争议修正表 (12 项真实对象)
-const computeEvidenceReviewRows = [
-  {
-    methodId: 'cafe5',
-    name: 'CAFE 5',
-    benchmarkType: 'empirical_log',
-    evidenceSource: '本地实测执行日志 (execution.json / validation-results.json) & Mendes et al. Bioinformatics (2020)',
-    logOrTablePath: 'examples/cafe5/verified-20261123/execution.json',
-    disputedField: '原家族数错误标注13,879; 峰值内存未实测标注<1.5GB',
-    correctionResult: '更正为真实输入12,653家族(模型保留10,956); 内存实事求是标注「暂无峰值内存实测记录 (推荐配置 ≥ 4 GB RAM)」',
-    auditStatus: 'corrected'
-  },
-  {
-    methodId: 'orthofinder',
-    name: 'OrthoFinder',
-    benchmarkType: 'published_benchmark',
-    evidenceSource: 'Emms & Kelly (2019) Genome Biology 20:238 & 官方 Benchmark',
-    logOrTablePath: 'Genome Biology 20:238 Figure 5 & Table 1',
-    disputedField: '文字描述臆测“减少40%~60%计算量”',
-    correctionResult: '清理未经验证的加速百分比主观声明，规范为基于BLAST启发式聚类与规范化距离的算法描述',
-    auditStatus: 'corrected'
-  },
-  {
-    methodId: 'hifiasm',
-    name: 'Hifiasm',
-    benchmarkType: 'published_benchmark',
-    evidenceSource: 'Cheng et al. (2021) Nature Methods 18:170-175 & 官方文档',
-    logOrTablePath: 'Nature Methods 18:170-175 Table 1',
-    disputedField: '无争议',
-    correctionResult: '严格核对玉米近交系B73(~2.3Gb, 30x HiFi)基准硬件(64线程, 512GB RAM)与耗时(~14-18h)',
-    auditStatus: 'source_checked'
-  },
-  {
-    methodId: 'edta',
-    name: 'EDTA',
-    benchmarkType: 'published_benchmark',
-    evidenceSource: 'Ou et al. (2019) Genome Biology 20:275 & 官方指南',
-    logOrTablePath: 'Genome Biology 20:275 Table 2',
-    disputedField: '耗时描述泛化',
-    correctionResult: '规范水稻Nipponbare(~390Mb)转座子注释基准硬件(32线程, 64GB RAM)与耗时(8~14h)',
-    auditStatus: 'source_checked'
-  },
-  {
-    methodId: 'plink',
-    name: 'PLINK',
-    benchmarkType: 'published_benchmark',
-    evidenceSource: 'Purcell et al. (2007) AJHG 81:559-575 & Chang et al. (2015) GigaScience 4:7',
-    logOrTablePath: 'GigaScience 4:7 Table 2 & examples/plink/verified-20261121/run.txt',
-    disputedField: '无争议',
-    correctionResult: '核验群体基因型质控与LD剪枝性能指标，紧凑2-bit位运算复杂度严格为O(MN/4)',
-    auditStatus: 'source_checked'
-  },
-  {
-    methodId: 'gapit',
-    name: 'GAPIT',
-    benchmarkType: 'published_benchmark',
-    evidenceSource: 'Lipka et al. (2012) Bioinformatics & Wang et al. (2016) Nature Genetics 48:696-704',
-    logOrTablePath: 'Nature Genetics 48:696-704 FarmCPU section',
-    disputedField: '无争议',
-    correctionResult: '核验FarmCPU与Blink算法分块迭代计算性能(500个体, 50万SNP, ~10-25min)',
-    auditStatus: 'source_checked'
-  },
-  {
-    methodId: 'syri',
-    name: 'SyRI',
-    benchmarkType: 'published_benchmark',
-    evidenceSource: 'Goel et al. (2019) Genome Biology 20:277',
-    logOrTablePath: 'Genome Biology 20:277 Table 1 & Methods',
-    disputedField: '无争议',
-    correctionResult: '核验拟南芥Col-0 vs Ler-0染色体级别比对与结构重排图遍历耗时(~15-30min)',
-    auditStatus: 'source_checked'
-  },
-  {
-    methodId: 'minigraph-cactus',
-    name: 'Minigraph-Cactus',
-    benchmarkType: 'published_benchmark',
-    evidenceSource: 'Hickey et al. (2023) Nature Biotechnology 41:1447-1456',
-    logOrTablePath: 'Nature Biotechnology 41:1447-1456 Methods Benchmarks',
-    disputedField: '无争议',
-    correctionResult: '核验5个水稻染色体级别组装(~400Mb)泛基因组图构建基准(64线程, 256GB RAM, ~12-20h)',
-    auditStatus: 'source_checked'
-  },
-  {
-    methodId: 'deseq2',
-    name: 'DESeq2',
-    benchmarkType: 'published_benchmark',
-    evidenceSource: 'Love et al. (2014) Genome Biology 15:550',
-    logOrTablePath: 'Genome Biology 15:550 Performance section',
-    disputedField: '无争议',
-    correctionResult: '核验30个样本4万基因差异表达分析耗时(8线程, 16GB RAM, ~2-5min)',
-    auditStatus: 'source_checked'
-  },
-  {
-    methodId: 'wgcna',
-    name: 'WGCNA',
-    benchmarkType: 'published_benchmark',
-    evidenceSource: 'Langfelder & Horvath (2008) BMC Bioinformatics 9:559',
-    logOrTablePath: 'BMC Bioinformatics 9:559 Section 4',
-    disputedField: '无争议',
-    correctionResult: '核验50个样本8000特征基因加权共表达网络构建基准(16线程, 32GB RAM, ~15-35min)',
-    auditStatus: 'source_checked'
-  },
-  {
-    methodId: 'bismark',
-    name: 'Bismark',
-    benchmarkType: 'published_benchmark',
-    evidenceSource: 'Krueger & Andrews (2011) Bioinformatics 27:1571-1572',
-    logOrTablePath: 'Bioinformatics 27:1571-1572 Benchmarking & examples/bismark/verified-20261121/run.txt',
-    disputedField: '无争议',
-    correctionResult: '核验拟南芥WGBS重亚硫酸盐测序比对基准(32线程, 64GB RAM, ~3-6h)',
-    auditStatus: 'source_checked'
-  },
-  {
-    methodId: 'scanpy',
-    name: 'Scanpy',
-    benchmarkType: 'published_benchmark',
-    evidenceSource: 'Wolf et al. (2018) Genome Biology 19:15',
-    logOrTablePath: 'Genome Biology 19:15 Performance & scalability',
-    disputedField: '无争议',
-    correctionResult: '核验水稻根尖2万细胞单细胞转录组质控降维与Leiden聚类基准(16线程, 32GB RAM, ~5-12min)',
-    auditStatus: 'source_checked'
-  }
-];
+// 6.1 compute-evidence-review.csv: 汇总单项 Markdown 核查记录产出
+const computeEvidenceReviewRows = computeProfileRows.map(p => {
+  const bm = parsedBenchmarks.find(b => b.methodId === p.methodId);
+  const inputInfo = bm && bm.revisedInputScale ? `${bm.revisedInputScale}；` : '';
+  return {
+    methodId: p.methodId,
+    name: p.name,
+    benchmarkType: p.benchmarkType,
+    evidenceSource: p.evidenceSource,
+    logOrTablePath: bm ? bm.logOrTablePath : p.benchmarkSectionOrTable || '',
+    disputedField: bm ? bm.disputedField : '待独立审核',
+    correctionResult: bm ? `${inputInfo}${p.peakMemory}；${p.runtime}` : '待核实',
+    auditStatus: p.auditStatus
+  };
+});
 
 // =========================================================================
 // 7. 植物基因组资源审查 (依据真实 Schema 统计 species, assemblies, annotations, files)

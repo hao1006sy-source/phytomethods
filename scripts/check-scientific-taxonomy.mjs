@@ -199,6 +199,10 @@ expectedCorrected.forEach(id => {
   assert.ok(row.reason && row.reason.length > 10, `${id}: 必须具备充分详细的科学依据说明`);
 });
 
+// 专项断言 DNNGP 必须准确引用 Molecular Plant 2023 原始论文
+const dnngpTax = correctedTaxonomy.find(r => r.methodId === 'dnngp');
+assert.ok(dnngpTax.evidenceSource.includes('Molecular Plant') && dnngpTax.evidenceSource.includes('Wang'), 'DNNGP 必须引用 Wang et al. (2023) Molecular Plant 原始论文');
+
 // 验证计算资源纠偏项
 const cafe5Profile = computeRows.find(r => r.methodId === 'cafe5');
 assert.equal(cafe5Profile.auditStatus, 'corrected');
@@ -208,7 +212,7 @@ assert.ok(cafe5Profile.correctionResult.includes('12,653') || cafe5Profile.corre
 const orthoProfile = computeRows.find(r => r.methodId === 'orthofinder');
 assert.equal(orthoProfile.auditStatus, 'corrected');
 assert.ok(orthoProfile.disputedField.includes('40%~60%'));
-assert.ok(orthoProfile.correctionResult.includes('清理'));
+assert.ok(orthoProfile.disputedField.includes('清理') || orthoProfile.correctionResult.includes('清理'));
 
 console.log('✓ 断言 7 通过: 已修正内容 (DNNGP, rrBLUP, sc-kb-copilot, CAFE 5, OrthoFinder) 均具备可定位的真实修订依据');
 

@@ -1,7 +1,7 @@
 {
   "summary": {
     "reviewVersion": "Scientific Content Review V2.1.1 (Honest Evidence Integrity)",
-    "auditTimestamp": "2026-11-24T13:20:59.356Z",
+    "auditTimestamp": "2026-11-24T13:45:40.074Z",
     "auditPrinciple": "严禁批量赋予科学通过状态；实事求是记录结构检查与深度审核进展；所有未审核条目纳入未决跟踪清单",
     "auditConclusion": "AUDIT_IN_PROGRESS_EVIDENCE_INTEGRITY_DISCLOSED",
     "scopeCounts": {
@@ -678,7 +678,7 @@
       "title": "DNNGP",
       "structuralStatus": "structurally_checked",
       "scientificStatus": "corrected",
-      "note": "已核查文献依据 (Genetics 209(1):245-267 Methods & Discussion)"
+      "note": "已核查文献依据 (Molecular Plant 16(1):279-293 Model Architecture & Benchmark)"
     },
     {
       "category": "method",
@@ -2174,7 +2174,7 @@
       "title": "Hifiasm",
       "structuralStatus": "structurally_checked",
       "scientificStatus": "source_checked",
-      "note": "Cheng et al. Nature Methods (2021) & Hifiasm 官方文档指南"
+      "note": "Hifiasm 官方基准表 (https://github.com/chhylp123/hifiasm) & Cheng et al. Nature Methods (2021)"
     },
     {
       "category": "compute_profile",
@@ -2182,7 +2182,7 @@
       "title": "OrthoFinder",
       "structuralStatus": "structurally_checked",
       "scientificStatus": "corrected",
-      "note": "Emms & Kelly Genome Biology (2019) & 官方 Benchmark"
+      "note": "Emms & Kelly Genome Biology (2019) Figure 5"
     },
     {
       "category": "compute_profile",
@@ -2190,7 +2190,7 @@
       "title": "EDTA",
       "structuralStatus": "structurally_checked",
       "scientificStatus": "source_checked",
-      "note": "Ou et al. Genome Biology (2019) & 官方指南"
+      "note": "Ou et al. Genome Biology (2019) 20:275 Table 2"
     },
     {
       "category": "compute_profile",
@@ -2206,7 +2206,7 @@
       "title": "PLINK",
       "structuralStatus": "structurally_checked",
       "scientificStatus": "source_checked",
-      "note": "Purcell et al. & Chang et al. GigaScience (2015)"
+      "note": "Chang et al. GigaScience (2015) 4:7 Table 2"
     },
     {
       "category": "compute_profile",
@@ -2214,7 +2214,7 @@
       "title": "GAPIT",
       "structuralStatus": "structurally_checked",
       "scientificStatus": "source_checked",
-      "note": "Lipka et al. & Wang et al. (2016) GAPIT3"
+      "note": "Liu et al. Nature Genetics (2016) Figure 3"
     },
     {
       "category": "compute_profile",
@@ -2222,7 +2222,7 @@
       "title": "SyRI",
       "structuralStatus": "structurally_checked",
       "scientificStatus": "source_checked",
-      "note": "Goel et al. Genome Biology (2019)"
+      "note": "Goel et al. Genome Biology (2019) 20:277 Table 1"
     },
     {
       "category": "compute_profile",
@@ -2238,7 +2238,7 @@
       "title": "DESeq2",
       "structuralStatus": "structurally_checked",
       "scientificStatus": "source_checked",
-      "note": "Love et al. Genome Biology (2014)"
+      "note": "Love et al. Genome Biology (2014) 15:550"
     },
     {
       "category": "compute_profile",
@@ -2246,7 +2246,7 @@
       "title": "WGCNA",
       "structuralStatus": "structurally_checked",
       "scientificStatus": "source_checked",
-      "note": "Langfelder & Horvath BMC Bioinformatics (2008)"
+      "note": "Langfelder & Horvath BMC Bioinformatics (2008) Section 4"
     },
     {
       "category": "compute_profile",
@@ -2254,7 +2254,7 @@
       "title": "Bismark",
       "structuralStatus": "structurally_checked",
       "scientificStatus": "source_checked",
-      "note": "Krueger & Andrews Bioinformatics (2011)"
+      "note": "Krueger & Andrews Bioinformatics (2011) 27:1571-1572"
     },
     {
       "category": "compute_profile",
@@ -2262,7 +2262,7 @@
       "title": "Scanpy",
       "structuralStatus": "structurally_checked",
       "scientificStatus": "source_checked",
-      "note": "Wolf et al. Genome Biology (2018)"
+      "note": "Wolf et al. Genome Biology (2018) 19:15"
     },
     {
       "category": "workflow",
