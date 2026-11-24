@@ -1,0 +1,35 @@
+name: 🔗 示例数据或外部下载链接失效反馈
+description: 反馈教程或测试数据中 NCBI SRA、ENA、GitHub 仓库或数据下载链接失效
+title: "[数据链接失效]: "
+labels: ["dataset", "broken-link"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        保证测试数据真实可下载是复现分析的前提，感谢您的协助！
+  - type: input
+    id: dataset_title
+    attributes:
+      label: 失效的数据集名称或 Accession
+      placeholder: "例如：PRJNA... / SRR... / 官方测试 tar.gz"
+    validations:
+      required: true
+  - type: input
+    id: page_url
+    attributes:
+      label: 出现链接失效的页面链接
+      placeholder: "https://hao1006sy-source.github.io/phytomethods/tutorials/..."
+    validations:
+      required: true
+  - type: input
+    id: broken_url
+    attributes:
+      label: 无法访问的链接地址
+      placeholder: "https://..."
+    validations:
+      required: true
+  - type: textarea
+    id: alternative_source
+    attributes:
+      label: 可用的镜像或替代下载渠道（如有）
+      placeholder: "提供更新后的 NCBI、ENA、Zenodo 或官方仓库镜像链接..."

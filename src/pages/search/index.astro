@@ -1,6 +1,233 @@
 ---
-import Base from '../../layouts/Base.astro';const base=import.meta.env.BASE_URL;
+import Base from '../../layouts/Base.astro';
+import synonymsData from '../../data/search-synonyms.json';
+
+const base = import.meta.env.BASE_URL;
+const popularKeywords = ['Hifiasm', 'GWAS', '泛基因组', '转座子', '单细胞分析', 'WGCNA', 'OrthoFinder', 'MSMC'];
 ---
-<Base title="全站搜索"><section class="nav-v3"><p class="nav-overline">SITE SEARCH</p><h1>全站搜索</h1><p class="page-lead">在研究领域、专题、方法工具、文献和分析教程之间快速定位科研知识。</p><section class="nav-search-hero"><div class="search-entry"><div id="search"></div><button id="search-submit" type="button">搜索</button></div><div class="search-suggestions">热门检索 {['Hifiasm','GWAS','泛基因组','单细胞分析','WGCNA'].map(q=><a href={`${base}search/?q=${encodeURIComponent(q)}`}>{q}</a>)}</div></section><section id="search-guide"><h2 class="nav-section-title">或者按资源类型浏览</h2><div class="search-shortcuts">{[['topics/','研究领域','沿九大研究方向浏览专题与方法'],['methods/','算法与工具','查找工具原理、输入数据与应用'],['papers/','文献与教程','追溯原始论文，查看分析流程']].map(([href,title,desc])=><a href={`${base}${href}`}><h2>{title}</h2><p>{desc}</p><span>浏览全部 →</span></a>)}</div><p class="search-help">搜索提示：支持中文学术概念、英文工具名称、作者和 DOI；输入后展示全文检索结果。</p></section></section><link href={`${base}pagefind-search/pagefind-ui.css`} rel="stylesheet"/><script is:inline define:vars={{base}}>
-const s=document.createElement('script');s.src=base+'pagefind-search/pagefind-ui.js';s.onload=()=>{new PagefindUI({element:'#search',showSubResults:true,translations:{placeholder:'搜索方法、专题或文献',zero_results:'未找到结果'}});const inputEl=document.querySelector('.pagefind-ui__search-input');inputEl?.addEventListener('input',()=>{const value=inputEl.value.trim();document.getElementById('search-guide').hidden=!!value;const url=new URL(location.href);if(value)url.searchParams.set('q',value);else url.searchParams.delete('q');history.replaceState(null,'',url);});document.getElementById('search-submit').addEventListener('click',()=>{inputEl?.focus();inputEl?.dispatchEvent(new Event('input',{bubbles:true}));});const q=new URLSearchParams(location.search).get('q');if(q){const input=document.querySelector('.pagefind-ui__search-input');input.value=q;input.dispatchEvent(new Event('input',{bubbles:true}));}};document.body.appendChild(s);
-</script></Base>
+<Base title="全站搜索" description="PhytoMethods 全站静态全文搜索，支持中英文学术同义词、缩写、工具名称、DOI 与实战教程快速定位。">
+  <section class="nav-v3 search-page-wrap">
+    <p class="nav-overline">SITE SEARCH</p>
+    <h1>全站搜索</h1>
+    <p class="page-lead">在研究领域、科研专题、算法工具、学术文献、实战教程与分析路线图之间快速定位知识。</p>
+
+    <!-- 搜索输入核心区 -->
+    <section class="nav-search-hero">
+      <div class="search-entry">
+        <div id="search"></div>
+        <button id="search-submit" type="button">搜索</button>
+      </div>
+
+      <!-- 热门同义词与快速标签 -->
+      <div class="search-suggestions">
+        <span class="suggestions-label">快速检索：</span>
+        {popularKeywords.map(q => (
+          <a href={`${base}search/?q=${encodeURIComponent(q)}`} class="suggestion-pill">{q}</a>
+        ))}
+      </div>
+
+      <!-- 同义词辅助提示卡 (动态根据输入提示相关缩写或英文词) -->
+      <div id="synonym-hint" class="synonym-hint-box" style="display:none;" data-pagefind-ignore>
+        <span class="hint-title">💡 同义词与术语扩展建议：</span>
+        <span id="synonym-terms" class="hint-terms"></span>
+      </div>
+    </section>
+
+    <!-- 默认推荐导航区 (搜索时隐藏) -->
+    <section id="search-guide">
+      <h2 class="nav-section-title">按科研资源类型直接浏览</h2>
+      <div class="search-shortcuts">
+        <a href={`${base}workflows/`}>
+          <h2>端到端路线图</h2>
+          <p>从三代测序、群体重测序到转录组，按输入输出规划分析路线。</p>
+          <span>查看 Workflows →</span>
+        </a>
+        <a href={`${base}methods/`}>
+          <h2>算法与工具</h2>
+          <p>高密度学术检索目录，多维筛选 59 款算法、计算资源与故障指南。</p>
+          <span>浏览工具目录 →</span>
+        </a>
+        <a href={`${base}topics/`}>
+          <h2>研究领域</h2>
+          <p>沿九大核心方向（M01–M09）系统阅读 63 篇植物基因组专题。</p>
+          <span>进入领域索引 →</span>
+        </a>
+        <a href={`${base}tutorials/`}>
+          <h2>分析教程</h2>
+          <p>10 篇实战教程配备经典小型测试数据、预期输出与可复现验证记录。</p>
+          <span>查看实战教程 →</span>
+        </a>
+      </div>
+      <p class="search-help">
+        搜索提示：已内置中英文同义词字典（如「全基因组关联分析」与「GWAS」、「转座子」与「TE」自动关联），支持模糊匹配与符号名称检索。
+      </p>
+    </section>
+  </section>
+
+  <!-- 引入 Pagefind 专属样式 -->
+  <link href={`${base}pagefind-search/pagefind-ui.css`} rel="stylesheet" />
+
+  <script is:inline define:vars={{ base, synonymsList: synonymsData.synonyms }}>
+    const script = document.createElement('script');
+    script.src = base + 'pagefind-search/pagefind-ui.js';
+    
+    script.onload = () => {
+      // 初始化 Pagefind UI
+      new PagefindUI({
+        element: '#search',
+        showSubResults: true,
+        baseUrl: base,
+        translations: {
+          placeholder: '搜索算法、专题、文献或中英文术语 (如 GWAS / 泛基因组)',
+          zero_results: '未找到匹配结果，建议尝试中英文缩写或放宽搜索词'
+        }
+      });
+
+      const inputEl = document.querySelector('.pagefind-ui__search-input');
+      const searchGuide = document.getElementById('search-guide');
+      const synonymHint = document.getElementById('synonym-hint');
+      const synonymTerms = document.getElementById('synonym-terms');
+
+      // 同义词查询匹配函数
+      function checkSynonyms(query) {
+        if (!query || query.length < 2) {
+          synonymHint.style.display = 'none';
+          return;
+        }
+        const qLower = query.toLowerCase();
+        let matched = null;
+        for (const item of synonymsList) {
+          if (item.terms.some(t => t.toLowerCase().includes(qLower) || qLower.includes(t.toLowerCase()))) {
+            matched = item;
+            break;
+          }
+        }
+        if (matched) {
+          synonymHint.style.display = 'flex';
+          synonymTerms.innerHTML = matched.terms
+            .map(t => `<a href="${base}search/?q=${encodeURIComponent(t)}" class="synonym-link">${t}</a>`)
+            .join(' · ');
+        } else {
+          synonymHint.style.display = 'none';
+        }
+      }
+
+      // 输入联动与 URL 同步
+      inputEl?.addEventListener('input', () => {
+        const val = inputEl.value.trim();
+        if (searchGuide) searchGuide.hidden = !!val;
+        checkSynonyms(val);
+
+        const url = new URL(location.href);
+        if (val) url.searchParams.set('q', val);
+        else url.searchParams.delete('q');
+        history.replaceState(null, '', url);
+      });
+
+      document.getElementById('search-submit')?.addEventListener('click', () => {
+        inputEl?.focus();
+        inputEl?.dispatchEvent(new Event('input', { bubbles: true }));
+      });
+
+      // 从 URL 回填搜索关键词
+      const initialQ = new URLSearchParams(location.search).get('q');
+      if (initialQ && inputEl) {
+        inputEl.value = initialQ;
+        inputEl.dispatchEvent(new Event('input', { bubbles: true }));
+      }
+    };
+
+    document.body.appendChild(script);
+  </script>
+</Base>
+
+<style>
+.search-page-wrap {
+  max-width: 960px;
+  margin: 0 auto;
+}
+.synonym-hint-box {
+  margin-top: 14px;
+  padding: 8px 14px;
+  background: var(--teal-soft, #eef7f2);
+  border: 1px dashed var(--teal-border, #cbded0);
+  border-radius: 6px;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.hint-title {
+  color: var(--teal, #0e6548);
+  font-weight: 600;
+}
+.hint-terms :global(.synonym-link) {
+  color: var(--text, #1e4533);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.hint-terms :global(.synonym-link:hover) {
+  color: var(--teal, #0e6548);
+}
+.suggestion-pill {
+  display: inline-block;
+  padding: 3px 10px;
+  background: var(--bg-card, #ffffff);
+  border: 1px solid var(--border, #cbded0);
+  border-radius: 14px;
+  font-size: 12px;
+  text-decoration: none;
+  color: var(--text, #224233);
+  transition: all 0.15s ease;
+}
+.suggestion-pill:hover {
+  background: var(--teal-soft, #eaf4ed);
+  border-color: var(--teal, #0e6548);
+}
+.search-shortcuts {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-top: 16px;
+}
+.search-shortcuts > a {
+  border: 1px solid var(--border);
+  padding: 20px;
+  border-radius: 10px;
+  background: var(--bg-card, #ffffff);
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 140px;
+  transition: all 0.15s ease;
+}
+.search-shortcuts > a:hover {
+  border-color: var(--teal);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+.search-shortcuts h2 {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0 0 6px;
+  color: var(--text-heading);
+}
+.search-shortcuts p {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin: 0 0 12px;
+}
+.search-shortcuts span {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--teal);
+}
+@media(max-width: 600px) {
+  .search-shortcuts {
+    grid-template-columns: 1fr;
+  }
+}
+</style>

@@ -1,0 +1,37 @@
+name: ⚙️ 软件运行参数或命令行已过时反馈
+description: 反馈生信软件版本升级导致的参数弃用、语法变化或不兼容报错
+title: "[参数过时]: "
+labels: ["outdated-params", "methods-update"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        生物信息学工具持续迭代，感谢您协助跟进最新的官方参数规范！
+  - type: input
+    id: tool_name
+    attributes:
+      label: 工具或软件名称及版本
+      placeholder: "例如：Hifiasm 0.20.0 / OrthoFinder 2.5.5"
+    validations:
+      required: true
+  - type: input
+    id: page_url
+    attributes:
+      label: 出现过时参数的页面链接
+      placeholder: "https://hao1006sy-source.github.io/phytomethods/methods/..."
+    validations:
+      required: true
+  - type: textarea
+    id: old_command
+    attributes:
+      label: 当前页面展示的旧命令或参数
+      placeholder: "展示出现警告或报错的旧命令..."
+    validations:
+      required: true
+  - type: textarea
+    id: new_command
+    attributes:
+      label: 新版本推荐运行方式及官方文档来源
+      placeholder: "附上最新软件官方 Release 说明或测试成功的运行方式..."
+    validations:
+      required: true

@@ -1,0 +1,290 @@
+---
+import { methodComputeProfiles } from '../data/method-compute-profiles';
+
+interface Props {
+  methodId: string;
+}
+
+const { methodId } = Astro.props;
+const profile = methodComputeProfiles[methodId];
+---
+
+<section class="method-compute-profile-card" id="method-compute-profile" aria-label="计算资源与运行规模基准">
+  <div class="compute-card-header">
+    <div class="compute-tag-row">
+      <span class="compute-tag">COMPUTE PROFILE</span>
+      <span class={`status-badge ${profile?.hasBenchmark ? 'has-data' : 'no-data'}`}>
+        {profile?.hasBenchmark ? '✓ 官方/学术基准可溯源' : '暂无可靠公开基准'}
+      </span>
+    </div>
+    <h3 class="compute-card-title">计算资源与硬件耗时评估</h3>
+  </div>
+
+  {profile && profile.hasBenchmark ? (
+    <div class="compute-card-body">
+      <!-- 场景与硬件基准表格 -->
+      <div class="profile-grid">
+        <div class="grid-item">
+          <span class="item-label">基准测试数据场景</span>
+          <span class="item-val">{profile.scenario}</span>
+        </div>
+        <div class="grid-item">
+          <span class="item-label">基准硬件测试环境</span>
+          <span class="item-val font-mono">{profile.hardware}</span>
+        </div>
+        <div class="grid-item highlight-memory">
+          <span class="item-label">峰值内存需求 (Peak RAM)</span>
+          <span class="item-val font-bold">{profile.peakMemory}</span>
+        </div>
+        <div class="grid-item highlight-runtime">
+          <span class="item-label">参考运行耗时 (Runtime)</span>
+          <span class="item-val font-bold">{profile.runtime}</span>
+        </div>
+      </div>
+
+      <!-- 多线程与扩展性分析 -->
+      <div class="scalability-box">
+        <div class="sub-item">
+          <strong>多核 CPU 并发扩展性：</strong>
+          <span>{profile.cpuScalability}</span>
+        </div>
+        {profile.scalingFormula && (
+          <div class="sub-item">
+            <strong>规模扩展趋势与复杂度：</strong>
+            <span>{profile.scalingFormula}</span>
+          </div>
+        )}
+      </div>
+
+      <!-- 调优与避坑建议 -->
+      {profile.bottleneckTips && (
+        <div class="tips-box">
+          <span class="tips-icon">💡</span>
+          <div class="tips-content">
+            <strong>资源规划与调优建议：</strong>
+            <span>{profile.bottleneckTips}</span>
+          </div>
+        </div>
+      )}
+
+      <!-- 数据证据来源 -->
+      {profile.evidenceSource && (
+        <div class="evidence-footer">
+          <span class="evidence-label">数据与证据来源：</span>
+          <span class="evidence-source">{profile.evidenceSource}</span>
+        </div>
+      )}
+    </div>
+  ) : (
+    <div class="no-benchmark-box">
+      <p class="no-data-msg">
+        本方法目前尚未在植物大规模数据集上建立标准化的独立资源基准测试档案。
+      </p>
+      <p class="no-data-sub">
+        实际分析中，建议先采用 16 线程、32 GB 内存并监控 <code>htop</code> 资源占用，再根据样本数据规模调整作业调度脚本。
+      </p>
+    </div>
+  )}
+</section>
+
+<style>
+  .method-compute-profile-card {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: var(--color-surface, #ffffff);
+    border: 1px solid var(--color-border, #e2e8f0);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  }
+
+  .compute-card-header {
+    margin-bottom: 1.25rem;
+  }
+
+  .compute-tag-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .compute-tag {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #0284c7;
+    background: #e0f2fe;
+    padding: 0.2rem 0.55rem;
+    border-radius: 9999px;
+    letter-spacing: 0.05em;
+  }
+
+  :global(.dark) .compute-tag {
+    background: #0369a133;
+    color: #38bdf8;
+  }
+
+  .status-badge {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.2rem 0.55rem;
+    border-radius: 9999px;
+  }
+
+  .status-badge.has-data {
+    background: #dcfce7;
+    color: #15803d;
+  }
+
+  :global(.dark) .status-badge.has-data {
+    background: #14532d33;
+    color: #4ade80;
+  }
+
+  .status-badge.no-data {
+    background: #f1f5f9;
+    color: #64748b;
+  }
+
+  :global(.dark) .status-badge.no-data {
+    background: #1e293b;
+    color: #94a3b8;
+  }
+
+  .compute-card-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-text-heading, #0f172a);
+    margin: 0.25rem 0 0;
+  }
+
+  .compute-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .profile-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.75rem;
+  }
+
+  .grid-item {
+    background: var(--color-surface-secondary, #f8fafc);
+    border: 1px solid var(--color-border-subtle, #f1f5f9);
+    padding: 0.875rem;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .grid-item.highlight-memory {
+    background: #fef2f2;
+    border-color: #fee2e2;
+  }
+
+  :global(.dark) .grid-item.highlight-memory {
+    background: #991b1b22;
+    border-color: #991b1b44;
+  }
+
+  .grid-item.highlight-runtime {
+    background: #f0fdf4;
+    border-color: #dcfce7;
+  }
+
+  :global(.dark) .grid-item.highlight-runtime {
+    background: #16653422;
+    border-color: #16653444;
+  }
+
+  .item-label {
+    font-size: 0.75rem;
+    color: var(--color-text-muted, #94a3b8);
+    font-weight: 500;
+  }
+
+  .item-val {
+    font-size: 0.9rem;
+    color: var(--color-text-heading, #0f172a);
+    line-height: 1.4;
+  }
+
+  .font-bold {
+    font-weight: 700;
+  }
+
+  .font-mono {
+    font-family: ui-monospace, SFMono-Regular, monospace;
+    font-size: 0.85rem;
+  }
+
+  .scalability-box {
+    background: var(--color-surface-secondary, #f8fafc);
+    border-left: 3px solid #0284c7;
+    padding: 0.875rem 1rem;
+    border-radius: 0 8px 8px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--color-text-body, #334155);
+  }
+
+  .tips-box {
+    display: flex;
+    gap: 0.75rem;
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    padding: 0.875rem 1rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    color: #92400e;
+    line-height: 1.5;
+  }
+
+  :global(.dark) .tips-box {
+    background: #78350f22;
+    border-color: #78350f44;
+    color: #fde68a;
+  }
+
+  .tips-icon {
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  .evidence-footer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--color-text-muted, #64748b);
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--color-border-subtle, #f1f5f9);
+  }
+
+  .evidence-source {
+    font-weight: 500;
+  }
+
+  .no-benchmark-box {
+    padding: 1.25rem;
+    background: var(--color-surface-secondary, #f8fafc);
+    border-radius: 8px;
+    font-size: 0.875rem;
+    color: var(--color-text-secondary, #64748b);
+    line-height: 1.5;
+  }
+
+  .no-data-msg {
+    margin: 0 0 0.5rem;
+    font-weight: 500;
+  }
+
+  .no-data-sub {
+    margin: 0;
+    font-size: 0.8rem;
+  }
+</style>

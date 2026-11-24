@@ -8,6 +8,9 @@ import MethodHeader from './MethodHeader.astro';
 import MethodSidebar from './MethodSidebar.astro';
 import MethodResources from './MethodResources.astro';
 import MethodFigureRegistry from './MethodFigureRegistry.astro';
+import MethodComputeProfile from '../MethodComputeProfile.astro';
+import MethodTroubleshooting from '../MethodTroubleshooting.astro';
+import ContentFeedback from '../ContentFeedback.astro';
 import { splitMethodMarkdown } from './config/method-sections';
 import './method-v3.css';
 import './method-generic.css';
@@ -47,6 +50,8 @@ if (renderedSections.some(section => !section.id || !section.title)) throw new E
           {(methodId === 'merqury' && /频谱|输出|计算/.test(section.title) && index === renderedSections.findIndex(item => /频谱|输出|计算/.test(item.title))) && <MethodFigureRegistry methodId={methodId} />}
         </section>
       ))}
+      <MethodComputeProfile methodId={methodId} />
+      <MethodTroubleshooting methodId={methodId} />
       <section class="method-section method-related-section" id="method-related">
         <h2>站内关联</h2>
         <div class="method-related-links">
@@ -59,6 +64,9 @@ if (renderedSections.some(section => !section.id || !section.title)) throw new E
           })}
         </div>
       </section>
+      <div style="margin-top: 2rem;">
+        <ContentFeedback pageTitle={`${entry.data.name} 算法与工具`} sourcePath={`src/content/methods/${entry.id}.md`} />
+      </div>
     </article>
     <MethodResources paper={paper} applications={applications} entry={entry} tutorial={tutorial} methods={methods} relatedTopics={relatedTopics} />
   </div>

@@ -1,0 +1,35 @@
+name: 📖 页面内容或科学描述错误反馈
+description: 反馈 PhytoMethods 网站中算法原理、文献引用或专题描述中的错误
+title: "[内容错误]: "
+labels: ["documentation", "content-audit"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢您协助提升 PhytoMethods 的学术准确性与科研严谨度！
+  - type: input
+    id: page_url
+    attributes:
+      label: 出现问题的页面链接
+      placeholder: "https://hao1006sy-source.github.io/phytomethods/..."
+    validations:
+      required: true
+  - type: input
+    id: source_path
+    attributes:
+      label: 对应的源文件路径（若已知）
+      placeholder: "src/content/methods/hifiasm.md"
+  - type: textarea
+    id: current_content
+    attributes:
+      label: 当前存在问题的内容或描述
+      placeholder: "请指出当前页面中不准确或有歧义的表述..."
+    validations:
+      required: true
+  - type: textarea
+    id: correct_content
+    attributes:
+      label: 正确的科学事实或建议修改方案
+      placeholder: "请提供正确的表述，并附上支撑文献 DOI、官方文档链接或实验证据..."
+    validations:
+      required: true

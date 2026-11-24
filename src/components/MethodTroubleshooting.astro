@@ -1,0 +1,260 @@
+---
+import { troubleshootingEntries } from '../data/troubleshooting';
+
+interface Props {
+  methodId: string;
+}
+
+const { methodId } = Astro.props;
+const entries = troubleshootingEntries.filter((item) => item.methodId === methodId);
+---
+
+{entries.length > 0 && (
+  <section class="method-troubleshooting-section" id="method-troubleshooting" aria-label="常见报错与故障排查指南">
+    <div class="troubleshooting-header">
+      <div class="tag-row">
+        <span class="ts-tag">TROUBLESHOOTING</span>
+        <span class="ts-count">{entries.length} 个经典报错排查</span>
+      </div>
+      <h3 class="ts-title">常见报错与科学排查指南</h3>
+      <p class="ts-desc">
+        汇总动植物生物信息分析中最常遇到的内存溢出、输入格式破损与数值异常问题及经实测验证的解决方案。
+      </p>
+    </div>
+
+    <div class="troubleshooting-list">
+      {entries.map((entry, index) => (
+        <details class="ts-accordion" open={index === 0}>
+          <summary class="ts-summary">
+            <span class="ts-badge-type">{entry.errorType.toUpperCase()}</span>
+            <span class="ts-pattern font-mono">{entry.errorPattern}</span>
+          </summary>
+          <div class="ts-detail-body">
+            <div class="ts-row">
+              <strong class="row-label">典型故障现象：</strong>
+              <span class="row-content">{entry.symptom}</span>
+            </div>
+            <div class="ts-row">
+              <strong class="row-label">根本原因剖析：</strong>
+              <span class="row-content">{entry.rootCause}</span>
+            </div>
+            {entry.diagnosticCommand && (
+              <div class="ts-diagnostic-box">
+                <span class="diag-label">🔍 推荐排查与定位命令：</span>
+                <pre class="diag-code"><code>{entry.diagnosticCommand}</code></pre>
+              </div>
+            )}
+            <div class="ts-solution-box">
+              <span class="solution-label">✅ 标准解决方案与操作步骤：</span>
+              <p class="solution-text">{entry.solution}</p>
+            </div>
+          </div>
+        </details>
+      ))}
+    </div>
+  </section>
+)}
+
+<style>
+  .method-troubleshooting-section {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: var(--color-surface, #ffffff);
+    border: 1px solid var(--color-border, #e2e8f0);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  }
+
+  .troubleshooting-header {
+    margin-bottom: 1.25rem;
+  }
+
+  .tag-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .ts-tag {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #b45309;
+    background: #fef3c7;
+    padding: 0.2rem 0.55rem;
+    border-radius: 9999px;
+    letter-spacing: 0.05em;
+  }
+
+  :global(.dark) .ts-tag {
+    background: #78350f33;
+    color: #fcd34d;
+  }
+
+  .ts-count {
+    font-size: 0.75rem;
+    color: var(--color-text-secondary, #64748b);
+  }
+
+  .ts-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-text-heading, #0f172a);
+    margin: 0.25rem 0 0.35rem;
+  }
+
+  .ts-desc {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary, #64748b);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .troubleshooting-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .ts-accordion {
+    border: 1px solid var(--color-border, #e2e8f0);
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--color-surface-secondary, #f8fafc);
+    transition: all 0.2s ease;
+  }
+
+  .ts-accordion[open] {
+    background: var(--color-surface, #ffffff);
+    border-color: #cbd5e1;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  }
+
+  .ts-summary {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.875rem 1rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    user-select: none;
+    color: var(--color-text-heading, #0f172a);
+  }
+
+  .ts-summary:hover {
+    background: var(--color-surface-hover, #f1f5f9);
+  }
+
+  .ts-badge-type {
+    font-size: 0.7rem;
+    font-weight: 700;
+    background: #e2e8f0;
+    color: #475569;
+    padding: 0.15rem 0.45rem;
+    border-radius: 4px;
+    letter-spacing: 0.02em;
+  }
+
+  :global(.dark) .ts-badge-type {
+    background: #334155;
+    color: #e2e8f0;
+  }
+
+  .ts-pattern {
+    color: #be123c;
+    font-size: 0.85rem;
+  }
+
+  :global(.dark) .ts-pattern {
+    color: #fb7185;
+  }
+
+  .ts-detail-body {
+    padding: 1rem;
+    border-top: 1px solid var(--color-border-subtle, #f1f5f9);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+
+  .ts-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .row-label {
+    color: var(--color-text-muted, #94a3b8);
+    font-size: 0.75rem;
+  }
+
+  .row-content {
+    color: var(--color-text-body, #334155);
+  }
+
+  .ts-diagnostic-box {
+    background: var(--color-surface-secondary, #f8fafc);
+    border-left: 3px solid #0284c7;
+    padding: 0.6rem 0.875rem;
+    border-radius: 0 6px 6px 0;
+  }
+
+  .diag-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #0369a1;
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  .diag-code {
+    margin: 0;
+    padding: 0.4rem 0.6rem;
+    background: var(--color-code-bg, #0f172a);
+    color: var(--color-code-text, #f8fafc);
+    border-radius: 4px;
+    font-size: 0.8rem;
+    overflow-x: auto;
+    font-family: ui-monospace, SFMono-Regular, monospace;
+  }
+
+  .ts-solution-box {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+  }
+
+  :global(.dark) .ts-solution-box {
+    background: #14532d22;
+    border-color: #14532d;
+  }
+
+  .solution-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #15803d;
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  :global(.dark) .solution-label {
+    color: #4ade80;
+  }
+
+  .solution-text {
+    margin: 0;
+    color: #166534;
+  }
+
+  :global(.dark) .solution-text {
+    color: #dcfce7;
+  }
+
+  .font-mono {
+    font-family: ui-monospace, SFMono-Regular, monospace;
+  }
+</style>

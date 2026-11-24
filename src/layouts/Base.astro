@@ -1,9 +1,11 @@
 ---
 import 'katex/dist/katex.min.css';
+import '../styles/themes.css';
 import '../styles/global.css';
 import '../styles/home.css';
 import '../styles/nav-v3.css';
 import BrandLogo from '../components/BrandLogo.astro';
+import ThemeSwitcher from '../components/ThemeSwitcher.astro';
 const { title = 'PhytoMethods', home = false, description = '植物基因组学与生物信息学方法知识库，涵盖基因组组装、注释、泛基因组、群体遗传、GWAS、表观组学、单细胞及调控网络等九大研究领域的算法工具、经典文献与实战教程。' } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const path = Astro.url.pathname;
@@ -11,6 +13,7 @@ const nav = [
   ['首页', ''],
   ['研究领域', 'topics/'],
   ['算法与工具', 'methods/'],
+  ['路线图', 'workflows/'],
   ['知识关联', 'knowledge/'],
   ['文献索引', 'papers/'],
   ['分析教程', 'tutorials/'],
@@ -40,6 +43,7 @@ const isCurrent = (href: string) => href ? path.startsWith(`${base}${href}`) : p
           {nav.map(([label, href]) => (
             <a href={`${base}${href}`} class:list={{ 'nav-search': href === 'search/', 'is-current': isCurrent(href) }} aria-current={isCurrent(href) ? 'page' : undefined}>{label}</a>
           ))}
+          <ThemeSwitcher />
           <a class="nav-github" href={githubUrl} target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
         </nav>
 
@@ -52,6 +56,9 @@ const isCurrent = (href: string) => href ? path.startsWith(`${base}${href}`) : p
             {nav.map(([label, href]) => (
               <a href={`${base}${href}`} aria-current={isCurrent(href) ? 'page' : undefined}>{label}</a>
             ))}
+            <div style="padding: 8px 12px; border-top: 1px solid var(--border); margin-top: 4px;">
+              <ThemeSwitcher />
+            </div>
             <a href={githubUrl} target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
           </nav>
         </details>
