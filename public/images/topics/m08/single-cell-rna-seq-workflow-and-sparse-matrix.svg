@@ -1,0 +1,142 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 550" width="100%" height="100%">
+  <defs>
+    <style>
+      .bg { fill: #f8fafc; }
+      .box { fill: #ffffff; stroke: #cbd5e1; stroke-width: 1.5; rx: 8; }
+      .box-highlight { fill: #f0fdf4; stroke: #22c55e; stroke-width: 2; rx: 8; }
+      .box-warn { fill: #fffbeb; stroke: #f59e0b; stroke-width: 1.5; rx: 8; }
+      .box-purple { fill: #faf5ff; stroke: #a855f7; stroke-width: 1.5; rx: 8; }
+      .title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 18px; font-weight: 700; fill: #0f172a; }
+      .subtitle { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 13px; font-weight: 600; fill: #475569; }
+      .txt { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 12px; fill: #1e293b; }
+      .txt-sm { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; fill: #64748b; }
+      .txt-mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 11px; fill: #0f172a; }
+      .arrow { stroke: #64748b; stroke-width: 1.5; marker-end: url(#arrowhead); fill: none; }
+      .arrow-green { stroke: #16a34a; stroke-width: 2; marker-end: url(#arrowhead-green); fill: none; }
+      .badge { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 10px; font-weight: 700; fill: #ffffff; }
+    </style>
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#64748b" />
+    </marker>
+    <marker id="arrowhead-green" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#16a34a" />
+    </marker>
+  </defs>
+
+  <rect width="1000" height="550" class="bg" />
+
+  <!-- 头部大标题 -->
+  <text x="30" y="38" class="title">植物单细胞与单核转录组测序全流程与稀疏表达矩阵架构</text>
+  <text x="30" y="60" class="txt-sm">Plant scRNA-seq / snRNA-seq Workflow, Droplet-based GEMs, UMI De-duplication &amp; Sparse Matrix Representation</text>
+
+  <!-- 阶段 1: 样本解离路线对比 (原生质体 vs 细胞核) -->
+  <g transform="translate(30, 80)">
+    <rect width="280" height="200" class="box" />
+    <text x="15" y="25" class="subtitle">1. 植物细胞解离双路线对比</text>
+
+    <!-- 原生质体路线 -->
+    <rect x="15" y="40" width="250" height="68" class="box-warn" />
+    <text x="25" y="58" class="txt" font-weight="600">原生质体解离 (Protoplast scRNA)</text>
+    <text x="25" y="76" class="txt-sm">• 纤维素酶/果胶酶温育消化细胞壁</text>
+    <text x="25" y="94" class="txt-sm">• 易诱导热休克/机械应激基因异位表达</text>
+
+    <!-- 单细胞核路线 -->
+    <rect x="15" y="118" width="250" height="68" class="box-highlight" />
+    <text x="25" y="136" class="txt" font-weight="600" fill="#15803d">单细胞核抽提 (snRNA-seq)</text>
+    <text x="25" y="154" class="txt-sm">• 物理匀浆破坏细胞壁，免酶解应激</text>
+    <text x="25" y="172" class="txt-sm">• 完美兼容冷冻/木质化坚硬植物组织</text>
+  </g>
+
+  <!-- 箭头 1 -> 2 -->
+  <path d="M 310 180 L 350 180" class="arrow" />
+
+  <!-- 阶段 2: 微流控油包水微胶滴与引物结构 -->
+  <g transform="translate(350, 80)">
+    <rect width="320" height="200" class="box" />
+    <text x="15" y="25" class="subtitle">2. 液滴微流控与捕获引物构型</text>
+
+    <!-- 微胶滴 GEM 图解 -->
+    <circle cx="50" cy="80" r="32" fill="#e0f2fe" stroke="#0284c7" stroke-width="2" />
+    <circle cx="50" cy="80" r="14" fill="#38bdf8" />
+    <text x="50" y="84" class="badge" text-anchor="middle">Bead</text>
+    <circle cx="68" cy="65" r="7" fill="#86efac" stroke="#16a34a" stroke-width="1.5" />
+    <text x="92" y="78" class="txt" font-weight="600">油包水微胶滴 (GEM)</text>
+    <text x="92" y="96" class="txt-sm">单细胞核 + 单微球 (Bead)</text>
+
+    <!-- 引物分子解构 -->
+    <g transform="translate(15, 125)">
+      <rect x="0" y="0" width="70" height="26" fill="#64748b" rx="4" />
+      <text x="35" y="17" class="badge" text-anchor="middle">Read1 接头</text>
+
+      <rect x="74" y="0" width="85" height="26" fill="#3b82f6" rx="4" />
+      <text x="116" y="17" class="badge" text-anchor="middle">Cell Barcode (16bp)</text>
+
+      <rect x="163" y="0" width="60" height="26" fill="#8b5cf6" rx="4" />
+      <text x="193" y="17" class="badge" text-anchor="middle">UMI (12bp)</text>
+
+      <rect x="227" y="0" width="60" height="26" fill="#10b981" rx="4" />
+      <text x="257" y="17" class="badge" text-anchor="middle">Oligo(dT)</text>
+
+      <text x="0" y="42" class="txt-sm">识别宿主细胞身份 | 唯一分子标签 (去PCR重复) | 捕获 Poly-A</text>
+    </g>
+  </g>
+
+  <!-- 箭头 2 -> 3 -->
+  <path d="M 670 180 L 710 180" class="arrow" />
+
+  <!-- 阶段 3: PCR扩增与 UMI 解码去重 -->
+  <g transform="translate(710, 80)">
+    <rect width="260" height="200" class="box" />
+    <text x="15" y="25" class="subtitle">3. 测序与 UMI 解码纠错</text>
+
+    <rect x="15" y="40" width="230" height="68" class="box-purple" />
+    <text x="25" y="58" class="txt" font-weight="600">PCR 扩增与文库测序</text>
+    <text x="25" y="76" class="txt-sm">• 相同 UMI 产生多条重复 Reads</text>
+    <text x="25" y="94" class="txt-sm">• 汉明距离 (Hamming ≤ 1) 容错聚类</text>
+
+    <rect x="15" y="118" width="230" height="68" class="box-highlight" />
+    <text x="25" y="136" class="txt" font-weight="600" fill="#15803d">绝对分子计数 (UMI Count)</text>
+    <text x="25" y="154" class="txt-sm">• 1 个独特 UMI = 1 个原始 mRNA 分子</text>
+    <text x="25" y="172" class="txt-sm">• 彻底克服体外高轮次 PCR 扩增偏倚</text>
+  </g>
+
+  <!-- 阶段 4: 下方宽屏展示 超稀疏表达矩阵与 CSR 存储结构 -->
+  <g transform="translate(30, 310)">
+    <rect width="940" height="210" class="box" />
+    <text x="20" y="28" class="subtitle">4. 细胞 × 基因单细胞表达矩阵 (Gene-Cell Expression Matrix) 与 CSR 稀疏压缩存储</text>
+
+    <!-- 表达矩阵网格示意图 -->
+    <g transform="translate(25, 45)">
+      <rect x="0" y="0" width="280" height="140" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1" rx="4" />
+      <text x="140" y="-8" class="txt-sm" text-anchor="middle" font-weight="600">N 个细胞 (Cell Barcodes, ~10,000)</text>
+      <text x="-15" y="70" class="txt-sm" text-anchor="middle" font-weight="600" transform="rotate(-90 -15 70)">M 个基因 (~35,000)</text>
+
+      <!-- 稀疏矩阵散点 -->
+      <text x="20" y="25" class="txt-mono" fill="#94a3b8">0   0   0   0   0   0   0   0</text>
+      <text x="20" y="50" class="txt-mono" fill="#0f172a">0  <tspan fill="#16a34a" font-weight="700">3</tspan>   0   0  <tspan fill="#16a34a" font-weight="700">1</tspan>   0   0   0</text>
+      <text x="20" y="75" class="txt-mono" fill="#94a3b8">0   0   0   0   0   0   0   0</text>
+      <text x="20" y="100" class="txt-mono" fill="#0f172a"><tspan fill="#16a34a" font-weight="700">12</tspan>  0   0   0   0  <tspan fill="#16a34a" font-weight="700">2</tspan>   0   0</text>
+      <text x="20" y="125" class="txt-mono" fill="#94a3b8">0   0   0   0   0   0   0   0</text>
+    </g>
+
+    <!-- 稀疏性与物理生物学特征解释 -->
+    <g transform="translate(330, 48)">
+      <rect x="0" y="0" width="280" height="135" class="box-warn" />
+      <text x="15" y="24" class="txt" font-weight="600" fill="#b45309">单细胞数据物理特征：超高稀疏度</text>
+      <text x="15" y="48" class="txt-sm">• <tspan font-weight="600">零膨胀率 (Sparsity)</tspan> 通常高达 <tspan font-weight="700">90% ~ 98%</tspan></text>
+      <text x="15" y="70" class="txt-sm">• <tspan font-weight="600">生物学零 (Biological Zero)</tspan>：该细胞类型真不表达</text>
+      <text x="15" y="92" class="txt-sm">• <tspan font-weight="600">技术性脱落 (Technical Dropout)</tspan>：逆转录捕获效率</text>
+      <text x="15" y="112" class="txt-sm">  低 (~10-20%) 导致的假阴性观测零值</text>
+    </g>
+
+    <!-- 计算机内存优化: CSR (Compressed Sparse Row) 存储 -->
+    <g transform="translate(630, 48)">
+      <rect x="0" y="0" width="290" height="135" class="box-highlight" />
+      <text x="15" y="24" class="txt" font-weight="600" fill="#15803d">高效存储格式: CSR (SciPy / AnnData)</text>
+      <text x="15" y="48" class="txt-mono">• data:    [3, 1, 12, 2, ...]</text>
+      <text x="15" y="68" class="txt-mono">• indices: [1, 4,  0, 5, ...]</text>
+      <text x="15" y="88" class="txt-mono">• indptr:  [0, 0,  2, 2, 4, ...]</text>
+      <text x="15" y="114" class="txt-sm">• 内存开销从数以十计 GB 压缩至数百 MB</text>
+    </g>
+  </g>
+</svg>
