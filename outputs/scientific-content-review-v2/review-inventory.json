@@ -1,7 +1,7 @@
 {
   "summary": {
     "reviewVersion": "Scientific Content Review V2.1.1 (Honest Evidence Integrity)",
-    "auditTimestamp": "2026-11-24T13:45:40.074Z",
+    "auditTimestamp": "2026-11-24T14:34:15.811Z",
     "auditPrinciple": "严禁批量赋予科学通过状态；实事求是记录结构检查与深度审核进展；所有未审核条目纳入未决跟踪清单",
     "auditConclusion": "AUDIT_IN_PROGRESS_EVIDENCE_INTEGRITY_DISCLOSED",
     "scopeCounts": {
@@ -17,19 +17,20 @@
     },
     "statusDistribution": {
       "structurallyChecked": 287,
-      "sourceChecked": 86,
-      "corrected": 9,
+      "sourceChecked": 77,
+      "corrected": 18,
       "notReviewed": 180,
       "templatePendingVerification": 2,
       "unverifiedPendingVerification": 28
     },
     "unresolvedTracking": {
-      "totalUnresolvedItems": 210,
+      "totalUnresolvedItems": 220,
       "unreviewedMethodsCount": 19,
       "unreviewedTopicsCount": 63,
       "unreviewedPapersCount": 98,
       "templateTutorialsCount": 2,
-      "unverifiedGenomeFilesCount": 28
+      "unverifiedGenomeFilesCount": 28,
+      "pendingComputeBenchmarksCount": 10
     },
     "computeProfilesIntegrity": {
       "actualProfilesAudited": 12,
@@ -2189,8 +2190,8 @@
       "id": "edta",
       "title": "EDTA",
       "structuralStatus": "structurally_checked",
-      "scientificStatus": "source_checked",
-      "note": "Ou et al. Genome Biology (2019) 20:275 Table 2"
+      "scientificStatus": "corrected",
+      "note": "Ou et al. Genome Biology (2019) 20:275 Additional file 2: Table S2"
     },
     {
       "category": "compute_profile",
@@ -2205,7 +2206,7 @@
       "id": "plink",
       "title": "PLINK",
       "structuralStatus": "structurally_checked",
-      "scientificStatus": "source_checked",
+      "scientificStatus": "corrected",
       "note": "Chang et al. GigaScience (2015) 4:7 Table 2"
     },
     {
@@ -2213,15 +2214,15 @@
       "id": "gapit",
       "title": "GAPIT",
       "structuralStatus": "structurally_checked",
-      "scientificStatus": "source_checked",
-      "note": "Liu et al. Nature Genetics (2016) Figure 3"
+      "scientificStatus": "corrected",
+      "note": "Liu et al. PLOS Genetics (2016) 12(2): e1005767 (DOI: 10.1371/journal.pgen.1005767)"
     },
     {
       "category": "compute_profile",
       "id": "syri",
       "title": "SyRI",
       "structuralStatus": "structurally_checked",
-      "scientificStatus": "source_checked",
+      "scientificStatus": "corrected",
       "note": "Goel et al. Genome Biology (2019) 20:277 Table 1"
     },
     {
@@ -2229,7 +2230,7 @@
       "id": "minigraph-cactus",
       "title": "Minigraph-Cactus",
       "structuralStatus": "structurally_checked",
-      "scientificStatus": "source_checked",
+      "scientificStatus": "corrected",
       "note": "Hickey et al. Nature Biotechnology (2023)"
     },
     {
@@ -2237,7 +2238,7 @@
       "id": "deseq2",
       "title": "DESeq2",
       "structuralStatus": "structurally_checked",
-      "scientificStatus": "source_checked",
+      "scientificStatus": "corrected",
       "note": "Love et al. Genome Biology (2014) 15:550"
     },
     {
@@ -2245,7 +2246,7 @@
       "id": "wgcna",
       "title": "WGCNA",
       "structuralStatus": "structurally_checked",
-      "scientificStatus": "source_checked",
+      "scientificStatus": "corrected",
       "note": "Langfelder & Horvath BMC Bioinformatics (2008) Section 4"
     },
     {
@@ -2253,7 +2254,7 @@
       "id": "bismark",
       "title": "Bismark",
       "structuralStatus": "structurally_checked",
-      "scientificStatus": "source_checked",
+      "scientificStatus": "corrected",
       "note": "Krueger & Andrews Bioinformatics (2011) 27:1571-1572"
     },
     {
@@ -2261,8 +2262,8 @@
       "id": "scanpy",
       "title": "Scanpy",
       "structuralStatus": "structurally_checked",
-      "scientificStatus": "source_checked",
-      "note": "Wolf et al. Genome Biology (2018) 19:15"
+      "scientificStatus": "corrected",
+      "note": "Wolf et al. Genome Biology (2018) 19:15 Figure 1 & Scanpy v1.0.0 Release Notes (https://scanpy.scverse.org/en/stable/release-notes/index.html)"
     },
     {
       "category": "workflow",

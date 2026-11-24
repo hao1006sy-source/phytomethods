@@ -3,7 +3,7 @@
 - **审核工具**：Scanpy (methodId: `scanpy`)
 - **核查日期**：2026-11-24
 - **核查人**：Antigravity
-- **核查状态**：`source_checked` (论文原文与大规模基准确证并纠正)
+- **核查状态**：`corrected` (依据 Figure 1 与官方 v1.0.0 发布记录修正)
 
 ---
 
@@ -22,52 +22,56 @@
 1. **发表论文原文**：
    - 引用: Wolf, F.A., Angerer, P., Theis, F.J. (2018). SCANPY: large-scale single-cell gene expression data analysis. *Genome Biology*, 19, 15.
    - DOI: [10.1186/s13059-017-1382-0](https://doi.org/10.1186/s13059-017-1382-0)
-2. **Scanpy 官方文档**：
-   - URL: https://scanpy.readthedocs.io/
+2. **官方发布与版本记录**：
+   - Scanpy v1.0.0 Release Notes: https://scanpy.scverse.org/en/stable/release-notes/index.html
 
 ---
 
 ## 3. 对应表格与具体日志位置 (Table / Section / Log Locator)
 
 - **论文原文位置**：
-  *Genome Biology* (2018) 19:15, "Computational scalability" 章节, Figure 2 以及 Supplementary Table 1。
+  *Genome Biology* (2018) 19:15, Figure 1 ("Runtime comparison for single-cell analysis pipelines") 及 Section "Computational scalability"。
+- **官方版本发布记录**：
+  Scanpy v1.0.0 发布公告基准记录（2018-02-09）。
 
 ---
 
 ## 4. 原始实验数值 (Raw Experimental Metrics)
 
-*Genome Biology* (2018) 原文计算扩展性测定：
-- **评测数据集**：
-  - 中型基准：68,000 个人类外周血单核细胞 (PBMC 68k)
-  - 百万级极限基准：130 万个小鼠脑细胞 (1.3 million cells dataset)
-- **测试硬件**：标准计算节点 (配置 8 CPU 线程)
-- **原始耗时与内存**：
-  - 68,000 细胞数据集：PCA 耗时 **10 秒**；t-SNE 耗时 **2 分钟**；图拓扑构建 (Graph) **45 秒**；Louvain 聚类 **10 秒**；全流程耗时 **< 4 分钟**，内存占用约为 **1.5 ~ 3 GB RAM**；
-  - 130 万细胞极限数据集：基于 AnnData 稀疏矩阵存储（CSR），全套质控、降维与聚类总耗时约为 **1.5 小时**，峰值物理内存仅为 **16 GB RAM**；
-- **查证发现**：原文从未针对“水稻根尖 20,000 原生质体细胞”进行过测定，原网站标称的“水稻 2 万细胞 6~10 GB”系虚构的植物测试场景。
+官方发布与原文测定事实：
+- **基准测试版本**：Scanpy v1.0.0
+- **分析任务范围**：涵盖单细胞预处理（质控与标准化）、高变基因筛选（HVGs）、PCA 降维、邻近图构建、Louvain 聚类及可视化流形映射全流程。
+- **官方测定耗时**：
+  - **68,000 个细胞**（PBMC 68k 数据集）：约 **3 分钟**；
+  - **130,000 个细胞**：约 **14 分钟**；
+  - **1,300,000 个细胞**（1.3M 脑细胞极限数据集）：约 **6 小时**。
+- **查证发现**：
+  - 此前关于“130 万细胞 1.5 小时”的描述不准确，官方记录实际为约 6 小时；
+  - 官方发布记录仅测试并记录了纯流逝时间，未提供各数据规模下的常驻物理峰值内存（Peak RSS）；
+  - 论文与发布记录均未对“水稻根尖 20,000 细胞”进行过测定，虚构场景彻底清除。
 
 ---
 
 ## 5. 单位与实验条件说明 (Units and Experimental Setup)
 
-- **数据底层格式**：基于 `scipy.sparse.csr_matrix` 稀疏矩阵
-- **时间单位**：秒 (Seconds) 与 分钟 (Minutes)
-- **内存单位**：GB RAM
+- **底层数据结构**：基于 AnnData 与 `scipy.sparse.csr_matrix` 稀疏矩阵
+- **时间单位**：分钟 (Minutes) 与 小时 (Hours)
 
 ---
 
 ## 6. 修订后的展示内容 (Revised Profile Content)
 
-- **基准状态**：`published_benchmark` (权威文献与百万细胞基准确证)
-- **软件版本**：Scanpy 1.x (Python 环境)
-- **数据规模**：6.8 万单细胞转录组表达矩阵 (中大型单细胞转录组标准基准)
-- **硬件**：8~16 CPU 线程, 推荐 ≥ 16 GB RAM
-- **峰值内存**：约 2 ~ 3 GB RAM (6.8 万细胞)；百万细胞仅需约 16 GB RAM (得益于稀疏矩阵)
-- **运行时间**：实测 6.8 万细胞全流程 < 4 分钟；常规万级细胞仅需 1~2 分钟
-- **证据出处**：Wolf et al. Genome Biology (2018) 19:15 Figure 2
+- **基准状态**：`published_benchmark` (官方 v1.0.0 发布公告基准)
+- **软件版本**：Scanpy v1.0.0 (官方发布基准)
+- **数据规模**：梯度规模: 68,000 个细胞 / 130,000 个细胞 / 1,300,000 个细胞
+- **硬件**：8~16 CPU 线程
+- **峰值内存**：暂无可核实的峰值内存基准 (官方发布记录未列物理常驻内存，待独立测定)
+- **运行时间**：官方 v1.0.0 记录: 6.8 万细胞约 3 分钟；13 万细胞约 14 分钟；130 万细胞约 6 小时 (全流程预处理、聚类与可视化)
+- **证据出处**：Wolf et al. Genome Biology (2018) 19:15 Figure 1 & Scanpy v1.0.0 Release Notes (https://scanpy.scverse.org/en/stable/release-notes/index.html)
 
 ---
 
 ## 7. 尚未核实的字段与保留问题 (Unverified Fields / Pending Items)
 
-- 原网站记录的“水稻根尖 20,000 细胞 6~10 GB”已彻底更正为论文真实的 6.8 万细胞基准（<4 分钟，2~3 GB）。特定植物单细胞原生质体实验数据待进一步独立实测。
+- 移除此前缺少实测依据的内存估算数字与百万细胞 1.5 小时错误描述。
+- Scanpy 在不同细胞规模下的峰值物理常驻内存（RSS）与植物原生质体实测数据纳入未决清单。

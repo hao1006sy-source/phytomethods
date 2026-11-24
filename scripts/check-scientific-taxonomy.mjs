@@ -129,11 +129,13 @@ const unreviewedMethodsInCsv = unresolvedRows.filter(r => r.category === 'method
 const unreviewedTopicsInCsv = unresolvedRows.filter(r => r.category === 'topic' && r.currentStatus === 'not_reviewed').length;
 const templateTutorialsInCsv = unresolvedRows.filter(r => r.category === 'tutorial' && r.currentStatus === 'template_pending_verification').length;
 const unverifiedGenomeFilesInCsv = unresolvedRows.filter(r => r.category === 'genome_file' && r.currentStatus === 'unverified_pending_verification').length;
+const pendingComputeInCsv = unresolvedRows.filter(r => r.category === 'compute_benchmark' && r.currentStatus === 'benchmark_pending_verification').length;
 
 assert.equal(summaryJson.unresolvedTracking.unreviewedMethodsCount, unreviewedMethodsInCsv, '待审方法数一致');
 assert.equal(summaryJson.unresolvedTracking.unreviewedTopicsCount, unreviewedTopicsInCsv, '待审专题数一致');
 assert.equal(summaryJson.unresolvedTracking.templateTutorialsCount, templateTutorialsInCsv, '待实测教程数一致');
 assert.equal(summaryJson.unresolvedTracking.unverifiedGenomeFilesCount, unverifiedGenomeFilesInCsv, '未确证文件数一致');
+assert.equal(summaryJson.unresolvedTracking.pendingComputeBenchmarksCount, pendingComputeInCsv, '待实测算力基准数一致');
 
 console.log(`✓ 断言 3 通过: 待核实统计由实际数据动态计算 (当前真实未决跟踪条目: ${unresolvedRows.length} 项，严禁虚构零待决)`);
 
@@ -214,6 +216,23 @@ assert.equal(orthoProfile.auditStatus, 'corrected');
 assert.ok(orthoProfile.disputedField.includes('40%~60%'));
 assert.ok(orthoProfile.disputedField.includes('清理') || orthoProfile.correctionResult.includes('清理'));
 
-console.log('✓ 断言 7 通过: 已修正内容 (DNNGP, rrBLUP, sc-kb-copilot, CAFE 5, OrthoFinder) 均具备可定位的真实修订依据');
+const gapitProfile = computeRows.find(r => r.methodId === 'gapit');
+assert.equal(gapitProfile.auditStatus, 'corrected');
+assert.ok(gapitProfile.evidenceSource.includes('PLOS Genetics') && gapitProfile.evidenceSource.includes('Liu'), 'GAPIT/FarmCPU 必须引用 Liu et al. (2016) PLOS Genetics 原始论文');
+assert.ok(!gapitProfile.evidenceSource.includes('Nature Genetics'), 'GAPIT/FarmCPU 严禁引用错误的 Nature Genetics');
+assert.ok(gapitProfile.correctionResult.includes('暂无可核实的运行时间基准'), 'GAPIT 应明确标注暂无可核实的运行时间基准');
+
+const edtaProfile = computeRows.find(r => r.methodId === 'edta');
+assert.equal(edtaProfile.auditStatus, 'corrected');
+assert.ok(edtaProfile.logOrTablePath.includes('Additional file 2') || edtaProfile.logOrTablePath.includes('Table S2'), 'EDTA 定位应指向 Additional file 2: Table S2');
+assert.ok(edtaProfile.correctionResult.includes('暂无可核实的运行时间基准'), 'EDTA 应明确标注暂无可核实的运行时间基准');
+
+const scanpyProfile = computeRows.find(r => r.methodId === 'scanpy');
+assert.equal(scanpyProfile.auditStatus, 'corrected');
+assert.ok(scanpyProfile.correctionResult.includes('6.8 万') && scanpyProfile.correctionResult.includes('3 分钟'), 'Scanpy 应包含官方 6.8 万细胞 3 分钟记录');
+assert.ok(scanpyProfile.correctionResult.includes('6 小时'), 'Scanpy 应包含官方 130 万细胞 6 小时记录');
+assert.ok(!scanpyProfile.correctionResult.includes('1.5 小时'), 'Scanpy 严禁包含未经证实的百万细胞 1.5 小时');
+
+console.log('✓ 断言 7 通过: 已修正内容 (DNNGP, rrBLUP, sc-kb-copilot, CAFE 5, OrthoFinder, GAPIT, EDTA, Scanpy) 均具备可定位的真实修订依据');
 
 console.log('\n🎉 全部 7 项科研审核真实性核心断言 100% 顺利通过！\n');
