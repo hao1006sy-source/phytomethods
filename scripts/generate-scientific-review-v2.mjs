@@ -465,7 +465,7 @@ const parseBenchmarkMarkdown = (filePath) => {
     methodId,
     name,
     auditStatus,
-    logOrTablePath: logOrTablePath.replace(/\r?\n/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 120),
+    logOrTablePath: logOrTablePath.replace(/\r?\n/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 240),
     revisedInputScale: revisedInputScale.trim(),
     evidenceSource: evidenceSource.trim(),
     correctionResult: correctionResult.trim(),
@@ -737,6 +737,22 @@ for (const f of filesList) {
   }
 }
 
+// 10.6 待深入实测或未充分证实的计算性能基准 (compute_benchmark)
+for (const p of computeProfileRows) {
+  const needsRuntime = p.runtime.includes('暂无可核实') || p.runtime.includes('待独立测定');
+  const needsMemory = p.peakMemory.includes('暂无可核实') || p.peakMemory.includes('待独立测定');
+  if (needsRuntime || needsMemory) {
+    unresolvedRows.push({
+      category: 'compute_benchmark',
+      targetId: p.methodId,
+      titleOrName: p.name,
+      issueDescription: `算法计算画像存在待测指标 (${needsRuntime ? '运行时间暂无可核实基准; ' : ''}${needsMemory ? '峰值内存暂无可核实基准' : ''})`,
+      currentStatus: 'benchmark_pending_verification',
+      followUpPlan: '待在标准测试环境与真实植物数据集上开展独立基准测定，提取真实 Wall-clock 耗时与峰值常驻内存 (RSS)'
+    });
+  }
+}
+
 // =========================================================================
 // 11. 全量审查条目清单 (review-inventory.csv & review-inventory.json)
 // =========================================================================
@@ -784,7 +800,8 @@ const summary = {
     unreviewedTopicsCount: topicReviewRows.filter(t => t.scientificReviewStatus === 'not_reviewed').length,
     unreviewedPapersCount: paperReviewRows.filter(p => p.scientificReviewStatus === 'not_reviewed').length,
     templateTutorialsCount: tutorialReviewRows.filter(t => t.status === 'template').length,
-    unverifiedGenomeFilesCount: filesList.filter(f => f.accessType === 'unverified').length
+    unverifiedGenomeFilesCount: filesList.filter(f => f.accessType === 'unverified').length,
+    pendingComputeBenchmarksCount: unresolvedRows.filter(r => r.category === 'compute_benchmark' && r.currentStatus === 'benchmark_pending_verification').length
   },
   computeProfilesIntegrity: {
     actualProfilesAudited: computeProfileRows.length,

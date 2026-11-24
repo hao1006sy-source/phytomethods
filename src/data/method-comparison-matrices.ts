@@ -99,7 +99,7 @@ export const methodComparisonMatrices: Record<string, DomainComparisonMatrix> = 
         name: 'EDTA',
         inputType: '染色体水平基因组 FASTA',
         corePrinciple: '整合 LTR_retriever、TIR-Learner、HelitronScanner 等专业挖掘引擎',
-        computeProfile: '36 线程, 推荐 ≥ 32 GB RAM, 论文表 2 水稻实测 4.2 小时',
+        computeProfile: '36 线程, 推荐 ≥ 32 GB RAM (全管线运行时间与峰值内存待独立测定)',
         advantages: '专为植物高重复定制，结构完整，极大降低假阳性与重复重叠',
         limitations: '极度破碎或超大基因组运行时间较长',
         recommendedScenario: '植物全基因组转座子元件 (TE) 从头识别与泛基因组重复注释'
@@ -151,7 +151,7 @@ export const methodComparisonMatrices: Record<string, DomainComparisonMatrix> = 
         name: 'SyRI',
         inputType: '双基因组共线全长比对结果 (BAM/SAM / delta 文件)',
         corePrinciple: '共线性块网络遍历与局部重排图解析 (识别倒位、易位、重排与插入缺失)',
-        computeProfile: '8~16 线程, 2~4 GB RAM, 拟南芥全基因组比对与解析约 15 分钟',
+        computeProfile: '8~16 线程, 推荐 ≥ 16 GB RAM (基准运行时间与峰值内存待独立测定)',
         advantages: '可精准分类共线性、倒位、易位、重复序列易位与结构变异断裂点',
         limitations: '依赖于染色体水平连续性组装，无法直接用于短读段重测序原始数据',
         recommendedScenario: '两个或多个高质量植物单倍型参考组装间的全景结构变异深度解析'
@@ -203,7 +203,7 @@ export const methodComparisonMatrices: Record<string, DomainComparisonMatrix> = 
         name: 'OrthoFinder',
         inputType: '多物种全蛋白质组 FASTA',
         corePrinciple: '标准化 BLAST 距离 + MCL 图聚类 + 基因树/物种树调和',
-        computeProfile: '16~32 线程, 推荐 ≥ 64 GB RAM (耗时随物种数二次方增长，DIAMOND 模式数小时)',
+        computeProfile: '16~32 线程, 推荐 ≥ 64 GB RAM (耗时随物种数二次方增长，特定植物基准待独立测定)',
         advantages: '聚类准确度高，自动输出直系同源矩阵与有根物种树',
         limitations: '面对全基因组复制 (WGD) 频繁的植物，物种树需结合核基因核实',
         recommendedScenario: '比较基因组学、系统发育树推断与同源正交群划分'
@@ -260,7 +260,7 @@ export const methodComparisonMatrices: Record<string, DomainComparisonMatrix> = 
         name: 'PLINK',
         inputType: 'VCF 或二进制 BED/BIM/FAM',
         corePrinciple: '紧凑位运算、哈迪-温伯格平衡检验与 LD 统计',
-        computeProfile: '4~8 线程, < 2 GB RAM (论文表 2 实测 4000 万 SNP 质控数秒，剪枝 4.5 分钟)',
+        computeProfile: '4~8 线程, 推荐 ≥ 8 GB RAM (全流程基准运行时间与常驻内存待独立测定)',
         advantages: '群体遗传学质控、过滤、PCA、亲缘矩阵计算不可替代的基础工具',
         limitations: '1.9 版本不支持多等位变异与非二倍体',
         recommendedScenario: '全基因组变异质控、LD 衰减分析、主成分分析'
@@ -317,7 +317,7 @@ export const methodComparisonMatrices: Record<string, DomainComparisonMatrix> = 
         name: 'GAPIT',
         inputType: 'SNP 基因型矩阵 + 连续/离散表型数据',
         corePrinciple: '混合线性模型 (MLM)、FarmCPU、Blink 等高效算法',
-        computeProfile: '4~8 线程, < 2 GB RAM (FarmCPU 模型论文实测约 1.1 分钟)',
+        computeProfile: '4~8 线程, 推荐 ≥ 8 GB RAM (GAPIT3 集成实现下基准运行时间与峰值内存待独立测定)',
         advantages: '集成多种先进算法，有效控制群体结构假阳性，自动输出曼哈顿图与 QQ 图',
         limitations: 'R 语言内存回收机制在极端大矩阵下需合理分块',
         recommendedScenario: '作物复杂农艺性状的全基因组关联分析'
@@ -374,7 +374,7 @@ export const methodComparisonMatrices: Record<string, DomainComparisonMatrix> = 
         name: 'Bismark',
         inputType: 'WGBS / RRBS 亚硫酸氢盐测序 FASTQ',
         corePrinciple: '四条 C->T / G->A 转换链双向比对 + 甲基化胞嘧啶提取',
-        computeProfile: '8~16 线程, 2~6 GB RAM (拟南芥 1180 万 reads 实测 18 分钟)',
+        computeProfile: '8~16 线程, 推荐 ≥ 16 GB RAM (全基因组基准运行时间与常驻内存待独立测定)',
         advantages: '精确输出 CG、CHG、CHH 三种植物甲基化位点与胞嘧啶背景统计',
         limitations: '比对速度受限于转换链搜索',
         recommendedScenario: '植物全基因组单碱基分辨率 DNA 甲基化图谱构建'
@@ -426,7 +426,7 @@ export const methodComparisonMatrices: Record<string, DomainComparisonMatrix> = 
         name: 'Scanpy',
         inputType: '单细胞/单核表达矩阵 (10x Genomics MTX 或 H5AD)',
         corePrinciple: '稀疏矩阵线性代数运算 + kNN 邻近图 + UMAP/Leiden 聚类',
-        computeProfile: '8~16 线程, 2~3 GB RAM (论文表 1 实测 6.8 万细胞 < 4 分钟)',
+        computeProfile: '8~16 线程 (官方 v1.0 记录 6.8 万细胞约 3 分钟；峰值内存待独立测定)',
         advantages: '基于 AnnData 稀疏矩阵极度轻量，内存开销小，扩展生态丰富',
         limitations: '植物原生质体细胞壁消化造成的应激基因需严格手动过滤',
         recommendedScenario: '植物根尖、叶片分生组织单细胞细胞类型鉴定与标记基因挖掘'
@@ -478,7 +478,7 @@ export const methodComparisonMatrices: Record<string, DomainComparisonMatrix> = 
         name: 'DESeq2',
         inputType: '未标准化的基因原始计数矩阵 (Raw Counts)',
         corePrinciple: '负二项分布广义线性模型 (GLM) + 经验贝叶斯离散度收缩',
-        computeProfile: '4~8 核心, < 1 GB RAM (论文实测 21 样本 1.2 万基因约 1.2 分钟)',
+        computeProfile: '4~8 核心, 推荐 ≥ 8 GB RAM (基准运行时间与常驻内存待独立测定)',
         advantages: '基于负二项分布与经验贝叶斯离散度收缩，对小样本重复波动控制力强',
         limitations: '不可输入经过 FPKM/TPM 标准化的浮点数',
         recommendedScenario: '植物逆境响应、发育时序及不同突变体间的差异基因鉴定'
@@ -488,7 +488,7 @@ export const methodComparisonMatrices: Record<string, DomainComparisonMatrix> = 
         name: 'WGCNA',
         inputType: '经过 VST/rlog 标准化的高变异基因表达矩阵',
         corePrinciple: '相关性软阈值加权网络 + 拓扑重叠矩阵 (TOM) 层次聚类',
-        computeProfile: '8~16 线程, 2~4 GB RAM (8000 基因常规规模通常 < 10 分钟; >15,000 基因需分块)',
+        computeProfile: '8~16 线程, 推荐 ≥ 16 GB RAM (内存复杂度 O(N^2)，实测运行时间待独立测定)',
         advantages: '将数万个基因归纳为数十个协同模块，直接与生理表型关联',
         limitations: '基于非有向共表达相关，无法直接证明因果调控方向',
         recommendedScenario: '生理指标关键模块定位与核心 Hub 枢纽基因挖掘'

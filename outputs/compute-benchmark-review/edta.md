@@ -3,7 +3,7 @@
 - **审核工具**：EDTA (methodId: `edta`)
 - **核查日期**：2026-11-24
 - **核查人**：Antigravity
-- **核查状态**：`source_checked` (论文 Table 2 原始数值核实并纠偏)
+- **核查状态**：`corrected` (核查 Additional file 2 Table S2，清除全管线臆测数值)
 
 ---
 
@@ -22,49 +22,48 @@
 1. **发表论文原文**：
    - 引用: Ou, S., Su, W., Liao, Y., Chougule, K., Agda, J.R.A., Hellinga, A.J., Lugo, C.S.B., Fioretto, E., Ware, D., Hufford, M.B. (2019). Benchmarking transposable element annotation methods for creation of a streamlined, comprehensive pipeline. *Genome Biology*, 20, 275.
    - DOI: [10.1186/s13059-019-1905-y](https://doi.org/10.1186/s13059-019-1905-y)
-2. **官方 GitHub 仓库说明**：
-   - URL: https://github.com/oushujun/EDTA
+2. **补充材料核验**：
+   - 经实地穿透查验论文正文及补充材料，正文主表仅有 Table 1（水稻基因组 TE 分类含量），无 Table 2；
+   - 实际计算效率记录位于 **Additional file 2: Table S2**（"Algorithmic efficiency of TE annotation programs on the rice genome"）。
 
 ---
 
 ## 3. 对应表格与具体日志位置 (Table / Section / Log Locator)
 
 - **论文原文位置**：
-  *Genome Biology* (2019) 20:275, Table 2 ("Speed and memory usage of transposable element annotation methods on the rice genome") 及 Supplementary Information。
+  *Genome Biology* (2019) 20:275, Section "Algorithmic efficiency of TE annotation programs", Additional file 2: Table S2。
 
 ---
 
 ## 4. 原始实验数值 (Raw Experimental Metrics)
 
-*Genome Biology* (2019) 20:275 表 2 中对水稻 Nipponbare 基因组 (~390 Mb) 的明确测定数据：
-- **测试样本**：*Oryza sativa* (Nipponbare, ~390 Mb 组装)
-- **测试硬件**：单节点 Linux 服务器，配置 36 CPU 核心 (Intel Xeon Gold 6140 @ 2.3 GHz)
-- **CPU Time (小时)**：114.7 CPU hours
-- **Wall-clock Time (小时)**：4.2 hours (使用 36 线程并发)
-- **峰值内存 (Peak RAM)**：论文 Table 2 未单独单列峰值物理内存（指出主要由 RepeatModeler 与 LTR_retriever 并发消耗，推荐配置 ≥ 16–32 GB RAM）。
+*Genome Biology* (2019) 20:275 补充表格 Table S2 实测记录：
+- **测试对象**：针对水稻 MSU7 基因组分别测试了 14 个独立从头挖掘子工具（如 SINE-Finder、GRF、LTR_FINDER、LTRharvest、TIR-Learner、HelitronScanner、RepeatModeler 等）的单项开销；
+- **平台差异**：各子工具分别在不同的 HPC 集群节点（平台 A/B/C/D）上独立执行，平均耗时 5.5 小时，最高内存 76 GB（GRF-LTR_FINDER）；
+- **查证发现**：**Table S2 从未对 EDTA 整体整合管线在单节点 36 线程下的端到端全流程（4.2 小时 / 114.7 CPU 小时）进行过独立表格行记录**。此前所谓的 4.2 小时与 114.7 CPU 小时缺乏原始表格记录支持。
 
 ---
 
 ## 5. 单位与实验条件说明 (Units and Experimental Setup)
 
-- **时间单位**：CPU 时间 (114.7 小时)；物理流逝时间 (4.2 小时 @ 36 线程)
-- **软件参数**：EDTA 默认参数（包含从头挖掘、结构完整 LTR 过滤、TIR 识别与假阳性清洗）
+- **软件管线**：EDTA (Extensive de-novo TE Annotator)
+- **子模块组成**：包含 LTR_retriever, TIR-Learner, HelitronScanner, RepeatModeler 及过滤清洗脚本
 
 ---
 
 ## 6. 修订后的展示内容 (Revised Profile Content)
 
 - **基准状态**：`published_benchmark`
-- **软件版本**：EDTA v1.x (Ou et al. 2019 Table 2 原生基准)
-- **物种与数据规模**：*Oryza sativa* (Nipponbare 参考基因组, ~390 Mb)
-- **硬件**：36 CPU 线程 (Intel Xeon Gold 6140), 推荐 ≥ 32 GB RAM
-- **峰值内存**：论文未单列实测峰值 (推荐配置 ≥ 32 GB RAM, 避免单线程模块 OOM)
-- **运行时间**：实测 4.2 小时 (Wall-clock, 36 线程) / 114.7 小时 (CPU 时间)
-- **证据出处**：Ou et al. Genome Biology (2019) 20:275 Table 2
+- **软件版本**：EDTA v1.x (整合 LTR_retriever, TIR-Learner, HelitronScanner 等)
+- **数据规模**：全基因组 FASTA 序列
+- **硬件**：多核计算节点 (支持多线程并行，推荐 ≥ 32 GB RAM)
+- **峰值内存**：暂无可核实的峰值内存基准 (论文 Additional file 2 Table S2 仅记录了各单独子程序在不同平台的开销，全管线整体基准待独立测定)
+- **运行时间**：暂无可核实的运行时间基准 (论文未单列全管线实测总耗时，待独立测定)
+- **证据出处**：Ou et al. Genome Biology (2019) 20:275 Additional file 2: Table S2
 
 ---
 
 ## 7. 尚未核实的字段与保留问题 (Unverified Fields / Pending Items)
 
-- 原网站标称的“8~14 小时”与“16~24 GB RAM”属于早期宽泛估算，已更正为论文表 2 实测的 4.2 小时 (36 线程)。
-- 玉米 (~2.3 Gb) 或小麦 (~15 Gb) 超大高重复植物基因组的实测基准待进一步补充。
+- 彻底清除原网站 8~14 小时估算及此前误引的 4.2 小时 / 114.7 CPU 小时未证实数据。
+- EDTA 整合管线在水稻、玉米、小麦等不同梯度植物基因组上的端到端实测性能纳入未决清单，待后续标准化基准评测。
