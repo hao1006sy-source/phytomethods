@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 480" width="100%" height="100%">
+  <defs>
+    <style>
+      .title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-weight: 700; font-size: 17px; fill: #0f172a; }
+      .subtitle { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 12px; fill: #475569; }
+      .axis { stroke: #94a3b8; stroke-width: 1.5; }
+      .grid { stroke: #e2e8f0; stroke-width: 1; stroke-dasharray: 3,3; }
+      .axis-label { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; fill: #64748b; font-weight: 500; }
+      .panel { fill: #ffffff; stroke: #e2e8f0; stroke-width: 1.5; rx: 12px; }
+      .legend-text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; fill: #334155; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="960" height="480" rx="16" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5"/>
+
+  <!-- Left Panel: N50 vs NG50 Cumulative Curves -->
+  <g transform="translate(24, 24)">
+    <rect width="430" height="432" class="panel"/>
+    <text x="20" y="32" class="title">A. 连续性指标：N50 与 NG50 累加阶梯对比</text>
+    <text x="20" y="52" class="subtitle">公式：N50 基准为组装总长 S/2；NG50 基准为估计基因组单倍体大小 G/2</text>
+
+    <g transform="translate(45, 80)">
+      <!-- Grid -->
+      <line x1="0" y1="240" x2="350" y2="240" class="axis"/>
+      <line x1="0" y1="0" x2="0" y2="240" class="axis"/>
+      
+      <line x1="0" y1="60" x2="350" y2="60" class="grid"/>
+      <line x1="0" y1="120" x2="350" y2="120" class="grid"/>
+      <line x1="0" y1="180" x2="350" y2="180" class="grid"/>
+
+      <!-- Axis Labels -->
+      <text x="350" y="258" text-anchor="end" class="axis-label">Contig 长度降序累计排名 (Rank)</text>
+      <text x="-10" y="10" text-anchor="end" class="axis-label">累计长度 (Mb)</text>
+      
+      <text x="-8" y="124" text-anchor="end" font-family="sans-serif" font-size="10" font-weight="700" fill="#0284c7">S/2 (N50线)</text>
+      <text x="-8" y="184" text-anchor="end" font-family="sans-serif" font-size="10" font-weight="700" fill="#059669">G/2 (NG50线)</text>
+
+      <!-- Horizontal Threshold Lines -->
+      <line x1="0" y1="120" x2="350" y2="120" stroke="#0284c7" stroke-width="1.5" stroke-dasharray="4,4"/>
+      <line x1="0" y1="180" x2="350" y2="180" stroke="#059669" stroke-width="1.5" stroke-dasharray="4,4"/>
+
+      <!-- Step Curve 1: High-quality Assembly -->
+      <path d="M 0 240 L 40 190 L 90 140 L 150 90 L 220 50 L 320 20" fill="none" stroke="#2563eb" stroke-width="3"/>
+      
+      <!-- Mark N50 Point -->
+      <circle cx="110" cy="120" r="5" fill="#0284c7"/>
+      <text x="120" y="115" font-family="sans-serif" font-size="11" font-weight="700" fill="#0284c7">N50 = 36.7 Mb</text>
+
+      <!-- Mark NG50 Point -->
+      <circle cx="50" cy="180" r="5" fill="#059669"/>
+      <text x="60" y="175" font-family="sans-serif" font-size="11" font-weight="700" fill="#059669">NG50 = 42.1 Mb</text>
+
+      <!-- Explanatory note -->
+      <g transform="translate(10, 275)">
+        <rect width="330" height="64" rx="6" fill="#f1f5f9" stroke="#cbd5e1"/>
+        <text x="12" y="22" font-family="sans-serif" font-size="11" font-weight="700" fill="#334155">警惕陷阱：未分相组装中总长虚高</text>
+        <text x="12" y="42" font-family="sans-serif" font-size="10.5" fill="#64748b">若高杂合植物等位未合并且总长达 1.8G，分母 S 严重偏大，</text>
+        <text x="12" y="56" font-family="sans-serif" font-size="10.5" fill="#64748b">此时 N50 常产生数十 Mb 虚假偏离，必须使用真实 G 评估 NG50。</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Right Panel: Merqury Spectra-cn -->
+  <g transform="translate(480, 24)">
+    <rect width="456" height="432" class="panel"/>
+    <text x="20" y="32" class="title">B. 碱基与单倍型完整度：Merqury Spectra-cn 谱图</text>
+    <text x="20" y="52" class="subtitle">参考无关 k-mer 频数分布：测序错误、杂合单拷贝与纯合双拷贝</text>
+
+    <g transform="translate(45, 80)">
+      <!-- Axes -->
+      <line x1="0" y1="240" x2="380" y2="240" class="axis"/>
+      <line x1="0" y1="0" x2="0" y2="240" class="axis"/>
+
+      <text x="380" y="258" text-anchor="end" class="axis-label">Reads 中的 k-mer 深度 (Multiplicity)</text>
+      <text x="-10" y="10" text-anchor="end" class="axis-label">不同 k-mer 数量 (Count)</text>
+
+      <!-- Spectra Curves -->
+      <!-- Error Peak (<5x) -->
+      <path d="M 5 20 Q 15 180 35 235" fill="none" stroke="#ef4444" stroke-width="2.5"/>
+      <text x="25" y="80" font-family="sans-serif" font-size="10.5" font-weight="700" fill="#ef4444">低频测序错误</text>
+
+      <!-- 1-copy Haplotype Peak (~18x) -->
+      <path d="M 35 235 Q 90 220 120 140 Q 140 70 160 140 Q 180 210 210 230" fill="none" stroke="#8b5cf6" stroke-width="3"/>
+      <circle cx="140" cy="70" r="4" fill="#8b5cf6"/>
+      <text x="140" y="55" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#8b5cf6">1-copy 杂合峰 (18x)</text>
+
+      <!-- 2-copy Homozygous Peak (~36x) -->
+      <path d="M 210 230 Q 250 200 280 100 Q 295 40 310 100 Q 330 210 360 238" fill="none" stroke="#10b981" stroke-width="3"/>
+      <circle cx="295" cy="40" r="4" fill="#10b981"/>
+      <text x="295" y="25" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#10b981">2-copy 纯合主峰 (36x)</text>
+
+      <!-- Legend & Diagnostic Rules -->
+      <g transform="translate(10, 275)">
+        <rect width="360" height="64" rx="6" fill="#f8fafc" stroke="#e2e8f0"/>
+        <text x="12" y="20" font-family="sans-serif" font-size="11" font-weight="700" fill="#1e293b">谱图病态信号与科学诊断：</text>
+        <text x="12" y="38" font-family="sans-serif" font-size="10.5" fill="#334155">• <tspan font-weight="600" fill="#8b5cf6">杂合峰塌缩至 0-copy</tspan>: 杂合等位序列被过度去冗余清除</text>
+        <text x="12" y="54" font-family="sans-serif" font-size="10.5" fill="#334155">• <tspan font-weight="600" fill="#10b981">纯合峰出现人工 2-copy/4-copy</tspan>: 重复序列产生错误嵌合组装</text>
+      </g>
+    </g>
+  </g>
+</svg>

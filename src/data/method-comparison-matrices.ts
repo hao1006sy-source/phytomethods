@@ -66,6 +66,16 @@ export const methodComparisonMatrices: Record<string, DomainComparisonMatrix> = 
         advantages: '显著优于传统 3D-DNA/ALLHiC，对微小错装更具免疫力，极速高效',
         limitations: '高度依赖前序 Contig 连续性，若 Contig 破碎挂载易出现倒位',
         recommendedScenario: '长读段 Contig 的染色体水平脚手架挂载 (Scaffolding)'
+      },
+      {
+        methodId: 'merqury',
+        name: 'Merqury',
+        inputType: '高保真短读段/HiFi Meryl 库 + 组装 FASTA (可选亲本库)',
+        corePrinciple: '参考无关 k-mer 频数谱图比较 + 对数 QV 统计推导',
+        computeProfile: '16~32 线程, 32~64 GB RAM (轻量高效，数十分钟完成)',
+        advantages: '完全无外部参考偏倚，同时量化单碱基 QV、完整度与单倍型分离度',
+        limitations: '依赖原始测序读段自身的高精度，对大尺度染色体倒位与易位无感知',
+        recommendedScenario: '从头组装草图及染色体级基因组的无偏质量与单倍型完整度评估'
       }
     ],
     decisionTrees: [
@@ -83,6 +93,11 @@ export const methodComparisonMatrices: Record<string, DomainComparisonMatrix> = 
         condition: '已获得 Contigs，需要利用 Hi-C 数据挂载至拟染色体',
         recommendation: '首选 YaHS',
         rationale: 'YaHS 计算资源占用小、挂载准确率高，并可无缝导出 Juicebox 查看热图。'
+      },
+      {
+        condition: '获得组装结果，需在无参考基因组偏倚下评估单碱基精度 QV 与单倍型完整度',
+        recommendation: '首选 Merqury',
+        rationale: '基于原始测序 reads 自身的 k-mer 谱图，完全规避引入近缘物种参考造成的变异惩罚。'
       }
     ]
   },

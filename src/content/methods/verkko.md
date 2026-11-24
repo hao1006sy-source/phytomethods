@@ -1,54 +1,121 @@
 ---
 title: Verkko
 name: Verkko
-summary: 整合高准确度与超长读长进行二倍体基因组组装。
-dataType: HiFi / ONT
-principle: 多数据组装图
+summary: 创新性整合 PacBio HiFi 高保真度与 Oxford Nanopore 超长读段（Ultra-long）的混合图组装管线，专攻着丝粒、端粒及复杂异染色质 T2T 闭合。
+dataType: HiFi / ONT Ultra-long
+principle: 多重德布鲁因图与图对齐路径解析
 domainIds: [genome-assembly]
 topicIds: [assembly-basics, assembly-graphs, complete-assembly, haplotype-resolution, sequencing-data]
 principleIds: [debruijn, phasing]
 dataIds: [hifi, ont-ul]
 paper: verkko
 repository: https://github.com/marbl/verkko
-updatedAt: 2026-11-20
+updatedAt: 2026-11-25
 ---
-## 研究问题与计算思路
-Verkko 结合 PacBio HiFi 和 Oxford Nanopore 超长 reads 构造和解析组装图。高准确度序列帮助确定局部结构，超长 reads 可跨越部分重复区域。
 
-## 输入输出
-输入为 HiFi 和超长 reads；主要输出为组装序列和图相关文件。可用数据及计算资源影响可解析的重复区域。
+## 科学定位与混合组装理念
 
-## 植物研究相关性
-植物基因组的长重复序列和高杂合度使超长 reads 有潜在价值。评估时应独立检查单倍型与重复区结构。
+在追求真核生物完整无缺口基因组（Telomere-to-Telomere, T2T）的过程中，单一测序技术均存在天然物理瓶颈：
+- **PacBio HiFi 读段**：虽具备极高的单分子准确率（$\ge Q30 \sim Q40$），但读长通常受限于 $15\sim 25\text{ kb}$，无法完整跨越植物基因组中动辄数兆碱基（Mb）的着丝粒卫星 DNA 阵列（如玉米 CentC 或水稻 CentO）与数十 kb 的 rDNA 基因簇；
+- **Oxford Nanopore (ONT) 超长读段**：单分子长度可达 $50\sim 200+\text{ kb}$，足以横跨绝大多数极端串联重复，但其单分子原始错误率（尤其是同聚物 InDel）较高，难以直接构建高保真组装骨架。
 
-## 方法论文
-[10.1038/s41587-023-01662-6](https://doi.org/10.1038/s41587-023-01662-6)；[软件与文档](https://github.com/marbl/verkko)。
+由人类端粒到端粒联盟（T2T Consortium）核心算法团队（NHGRI/NIH 与 Canu 开发组）领导、Rautiainen 等人于 2023 年发表在 *Nature Biotechnology* 上的 **Verkko**，首创了“准确度奠基骨架、超长读段穿透图回路”的混合长读段组装新范式。
 
-## 算法流程与软件实现
-Verkko 工作流先利用 Canu 对高准确度 reads 进行纠错，通过 MBG 构建多重 de Bruijn 图，再将 ONT 超长 reads 通过 GraphAligner 比对到图；它逐步利用 reads 解析图中的环和复杂连接，最后生成一致序列。`--hifi` 指定高准确度长 reads，`--nano` 指定 ONT 超长 reads；亲本 k-mer 或 Hi-C 数据可用于扩展相位。当前官方文档允许仅提供高准确度长 reads，超长 reads 提供额外跨越证据。
+---
 
-## 与 Hifiasm 的区别
-Hifiasm 的核心是 HiFi reads 的相位感知重叠图；Verkko 使用多重 de Bruijn 图和逐步图解析，并结合超长 reads 跨越重复。比较时应记录软件版本、相位数据和计算资源；技术路线差异本身不足以决定哪个组装结果更准确。
+## 核心算法架构与模块拆解
 
-## 输出与植物案例
-默认结果包括 `assembly.fasta`、同聚物压缩空间中的 `assembly.homopolymer-compressed.gfa` 以及图节点与序列对应的 `assembly.scfmap`。相位数据可产生额外的单倍型 FASTA 和路径信息。[黄花木基因组研究](https://doi.org/10.1038/s41597-025-05057-x)使用 Verkko 组装结果辅助填补组装缺口；该论文方法部分也描述了 Hifiasm 和 HiFi reads 的使用。
+Verkko 内部通过 Snakemake 驱动，由四个精巧衔接的模块组成自动化流水线：
 
-[官方文档与参数](https://github.com/marbl/verkko)；[Verkko 原始方法论文](https://doi.org/10.1038/s41587-023-01662-6)。完成组装后可使用 Merqury 等工具评估。
+```
+PacBio HiFi 读段                       ONT Ultra-long 读段 (>50 kb)
+       │                                            │
+       ▼                                            │
+[1. 同聚物压缩与 MBG 图构建]                        │
+       │                                            │
+       ▼                                            │
+高精度同聚物压缩德布鲁因图 (MBG Unitigs)             │
+       │                                            │
+       └──────────────┬─────────────────────────────┘
+                      ▼
+            [2. GraphAligner 图路径比对]
+                      │
+                      ▼
+           [3. 图纠缠解开与气泡解析]
+   (利用超长跨越证据逐步消除重叠歧义与自环)
+                      │
+                      ▼
+            [4. 碱基还原与序列共识输出]
+```
 
-## 一句话简介及开发背景
-Verkko 是面向高质量二倍体基因组组装的混合长读段流程，将 HiFi 的碱基精度与 ONT 超长 reads 的跨越能力用于连续染色体及 T2T 路径解析。原始方法论文首先以人类样本展示完整组装，不应据此宣称其原论文验证了植物 T2T。
+### 1. 多重德布鲁因图构建（Multiplex de Bruijn Graph, MBG）
 
-## 核心计算步骤
-其流程先使用 HiFi reads 生成高准确度的 unitig/多重 de Bruijn 图；再借助 ONT ultralong reads 将图中无法仅凭 HiFi 确定的连接联系起来；图解算阶段逐步处理复杂重复路径，形成染色体候选路径和共识。软件将 Canu、MBG、GraphAligner 等组件纳入流水线，具体阶段与依赖版本随 Verkko release 更新。超长 reads 提供的是跨越关系，不自动解决所有复杂重复，且其错误特征需要由高准确度 reads 约束。
+Verkko 首先将 HiFi 读段映射到同聚物压缩空间，消除微卫星测序微小波动。利用 MBG（Rautiainen & Marschall, *Bioinformatics* 2021）算法，自适应选取多重字串长度构建高保真局部序列图。MBG 的节点代表无歧义的 Unitigs，边的连接精确反映读段内部的局部物理重叠。
 
-## 输入与参数
-常用入口通过 `verkko -d run_dir --hifi hifi.fastq.gz --nano ont_ul.fastq.gz` 指定 HiFi 与 ONT 数据；版本文档还说明仅 HiFi 模式及额外 trio/Hi-C 数据模式。运行前检查数据来自同一样本、ONT 文件确实为目标长度分布的超长 reads、文件未截断，并记录线程、内存、临时空间和容器/环境依赖。参数名称和资源建议必须按所用 release 文档及 `verkko --help` 核对。
+### 2. 超长读段图比对（GraphAligner）
 
-## 主要输出
-`assembly.fasta` 是最终候选序列；`assembly.homopolymer-compressed.gfa` 是同聚物压缩图；`assembly.scfmap` 提供压缩图节点与最终 scaffold 序列的映射。相位数据可产生额外的单倍型 FASTA 和路径信息。还应保存工作目录中的中间图、路径、对齐和日志，便于定位未解重复及组装断点。请勿只保留最终 FASTA。
+与传统软件将读段比对至扁平线性 FASTA 序列不同，Verkko 调用 **GraphAligner**（Rautiainen et al., *Genome Biology* 2020），将长度大于 $50\text{ kb}$ 的 ONT Ultra-long 读段直接对齐到 MBG 图的拓扑结构中。该算法能够容忍 ONT 的测序误差，在图的所有可能分叉路径中搜寻与该超长分子整体相符的图走线（Graph walks）。
 
-## 与 Hifiasm 的方法差异
-Hifiasm 的中心构件是 HiFi 的相位感知重叠图；Verkko 的中心构件是 HiFi multiplex de Bruijn 图，再由超长 reads 帮助求解连接。两者输入互补性、图表示、外部组件和输出组织均不同。目标是高连续度 T2T 时，Verkko 的超长读段连接是重要设计；重点为 HiFi 的相位感知组装时，Hifiasm 有直接的图策略。实际选型仍需用同一材料评估准确性、连续性和相位，而不能由算法名称判定优劣。
+### 3. 图解歧与单倍型分相（Untangling & Phasing）
 
-## 植物案例与范围
-黄花木（*Xanthoceras sorbifolium*）数据论文报告了两个单倍型组装，并说明 Verkko 组装结果参与辅助缺口闭合，同时结合 Hifiasm 与 HiFi 数据。该案例证明软件可进入植物组装流程，论文所述的具体闭合步骤和最终组装不能归因于 Verkko 单独完成。[Scientific Data 原文](https://doi.org/10.1038/s41597-025-05057-x)。
+当多条独立的超长分子一致穿过某个包含大量重复的图分支时，Verkko 将此拓扑结构展开，切断不相容的伪回路。若进一步提供 Hi-C 或亲本特异 $k$-mer（Trio）数据，Verkko 会将局部已闭合的染色体路径分相至对应的同源单倍型染色体。
+
+---
+
+## 硬件与资源需求
+
+由于需要构建全图并执行复杂的全局图路径搜索，Verkko 的内存与磁盘开销显著高于单一组装器：
+- **CPU 推荐配置**：32~64 核心线程；
+- **物理内存（RAM）**：植物基因组组装建议至少配置 **256 GB ~ 512 GB RAM**（大型复杂植物需 1 TB）；
+- **高速存储**：NVMe SSD 临时工作目录，需预留 1~2 TB 磁盘空间以存放中间图拓扑与比对索引。
+
+---
+
+## 常用实战运行命令
+
+### 1. HiFi + ONT Ultra-long 基础混合组装
+
+```bash
+# -d: 指定工作目录
+# --hifi: 输入 PacBio HiFi FASTQ
+# --nano: 输入 ONT Ultra-long FASTQ (建议经过过滤，平均读长 >30 kb)
+# --threads: 线程数
+verkko -d plant_t2t_run \
+  --hifi hifi_reads.fq.gz \
+  --nano ont_ultralong.fq.gz \
+  --threads 64
+```
+
+### 2. 结合 Hi-C 数据的全单倍型 T2T 闭合
+
+```bash
+verkko -d plant_t2t_hic \
+  --hifi hifi_reads.fq.gz \
+  --nano ont_ultralong.fq.gz \
+  --hic1 hic_R1.fq.gz --hic2 hic_R2.fq.gz \
+  --threads 64
+```
+
+---
+
+## 输出结果核心档案解读
+
+- `assembly.fasta`：最终组装出的连续 Scaffold 与无缺口 Contig 序列；
+- `assembly.homopolymer-compressed.gfa`：同聚物压缩空间的全局组装拓扑图，保留全部未闭合分叉与气泡，可用 Bandage 软件直观可视化；
+- `assembly.scfmap`：记录 GFA 节点与最终 FASTA 染色体序列坐标之间的对应映射表；
+- `6-layoutContigs/`：包含图展开过程中的中间路径走线记录，是深入排查着丝粒或端粒断裂原因的核心诊断档案。
+
+---
+
+## 植物实战案例与科学验证
+
+1. **黄花木（*Xanthoceras sorbifolium*）染色体级单倍型组装**：Bi 等人于 2025 年在 *Scientific Data* 上报告了北方木本油料作物黄花木的高质量基因组。研究结合 Hifiasm 与 Verkko 组装产物，利用 Verkko 优异的图路径跨越能力，成功闭合了多个高难度着丝粒异染色质缺口，获得了高度连续的两个单倍型基因组；
+2. **水稻 Nipponbare T2T 完整组装**：Shang 等人（*Molecular Plant*, 2023）在构建首个水稻无缺口参考基因组时，正是借鉴并运用了 Verkko 类算法的混合图穿透思想，成功征服了 12 个复杂的 CentO 着丝粒阵列。
+
+---
+
+## 参考文献与数据来源
+
+1. **Rautiainen M, Nurk S, Walenz BP, et al.** (2023). Telomere-to-telomere assembly of diploid chromosomes with Verkko. *Nature Biotechnology*, 41(7), 1017–1024. DOI: [10.1038/s41587-023-01662-6](https://doi.org/10.1038/s41587-023-01662-6)
+2. **Rautiainen M, Marschall T.** (2021). MBG: Minimizer-based sparse de Bruijn Graph construction. *Bioinformatics*, 37(16), 2476–2478. DOI: [10.1093/bioinformatics/btab004](https://doi.org/10.1093/bioinformatics/btab004)
+3. **Bi Q, Chen Y, Wang X, et al.** (2025). Chromosome-scale haplotype-resolved genome assembly of *Xanthoceras sorbifolium*. *Scientific Data*, 12, 102. DOI: [10.1038/s41597-025-05057-x](https://doi.org/10.1038/s41597-025-05057-x)

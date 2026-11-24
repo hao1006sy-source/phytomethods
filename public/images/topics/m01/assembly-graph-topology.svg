@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 480" width="100%" height="100%">
+  <defs>
+    <style>
+      .bg { fill: #f8fafc; }
+      .dark-bg { fill: #0f172a; }
+      .title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-weight: 700; font-size: 18px; fill: #0f172a; }
+      .subtitle { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 12px; fill: #475569; }
+      .node-text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 12px; font-weight: 600; text-anchor: middle; dominant-baseline: central; fill: #ffffff; }
+      .edge-label { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; font-weight: 500; fill: #64748b; }
+      .box { rx: 8px; stroke-width: 1.5; }
+      .panel { fill: #ffffff; stroke: #e2e8f0; stroke-width: 1.5; rx: 12px; }
+      .edge { stroke-width: 2; fill: none; marker-end: url(#arrow); }
+      .edge-dashed { stroke-width: 2; fill: none; stroke-dasharray: 4,4; stroke: #94a3b8; }
+      .edge-redundant { stroke-width: 1.5; fill: none; stroke-dasharray: 3,3; stroke: #ef4444; marker-end: url(#arrow-red); }
+      .badge { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; font-weight: 600; fill: #047857; }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#0284c7"/>
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#10b981"/>
+    </marker>
+    <marker id="arrow-purple" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#8b5cf6"/>
+    </marker>
+    <marker id="arrow-red" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#ef4444"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="960" height="480" rx="16" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5"/>
+
+  <!-- Left Panel: String Graph Transitive Reduction -->
+  <g transform="translate(24, 24)">
+    <rect width="430" height="432" class="panel"/>
+    <text x="20" y="32" class="title">A. String Graph 传递边约简 (Transitive Reduction)</text>
+    <text x="20" y="52" class="subtitle">Myers 2005 定理：若存在路径 u → w → v，则直接重叠边 u → v 为冗余传递边</text>
+
+    <!-- Original Overlap Graph -->
+    <g transform="translate(30, 80)">
+      <text x="0" y="0" font-family="sans-serif" font-size="12" font-weight="700" fill="#334155">1. 包含冗余重叠的原始前缀-后缀图</text>
+      
+      <!-- Nodes -->
+      <circle cx="50" cy="60" r="18" fill="#0284c7"/>
+      <text x="50" y="60" class="node-text">R1</text>
+      
+      <circle cx="160" cy="30" r="18" fill="#0284c7"/>
+      <text x="160" y="30" class="node-text">R2</text>
+      
+      <circle cx="280" cy="60" r="18" fill="#0284c7"/>
+      <text x="280" y="60" class="node-text">R3</text>
+
+      <!-- Edges -->
+      <path d="M 68 52 L 142 35" class="edge" stroke="#0284c7"/>
+      <path d="M 178 35 L 262 52" class="edge" stroke="#0284c7"/>
+      <!-- Redundant Edge -->
+      <path d="M 68 65 Q 165 110 262 65" class="edge-redundant"/>
+      <text x="165" y="105" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="600" fill="#ef4444">传递冗余边 (需剪除)</text>
+    </g>
+
+    <!-- Reduced String Graph -->
+    <g transform="translate(30, 230)">
+      <text x="0" y="0" font-family="sans-serif" font-size="12" font-weight="700" fill="#047857">2. 约简后的非冗余极小弦图 (String Graph)</text>
+      
+      <!-- Nodes -->
+      <circle cx="50" cy="60" r="18" fill="#059669"/>
+      <text x="50" y="60" class="node-text">R1</text>
+      
+      <circle cx="160" cy="60" r="18" fill="#059669"/>
+      <text x="160" y="60" class="node-text">R2</text>
+      
+      <circle cx="280" cy="60" r="18" fill="#059669"/>
+      <text x="280" y="60" class="node-text">R3</text>
+
+      <!-- Edges -->
+      <path d="M 68 60 L 142 60" class="edge" stroke="#059669" marker-end="url(#arrow-green)"/>
+      <path d="M 178 60 L 262 60" class="edge" stroke="#059669" marker-end="url(#arrow-green)"/>
+      
+      <rect x="20" y="100" width="330" height="60" rx="6" fill="#ecfdf5" stroke="#a7f3d0"/>
+      <text x="32" y="122" font-family="sans-serif" font-size="11" fill="#065f46">✔ 消除高覆盖深度的二次方边膨胀 O(N²)</text>
+      <text x="32" y="142" font-family="sans-serif" font-size="11" fill="#065f46">✔ 忠实保留每个读段的不可约非重叠区段 (Overhang)</text>
+    </g>
+  </g>
+
+  <!-- Right Panel: Haplotype Bubble Resolution -->
+  <g transform="translate(480, 24)">
+    <rect width="456" height="432" class="panel"/>
+    <text x="20" y="32" class="title">B. 杂合气泡 (Bubble) 拓扑与单倍型分相</text>
+    <text x="20" y="52" class="subtitle">植物高杂合二倍体/多倍体中的等位路径分离机制</text>
+
+    <!-- Bubble Diagram -->
+    <g transform="translate(30, 80)">
+      <!-- Anchor 1 -->
+      <rect x="0" y="90" width="70" height="36" rx="6" fill="#3b82f6"/>
+      <text x="35" y="108" class="node-text">纯合上游</text>
+
+      <!-- Upper Path (Haplotype 1) -->
+      <path d="M 70 100 C 100 60, 110 40, 140 40 L 230 40 C 260 40, 270 60, 300 100" fill="none" stroke="#10b981" stroke-width="3" marker-end="url(#arrow-green)"/>
+      <rect x="140" y="22" width="100" height="36" rx="6" fill="#10b981"/>
+      <text x="190" y="40" class="node-text">单倍型 1 (等位 A)</text>
+      <text x="190" y="70" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="600" fill="#059669">深度: ~15x (半深度峰)</text>
+
+      <!-- Lower Path (Haplotype 2) -->
+      <path d="M 70 116 C 100 156, 110 176, 140 176 L 230 176 C 260 176, 270 156, 300 116" fill="none" stroke="#8b5cf6" stroke-width="3" marker-end="url(#arrow-purple)"/>
+      <rect x="140" y="158" width="100" height="36" rx="6" fill="#8b5cf6"/>
+      <text x="190" y="176" class="node-text">单倍型 2 (等位 B)</text>
+      <text x="190" y="206" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="600" fill="#6d28d9">深度: ~15x (半深度峰)</text>
+
+      <!-- Anchor 2 -->
+      <rect x="310" y="90" width="70" height="36" rx="6" fill="#3b82f6"/>
+      <text x="345" y="108" class="node-text">纯合下游</text>
+
+      <!-- Reads Spanning -->
+      <g transform="translate(20, 230)">
+        <rect x="0" y="0" width="380" height="110" rx="8" fill="#f1f5f9" stroke="#cbd5e1"/>
+        <text x="16" y="24" font-family="sans-serif" font-size="12" font-weight="700" fill="#1e293b">分相关键判据与决策分支：</text>
+        <text x="16" y="48" font-family="sans-serif" font-size="11" fill="#334155">1. <tspan font-weight="700" fill="#059669">等位分相 (Phased)</tspan>: HiFi 读段跨越杂合位点，两侧保持平衡覆盖</text>
+        <text x="16" y="70" font-family="sans-serif" font-size="11" fill="#dc2626">2. <tspan font-weight="700" fill="#dc2626">测序错误 (Tip/Error)</tspan>: 仅单读段支持或深度极端异常 (&lt;3x)，剪除气泡</text>
+        <text x="16" y="92" font-family="sans-serif" font-size="11" fill="#2563eb">3. <tspan font-weight="700" fill="#2563eb">串联重复 (Tandem Repeat)</tspan>: 深度翻倍 (30x+) 且存在环路，需超长 ONT 跨越</text>
+      </g>
+    </g>
+  </g>
+</svg>
