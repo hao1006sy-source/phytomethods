@@ -27,8 +27,8 @@ PhytoMethods 经过此前基础架构、数据注册表、计算画像核验与�
 | **M01** | 测序与基因组组装 | `docs/v2.3-m01-genome-assembly` | #53 | 已合并 (`fb0d733`) | 已发布 (Run 45440095694) |
 | **M02** | 基因组注释与重复序列 | `docs/v2.3-m02-genome-annotation` | #54 | 已合并 (`fd58d00`) | 已发布 (Run 45443833879) |
 | **M03** | 泛基因组与结构变异 | `docs/v2.3-m03-pangenomics` | #55 | 已合并 (`aece25d`) | 已发布 (Run 45447742843) |
-| **M04** | 比较基因组与系统发育 | `docs/v2.3-m04-comparative-genomics` | 待提交 | 待合并 | 待验证 |
-| **M05** | 群体遗传学与演化 | `docs/v2.3-m05-population-genetics` | 待开始 | 待合并 | 待验证 |
+| **M04** | 比较基因组与系统发育 | `docs/v2.3-m04-comparative-genomics` | #56 | 已合并 (`ec98daa`) | 已发布 (Run 45450999621) |
+| **M05** | 群体遗传学与演化 | `docs/v2.3-m05-population-genetics` | 待提交 | 待合并 | 待验证 |
 | **M06** | GWAS 与全基因组选择 | `docs/v2.3-m06-gwas-breeding` | 待开始 | 待合并 | 待验证 |
 | **M07** | 表观与三维基因组学 | `docs/v2.3-m07-epigenomics-3d` | 待开始 | 待合并 | 待验证 |
 | **M08** | 单细胞与空间组学 | `docs/v2.3-m08-single-cell` | 待开始 | 待合并 | 待验证 |
@@ -79,8 +79,8 @@ PhytoMethods 经过此前基础架构、数据注册表、计算画像核验与�
 - **文献出处索引**: 在 `source-review.json` 中新增 7 条权威文献追踪记录；
 - **部署发布验证**: PR #55 Squash 合并，Pages 自动化持续发布成功上线。
 
-### M04：比较基因组与系统发育 (本地测试全量通过)
-- **分支**: `docs/v2.3-m04-comparative-genomics`
+### M04：比较基因组与系统发育 (已合并上线)
+- **分支**: `docs/v2.3-m04-comparative-genomics` | **PR**: #56 (`ec98daa`) | **CI Run ID**: 45450407663 | **Pages Run ID**: 45450999621
 - **图解建设**: 绘制 3 幅原创学术 SVG 矢量图解置于 `public/images/topics/m04/`：
   1. `orthofinder-mcl-and-reconciliation.svg`: OrthoFinder 比对长度归一化、MCL 矩阵扩展与膨胀算子迭代及 DLCPar 物种树调和
   2. `cafe5-birth-death-evolution-model.svg`: CAFE 5 超度量物种树上的连续时间马尔可夫生灭模型、Gamma 速率异质性拟合与误差校正
@@ -96,7 +96,27 @@ PhytoMethods 经过此前基础架构、数据注册表、计算画像核验与�
 - **核心方法深化**: 深度重构 OrthoFinder、MCScanX、CAFE 5、IQ-TREE 2、PAML、wgd v2 六大核心方法，补充完整算法推导、生产命令模板、输出解析与植物案例；
 - **选型矩阵完善**: 在 `src/data/method-comparison-matrices.ts` 扩充 IQ-TREE 2、PAML、wgd v2 选型档案与全套决策树；
 - **文献出处索引**: 在 `source-review.json` 中新增 7 条权威文献追踪记录；
+- **全量测试验证**: `npm run validate`、`npm run test:methods-index-v4`、`npm run test:platform-browser` 100% 通过（13,291 链接 0 死链，63 篇专题 0 语法报错，多端 7 视口 0 溢出）；
+- **部署发布验证**: PR #56 Squash 合并入 main，Pages 部署成功上线。
+
+### M05：群体遗传学与演化 (本地测试全量通过)
+- **分支**: `docs/v2.3-m05-population-genetics`
+- **图解建设**: 绘制 3 幅原创学术 SVG 矢量图解置于 `public/images/topics/m05/`：
+  1. `selective-sweep-and-hitchhiking.svg`: 正向选择选择性清除、有益突变快速固定、周围中性多态性骤降、单倍型纯合度暴涨与 XP-CLR/FST 扫描信号
+  2. `population-structure-pca-admixture.svg`: 高维 SNP 基因型矩阵的 Patterson SVD 谱分解投影至前两主成分，以及 ADMIXTURE 祖先成分堆叠条形图随 $K$ 演变与 CV 误差曲线
+  3. `demographic-history-smcpp-curves.svg`: 基于隐式马尔可夫溯祖模型 SMC++ / MSMC 的有效种群规模 $N_e$ 动态演化曲线、瓶颈事件、末次盛冰期 LGM 骤降与分化时间跨度推断
+- **核心专题深度建设**: 覆盖 M05 全部 7 篇核心专题：
+  - `m05-topic-01`: Hardy-Weinberg 平衡检验、Wright-Fisher 随机漂变模型、近交系数 $F$ 与自花授粉纯合化、有效种群大小 $N_e$
+  - `m05-topic-02`: 重测序变异检测与分型、GQ/DP/AB/QD/FS/SOR 质控过滤、植物高重复区过度覆盖（Over-depth）截断与重复序列串联拷贝误判规避
+  - `m05-topic-03`: 群体结构与主成分分析、Patterson 2006 SVD 协方差谱分解与 Tracy-Widom 显著性检验、ADMIXTURE 极大似然拟牛顿块坐标下降与 5-fold CV 误差最优 $K$ 判定
+  - `m05-topic-04`: 群体遗传多样性与分化、核苷酸多样性 $\pi$ 与 Watterson $\theta_W$ 无偏估计、Tajima's $D$ 中性检验、Weir & Cockerham $F_{ST}$ 方差分量与多位点比值平均法则、Hill & Weir 连锁不平衡（LD）衰减模型
+  - `m05-topic-05`: 选择性清除与遗传搭车、Maynard Smith 演化动力学方程、XP-CLR 跨群体复合似然比、SweepFinder2 等位基因频谱（CLR）偏离检验、selscan 延伸单倍型纯合度（iHS / XP-EHH）
+  - `m05-topic-06`: 群体历史动态推断、局部 TMRCA 等待时间、SMC 隐式马尔可夫模型状态转移方程、SMC++ 区分样本与 CSFS 联合建模、物理时间尺度标定及植物伪二倍体（Pseudo-diploid）策略
+  - `m05-topic-07`: 作物驯化与性状演化基因组学、全基因组选择清除扫描定位水稻 *sh4*/*PROG1*/*Wx*、玉米 *tb1*/*tga1* 与大豆 *GmHs1-1*/*GmLHY* 等关键驯化基因的分子机制
+- **选型矩阵完善**: 在 `src/data/method-comparison-matrices.ts` 扩充 `msmc2` 与 `psmc` 选型及全套决策树；
+- **文献出处索引**: 在 `source-review.json` 中新增 7 条权威文献追踪记录；
 - **全量测试验证**: `npm run validate`、`npm run test:methods-index-v4`、`npm run test:platform-browser` 100% 通过（13,291 链接 0 死链，63 篇专题 0 语法报错，多端 7 视口 0 溢出）。
+
 
 
 

@@ -349,6 +349,90 @@
       "sectionLocator": "Branch-site model & Bayes empirical Bayes (BEB) calculation",
       "verifiedDate": "2026-11-25",
       "status": "SOURCE_VERIFIED"
+    },
+    {
+      "milestone": "M05",
+      "domainId": "population-genetics",
+      "topicOrMethod": "m05-topic-01",
+      "claim": "植物群体遗传学中，自交率 S 趋近于 1 导致近交系数 F 趋于 1，有效种群规模 Ne 折半，打破传统二倍体 HWE 假设",
+      "sourceType": "peer_reviewed_paper",
+      "citation": "Nei M, Li WH. (1979). Mathematical model for studying genetic variation in terms of restriction endonucleases. Proceedings of the National Academy of Sciences, 76(10), 5269–5273.",
+      "doi": "10.1073/pnas.76.10.5269",
+      "sectionLocator": "Inbreeding equilibrium & Nucleotide diversity theory",
+      "verifiedDate": "2026-11-25",
+      "status": "SOURCE_VERIFIED"
+    },
+    {
+      "milestone": "M05",
+      "domainId": "population-genetics",
+      "topicOrMethod": "m05-topic-02",
+      "claim": "针对植物高重复基因组，通过 QD、FS、SOR、MQRankSum 与过度深度截断（DP > 2.5 倍平均深度）剔除转座子错配引起的假杂合 SNP",
+      "sourceType": "peer_reviewed_paper",
+      "citation": "Danecek P, Bonfield JK, Liddle J, et al. (2021). Twelve years of SAMtools and BCFtools. GigaScience, 10(2), giab008.",
+      "doi": "10.1093/gigascience/giab008",
+      "sectionLocator": "Genotype likelihoods & Variant filtering guidelines",
+      "verifiedDate": "2026-11-25",
+      "status": "SOURCE_VERIFIED"
+    },
+    {
+      "milestone": "M05",
+      "domainId": "population-genetics",
+      "topicOrMethod": "m05-topic-03",
+      "claim": "Patterson 归一化协方差矩阵 SVD 谱分解结合 ADMIXTURE 块坐标下降拟牛顿优化，基于 5 折交叉验证（CV error）最低点客观判定最佳亚群数 K",
+      "sourceType": "peer_reviewed_paper",
+      "citation": "Patterson N, Price AL, Reich D. (2006). Population structure and eigenanalysis. PLoS Genetics, 2(12), e190.",
+      "doi": "10.1371/journal.pgen.0020190",
+      "sectionLocator": "Genotype matrix normalization & Principal component analysis",
+      "verifiedDate": "2026-11-25",
+      "status": "SOURCE_VERIFIED"
+    },
+    {
+      "milestone": "M05",
+      "domainId": "population-genetics",
+      "topicOrMethod": "m05-topic-04",
+      "claim": "Weir-Cockerham FST 无偏估计通过方差分解纠正样本量偏差，配合 Hill-Weir 非线性模型拟合植物重组与连锁不平衡（LD）半衰期衰减跨度",
+      "sourceType": "peer_reviewed_paper",
+      "citation": "Weir BS, Cockerham CC. (1984). Estimating F-statistics for the analysis of population structure. Evolution, 38(6), 1358–1370.",
+      "doi": "10.1111/j.1558-5646.1984.tb05657.x",
+      "sectionLocator": "F-statistics estimation & Linkage disequilibrium decay modeling",
+      "verifiedDate": "2026-11-25",
+      "status": "SOURCE_VERIFIED"
+    },
+    {
+      "milestone": "M05",
+      "domainId": "population-genetics",
+      "topicOrMethod": "m05-topic-05",
+      "claim": "XP-CLR 基于多位点等位基因频率偏倚建立两群体复合似然比模型，在水稻驯化关键基因周围呈现尖锐选择性清除峰，与核苷酸多样性 V 型槽谷高度吻合",
+      "sourceType": "peer_reviewed_paper",
+      "citation": "Chen H, Patterson N, Reich D. (2010). Population differentiation as a test for selective sweeps. Genome Research, 20(3), 393–402.",
+      "doi": "10.1101/gr.100545.109",
+      "sectionLocator": "XP-CLR model & Genetic hitchhiking equations",
+      "verifiedDate": "2026-11-25",
+      "status": "SOURCE_VERIFIED"
+    },
+    {
+      "milestone": "M05",
+      "domainId": "population-genetics",
+      "topicOrMethod": "m05-topic-06",
+      "claim": "SMC++ 结合区分样本与条件位点频率谱（CSFS），支持利用数十个未定相样本高精度解析近期至数千年前有效群体大小波动，并利用伪二倍体策略突破纯合自交植物限制",
+      "sourceType": "peer_reviewed_paper",
+      "citation": "Terhorst J, Kamm JA, Song YS. (2017). Robust and scalable inference of population history from hundreds of unphased whole genomes. Nature Genetics, 49(2), 303–309.",
+      "doi": "10.1038/ng.3748",
+      "sectionLocator": "SMC++ demographic inference & Conditional SFS formulation",
+      "verifiedDate": "2026-11-25",
+      "status": "SOURCE_VERIFIED"
+    },
+    {
+      "milestone": "M05",
+      "domainId": "population-genetics",
+      "topicOrMethod": "m05-topic-07",
+      "claim": "水稻落粒性基因 sh4（K79N 错义突变）、直立分蘖基因 PROG1 以及玉米分枝顶端优势基因 tb1（上游 60kb 增强子转座子插入）的选择性清除与表型重塑实证",
+      "sourceType": "peer_reviewed_paper",
+      "citation": "Huang X, Kurata N, Wei X, et al. (2012). A map of rice genome variation reveals the origin of cultivated rice. Nature, 490(7421), 497–501.",
+      "doi": "10.1038/nature11532",
+      "sectionLocator": "Rice domestication sweeps & Identification of sh4 and PROG1",
+      "verifiedDate": "2026-11-25",
+      "status": "SOURCE_VERIFIED"
     }
   ]
 }

@@ -1,0 +1,140 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 520" width="100%" height="100%" style="background: transparent; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <linearGradient id="bg-grad-m05-1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" stop-opacity="0.03" />
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0.08" />
+    </linearGradient>
+    <filter id="shadow-m05" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.08" />
+    </filter>
+  </defs>
+
+  <!-- 总体画框与标题 -->
+  <rect x="15" y="15" width="970" height="490" rx="16" fill="url(#bg-grad-m05-1)" stroke="#cbd5e1" stroke-width="1.5" />
+  <text x="40" y="48" font-size="18" font-weight="700" fill="#0f172a">植物驯化与适应性演化：选择性清除（Selective Sweep）与遗传搭车模型</text>
+  <text x="40" y="70" font-size="12" fill="#64748b">有益突变强选择固定引发邻近单倍型搭车、核苷酸多样性 π 谷陷、群体分化 FST 突增与 XP-CLR 复合似然比峰</text>
+
+  <!-- 左板块：单倍型与遗传搭车演化机制图解 -->
+  <g transform="translate(40, 95)">
+    <rect x="0" y="0" width="450" height="380" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" filter="url(#shadow-m05)" />
+    <path d="M 0 12 Q 0 0 12 0 L 438 0 Q 450 0 450 12 L 450 40 L 0 40 Z" fill="#fef2f2" />
+    <text x="16" y="26" font-size="14" font-weight="700" fill="#dc2626">1. 遗传搭车（Genetic Hitchhiking）单倍型结构演变</text>
+
+    <!-- 阶段 1：选择前（野生祖先群体） -->
+    <g transform="translate(20, 55)">
+      <text x="0" y="15" font-size="11" font-weight="700" fill="#334155">【阶段 A】选择发生前：野生祖先群体（高单倍型多样性）</text>
+      <!-- 4 条单倍型染色体 -->
+      <line x1="10" y1="30" x2="390" y2="30" stroke="#94a3b8" stroke-width="3" stroke-linecap="round" />
+      <circle cx="80" cy="30" r="4" fill="#0284c7" />
+      <circle cx="200" cy="30" r="5" fill="#dc2626" />
+      <text x="200" y="20" font-size="9" font-weight="700" fill="#dc2626" text-anchor="middle">有益突变 (*)</text>
+      <circle cx="310" cy="30" r="4" fill="#0284c7" />
+
+      <line x1="10" y1="48" x2="390" y2="48" stroke="#94a3b8" stroke-width="3" stroke-linecap="round" />
+      <circle cx="120" cy="48" r="4" fill="#64748b" />
+      <circle cx="260" cy="48" r="4" fill="#64748b" />
+
+      <line x1="10" y1="66" x2="390" y2="66" stroke="#94a3b8" stroke-width="3" stroke-linecap="round" />
+      <circle cx="60" cy="66" r="4" fill="#64748b" />
+      <circle cx="340" cy="66" r="4" fill="#64748b" />
+
+      <line x1="10" y1="84" x2="390" y2="84" stroke="#94a3b8" stroke-width="3" stroke-linecap="round" />
+      <circle cx="150" cy="84" r="4" fill="#64748b" />
+      <circle cx="230" cy="84" r="4" fill="#64748b" />
+      <text x="395" y="88" font-size="9" fill="#64748b">中性变异散布</text>
+    </g>
+
+    <!-- 向下选择箭头 -->
+    <path d="M 220 180 L 220 205" stroke="#dc2626" stroke-width="2.5" marker-end="url(#arrow-m04)" />
+    <text x="235" y="196" font-size="10" font-weight="700" fill="#dc2626">经历剧烈强正选择 (如人工驯化)</text>
+
+    <!-- 阶段 2：选择后（栽培/驯化群体） -->
+    <g transform="translate(20, 215)">
+      <text x="0" y="15" font-size="11" font-weight="700" fill="#b91c1c">【阶段 B】选择固定后：驯化群体（长同质单倍型搭车锁定）</text>
+      <!-- 4 条被锁定的单倍型染色体 -->
+      <line x1="10" y1="35" x2="390" y2="35" stroke="#ef4444" stroke-width="4" stroke-linecap="round" />
+      <circle cx="80" cy="35" r="4" fill="#0284c7" />
+      <circle cx="200" cy="35" r="6" fill="#dc2626" />
+      <circle cx="310" cy="35" r="4" fill="#0284c7" />
+
+      <line x1="10" y1="55" x2="390" y2="55" stroke="#ef4444" stroke-width="4" stroke-linecap="round" />
+      <circle cx="80" cy="55" r="4" fill="#0284c7" />
+      <circle cx="200" cy="55" r="6" fill="#dc2626" />
+      <circle cx="310" cy="55" r="4" fill="#0284c7" />
+
+      <line x1="10" y1="75" x2="390" y2="75" stroke="#ef4444" stroke-width="4" stroke-linecap="round" />
+      <circle cx="80" cy="75" r="4" fill="#0284c7" />
+      <circle cx="200" cy="75" r="6" fill="#dc2626" />
+      <circle cx="310" cy="75" r="4" fill="#0284c7" />
+
+      <line x1="10" y1="95" x2="390" y2="95" stroke="#ef4444" stroke-width="4" stroke-linecap="round" />
+      <circle cx="80" cy="95" r="4" fill="#0284c7" />
+      <circle cx="200" cy="95" r="6" fill="#dc2626" />
+      <circle cx="310" cy="95" r="4" fill="#0284c7" />
+
+      <!-- 括号标识选择性清除区间 -->
+      <path d="M 60 115 L 60 125 L 330 125 L 330 115" fill="none" stroke="#dc2626" stroke-width="1.5" />
+      <text x="195" y="140" font-size="10" font-weight="700" fill="#dc2626" text-anchor="middle">选择性清除窗口 (Sweep Window, 多态性几乎为 0)</text>
+    </g>
+  </g>
+
+  <!-- 右板块：全基因组扫描特征曲线 (π 谷、FST 峰与 XP-CLR 峰) -->
+  <g transform="translate(515, 95)">
+    <rect x="0" y="0" width="445" height="380" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" filter="url(#shadow-m05)" />
+    <path d="M 0 12 Q 0 0 12 0 L 433 0 Q 445 0 445 12 L 445 40 L 0 40 Z" fill="#eff6ff" />
+    <text x="16" y="26" font-size="14" font-weight="700" fill="#1d4ed8">2. 滑动窗口多维统计量检测信号对照</text>
+
+    <!-- 图 1: 核苷酸多样性 π 曲线 -->
+    <g transform="translate(30, 55)">
+      <line x1="0" y1="65" x2="370" y2="65" stroke="#64748b" stroke-width="1.5" />
+      <line x1="0" y1="5" x2="0" y2="65" stroke="#64748b" stroke-width="1.5" />
+      <text x="-5" y="12" font-size="10" font-weight="700" fill="#334155" text-anchor="end">π</text>
+
+      <!-- 野生群体基线 (蓝色) -->
+      <path d="M 5 25 Q 60 22 120 27 Q 190 24 250 26 Q 310 23 365 25" fill="none" stroke="#0284c7" stroke-width="1.5" stroke-dasharray="3,3" />
+      <text x="375" y="28" font-size="8" fill="#0284c7">野生群体 π_wild</text>
+
+      <!-- 驯化群体 V 型槽谷 (红色) -->
+      <path d="M 5 30 Q 80 32 140 33 Q 190 62 200 63 Q 210 62 260 32 Q 320 31 365 30" fill="none" stroke="#dc2626" stroke-width="2.5" />
+      <circle cx="200" cy="63" r="3.5" fill="#dc2626" />
+      <text x="200" y="52" font-size="9" font-weight="700" fill="#dc2626" text-anchor="middle">多样性极低 (V-trough)</text>
+      <text x="375" y="42" font-size="8" fill="#dc2626">驯化群体 π_cult</text>
+    </g>
+
+    <!-- 图 2: 群体分化指数 FST 曲线 -->
+    <g transform="translate(30, 145)">
+      <line x1="0" y1="65" x2="370" y2="65" stroke="#64748b" stroke-width="1.5" />
+      <line x1="0" y1="5" x2="0" y2="65" stroke="#64748b" stroke-width="1.5" />
+      <text x="-5" y="12" font-size="10" font-weight="700" fill="#334155" text-anchor="end">F_ST</text>
+
+      <!-- 背景中性水平与 99% 阈值线 -->
+      <line x1="0" y1="22" x2="370" y2="22" stroke="#ea580c" stroke-width="1" stroke-dasharray="2,2" />
+      <text x="375" y="25" font-size="8" fill="#ea580c">Top 1% 阈值</text>
+
+      <!-- FST 尖峰 -->
+      <path d="M 5 55 Q 70 52 140 50 Q 185 45 200 8 Q 215 45 260 52 Q 320 54 365 55" fill="none" stroke="#ea580c" stroke-width="2.5" />
+      <circle cx="200" cy="8" r="3.5" fill="#c2410c" />
+      <text x="200" y="2" font-size="9" font-weight="700" fill="#c2410c" text-anchor="middle">高度分化峰 (F_ST &gt; 0.85)</text>
+    </g>
+
+    <!-- 图 3: 跨群体复合似然比 XP-CLR 曲线 -->
+    <g transform="translate(30, 235)">
+      <line x1="0" y1="65" x2="370" y2="65" stroke="#64748b" stroke-width="1.5" />
+      <line x1="0" y1="5" x2="0" y2="65" stroke="#64748b" stroke-width="1.5" />
+      <text x="-5" y="12" font-size="9" font-weight="700" fill="#334155" text-anchor="end">XP-CLR</text>
+
+      <!-- 复合似然尖锐尖峰 -->
+      <path d="M 5 60 Q 90 58 150 56 Q 190 50 200 6 Q 210 50 250 56 Q 310 58 365 60" fill="none" stroke="#7c3aed" stroke-width="2.5" />
+      <circle cx="200" cy="6" r="3.5" fill="#6d28d9" />
+      <text x="200" y="0" font-size="9" font-weight="700" fill="#6d28d9" text-anchor="middle">等位基因频率偏倚极值点</text>
+    </g>
+
+    <text x="180" y="325" font-size="10" font-weight="700" fill="#0f172a" text-anchor="middle">染色体物理位置 (bp) ── 靶标驯化基因位点</text>
+
+    <!-- 底部综合判定总结 -->
+    <g transform="translate(15, 335)">
+      <rect x="0" y="0" width="415" height="32" rx="4" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1" />
+      <text x="10" y="20" font-size="9.5" fill="#334155"><tspan font-weight="700" fill="#dc2626">综合判断准则:</tspan> 结合 $\pi$ 降幅比值（$\pi_{\text{wild}}/\pi_{\text{cult}} \ge 5$）、$F_{ST}$ 极值与 XP-CLR 复合验证</text>
+    </g>
+  </g>
+</svg>

@@ -379,6 +379,26 @@ export const methodComparisonMatrices: Record<string, DomainComparisonMatrix> = 
         advantages: '突破 PSMC 单个体的局限，同时支持多个体并可推断两群体分化时间',
         limitations: '对未解析相位的基因型质量和掩码屏蔽非常敏感',
         recommendedScenario: '近期至远古阶段有效群体大小 ($N_e$) 波动及物种分化时间推断'
+      },
+      {
+        methodId: 'msmc2',
+        name: 'MSMC2',
+        inputType: '多样本分相 VCF + 可调用掩码 BED (multihetsep 格式)',
+        corePrinciple: '多序列顺序马尔可夫共祖隐马尔可夫模型 (成对共祖率复合似然)',
+        computeProfile: '8~16 线程, 16~32 GB RAM (多染色体并行处理通常在数小时内完成)',
+        advantages: '支持多单倍型联合分析，跨群体共祖率可高精度解析亚种间分化进程与基因流衰减',
+        limitations: '高度依赖高精度单倍型定相（Phasing）与严格的可调用区域掩码（Masking）',
+        recommendedScenario: '作物多亚群历史动态、跨谱系相对共祖率与分化年代推断'
+      },
+      {
+        methodId: 'psmc',
+        name: 'PSMC',
+        inputType: '单样本高深度二倍体全基因组共识序列 (PSMCFA 格式)',
+        corePrinciple: '成对顺序马尔可夫共祖隐马尔可夫模型 (TMRCA 离散化)',
+        computeProfile: '单核或 4 线程, 4~8 GB RAM (单个基因组标准分析通常在 1~2 小时内完成)',
+        advantages: '样本需求极低（仅需单个个体），是探索野生濒危物种远古群体历史的标杆方法',
+        limitations: '近期（< 2 万年）完全缺乏时间分辨率，且严格纯合自交物种需构建伪二倍体',
+        recommendedScenario: '古老时期有效种群规模推断、冰期瓶颈事件与单样本初步探索'
       }
     ],
     decisionTrees: [
@@ -393,9 +413,19 @@ export const methodComparisonMatrices: Record<string, DomainComparisonMatrix> = 
         rationale: '通过绘制 Q 矩阵柱状图直观区分地方品种、农家种与现代育成品种。'
       },
       {
-        condition: '想知道作物在末次冰期或驯化时期的群体数量是如何波动的',
-        recommendation: '首选 SMC++ (多样本) 或 PSMC (单样本深度测序)',
-        rationale: '基于重组率与突变率反推过去数万年至数百万年的种群消长历史。'
+        condition: '分析群体近代（数千年至数万年前）至远古时期的连续历史有效种群规模',
+        recommendation: '首选 SMC++',
+        rationale: '联合等位基因位点频谱与区分样本，无需全群体分相即可高精度解析近期动态。'
+      },
+      {
+        condition: '具备高质量分相单倍型，重点比较两植物亚群间的分化历史与相对共祖率',
+        recommendation: '首选 MSMC2',
+        rationale: '通过跨群体与群体内成对共祖率比值，精确刻画两谱系基因流逐渐阻断的全过程。'
+      },
+      {
+        condition: '仅有单个濒危野生种或珍贵种质高深度测序样本，探索远古更新世历史',
+        recommendation: '首选 PSMC',
+        rationale: '单样本成对顺序共祖金标准，适合快速评估物种远古时期的宏观种群兴衰。'
       }
     ]
   },
