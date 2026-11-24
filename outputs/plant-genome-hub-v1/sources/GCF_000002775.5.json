@@ -1,0 +1,161 @@
+{
+  "reports": [
+    {
+      "accession": "GCF_000002775.5",
+      "current_accession": "GCF_000002775.5",
+      "paired_accession": "GCA_000002775.4",
+      "source_database": "SOURCE_DATABASE_REFSEQ",
+      "organism": {
+        "tax_id": 3694,
+        "organism_name": "Populus trichocarpa",
+        "common_name": "black cottonwood",
+        "infraspecific_names": {
+          "isolate": "Nisqually-1"
+        }
+      },
+      "assembly_info": {
+        "assembly_level": "Chromosome",
+        "assembly_status": "current",
+        "paired_assembly": {
+          "accession": "GCA_000002775.4",
+          "status": "current",
+          "annotation_name": "Annotation submitted by US DOE Joint Genome Institute (JGI",
+          "only_refseq": "chromosome Pltd",
+          "refseq_genbank_are_different": true,
+          "differences": "Added chromosome Pltd"
+        },
+        "assembly_name": "P.trichocarpa_v4.1",
+        "assembly_type": "haploid",
+        "bioproject_lineage": [
+          {
+            "bioprojects": [
+              {
+                "accession": "PRJNA10772",
+                "title": "Genome sequencing of Populus trichocarpa, first tree genome to be sequenced"
+              }
+            ]
+          }
+        ],
+        "bioproject_accession": "PRJNA10772",
+        "release_date": "2022-10-20",
+        "submitter": "US DOE Joint Genome Institute (JGI",
+        "refseq_category": "reference genome",
+        "sequencing_tech": "PacBio Sequel I",
+        "assembly_method": "MECAT v. 1",
+        "biosample": {
+          "accession": "SAMN02953657",
+          "last_updated": "2019-06-20T17:03:46.426",
+          "publication_date": "2014-08-06T00:00:00.000",
+          "submission_date": "2014-08-06T15:36:48.563",
+          "sample_ids": [
+            {
+              "db": "GenBank",
+              "value": "gb|AARH00000000.2"
+            }
+          ],
+          "description": {
+            "title": "Sample from Populus trichocarpa",
+            "organism": {
+              "tax_id": 3694,
+              "organism_name": "Populus trichocarpa"
+            }
+          },
+          "owner": {
+            "name": "US DOE Joint Genome Institute"
+          },
+          "models": [
+            "Generic"
+          ],
+          "bioprojects": [
+            {
+              "accession": "PRJNA10772"
+            }
+          ],
+          "package": "Generic.1.0",
+          "attributes": [
+            {
+              "name": "isolate",
+              "value": "Nisqually-1"
+            }
+          ],
+          "status": {
+            "status": "live",
+            "when": "2014-08-06T15:36:48.563"
+          },
+          "isolate": "Nisqually-1"
+        },
+        "blast_url": "https://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastSearch&PROG_DEF=blastn&BLAST_SPEC=GDH_GCF_000002775.5",
+        "comments": "Assembly name: P.trichocarpa_v4.1\nThe genomic sequence for this RefSeq record is from the whole-genome assembly released by the US DOE Joint Genome Institute (JGI on 2022/10/20. The original whole-genome shotgun project has the accession AARH00000000.4."
+      },
+      "assembly_stats": {
+        "total_number_of_chromosomes": 19,
+        "total_sequence_length": "392162179",
+        "total_ungapped_length": "391572179",
+        "number_of_contigs": 105,
+        "contig_n50": 13159747,
+        "contig_l50": 13,
+        "number_of_scaffolds": 105,
+        "scaffold_n50": 13159747,
+        "scaffold_l50": 13,
+        "gaps_between_scaffolds_count": 59,
+        "number_of_component_sequences": 105,
+        "atgc_count": "391572179",
+        "gc_count": "132157867",
+        "gc_percent": 34,
+        "genome_coverage": "133.2",
+        "number_of_organelles": 1
+      },
+      "organelle_info": [
+        {
+          "description": "Chloroplast",
+          "total_seq_length": "157033",
+          "submitter": "US DOE Joint Genome Institute (JGI"
+        }
+      ],
+      "additional_submitters": [
+        {
+          "genbank_accession": "EF489041.1",
+          "refseq_accession": "NC_009143.1",
+          "chr_name": "Pltd",
+          "molecule_type": "Chloroplast",
+          "submitter": "US DOE Joint Genome Institute (JGI",
+          "bioproject_accession": "PRJNA10772"
+        }
+      ],
+      "annotation_info": {
+        "name": "NCBI Populus trichocarpa Annotation Release 102",
+        "provider": "NCBI RefSeq",
+        "release_date": "2022-12-02",
+        "report_url": "https://www.ncbi.nlm.nih.gov/genome/annotation_euk/Populus_trichocarpa/102",
+        "stats": {
+          "gene_counts": {
+            "total": 34621,
+            "protein_coding": 29617,
+            "non_coding": 3632,
+            "pseudogene": 1372
+          }
+        },
+        "busco": {
+          "busco_lineage": "eudicots_odb10",
+          "busco_ver": "4.1.4",
+          "complete": 0.9879622,
+          "single_copy": 0.7850387,
+          "duplicated": 0.20292348,
+          "fragmented": 0.0030094583,
+          "missing": 0.009028375,
+          "total_count": "2326"
+        },
+        "method": "Best-placed RefSeq; Gnomon",
+        "pipeline": "NCBI Eukaryotic Genome Annotation Pipeline (EGAP)",
+        "software_version": "10.0",
+        "status": "Full annotation"
+      },
+      "wgs_info": {
+        "wgs_project_accession": "AARH04",
+        "master_wgs_url": "https://www.ncbi.nlm.nih.gov/nuccore/AARH00000000.4",
+        "wgs_contigs_url": "https://www.ncbi.nlm.nih.gov/Traces/wgs/AARH04"
+      }
+    }
+  ],
+  "total_count": 1
+}

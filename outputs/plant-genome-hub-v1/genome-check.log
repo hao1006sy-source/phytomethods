@@ -1,0 +1,23 @@
+
+> phytomethods@0.1.0 check
+> astro check
+
+01:40:27 [content] Syncing content
+01:40:29 [content] Synced content
+01:40:29 [types] Generated 2.73s
+01:40:29 [check] Getting diagnostics for Astro files in C:\Users\31764\Documents\Codex\phytomethods-sidebar-fix-validation...
+[96mscripts/check-cafe5-reproducibility.mjs[0m:[93m2[0m:[93m1[0m - [93mwarning[0m[90m ts(6133): [0m'path' is declared but its value is never read.
+
+[7m2[0m import path from 'node:path';
+[7m [0m [93m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96msrc/components/tutorial-v3/TutorialResourceCards.astro[0m:[93m5[0m:[93m31[0m - [93mwarning[0m[90m ts(6133): [0m'sections' is declared but its value is never read.
+
+[7m5[0m const { entry, method, paper, sections } = Astro.props as {
+[7m [0m [93m                              ~~~~~~~~[0m
+
+Result (166 files): 
+- 0 errors
+- 0 warnings
+- 2 hints
+

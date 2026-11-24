@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "speciesId": "rice",
+  "scientificName": "Oryza sativa",
+  "taxonomyId": 4530,
+  "assemblyName": "IRGSP-1.0",
+  "assemblyAccession": "GCA_001433935.1",
+  "assemblyVersion": "1",
+  "annotationRelease": "RGAP / MSU Release 7（文件更新 2024-09-01）",
+  "annotationSource": "rgap",
+  "coordinateSystem": "GCA_001433935.1",
+  "chromosomeNaming": "RGAP Chr-prefixed（已抽查 FASTA / GFF3 的 Chr1）",
+  "selectedFiles": [
+    {
+      "id": "rgap7-genome",
+      "type": "genome",
+      "url": "https://rice.uga.edu/osa1r7_download/osa1_r7.asm.fa.gz",
+      "sourcePage": "https://rice.uga.edu/download_osa1r7.shtml",
+      "accessType": "direct",
+      "source": "rgap",
+      "verifiedAt": "2026-11-24",
+      "sha256": null
+    },
+    {
+      "id": "rgap7-gff3",
+      "type": "gff3",
+      "url": "https://rice.uga.edu/osa1r7_download/osa1_r7.all_models.gff3.gz",
+      "sourcePage": "https://rice.uga.edu/download_osa1r7.shtml",
+      "accessType": "direct",
+      "source": "rgap",
+      "verifiedAt": "2026-11-24",
+      "sha256": null
+    },
+    {
+      "id": "rgap7-cds",
+      "type": "cds",
+      "url": "https://rice.uga.edu/osa1r7_download/osa1_r7.all_models.cds.fa.gz",
+      "sourcePage": "https://rice.uga.edu/download_osa1r7.shtml",
+      "accessType": "direct",
+      "source": "rgap",
+      "verifiedAt": "2026-11-24",
+      "sha256": null
+    },
+    {
+      "id": "rgap7-protein",
+      "type": "protein",
+      "url": "https://rice.uga.edu/osa1r7_download/osa1_r7.all_models.pep.fa.gz",
+      "sourcePage": "https://rice.uga.edu/download_osa1r7.shtml",
+      "accessType": "direct",
+      "source": "rgap",
+      "verifiedAt": "2026-11-24",
+      "sha256": null
+    }
+  ],
+  "compatibilityStatus": "confirmed",
+  "retrievedAt": "2026-11-23T18:11:02.695Z",
+  "sources": [
+    "https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_001433935.1/",
+    "https://rice.uga.edu/download_osa1r7.shtml"
+  ],
+  "note": "retrievedAt 为清单生成时间；未计算文件哈希。官方页面入口不代表已下载文件。NCBI 包注释可能更新，应核对实际 release。"
+}

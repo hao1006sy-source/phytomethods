@@ -1,0 +1,196 @@
+{
+  "reports": [
+    {
+      "accession": "GCF_904849725.1",
+      "current_accession": "GCF_904849725.1",
+      "paired_accession": "GCA_904849725.1",
+      "source_database": "SOURCE_DATABASE_REFSEQ",
+      "organism": {
+        "tax_id": 112509,
+        "organism_name": "Hordeum vulgare subsp. vulgare",
+        "common_name": "domesticated barley"
+      },
+      "assembly_info": {
+        "assembly_level": "Chromosome",
+        "assembly_status": "current",
+        "paired_assembly": {
+          "accession": "GCA_904849725.1",
+          "status": "current",
+          "only_refseq": "chromosome Pltd",
+          "refseq_genbank_are_different": true,
+          "differences": "Added chromosome Pltd"
+        },
+        "assembly_name": "MorexV3_pseudomolecules_assembly",
+        "assembly_type": "haploid",
+        "bioproject_lineage": [
+          {
+            "bioprojects": [
+              {
+                "accession": "PRJEB40589",
+                "title": "Hordeum vulgare subsp. vulgare cultivar 'Morex' assembly (MorexV3)"
+              }
+            ]
+          }
+        ],
+        "bioproject_accession": "PRJEB40589",
+        "release_date": "2021-04-01",
+        "submitter": "Leibniz Institute of Plant Genetics and Crop Plant Research",
+        "refseq_category": "reference genome",
+        "sequencing_tech": "PacBio RSII",
+        "assembly_method": "Hi-Canu (commit r9818)",
+        "biosample": {
+          "accession": "SAMEA7384724",
+          "last_updated": "2026-07-26T10:23:22.746",
+          "publication_date": "2021-01-29T00:00:00.000",
+          "submission_date": "2021-02-02T09:15:55.873",
+          "sample_ids": [
+            {
+              "db": "SRA",
+              "value": "ERS5142877"
+            }
+          ],
+          "description": {
+            "title": "Morex V3 assembly",
+            "organism": {
+              "tax_id": 112509,
+              "organism_name": "Hordeum vulgare subsp. vulgare"
+            },
+            "comment": "Hordeum vulgare subsp. vulgare cultivar 'Morex' V3 pseudomolecule assembly"
+          },
+          "owner": {
+            "name": "EBI"
+          },
+          "models": [
+            "Generic"
+          ],
+          "package": "Generic.1.0",
+          "attributes": [
+            {
+              "name": "ENA-CHECKLIST",
+              "value": "ERC000011"
+            },
+            {
+              "name": "ENA-FIRST-PUBLIC",
+              "value": "2021-01-29T04:16:19Z"
+            },
+            {
+              "name": "ENA-LAST-UPDATE",
+              "value": "2020-10-09T10:20:11Z"
+            },
+            {
+              "name": "External Id",
+              "value": "SAMEA7384724"
+            },
+            {
+              "name": "INSDC center name",
+              "value": "IPK-Gatersleben"
+            },
+            {
+              "name": "INSDC first public",
+              "value": "2021-01-29T04:16:19Z"
+            },
+            {
+              "name": "INSDC last update",
+              "value": "2020-10-09T10:20:11Z"
+            },
+            {
+              "name": "INSDC status",
+              "value": "public"
+            },
+            {
+              "name": "Submitter Id",
+              "value": "MorexV3_assembly"
+            },
+            {
+              "name": "common name",
+              "value": "domesticated barley"
+            },
+            {
+              "name": "sample_name",
+              "value": "MorexV3_assembly"
+            },
+            {
+              "name": "scientific_name",
+              "value": "Hordeum vulgare subsp. vulgare"
+            }
+          ],
+          "status": {
+            "status": "live",
+            "when": "2021-02-03T08:47:37.267"
+          },
+          "sample_name": "MorexV3_assembly"
+        },
+        "blast_url": "https://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastSearch&PROG_DEF=blastn&BLAST_SPEC=GDH_GCF_904849725.1",
+        "comments": "Assembly name: MorexV3_pseudomolecules_assembly\nThe genomic sequence for this RefSeq record is from the whole-genome assembly released by the Leibniz Institute of Plant Genetics and Crop Plant Research on 2021/04/01. The original whole-genome shotgun project has the accession CAJHDD000000000.1."
+      },
+      "assembly_stats": {
+        "total_number_of_chromosomes": 7,
+        "total_sequence_length": "4225577519",
+        "total_ungapped_length": "4224251725",
+        "number_of_contigs": 452,
+        "contig_n50": 69630691,
+        "contig_l50": 15,
+        "number_of_scaffolds": 290,
+        "scaffold_n50": 610333535,
+        "scaffold_l50": 4,
+        "number_of_component_sequences": 290,
+        "atgc_count": "4224251725",
+        "gc_count": "1878301054",
+        "gc_percent": 44.5,
+        "genome_coverage": "25",
+        "number_of_organelles": 1
+      },
+      "organelle_info": [
+        {
+          "description": "Chloroplast",
+          "total_seq_length": "136462",
+          "submitter": "Leibniz Institute of Plant Genetics and Crop Plant Research"
+        }
+      ],
+      "additional_submitters": [
+        {
+          "genbank_accession": "EF115541.1",
+          "refseq_accession": "NC_008590.1",
+          "chr_name": "Pltd",
+          "molecule_type": "Chloroplast",
+          "submitter": "Molecular Biology & Microbiology, University of Central Florida"
+        }
+      ],
+      "annotation_info": {
+        "name": "NCBI Hordeum vulgare subsp. vulgare Annotation Release 100",
+        "provider": "NCBI RefSeq",
+        "release_date": "2021-11-02",
+        "report_url": "https://www.ncbi.nlm.nih.gov/genome/annotation_euk/Hordeum_vulgare_subsp._vulgare/100",
+        "stats": {
+          "gene_counts": {
+            "total": 58438,
+            "protein_coding": 31448,
+            "non_coding": 21210,
+            "pseudogene": 5778,
+            "other": 2
+          }
+        },
+        "busco": {
+          "busco_lineage": "poales_odb10",
+          "busco_ver": "4.1.4",
+          "complete": 0.98672384,
+          "single_copy": 0.95547384,
+          "duplicated": 0.03125,
+          "fragmented": 0.0026552288,
+          "missing": 0.010620915,
+          "total_count": "4896"
+        },
+        "method": "Best-placed RefSeq; Gnomon",
+        "pipeline": "NCBI Eukaryotic Genome Annotation Pipeline (EGAP)",
+        "software_version": "9.0",
+        "status": "Full annotation"
+      },
+      "wgs_info": {
+        "wgs_project_accession": "CAJHDD01",
+        "master_wgs_url": "https://www.ncbi.nlm.nih.gov/nuccore/CAJHDD000000000.1",
+        "wgs_contigs_url": "https://www.ncbi.nlm.nih.gov/Traces/wgs/CAJHDD01"
+      }
+    }
+  ],
+  "total_count": 1
+}

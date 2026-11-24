@@ -1,0 +1,88 @@
+{
+  "taxonomy_nodes": [
+    {
+      "query": [
+        "4530"
+      ],
+      "taxonomy": {
+        "tax_id": 4530,
+        "organism_name": "Oryza sativa",
+        "common_name": "red rice",
+        "genbank_common_name": "Asian cultivated rice",
+        "blast_name": "monocots",
+        "lineage": [
+          1,
+          131567,
+          2759,
+          33090,
+          35493,
+          131221,
+          3193,
+          58023,
+          78536,
+          58024,
+          3398,
+          1437183,
+          4447,
+          1437197,
+          4734,
+          38820,
+          4479,
+          359160,
+          147367,
+          147380,
+          1648021,
+          4527
+        ],
+        "children": [
+          1080340,
+          3455726,
+          39947,
+          1050722,
+          39946,
+          2998809
+        ],
+        "rank": "SPECIES",
+        "counts": [
+          {
+            "type": "COUNT_TYPE_ASSEMBLY",
+            "count": 207
+          },
+          {
+            "type": "COUNT_TYPE_GENE",
+            "count": 39963
+          },
+          {
+            "type": "COUNT_TYPE_tRNA",
+            "count": 848
+          },
+          {
+            "type": "COUNT_TYPE_rRNA",
+            "count": 1783
+          },
+          {
+            "type": "COUNT_TYPE_snRNA",
+            "count": 71
+          },
+          {
+            "type": "COUNT_TYPE_snoRNA",
+            "count": 611
+          },
+          {
+            "type": "COUNT_TYPE_PROTEIN_CODING",
+            "count": 30133
+          },
+          {
+            "type": "COUNT_TYPE_ncRNA",
+            "count": 4590
+          },
+          {
+            "type": "COUNT_TYPE_OTHER",
+            "count": 1
+          }
+        ],
+        "genomic_moltype": "dsDNA"
+      }
+    }
+  ]
+}

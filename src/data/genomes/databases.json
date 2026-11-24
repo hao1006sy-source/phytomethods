@@ -1,0 +1,68 @@
+[
+  {
+    "id": "tair",
+    "name": "TAIR",
+    "scope": "拟南芥",
+    "resources": "基因组、结构与功能注释",
+    "url": "https://www.arabidopsis.org/",
+    "documentation": "https://phoenixbioinformatics.atlassian.net/wiki/spaces/COM/overview",
+    "account": "部分资源按官方账号/订阅政策",
+    "note": "官方入口；TAIR12 与历史版本分开",
+    "verifiedAt": "2026-11-24"
+  },
+  {
+    "id": "ensembl",
+    "name": "Ensembl Plants",
+    "scope": "植物参考组装",
+    "resources": "FASTA、GFF3、GTF、蛋白及比较基因组",
+    "url": "https://plants.ensembl.org/",
+    "documentation": "https://plants.ensembl.org/info/data/ftp/index.html",
+    "account": "公开浏览与 FTP 通常无需账号",
+    "note": "本次 FTP 文档请求失败；使用官方组装页",
+    "verifiedAt": "2026-11-24"
+  },
+  {
+    "id": "jgi",
+    "name": "Phytozome / JGI Data Portal",
+    "scope": "JGI 与合作植物项目",
+    "resources": "基因组、基因模型、功能注释",
+    "url": "https://phytozome-next.jgi.doe.gov/",
+    "documentation": "https://sites.google.com/lbl.gov/data-portal-help/home",
+    "account": "下载按 JGI 账号及数据政策",
+    "note": "2026-11-24 官方页面提示服务维护；可查看 JGI Data Portal",
+    "verifiedAt": "2026-11-24"
+  },
+  {
+    "id": "ncbi",
+    "name": "NCBI Datasets",
+    "scope": "跨物种组装",
+    "resources": "Genome、GFF3、CDS、Protein、RNA",
+    "url": "https://www.ncbi.nlm.nih.gov/datasets/genome/",
+    "documentation": "https://www.ncbi.nlm.nih.gov/datasets/docs/v2/reference-docs/command-line/datasets/download/genome/",
+    "account": "公开资源无需登录；API Key 可选",
+    "note": "CLI 下载后核对包内元数据；不承诺缺失文件",
+    "verifiedAt": "2026-11-24"
+  },
+  {
+    "id": "cncb",
+    "name": "CNCB Genome Warehouse",
+    "scope": "跨物种及国内研究提交",
+    "resources": "组装、注释及元数据",
+    "url": "https://ngdc.cncb.ac.cn/gwh/",
+    "documentation": "https://ngdc.cncb.ac.cn/gwh/documents",
+    "account": "按数据集访问规则",
+    "note": "本次主页请求超时；未核实具体直链",
+    "verifiedAt": "2026-11-24"
+  },
+  {
+    "id": "rgap",
+    "name": "Rice Genome Annotation Project",
+    "scope": "水稻 Nipponbare",
+    "resources": "IRGSP-1.0 与 Release 7 模型、序列、功能注释",
+    "url": "https://rice.uga.edu/",
+    "documentation": "https://rice.uga.edu/download_osa1r7.shtml",
+    "account": "公开文件无需登录",
+    "note": "2024-09-01 更新文件，7 个 gzip 直链小段验证通过",
+    "verifiedAt": "2026-11-24"
+  }
+]

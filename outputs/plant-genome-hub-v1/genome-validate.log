@@ -1,0 +1,520 @@
+
+> phytomethods@0.1.0 validate
+> npm run build && node scripts/check-home-curation.mjs && node scripts/check-domain-v2.mjs && python scripts/check-links.py && npm run audit:knowledge && npm run test:knowledge-integrity && npm run test:application-evidence && npm run test:msmc-chronology && npm run test:independent-evidence && npm run check:topic-markdown && npm run check:genome-hub
+
+
+> phytomethods@0.1.0 build
+> astro check && astro build && (pagefind --site dist --output-subdir pagefind-search || pagefind --site dist --output-subdir pagefind-search)
+
+01:41:08 [content] Syncing content
+01:41:08 [content] Synced content
+01:41:08 [types] Generated 803ms
+01:41:08 [check] Getting diagnostics for Astro files in C:\Users\31764\Documents\Codex\phytomethods-sidebar-fix-validation...
+[96mscripts/check-cafe5-reproducibility.mjs[0m:[93m2[0m:[93m1[0m - [93mwarning[0m[90m ts(6133): [0m'path' is declared but its value is never read.
+
+[7m2[0m import path from 'node:path';
+[7m [0m [93m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96msrc/components/tutorial-v3/TutorialResourceCards.astro[0m:[93m5[0m:[93m31[0m - [93mwarning[0m[90m ts(6133): [0m'sections' is declared but its value is never read.
+
+[7m5[0m const { entry, method, paper, sections } = Astro.props as {
+[7m [0m [93m                              ~~~~~~~~[0m
+
+Result (166 files): 
+- 0 errors
+- 0 warnings
+- 2 hints
+
+01:41:18 [content] Syncing content
+01:41:18 [content] Synced content
+01:41:18 [types] Generated 557ms
+01:41:18 [build] output: "static"
+01:41:18 [build] mode: "static"
+01:41:18 [build] directory: C:\Users\31764\Documents\Codex\phytomethods-sidebar-fix-validation\dist\
+01:41:18 [build] Collecting build info...
+01:41:18 [build] ✓ Completed in 591ms.
+01:41:18 [build] Building static entrypoints...
+01:41:19 [vite] ✓ built in 603ms
+01:41:19 [vite] ✓ built in 79ms
+01:41:19 [build] Rearranging server assets...
+
+ generating static routes 
+01:41:19   ├─ /404.html (+15ms) 
+01:41:19   ├─ /about/index.html (+4ms) 
+01:41:19   ├─ /genomes/databases/index.html (+5ms) 
+01:41:19   ├─ /genomes/arabidopsis/index.html (+4ms) 
+01:41:19   ├─ /genomes/rice/index.html (+3ms) 
+01:41:19   ├─ /genomes/maize/index.html (+2ms) 
+01:41:19   ├─ /genomes/wheat/index.html (+3ms) 
+01:41:19   ├─ /genomes/soybean/index.html (+3ms) 
+01:41:19   ├─ /genomes/tomato/index.html (+3ms) 
+01:41:19   ├─ /genomes/potato/index.html (+2ms) 
+01:41:19   ├─ /genomes/sorghum/index.html (+2ms) 
+01:41:19   ├─ /genomes/barley/index.html (+2ms) 
+01:41:19   ├─ /genomes/poplar/index.html (+2ms) 
+01:41:19   ├─ /genomes/index.html (+4ms) 
+01:41:19   ├─ /knowledge/index.html (+9ms) 
+01:41:19   ├─ /methods/admixture/index.html (+153ms) 
+01:41:20   ├─ /methods/agront/index.html (+8ms) 
+01:41:20   ├─ /methods/anchorwave/index.html (+27ms) 
+01:41:20   ├─ /methods/archr/index.html (+6ms) 
+01:41:20   ├─ /methods/bcftools/index.html (+7ms) 
+01:41:20   ├─ /methods/bismark/index.html (+5ms) 
+01:41:20   ├─ /methods/braker3/index.html (+6ms) 
+01:41:20   ├─ /methods/cafe5/index.html (+6ms) 
+01:41:20   ├─ /methods/cell2location/index.html (+5ms) 
+01:41:20   ├─ /methods/cellrank/index.html (+5ms) 
+01:41:20   ├─ /methods/cutesv/index.html (+6ms) 
+01:41:20   ├─ /methods/deseq2/index.html (+8ms) 
+01:41:20   ├─ /methods/dnngp/index.html (+6ms) 
+01:41:20   ├─ /methods/doubletfinder/index.html (+4ms) 
+01:41:20   ├─ /methods/dss/index.html (+6ms) 
+01:41:20   ├─ /methods/edta/index.html (+5ms) 
+01:41:20   ├─ /methods/eupan/index.html (+6ms) 
+01:41:20   ├─ /methods/gapit/index.html (+4ms) 
+01:41:20   ├─ /methods/genie3/index.html (+5ms) 
+01:41:20   ├─ /methods/grnboost2/index.html (+3ms) 
+01:41:20   ├─ /methods/hicexplorer/index.html (+5ms) 
+01:41:20   ├─ /methods/hifiasm/index.html (+9ms) 
+01:41:20   ├─ /methods/interproscan/index.html (+6ms) 
+01:41:20   ├─ /methods/iqtree2/index.html (+4ms) 
+01:41:20   ├─ /methods/macs3/index.html (+4ms) 
+01:41:20   ├─ /methods/mcscanx/index.html (+5ms) 
+01:41:20   ├─ /methods/meme-suite/index.html (+5ms) 
+01:41:20   ├─ /methods/merqury/index.html (+12ms) 
+01:41:20   ├─ /methods/minigraph/index.html (+8ms) 
+01:41:20   ├─ /methods/minigraph-cactus/index.html (+10ms) 
+01:41:20   ├─ /methods/minimap2/index.html (+5ms) 
+01:41:20   ├─ /methods/mofa-plus/index.html (+5ms) 
+01:41:20   ├─ /methods/msmc/index.html (+10ms) 
+01:41:20   ├─ /methods/msmc2/index.html (+9ms) 
+01:41:20   ├─ /methods/mummer4/index.html (+5ms) 
+01:41:20   ├─ /methods/odgi/index.html (+6ms) 
+01:41:20   ├─ /methods/orthofinder/index.html (+5ms) 
+01:41:20   ├─ /methods/paml/index.html (+3ms) 
+01:41:20   ├─ /methods/pggb/index.html (+6ms) 
+01:41:20   ├─ /methods/plantcad2/index.html (+4ms) 
+01:41:20   ├─ /methods/plink/index.html (+34ms) 
+01:41:20   ├─ /methods/psmc/index.html (+11ms) 
+01:41:20   ├─ /methods/rqtl2/index.html (+8ms) 
+01:41:20   ├─ /methods/rrblup/index.html (+10ms) 
+01:41:20   ├─ /methods/sc-kb-copilot/index.html (+4ms) 
+01:41:20   ├─ /methods/scanpy/index.html (+6ms) 
+01:41:20   ├─ /methods/scipy/index.html (+4ms) 
+01:41:20   ├─ /methods/selscan/index.html (+7ms) 
+01:41:20   ├─ /methods/smcpp/index.html (+13ms) 
+01:41:20   ├─ /methods/sniffles2/index.html (+7ms) 
+01:41:20   ├─ /methods/squidpy/index.html (+4ms) 
+01:41:20   ├─ /methods/sweepfinder2/index.html (+8ms) 
+01:41:20   ├─ /methods/syri/index.html (+5ms) 
+01:41:20   ├─ /methods/verkko/index.html (+6ms) 
+01:41:20   ├─ /methods/vg/index.html (+6ms) 
+01:41:20   ├─ /methods/wgcna/index.html (+5ms) 
+01:41:20   ├─ /methods/wgd/index.html (+4ms) 
+01:41:20   ├─ /methods/xpclr/index.html (+7ms) 
+01:41:20   ├─ /methods/yahs/index.html (+9ms) 
+01:41:20   ├─ /methods/index.html (+4ms) 
+01:41:20   ├─ /papers/admixture-enhancements/index.html (+4ms) 
+01:41:20   ├─ /papers/admixture-paper/index.html (+2ms) 
+01:41:20   ├─ /papers/african-rice-246-genomes/index.html (+3ms) 
+01:41:20   ├─ /papers/agro-nt-2024/index.html (+2ms) 
+01:41:20   ├─ /papers/anchorwave-paper/index.html (+2ms) 
+01:41:20   ├─ /papers/angiosperm-phylogenomics-2024/index.html (+2ms) 
+01:41:20   ├─ /papers/arabidopsis-69-pangenome/index.html (+2ms) 
+01:41:20   ├─ /papers/arabidopsis-adaptation/index.html (+2ms) 
+01:41:20   ├─ /papers/arabidopsis-atac-root-2021/index.html (+2ms) 
+01:41:20   ├─ /papers/arabidopsis-bzip11-atac-2023/index.html (+2ms) 
+01:41:20   ├─ /papers/arabidopsis-bzip11-chromatin-2014/index.html (+2ms) 
+01:41:20   ├─ /papers/arabidopsis-drought-memory-2012/index.html (+2ms) 
+01:41:20   ├─ /papers/arabidopsis-heat-hic-2020/index.html (+2ms) 
+01:41:20   ├─ /papers/arabidopsis-heat-memory-2021/index.html (+2ms) 
+01:41:20   ├─ /papers/arabidopsis-integrated-grn-2021/index.html (+2ms) 
+01:41:20   ├─ /papers/arabidopsis-light-atlas-2023/index.html (+2ms) 
+01:41:20   ├─ /papers/arabidopsis-methylome-cokus-2008/index.html (+2ms) 
+01:41:20   ├─ /papers/arabidopsis-pds5-hic-2024/index.html (+2ms) 
+01:41:20   ├─ /papers/arabidopsis-protoplast-germination-2024/index.html (+2ms) 
+01:41:20   ├─ /papers/arabidopsis-root-atlas-2022/index.html (+2ms) 
+01:41:20   ├─ /papers/arabidopsis-stomata-accessibility-2022/index.html (+2ms) 
+01:41:20   ├─ /papers/archr-paper/index.html (+2ms) 
+01:41:20   ├─ /papers/bcftools-paper/index.html (+2ms) 
+01:41:20   ├─ /papers/bismark-paper/index.html (+2ms) 
+01:41:20   ├─ /papers/braker3-paper/index.html (+2ms) 
+01:41:20   ├─ /papers/cafe5-paper/index.html (+2ms) 
+01:41:20   ├─ /papers/cell2location-paper/index.html (+2ms) 
+01:41:20   ├─ /papers/cellrank2-paper/index.html (+2ms) 
+01:41:20   ├─ /papers/cutesv-paper/index.html (+2ms) 
+01:41:20   ├─ /papers/cutntag-paper/index.html (+2ms) 
+01:41:20   ├─ /papers/cycas-evolution/index.html (+2ms) 
+01:41:20   ├─ /papers/deseq2-2014/index.html (+2ms) 
+01:41:20   ├─ /papers/dnngp-paper/index.html (+2ms) 
+01:41:20   ├─ /papers/doubletfinder-paper/index.html (+2ms) 
+01:41:20   ├─ /papers/dss-paper/index.html (+2ms) 
+01:41:20   ├─ /papers/edta-paper/index.html (+2ms) 
+01:41:20   ├─ /papers/eupan-paper/index.html (+2ms) 
+01:41:20   ├─ /papers/gapit3-paper/index.html (+2ms) 
+01:41:20   ├─ /papers/genie3-paper/index.html (+2ms) 
+01:41:20   ├─ /papers/giraffe-paper/index.html (+2ms) 
+01:41:20   ├─ /papers/grnboost2-paper/index.html (+2ms) 
+01:41:20   ├─ /papers/gwas-mlm-paper/index.html (+2ms) 
+01:41:20   ├─ /papers/haphic-paper/index.html (+2ms) 
+01:41:20   ├─ /papers/heritability-genotype-difference/index.html (+2ms) 
+01:41:20   ├─ /papers/hicexplorer-paper/index.html (+2ms) 
+01:41:20   ├─ /papers/hifiasm/index.html (+2ms) 
+01:41:20   ├─ /papers/infernal-paper/index.html (+3ms) 
+01:41:20   ├─ /papers/interproscan-paper/index.html (+2ms) 
+01:41:20   ├─ /papers/iqtree2-paper/index.html (+2ms) 
+01:41:20   ├─ /papers/macadamia/index.html (+2ms) 
+01:41:20   ├─ /papers/macadamia-mcscanx/index.html (+2ms) 
+01:41:20   ├─ /papers/macs-paper/index.html (+2ms) 
+01:41:20   ├─ /papers/maize-domestication/index.html (+2ms) 
+01:41:20   ├─ /papers/maize-drought-deseq2-2019/index.html (+2ms) 
+01:41:20   ├─ /papers/maize-multiomics-network-2023/index.html (+2ms) 
+01:41:20   ├─ /papers/maize-zeas-adaptation/index.html (+2ms) 
+01:41:20   ├─ /papers/mam-positive-selection-2006/index.html (+2ms) 
+01:41:20   ├─ /papers/mango-annotation/index.html (+3ms) 
+01:41:20   ├─ /papers/mcscanx-paper/index.html (+2ms) 
+01:41:20   ├─ /papers/meme-suite-paper/index.html (+2ms) 
+01:41:20   ├─ /papers/merqury/index.html (+2ms) 
+01:41:20   ├─ /papers/minigraph-cactus-paper/index.html (+2ms) 
+01:41:20   ├─ /papers/minigraph-paper/index.html (+2ms) 
+01:41:20   ├─ /papers/minimap2-paper/index.html (+2ms) 
+01:41:20   ├─ /papers/mofa-plus-paper/index.html (+2ms) 
+01:41:20   ├─ /papers/msmc-paper/index.html (+2ms) 
+01:41:20   ├─ /papers/msmc2-protocol/index.html (+2ms) 
+01:41:20   ├─ /papers/mummer4-paper/index.html (+2ms) 
+01:41:20   ├─ /papers/mungbean-evolution-2014/index.html (+2ms) 
+01:41:20   ├─ /papers/odgi-paper/index.html (+2ms) 
+01:41:20   ├─ /papers/orthofinder-2026/index.html (+2ms) 
+01:41:20   ├─ /papers/orthofinder-paper/index.html (+2ms) 
+01:41:20   ├─ /papers/paml-paper/index.html (+2ms) 
+01:41:20   ├─ /papers/pggb-paper/index.html (+2ms) 
+01:41:20   ├─ /papers/plant-dna-methylation-review-2021/index.html (+2ms) 
+01:41:20   ├─ /papers/plant-induced-sv-2025/index.html (+2ms) 
+01:41:20   ├─ /papers/plant-sv-benchmark-2026/index.html (+2ms) 
+01:41:20   ├─ /papers/plant-wgd-timing-2017/index.html (+2ms) 
+01:41:20   ├─ /papers/plantcad2-paper/index.html (+2ms) 
+01:41:20   ├─ /papers/plink-paper/index.html (+2ms) 
+01:41:20   ├─ /papers/populus-euphratica-demography/index.html (+2ms) 
+01:41:20   ├─ /papers/populus-repeats-demography/index.html (+2ms) 
+01:41:20   ├─ /papers/potato/index.html (+2ms) 
+01:41:20   ├─ /papers/psmc-paper/index.html (+2ms) 
+01:41:20   ├─ /papers/purple-rice-wgcna/index.html (+3ms) 
+01:41:20   ├─ /papers/repeatmodeler2-paper/index.html (+2ms) 
+01:41:20   ├─ /papers/rice-3010-pangenome/index.html (+3ms) 
+01:41:20   ├─ /papers/rice-deep-rooting-qtl/index.html (+3ms) 
+01:41:20   ├─ /papers/rice-deleterious-domestication/index.html (+2ms) 
+01:41:20   ├─ /papers/rice-domestication-civan/index.html (+3ms) 
+01:41:20   ├─ /papers/rice-domestication-huang/index.html (+3ms) 
+01:41:20   ├─ /papers/rice-gapit-2023/index.html (+3ms) 
+01:41:20   ├─ /papers/rice-gwas-2010/index.html (+2ms) 
+01:41:20   ├─ /papers/rice-pangenome-paper/index.html (+2ms) 
+01:41:20   ├─ /papers/rice-root-single-cell-2021/index.html (+3ms) 
+01:41:20   ├─ /papers/rice-root-soil-single-cell-2025/index.html (+2ms) 
+01:41:20   ├─ /papers/rice-roots-population/index.html (+2ms) 
+01:41:20   ├─ /papers/rice-se-pav-hybrid-sterility-2023/index.html (+2ms) 
+01:41:20   ├─ /papers/rice-single-cell-multiomics-2025/index.html (+2ms) 
+01:41:20   ├─ /papers/rice-t2t-nipponbare/index.html (+2ms) 
+01:41:20   ├─ /papers/rice-temarker-sweeps/index.html (+2ms) 
+01:41:20   ├─ /papers/rice-variant-comparison/index.html (+2ms) 
+01:41:20   ├─ /papers/rice-weedy-selection/index.html (+2ms) 
+01:41:20   ├─ /papers/rqtl2-paper/index.html (+2ms) 
+01:41:20   ├─ /papers/rrblup-paper/index.html (+2ms) 
+01:41:20   ├─ /papers/sc-kb-copilot-paper/index.html (+2ms) 
+01:41:20   ├─ /papers/scanpy-paper/index.html (+2ms) 
+01:41:20   ├─ /papers/scipy-paper/index.html (+2ms) 
+01:41:20   ├─ /papers/selscan-paper/index.html (+2ms) 
+01:41:20   ├─ /papers/smcpp-paper/index.html (+2ms) 
+01:41:20   ├─ /papers/sniffles2-paper/index.html (+2ms) 
+01:41:20   ├─ /papers/sorghum-graph-benchmark/index.html (+2ms) 
+01:41:20   ├─ /papers/sorghum-pangenome-reference-2026/index.html (+2ms) 
+01:41:20   ├─ /papers/soybean-resequencing/index.html (+2ms) 
+01:41:20   ├─ /papers/squidpy-paper/index.html (+2ms) 
+01:41:20   ├─ /papers/sweepfinder2-paper/index.html (+2ms) 
+01:41:20   ├─ /papers/syri-paper/index.html (+2ms) 
+01:41:20   ├─ /papers/tea-comparative/index.html (+2ms) 
+01:41:20   ├─ /papers/trnascan-paper/index.html (+2ms) 
+01:41:20   ├─ /papers/verkko/index.html (+2ms) 
+01:41:20   ├─ /papers/vg-paper/index.html (+2ms) 
+01:41:20   ├─ /papers/watermelon-t2t-pangenome/index.html (+2ms) 
+01:41:20   ├─ /papers/wgcna-paper/index.html (+2ms) 
+01:41:20   ├─ /papers/wgd-v2-paper/index.html (+2ms) 
+01:41:20   ├─ /papers/wheat-methylome-2015/index.html (+2ms) 
+01:41:20   ├─ /papers/wild-rice-pangenome-2025/index.html (+2ms) 
+01:41:20   ├─ /papers/xanthoceras/index.html (+2ms) 
+01:41:20   ├─ /papers/xpclr-paper/index.html (+2ms) 
+01:41:20   ├─ /papers/xpehh-paper/index.html (+2ms) 
+01:41:20   ├─ /papers/yahs/index.html (+2ms) 
+01:41:20   ├─ /papers/index.html (+4ms) 
+01:41:20   ├─ /search/index.html (+3ms) 
+01:41:20   ├─ /topics/genome-assembly/assembly-basics/index.html (+4ms) 
+01:41:20   ├─ /topics/genome-assembly/assembly-graphs/index.html (+2ms) 
+01:41:20   ├─ /topics/genome-assembly/assembly-quality/index.html (+2ms) 
+01:41:20   ├─ /topics/genome-assembly/complete-assembly/index.html (+2ms) 
+01:41:20   ├─ /topics/genome-assembly/haplotype-resolution/index.html (+2ms) 
+01:41:20   ├─ /topics/genome-assembly/hic-scaffolding/index.html (+2ms) 
+01:41:20   ├─ /topics/genome-assembly/sequencing-data/index.html (+2ms) 
+01:41:20   ├─ /topics/genome-annotation/m02-topic-01/index.html (+3ms) 
+01:41:20   ├─ /topics/genome-annotation/m02-topic-02/index.html (+2ms) 
+01:41:20   ├─ /topics/genome-annotation/m02-topic-03/index.html (+2ms) 
+01:41:20   ├─ /topics/genome-annotation/m02-topic-04/index.html (+2ms) 
+01:41:20   ├─ /topics/genome-annotation/m02-topic-05/index.html (+2ms) 
+01:41:20   ├─ /topics/genome-annotation/m02-topic-06/index.html (+2ms) 
+01:41:20   ├─ /topics/genome-annotation/m02-topic-07/index.html (+2ms) 
+01:41:20   ├─ /topics/pangenomics-structural-variation/m03-topic-01/index.html (+3ms) 
+01:41:20   ├─ /topics/pangenomics-structural-variation/m03-topic-02/index.html (+2ms) 
+01:41:20   ├─ /topics/pangenomics-structural-variation/m03-topic-03/index.html (+2ms) 
+01:41:20   ├─ /topics/pangenomics-structural-variation/m03-topic-04/index.html (+2ms) 
+01:41:20   ├─ /topics/pangenomics-structural-variation/m03-topic-05/index.html (+2ms) 
+01:41:20   ├─ /topics/pangenomics-structural-variation/m03-topic-06/index.html (+2ms) 
+01:41:20   ├─ /topics/pangenomics-structural-variation/m03-topic-07/index.html (+2ms) 
+01:41:20   ├─ /topics/comparative-genomics/m04-topic-01/index.html (+2ms) 
+01:41:20   ├─ /topics/comparative-genomics/m04-topic-02/index.html (+2ms) 
+01:41:20   ├─ /topics/comparative-genomics/m04-topic-03/index.html (+2ms) 
+01:41:20   ├─ /topics/comparative-genomics/m04-topic-04/index.html (+2ms) 
+01:41:20   ├─ /topics/comparative-genomics/m04-topic-05/index.html (+2ms) 
+01:41:20   ├─ /topics/comparative-genomics/m04-topic-06/index.html (+2ms) 
+01:41:20   ├─ /topics/comparative-genomics/m04-topic-07/index.html (+2ms) 
+01:41:20   ├─ /topics/population-genetics/m05-topic-01/index.html (+2ms) 
+01:41:20   ├─ /topics/population-genetics/m05-topic-02/index.html (+2ms) 
+01:41:20   ├─ /topics/population-genetics/m05-topic-03/index.html (+2ms) 
+01:41:20   ├─ /topics/population-genetics/m05-topic-04/index.html (+2ms) 
+01:41:20   ├─ /topics/population-genetics/m05-topic-05/index.html (+4ms) 
+01:41:20   ├─ /topics/population-genetics/m05-topic-06/index.html (+2ms) 
+01:41:20   ├─ /topics/population-genetics/m05-topic-07/index.html (+3ms) 
+01:41:20   ├─ /topics/gwas-breeding/m06-topic-01/index.html (+2ms) 
+01:41:20   ├─ /topics/gwas-breeding/m06-topic-02/index.html (+2ms) 
+01:41:20   ├─ /topics/gwas-breeding/m06-topic-03/index.html (+2ms) 
+01:41:20   ├─ /topics/gwas-breeding/m06-topic-04/index.html (+2ms) 
+01:41:20   ├─ /topics/gwas-breeding/m06-topic-05/index.html (+2ms) 
+01:41:20   ├─ /topics/gwas-breeding/m06-topic-06/index.html (+2ms) 
+01:41:20   ├─ /topics/gwas-breeding/m06-topic-07/index.html (+2ms) 
+01:41:20   ├─ /topics/epigenomics-3d-genome/m07-topic-01/index.html (+2ms) 
+01:41:20   ├─ /topics/epigenomics-3d-genome/m07-topic-02/index.html (+2ms) 
+01:41:20   ├─ /topics/epigenomics-3d-genome/m07-topic-03/index.html (+2ms) 
+01:41:20   ├─ /topics/epigenomics-3d-genome/m07-topic-04/index.html (+2ms) 
+01:41:20   ├─ /topics/epigenomics-3d-genome/m07-topic-05/index.html (+3ms) 
+01:41:20   ├─ /topics/epigenomics-3d-genome/m07-topic-06/index.html (+2ms) 
+01:41:20   ├─ /topics/epigenomics-3d-genome/m07-topic-07/index.html (+2ms) 
+01:41:20   ├─ /topics/single-cell-spatial-omics/m08-topic-01/index.html (+2ms) 
+01:41:20   ├─ /topics/single-cell-spatial-omics/m08-topic-02/index.html (+2ms) 
+01:41:20   ├─ /topics/single-cell-spatial-omics/m08-topic-03/index.html (+2ms) 
+01:41:20   ├─ /topics/single-cell-spatial-omics/m08-topic-04/index.html (+2ms) 
+01:41:20   ├─ /topics/single-cell-spatial-omics/m08-topic-05/index.html (+2ms) 
+01:41:20   ├─ /topics/single-cell-spatial-omics/m08-topic-06/index.html (+2ms) 
+01:41:20   ├─ /topics/single-cell-spatial-omics/m08-topic-07/index.html (+2ms) 
+01:41:20   ├─ /topics/regulatory-genomics-ai/m09-topic-01/index.html (+2ms) 
+01:41:20   ├─ /topics/regulatory-genomics-ai/m09-topic-02/index.html (+2ms) 
+01:41:20   ├─ /topics/regulatory-genomics-ai/m09-topic-03/index.html (+3ms) 
+01:41:20   ├─ /topics/regulatory-genomics-ai/m09-topic-04/index.html (+2ms) 
+01:41:20   ├─ /topics/regulatory-genomics-ai/m09-topic-05/index.html (+2ms) 
+01:41:20   ├─ /topics/regulatory-genomics-ai/m09-topic-06/index.html (+2ms) 
+01:41:20   ├─ /topics/regulatory-genomics-ai/m09-topic-07/index.html (+2ms) 
+01:41:20   ├─ /topics/genome-assembly/index.html (+2ms) 
+01:41:20   ├─ /topics/genome-annotation/index.html (+2ms) 
+01:41:20   ├─ /topics/pangenomics-structural-variation/index.html (+2ms) 
+01:41:20   ├─ /topics/comparative-genomics/index.html (+2ms) 
+01:41:20   ├─ /topics/population-genetics/index.html (+2ms) 
+01:41:20   ├─ /topics/gwas-breeding/index.html (+2ms) 
+01:41:20   ├─ /topics/epigenomics-3d-genome/index.html (+1ms) 
+01:41:20   ├─ /topics/single-cell-spatial-omics/index.html (+1ms) 
+01:41:20   ├─ /topics/regulatory-genomics-ai/index.html (+2ms) 
+01:41:20   ├─ /topics/index.html (+3ms) 
+01:41:20   ├─ /tutorials/bismark-synthetic/index.html (+15ms) 
+01:41:21   ├─ /tutorials/cafe5-intro/index.html (+15ms) 
+01:41:21   ├─ /tutorials/edta-tutorial/index.html (+8ms) 
+01:41:21   ├─ /tutorials/gwas-synthetic/index.html (+10ms) 
+01:41:21   ├─ /tutorials/hifiasm-intro/index.html (+11ms) 
+01:41:21   ├─ /tutorials/orthofinder-intro/index.html (+10ms) 
+01:41:21   ├─ /tutorials/plink-synthetic/index.html (+7ms) 
+01:41:21   ├─ /tutorials/scanpy-synthetic/index.html (+7ms) 
+01:41:21   ├─ /tutorials/syri-intro/index.html (+11ms) 
+01:41:21   ├─ /tutorials/wgcna-synthetic/index.html (+9ms) 
+01:41:21   ├─ /tutorials/index.html (+4ms) 
+01:41:21   ├─ /index.html (+10ms) 
+01:41:21 ✓ Completed in 1.24s.
+
+01:41:21 [build] ✓ Completed in 2.35s.
+01:41:21 [@astrojs/sitemap] `sitemap-index.xml` created at `dist`
+01:41:21 [build] 292 page(s) built in 3.56s
+01:41:21 [build] Complete!
+
+Running Pagefind v1.6.0 (Extended)
+Running from: "C:\\Users\\31764\\Documents\\Codex\\phytomethods-sidebar-fix-validation"
+Source:       "dist"
+Output:       "dist\\pagefind-search"
+
+[Walking source directory]
+Found 292 files matching **/*.{html}
+
+[Parsing files]
+Found a data-pagefind-body element on the site.
+↳ Ignoring pages without this tag.
+
+[Reading languages]
+Discovered 1 language: zh-cn
+
+[Building search indexes]
+Total: 
+  Indexed 1 language
+  Indexed 292 pages
+  Indexed 40821 words
+  Indexed 0 filters
+  Indexed 0 sorts
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│  Pagefind found references to the Default UI (pagefind-ui.js)           │
+│  on your site. The Default UI is supported and will continue            │
+│  to work.                                                               │
+│                                                                         │
+│  As of 1.5.0, if you are setting up a new integration, use the          │
+│  Component UI instead. It includes a search modal, better               │
+│  accessibility and customization: https://pagefind.app/docs/search-ui/  │
+└─────────────────────────────────────────────────────────────────────────┘
+
+Finished in 0.959 seconds
+Home curation validated: 3 published method IDs, 6 search terms.
+Homepage primary domains and calendar dates validated; today=2026-11-24, timezone=Asia/Shanghai
+Domain V2 validated: 8 unique configs, 56 published topic records, 24 method references, related-domain IDs and eight accessible SVGs. M02/M03 legacy overviews and figures remain integrated.
+12576 local links checked; 0 errors
+
+> phytomethods@0.1.0 audit:knowledge
+> node scripts/audit-knowledge-relations.mjs
+
+
+================ PhytoMethods 知识图谱完整性审计 V2.1 ================
+全站实体: 130 篇文献 | 59 个工具 | 63 篇专题 | 10 篇教程
+知识图谱规模: 304 个节点, 743 条语义边 (去重合并后)
+节点类型明细:
+  - domain: 9
+  - method: 59
+  - paper_method: 70
+  - paper_application: 59
+  - paper_review: 1
+  - species: 33
+  - topic: 63
+  - tutorial: 10
+关系类型明细:
+  - belongs_to_domain: 201
+  - extends_method: 3
+  - introduces_method: 59
+  - studies_species: 64
+  - uses_method: 67
+  - references_method: 1
+  - evaluates_method: 6
+  - features_method: 112
+  - references_paper: 220
+  - guides_method: 10
+科学证据条目统计 (总证据条目数: 801):
+  - source_checked: 600 (74.9%)
+  - structurally_valid: 201 (25.1%)
+  - needs_review: 0 (0.0%)
+关系类型之证据状态分布:
+  - belongs_to_domain: source_checked=0, structurally_valid=201, needs_review=0
+  - extends_method: source_checked=3, structurally_valid=0, needs_review=0
+  - introduces_method: source_checked=117, structurally_valid=0, needs_review=0
+  - studies_species: source_checked=64, structurally_valid=0, needs_review=0
+  - uses_method: source_checked=67, structurally_valid=0, needs_review=0
+  - references_method: source_checked=1, structurally_valid=0, needs_review=0
+  - evaluates_method: source_checked=6, structurally_valid=0, needs_review=0
+  - features_method: source_checked=112, structurally_valid=0, needs_review=0
+  - references_paper: source_checked=220, structurally_valid=0, needs_review=0
+  - guides_method: source_checked=10, structurally_valid=0, needs_review=0
+
+=== 完整性校验结果 ===
+悬空关系数量: 0 (预期 0)
+重复关系数量: 0 (预期 0)
+重复节点数量: 0 (预期 0)
+已覆盖教程节点: 10 / 10
+错误总数: 0 | 警告总数: 0
+
+知识图谱数据已写入: outputs/knowledge-graph-v2.json
+审计报告已写入: outputs/knowledge-audit-report.json
+
+✅ 知识图谱完整性严格校验 100% 通过！0 悬空，0 重复，节点与关系全部合法！
+
+> phytomethods@0.1.0 test:knowledge-integrity
+> node scripts/test-knowledge-integrity.mjs
+
+=== PhytoMethods 知识图谱完整性与科学语义测试 V1.1.2 ===
+
+✓ 断言 1 通过: 图谱 Schema 版本与基础结构规范 (304 节点, 743 关系边)
+✓ 断言 2 通过: 0 悬空边、0 重复边、0 重复节点，10 篇教程 100% 覆盖
+✓ 断言 3 通过: 59 个算法工具与其奠基文献的 introduces_method 关系 100% 闭环
+✓ 断言 4 通过: 13 个重点工具奠基文献与节点映射完整无损
+✓ 断言 5 通过: 10 篇教程节点元数据完整，真实验证状态保持不变
+✓ 断言 6 通过: 图谱构建算法具有完全确定性 (两次构建输出哈希 100% 一致)
+✓ 断言 7 通过: 经文献核准的 3 条 extends_method 与 6 条 evaluates_method 语义精准
+✓ 断言 8 通过 (V1.1.2 专项 1 & 2): PAML 3.14 (2006) 与 GAPIT (2018) 真实使用关系精准恢复
+✓ 断言 9 通过 (V1.1.2 专项 3): xpehh-paper 与 selscan 之间无虚假时间倒置关系
+✓ 断言 10 通过 (V1.1.2 专项 4): PAML (1997 vs 2007)、GAPIT (2012 vs 2021) 软件首发与后续版本论文时序模型建立
+✓ 断言 11 通过 (V1.1.2 专项 5 & 6): 关系类型与时序警告完全解耦，未知首发年份不编造冲突
+✓ 断言 12 通过 (V1.2.1 审核后证据体系): 证据总数与比例分母基准一致 (总证据条目: 801, source_checked: 600 (74.9%), structurally_valid: 201 (25.1%), needs_review: 0 (0.0%))
+✓ 断言 13 通过: 标题关键词正则推断已彻底废除，所有生物学改良与比较研究均正确归类为 uses_method
+
+🎉 全部 13 项数据、时序模型与科学语义断言 100% 通过！知识图谱达到发布级科学准确性！
+
+> phytomethods@0.1.0 test:application-evidence
+> node scripts/test-application-method-evidence.mjs
+
+=== PhytoMethods 植物应用论文与算法证据防失真测试 V1.2 ===
+
+✓ 测试 1 通过: 全部 56 条登记的论文 ID 均真实存在于文献库中
+✓ 测试 2 通过: 全部 56 条登记的算法工具 ID 均真实存在于方法库中
+✓ 测试 3 通过: 登记表关系类型与核验等级规范性校验 100% 合法
+✓ 测试 4 通过: 全部证据登记条目的出处链接、分析目的、证据摘要与时间戳 100% 完整
+✓ 测试 5 通过: 登记表中 0 项重复条目，严格保证单射唯一性
+✓ 测试 6 通过: 图谱中全部 67 条 source_checked 应用关系均具备直接来源证据溯源
+✓ 测试 7 通过: 登记表 56 条关系与图谱构建输出 100% 对应
+✓ 测试 8 通过: 证据状态统计与图谱统计数据完全吻合
+✓ 测试 9 & 10 通过: 图谱 0 悬空边、0 重复边，拓扑结构完全闭环
+✓ 测试 11 通过: PAML 2006 与 GAPIT 2018 等历史时序保护规则持续有效
+✓ 测试 12 通过: 未经核验登记的关系绝不会自动升级为 source_checked，防篡改门禁生效
+
+🎉 全部 12 项植物应用论文与算法证据防失真测试 100% 顺利通过！
+
+> phytomethods@0.1.0 test:msmc-chronology
+> node scripts/test-msmc-chronology.mjs
+
+=== PhytoMethods MSMC/MSMC2 历史时序与关系解耦测试 V1.2.1 ===
+
+✓ 测试 1 通过: 时序模型中 MSMC (2014) 与 MSMC2 (2016/2020) 严格独立注册
+✓ 测试 2 通过: 知识图谱中包含独立的 method:msmc 与 method:msmc2 实体节点
+✓ 测试 3 通过: msmc-paper 与 msmc、msmc2-protocol 与 msmc2 的科学关系语义精准无误
+✓ 测试 4 通过: 非洲稻研究正确关联至 method:msmc，与 msmc2 的误绑已被彻底移除
+✓ 测试 5 通过: verifiedApplicationMethods 完整登记 MSMC v1.1.0 真实使用证据
+✓ 测试 6 通过: 全图谱 uses_method 达到 100% source_checked，0 条 needs_review
+
+🎉 全部 6 项 MSMC/MSMC2 历史时序与关系解耦测试 100% 顺利通过！
+
+> phytomethods@0.1.0 test:independent-evidence
+> node scripts/test-independent-evidence-review.mjs
+
+=== PhytoMethods 独立证据复核与原文溯源测试 V1.2.1 ===
+
+✓ 测试 1 通过: outputs/evidence-review-v1.2.1/ 下 5 个复核成果文件全部齐备
+✓ 测试 2 通过: review-inventory 覆盖全部 67 条重点复核关系 (56 条应用 + 11 条重点策展)
+✓ 测试 3 通过: 67 条复核记录 100% 具备出处定位 (sourceLocator) 与软件标识 (observedSoftwareName)
+✓ 测试 4 通过: 67 条证据独立穿透审计结论全部为 VERIFIED_CORRECT
+✓ 测试 5 通过: unresolved-evidence 确认无任何存疑或未闭环关系，全量证据真实可查
+
+🎉 全部 5 项独立证据复核与原文溯源测试 100% 顺利通过！
+
+> phytomethods@0.1.0 check:topic-markdown
+> node scripts/check-topic-markdown-rendering.mjs
+
+================ PhytoMethods 专题 Markdown 渲染质量审计 ================
+已就绪检查专题总数: 63 篇 (覆盖 M01~M09 全部 9 大研究领域)
+
+--- 阶段 1: Markdown 源码语法与 CommonMark 强调边界静态扫描 ---
+--- 阶段 2: 构建产物 HTML 渲染保真度与原始标记泄漏检测 ---
+
+================ 质量审计统计结果 ================
+检查专题总数: 63 篇
+发现异常总数: 0 处
+
+✅ 全站 63 篇专题 Markdown 渲染与强调语法审计 100% 通过！0 处边界语法冲突，0 处原始标记暴露！
+
+> phytomethods@0.1.0 check:genome-hub
+> node scripts/check-genome-hub-data.mjs
+
+{"species":10,"assemblies":11,"annotations":11,"files":85,"direct":7,"loginRequired":0,"unverified":28,"portals":50,"compatibilityAssertions":6}
