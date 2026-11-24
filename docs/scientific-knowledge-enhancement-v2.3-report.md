@@ -28,8 +28,8 @@ PhytoMethods 经过此前基础架构、数据注册表、计算画像核验与�
 | **M02** | 基因组注释与重复序列 | `docs/v2.3-m02-genome-annotation` | #54 | 已合并 (`fd58d00`) | 已发布 (Run 45443833879) |
 | **M03** | 泛基因组与结构变异 | `docs/v2.3-m03-pangenomics` | #55 | 已合并 (`aece25d`) | 已发布 (Run 45447742843) |
 | **M04** | 比较基因组与系统发育 | `docs/v2.3-m04-comparative-genomics` | #56 | 已合并 (`ec98daa`) | 已发布 (Run 45450999621) |
-| **M05** | 群体遗传学与演化 | `docs/v2.3-m05-population-genetics` | 待提交 | 待合并 | 待验证 |
-| **M06** | GWAS 与全基因组选择 | `docs/v2.3-m06-gwas-breeding` | 待开始 | 待合并 | 待验证 |
+| **M05** | 群体遗传学与演化 | `docs/v2.3-m05-population-genetics` | #57 | 已合并 (`ec72b5e`) | 已发布 (Run 45453852275) |
+| **M06** | GWAS 与全基因组选择 | `docs/v2.3-m06-gwas-breeding` | 待提交 | 待合并 | 待验证 |
 | **M07** | 表观与三维基因组学 | `docs/v2.3-m07-epigenomics-3d` | 待开始 | 待合并 | 待验证 |
 | **M08** | 单细胞与空间组学 | `docs/v2.3-m08-single-cell` | 待开始 | 待合并 | 待验证 |
 | **M09** | 基因调控网络与 AI | `docs/v2.3-m09-networks-ai` | 待开始 | 待合并 | 待验证 |
@@ -99,8 +99,8 @@ PhytoMethods 经过此前基础架构、数据注册表、计算画像核验与�
 - **全量测试验证**: `npm run validate`、`npm run test:methods-index-v4`、`npm run test:platform-browser` 100% 通过（13,291 链接 0 死链，63 篇专题 0 语法报错，多端 7 视口 0 溢出）；
 - **部署发布验证**: PR #56 Squash 合并入 main，Pages 部署成功上线。
 
-### M05：群体遗传学与演化 (本地测试全量通过)
-- **分支**: `docs/v2.3-m05-population-genetics`
+### M05：群体遗传学与演化 (已合并上线)
+- **分支**: `docs/v2.3-m05-population-genetics` | **PR**: #57 (`ec72b5e`) | **CI Run ID**: 45453414539 | **Pages Run ID**: 45453852275
 - **图解建设**: 绘制 3 幅原创学术 SVG 矢量图解置于 `public/images/topics/m05/`：
   1. `selective-sweep-and-hitchhiking.svg`: 正向选择选择性清除、有益突变快速固定、周围中性多态性骤降、单倍型纯合度暴涨与 XP-CLR/FST 扫描信号
   2. `population-structure-pca-admixture.svg`: 高维 SNP 基因型矩阵的 Patterson SVD 谱分解投影至前两主成分，以及 ADMIXTURE 祖先成分堆叠条形图随 $K$ 演变与 CV 误差曲线

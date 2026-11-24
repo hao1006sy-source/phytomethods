@@ -2,7 +2,7 @@
   "version": "2.3.0",
   "project": "PhytoMethods Scientific Knowledge Enhancement & Continuous Delivery",
   "startedAt": "2026-11-25T00:20:00+08:00",
-  "currentMilestone": "M05",
+  "currentMilestone": "M06",
   "milestones": {
     "M01": {
       "name": "测序与基因组组装",
@@ -44,10 +44,10 @@
       "name": "群体遗传与驯化",
       "domainId": "population-genetics",
       "branch": "docs/v2.3-m05-population-genetics",
-      "status": "in_progress",
-      "prNumber": null,
-      "deployedUrl": null,
-      "completedAt": null
+      "status": "completed",
+      "prNumber": 57,
+      "deployedUrl": "https://hao1006sy-source.github.io/phytomethods/topics/population-genetics/",
+      "completedAt": "2026-11-25T01:56:30+08:00"
     },
     "M06": {
       "name": "全基因组关联分析与分子育种",

@@ -103,6 +103,31 @@
         "https://hao1006sy-source.github.io/phytomethods/methods/paml/",
         "https://hao1006sy-source.github.io/phytomethods/methods/wgd/"
       ]
+    },
+    {
+      "milestone": "M05",
+      "domainId": "population-genetics",
+      "prNumber": 57,
+      "prTitle": "docs(v2.3): M05 群体遗传学与演化科研知识深度建设与学术矢量图解",
+      "mergeCommit": "ec72b5e",
+      "mergedAt": "2026-11-24T17:55:21Z",
+      "githubPagesRunId": 45453852275,
+      "deployedAt": "2026-11-24T17:56:30Z",
+      "deploymentStatus": "SUCCESS",
+      "liveUrl": "https://hao1006sy-source.github.io/phytomethods/topics/population-genetics/",
+      "verifiedPages": [
+        "https://hao1006sy-source.github.io/phytomethods/topics/population-genetics/m05-topic-01/",
+        "https://hao1006sy-source.github.io/phytomethods/topics/population-genetics/m05-topic-02/",
+        "https://hao1006sy-source.github.io/phytomethods/topics/population-genetics/m05-topic-03/",
+        "https://hao1006sy-source.github.io/phytomethods/topics/population-genetics/m05-topic-04/",
+        "https://hao1006sy-source.github.io/phytomethods/topics/population-genetics/m05-topic-05/",
+        "https://hao1006sy-source.github.io/phytomethods/topics/population-genetics/m05-topic-06/",
+        "https://hao1006sy-source.github.io/phytomethods/topics/population-genetics/m05-topic-07/",
+        "https://hao1006sy-source.github.io/phytomethods/methods/admixture/",
+        "https://hao1006sy-source.github.io/phytomethods/methods/psmc/",
+        "https://hao1006sy-source.github.io/phytomethods/methods/msmc/",
+        "https://hao1006sy-source.github.io/phytomethods/methods/msmc2/"
+      ]
     }
   ]
 }
