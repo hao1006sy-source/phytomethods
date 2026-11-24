@@ -538,6 +538,26 @@ export const methodComparisonMatrices: Record<string, DomainComparisonMatrix> = 
         advantages: '染色质开放区 (Accessible Chromatin) 与转录因子结合位点 Peak Calling 标准',
         limitations: '面对超宽修饰（如 H3K27me3）需开启 `--broad` 选项',
         recommendedScenario: '植物顺式调控元件 (cCREs) 挖掘与染色质可及性分析'
+      },
+      {
+        methodId: 'hicexplorer',
+        name: 'HiCExplorer',
+        inputType: 'Hi-C 配对比对 BAM 或接触矩阵 (h5/cool)',
+        corePrinciple: 'ICE 矩阵迭代平衡 + 绝缘得分 (Insulation Score) 探测 TAD 边界 + PCA 区分 A/B 区室',
+        computeProfile: '16~32 线程, 32~64 GB RAM (大基因组高分辨率接触矩阵构建需充足内存)',
+        advantages: '涵盖从原始比对质控、矩阵构建、平衡归一化到 TAD 与区室识别的全流程套件',
+        limitations: '面对植物十 Gb 级异源多倍体需提前设定合理的染色体分块与 bin 大小',
+        recommendedScenario: '植物染色质三维折叠构象、TAD 绝缘边界与 A/B 区室空间分析'
+      },
+      {
+        methodId: 'meme-suite',
+        name: 'MEME Suite',
+        inputType: 'ChIP/ATAC 显著峰中心 FASTA 序列',
+        corePrinciple: '期望最大化 (EM) 算法无监督寻找位置权重矩阵 (PWM) + 极值分布 E-value 检验',
+        computeProfile: '4~8 线程, 8~16 GB RAM (数千条序列分钟级完成 de novo 基序搜索)',
+        advantages: '转录因子核心结合基序发现金标准，支持 TOMTOM 跨已知动植物数据库对齐',
+        limitations: '输入序列过长会引入背景噪音，推荐截取 Peak 顶峰中心 ±100 bp',
+        recommendedScenario: '转录因子结合位点 (TFBS) 从头基序发现与调控网络推断'
       }
     ],
     decisionTrees: [
@@ -550,6 +570,16 @@ export const methodComparisonMatrices: Record<string, DomainComparisonMatrix> = 
         condition: '需要检测植物基因启动子区域的染色质开放程度 (ATAC-seq)',
         recommendation: '首选 MACS3',
         rationale: 'MACS3 针对短读段堆叠峰的假阳性控制优秀，输出标准化窄峰 (NarrowPeak)。'
+      },
+      {
+        condition: '需要分析植物染色质三维构象、TAD 边界或 A/B 区室划分 (Hi-C)',
+        recommendation: '首选 HiCExplorer (配合 ICE 矩阵平衡)',
+        rationale: '提供端到端标准化分析工具链，算法稳健，能够有效压制大基因组实验偏差。'
+      },
+      {
+        condition: '从 ChIP-seq 或 ATAC-seq 核心富集峰序列中寻找未知转录因子结合模式',
+        recommendation: '首选 MEME Suite (MEME de novo + TOMTOM 数据库对齐)',
+        rationale: '经典的期望最大化算法与位置权重矩阵建模，准确识别核心调控基序并匹配已知 TF 家族。'
       }
     ]
   },
