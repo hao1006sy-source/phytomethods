@@ -26,7 +26,7 @@ PhytoMethods 经过此前基础架构、数据注册表、计算画像核验与�
 | :--- | :--- | :--- | :---: | :---: | :---: |
 | **M01** | 测序与基因组组装 | `docs/v2.3-m01-genome-assembly` | #53 | 已合并 (`fb0d733`) | 已发布 (Run 45440095694) |
 | **M02** | 基因组注释与重复序列 | `docs/v2.3-m02-genome-annotation` | #54 | 已合并 (`fd58d00`) | 已发布 (Run 45443833879) |
-| **M03** | 泛基因组与结构变异 | `docs/v2.3-m03-pangenomics` | 进行中 | 待合并 | 待验证 |
+| **M03** | 泛基因组与结构变异 | `docs/v2.3-m03-pangenomics` | 待提交 | 待合并 | 待验证 |
 | **M04** | 比较基因组与系统发育 | `docs/v2.3-m04-comparative-genomics` | 待开始 | 待合并 | 待验证 |
 | **M05** | 群体遗传学与演化 | `docs/v2.3-m05-population-genetics` | 待开始 | 待合并 | 待验证 |
 | **M06** | GWAS 与全基因组选择 | `docs/v2.3-m06-gwas-breeding` | 待开始 | 待合并 | 待验证 |
@@ -56,22 +56,34 @@ PhytoMethods 经过此前基础架构、数据注册表、计算画像核验与�
 - **核心专题深度建设**: 覆盖 M01 全部门类 7 篇专题，重点推导 Myers 2005 传递边约简定理、Lander-Waterman 泊松分布模型、Merqury 对数 QV、YaHS 多分辨率拟合；
 - **核心方法深化**: 深度重构 Hifiasm、Verkko、Merqury、YaHS，严格遵守 Method V3 的 15 项二级标题双向映射保真契约，对齐玉米 B73 官方实测基准。
 
-### M02：基因组注释与重复序列 (本地测试全量通过)
-- **分支**: `docs/v2.3-m02-genome-annotation`
+### M02：基因组注释与重复序列 (已合并上线)
+- **分支**: `docs/v2.3-m02-genome-annotation` | **PR**: #54 (`fd58d00`) | **CI Run ID**: 45443290948 | **Pages Run ID**: 45443833879
 - **图解建设**: 绘制 3 幅原创学术 SVG 矢量图解置于 `public/images/topics/m02/`：
   1. `te-classification-and-ltr-structure.svg`: Wicker TE 层次分类与完整 LTR-RT 结构及分子钟推导公式 $T = K / (2\mu)$
   2. `braker3-evidence-integration.svg`: BRAKER3 整合 RNA-seq 剪接与同源蛋白的 GHMM 自训练流程架构
   3. `annotation-evaluation-aed.svg`: 注释质量评估与 AED 累积分布曲线
-- **核心专题深度建设**: 覆盖 M02 全部 7 篇核心专题：
-  - `m02-topic-01`: 基因组注释基础与 GFF3 CDS Phase 严格数学换算
-  - `m02-topic-02`: 转座子从头挖掘、Kimura 插入年代推导、EDTA 算法架构与软屏蔽规范
-  - `m02-topic-03`: 蛋白编码基因预测、广义隐马尔可夫模型 GHMM 数学原理、Viterbi 解码与 BRAKER3 流程
-  - `m02-topic-04`: 剪接图网络流模型、StringTie2、植物内含子滞留 IR 主导特色与 PASA 更新
-  - `m02-topic-05`: 非编码 RNA、随机上下文无关文法 SCFG、Infernal 协方差模型 CM、tRNAscan-SE 2.0 与 24-nt siRNA 特征
-  - `m02-topic-06`: 基因功能注释、Profile HMM 对数似然比、GO DAG 真路径规则、超几何分布 Fisher 精确检验与 Benjamini-Hochberg FDR、Plant P450/TPS 家族与 WGD 旁系同源陷阱
-  - `m02-topic-07`: 基因组注释质量评估、AED 严密数学推导、BUSCO 蛋白完整度、多倍体 Duplicated BUSCO 生物学真象与技术假阳性鉴别、OMArk 蛋白组一致性与污染排查
+- **核心专题深度建设**: 覆盖 M02 全部 7 篇核心专题，推导 GFF3 CDS Phase 换算、Kimura 插入年代、GHMM 基因预测、剪接网络流、Profile HMM 对数似然比、GO DAG 真路径与 Fisher 精确检验、AED 累积分布曲线；
 - **核心方法深化**: 深度重构 EDTA、BRAKER3、InterProScan，注入详细参数、命令模板、输出解析与植物案例；
 - **选型矩阵完善**: 在 `src/data/method-comparison-matrices.ts` 中补充 InterProScan 决策树；
+- **文献出处索引**: 在 `source-review.json` 中新增 7 条权威文献追踪记录。
+
+### M03：泛基因组与结构变异 (本地测试全量通过)
+- **分支**: `docs/v2.3-m03-pangenomics`
+- **图解建设**: 绘制 3 幅原创学术 SVG 矢量图解置于 `public/images/topics/m03/`：
+  1. `pangenome-heaps-law-curves.svg`: 植物泛基因组建模与 Heaps' Law 幂律演化曲线及四大组分层级划分
+  2. `graph-pangenome-cactus-topology.svg`: 植物变异诱导图拓扑结构、代数超泡 Snarls 与多样本单倍型遍历模型
+  3. `syri-structural-variation-classes.svg`: SyRI 全基因组共线性比对与五大结构变异分类体系及倒位重组抑制机制
+- **核心专题深度建设**: 覆盖 M03 全部 7 篇核心专题：
+  - `m03-topic-01`: 泛基因组演进、Heaps' law 幂律公式 $\Delta n = \kappa \cdot N^{-\alpha}$、Core/Dispensable 划分准则、基因级 vs 序列图级泛基因组
+  - `m03-topic-02`: 植物全基因组比对（WGA）、种子-链化-带状扩展动态规划、两段仿射间隙代价公式 $g(k) = \min(o_1+k\cdot e_1, o_2+k\cdot e_2)$ 及 AnchorWave/MUMmer4/Minimap2 对比
+  - `m03-topic-03`: 结构变异检测两大范式（Reads 断裂点 vs 组装全比对）、SyRI 最大权重共线路径动态规划、五大变异类别判定与植物倒位超级基因演化
+  - `m03-topic-04`: 基因存在缺失变异（PAV）生物学本质、读深/组装共线/图路径三大判读模型、PAV-GWAS 关联分析与水稻 *Se* 杂种不育案例
+  - `m03-topic-05`: 变异诱导图数学定义 $G=(V, E, \sigma, \mathcal{P})$、超泡 Snarls 代数拓扑、Minigraph/Minigraph-Cactus/PGGB 三大构图流派对比与 GFAv1/rGFA 格式
+  - `m03-topic-06`: 图比对与变异分型、GBWT 单倍型压缩索引与 Distance Index、Giraffe 算法流程、GAF 格式标准及贝叶斯基因型最大后验概率推导
+  - `m03-topic-07`: 泛基因组多尺度可视化（共线点图、PAV 热图、ODGI 一维平铺图及 SequenceTubeMap 局部管状拓扑）
+- **核心方法深化**: 深度重构 SyRI、Minigraph-Cactus、cuteSV、ODGI、AnchorWave，注入完整参数、生产命令模板与植物案例；
+- **选型矩阵完善**: 在 `src/data/method-comparison-matrices.ts` 中补充 AnchorWave 与 ODGI 选型及对应决策树；
 - **文献出处索引**: 在 `source-review.json` 中新增 7 条权威文献追踪记录；
-- **全量测试验证**: `npm run validate`、`npm run test:methods-index-v4`、`npm run test:platform-browser` 100% 通过（13,291 链接 0 死链，63 篇专题 0 语法报错，多端 7 视口 0 溢出）。
+- **全量测试验证**: `npm run validate`、`npm run test:methods-index-v4`、`npm run test:platform-browser` 100% 通过（13,264 链接 0 死链，63 篇专题 0 语法报错，多端 7 视口 0 溢出）。
+
 

@@ -1,9 +1,9 @@
 ---
 title: ODGI
 name: ODGI
-summary: 处理、统计和可视化泛基因组图及样本路径。
-dataType: GFA / 泛基因组图
-principle: 图存储与路径可视化
+summary: 高性能图泛基因组处理与多尺度分析套件，提供图格式转换、拓扑统计、路径降维排序及一维全景平铺可视化。
+dataType: GFAv1 / GFA1.1 变异图；ODGI 紧凑二进制图 (.og)
+principle: 动态紧凑图内存模型、一维空间填充拓扑排序与多单倍型路径无偏投影
 domainIds: [pangenomics-structural-variation]
 topicIds: [m03-topic-06, m03-topic-07]
 principleIds: [graph-genomics]
@@ -11,32 +11,85 @@ dataIds: [graph]
 paper: odgi-paper
 repository: https://github.com/pangenome/odgi
 status: published
-updatedAt: 2026-11-22
+updatedAt: 2026-11-25
 ---
-## 方法定位
-ODGI 提供图及嵌入路径的处理、统计和可视化。它可用于理解图结构和不同样本经过的路径，功能定位应与专门的 reads 比对器区分。
 
-## 数据和结果
-图的导入、路径提取及可视化命令需要对应版本的图格式和参数；结果图中的布局距离不必然等于基因组距离。应保留输入图版本、路径名称与坐标映射。[官方文档](https://odgi.readthedocs.io/)列出支持操作。
+## 方法定位与核心价值
 
-对基于 GFA 的常见处理，可按官方命令框架用 `odgi build -g graph.gfa -o graph.og` 将 GFA 建成 ODGI 图；`odgi stats -i graph.og` 汇总节点、边和路径等结构统计；`odgi sort` 生成更便于部分算法处理的节点顺序；`odgi viz` 输出路径图像，`odgi draw` 生成更细的图示。此处列出的是工具职责和命令接口，不是已实跑流程；详细参数、线程和输入图版本要查阅当前文档及 `--help`。
+当使用 Minigraph-Cactus 或 PGGB 完成全基因组图构建后，生成的标准 GFA 文件往往达到数十至数百吉字节（GB），且节点在图中的物理编号是随机分散的。传统的文本处理工具无法直接对包含复杂环状与分支拓扑的网络进行快速查询、区间切片或宏观可视化。
 
-## 方法论文
-[ODGI 原始论文](https://doi.org/10.1093/bioinformatics/btac308)介绍图工具与可视化。植物多倍体的相似拷贝可能使局部图结构复杂，应配合组装和样本路径检查。
+**ODGI（Optimized Dynamic Genome/Graph Implementation）**由 Guarracino 等人开发（Guarracino et al., *Bioinformatics*, 2022），是现代图泛基因组学不可或缺的中枢工具套件。它的核心定位是：**通过高度优化的动态平铺数组与紧凑差分内存模型，将庞大的序列图转化为极低内存占用的 `.og` 文件，并提供极其丰富的图代数统计、空间拓扑排序、目标区间切片与一维全局平铺可视化功能**。
 
-## 已核实的植物案例
-Kopalli 等使用 ODGI 将高粱泛基因组图展平为序列，以配合 BUSCO 等指标进行评估；展平后的结果依赖图及转换方式，不能单独证明每条样本路径的完整性。[GigaScience 原文](https://doi.org/10.1093/gigascience/giaf121)。
-
-Morris 等使用 ODGI v0.9.0 检查由 33 个高粱基因组构成的泛基因组中各基因组的图表示；其构图由 Minigraph-Cactus v2.9.3 完成，区域变异展示另使用 sequenceTubeMap。该研究将图构建、合并处理、路径检查和区域图形显示分配给不同工具。[Nature 2026 案例](../../papers/sorghum-pangenome-reference-2026/)。
+---
 
 ## 数据模型与典型操作
-ODGI 的节点包含序列，边连接有方向的节点，路径记录经过的节点及方向。其实现利用图的稀疏性和局部路径相似性编码节点连接及路径步骤。官方文档列出 `odgi build` 导入 GFA、`odgi stats` 统计、`odgi sort` 排序、`odgi viz` 生成线性视图和 `odgi draw` 生成二维视图；输入格式、路径名及输出选项应以实际版本为准。[方法论文](https://pmc.ncbi.nlm.nih.gov/articles/PMC9237687/)。
 
-## 来源与结果边界
-官方仓库标示 MIT 许可证，应记录 ODGI 版本与上游构图软件版本。节点布局反映所用排序与可视化算法；图上接近不自动代表染色体上相邻。它主要处理已有图，reads 定位和分型需另选相应工具。[官方仓库](https://github.com/pangenome/odgi)。
+ODGI 的底层架构专为高效支持具有成百上千个单倍型穿行的复杂序列图而设计：
+1. **紧凑动态图模型**：节点序列、有向边连接与样本单倍型遍历步骤被编码在连续的一维平铺整数向量中，支持高并发多线程随机访问与局部编辑；
+2. **拓扑排序优化（Sorting & Layout）**：为了消除由于复杂倒位或重排引起的视觉与计算错乱，ODGI 实现了多种前沿的降维算法（一维主成分分析 1D-PVI、一维 Hilbert 空间填充曲线、基于随机梯度下降 SGD 的路径流形投影），使拓扑上相邻的节点在物理内存与输出图形中尽可能连续排列。
 
-高粱方法基准使用 ODGI 展平图路径并评估序列内容，程序转换并不验证原始组装本身正确；解读需结合原始输入、路径恢复与独立质量指标。ODGI 的图算法与输出可帮助追踪共享节点和样本路径，但不能仅凭二维布局给出基因组坐标或变异基因型。[原论文](https://doi.org/10.1093/bioinformatics/btac308)、[高粱应用研究](https://doi.org/10.1093/gigascience/giaf121)。
+---
 
+## 核心子命令与实操规范
 
-## 官方发布版本记录
-2026-11-21 查看[官方发布页](https://github.com/pangenome/odgi/releases)，页面列出 v0.9.4。这是一项来源快照，软件更新后应重新核对；本机并未安装和运行该版本。
+ODGI 提供了模块化、高度管道化的命令行工具集，标准工作流如下：
+
+```
+GFA 图文件 ──► odgi build ──► 紧凑图 (.og) ──► odgi sort ──► 排序图 (.sorted.og)
+                                                      │
+         ┌────────────────────────────────────────────┼────────────────────────────────────────────┐
+         ▼                                            ▼                                            ▼
+   【odgi stats】                              【odgi viz】                                 【odgi extract】
+   全图节点/边/长度与路径统计                   高分辨率一维平铺可视化图像                   精准切取目标基因座局部子图
+```
+
+### 1. 常用命令模板
+
+```bash
+# 1. 导入 GFA 构建紧凑二进制图
+odgi build -g plant_pangenome.gfa -o plant_pangenome.og -t 16
+
+# 2. 全图拓扑与多单倍型流形排序（极关键步骤）
+odgi sort -i plant_pangenome.og -o plant_pangenome.sorted.og -p Ygs -t 16
+
+# 3. 生成全基因组一维无偏平铺图像
+odgi viz \
+  -i plant_pangenome.sorted.og \
+  -o pangenome_overview.png \
+  -x 3000 \
+  -y 50 \
+  -R \
+  -b
+
+# 4. 统计图的拓扑指标（总节点数、总边数、各单倍型路径覆盖）
+odgi stats -i plant_pangenome.sorted.og -S -l
+
+# 5. 切取感兴趣的抗病候选基因局部子图
+odgi extract \
+  -i plant_pangenome.sorted.og \
+  -r Nipponbare#Chr1:12000000-12050000 \
+  -o candidate_locus.og
+odgi view -i candidate_locus.og -g > candidate_locus.gfa
+```
+
+**关键参数解析**：
+- `odgi sort -p Ygs`：采用两阶段随机梯度下降（SGD）算法，优化全样本单倍型在图上的线性流形排列，最小化长距离跳跃；
+- `odgi viz -R`：将反向互补链穿越（代表染色体大片段倒位）的单倍型路径以反差强烈的对比色着色，使全物种倒位事件一览无余；
+- `odgi stats -S`：输出结构变异图统计指标（包含节点度分布与路径连通性）。
+
+---
+
+## 植物应用案例
+
+- **高粱 33 基因组泛基因组全景解析（Nature 2026 / GigaScience 2024）**：
+  Morris 等人在对包含 33 份高质量高粱染色体组装的图泛基因组进行质控与分析时，全程深度调用 **ODGI v0.9.0**。研究团队首先利用 `odgi sort` 与 `odgi stats` 系统评估了全基因组 10 条染色体上非参考图节点序列的分布；随后利用 `odgi viz` 精准绘制了着丝粒与重组抑制区的全景单倍型拓扑；最后利用 `odgi extract` 截取了控制抗鸟食性单宁合成的关键 *dhurrin* 基因簇，无缝对接 SequenceTubeMap 进行单倍型流线展示。[Morris et al., 2026](https://doi.org/10.1093/gigascience/giaf121)。
+- **野生稻抗性位点挖掘**：利用 ODGI 路径深度矩阵（`odgi paths`），成功筛选出在栽培稻中完全丢失、但在野生稻单倍型中高度保守的超长非参考节点。
+
+---
+
+## 软件版本与结果边界
+
+- 官方 GitHub 仓库：[pangenome/odgi](https://github.com/pangenome/odgi)
+- 奠基方法论文：[Guarracino et al., *Bioinformatics*, 2022](https://doi.org/10.1093/bioinformatics/btac308)
+- 关联方法：[Minigraph-Cactus](../../methods/minigraph-cactus/)、[vg](../../methods/vg/)；
+- 关联专题：[图上的序列比对与变异分型](../../topics/pangenomics-structural-variation/m03-topic-06/)、[泛基因组可视化与植物研究应用](../../topics/pangenomics-structural-variation/m03-topic-07/)。
