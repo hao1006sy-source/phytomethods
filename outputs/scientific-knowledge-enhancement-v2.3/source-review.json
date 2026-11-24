@@ -265,6 +265,90 @@
       "sectionLocator": "ODGI design & Visualization algorithms",
       "verifiedDate": "2026-11-25",
       "status": "SOURCE_VERIFIED"
+    },
+    {
+      "milestone": "M04",
+      "domainId": "comparative-genomics",
+      "topicOrMethod": "m04-topic-01",
+      "claim": "OrthoFinder 采用序列长度归一化消除比对偏倚，结合 MCL 马尔可夫图聚类算子与 DLCPar 系统发育树调和推断直系与旁系同源关系",
+      "sourceType": "peer_reviewed_paper",
+      "citation": "Emms DM, Kelly S. (2019). OrthoFinder: phylogenetic orthology inference for comparative genomics. Genome Biology, 20(1), 238.",
+      "doi": "10.1186/s13059-019-1832-y",
+      "sectionLocator": "Length normalization & Gene tree reconciliation algorithm",
+      "verifiedDate": "2026-11-25",
+      "status": "SOURCE_VERIFIED"
+    },
+    {
+      "milestone": "M04",
+      "domainId": "comparative-genomics",
+      "topicOrMethod": "m04-topic-02",
+      "claim": "CAFE 5 基于连续时间马尔可夫生灭随机过程，引入 Gamma 演化速率异质性分布与测序注释误差修正矩阵，使用似然比检验判定适应性家族扩张收缩",
+      "sourceType": "peer_reviewed_paper",
+      "citation": "Mendes FK, Vanderpool D, Fulton B, Hahn MW. (2020). CAFE 5: models of gene family evolution with rate heterogeneity and assembly errors. Bioinformatics, 36(22-23), 5529–5531.",
+      "doi": "10.1093/bioinformatics/btaa1022",
+      "sectionLocator": "Gamma rate heterogeneity & Error model estimation",
+      "verifiedDate": "2026-11-25",
+      "status": "SOURCE_VERIFIED"
+    },
+    {
+      "milestone": "M04",
+      "domainId": "comparative-genomics",
+      "topicOrMethod": "m04-topic-03",
+      "claim": "MCScanX 采用二维加权网格动态规划算法搜索最长共线链，基于几何分布评估共线块显著性，并将基因分类为五大发生学复制机制",
+      "sourceType": "peer_reviewed_paper",
+      "citation": "Wang Y, Tang H, DeBarry JD, et al. (2012). MCScanX: a toolkit for detection and evolutionary analysis of gene synteny and collinearity. Nucleic Acids Research, 40(7), e49.",
+      "doi": "10.1093/nar/gkr1293",
+      "sectionLocator": "Collinear block dynamic programming & Duplicate gene classification",
+      "verifiedDate": "2026-11-25",
+      "status": "SOURCE_VERIFIED"
+    },
+    {
+      "milestone": "M04",
+      "domainId": "comparative-genomics",
+      "topicOrMethod": "m04-topic-04",
+      "claim": "IQ-TREE 2 整合 Felsenstein 剪枝算法、ModelFinder BIC 准则、UFBoot2 RELL 近似超快自展检验与 PMSF 位点异质模型解决长枝吸引",
+      "sourceType": "peer_reviewed_paper",
+      "citation": "Minh BQ, Schmidt HA, Chernomor O, et al. (2020). IQ-TREE 2: New models and efficient methods for phylogenomic inference in the genomic era. Molecular Biology and Evolution, 37(5), 1530–1534.",
+      "doi": "10.1093/molbev/msaa015",
+      "sectionLocator": "ModelFinder & Ultrafast bootstrap 2 (UFBoot2)",
+      "verifiedDate": "2026-11-25",
+      "status": "SOURCE_VERIFIED"
+    },
+    {
+      "milestone": "M04",
+      "domainId": "comparative-genomics",
+      "topicOrMethod": "m04-topic-05",
+      "claim": "MCMCTree 采用独立与自回归松弛分子钟模型，整合化石软边界先验与海森矩阵泰勒展开正态近似，高效完成全基因组级超矩阵绝对地质定年",
+      "sourceType": "peer_reviewed_paper",
+      "citation": "Yang Z. (2007). PAML 4: phylogenetic analysis by maximum likelihood. Molecular Biology and Evolution, 24(8), 1586–1591.",
+      "doi": "10.1093/molbev/msm088",
+      "sectionLocator": "MCMCTree approximate likelihood & Soft-bound calibration",
+      "verifiedDate": "2026-11-25",
+      "status": "SOURCE_VERIFIED"
+    },
+    {
+      "milestone": "M04",
+      "domainId": "comparative-genomics",
+      "topicOrMethod": "m04-topic-06",
+      "claim": "wgd v2 整合密码子同义替换率 Ks 计算、染色体共线性物理锚定过滤、高斯混合模型（GMM）解卷积与分子钟绝对定年，解析植物古多倍化事件",
+      "sourceType": "peer_reviewed_paper",
+      "citation": "Chen H, Zwaenepoel A, Van de Peer Y. (2024). wgd v2: an integrated suite for the analysis of whole-genome duplications. Bioinformatics, 40(5), btae272.",
+      "doi": "10.1093/bioinformatics/btae272",
+      "sectionLocator": "wgd v2 modular architecture & GMM mixture modeling",
+      "verifiedDate": "2026-11-25",
+      "status": "SOURCE_VERIFIED"
+    },
+    {
+      "milestone": "M04",
+      "domainId": "comparative-genomics",
+      "topicOrMethod": "m04-topic-07",
+      "claim": "PAML codeml 基于 Goldman-Yang 密码子演化矩阵，利用位点与分支-位点模型进行似然比检验，结合 BEB 后验概率精确定位受达尔文正选择的关键氨基酸位点",
+      "sourceType": "peer_reviewed_paper",
+      "citation": "Yang Z, Nielsen R. (2002). Codon-substitution models for detecting molecular adaptation at individual sites along specific lineages. Molecular Biology and Evolution, 19(6), 908–917.",
+      "doi": "10.1093/oxfordjournals.molbev.a004148",
+      "sectionLocator": "Branch-site model & Bayes empirical Bayes (BEB) calculation",
+      "verifiedDate": "2026-11-25",
+      "status": "SOURCE_VERIFIED"
     }
   ]
 }

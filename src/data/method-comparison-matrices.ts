@@ -277,6 +277,36 @@ export const methodComparisonMatrices: Record<string, DomainComparisonMatrix> = 
         advantages: '严格统计推断特定谱系中显著收缩或扩张的基因家族',
         limitations: '物种树必须为时间超度量树，且易受极端离群大家族干扰',
         recommendedScenario: '环境适应性演化、代谢关键通路基因扩张分析'
+      },
+      {
+        methodId: 'iqtree2',
+        name: 'IQ-TREE 2',
+        inputType: 'DNA / 蛋白质多序列比对（FASTA/Phylip/Nexus）',
+        corePrinciple: '极大似然法、Felsenstein 剪枝算法、ModelFinder BIC 准则与 UFBoot2 快速自展',
+        computeProfile: '16~32 线程, 16~64 GB RAM (单拷贝超矩阵建树数十分钟至数小时完成)',
+        advantages: '模型库极丰富，UFBoot2 速度提升百倍，支持 PMSF 位点异质模型攻克长枝吸引',
+        limitations: '对快速辐射分化引起的不完全谱系分选（ILS）需结合多物种溯祖方法评估',
+        recommendedScenario: '系统发育基因组学超矩阵建树、物种树构建与抗长枝吸引分析'
+      },
+      {
+        methodId: 'paml',
+        name: 'PAML',
+        inputType: '编码序列 CDS 比对 + 拓扑 Newick 树 (codeml) / 化石校准树 (MCMCTree)',
+        corePrinciple: 'Goldman-Yang 密码子演化模型 (GY94) 与 MCMC 贝叶斯松弛分子钟',
+        computeProfile: '单核或多进程并行, 4~16 GB RAM (MCMCTree 正态近似法加速显著)',
+        advantages: '分子演化领域理论金标准，高精度定位正选择位点与贝叶斯绝对地质定年',
+        limitations: '输入格式要求严苛（严格无移码密码子比对），控制文件配置复杂',
+        recommendedScenario: '基因正选择分析 (BEB 位点)、分支位点模型检验与化石绝对地质定年'
+      },
+      {
+        methodId: 'wgd',
+        name: 'wgd v2',
+        inputType: '编码序列 CDS + 蛋白质 FASTA + 基因注释 GFF3',
+        corePrinciple: '同义替换率 Ks 计算、共线性锚点物理过滤与 GMM 高斯混合模型解卷积',
+        computeProfile: '8~16 线程, 16~32 GB RAM (全基因组 Ks 谱计算与拟合通常在 1~3 小时完成)',
+        advantages: '全流程一站式自动化，共线性锚定有效滤除 90% 串联重复噪声，自动评估 WGD 峰数',
+        limitations: '深古老事件（Ks > 2.0）受多重替换饱和影响失真，需结合宏观共线性深度分析',
+        recommendedScenario: '全基因组古多倍化事件检测、Ks 演化谱绘制与加倍事件地质定年'
       }
     ],
     decisionTrees: [
@@ -288,12 +318,27 @@ export const methodComparisonMatrices: Record<string, DomainComparisonMatrix> = 
       {
         condition: '探讨植物是否发生过特定 WGD 古四倍化事件，分析同源共线性',
         recommendation: '首选 MCScanX (结合 wgd 软件包)',
-        rationale: '经典经典共线性分析算法，与 Ks 谱分析完美结合。'
+        rationale: '经典共线性分析算法，与 Ks 谱分析完美结合。'
       },
       {
         condition: '探讨耐旱或特定农艺性状演化中，哪些基因家族发生了显著扩张',
         recommendation: '首选 CAFE 5',
         rationale: '提供严格的 P 值统计检验，直接指出扩张分支与基因家族 ID。'
+      },
+      {
+        condition: '利用数百个单拷贝核基因超矩阵构建高置信物种系统发育树',
+        recommendation: '首选 IQ-TREE 2',
+        rationale: '内置 ModelFinder 自动选择最优替换模型，UFBoot2 提供稳健分支支持度。'
+      },
+      {
+        condition: '检测抗病受体或关键酶编码基因是否受到达尔文正选择，定位特定氨基酸',
+        recommendation: '首选 PAML (codeml)',
+        rationale: '位点与分支-位点模型金标准，输出统计显著的 BEB 正选择功能位点。'
+      },
+      {
+        condition: '分析植物古多倍化全套 Ks 谱，拟合高斯混合模型并提取共线锚点',
+        recommendation: '首选 wgd v2',
+        rationale: '新一代集成化古多倍化套件，自动化执行从 Diamond 比对、Ks 计算到 GMM 解卷积。'
       }
     ]
   },

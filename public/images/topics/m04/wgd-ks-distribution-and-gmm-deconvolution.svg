@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 520" width="100%" height="100%" style="background: transparent; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <linearGradient id="bg-grad-wgd" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" stop-opacity="0.03" />
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0.08" />
+    </linearGradient>
+    <filter id="shadow-wgd" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.08" />
+    </filter>
+  </defs>
+
+  <!-- 总体画框与标题 -->
+  <rect x="15" y="15" width="970" height="490" rx="16" fill="url(#bg-grad-wgd)" stroke="#cbd5e1" stroke-width="1.5" />
+  <text x="40" y="48" font-size="18" font-weight="700" fill="#0f172a">植物全基因组加倍 (WGD) Ks 演化谱与高斯混合解卷积模型</text>
+  <text x="40" y="70" font-size="12" fill="#64748b">同义替换率时钟推断、背景小规模复制指数衰减与远古多倍化正态峰混合拟合分解 (GMM)</text>
+
+  <!-- 左板块：Ks 谱坐标系与曲线图解 -->
+  <g transform="translate(40, 95)">
+    <rect x="0" y="0" width="460" height="380" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" filter="url(#shadow-wgd)" />
+    <path d="M 0 12 Q 0 0 12 0 L 448 0 Q 460 0 460 12 L 460 40 L 0 40 Z" fill="#f0fdf4" />
+    <text x="16" y="26" font-size="14" font-weight="700" fill="#15803d">1. 旁系同源基因对 Ks 频率分布谱 (Ks Distribution)</text>
+
+    <!-- 坐标系 -->
+    <g transform="translate(50, 60)">
+      <!-- 坐标轴 -->
+      <line x1="0" y1="220" x2="380" y2="220" stroke="#334155" stroke-width="2" />
+      <line x1="0" y1="0" x2="0" y2="220" stroke="#334155" stroke-width="2" />
+
+      <!-- 坐标轴标签 -->
+      <text x="385" y="225" font-size="11" font-weight="600" fill="#334155">Ks</text>
+      <text x="-35" y="-10" font-size="11" font-weight="600" fill="#334155">对数/频数</text>
+
+      <!-- 刻度线 -->
+      <line x1="70" y1="220" x2="70" y2="225" stroke="#334155" stroke-width="1.5" />
+      <text x="70" y="238" font-size="10" fill="#64748b" text-anchor="middle">0.3</text>
+      <line x1="160" y1="220" x2="160" y2="225" stroke="#334155" stroke-width="1.5" />
+      <text x="160" y="238" font-size="10" fill="#64748b" text-anchor="middle">0.8</text>
+      <line x1="260" y1="220" x2="260" y2="225" stroke="#334155" stroke-width="1.5" />
+      <text x="260" y="238" font-size="10" fill="#64748b" text-anchor="middle">1.5</text>
+      <line x1="350" y1="220" x2="350" y2="225" stroke="#334155" stroke-width="1.5" />
+      <text x="350" y="238" font-size="10" fill="#64748b" text-anchor="middle">2.5 (饱和)</text>
+
+      <!-- 曲线 1：背景连续小规模复制 (指数衰减，灰色虚线/填充) -->
+      <path d="M 5 20 Q 30 180 120 210 L 370 218 L 370 220 L 5 220 Z" fill="#f1f5f9" opacity="0.8" />
+      <path d="M 5 20 Q 30 180 120 210 L 370 218" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="4,4" />
+      <text x="50" y="110" font-size="9" fill="#64748b">背景串联/近端复制</text>
+      <text x="50" y="124" font-size="9" fill="#94a3b8">(常态生灭指数衰减)</text>
+
+      <!-- 曲线 2：近期 WGD 峰 (例如 Ks≈0.3，如玉米亚基因组或豆科特异加倍) -->
+      <!-- 高斯峰 1 (绿色) -->
+      <path d="M 30 220 C 50 220 55 100 75 100 C 95 100 100 220 120 220 Z" fill="#dcfce7" opacity="0.6" />
+      <path d="M 30 220 C 50 220 55 100 75 100 C 95 100 100 220 120 220" fill="none" stroke="#16a34a" stroke-width="2.5" />
+      <circle cx="75" cy="100" r="4" fill="#15803d" />
+      <text x="75" y="85" font-size="10" font-weight="700" fill="#15803d" text-anchor="middle">近期 WGD 峰</text>
+      <text x="75" y="97" font-size="9" fill="#16a34a" text-anchor="middle">Ks ≈ 0.32</text>
+
+      <!-- 曲线 3：古老 WGD 峰 (例如 Ks≈0.85，核心真双子叶 γ 六倍化或单子叶 σ/ρ) -->
+      <path d="M 110 220 C 135 220 145 140 170 140 C 195 140 205 220 230 220 Z" fill="#e0e7ff" opacity="0.6" />
+      <path d="M 110 220 C 135 220 145 140 170 140 C 195 140 205 220 230 220" fill="none" stroke="#4338ca" stroke-width="2.5" />
+      <circle cx="170" cy="140" r="4" fill="#3730a3" />
+      <text x="170" y="125" font-size="10" font-weight="700" fill="#3730a3" text-anchor="middle">古老多倍化 (如 γ 事件)</text>
+      <text x="170" y="137" font-size="9" fill="#4338ca" text-anchor="middle">Ks ≈ 0.88</text>
+
+      <!-- 直系同源分化基准线 (物种分化时间定位) -->
+      <line x1="125" y1="40" x2="125" y2="220" stroke="#dc2626" stroke-width="2" stroke-dasharray="3,3" />
+      <text x="125" y="32" font-size="10" font-weight="700" fill="#dc2626" text-anchor="middle">物种分化参考线 (Orthologs)</text>
+      <text x="125" y="52" font-size="8" fill="#b91c1c" text-anchor="middle">Ks_ortho ≈ 0.55</text>
+      
+      <!-- 说明文字 -->
+      <text x="135" y="180" font-size="9" fill="#b91c1c">分化发生在近期 WGD 之前，古老 WGD 之后</text>
+    </g>
+
+    <text x="20" y="335" font-size="10" fill="#475569">• 排除 $K_s &gt; 2.0$ 区域（多重替换饱和、回复突变抹除中性线性特征）</text>
+    <text x="20" y="355" font-size="10" fill="#475569">• 结合共线性（Synteny-anchored paralogs）能大幅剔除非多倍化背景噪音</text>
+  </g>
+
+  <!-- 右板块：数学原理与高斯混合解卷积模型 -->
+  <g transform="translate(520, 95)">
+    <rect x="0" y="0" width="440" height="380" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" filter="url(#shadow-wgd)" />
+    <path d="M 0 12 Q 0 0 12 0 L 428 0 Q 440 0 440 12 L 440 40 L 0 40 Z" fill="#ecfeff" />
+    <text x="16" y="26" font-size="14" font-weight="700" fill="#0e7490">2. 数学模型与分子钟时间换算推导</text>
+
+    <!-- 公式 1：Ks 分子钟换算 -->
+    <g transform="translate(18, 55)">
+      <rect x="0" y="0" width="405" height="90" rx="8" fill="#f0fdfa" stroke="#99f6e4" stroke-width="1" />
+      <text x="14" y="22" font-size="11" font-weight="700" fill="#0f766e">分子钟定年公式 (Molecular Clock):</text>
+      <text x="14" y="48" font-size="13" font-weight="700" fill="#0d9488">T = \frac{K_s}{2r}</text>
+      <text x="14" y="75" font-size="10" fill="#134e4a">其中 $r$ 为中性同义替换速率（植物典型取值：$r \approx 6.5 \times 10^{-9}$ 次/位点/年）</text>
+    </g>
+
+    <!-- 公式 2：GMM 高斯混合模型分解 -->
+    <g transform="translate(18, 155)">
+      <rect x="0" y="0" width="405" height="110" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1" />
+      <text x="14" y="20" font-size="11" font-weight="700" fill="#0f172a">高斯混合解卷积 (GMM Deconvolution):</text>
+      <text x="14" y="45" font-size="12" font-weight="700" fill="#0284c7">P(K_s) = \pi_0 \lambda e^{-\lambda K_s} + \sum_{k=1}^K \pi_k \frac{1}{\sqrt{2\pi}\sigma_k} e^{-\frac{(K_s - \mu_k)^2}{2\sigma_k^2}}</text>
+      <text x="14" y="75" font-size="10" fill="#334155">• <tspan font-weight="700">EM 算法:</tspan> 迭代极大似然估计各峰权重 $\pi_k$、均值 $\mu_k$ 与方差 $\sigma_k^2$</text>
+      <text x="14" y="95" font-size="10" fill="#334155">• <tspan font-weight="700">模型选择:</tspan> 使用 AIC / BIC 惩罚项严格确定加倍事件峰数量 $K$</text>
+    </g>
+
+    <!-- 实践注意事项 -->
+    <g transform="translate(18, 275)">
+      <rect x="0" y="0" width="405" height="90" rx="8" fill="#fffbeb" stroke="#fef08a" stroke-width="1" />
+      <text x="14" y="20" font-size="11" font-weight="700" fill="#854d0e">植物比较基因组加倍判定核心准则：</text>
+      <text x="14" y="42" font-size="10" fill="#713f12">1. <tspan font-weight="700">共线性支持:</tspan> 只有多倍化产生的旁系同源基因对在基因组上呈大片段共线性块</text>
+      <text x="14" y="60" font-size="10" fill="#713f12">2. <tspan font-weight="700">倍性比例:</tspan> 结合 MCScanX 分析 1:1, 1:2, 1:4 深度比例，区分古多倍化与异源多倍化</text>
+      <text x="14" y="78" font-size="10" fill="#713f12">3. <tspan font-weight="700">分化时间锚定:</tspan> 必须引入近缘未加倍外类群（如葡萄对真双子叶）作为分化对照</text>
+    </g>
+  </g>
+</svg>

@@ -26,8 +26,8 @@ PhytoMethods 经过此前基础架构、数据注册表、计算画像核验与�
 | :--- | :--- | :--- | :---: | :---: | :---: |
 | **M01** | 测序与基因组组装 | `docs/v2.3-m01-genome-assembly` | #53 | 已合并 (`fb0d733`) | 已发布 (Run 45440095694) |
 | **M02** | 基因组注释与重复序列 | `docs/v2.3-m02-genome-annotation` | #54 | 已合并 (`fd58d00`) | 已发布 (Run 45443833879) |
-| **M03** | 泛基因组与结构变异 | `docs/v2.3-m03-pangenomics` | 待提交 | 待合并 | 待验证 |
-| **M04** | 比较基因组与系统发育 | `docs/v2.3-m04-comparative-genomics` | 待开始 | 待合并 | 待验证 |
+| **M03** | 泛基因组与结构变异 | `docs/v2.3-m03-pangenomics` | #55 | 已合并 (`aece25d`) | 已发布 (Run 45447742843) |
+| **M04** | 比较基因组与系统发育 | `docs/v2.3-m04-comparative-genomics` | 待提交 | 待合并 | 待验证 |
 | **M05** | 群体遗传学与演化 | `docs/v2.3-m05-population-genetics` | 待开始 | 待合并 | 待验证 |
 | **M06** | GWAS 与全基因组选择 | `docs/v2.3-m06-gwas-breeding` | 待开始 | 待合并 | 待验证 |
 | **M07** | 表观与三维基因组学 | `docs/v2.3-m07-epigenomics-3d` | 待开始 | 待合并 | 待验证 |
@@ -67,23 +67,36 @@ PhytoMethods 经过此前基础架构、数据注册表、计算画像核验与�
 - **选型矩阵完善**: 在 `src/data/method-comparison-matrices.ts` 中补充 InterProScan 决策树；
 - **文献出处索引**: 在 `source-review.json` 中新增 7 条权威文献追踪记录。
 
-### M03：泛基因组与结构变异 (本地测试全量通过)
-- **分支**: `docs/v2.3-m03-pangenomics`
+### M03：泛基因组与结构变异 (已合并上线)
+- **分支**: `docs/v2.3-m03-pangenomics` | **PR**: #55 (`aece25d`) | **CI Run ID**: 45447252321 | **Pages Run ID**: 45447742843
 - **图解建设**: 绘制 3 幅原创学术 SVG 矢量图解置于 `public/images/topics/m03/`：
   1. `pangenome-heaps-law-curves.svg`: 植物泛基因组建模与 Heaps' Law 幂律演化曲线及四大组分层级划分
   2. `graph-pangenome-cactus-topology.svg`: 植物变异诱导图拓扑结构、代数超泡 Snarls 与多样本单倍型遍历模型
   3. `syri-structural-variation-classes.svg`: SyRI 全基因组共线性比对与五大结构变异分类体系及倒位重组抑制机制
-- **核心专题深度建设**: 覆盖 M03 全部 7 篇核心专题：
-  - `m03-topic-01`: 泛基因组演进、Heaps' law 幂律公式 $\Delta n = \kappa \cdot N^{-\alpha}$、Core/Dispensable 划分准则、基因级 vs 序列图级泛基因组
-  - `m03-topic-02`: 植物全基因组比对（WGA）、种子-链化-带状扩展动态规划、两段仿射间隙代价公式 $g(k) = \min(o_1+k\cdot e_1, o_2+k\cdot e_2)$ 及 AnchorWave/MUMmer4/Minimap2 对比
-  - `m03-topic-03`: 结构变异检测两大范式（Reads 断裂点 vs 组装全比对）、SyRI 最大权重共线路径动态规划、五大变异类别判定与植物倒位超级基因演化
-  - `m03-topic-04`: 基因存在缺失变异（PAV）生物学本质、读深/组装共线/图路径三大判读模型、PAV-GWAS 关联分析与水稻 *Se* 杂种不育案例
-  - `m03-topic-05`: 变异诱导图数学定义 $G=(V, E, \sigma, \mathcal{P})$、超泡 Snarls 代数拓扑、Minigraph/Minigraph-Cactus/PGGB 三大构图流派对比与 GFAv1/rGFA 格式
-  - `m03-topic-06`: 图比对与变异分型、GBWT 单倍型压缩索引与 Distance Index、Giraffe 算法流程、GAF 格式标准及贝叶斯基因型最大后验概率推导
-  - `m03-topic-07`: 泛基因组多尺度可视化（共线点图、PAV 热图、ODGI 一维平铺图及 SequenceTubeMap 局部管状拓扑）
-- **核心方法深化**: 深度重构 SyRI、Minigraph-Cactus、cuteSV、ODGI、AnchorWave，注入完整参数、生产命令模板与植物案例；
-- **选型矩阵完善**: 在 `src/data/method-comparison-matrices.ts` 中补充 AnchorWave 与 ODGI 选型及对应决策树；
+- **核心专题深度建设**: 覆盖 M03 全部 7 篇核心专题（Heaps' law 幂律拟合推导、WGA 两段仿射间隙代价、SyRI 动态规划共线路径、PAV 判读模型与 PAV-GWAS、超泡 Snarls 代数拓扑、Giraffe 图比对与贝叶斯分型、ODGI 一维平铺图及 SequenceTubeMap 局部管状拓扑）；
+- **核心方法深化**: 深度重构 SyRI、Minigraph-Cactus、cuteSV、ODGI、AnchorWave；
+- **选型矩阵完善**: 在 `src/data/method-comparison-matrices.ts` 中补充 AnchorWave 与 ODGI 选型及决策树；
 - **文献出处索引**: 在 `source-review.json` 中新增 7 条权威文献追踪记录；
-- **全量测试验证**: `npm run validate`、`npm run test:methods-index-v4`、`npm run test:platform-browser` 100% 通过（13,264 链接 0 死链，63 篇专题 0 语法报错，多端 7 视口 0 溢出）。
+- **部署发布验证**: PR #55 Squash 合并，Pages 自动化持续发布成功上线。
+
+### M04：比较基因组与系统发育 (本地测试全量通过)
+- **分支**: `docs/v2.3-m04-comparative-genomics`
+- **图解建设**: 绘制 3 幅原创学术 SVG 矢量图解置于 `public/images/topics/m04/`：
+  1. `orthofinder-mcl-and-reconciliation.svg`: OrthoFinder 比对长度归一化、MCL 矩阵扩展与膨胀算子迭代及 DLCPar 物种树调和
+  2. `cafe5-birth-death-evolution-model.svg`: CAFE 5 超度量物种树上的连续时间马尔可夫生灭模型、Gamma 速率异质性拟合与误差校正
+  3. `wgd-ks-distribution-and-gmm-deconvolution.svg`: 植物全基因组加倍 WGD、$K_s$ 同义替换率中性时钟谱与 GMM 高斯混合模型解卷积
+- **核心专题深度建设**: 覆盖 M04 全部 7 篇核心专题：
+  - `m04-topic-01`: 直系同源与旁系同源、比对长度偏差纠正 $S'_{ij} = S_{ij} \cdot \frac{\min(L_i,L_j)}{\max(L_i,L_j)}$、MCL 马尔可夫图聚类算子、DLCPar 基因树-物种树调和
+  - `m04-topic-02`: 基因家族扩张与收缩、连续时间马尔可夫生灭过程转移概率解析公式、离散 Gamma 速率异质性分布、组装注释误差控制与 LRT 似然比检验
+  - `m04-topic-03`: 全基因组共线性、二维网格锚点最长递增链动态规划打分方程 $S(i) = s_i + \max[S(j)-G(j,i)]$、间隙惩罚、MCScanX 五大基因复制机制分类
+  - `m04-topic-04`: 系统发育基因组学、Felsenstein 剪枝算法、ModelFinder BIC 准则、UFBoot2 RELL 近似超快自展检验、PMSF 位点异质模型与 ILS 多物种溯祖
+  - `m04-topic-05`: 物种分化时间与分子钟、速率-时间不可识别性、松弛分子钟（IR / AR）、BASEML 海森矩阵正态近似加速法与化石软边界先验
+  - `m04-topic-06`: 全基因组加倍与古多倍化、同义替换率中性时钟 $T=K_s/(2r)$、饱和突变过滤、高斯混合模型（GMM）解卷积拟合与三维交叉证据链
+  - `m04-topic-07`: 选择压力与分子进化、Goldman-Yang 密码子演化矩阵（GY94）、$\omega=d_N/d_S$ 物理意义、Site 与 Branch-Site 检验模型及 BEB 正选择位点识别
+- **核心方法深化**: 深度重构 OrthoFinder、MCScanX、CAFE 5、IQ-TREE 2、PAML、wgd v2 六大核心方法，补充完整算法推导、生产命令模板、输出解析与植物案例；
+- **选型矩阵完善**: 在 `src/data/method-comparison-matrices.ts` 扩充 IQ-TREE 2、PAML、wgd v2 选型档案与全套决策树；
+- **文献出处索引**: 在 `source-review.json` 中新增 7 条权威文献追踪记录；
+- **全量测试验证**: `npm run validate`、`npm run test:methods-index-v4`、`npm run test:platform-browser` 100% 通过（13,291 链接 0 死链，63 篇专题 0 语法报错，多端 7 视口 0 溢出）。
+
 
 
