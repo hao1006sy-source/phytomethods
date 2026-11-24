@@ -1,0 +1,33 @@
+{
+  "reviewVersion": "Scientific Content Review V2",
+  "reviewedAt": "2026-11-24",
+  "scopeCounts": {
+    "topics": 63,
+    "methods": 59,
+    "papers": 130,
+    "tutorials": 10,
+    "computeProfiles": 12,
+    "workflows": 3,
+    "genomeSpecies": 10,
+    "inventoryTotal": 287
+  },
+  "evidenceIntegrity": {
+    "totalGraphEdges": 743,
+    "totalGraphNodes": 304,
+    "totalEvidenceRecords": 801,
+    "sourceCheckedRecords": 600,
+    "structurallyValidRecords": 201,
+    "unresolvedCount": 0
+  },
+  "tutorialVerification": {
+    "verifiedCount": 8,
+    "templateCount": 2,
+    "cafe5PathFix": "CONFIRMED_UNIFIED"
+  },
+  "searchAndInteraction": {
+    "searchPureTextResult": "CONFIRMED_ZERO_THUMBS",
+    "searchCountScopeSplit": "CONFIRMED_DISTINGUISHED",
+    "paperFiltersHistoryRestore": "CONFIRMED_DEBOUNCED_AND_RESTORED"
+  },
+  "overallConclusion": "ALL_PASS"
+}

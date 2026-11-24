@@ -364,9 +364,9 @@ export const tutorialTestDatasets: TutorialTestDataset[] = [
     format: '文本文件 (系统发育树 .txt + 家族计数表 .txt)',
     compressedBytes: 380000,
     softwareVersion: 'CAFE5 1.1 (commit 8d3ab08)',
-    installCommand: 'git clone --branch v5.1 --depth 1 https://github.com/hahnlab/CAFE5.git && cd CAFE5 && autoreconf -fi && ./configure && make -j4',
+    installCommand: 'git clone --branch v5.1 --depth 1 https://github.com/hahnlab/CAFE5.git && cd CAFE5 && autoreconf -fi && ./configure && make -j4 && cd ..',
     downloadCommand: 'curl -sLO https://raw.githubusercontent.com/hahnlab/CAFE5/8d3ab080796eafa192241a1067398832d886592d/examples/mammals_tree.txt && curl -sLO https://raw.githubusercontent.com/hahnlab/CAFE5/8d3ab080796eafa192241a1067398832d886592d/examples/mammal_gene_families.txt',
-    quickStartCommand: 'cafe5 -t mammals_tree.txt -i mammal_gene_families.txt -p -c 4 -o results-base && cafe5 -t mammals_tree.txt -i mammal_gene_families.txt -p -k 2 -c 4 -o results-gamma',
+    quickStartCommand: 'export CAFE5_BIN="${CAFE5_BIN:-./CAFE5/bin/cafe5}" && "$CAFE5_BIN" -t mammals_tree.txt -i mammal_gene_families.txt -p -c 4 -o results-base && "$CAFE5_BIN" -t mammals_tree.txt -i mammal_gene_families.txt -p -k 2 -c 4 -o results-gamma',
     expectedOutputs: [
       'Base_results.txt / Gamma_results.txt (最大似然估计速率 λ 与收敛报告)',
       'Base_family_results.txt (全基因组显著扩张/收缩基因家族判定表)',
