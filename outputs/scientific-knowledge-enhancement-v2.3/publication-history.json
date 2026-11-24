@@ -1,5 +1,31 @@
 {
   "version": "2.3.0",
   "description": "PhytoMethods V2.3 持续发布与部署日志",
-  "history": []
+  "history": [
+    {
+      "milestone": "M01",
+      "domainId": "genome-assembly",
+      "prNumber": 53,
+      "prTitle": "docs: M01 测序与基因组组装科学内容深度重塑与原创矢量图解 (V2.3)",
+      "mergeCommit": "fb0d733",
+      "mergedAt": "2026-11-24T16:41:45Z",
+      "githubPagesRunId": 45440095694,
+      "deployedAt": "2026-11-24T16:42:50Z",
+      "deploymentStatus": "SUCCESS",
+      "liveUrl": "https://hao1006sy-source.github.io/phytomethods/topics/genome-assembly/",
+      "verifiedPages": [
+        "https://hao1006sy-source.github.io/phytomethods/topics/genome-assembly/assembly-basics/",
+        "https://hao1006sy-source.github.io/phytomethods/topics/genome-assembly/assembly-graphs/",
+        "https://hao1006sy-source.github.io/phytomethods/topics/genome-assembly/assembly-quality/",
+        "https://hao1006sy-source.github.io/phytomethods/topics/genome-assembly/complete-assembly/",
+        "https://hao1006sy-source.github.io/phytomethods/topics/genome-assembly/haplotype-resolution/",
+        "https://hao1006sy-source.github.io/phytomethods/topics/genome-assembly/hic-scaffolding/",
+        "https://hao1006sy-source.github.io/phytomethods/topics/genome-assembly/sequencing-data/",
+        "https://hao1006sy-source.github.io/phytomethods/methods/hifiasm/",
+        "https://hao1006sy-source.github.io/phytomethods/methods/verkko/",
+        "https://hao1006sy-source.github.io/phytomethods/methods/merqury/",
+        "https://hao1006sy-source.github.io/phytomethods/methods/yahs/"
+      ]
+    }
+  ]
 }

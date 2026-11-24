@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 480" width="100%" height="100%">
+  <defs>
+    <style>
+      .title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-weight: 700; font-size: 17px; fill: #0f172a; }
+      .subtitle { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 12px; fill: #475569; }
+      .axis { stroke: #94a3b8; stroke-width: 1.5; }
+      .grid { stroke: #e2e8f0; stroke-width: 1; stroke-dasharray: 3,3; }
+      .axis-label { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; fill: #64748b; font-weight: 500; }
+      .panel { fill: #ffffff; stroke: #e2e8f0; stroke-width: 1.5; rx: 12px; }
+      .node-text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11.5px; font-weight: 600; text-anchor: middle; dominant-baseline: central; fill: #ffffff; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="960" height="480" rx="16" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5"/>
+
+  <!-- Left Panel: AED Cumulative Distribution -->
+  <g transform="translate(24, 24)">
+    <rect width="430" height="432" class="panel"/>
+    <text x="20" y="32" class="title">A. 证据一致性：AED 累积频数分布曲线</text>
+    <text x="20" y="52" class="subtitle">公式：AED = 1 - (Sensitivity + Specificity) / 2</text>
+
+    <g transform="translate(45, 80)">
+      <!-- Axes -->
+      <line x1="0" y1="240" x2="350" y2="240" class="axis"/>
+      <line x1="0" y1="0" x2="0" y2="240" class="axis"/>
+
+      <text x="350" y="258" text-anchor="end" class="axis-label">注释编辑距离 AED (0: 完全匹配 → 1: 无证据支持)</text>
+      <text x="-10" y="10" text-anchor="end" class="axis-label">累积基因比例 (Cumulative %)</text>
+
+      <!-- Grid lines -->
+      <line x1="0" y1="48" x2="350" y2="48" class="grid"/>
+      <line x1="0" y1="96" x2="350" y2="96" class="grid"/>
+      <line x1="0" y1="144" x2="350" y2="144" class="grid"/>
+      <line x1="0" y1="192" x2="350" y2="192" class="grid"/>
+
+      <text x="-8" y="52" text-anchor="end" class="axis-label">80%</text>
+      <text x="-8" y="100" text-anchor="end" class="axis-label">60%</text>
+      <text x="-8" y="148" text-anchor="end" class="axis-label">40%</text>
+      <text x="-8" y="196" text-anchor="end" class="axis-label">20%</text>
+
+      <!-- High quality Curve (Golden Plant Annotation) -->
+      <path d="M 0 240 Q 30 50 120 40 L 350 0" fill="none" stroke="#059669" stroke-width="3"/>
+      <circle cx="70" cy="48" r="4.5" fill="#059669"/>
+      <text x="80" y="44" font-family="sans-serif" font-size="11" font-weight="700" fill="#059669">AED ≤ 0.2: 82% 基因</text>
+
+      <!-- Low quality / Ab initio only Curve -->
+      <path d="M 0 240 Q 150 200 350 0" fill="none" stroke="#dc2626" stroke-width="2.5" stroke-dasharray="4,4"/>
+      <text x="210" y="170" font-family="sans-serif" font-size="10.5" font-weight="700" fill="#dc2626">无转录组纯从头预测 (AED 偏高)</text>
+
+      <!-- Vertical threshold line at AED = 0.2 -->
+      <line x1="70" y1="0" x2="70" y2="240" stroke="#059669" stroke-width="1.5" stroke-dasharray="3,3"/>
+      <text x="70" y="258" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="700" fill="#059669">0.2 截断线</text>
+
+      <!-- Summary box -->
+      <g transform="translate(10, 275)">
+        <rect width="330" height="64" rx="6" fill="#f1f5f9" stroke="#cbd5e1"/>
+        <text x="12" y="20" font-family="sans-serif" font-size="11" font-weight="700" fill="#1e293b">MAKER/EVM 黄金标准规范：</text>
+        <text x="12" y="38" font-family="sans-serif" font-size="10.5" fill="#334155">• <tspan font-weight="600" fill="#059669">AED ≤ 0.2</tspan>: 预测外显子与转录本/蛋白证据高度一致</text>
+        <text x="12" y="54" font-family="sans-serif" font-size="10.5" fill="#334155">• 高质量植物基因集应满足 <tspan font-weight="700" fill="#059669">≥ 70%~80%</tspan> 的基因 AED ≤ 0.2</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Right Panel: BUSCO Protein Completeness -->
+  <g transform="translate(480, 24)">
+    <rect width="456" height="432" class="panel"/>
+    <text x="20" y="32" class="title">B. 蛋白水平保守性：BUSCO 完整度多维解析</text>
+    <text x="20" y="52" class="subtitle">运行模式：busco -m protein -l viridiplantae_odb10</text>
+
+    <g transform="translate(25, 80)">
+      <!-- Stacked Bar Chart for Rice vs Maize vs Wheat -->
+      <!-- Rice Nipponbare -->
+      <text x="0" y="16" font-family="sans-serif" font-size="11" font-weight="700" fill="#1e293b">水稻 (二倍体模式): 98.4% [S: 95.8%, D: 2.6%]</text>
+      <rect x="0" y="24" width="360" height="26" rx="4" fill="#059669"/>
+      <rect x="360" y="24" width="10" height="26" fill="#3b82f6"/>
+      <rect x="370" y="24" width="20" height="26" fill="#f59e0b"/>
+      <rect x="390" y="24" width="15" height="26" rx="0 4 4 0" fill="#ef4444"/>
+
+      <!-- Maize B73 -->
+      <text x="0" y="76" font-family="sans-serif" font-size="11" font-weight="700" fill="#1e293b">玉米 (古四倍化二倍体化): 97.2% [S: 88.5%, D: 8.7%]</text>
+      <rect x="0" y="84" width="330" height="26" rx="4" fill="#059669"/>
+      <rect x="330" y="84" width="33" height="26" fill="#3b82f6"/>
+      <rect x="363" y="84" width="22" height="26" fill="#f59e0b"/>
+      <rect x="385" y="84" width="20" height="26" rx="0 4 4 0" fill="#ef4444"/>
+
+      <!-- Hexaploid Wheat -->
+      <text x="0" y="136" font-family="sans-serif" font-size="11" font-weight="700" fill="#1e293b">六倍体小麦 (AABBDD): 99.1% [S: 12.3%, D: 86.8%]</text>
+      <rect x="0" y="144" width="50" height="26" rx="4" fill="#059669"/>
+      <rect x="50" y="144" width="335" height="26" fill="#3b82f6"/>
+      <rect x="385" y="144" width="12" height="26" fill="#f59e0b"/>
+      <rect x="397" y="144" width="8" height="26" rx="0 4 4 0" fill="#ef4444"/>
+
+      <!-- Legend -->
+      <g transform="translate(10, 190)">
+        <rect x="0" y="0" width="14" height="14" rx="2" fill="#059669"/>
+        <text x="20" y="12" font-family="sans-serif" font-size="11" fill="#334155">完整单拷贝 (S)</text>
+
+        <rect x="115" y="0" width="14" height="14" rx="2" fill="#3b82f6"/>
+        <text x="135" y="12" font-family="sans-serif" font-size="11" fill="#334155">完整重复拷贝 (D)</text>
+
+        <rect x="250" y="0" width="14" height="14" rx="2" fill="#f59e0b"/>
+        <text x="270" y="12" font-family="sans-serif" font-size="11" fill="#334155">片段化 (F)</text>
+
+        <rect x="330" y="0" width="14" height="14" rx="2" fill="#ef4444"/>
+        <text x="350" y="12" font-family="sans-serif" font-size="11" fill="#334155">缺失 (M)</text>
+      </g>
+
+      <!-- Polyploid Interpretation Box -->
+      <g transform="translate(0, 225)">
+        <rect width="405" height="100" rx="6" fill="#f8fafc" stroke="#e2e8f0"/>
+        <text x="14" y="22" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#0f172a">异源多倍体植物评判重要原则：</text>
+        <text x="14" y="42" font-family="sans-serif" font-size="10.5" fill="#334155">• <tspan font-weight="600" fill="#3b82f6">高 D 值 (&gt;80%) 绝非组装冗余</tspan>，而是反映三个亚基因组同源基因完整</text>
+        <text x="14" y="60" font-family="sans-serif" font-size="10.5" fill="#334155">• <tspan font-weight="600" fill="#dc2626">若小麦 D 值反常低于 30%</tspan>，提示发生严重的亚基因组同源物人工塌陷</text>
+        <text x="14" y="80" font-family="sans-serif" font-size="10.5" fill="#059669" font-weight="600">✔ 必须结合亚基因组独立划分后分别运行 BUSCO，验证单套亚组完备性！</text>
+      </g>
+    </g>
+  </g>
+</svg>

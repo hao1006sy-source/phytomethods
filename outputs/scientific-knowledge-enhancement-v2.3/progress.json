@@ -2,29 +2,29 @@
   "version": "2.3.0",
   "project": "PhytoMethods Scientific Knowledge Enhancement & Continuous Delivery",
   "startedAt": "2026-11-25T00:20:00+08:00",
-  "currentMilestone": "M01",
+  "currentMilestone": "M02",
   "milestones": {
     "M01": {
       "name": "测序与基因组组装",
-      "domainId": "sequencing-assembly",
+      "domainId": "genome-assembly",
       "branch": "docs/v2.3-m01-genome-assembly",
-      "status": "in_progress",
-      "prNumber": null,
-      "deployedUrl": null,
-      "completedAt": null
+      "status": "completed",
+      "prNumber": 53,
+      "deployedUrl": "https://hao1006sy-source.github.io/phytomethods/topics/genome-assembly/",
+      "completedAt": "2026-11-25T00:43:00+08:00"
     },
     "M02": {
       "name": "基因组注释与重复序列",
       "domainId": "genome-annotation",
       "branch": "docs/v2.3-m02-genome-annotation",
-      "status": "pending",
+      "status": "in_progress",
       "prNumber": null,
       "deployedUrl": null,
       "completedAt": null
     },
     "M03": {
       "name": "泛基因组与结构变异",
-      "domainId": "pangenome-sv",
+      "domainId": "pangenomics-structural-variation",
       "branch": "docs/v2.3-m03-pangenomics",
       "status": "pending",
       "prNumber": null,
@@ -32,7 +32,7 @@
       "completedAt": null
     },
     "M04": {
-      "name": "比较基因组与系统发育",
+      "name": "比较基因组学与演化",
       "domainId": "comparative-genomics",
       "branch": "docs/v2.3-m04-comparative-genomics",
       "status": "pending",
@@ -41,7 +41,7 @@
       "completedAt": null
     },
     "M05": {
-      "name": "群体遗传学与演化",
+      "name": "群体遗传与驯化",
       "domainId": "population-genetics",
       "branch": "docs/v2.3-m05-population-genetics",
       "status": "pending",
@@ -50,7 +50,7 @@
       "completedAt": null
     },
     "M06": {
-      "name": "GWAS 与全基因组选择",
+      "name": "全基因组关联分析与分子育种",
       "domainId": "gwas-breeding",
       "branch": "docs/v2.3-m06-gwas-breeding",
       "status": "pending",
@@ -59,8 +59,8 @@
       "completedAt": null
     },
     "M07": {
-      "name": "表观与三维基因组学",
-      "domainId": "epigenomics-3d",
+      "name": "表观基因组与三维基因组",
+      "domainId": "epigenomics-3d-genome",
       "branch": "docs/v2.3-m07-epigenomics-3d",
       "status": "pending",
       "prNumber": null,
@@ -69,7 +69,7 @@
     },
     "M08": {
       "name": "单细胞与空间组学",
-      "domainId": "single-cell",
+      "domainId": "single-cell-spatial-omics",
       "branch": "docs/v2.3-m08-single-cell",
       "status": "pending",
       "prNumber": null,
@@ -77,8 +77,8 @@
       "completedAt": null
     },
     "M09": {
-      "name": "基因调控网络与 AI",
-      "domainId": "gene-regulatory-networks",
+      "name": "调控网络与组学人工智能",
+      "domainId": "regulatory-genomics-ai",
       "branch": "docs/v2.3-m09-networks-ai",
       "status": "pending",
       "prNumber": null,

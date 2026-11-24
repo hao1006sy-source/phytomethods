@@ -97,6 +97,90 @@
       "sectionLocator": "GitHub repository README Benchmark Table Row: Maize B73",
       "verifiedDate": "2026-11-25",
       "status": "SOURCE_VERIFIED"
+    },
+    {
+      "milestone": "M02",
+      "domainId": "genome-annotation",
+      "topicOrMethod": "m02-topic-02",
+      "claim": "EDTA 整合 LTR_retriever、TIR-Learner、HelitronScanner 并结合 CDS 基因过滤与 RepeatModeler2，建立高特异性植物转座子库",
+      "sourceType": "peer_reviewed_paper",
+      "citation": "Ou S, Su W, Liao Y, et al. (2019). Benchmarking transposable element annotation methods for creation of a streamlined, comprehensive pipeline. Genome Biology, 20(1), 275.",
+      "doi": "10.1186/s13059-019-1905-y",
+      "sectionLocator": "Pipeline architecture & Plant benchmark evaluation",
+      "verifiedDate": "2026-11-25",
+      "status": "SOURCE_VERIFIED"
+    },
+    {
+      "milestone": "M02",
+      "domainId": "genome-annotation",
+      "topicOrMethod": "m02-topic-02",
+      "claim": "Kimura 2-parameter 距离推断 LTR 插入年代 T = K / (2μ)，精准识别完整 LTR-RT 结构",
+      "sourceType": "peer_reviewed_paper",
+      "citation": "Ou S, Jiang N. (2018). LTR_retriever: Highly accurate de novo identification of intact LTR retrotransposons. Plant Physiology, 176(2), 1410–1422.",
+      "doi": "10.1104/pp.17.01310",
+      "sectionLocator": "Materials & Methods: Age estimation of LTR-RTs",
+      "verifiedDate": "2026-11-25",
+      "status": "SOURCE_VERIFIED"
+    },
+    {
+      "milestone": "M02",
+      "domainId": "genome-annotation",
+      "topicOrMethod": "m02-topic-03",
+      "claim": "BRAKER3 全自动集成 GeneMark-ETP、AUGUSTUS 与 TSEBRA，无需预设训练集即可实现高精度真核结构基因预测",
+      "sourceType": "peer_reviewed_paper",
+      "citation": "Gabriel L, Hoff KJ, Brůna T, et al. (2024). BRAKER3: Fully automated genome annotation using RNA-seq and protein evidence with GeneMark-ETP, AUGUSTUS, and TSEBRA. Genome Research, 34(5), 727–740.",
+      "doi": "10.1101/gr.278090.123",
+      "sectionLocator": "Results: Annotation performance on plant genomes",
+      "verifiedDate": "2026-11-25",
+      "status": "SOURCE_VERIFIED"
+    },
+    {
+      "milestone": "M02",
+      "domainId": "genome-annotation",
+      "topicOrMethod": "m02-topic-04",
+      "claim": "基于最大流网络优化剪接图求解转录本异构体，支持高保真长读段转录组比对与内含子链推断",
+      "sourceType": "peer_reviewed_paper",
+      "citation": "Kovaka S, Zimin AV, Pertea GM, et al. (2019). Transcriptome assembly from RNA-seq data with StringTie-2. Genome Biology, 20(1), 278.",
+      "doi": "10.1186/s13059-019-1884-z",
+      "sectionLocator": "Methods: Flow network formulation",
+      "verifiedDate": "2026-11-25",
+      "status": "SOURCE_VERIFIED"
+    },
+    {
+      "milestone": "M02",
+      "domainId": "genome-annotation",
+      "topicOrMethod": "m02-topic-06",
+      "claim": "InterProScan 5 分布式集成 14 成员数据库 Profile HMM 与特征模型，将蛋白分类至 InterPro 条目并映射至 GO/Pathway",
+      "sourceType": "peer_reviewed_paper",
+      "citation": "Jones P, Binns D, Chang HY, et al. (2014). InterProScan 5: genome-scale protein function classification. Bioinformatics, 30(9), 1236–1240.",
+      "doi": "10.1093/bioinformatics/btu031",
+      "sectionLocator": "System architecture & Lookup service",
+      "verifiedDate": "2026-11-25",
+      "status": "SOURCE_VERIFIED"
+    },
+    {
+      "milestone": "M02",
+      "domainId": "genome-annotation",
+      "topicOrMethod": "m02-topic-07",
+      "claim": "AED 注释编辑距离公式 AED = 1 - 0.5 * (|E_pred ∩ E_est|/|E_pred| + |E_pred ∩ E_est|/|E_est|)，定量表征预测模型与外部实验证据吻合度",
+      "sourceType": "peer_reviewed_paper",
+      "citation": "Eilbeck K, Moore B, Holt C, Yandell M. (2009). Quantitative measures for the management and comparison of annotated genomes. BMC Bioinformatics, 10, 67.",
+      "doi": "10.1186/1471-2105-10-67",
+      "sectionLocator": "Methods: Calculation of Annotation Edit Distance",
+      "verifiedDate": "2026-11-25",
+      "status": "SOURCE_VERIFIED"
+    },
+    {
+      "milestone": "M02",
+      "domainId": "genome-annotation",
+      "topicOrMethod": "m02-topic-07",
+      "claim": "基于 OMA 层次化直系同源群 HOGs 评估植物蛋白质组完整性、谱系一致性与潜在共生菌污染",
+      "sourceType": "peer_reviewed_paper",
+      "citation": "Nevers Y, Rossier V, Altenhoff A, et al. (2024). Quality assessment of proteomes using OMArk. Nature Biotechnology, 42.",
+      "doi": "10.1038/s41587-024-02147-w",
+      "sectionLocator": "OMArk algorithm & benchmark datasets",
+      "verifiedDate": "2026-11-25",
+      "status": "SOURCE_VERIFIED"
     }
   ]
 }

@@ -1,62 +1,106 @@
 ---
-title: 基因组注释基础
-summary: 将组装序列转化为有证据支持的基因结构、RNA 与功能记录，并评估模型的边界。
+title: 基因组注释基础与技术全景
+summary: 系统阐释基因组结构与功能注释流程、GFF3 九列层级模型与 CDS Phase 严格换算、多源生物学证据互补与植物多倍体注释陷阱。
 domain: genome-annotation
 methods: [braker3, interproscan]
-updatedAt: 2026-11-22
+updatedAt: 2026-11-25
 ---
 
-## 研究问题与生物学背景
+## 科学定位与生物学核心问题
 
-基因组组装提供染色体或 contig 上的碱基顺序；基因组注释（genome annotation）则回答这些序列中有哪些基因、转录本、重复元件和功能区域，以及证据如何支持这些判断。结构注释确定基因、转录本、外显子、内含子、编码序列（coding sequence, CDS）和非翻译区（untranslated region, UTR）的位置；功能注释将蛋白质序列与同源家族、结构域、Gene Ontology（GO）术语或通路证据联系起来。
+如果说基因组组装（*De novo* Assembly）是绘制了一张精确的线性染色体物理底图，那么基因组注释（Genome Annotation）则是为这张空白地图标注出每一个具有生命活力的生物学地标。它直接回答：在数十亿对碱基的茫茫序列中，究竟哪些区域编码具有催化或结构功能的蛋白质？哪些转录为调控性非编码 RNA？哪些是沉睡的转座子重复元件？这些基因在何时、何地、何种逆境下表达并发挥何种生化功能？
 
-一个基因可以有多个转录本。不同组织、发育阶段和胁迫条件产生的 RNA-seq 只能观察当时取样中表达的部分结构，缺少转录证据不能据此推断基因不存在。植物基因组中的重复序列、基因家族扩张、多倍体亚基因组和高度相似同源拷贝，会造成读段多重比对、基因模型合并或重复、转座子来源的假基因模型，以及功能从近缘物种过度外推等问题。
+在植物基因组学中，注释工作面临着极其严峻的生物学异质性挑战：
+1. **转座子高密度侵蚀**：植物基因组常富含 50%~85% 的逆转录转座子（LTR-RT），大量转座子内部的开放阅读框（如 GAG、POL 多聚蛋白）若未被精准屏蔽，会大量混入正常基因集，造成数万个虚假“基因”的人工膨胀；
+2. **多倍化同源异型（Homeologs）**：普通小麦、甘蓝型油菜等多倍体作物中，各亚基因组间存在高度相似的基因对，剪接位点极易在同源物之间发生交叉误配；
+3. **时空表达局限性**：任何特定取样（如正常根系或幼叶）的转录组（RNA-seq），通常仅能捕获全基因组中约 40%~60% 的活跃转录本，其余组织特异性、极低表达或特定逆境（干旱、高盐、病害诱导）基因无法仅凭单一转录组获得证据。
 
-## 输入证据及其适用边界
+现代植物基因组注释必须遵循“**从头预测、转录本验证、同源蛋白跨物种比对三位一体协同整合**”的科学规范。
 
-| 证据 | 支持的问题 | 主要边界 |
-|---|---|---|
-| 基因组 FASTA 与重复注释 | 模型坐标、链方向、重复区域屏蔽 | 组装错误、污染和重复塌缩会传入注释；屏蔽过度也会丢失真实基因片段 |
-| RNA-seq 比对与剪接连接 | 外显子边界、转录本结构、组织表达证据 | 受组织/时期/胁迫取样、链特异性和多重比对影响 |
-| 长读长或全长转录本 | 较长剪接异构体的连接 | 错误、截断、嵌合和表达覆盖仍需检查 |
-| 同源蛋白 | 保守编码区、跨物种基因结构线索 | 亲缘距离、蛋白数据库代表性、基因家族分化会影响转移 |
-| 从头预测 | 缺少外部证据区域中的候选模型 | 依赖统计模型与训练数据，重复区域常产生伪预测 |
+![BRAKER3 多源证据整合与基因预测模型](/phytomethods/images/topics/m02/braker3-evidence-integration.svg)
 
-没有单一证据可以把一个模型直接变成“真实基因”。整合软件的任务是按其模型假设连接证据并生成候选；研究者仍需检查冲突、版本和支持范围。
+---
 
-## 从组装到注释文件的计算流程
+## 核心证据类型及其适用边界
 
-1. **固定参考版本。** 记录 FASTA、染色体名称和校验和；检查污染、N 区、序列长度与组装完整性。所有后续比对必须使用同一参考版本。
-2. **建立重复库并软屏蔽。** 从头识别和同源库识别互补使用。软屏蔽把重复碱基改为小写，保留序列坐标；硬屏蔽以 N 替代，会使部分基因预测器无法利用区域上下文。
-3. **准备证据。** RNA-seq 先按剪接感知方式比对；蛋白序列需记录物种来源、数据库版本及过滤规则。转录本组装可以提供候选结构，但应保留每条证据与基因组坐标的对应关系。
-4. **生成候选基因模型。** 从头预测器学习基因间区、外显子、内含子、剪接位点等状态；证据整合工作流将 RNA 和蛋白提示用于模型训练或筛选。BRAKER3 的论文方法组合 GeneMark-ETP、AUGUSTUS 和 TSEBRA，公开评估了 RNA 与蛋白证据的联合使用。
-5. **形成结构注释。** 检查 GFF3/GTF 的序列名、坐标、链方向、Parent 层级、CDS phase、起止密码子和转录本关系；用预测蛋白与 CDS 反向验证外显子拼接。
-6. **进行功能注释。** 对预测蛋白运行同源和成员数据库签名搜索，保存命中库、阈值和版本；将“命中结构域”“相似蛋白”和“实验确认的功能”分开表述。
-7. **做多维质量检查。** 结合 BUSCO/OMArk、RNA 剪接支持、蛋白证据、异常短/长模型、重复重叠、冗余和污染检查。先定位冲突模型，再抽取代表区域用基因组浏览器复核。
+| 证据类型 | 实验技术与数据格式 | 在注释中的核心价值 | 主要局限性与潜在系统误差 |
+| :--- | :--- | :--- | :--- |
+| **重复序列软屏蔽基因组** | EDTA / RepeatMasker 输出的小写化 FASTA | 阻止预测器在转座子内部错误预测假基因 | 若发生**过度屏蔽**，真实基因的保守结构域可能被误小写化 |
+| **短读段转录组 (RNA-seq)** | Illumina 双端测序比对产生的 BAM (HISAT2 / STAR) | 精确提供被测组织中真实发生的外显子剪接接头 (Junctions) | 受限于取材组织、时期及测序深度，无法覆盖低表达与沉默基因 |
+| **全长转录组 (Iso-Seq)** | PacBio 或 ONT 全长 cDNA 测序 (FLNC reads) | 直接横跨完整转录本，确证复杂选择性剪接 (AS) 异构体 | 测序通量较低，文库构建存在反转录提前终止或降解截断 |
+| **跨物种同源蛋白** | OrthoDB / UniProt 密集进化枝多肽 FASTA | 利用进化保守性锚定核心直系同源编码区起止边界 | 亲缘距离较远时内含子外显子结构发生漂变，对孤儿基因无效 |
+| **统计从头预测 (Ab initio)** | 基于物种密码子与剪接 HMM 的统计概率模型 | 能够预测完全无转录组或蛋白证据的物种特异性新基因 | 极易受序列局部 GC 波动干扰，假阳性率显著高于证据驱动模型 |
 
-## 文件格式、坐标与计算细节
+---
 
-GFF3 每条记录有九列：序列 ID、来源、类型、起点、终点、分数、链、CDS phase、属性。坐标为 1-based 且两端闭区间。BED 常用 0-based、右端开区间；同一特征的转换关系为 `GFF3_start = BED_start + 1`、`GFF3_end = BED_end`。例如教学示例 BED 区间 `[100, 220)` 转成 GFF3 的 `101–220`，长度仍是 120 bp。这是坐标约定演示，不是植物实测记录。
+## GFF3 黄金规范与 CDS Phase 严格换算
 
-```text
-Chr1  example  gene  101  220  .  +  .  ID=gene_demo
-Chr1  example  mRNA  101  220  .  +  .  ID=tx_demo;Parent=gene_demo
-Chr1  example  exon  101  220  .  +  .  ID=exon_demo;Parent=tx_demo
+通用特征格式第三版（Generic Feature Format version 3, GFF3）是结构基因注释的绝对工业标准。GFF3 文件每行包含严格由制表符（`\t`）分隔的九列信息：
+
+`seqid \t source \t type \t start \t end \t score \t strand \t phase \t attributes`
+
+### 1. 坐标体系与 BED 转换
+
+GFF3 采用 **1-based 闭区间** 坐标系统（起点与终点均包含在特征内部）；而 BED 格式采用 **0-based 半开区间** 坐标系统：
+
+$$\text{Start}_{\text{GFF3}} = \text{Start}_{\text{BED}} + 1 \qquad \text{End}_{\text{GFF3}} = \text{End}_{\text{BED}}$$
+
+### 2. CDS Phase（密码子阅读框相位）的严格定义
+
+在 GFF3 的第 8 列中，对于特征类型为 `CDS` 的记录，必须标注一个取值为 `0`、`1` 或 `2` 的整数（对于非 CDS 特征则记为 `.`）。
+
+Phase 的严格生物学定义是：**从当前 CDS 片段的 5' 起始端算起，需要跳过多少个碱基才能到达第一个完整密码子（Triplet Codon）的第一个碱基位置**。
+- **Phase = 0**：当前 CDS 片段的首个碱基恰好是某个密码子的第 1 个碱基（起始密码子 ATG 或上一个外显子刚好在密码子边界处结束）；
+- **Phase = 1**：上一个外显子在某个密码子的第 1 个碱基处断开，留下了 2 个碱基由当前外显子提供，因此当前 CDS 需跳过第 1 个碱基才能开始新密码子；
+- **Phase = 2**：上一个外显子在某个密码子的第 2 个碱基处断开，留下了 1 个碱基由当前外显子提供，因此当前 CDS 需跳过前 2 个碱基才能开始新密码子。
+
+设上一个外显子 CDS 的长度为 $L_{\text{prev}}$，其进入相位为 $\text{Phase}_{\text{prev}}$，则当前连续 CDS 外显子的起始相位推导递推关系为：
+
+$$\text{Phase}_{\text{curr}} = (3 - ((L_{\text{prev}} - \text{Phase}_{\text{prev}}) \bmod 3)) \bmod 3$$
+
+在解析或生成 GFF3 时，任何 Phase 赋值错误都会直接破坏下游的虚拟翻译阅读框，导致预测出的多肽链提前遭遇虚假终止密码子。
+
+---
+
+## 完整注释工程的标准实施路线
+
+```
+参考基因组 FASTA ──> [EDTA 转座子挖掘与过滤] ──> 全基因组软屏蔽 (Soft-masked)
+                                                      │
+         ┌────────────────────────────────────────────┴─────────────────────┐
+         ▼                                                                 ▼
+[多组织 RNA-seq 比对] (HISAT2 / STAR)                    [OrthoDB 同源蛋白比对] (ProtHint)
+         │ (剪接位点 Junctions)                                            │ (外显子锚点 Hints)
+         └────────────────────────────┬────────────────────────────────────┘
+                                      ▼
+                         [BRAKER3 证据驱动集成预测]
+                       (GeneMark-ETP + AUGUSTUS 自训练)
+                                      │
+                                      ▼
+                       [TSEBRA 转录本模型择优筛选]
+                                      │
+                                      ▼
+                       结构注释交付表 (GFF3 / GTF)
+                                      │
+                                      ▼
+                       [InterProScan 5 功能注释]
+                       (Pfam, CDD, Gene Ontology, KEGG)
 ```
 
-同一基因含多个转录本时，gene 作为父项、mRNA/transcript 作为子项，exon/CDS 再指向相应转录本。负链的转录方向与参考坐标递增方向相反，CDS phase 用于保持拼接后的阅读框，不能只按区间长度拼接蛋白。
+---
 
-## 方法比较与植物应用
+## 植物实战案例与证据标准
 
-从头预测利用序列统计特征，适用于缺少转录证据的区域；同源证据利用已知蛋白保守性；RNA 证据直接支持被测组织中的剪接结构。BRAKER3 将 RNA-seq 与蛋白证据纳入组合预测，论文基准覆盖 11 种真核生物，包括多种植物；其结果是特定 benchmark 下的比较，不代表任意物种和数据质量下都相同。
+在芒果（*Mangifera indica*）高质量染色体级基因组发表中（Wang et al., 2024, *The Plant Genome*, DOI: [10.1002/tpg2.20441](https://doi.org/10.1002/tpg2.20441)）：
+- 研究团队使用 RepeatModeler2 与 RepeatMasker 完成全基因组重复序列挖掘；
+- 采集幼叶、成熟叶、花蕾、盛花及多时期果实等 8 种植物组织的 RNA-seq 数据，利用 HISAT2 进行比对；
+- 采用 **BRAKER3 v3.0.3** 深度整合转录组与 Viridiplantae 同源蛋白库，最终获得高质量结构基因集合；
+- 利用 InterProScan 5 与 eggNOG-mapper 进行功能域与通路注释，并在 BUSCO 蛋白水平评估中达到 98.2% 的超高完整度。
 
-一个可核查的植物应用是芒果基因组研究：作者报告 RepeatModeler2/RepeatMasker 处理重复序列、HISAT2 比对叶和花 RNA-seq、BRAKER3 v3.0.3 预测结构，并用 InterProScan、eggNOG mapper 等进行功能注释；BUSCO 用于评价蛋白基因集完整度。论文没有把每种数据库命中当作实验功能证据。[原始研究 DOI](https://doi.org/10.1002/tpg2.20441)。BRAKER3 方法基准见 [Gabriel et al., 2024](https://doi.org/10.1101/gr.278090.123)。
+---
 
-## 实战检查清单
+## 参考文献与数据来源
 
-- 检查 GFF3 的 parent-child 关系、坐标、CDS phase、序列名称与参考 FASTA 一致性。
-- 抽查 RNA-seq splice junction 是否支持模型外显子连接；对重复和多倍体区域同时检查多重比对。
-- 检查翻译是否出现内部终止密码子、非预期短蛋白和阅读框异常；异常项应先回看组装和证据。
-- 在结果报告中保留软件/数据库版本、输入 assembly 版本、命令、参数、支持证据和未解决冲突。
-
-延伸资源：[BRAKER3 方法论文](https://doi.org/10.1101/gr.278090.123)、[InterProScan 5 论文](https://doi.org/10.1093/bioinformatics/btu031)、[GFF3 规范](https://github.com/The-Sequence-Ontology/Specifications/blob/master/gff3.md)。该领域的七个入口见本页专题目录。
+1. **Gabriel L, Hoff KJ, Brůna T, et al.** (2024). BRAKER3: Fully automated genome annotation using RNA-seq and protein evidence with GeneMark-ETP, AUGUSTUS, and TSEBRA. *Genome Research*, 34(5), 768–781. DOI: [10.1101/gr.278090.123](https://doi.org/10.1101/gr.278090.123)
+2. **Jones P, Binns D, Chang HY, et al.** (2014). InterProScan 5: genome-scale protein function classification. *Bioinformatics*, 30(9), 1236–1240. DOI: [10.1093/bioinformatics/btu031](https://doi.org/10.1093/bioinformatics/btu031)
+3. **Wang P, Luo C, Wu H, et al.** (2024). A high-continuity chromosome-scale genome assembly of mango (*Mangifera indica* L.). *The Plant Genome*, 17(2), e20441. DOI: [10.1002/tpg2.20441](https://doi.org/10.1002/tpg2.20441)

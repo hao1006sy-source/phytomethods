@@ -292,11 +292,11 @@
       "domainIds": [
         "genome-annotation"
       ],
-      "summary": "将 RNA-seq 与同源蛋白证据输入 GeneMark-ETP、AUGUSTUS 和 TSEBRA 的真核基因结构注释流程。",
+      "summary": "深度整合 RNA-seq 剪接比对与 OrthoDB 同源蛋白证据，协同运行 GeneMark-ETP、AUGUSTUS 与 TSEBRA 的全自动真核生物基因结构预测管线。",
       "meta": {
         "repository": "https://github.com/Gaius-Augustus/BRAKER",
-        "dataType": "软屏蔽基因组 FASTA / 剪接比对 BAM / 同源蛋白 FASTA",
-        "principle": "隐马尔可夫模型预测与异质证据整合",
+        "dataType": "软屏蔽基因组 FASTA / RNA-seq 剪接比对 BAM / 同源蛋白质 FASTA",
+        "principle": "广义隐马尔可夫模型自训练、异质转录与同源证据约束及 TSEBRA 候选模型裁决",
         "canonicalPaperId": "braker3-paper"
       }
     },
@@ -445,11 +445,11 @@
       "domainIds": [
         "genome-annotation"
       ],
-      "summary": "为植物基因组构建过滤后的转座子序列库，并可将其用于全基因组 TE 注释。",
+      "summary": "整合结构特征识别、嵌套去冗余、宿主基因防误判过滤与 RepeatMasker 全局注释的植物基因组转座子专用分析套件。",
       "meta": {
         "repository": "https://github.com/oushujun/EDTA",
-        "dataType": "基因组 FASTA / 可选 CDS FASTA、已知 TE library、基因 BED",
-        "principle": "结构特征识别、分类、去冗余与同源注释",
+        "dataType": "基因组 FASTA / 可选编码 CDS FASTA、已知 TE 文库、基因注释 BED",
+        "principle": "结构特征挖掘、多类群协同识别、CDS 去假阳性过滤与高纯度非冗余库构建",
         "canonicalPaperId": "edta-paper"
       }
     },
@@ -564,11 +564,11 @@
       "domainIds": [
         "genome-annotation"
       ],
-      "summary": "并行运行蛋白签名模型，将序列匹配归入 InterPro 家族和结构域并可映射 GO 术语。",
+      "summary": "综合调用 14 个成员数据库的 Profile HMM 与特征签名模型，对植物全蛋白质组进行结构域识别、家族分类及 GO/通路拓扑映射。",
       "meta": {
         "repository": "https://github.com/ebi-pf-team/interproscan",
-        "dataType": "预测蛋白 FASTA",
-        "principle": "蛋白签名模型匹配与受控术语映射",
+        "dataType": "预测蛋白质氨基酸 FASTA",
+        "principle": "概率 Profile 隐马尔可夫模型比对、多数据库签名聚合与受控词表自动映射",
         "canonicalPaperId": "interproscan-paper"
       }
     },
