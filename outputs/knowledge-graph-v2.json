@@ -309,11 +309,11 @@
       "domainIds": [
         "comparative-genomics"
       ],
-      "summary": "在物种树上以生灭模型分析基因家族大小变化。",
+      "summary": "基于超度量系统发育树与生灭随机过程的基因家族规模扩张与收缩动力学推断软件。",
       "meta": {
         "repository": "https://github.com/hahnlab/CAFE5",
-        "dataType": "基因家族计数表 / 物种时间树",
-        "principle": "基因获得与丢失的随机过程",
+        "dataType": "基因家族计数表 / 超度量物种树",
+        "principle": "连续时间马尔可夫链生灭模型、Gamma 速率异质性与极大似然比检验",
         "canonicalPaperId": "cafe5-paper"
       }
     },
@@ -581,11 +581,11 @@
       "domainIds": [
         "comparative-genomics"
       ],
-      "summary": "使用最大似然方法推断系统发育树并评估支持度。",
+      "summary": "整合高效 ModelFinder 模型选择、超快自展检验（UFBoot2）与复杂位点异质模型的极大似然系统发育树推断平台。",
       "meta": {
         "repository": "https://github.com/iqtree/iqtree2",
-        "dataType": "DNA / 蛋白多序列比对",
-        "principle": "最大似然与系统树搜索",
+        "dataType": "DNA / 蛋白多序列比对（FASTA/Phylip/Nexus）",
+        "principle": "极大似然法、Felsenstein 剪枝算法与 RELL 超快速自展检验",
         "canonicalPaperId": "iqtree2-paper"
       }
     },
@@ -615,11 +615,11 @@
       "domainIds": [
         "comparative-genomics"
       ],
-      "summary": "利用同源基因及其位置识别基因组共线区块。",
+      "summary": "基于二维锚点动态规划与基因复制分类算法的跨物种基因组共线性与同线性分析套件。",
       "meta": {
         "repository": "https://github.com/wyp1125/MCScanX",
-        "dataType": "基因坐标 / 蛋白同源比对",
-        "principle": "基因锚点链与共线区块识别",
+        "dataType": "基因坐标 GFF / BLASTP 结果",
+        "principle": "二维最长递增路径动态规划与几何分布显著性检验",
         "canonicalPaperId": "mcscanx-paper"
       }
     },
@@ -804,11 +804,11 @@
         "comparative-genomics",
         "pangenomics-structural-variation"
       ],
-      "summary": "结合基因家族、基因树和物种树推断直系同源及基因复制。",
+      "summary": "整合序列长度归一化、马尔可夫图聚类（MCL）与系统发育树调和的比较基因组学直系同源群划分平台。",
       "meta": {
         "repository": "https://github.com/OrthoFinder/OrthoFinder",
         "dataType": "蛋白序列 FASTA",
-        "principle": "序列相似性聚类与系统发育",
+        "principle": "序列相似性图聚类与基因树-物种树调和",
         "canonicalPaperId": "orthofinder-paper"
       }
     },
@@ -821,11 +821,11 @@
       "domainIds": [
         "comparative-genomics"
       ],
-      "summary": "对序列和系统树拟合分子演化模型与分化时间模型。",
+      "summary": "包含 codeml 密码子达尔文正选择检验与 MCMCTree 贝叶斯松弛分子钟定年的分子演化分析套件。",
       "meta": {
         "repository": "https://github.com/abacus-gene/paml",
-        "dataType": "编码序列比对 / 系统树",
-        "principle": "最大似然密码子模型与贝叶斯分子钟",
+        "dataType": "编码序列比对 / 系统发育树",
+        "principle": "极大似然密码子演化模型（GY94）与 MCMC 贝叶斯松弛分子钟",
         "canonicalPaperId": "paml-paper"
       }
     },
@@ -1144,11 +1144,11 @@
       "domainIds": [
         "comparative-genomics"
       ],
-      "summary": "结合 Ks、共线性和系统发育线索分析古代全基因组复制。",
+      "summary": "整合同义替换率（Ks）计算、共线性锚点识别、高斯混合模型（GMM）解卷积与分子钟定年的植物古多倍化全流程套件。",
       "meta": {
         "repository": "https://github.com/heche-psb/wgd",
-        "dataType": "编码序列 / 蛋白 / 基因注释",
-        "principle": "Ks 分布与共线性分析",
+        "dataType": "编码序列 CDS / 蛋白 FASTA / 基因组注释 GFF3",
+        "principle": "同义突变分子钟、共线性锚点过滤、GMM 混合正态解卷积与系统发育调和定年",
         "canonicalPaperId": "wgd-v2-paper"
       }
     },

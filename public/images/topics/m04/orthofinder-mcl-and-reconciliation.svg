@@ -1,0 +1,150 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 520" width="100%" height="100%" style="background: transparent; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <linearGradient id="bg-grad-m04-1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" stop-opacity="0.03" />
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0.08" />
+    </linearGradient>
+    <linearGradient id="primary-grad-m04" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0284c7" />
+      <stop offset="100%" stop-color="#0ea5e9" />
+    </linearGradient>
+    <linearGradient id="amber-grad-m04" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#d97706" />
+      <stop offset="100%" stop-color="#f59e0b" />
+    </linearGradient>
+    <linearGradient id="emerald-grad-m04" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#059669" />
+      <stop offset="100%" stop-color="#10b981" />
+    </linearGradient>
+    <filter id="shadow-m04" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.08" />
+    </filter>
+    <marker id="arrow-m04" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#64748b" />
+    </marker>
+  </defs>
+
+  <!-- 总体画框与标题 -->
+  <rect x="15" y="15" width="970" height="490" rx="16" fill="url(#bg-grad-m04-1)" stroke="#cbd5e1" stroke-width="1.5" />
+  <text x="40" y="48" font-size="18" font-weight="700" fill="#0f172a">OrthoFinder 直系同源群划分与系统发育调和推断原理</text>
+  <text x="40" y="70" font-size="12" fill="#64748b">从全对全 BLAST 归一化网络、MCL 矩阵交替扩散与膨胀算子，到物种树调和推断真实复制与分化事件</text>
+
+  <!-- 阶段一：全对全比对与长度校正 -->
+  <g transform="translate(40, 95)">
+    <rect x="0" y="0" width="280" height="380" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" filter="url(#shadow-m04)" />
+    <path d="M 0 12 Q 0 0 12 0 L 268 0 Q 280 0 280 12 L 280 40 L 0 40 Z" fill="#f0f9ff" />
+    <text x="16" y="26" font-size="14" font-weight="700" fill="#0284c7">阶段 1：序列比对与长度归一化</text>
+
+    <text x="16" y="65" font-size="12" font-weight="600" fill="#1e293b">1. 全蛋白组 All-vs-All 搜索</text>
+    <text x="16" y="85" font-size="11" fill="#475569">Diamond / BLASTP 获取原始打分 $S_{ij}$ 与 E-value</text>
+
+    <rect x="16" y="105" width="248" height="85" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1" />
+    <text x="26" y="125" font-size="11" font-weight="700" fill="#0f172a">长度偏差纠正公式 (Length Normalization):</text>
+    <text x="26" y="150" font-size="13" font-weight="700" fill="#0284c7">S&apos;_{ij} = S_{ij} × \frac{\min(L_i, L_j)}{\max(L_i, L_j)}</text>
+    <text x="26" y="175" font-size="10" fill="#64748b">消除大蛋白因为结构域重叠导致的假阳性高分</text>
+
+    <!-- 图解蛋白比对示意 -->
+    <g transform="translate(20, 205)">
+      <text x="0" y="15" font-size="11" font-weight="600" fill="#334155">序列比对打分归一化示意：</text>
+      <rect x="10" y="30" width="160" height="12" rx="4" fill="#bae6fd" stroke="#0284c7" stroke-width="1" />
+      <text x="180" y="40" font-size="10" fill="#0369a1">长基因 A (1200 aa)</text>
+
+      <rect x="10" y="55" width="80" height="12" rx="4" fill="#fed7aa" stroke="#ea580c" stroke-width="1" />
+      <text x="100" y="65" font-size="10" fill="#c2410c">短基因 B (400 aa)</text>
+
+      <path d="M 10 42 L 10 55 M 90 42 L 90 55" stroke="#94a3b8" stroke-dasharray="2,2" />
+      <rect x="10" y="85" width="240" height="60" rx="6" fill="#f1f5f9" />
+      <text x="18" y="105" font-size="10" fill="#475569">• 原始 BLAST 分数受长度正向驱动膨胀</text>
+      <text x="18" y="123" font-size="10" fill="#475569">• 惩罚比值 400/1200 = 0.33，抑制非同源嵌合</text>
+      <text x="18" y="138" font-size="10" fill="#475569">• 保留双向最佳匹配 (RBH) 作为高置信骨架</text>
+    </g>
+  </g>
+
+  <!-- 连接箭头 1 -> 2 -->
+  <path d="M 330 280 L 360 280" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-m04)" />
+
+  <!-- 阶段二：MCL 图聚类算法 -->
+  <g transform="translate(370, 95)">
+    <rect x="0" y="0" width="280" height="380" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" filter="url(#shadow-m04)" />
+    <path d="M 0 12 Q 0 0 12 0 L 268 0 Q 280 0 280 12 L 280 40 L 0 40 Z" fill="#fef3c7" />
+    <text x="16" y="26" font-size="14" font-weight="700" fill="#d97706">阶段 2：MCL 马尔可夫图聚类</text>
+
+    <text x="16" y="65" font-size="12" font-weight="600" fill="#1e293b">基于随机游走的矩阵迭代收敛</text>
+    <text x="16" y="85" font-size="11" fill="#475569">邻接矩阵 $M$ 列随机归一化：$\sum_i M_{ij} = 1$</text>
+
+    <!-- 膨胀与扩展算子 -->
+    <rect x="16" y="105" width="248" height="110" rx="8" fill="#fffbeb" stroke="#fcd34d" stroke-width="1" />
+    <text x="24" y="125" font-size="11" font-weight="700" fill="#b45309">双重交替算子迭代循环：</text>
+    <text x="24" y="148" font-size="11" font-weight="700" fill="#0f172a">1. 扩散扩展 Expansion (矩阵乘法):</text>
+    <text x="36" y="166" font-size="12" fill="#b45309">M_{t+1/2} = M_t \times M_t</text>
+    <text x="24" y="188" font-size="11" font-weight="700" fill="#0f172a">2. 局部膨胀 Inflation (指数加权):</text>
+    <text x="36" y="206" font-size="12" fill="#b45309">(\Gamma_r M)_{ij} = \frac{(M_{ij})^r}{\sum_k (M_{kj})^r} \quad (r=1.5)</text>
+
+    <!-- MCL 网络分割图解 -->
+    <g transform="translate(20, 230)">
+      <circle cx="50" cy="50" r="16" fill="#fed7aa" stroke="#ea580c" stroke-width="1.5" />
+      <text x="50" y="54" font-size="9" font-weight="700" fill="#9a3412" text-anchor="middle">G1</text>
+      <circle cx="100" cy="30" r="14" fill="#fed7aa" stroke="#ea580c" stroke-width="1.5" />
+      <text x="100" y="34" font-size="9" font-weight="700" fill="#9a3412" text-anchor="middle">G2</text>
+      <circle cx="95" cy="75" r="14" fill="#fed7aa" stroke="#ea580c" stroke-width="1.5" />
+      <text x="95" y="79" font-size="9" font-weight="700" fill="#9a3412" text-anchor="middle">G3</text>
+      
+      <!-- 连接线与弱边蒸发 -->
+      <line x1="66" y1="44" x2="86" y2="35" stroke="#ea580c" stroke-width="2.5" />
+      <line x1="64" y1="58" x2="83" y2="70" stroke="#ea580c" stroke-width="2.5" />
+      <line x1="97" y1="44" x2="96" y2="61" stroke="#ea580c" stroke-width="2.5" />
+
+      <!-- 弱连边被切断 -->
+      <line x1="108" y1="70" x2="160" y2="60" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="3,3" />
+      <text x="135" y="55" font-size="9" fill="#dc2626">弱边切断</text>
+
+      <circle cx="180" cy="50" r="16" fill="#bfdbfe" stroke="#2563eb" stroke-width="1.5" />
+      <text x="180" y="54" font-size="9" font-weight="700" fill="#1e40af" text-anchor="middle">G4</text>
+      <circle cx="215" cy="80" r="14" fill="#bfdbfe" stroke="#2563eb" stroke-width="1.5" />
+      <text x="215" y="84" font-size="9" font-weight="700" fill="#1e40af" text-anchor="middle">G5</text>
+      <line x1="193" y1="62" x2="204" y2="72" stroke="#2563eb" stroke-width="2.5" />
+
+      <text x="25" y="115" font-size="10" fill="#78350f">强稠密子图加强，弱边自动蒸发，聚集成群 (OG)</text>
+    </g>
+  </g>
+
+  <!-- 连接箭头 2 -> 3 -->
+  <path d="M 660 280 L 690 280" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-m04)" />
+
+  <!-- 阶段三：基因树-物种树调和 -->
+  <g transform="translate(700, 95)">
+    <rect x="0" y="0" width="265" height="380" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" filter="url(#shadow-m04)" />
+    <path d="M 0 12 Q 0 0 12 0 L 253 0 Q 265 0 265 12 L 265 40 L 0 40 Z" fill="#ecfdf5" />
+    <text x="16" y="26" font-size="14" font-weight="700" fill="#059669">阶段 3：系统发育树调和推断</text>
+
+    <text x="16" y="65" font-size="12" font-weight="600" fill="#1e293b">基因树调和 (Reconciliation)</text>
+    <text x="16" y="85" font-size="11" fill="#475569">无根基因树结合有根物种树定根与定性</text>
+
+    <!-- 树图示意 -->
+    <g transform="translate(20, 105)">
+      <rect x="0" y="0" width="225" height="150" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1" />
+      
+      <!-- 基因树与物种树节点 -->
+      <path d="M 20 75 L 60 75 L 60 40 L 140 40 M 60 75 L 60 110 L 100 110 L 100 90 L 140 90 M 100 110 L 100 130 L 140 130" fill="none" stroke="#047857" stroke-width="2" />
+      
+      <!-- 物种分化点 -->
+      <circle cx="60" cy="75" r="5" fill="#059669" />
+      <text x="50" y="68" font-size="9" font-weight="700" fill="#047857">S</text>
+      
+      <!-- 基因复制点 -->
+      <rect x="95" y="105" width="10" height="10" fill="#dc2626" />
+      <text x="110" y="113" font-size="9" font-weight="700" fill="#dc2626">D (复制事件)</text>
+
+      <text x="145" y="44" font-size="10" fill="#1e293b">物种 A 基因 a1</text>
+      <text x="145" y="94" font-size="10" fill="#1e293b">物种 B 基因 b1</text>
+      <text x="145" y="134" font-size="10" fill="#1e293b">物种 B 基因 b2</text>
+
+      <text x="10" y="170" font-size="11" font-weight="700" fill="#065f46">同源关系推断判定：</text>
+      <text x="10" y="190" font-size="10" fill="#334155">• <tspan font-weight="700" fill="#059669">直系同源 (Orthologs)</tspan>: (a1, b1) 与 (a1, b2)</text>
+      <text x="18" y="205" font-size="9" fill="#64748b">源于物种分化节点 S，功能高度保守</text>
+      <text x="10" y="225" font-size="10" fill="#334155">• <tspan font-weight="700" fill="#dc2626">旁系同源 (Paralogs)</tspan>: (b1, b2)</text>
+      <text x="18" y="240" font-size="9" fill="#64748b">源于基因复制节点 D，分化出新功能/亚功能</text>
+      <text x="10" y="258" font-size="10" fill="#334155">• 生成 <tspan font-weight="700">单拷贝直系同源群 (SCOG)</tspan> 供物种建树</text>
+    </g>
+  </g>
+</svg>
