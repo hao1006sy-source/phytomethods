@@ -89,10 +89,24 @@
       "name": "全局收尾与持续发布总结",
       "domainId": "global-synthesis",
       "branch": "docs/v2.3-m10-final-review",
-      "status": "pending",
-      "prNumber": null,
-      "deployedUrl": null,
-      "completedAt": null
+      "status": "completed",
+      "prNumber": 62,
+      "deployedUrl": "https://hao1006sy-source.github.io/phytomethods/",
+      "completedAt": "2026-11-25T03:20:00+08:00"
     }
+  },
+  "summary": {
+    "totalDomains": 9,
+    "totalTopics": 63,
+    "totalMethods": 59,
+    "totalPapers": 130,
+    "totalDecisionTrees": 9,
+    "totalEndToEndWorkflows": 3,
+    "totalSvgDiagrams": 6,
+    "totalVerifiedInternalLinks": 13172,
+    "deadLinks": 0,
+    "markdownSyntaxErrors": 0,
+    "ciPassingRate": "100%",
+    "continuousDeliveryMode": "Fully Autonomous"
   }
 }
