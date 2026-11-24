@@ -76,6 +76,33 @@
         "https://hao1006sy-source.github.io/phytomethods/methods/odgi/",
         "https://hao1006sy-source.github.io/phytomethods/methods/anchorwave/"
       ]
+    },
+    {
+      "milestone": "M04",
+      "domainId": "comparative-genomics",
+      "prNumber": 56,
+      "prTitle": "docs(v2.3): M04 比较基因组学与演化科研知识深度建设",
+      "mergeCommit": "ec98daa",
+      "mergedAt": "2026-11-24T17:39:35Z",
+      "githubPagesRunId": 45450999621,
+      "deployedAt": "2026-11-24T17:40:40Z",
+      "deploymentStatus": "SUCCESS",
+      "liveUrl": "https://hao1006sy-source.github.io/phytomethods/topics/comparative-genomics/",
+      "verifiedPages": [
+        "https://hao1006sy-source.github.io/phytomethods/topics/comparative-genomics/m04-topic-01/",
+        "https://hao1006sy-source.github.io/phytomethods/topics/comparative-genomics/m04-topic-02/",
+        "https://hao1006sy-source.github.io/phytomethods/topics/comparative-genomics/m04-topic-03/",
+        "https://hao1006sy-source.github.io/phytomethods/topics/comparative-genomics/m04-topic-04/",
+        "https://hao1006sy-source.github.io/phytomethods/topics/comparative-genomics/m04-topic-05/",
+        "https://hao1006sy-source.github.io/phytomethods/topics/comparative-genomics/m04-topic-06/",
+        "https://hao1006sy-source.github.io/phytomethods/topics/comparative-genomics/m04-topic-07/",
+        "https://hao1006sy-source.github.io/phytomethods/methods/orthofinder/",
+        "https://hao1006sy-source.github.io/phytomethods/methods/mcscanx/",
+        "https://hao1006sy-source.github.io/phytomethods/methods/cafe5/",
+        "https://hao1006sy-source.github.io/phytomethods/methods/iqtree2/",
+        "https://hao1006sy-source.github.io/phytomethods/methods/paml/",
+        "https://hao1006sy-source.github.io/phytomethods/methods/wgd/"
+      ]
     }
   ]
 }
