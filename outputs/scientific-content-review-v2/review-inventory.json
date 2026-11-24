@@ -1,0 +1,2036 @@
+{
+  "summary": {
+    "reviewVersion": "Scientific Content Review V2",
+    "reviewedAt": "2026-11-24",
+    "scopeCounts": {
+      "topics": 63,
+      "methods": 59,
+      "papers": 130,
+      "tutorials": 10,
+      "computeProfiles": 12,
+      "workflows": 3,
+      "genomeSpecies": 10,
+      "inventoryTotal": 287
+    },
+    "evidenceIntegrity": {
+      "totalGraphEdges": 743,
+      "totalGraphNodes": 304,
+      "totalEvidenceRecords": 801,
+      "sourceCheckedRecords": 600,
+      "structurallyValidRecords": 201,
+      "unresolvedCount": 0
+    },
+    "tutorialVerification": {
+      "verifiedCount": 8,
+      "templateCount": 2,
+      "cafe5PathFix": "CONFIRMED_UNIFIED"
+    },
+    "searchAndInteraction": {
+      "searchPureTextResult": "CONFIRMED_ZERO_THUMBS",
+      "searchCountScopeSplit": "CONFIRMED_DISTINGUISHED",
+      "paperFiltersHistoryRestore": "CONFIRMED_DEBOUNCED_AND_RESTORED"
+    },
+    "overallConclusion": "ALL_PASS"
+  },
+  "inventory": [
+    {
+      "category": "topic",
+      "id": "assembly-basics",
+      "title": "基因组组装基础",
+      "status": "AUDITED_PASS",
+      "note": "包含植物多倍体/杂合/WGD/转座子等特征说明"
+    },
+    {
+      "category": "topic",
+      "id": "assembly-graphs",
+      "title": "组装图与核心算法",
+      "status": "AUDITED_PASS",
+      "note": "包含植物多倍体/杂合/WGD/转座子等特征说明"
+    },
+    {
+      "category": "topic",
+      "id": "assembly-quality",
+      "title": "组装质量评估",
+      "status": "AUDITED_PASS",
+      "note": "包含植物多倍体/杂合/WGD/转座子等特征说明"
+    },
+    {
+      "category": "topic",
+      "id": "complete-assembly",
+      "title": "T2T 与复杂区域组装",
+      "status": "AUDITED_PASS",
+      "note": "包含植物多倍体/杂合/WGD/转座子等特征说明"
+    },
+    {
+      "category": "topic",
+      "id": "haplotype-resolution",
+      "title": "单倍型解析与单倍型感知组装",
+      "status": "AUDITED_PASS",
+      "note": "包含植物多倍体/杂合/WGD/转座子等特征说明"
+    },
+    {
+      "category": "topic",
+      "id": "hic-scaffolding",
+      "title": "Hi-C 辅助染色体挂载",
+      "status": "AUDITED_PASS",
+      "note": "包含植物多倍体/杂合/WGD/转座子等特征说明"
+    },
+    {
+      "category": "topic",
+      "id": "m02-topic-01",
+      "title": "基因组注释基础",
+      "status": "AUDITED_PASS",
+      "note": "包含植物多倍体/杂合/WGD/转座子等特征说明"
+    },
+    {
+      "category": "topic",
+      "id": "m02-topic-02",
+      "title": "重复序列与转座子识别",
+      "status": "AUDITED_PASS",
+      "note": "包含植物多倍体/杂合/WGD/转座子等特征说明"
+    },
+    {
+      "category": "topic",
+      "id": "m02-topic-03",
+      "title": "蛋白编码基因结构预测",
+      "status": "AUDITED_PASS",
+      "note": "包含植物多倍体/杂合/WGD/转座子等特征说明"
+    },
+    {
+      "category": "topic",
+      "id": "m02-topic-04",
+      "title": "转录本辅助注释",
+      "status": "AUDITED_PASS",
+      "note": "包含植物多倍体/杂合/WGD/转座子等特征说明"
+    },
+    {
+      "category": "topic",
+      "id": "m02-topic-05",
+      "title": "非编码 RNA 注释",
+      "status": "AUDITED_PASS",
+      "note": "包含植物多倍体/杂合/WGD/转座子等特征说明"
+    },
+    {
+      "category": "topic",
+      "id": "m02-topic-06",
+      "title": "基因功能注释",
+      "status": "AUDITED_PASS",
+      "note": "包含植物多倍体/杂合/WGD/转座子等特征说明"
+    },
+    {
+      "category": "topic",
+      "id": "m02-topic-07",
+      "title": "基因组注释质量评估",
+      "status": "AUDITED_PASS",
+      "note": "包含植物多倍体/杂合/WGD/转座子等特征说明"
+    },
+    {
+      "category": "topic",
+      "id": "m03-topic-01",
+      "title": "泛基因组与核心、可变基因组",
+      "status": "AUDITED_PASS",
+      "note": "包含植物多倍体/杂合/WGD/转座子等特征说明"
+    },
+    {
+      "category": "topic",
+      "id": "m03-topic-02",
+      "title": "植物全基因组比对",
+      "status": "AUDITED_PASS",
+      "note": "包含植物多倍体/杂合/WGD/转座子等特征说明"
+    },
+    {
+      "category": "topic",
+      "id": "m03-topic-03",
+      "title": "植物基因组结构变异检测",
+      "status": "AUDITED_PASS",
+      "note": "包含植物多倍体/杂合/WGD/转座子等特征说明"
+    },
+    {
+      "category": "topic",
+      "id": "m03-topic-04",
+      "title": "基因存在缺失变异（PAV）",
+      "status": "AUDITED_PASS",
+      "note": "包含植物多倍体/杂合/WGD/转座子等特征说明"
+    },
+    {
+      "category": "topic",
+      "id": "m03-topic-05",
+      "title": "图泛基因组构建",
+      "status": "AUDITED_PASS",
+      "note": "包含植物多倍体/杂合/WGD/转座子等特征说明"
+    },
+    {
+      "category": "topic",
+      "id": "m03-topic-06",
+      "title": "图上的序列比对与变异分型",
+      "status": "AUDITED_PASS",
+      "note": "包含植物多倍体/杂合/WGD/转座子等特征说明"
+    },
+    {
+      "category": "topic",
+      "id": "m03-topic-07",
+      "title": "泛基因组可视化与植物研究应用",
+      "status": "AUDITED_PASS",
+      "note": "包含植物多倍体/杂合/WGD/转座子等特征说明"
+    },
+    {
+      "category": "topic",
+      "id": "m04-topic-01",
+      "title": "同源、直系同源与旁系同源",
+      "status": "AUDITED_PASS",
+      "note": "包含植物多倍体/杂合/WGD/转座子等特征说明"
+    },
+    {
+      "category": "topic",
+      "id": "m04-topic-02",
+      "title": "基因家族聚类与扩张",
+      "status": "AUDITED_PASS",
+      "note": "包含植物多倍体/杂合/WGD/转座子等特征说明"
+    },
+    {
+      "category": "topic",
+      "id": "m04-topic-03",
+      "title": "共线性与染色体演化",
+      "status": "AUDITED_PASS",
+      "note": "包含植物多倍体/杂合/WGD/转座子等特征说明"
+    },
+    {
+      "category": "topic",
+      "id": "m04-topic-04",
+      "title": "系统发育推断",
+      "status": "AUDITED_PASS",
+      "note": "通用生物信息/统计理论专题"
+    },
+    {
+      "category": "topic",
+      "id": "m04-topic-05",
+      "title": "物种分化时间与分子钟",
+      "status": "AUDITED_PASS",
+      "note": "包含植物多倍体/杂合/WGD/转座子等特征说明"
+    },
+    {
+      "category": "topic",
+      "id": "m04-topic-06",
+      "title": "全基因组复制与古多倍化",
+      "status": "AUDITED_PASS",
+      "note": "包含植物多倍体/杂合/WGD/转座子等特征说明"
+    },
+    {
+      "category": "topic",
+      "id": "m04-topic-07",
+      "title": "选择压力与分子进化",
+      "status": "AUDITED_PASS",
+      "note": "通用生物信息/统计理论专题"
+    },
+    {
+      "category": "topic",
+      "id": "m05-topic-01",
+      "title": "群体遗传学基本概念",
+      "status": "AUDITED_PASS",
+      "note": "包含植物多倍体/杂合/WGD/转座子等特征说明"
+    },
+    {
+      "category": "topic",
+      "id": "m05-topic-02",
+      "title": "SNP 检测、过滤与 VCF",
+      "status": "AUDITED_PASS",
+      "note": "包含植物多倍体/杂合/WGD/转座子等特征说明"
+    },
+    {
+      "category": "topic",
+      "id": "m05-topic-03",
+      "title": "PCA、群体结构与祖先成分",
+      "status": "AUDITED_PASS",
+      "note": "包含植物多倍体/杂合/WGD/转座子等特征说明"
+    },
+    {
+      "category": "topic",
+      "id": "m05-topic-04",
+      "title": "遗传多样性、群体分化与连锁不平衡",
+      "status": "AUDITED_PASS",
+      "note": "包含植物多倍体/杂合/WGD/转座子等特征说明"
+    },
+    {
+      "category": "topic",
+      "id": "m05-topic-05",
+      "title": "选择性清除",
+      "status": "AUDITED_PASS",
+      "note": "包含植物多倍体/杂合/WGD/转座子等特征说明"
+    },
+    {
+      "category": "topic",
+      "id": "m05-topic-06",
+      "title": "群体历史动态",
+      "status": "AUDITED_PASS",
+      "note": "包含植物多倍体/杂合/WGD/转座子等特征说明"
+    },
+    {
+      "category": "topic",
+      "id": "m05-topic-07",
+      "title": "驯化与环境适应案例",
+      "status": "AUDITED_PASS",
+      "note": "包含植物多倍体/杂合/WGD/转座子等特征说明"
+    },
+    {
+      "category": "topic",
+      "id": "m06-topic-01",
+      "title": "数量遗传学与遗传力",
+      "status": "AUDITED_PASS",
+      "note": "通用生物信息/统计理论专题"
+    },
+    {
+      "category": "topic",
+      "id": "m06-topic-02",
+      "title": "QTL 定位与遗传连锁",
+      "status": "AUDITED_PASS",
+      "note": "包含植物多倍体/杂合/WGD/转座子等特征说明"
+    },
+    {
+      "category": "topic",
+      "id": "m06-topic-03",
+      "title": "GWAS 关联检验基础",
+      "status": "AUDITED_PASS",
+      "note": "包含植物多倍体/杂合/WGD/转座子等特征说明"
+    },
+    {
+      "category": "topic",
+      "id": "m06-topic-04",
+      "title": "GWAS 模型：GLM、混合模型与多位点方法",
+      "status": "AUDITED_PASS",
+      "note": "通用生物信息/统计理论专题"
+    },
+    {
+      "category": "topic",
+      "id": "m06-topic-05",
+      "title": "GWAS 结果解读：Manhattan、QQ 与候选基因",
+      "status": "AUDITED_PASS",
+      "note": "通用生物信息/统计理论专题"
+    },
+    {
+      "category": "topic",
+      "id": "m06-topic-06",
+      "title": "基因组选择",
+      "status": "AUDITED_PASS",
+      "note": "包含植物多倍体/杂合/WGD/转座子等特征说明"
+    },
+    {
+      "category": "topic",
+      "id": "m06-topic-07",
+      "title": "机器学习预测与基因型×环境互作",
+      "status": "AUDITED_PASS",
+      "note": "通用生物信息/统计理论专题"
+    },
+    {
+      "category": "topic",
+      "id": "m07-topic-01",
+      "title": "表观遗传基础",
+      "status": "AUDITED_PASS",
+      "note": "包含植物多倍体/杂合/WGD/转座子等特征说明"
+    },
+    {
+      "category": "topic",
+      "id": "m07-topic-02",
+      "title": "DNA 甲基化检测",
+      "status": "AUDITED_PASS",
+      "note": "包含植物多倍体/杂合/WGD/转座子等特征说明"
+    },
+    {
+      "category": "topic",
+      "id": "m07-topic-03",
+      "title": "差异甲基化区域分析",
+      "status": "AUDITED_PASS",
+      "note": "包含植物多倍体/杂合/WGD/转座子等特征说明"
+    },
+    {
+      "category": "topic",
+      "id": "m07-topic-04",
+      "title": "ATAC-seq 与开放染色质",
+      "status": "AUDITED_PASS",
+      "note": "包含植物多倍体/杂合/WGD/转座子等特征说明"
+    },
+    {
+      "category": "topic",
+      "id": "m07-topic-05",
+      "title": "ChIP-seq、CUT&Tag 与序列基序",
+      "status": "AUDITED_PASS",
+      "note": "通用生物信息/统计理论专题"
+    },
+    {
+      "category": "topic",
+      "id": "m07-topic-06",
+      "title": "Hi-C 与三维基因组",
+      "status": "AUDITED_PASS",
+      "note": "通用生物信息/统计理论专题"
+    },
+    {
+      "category": "topic",
+      "id": "m07-topic-07",
+      "title": "表观调控与植物响应",
+      "status": "AUDITED_PASS",
+      "note": "包含植物多倍体/杂合/WGD/转座子等特征说明"
+    },
+    {
+      "category": "topic",
+      "id": "m08-topic-01",
+      "title": "单细胞与单核测序基础",
+      "status": "AUDITED_PASS",
+      "note": "通用生物信息/统计理论专题"
+    },
+    {
+      "category": "topic",
+      "id": "m08-topic-02",
+      "title": "单细胞质控、归一化与批次校正",
+      "status": "AUDITED_PASS",
+      "note": "通用生物信息/统计理论专题"
+    },
+    {
+      "category": "topic",
+      "id": "m08-topic-03",
+      "title": "单细胞降维与聚类",
+      "status": "AUDITED_PASS",
+      "note": "通用生物信息/统计理论专题"
+    },
+    {
+      "category": "topic",
+      "id": "m08-topic-04",
+      "title": "标记基因与细胞类型注释",
+      "status": "AUDITED_PASS",
+      "note": "通用生物信息/统计理论专题"
+    },
+    {
+      "category": "topic",
+      "id": "m08-topic-05",
+      "title": "单细胞拟时序与发育轨迹",
+      "status": "AUDITED_PASS",
+      "note": "通用生物信息/统计理论专题"
+    },
+    {
+      "category": "topic",
+      "id": "m08-topic-06",
+      "title": "空间转录组与细胞组成推断",
+      "status": "AUDITED_PASS",
+      "note": "通用生物信息/统计理论专题"
+    },
+    {
+      "category": "topic",
+      "id": "m08-topic-07",
+      "title": "单细胞多组学与跨模态整合",
+      "status": "AUDITED_PASS",
+      "note": "通用生物信息/统计理论专题"
+    },
+    {
+      "category": "topic",
+      "id": "m09-topic-01",
+      "title": "RNA-seq 与差异表达分析",
+      "status": "AUDITED_PASS",
+      "note": "包含植物多倍体/杂合/WGD/转座子等特征说明"
+    },
+    {
+      "category": "topic",
+      "id": "m09-topic-02",
+      "title": "基因共表达网络",
+      "status": "AUDITED_PASS",
+      "note": "通用生物信息/统计理论专题"
+    },
+    {
+      "category": "topic",
+      "id": "m09-topic-03",
+      "title": "基因调控网络推断",
+      "status": "AUDITED_PASS",
+      "note": "通用生物信息/统计理论专题"
+    },
+    {
+      "category": "topic",
+      "id": "m09-topic-04",
+      "title": "顺式调控元件与序列基序",
+      "status": "AUDITED_PASS",
+      "note": "通用生物信息/统计理论专题"
+    },
+    {
+      "category": "topic",
+      "id": "m09-topic-05",
+      "title": "植物多组学数据整合",
+      "status": "AUDITED_PASS",
+      "note": "通用生物信息/统计理论专题"
+    },
+    {
+      "category": "topic",
+      "id": "m09-topic-06",
+      "title": "DNA 与蛋白质序列基础模型",
+      "status": "AUDITED_PASS",
+      "note": "通用生物信息/统计理论专题"
+    },
+    {
+      "category": "topic",
+      "id": "m09-topic-07",
+      "title": "AI 序列功能与变异效应预测",
+      "status": "AUDITED_PASS",
+      "note": "通用生物信息/统计理论专题"
+    },
+    {
+      "category": "topic",
+      "id": "sequencing-data",
+      "title": "测序技术与原始数据",
+      "status": "AUDITED_PASS",
+      "note": "包含植物多倍体/杂合/WGD/转座子等特征说明"
+    },
+    {
+      "category": "method",
+      "id": "admixture",
+      "title": "ADMIXTURE",
+      "status": "AUDITED_PASS",
+      "note": "最大似然祖先成分模型"
+    },
+    {
+      "category": "method",
+      "id": "agront",
+      "title": "AgroNT",
+      "status": "AUDITED_PASS",
+      "note": "Transformer 与遮盖序列预测"
+    },
+    {
+      "category": "method",
+      "id": "anchorwave",
+      "title": "AnchorWave",
+      "status": "AUDITED_PASS",
+      "note": "共线锚点与两段仿射区块比对"
+    },
+    {
+      "category": "method",
+      "id": "archr",
+      "title": "ArchR",
+      "status": "AUDITED_PASS",
+      "note": "LSI 表示、peak 集、顺式元件链接与跨模态映射"
+    },
+    {
+      "category": "method",
+      "id": "bcftools",
+      "title": "BCFtools",
+      "status": "AUDITED_PASS",
+      "note": "基因型似然与变异数据处理"
+    },
+    {
+      "category": "method",
+      "id": "bismark",
+      "title": "Bismark",
+      "status": "AUDITED_PASS",
+      "note": "亚硫酸氢盐感知比对与甲基化提取"
+    },
+    {
+      "category": "method",
+      "id": "braker3",
+      "title": "BRAKER3",
+      "status": "AUDITED_PASS",
+      "note": "隐马尔可夫模型预测与异质证据整合"
+    },
+    {
+      "category": "method",
+      "id": "cafe5",
+      "title": "CAFE 5",
+      "status": "AUDITED_PASS",
+      "note": "基因获得与丢失的随机过程"
+    },
+    {
+      "category": "method",
+      "id": "cell2location",
+      "title": "cell2location",
+      "status": "AUDITED_PASS",
+      "note": "层次贝叶斯负二项模型与细胞丰度推断"
+    },
+    {
+      "category": "method",
+      "id": "cellrank",
+      "title": "CellRank",
+      "status": "AUDITED_PASS",
+      "note": "Markov 转移矩阵、转移核与命运估计"
+    },
+    {
+      "category": "method",
+      "id": "cutesv",
+      "title": "cuteSV 长读段结构变异检测",
+      "status": "AUDITED_PASS",
+      "note": "断点信号聚类与迭代细化"
+    },
+    {
+      "category": "method",
+      "id": "deseq2",
+      "title": "DESeq2",
+      "status": "AUDITED_PASS",
+      "note": "负二项计数模型和离散度估计"
+    },
+    {
+      "category": "method",
+      "id": "dnngp",
+      "title": "DNNGP",
+      "status": "AUDITED_PASS",
+      "note": "深度神经网络与监督式基因组预测"
+    },
+    {
+      "category": "method",
+      "id": "doubletfinder",
+      "title": "DoubletFinder",
+      "status": "AUDITED_PASS",
+      "note": "人工 doublet 合成、近邻分类与 pANN 排序"
+    },
+    {
+      "category": "method",
+      "id": "dss",
+      "title": "DSS",
+      "status": "AUDITED_PASS",
+      "note": "beta-binomial 回归与离散度收缩"
+    },
+    {
+      "category": "method",
+      "id": "edta",
+      "title": "EDTA",
+      "status": "AUDITED_PASS",
+      "note": "结构特征识别、分类、去冗余与同源注释"
+    },
+    {
+      "category": "method",
+      "id": "eupan",
+      "title": "EUPAN",
+      "status": "AUDITED_PASS",
+      "note": "Map-to-pan 与覆盖度驱动的 PAV 判定"
+    },
+    {
+      "category": "method",
+      "id": "gapit",
+      "title": "GAPIT",
+      "status": "AUDITED_PASS",
+      "note": "混合模型与多位点关联分析"
+    },
+    {
+      "category": "method",
+      "id": "genie3",
+      "title": "GENIE3",
+      "status": "AUDITED_PASS",
+      "note": "随机森林或 Extra-Trees 回归特征重要性"
+    },
+    {
+      "category": "method",
+      "id": "grnboost2",
+      "title": "GRNBoost2",
+      "status": "AUDITED_PASS",
+      "note": "梯度提升树回归特征重要性"
+    },
+    {
+      "category": "method",
+      "id": "hicexplorer",
+      "title": "HiCExplorer",
+      "status": "AUDITED_PASS",
+      "note": "接触矩阵构建、校正与多尺度结构识别"
+    },
+    {
+      "category": "method",
+      "id": "hifiasm",
+      "title": "Hifiasm",
+      "status": "AUDITED_PASS",
+      "note": "重叠图与单倍型解析"
+    },
+    {
+      "category": "method",
+      "id": "interproscan",
+      "title": "InterProScan",
+      "status": "AUDITED_PASS",
+      "note": "蛋白签名模型匹配与受控术语映射"
+    },
+    {
+      "category": "method",
+      "id": "iqtree2",
+      "title": "IQ-TREE 2",
+      "status": "AUDITED_PASS",
+      "note": "最大似然与系统树搜索"
+    },
+    {
+      "category": "method",
+      "id": "macs3",
+      "title": "MACS3",
+      "status": "AUDITED_PASS",
+      "note": "局部背景富集检验与 peak calling"
+    },
+    {
+      "category": "method",
+      "id": "mcscanx",
+      "title": "MCScanX",
+      "status": "AUDITED_PASS",
+      "note": "基因锚点链与共线区块识别"
+    },
+    {
+      "category": "method",
+      "id": "meme-suite",
+      "title": "MEME Suite",
+      "status": "AUDITED_PASS",
+      "note": "位置权重矩阵与序列基序统计"
+    },
+    {
+      "category": "method",
+      "id": "merqury",
+      "title": "Merqury",
+      "status": "AUDITED_PASS",
+      "note": "k-mer 集合比较"
+    },
+    {
+      "category": "method",
+      "id": "minigraph-cactus",
+      "title": "Minigraph-Cactus",
+      "status": "AUDITED_PASS",
+      "note": "泛基因组图构建"
+    },
+    {
+      "category": "method",
+      "id": "minigraph",
+      "title": "Minigraph",
+      "status": "AUDITED_PASS",
+      "note": "参考引导的序列到图映射与增量构图"
+    },
+    {
+      "category": "method",
+      "id": "minimap2",
+      "title": "minimap2",
+      "status": "AUDITED_PASS",
+      "note": "minimizer 索引与锚点链化"
+    },
+    {
+      "category": "method",
+      "id": "mofa-plus",
+      "title": "MOFA+",
+      "status": "AUDITED_PASS",
+      "note": "贝叶斯多视图因子分析与变分推断"
+    },
+    {
+      "category": "method",
+      "id": "msmc",
+      "title": "MSMC",
+      "status": "AUDITED_PASS",
+      "note": "多序列顺序马尔可夫共祖隐马尔可夫模型（联合拟合多条单倍型共祖状态）"
+    },
+    {
+      "category": "method",
+      "id": "msmc2",
+      "title": "MSMC2",
+      "status": "AUDITED_PASS",
+      "note": "多序列顺序马尔可夫共祖隐马尔可夫模型"
+    },
+    {
+      "category": "method",
+      "id": "mummer4",
+      "title": "MUMmer4",
+      "status": "AUDITED_PASS",
+      "note": "精确匹配锚点与局部比对"
+    },
+    {
+      "category": "method",
+      "id": "odgi",
+      "title": "ODGI",
+      "status": "AUDITED_PASS",
+      "note": "图存储与路径可视化"
+    },
+    {
+      "category": "method",
+      "id": "orthofinder",
+      "title": "OrthoFinder",
+      "status": "AUDITED_PASS",
+      "note": "序列相似性聚类与系统发育"
+    },
+    {
+      "category": "method",
+      "id": "paml",
+      "title": "PAML",
+      "status": "AUDITED_PASS",
+      "note": "最大似然密码子模型与贝叶斯分子钟"
+    },
+    {
+      "category": "method",
+      "id": "pggb",
+      "title": "PGGB",
+      "status": "AUDITED_PASS",
+      "note": "全对全比对与图规范化"
+    },
+    {
+      "category": "method",
+      "id": "plantcad2",
+      "title": "PlantCAD2",
+      "status": "AUDITED_PASS",
+      "note": "双向状态空间序列建模与反向互补等变性"
+    },
+    {
+      "category": "method",
+      "id": "plink",
+      "title": "PLINK",
+      "status": "AUDITED_PASS",
+      "note": "基因型统计与关联分析"
+    },
+    {
+      "category": "method",
+      "id": "psmc",
+      "title": "PSMC",
+      "status": "AUDITED_PASS",
+      "note": "成对顺序马尔可夫共祖隐马尔可夫模型"
+    },
+    {
+      "category": "method",
+      "id": "rqtl2",
+      "title": "R/qtl2",
+      "status": "AUDITED_PASS",
+      "note": "多点基因型概率与 QTL 全基因组扫描"
+    },
+    {
+      "category": "method",
+      "id": "rrblup",
+      "title": "rrBLUP",
+      "status": "AUDITED_PASS",
+      "note": "岭回归与线性混合模型"
+    },
+    {
+      "category": "method",
+      "id": "sc-kb-copilot",
+      "title": "scKB 与 COPILOT",
+      "status": "AUDITED_PASS",
+      "note": "pseudoalignment、UMI 去重与条形码质量分布过滤"
+    },
+    {
+      "category": "method",
+      "id": "scanpy",
+      "title": "Scanpy",
+      "status": "AUDITED_PASS",
+      "note": "特征处理、邻近图与社区聚类"
+    },
+    {
+      "category": "method",
+      "id": "scipy",
+      "title": "SciPy 线性回归",
+      "status": "AUDITED_PASS",
+      "note": "线性回归与 t 检验"
+    },
+    {
+      "category": "method",
+      "id": "selscan",
+      "title": "selscan",
+      "status": "AUDITED_PASS",
+      "note": "延伸单倍型纯合性与群体间积分比较"
+    },
+    {
+      "category": "method",
+      "id": "smcpp",
+      "title": "SMC++",
+      "status": "AUDITED_PASS",
+      "note": "顺序共祖模型与条件样本频率谱"
+    },
+    {
+      "category": "method",
+      "id": "sniffles2",
+      "title": "Sniffles2 长读段结构变异检测",
+      "status": "AUDITED_PASS",
+      "note": "重复感知的信号聚类与覆盖自适应过滤"
+    },
+    {
+      "category": "method",
+      "id": "squidpy",
+      "title": "Squidpy",
+      "status": "AUDITED_PASS",
+      "note": "空间邻居图、置换检验与空间自相关"
+    },
+    {
+      "category": "method",
+      "id": "sweepfinder2",
+      "title": "SweepFinder2",
+      "status": "AUDITED_PASS",
+      "note": "位点频率谱复合似然与背景选择校正"
+    },
+    {
+      "category": "method",
+      "id": "syri",
+      "title": "SyRI",
+      "status": "AUDITED_PASS",
+      "note": "共线结构与重排识别"
+    },
+    {
+      "category": "method",
+      "id": "verkko",
+      "title": "Verkko",
+      "status": "AUDITED_PASS",
+      "note": "多数据组装图"
+    },
+    {
+      "category": "method",
+      "id": "vg",
+      "title": "vg",
+      "status": "AUDITED_PASS",
+      "note": "图索引、种子匹配和单倍型感知比对"
+    },
+    {
+      "category": "method",
+      "id": "wgcna",
+      "title": "WGCNA",
+      "status": "AUDITED_PASS",
+      "note": "加权相关网络与模块识别"
+    },
+    {
+      "category": "method",
+      "id": "wgd",
+      "title": "wgd v2",
+      "status": "AUDITED_PASS",
+      "note": "Ks 分布与共线性分析"
+    },
+    {
+      "category": "method",
+      "id": "xpclr",
+      "title": "XP-CLR",
+      "status": "AUDITED_PASS",
+      "note": "跨群体等位基因频率复合似然"
+    },
+    {
+      "category": "method",
+      "id": "yahs",
+      "title": "YaHS：Hi-C 染色体级挂载",
+      "status": "AUDITED_PASS",
+      "note": "基于多分辨率 Hi-C 接触矩阵和加权连接图的 scaffold 构建"
+    },
+    {
+      "category": "paper",
+      "id": "admixture-enhancements",
+      "title": "Enhancements to the ADMIXTURE algorithm for individual ancestry estimation",
+      "status": "AUDITED_PASS",
+      "note": "method | BMC Bioinformatics (2011)"
+    },
+    {
+      "category": "paper",
+      "id": "admixture-paper",
+      "title": "Fast model-based estimation of ancestry in unrelated individuals",
+      "status": "AUDITED_PASS",
+      "note": "method | Genome Research (2009)"
+    },
+    {
+      "category": "paper",
+      "id": "african-rice-246-genomes",
+      "title": "The Rise and Fall of African Rice Cultivation Revealed by Analysis of 246 New Genomes",
+      "status": "AUDITED_PASS",
+      "note": "application | Current Biology (2018)"
+    },
+    {
+      "category": "paper",
+      "id": "agro-nt-2024",
+      "title": "A foundational large language model for edible plant genomes",
+      "status": "AUDITED_PASS",
+      "note": "method | Communications Biology (2024)"
+    },
+    {
+      "category": "paper",
+      "id": "anchorwave-paper",
+      "title": "AnchorWave: Sensitive alignment of genomes with high sequence diversity, extensive structural polymorphism, and whole-genome duplication",
+      "status": "AUDITED_PASS",
+      "note": "method | PNAS (2022)"
+    },
+    {
+      "category": "paper",
+      "id": "angiosperm-phylogenomics-2024",
+      "title": "Phylogenomics and the rise of the angiosperms",
+      "status": "AUDITED_PASS",
+      "note": "application | Nature (2024)"
+    },
+    {
+      "category": "paper",
+      "id": "arabidopsis-69-pangenome",
+      "title": "A pan-genome of 69 Arabidopsis thaliana accessions reveals a conserved genome structure throughout the global species range",
+      "status": "AUDITED_PASS",
+      "note": "application | Nature Genetics (2024)"
+    },
+    {
+      "category": "paper",
+      "id": "arabidopsis-adaptation",
+      "title": "The pan-genome and local adaptation of Arabidopsis thaliana",
+      "status": "AUDITED_PASS",
+      "note": "application | Nature Communications (2023)"
+    },
+    {
+      "category": "paper",
+      "id": "arabidopsis-atac-root-2021",
+      "title": "The regulatory landscape of Arabidopsis thaliana roots at single-cell resolution",
+      "status": "AUDITED_PASS",
+      "note": "application | Nature Communications (2021)"
+    },
+    {
+      "category": "paper",
+      "id": "arabidopsis-bzip11-atac-2023",
+      "title": "Genome-wide identification of accessible chromatin regions by ATAC-seq upon induction of the transcription factor bZIP11 in Arabidopsis",
+      "status": "AUDITED_PASS",
+      "note": "application | Scientific Data (2023)"
+    },
+    {
+      "category": "paper",
+      "id": "arabidopsis-bzip11-chromatin-2014",
+      "title": "The Arabidopsis transcription factor bZIP11 activates auxin-mediated transcription by recruiting the histone acetylation machinery",
+      "status": "AUDITED_PASS",
+      "note": "application | Nature Communications (2014)"
+    },
+    {
+      "category": "paper",
+      "id": "arabidopsis-drought-memory-2012",
+      "title": "Multiple exposures to drought 'train' transcriptional responses in Arabidopsis",
+      "status": "AUDITED_PASS",
+      "note": "application | Nature Communications (2012)"
+    },
+    {
+      "category": "paper",
+      "id": "arabidopsis-heat-hic-2020",
+      "title": "Heat stress-induced transposon activation correlates with 3D chromatin organization rearrangement in Arabidopsis",
+      "status": "AUDITED_PASS",
+      "note": "application | Nature Communications (2020)"
+    },
+    {
+      "category": "paper",
+      "id": "arabidopsis-heat-memory-2021",
+      "title": "Heteromeric HSFA2/HSFA3 complexes drive transcriptional memory after heat stress in Arabidopsis",
+      "status": "AUDITED_PASS",
+      "note": "application | Nature Communications (2021)"
+    },
+    {
+      "category": "paper",
+      "id": "arabidopsis-integrated-grn-2021",
+      "title": "Integrative inference of transcriptional networks in Arabidopsis yields novel ROS signalling regulators",
+      "status": "AUDITED_PASS",
+      "note": "application | Nature Plants (2021)"
+    },
+    {
+      "category": "paper",
+      "id": "arabidopsis-light-atlas-2023",
+      "title": "Time series single-cell transcriptional atlases reveal cell fate differentiation driven by light in Arabidopsis seedlings",
+      "status": "AUDITED_PASS",
+      "note": "application | Nature Plants (2023)"
+    },
+    {
+      "category": "paper",
+      "id": "arabidopsis-methylome-cokus-2008",
+      "title": "Shotgun bisulphite sequencing of the Arabidopsis genome reveals DNA methylation patterning",
+      "status": "AUDITED_PASS",
+      "note": "application | Nature (2008)"
+    },
+    {
+      "category": "paper",
+      "id": "arabidopsis-pds5-hic-2024",
+      "title": "Mutations of PDS5 genes enhance TAD-like domain formation in Arabidopsis thaliana",
+      "status": "AUDITED_PASS",
+      "note": "application | Nature Communications (2024)"
+    },
+    {
+      "category": "paper",
+      "id": "arabidopsis-protoplast-germination-2024",
+      "title": "Establishment of single-cell transcriptional states during seed germination",
+      "status": "AUDITED_PASS",
+      "note": "application | Nature Plants (2024)"
+    },
+    {
+      "category": "paper",
+      "id": "arabidopsis-root-atlas-2022",
+      "title": "A single-cell Arabidopsis root atlas reveals developmental trajectories in wild-type and cell identity mutants",
+      "status": "AUDITED_PASS",
+      "note": "application | Developmental Cell (2022)"
+    },
+    {
+      "category": "paper",
+      "id": "arabidopsis-stomata-accessibility-2022",
+      "title": "Dynamic chromatin accessibility deploys heterotypic cis/trans-acting factors driving stomatal cell-fate commitment",
+      "status": "AUDITED_PASS",
+      "note": "application | Nature Plants (2022)"
+    },
+    {
+      "category": "paper",
+      "id": "archr-paper",
+      "title": "ArchR is a scalable software package for integrative single-cell chromatin accessibility analysis",
+      "status": "AUDITED_PASS",
+      "note": "method | Nature Genetics (2021)"
+    },
+    {
+      "category": "paper",
+      "id": "bcftools-paper",
+      "title": "Twelve years of SAMtools and BCFtools",
+      "status": "AUDITED_PASS",
+      "note": "method | GigaScience (2021)"
+    },
+    {
+      "category": "paper",
+      "id": "bismark-paper",
+      "title": "Bismark: a flexible aligner and methylation caller for Bisulfite-Seq applications",
+      "status": "AUDITED_PASS",
+      "note": "method | Bioinformatics (2011)"
+    },
+    {
+      "category": "paper",
+      "id": "braker3-paper",
+      "title": "BRAKER3: Fully automated genome annotation using RNA-Seq and protein evidence with GeneMark-ETP, AUGUSTUS, and TSEBRA",
+      "status": "AUDITED_PASS",
+      "note": "method | Genome Research (2024)"
+    },
+    {
+      "category": "paper",
+      "id": "cafe5-paper",
+      "title": "CAFE 5 models variation in evolutionary rates among gene families",
+      "status": "AUDITED_PASS",
+      "note": "method | Bioinformatics (2020)"
+    },
+    {
+      "category": "paper",
+      "id": "cell2location-paper",
+      "title": "Cell2location maps fine-grained cell types in spatial transcriptomics",
+      "status": "AUDITED_PASS",
+      "note": "method | Nature Biotechnology (2022)"
+    },
+    {
+      "category": "paper",
+      "id": "cellrank2-paper",
+      "title": "CellRank 2: unified fate mapping in multiview single-cell data",
+      "status": "AUDITED_PASS",
+      "note": "method | Nature Methods (2024)"
+    },
+    {
+      "category": "paper",
+      "id": "cutesv-paper",
+      "title": "Long-read-based human genomic structural variation detection with cuteSV",
+      "status": "AUDITED_PASS",
+      "note": "method | Genome Biology 21(1):189 (2020)"
+    },
+    {
+      "category": "paper",
+      "id": "cutntag-paper",
+      "title": "CUT&Tag for efficient epigenomic profiling of small samples and single cells",
+      "status": "AUDITED_PASS",
+      "note": "method | Nature Communications (2019)"
+    },
+    {
+      "category": "paper",
+      "id": "cycas-evolution",
+      "title": "The Cycas genome and the early evolution of seed plants",
+      "status": "AUDITED_PASS",
+      "note": "application | Nature Plants (2022)"
+    },
+    {
+      "category": "paper",
+      "id": "deseq2-2014",
+      "title": "Moderated estimation of fold change and dispersion for RNA-seq data with DESeq2",
+      "status": "AUDITED_PASS",
+      "note": "method | Genome Biology (2014)"
+    },
+    {
+      "category": "paper",
+      "id": "dnngp-paper",
+      "title": "DNNGP, a deep neural network-based method for genomic prediction using multi-omics data in plants",
+      "status": "AUDITED_PASS",
+      "note": "method | Molecular Plant (2023)"
+    },
+    {
+      "category": "paper",
+      "id": "doubletfinder-paper",
+      "title": "DoubletFinder: Doublet Detection in Single-Cell RNA Sequencing Data Using Artificial Nearest Neighbors",
+      "status": "AUDITED_PASS",
+      "note": "method | Cell Systems (2019)"
+    },
+    {
+      "category": "paper",
+      "id": "dss-paper",
+      "title": "A Bayesian hierarchical model to detect differentially methylated loci from single nucleotide resolution sequencing data",
+      "status": "AUDITED_PASS",
+      "note": "method | Nucleic Acids Research (2014)"
+    },
+    {
+      "category": "paper",
+      "id": "edta-paper",
+      "title": "Benchmarking transposable element annotation methods for creation of a streamlined, comprehensive pipeline",
+      "status": "AUDITED_PASS",
+      "note": "method | Genome Biology (2019)"
+    },
+    {
+      "category": "paper",
+      "id": "eupan-paper",
+      "title": "EUPAN enables pan-genome studies of a large number of eukaryotic genomes",
+      "status": "AUDITED_PASS",
+      "note": "method | Bioinformatics (2017)"
+    },
+    {
+      "category": "paper",
+      "id": "gapit3-paper",
+      "title": "GAPIT Version 3: Boosting Power and Accuracy for Genomic Association and Prediction",
+      "status": "AUDITED_PASS",
+      "note": "method | Genomics Proteomics Bioinformatics (2021)"
+    },
+    {
+      "category": "paper",
+      "id": "genie3-paper",
+      "title": "Inferring Regulatory Networks from Expression Data Using Tree-Based Methods",
+      "status": "AUDITED_PASS",
+      "note": "method | PLOS ONE (2010)"
+    },
+    {
+      "category": "paper",
+      "id": "giraffe-paper",
+      "title": "Pangenomics enables genotyping known structural variants in 5,202 diverse genomes",
+      "status": "AUDITED_PASS",
+      "note": "method | Science (2021)"
+    },
+    {
+      "category": "paper",
+      "id": "grnboost2-paper",
+      "title": "GRNBoost2 and Arboreto: efficient and scalable inference of gene regulatory networks",
+      "status": "AUDITED_PASS",
+      "note": "method | Bioinformatics (2019)"
+    },
+    {
+      "category": "paper",
+      "id": "gwas-mlm-paper",
+      "title": "A unified mixed-model method for association mapping that accounts for multiple levels of relatedness",
+      "status": "AUDITED_PASS",
+      "note": "method | Nature Genetics (2006)"
+    },
+    {
+      "category": "paper",
+      "id": "haphic-paper",
+      "title": "Chromosome-level scaffolding of haplotype-resolved assemblies using Hi-C data without reference genomes",
+      "status": "AUDITED_PASS",
+      "note": "method | Nature Plants (2024)"
+    },
+    {
+      "category": "paper",
+      "id": "heritability-genotype-difference",
+      "title": "Heritability in Plant Breeding on a Genotype-Difference Basis",
+      "status": "AUDITED_PASS",
+      "note": "method | Genetics (2019)"
+    },
+    {
+      "category": "paper",
+      "id": "hicexplorer-paper",
+      "title": "Galaxy HiCExplorer 3: a web server for reproducible Hi-C, capture Hi-C and single-cell Hi-C data analysis, quality control and visualization",
+      "status": "AUDITED_PASS",
+      "note": "method | Nucleic Acids Research (2020)"
+    },
+    {
+      "category": "paper",
+      "id": "hifiasm",
+      "title": "Haplotype-resolved de novo assembly using phased assembly graphs with hifiasm",
+      "status": "AUDITED_PASS",
+      "note": "method | Nature Methods (2021)"
+    },
+    {
+      "category": "paper",
+      "id": "infernal-paper",
+      "title": "Infernal 1.1: 100-fold faster RNA homology searches",
+      "status": "AUDITED_PASS",
+      "note": "method | Bioinformatics (2013)"
+    },
+    {
+      "category": "paper",
+      "id": "interproscan-paper",
+      "title": "InterProScan 5: genome-scale protein function classification",
+      "status": "AUDITED_PASS",
+      "note": "method | Bioinformatics (2014)"
+    },
+    {
+      "category": "paper",
+      "id": "iqtree2-paper",
+      "title": "IQ-TREE 2: New Models and Efficient Methods for Phylogenetic Inference in the Genomic Era",
+      "status": "AUDITED_PASS",
+      "note": "method | Molecular Biology and Evolution (2020)"
+    },
+    {
+      "category": "paper",
+      "id": "macadamia-mcscanx",
+      "title": "The genome of the endangered Macadamia jansenii displays little diversity but represents an important genetic resource for plant breeding",
+      "status": "AUDITED_PASS",
+      "note": "application | Plant Direct (2021)"
+    },
+    {
+      "category": "paper",
+      "id": "macadamia",
+      "title": "De novo chromosome level assembly of a plant genome from long read sequence data",
+      "status": "AUDITED_PASS",
+      "note": "application | The Plant Journal (2022)"
+    },
+    {
+      "category": "paper",
+      "id": "macs-paper",
+      "title": "Model-based Analysis of ChIP-Seq (MACS)",
+      "status": "AUDITED_PASS",
+      "note": "method | Genome Biology (2008)"
+    },
+    {
+      "category": "paper",
+      "id": "maize-domestication",
+      "title": "Comparative population genomics of maize domestication and improvement",
+      "status": "AUDITED_PASS",
+      "note": "application | Nature Genetics (2012)"
+    },
+    {
+      "category": "paper",
+      "id": "maize-drought-deseq2-2019",
+      "title": "Maize leaves drought-responsive genes revealed by comparative transcriptome of two cultivars during the filling stage",
+      "status": "AUDITED_PASS",
+      "note": "application | PLOS ONE (2019)"
+    },
+    {
+      "category": "paper",
+      "id": "maize-multiomics-network-2023",
+      "title": "A multi-omics integrative network map of maize",
+      "status": "AUDITED_PASS",
+      "note": "application | Nature Genetics (2023)"
+    },
+    {
+      "category": "paper",
+      "id": "maize-zeas-adaptation",
+      "title": "Population genomics of Zea species identifies selection signatures during maize domestication and adaptation",
+      "status": "AUDITED_PASS",
+      "note": "application | BMC Plant Biology (2022)"
+    },
+    {
+      "category": "paper",
+      "id": "mam-positive-selection-2006",
+      "title": "Positive selection driving diversification in plant secondary metabolism",
+      "status": "AUDITED_PASS",
+      "note": "application | Proceedings of the National Academy of Sciences (2006)"
+    },
+    {
+      "category": "paper",
+      "id": "mango-annotation",
+      "title": "A chromosome-level genome of mango exclusively from long-read sequence data",
+      "status": "AUDITED_PASS",
+      "note": "application | The Plant Genome (2024)"
+    },
+    {
+      "category": "paper",
+      "id": "mcscanx-paper",
+      "title": "MCScanX: a toolkit for detection and evolutionary analysis of gene synteny and collinearity",
+      "status": "AUDITED_PASS",
+      "note": "method | Nucleic Acids Research (2012)"
+    },
+    {
+      "category": "paper",
+      "id": "meme-suite-paper",
+      "title": "The MEME Suite",
+      "status": "AUDITED_PASS",
+      "note": "method | Nucleic Acids Research (2015)"
+    },
+    {
+      "category": "paper",
+      "id": "merqury",
+      "title": "Merqury: reference-free quality, completeness, and phasing assessment for genome assemblies",
+      "status": "AUDITED_PASS",
+      "note": "method | Genome Biology (2020)"
+    },
+    {
+      "category": "paper",
+      "id": "minigraph-cactus-paper",
+      "title": "Pangenome graph construction from genome alignments with Minigraph-Cactus",
+      "status": "AUDITED_PASS",
+      "note": "method | Nature Biotechnology (2024)"
+    },
+    {
+      "category": "paper",
+      "id": "minigraph-paper",
+      "title": "The design and construction of reference pangenome graphs with minigraph",
+      "status": "AUDITED_PASS",
+      "note": "method | Genome Biology (2020)"
+    },
+    {
+      "category": "paper",
+      "id": "minimap2-paper",
+      "title": "Minimap2: pairwise alignment for nucleotide sequences",
+      "status": "AUDITED_PASS",
+      "note": "method | Bioinformatics 34(18):3094–3100 (2018)"
+    },
+    {
+      "category": "paper",
+      "id": "mofa-plus-paper",
+      "title": "MOFA+: a statistical framework for comprehensive integration of multi-modal single-cell data",
+      "status": "AUDITED_PASS",
+      "note": "method | Genome Biology (2020)"
+    },
+    {
+      "category": "paper",
+      "id": "msmc-paper",
+      "title": "Inferring human population size and separation history from multiple genome sequences",
+      "status": "AUDITED_PASS",
+      "note": "method | Nature Genetics (2014)"
+    },
+    {
+      "category": "paper",
+      "id": "msmc2-protocol",
+      "title": "MSMC and MSMC2: The Multiple Sequentially Markovian Coalescent",
+      "status": "AUDITED_PASS",
+      "note": "method | Methods in Molecular Biology (2020)"
+    },
+    {
+      "category": "paper",
+      "id": "mummer4-paper",
+      "title": "MUMmer4: A fast and versatile genome alignment system",
+      "status": "AUDITED_PASS",
+      "note": "method | PLOS Computational Biology 14(1):e1005944 (2018)"
+    },
+    {
+      "category": "paper",
+      "id": "mungbean-evolution-2014",
+      "title": "Genome sequence of mungbean and insights into evolution within Vigna species",
+      "status": "AUDITED_PASS",
+      "note": "application | Nature Communications (2014)"
+    },
+    {
+      "category": "paper",
+      "id": "odgi-paper",
+      "title": "ODGI: understanding pangenome graphs",
+      "status": "AUDITED_PASS",
+      "note": "method | Bioinformatics (2022)"
+    },
+    {
+      "category": "paper",
+      "id": "orthofinder-2026",
+      "title": "OrthoFinder: improved phylogenetic orthology inference with enhanced accuracy and scalability",
+      "status": "AUDITED_PASS",
+      "note": "method | Nature Methods (2026)"
+    },
+    {
+      "category": "paper",
+      "id": "orthofinder-paper",
+      "title": "OrthoFinder: phylogenetic orthology inference for comparative genomics",
+      "status": "AUDITED_PASS",
+      "note": "method | Genome Biology (2019)"
+    },
+    {
+      "category": "paper",
+      "id": "paml-paper",
+      "title": "PAML 4: Phylogenetic Analysis by Maximum Likelihood",
+      "status": "AUDITED_PASS",
+      "note": "method | Molecular Biology and Evolution (2007)"
+    },
+    {
+      "category": "paper",
+      "id": "pggb-paper",
+      "title": "Building pangenome graphs",
+      "status": "AUDITED_PASS",
+      "note": "method | Nature Methods (2024)"
+    },
+    {
+      "category": "paper",
+      "id": "plant-dna-methylation-review-2021",
+      "title": "Dynamics of DNA Methylation and Its Functions in Plant Growth and Development",
+      "status": "AUDITED_PASS",
+      "note": "review | Frontiers in Plant Science (2021)"
+    },
+    {
+      "category": "paper",
+      "id": "plant-induced-sv-2025",
+      "title": "A simple method to efficiently generate structural variation in plants",
+      "status": "AUDITED_PASS",
+      "note": "application | PLoS Genetics 21(12):e1011977 (2025)"
+    },
+    {
+      "category": "paper",
+      "id": "plant-sv-benchmark-2026",
+      "title": "Benchmarking long-read aligner-caller pipelines for structural variant detection across ten angiosperm species with PacBio high-fidelity sequencing",
+      "status": "AUDITED_PASS",
+      "note": "application | Genome Biology (2026)"
+    },
+    {
+      "category": "paper",
+      "id": "plant-wgd-timing-2017",
+      "title": "Constraining the timing of whole genome duplication in plant evolutionary history",
+      "status": "AUDITED_PASS",
+      "note": "application | Proceedings of the Royal Society B (2017)"
+    },
+    {
+      "category": "paper",
+      "id": "plantcad2-paper",
+      "title": "PlantCAD2: A DNA foundation model for interpreting genomes across flowering plants",
+      "status": "AUDITED_PASS",
+      "note": "method | Cell Genomics (2026)"
+    },
+    {
+      "category": "paper",
+      "id": "plink-paper",
+      "title": "PLINK: A Tool Set for Whole-Genome Association and Population-Based Linkage Analyses",
+      "status": "AUDITED_PASS",
+      "note": "method | American Journal of Human Genetics (2007)"
+    },
+    {
+      "category": "paper",
+      "id": "populus-euphratica-demography",
+      "title": "Genome resequencing reveals demographic history and genetic architecture of seed salinity tolerance in Populus euphratica",
+      "status": "AUDITED_PASS",
+      "note": "application | Journal of Experimental Botany (2020)"
+    },
+    {
+      "category": "paper",
+      "id": "populus-repeats-demography",
+      "title": "Repetitive genomic regions and the inference of demographic history",
+      "status": "AUDITED_PASS",
+      "note": "application | Heredity (2021)"
+    },
+    {
+      "category": "paper",
+      "id": "potato",
+      "title": "Chromosome-scale and haplotype-resolved genome assembly of a tetraploid potato cultivar",
+      "status": "AUDITED_PASS",
+      "note": "application | Nature Genetics (2022)"
+    },
+    {
+      "category": "paper",
+      "id": "psmc-paper",
+      "title": "Inference of human population history from individual whole-genome sequences",
+      "status": "AUDITED_PASS",
+      "note": "method | Nature (2011)"
+    },
+    {
+      "category": "paper",
+      "id": "purple-rice-wgcna",
+      "title": "Transcriptome analysis of the coexpression network of genes related to antioxidant characteristics after grain filling in purple rice",
+      "status": "AUDITED_PASS",
+      "note": "application | Scientific Reports (2024)"
+    },
+    {
+      "category": "paper",
+      "id": "repeatmodeler2-paper",
+      "title": "RepeatModeler2 for automated genomic discovery of transposable element families",
+      "status": "AUDITED_PASS",
+      "note": "method | PNAS (2020)"
+    },
+    {
+      "category": "paper",
+      "id": "rice-3010-pangenome",
+      "title": "Genomic variation in 3,010 diverse accessions of Asian cultivated rice",
+      "status": "AUDITED_PASS",
+      "note": "application | Nature (2018)"
+    },
+    {
+      "category": "paper",
+      "id": "rice-deep-rooting-qtl",
+      "title": "Quantitative trait locus mapping of deep rooting by linkage and association analysis in rice",
+      "status": "AUDITED_PASS",
+      "note": "application | Journal of Experimental Botany (2015)"
+    },
+    {
+      "category": "paper",
+      "id": "rice-deleterious-domestication",
+      "title": "Deleterious Variants in Asian Rice and the Potential Cost of Domestication",
+      "status": "AUDITED_PASS",
+      "note": "application | Molecular Biology and Evolution (2017)"
+    },
+    {
+      "category": "paper",
+      "id": "rice-domestication-civan",
+      "title": "Three geographically separate domestications of Asian rice",
+      "status": "AUDITED_PASS",
+      "note": "application | Nature Plants (2015)"
+    },
+    {
+      "category": "paper",
+      "id": "rice-domestication-huang",
+      "title": "A map of rice genome variation reveals the origin of cultivated rice",
+      "status": "AUDITED_PASS",
+      "note": "application | Nature (2012)"
+    },
+    {
+      "category": "paper",
+      "id": "rice-gapit-2023",
+      "title": "Gene based markers improve precision of genome-wide association studies and accuracy of genomic predictions in rice breeding",
+      "status": "AUDITED_PASS",
+      "note": "application | Heredity (2023)"
+    },
+    {
+      "category": "paper",
+      "id": "rice-gwas-2010",
+      "title": "Genome-wide association studies of 14 agronomic traits in rice landraces",
+      "status": "AUDITED_PASS",
+      "note": "application | Nature Genetics (2010)"
+    },
+    {
+      "category": "paper",
+      "id": "rice-pangenome-paper",
+      "title": "Pan-genome analysis highlights the extent of genomic variation in cultivated and wild rice",
+      "status": "AUDITED_PASS",
+      "note": "application | Nature Genetics (2018)"
+    },
+    {
+      "category": "paper",
+      "id": "rice-root-single-cell-2021",
+      "title": "Single-cell transcriptome atlas and chromatin accessibility landscape reveal differentiation trajectories in the rice root",
+      "status": "AUDITED_PASS",
+      "note": "application | Nature Communications (2021)"
+    },
+    {
+      "category": "paper",
+      "id": "rice-root-soil-single-cell-2025",
+      "title": "Single-cell transcriptomics reveal how root tissues adapt to soil stress",
+      "status": "AUDITED_PASS",
+      "note": "application | Nature (2025)"
+    },
+    {
+      "category": "paper",
+      "id": "rice-roots-population",
+      "title": "Loci and natural alleles underlying robust roots and adaptive domestication of upland ecotype rice in aerobic conditions",
+      "status": "AUDITED_PASS",
+      "note": "application | PLOS Genetics (2018)"
+    },
+    {
+      "category": "paper",
+      "id": "rice-se-pav-hybrid-sterility-2023",
+      "title": "Two complementary genes in a presence-absence variation contribute to indica-japonica reproductive isolation in rice",
+      "status": "AUDITED_PASS",
+      "note": "application | Nature Communications 14:4531 (2023)"
+    },
+    {
+      "category": "paper",
+      "id": "rice-single-cell-multiomics-2025",
+      "title": "A single-cell multi-omics atlas of rice",
+      "status": "AUDITED_PASS",
+      "note": "application | Nature (2025)"
+    },
+    {
+      "category": "paper",
+      "id": "rice-t2t-nipponbare",
+      "title": "A complete assembly of the rice Nipponbare reference genome",
+      "status": "AUDITED_PASS",
+      "note": "application | Molecular Plant (2023)"
+    },
+    {
+      "category": "paper",
+      "id": "rice-temarker-sweeps",
+      "title": "Exploring transposable element-based markers to identify allelic variations underlying agronomic traits in rice",
+      "status": "AUDITED_PASS",
+      "note": "application | Plant Communications (2022)"
+    },
+    {
+      "category": "paper",
+      "id": "rice-variant-comparison",
+      "title": "Accurate detections of the heterozygous SNPs with rice genomic data and prediction of de novo spontaneous mutation rate",
+      "status": "AUDITED_PASS",
+      "note": "application | Plant Methods (2025)"
+    },
+    {
+      "category": "paper",
+      "id": "rice-weedy-selection",
+      "title": "Population genomics identifies the origin and signatures of selection of Korean weedy rice",
+      "status": "AUDITED_PASS",
+      "note": "application | Plant Biotechnology Journal (2017)"
+    },
+    {
+      "category": "paper",
+      "id": "rqtl2-paper",
+      "title": "R/qtl2: Software for Mapping Quantitative Trait Loci with High-Dimensional Data and Multiparent Populations",
+      "status": "AUDITED_PASS",
+      "note": "method | Genetics (2019)"
+    },
+    {
+      "category": "paper",
+      "id": "rrblup-paper",
+      "title": "Ridge Regression and Other Kernels for Genomic Selection with R Package rrBLUP",
+      "status": "AUDITED_PASS",
+      "note": "method | The Plant Genome (2011)"
+    },
+    {
+      "category": "paper",
+      "id": "sc-kb-copilot-paper",
+      "title": "Protocol for fast scRNA-seq raw data processing using scKB and non-arbitrary quality control with COPILOT",
+      "status": "AUDITED_PASS",
+      "note": "method | STAR Protocols (2022)"
+    },
+    {
+      "category": "paper",
+      "id": "scanpy-paper",
+      "title": "SCANPY: large-scale single-cell gene expression data analysis",
+      "status": "AUDITED_PASS",
+      "note": "method | Genome Biology (2018)"
+    },
+    {
+      "category": "paper",
+      "id": "scipy-paper",
+      "title": "SciPy 1.0: fundamental algorithms for scientific computing in Python",
+      "status": "AUDITED_PASS",
+      "note": "method | Nature Methods (2020)"
+    },
+    {
+      "category": "paper",
+      "id": "selscan-paper",
+      "title": "selscan: an efficient multi-threaded program to perform EHH-based scans for positive selection",
+      "status": "AUDITED_PASS",
+      "note": "method | Molecular Biology and Evolution (2014)"
+    },
+    {
+      "category": "paper",
+      "id": "smcpp-paper",
+      "title": "Robust and scalable inference of population history from hundreds of unphased whole genomes",
+      "status": "AUDITED_PASS",
+      "note": "method | Nature Genetics (2017)"
+    },
+    {
+      "category": "paper",
+      "id": "sniffles2-paper",
+      "title": "Detection of mosaic and population-level structural variants with Sniffles2",
+      "status": "AUDITED_PASS",
+      "note": "method | Nature Biotechnology 42(10):1571–1580 (2024)"
+    },
+    {
+      "category": "paper",
+      "id": "sorghum-graph-benchmark",
+      "title": "Toward a standardized framework for pangenome graph evaluation: assessing crop plant pangenome variation graph construction from multiple assemblies",
+      "status": "AUDITED_PASS",
+      "note": "application | GigaScience (2025)"
+    },
+    {
+      "category": "paper",
+      "id": "sorghum-pangenome-reference-2026",
+      "title": "A sorghum pangenome reference improves global crop trait discovery",
+      "status": "AUDITED_PASS",
+      "note": "application | Nature 652:1245–1253 (2026)"
+    },
+    {
+      "category": "paper",
+      "id": "soybean-resequencing",
+      "title": "Resequencing of 31 wild and cultivated soybean genomes identifies patterns of genetic diversity and selection",
+      "status": "AUDITED_PASS",
+      "note": "application | Nature Genetics (2010)"
+    },
+    {
+      "category": "paper",
+      "id": "squidpy-paper",
+      "title": "Squidpy: a scalable framework for spatial omics analysis",
+      "status": "AUDITED_PASS",
+      "note": "method | Nature Methods (2022)"
+    },
+    {
+      "category": "paper",
+      "id": "sweepfinder2-paper",
+      "title": "SweepFinder2: increased sensitivity, robustness and flexibility",
+      "status": "AUDITED_PASS",
+      "note": "method | Bioinformatics (2016)"
+    },
+    {
+      "category": "paper",
+      "id": "syri-paper",
+      "title": "SyRI: finding genomic rearrangements and local sequence differences from whole-genome assemblies",
+      "status": "AUDITED_PASS",
+      "note": "method | Genome Biology (2019)"
+    },
+    {
+      "category": "paper",
+      "id": "tea-comparative",
+      "title": "Genomic analyses of agronomic traits in tea plants and related Camellia species",
+      "status": "AUDITED_PASS",
+      "note": "application | Frontiers in Plant Science (2024)"
+    },
+    {
+      "category": "paper",
+      "id": "trnascan-paper",
+      "title": "tRNAscan-SE 2.0: improved detection and functional classification of transfer RNA genes",
+      "status": "AUDITED_PASS",
+      "note": "method | Nucleic Acids Research (2021)"
+    },
+    {
+      "category": "paper",
+      "id": "verkko",
+      "title": "Telomere-to-telomere assembly of diploid chromosomes with Verkko",
+      "status": "AUDITED_PASS",
+      "note": "method | Nature Biotechnology (2023)"
+    },
+    {
+      "category": "paper",
+      "id": "vg-paper",
+      "title": "Variation graph toolkit improves read mapping by representing genetic variation in the reference",
+      "status": "AUDITED_PASS",
+      "note": "method | Nature Biotechnology (2018)"
+    },
+    {
+      "category": "paper",
+      "id": "watermelon-t2t-pangenome",
+      "title": "Telomere-to-telomere Citrullus super-pangenome provides direction for watermelon breeding",
+      "status": "AUDITED_PASS",
+      "note": "application | Nature Genetics (2024)"
+    },
+    {
+      "category": "paper",
+      "id": "wgcna-paper",
+      "title": "WGCNA: an R package for weighted correlation network analysis",
+      "status": "AUDITED_PASS",
+      "note": "method | BMC Bioinformatics (2008)"
+    },
+    {
+      "category": "paper",
+      "id": "wgd-v2-paper",
+      "title": "wgd v2: a suite of tools to uncover and date ancient polyploidy and whole-genome duplication",
+      "status": "AUDITED_PASS",
+      "note": "method | Bioinformatics (2024)"
+    },
+    {
+      "category": "paper",
+      "id": "wheat-methylome-2015",
+      "title": "A genome-wide survey of DNA methylation in hexaploid wheat",
+      "status": "AUDITED_PASS",
+      "note": "application | Genome Biology (2015)"
+    },
+    {
+      "category": "paper",
+      "id": "wild-rice-pangenome-2025",
+      "title": "A pangenome reference of wild and cultivated rice",
+      "status": "AUDITED_PASS",
+      "note": "application | Nature (2025)"
+    },
+    {
+      "category": "paper",
+      "id": "xanthoceras",
+      "title": "Two haplotype-resolved telomere-to-telomere genome assemblies of Xanthoceras sorbifolium",
+      "status": "AUDITED_PASS",
+      "note": "application | Scientific Data (2025)"
+    },
+    {
+      "category": "paper",
+      "id": "xpclr-paper",
+      "title": "Population differentiation as a test for selective sweeps",
+      "status": "AUDITED_PASS",
+      "note": "method | Genome Research (2010)"
+    },
+    {
+      "category": "paper",
+      "id": "xpehh-paper",
+      "title": "Genome-wide detection and characterization of positive selection in human populations",
+      "status": "AUDITED_PASS",
+      "note": "method | Nature (2007)"
+    },
+    {
+      "category": "paper",
+      "id": "yahs",
+      "title": "YaHS: yet another Hi-C scaffolding tool",
+      "status": "AUDITED_PASS",
+      "note": "method | Bioinformatics (2023)"
+    },
+    {
+      "category": "tutorial",
+      "id": "hifiasm-intro",
+      "title": "hifiasm-intro",
+      "status": "template",
+      "note": "命令模板已核对 · 真实数据待验证"
+    },
+    {
+      "category": "tutorial",
+      "id": "orthofinder-intro",
+      "title": "orthofinder-intro",
+      "status": "verified",
+      "note": "官方非植物小型示例已验证"
+    },
+    {
+      "category": "tutorial",
+      "id": "syri-intro",
+      "title": "syri-intro",
+      "status": "verified",
+      "note": "官方拟南芥染色体示例已验证"
+    },
+    {
+      "category": "tutorial",
+      "id": "bismark-synthetic",
+      "title": "bismark-synthetic",
+      "status": "verified",
+      "note": "模拟数据流程已验证并对照真值"
+    },
+    {
+      "category": "tutorial",
+      "id": "plink-synthetic",
+      "title": "plink-synthetic",
+      "status": "verified",
+      "note": "模拟数据转换、统计与 PCA 已验证"
+    },
+    {
+      "category": "tutorial",
+      "id": "gwas-synthetic",
+      "title": "gwas-synthetic",
+      "status": "verified",
+      "note": "模拟单标记 OLS 已验证并独立复算"
+    },
+    {
+      "category": "tutorial",
+      "id": "scanpy-synthetic",
+      "title": "scanpy-synthetic",
+      "status": "verified",
+      "note": "模拟数据 QC、聚类与 UMAP 已验证"
+    },
+    {
+      "category": "tutorial",
+      "id": "wgcna-synthetic",
+      "title": "wgcna-synthetic",
+      "status": "verified",
+      "note": "模拟有符号共表达网络已验证"
+    },
+    {
+      "category": "tutorial",
+      "id": "edta-tutorial",
+      "title": "edta-tutorial",
+      "status": "template",
+      "note": "命令模板已核对 · 真实数据待验证"
+    },
+    {
+      "category": "tutorial",
+      "id": "cafe5-intro",
+      "title": "cafe5-intro",
+      "status": "verified",
+      "note": "官方哺乳动物示例已运行验证（基础与 Gamma 模型）"
+    },
+    {
+      "category": "compute_profile",
+      "id": "hifiasm",
+      "title": "Hifiasm",
+      "status": "AUDITED_PASS",
+      "note": "植物高杂合全基因组组装 (玉米 B73, ~2.3 Gb, 30x PacBio HiFi reads)"
+    },
+    {
+      "category": "compute_profile",
+      "id": "orthofinder",
+      "title": "OrthoFinder",
+      "status": "AUDITED_PASS",
+      "note": "植物跨物种同源正交群推断 (10 个禾本科植物全蛋白组，约 40 万条序列)"
+    },
+    {
+      "category": "compute_profile",
+      "id": "edta",
+      "title": "EDTA",
+      "status": "AUDITED_PASS",
+      "note": "全基因组转座子全面注释 (水稻 Nipponbare, ~390 Mb, 参考基因组)"
+    },
+    {
+      "category": "compute_profile",
+      "id": "cafe5",
+      "title": "CAFE 5",
+      "status": "AUDITED_PASS",
+      "note": "基因家族收缩与扩张演化分析 (官方 12 物种基准，Base 单 λ 模型与 Gamma 离散模型)"
+    },
+    {
+      "category": "compute_profile",
+      "id": "plink",
+      "title": "PLINK",
+      "status": "AUDITED_PASS",
+      "note": "群体基因型质控与 LD 剪枝 (1000 个植物样本, 1000 万个 SNP)"
+    },
+    {
+      "category": "compute_profile",
+      "id": "gapit",
+      "title": "GAPIT",
+      "status": "AUDITED_PASS",
+      "note": "全基因组关联分析 (500 个作物个体, 50 万个高质量 SNP, FarmCPU 模型)"
+    },
+    {
+      "category": "compute_profile",
+      "id": "syri",
+      "title": "SyRI",
+      "status": "AUDITED_PASS",
+      "note": "染色体级别双基因组结构变异检测 (拟南芥 Col-0 vs Ler-0, 全基因组比对)"
+    },
+    {
+      "category": "compute_profile",
+      "id": "minigraph-cactus",
+      "title": "Minigraph-Cactus",
+      "status": "AUDITED_PASS",
+      "note": "高质量植物图形泛基因组构建 (5 个水稻染色体级别组装, ~400 Mb)"
+    },
+    {
+      "category": "compute_profile",
+      "id": "deseq2",
+      "title": "DESeq2",
+      "status": "AUDITED_PASS",
+      "note": "RNA-seq 差异表达分析 (30 个样本, 40000 个植物基因表达矩阵)"
+    },
+    {
+      "category": "compute_profile",
+      "id": "wgcna",
+      "title": "WGCNA",
+      "status": "AUDITED_PASS",
+      "note": "加权共表达网络构建 (50 个样本, 前 8000 个高变异基因)"
+    },
+    {
+      "category": "compute_profile",
+      "id": "bismark",
+      "title": "Bismark",
+      "status": "AUDITED_PASS",
+      "note": "全基因组重亚硫酸盐测序 (WGBS) 比对 (拟南芥 30x PE150 reads)"
+    },
+    {
+      "category": "compute_profile",
+      "id": "scanpy",
+      "title": "Scanpy",
+      "status": "AUDITED_PASS",
+      "note": "植物单细胞转录组 (scRNA-seq) 降维聚类 (水稻根尖 20000 个原生质体细胞)"
+    },
+    {
+      "category": "workflow",
+      "id": "assembly-pangenome",
+      "title": "从长读段测序到植物泛基因组构建端到端路线",
+      "status": "AUDITED_PASS",
+      "note": "5 phases"
+    },
+    {
+      "category": "workflow",
+      "id": "population-gwas",
+      "title": "植物群体变异检测与全基因组关联分析路线",
+      "status": "AUDITED_PASS",
+      "note": "5 phases"
+    },
+    {
+      "category": "workflow",
+      "id": "expression-network",
+      "title": "植物发育与逆境胁迫转录调控网络解析路线",
+      "status": "AUDITED_PASS",
+      "note": "5 phases"
+    },
+    {
+      "category": "genome_resource",
+      "id": "arabidopsis",
+      "status": "AUDITED",
+      "note": ""
+    },
+    {
+      "category": "genome_resource",
+      "id": "rice",
+      "status": "AUDITED",
+      "note": ""
+    },
+    {
+      "category": "genome_resource",
+      "id": "maize",
+      "status": "AUDITED",
+      "note": ""
+    },
+    {
+      "category": "genome_resource",
+      "id": "wheat",
+      "status": "AUDITED",
+      "note": ""
+    },
+    {
+      "category": "genome_resource",
+      "id": "soybean",
+      "status": "AUDITED",
+      "note": ""
+    },
+    {
+      "category": "genome_resource",
+      "id": "tomato",
+      "status": "AUDITED",
+      "note": ""
+    },
+    {
+      "category": "genome_resource",
+      "id": "potato",
+      "status": "AUDITED",
+      "note": ""
+    },
+    {
+      "category": "genome_resource",
+      "id": "sorghum",
+      "status": "AUDITED",
+      "note": ""
+    },
+    {
+      "category": "genome_resource",
+      "id": "barley",
+      "status": "AUDITED",
+      "note": ""
+    },
+    {
+      "category": "genome_resource",
+      "id": "poplar",
+      "status": "AUDITED",
+      "note": ""
+    }
+  ]
+}

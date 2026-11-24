@@ -220,6 +220,7 @@ const popularKeywords = ['Hifiasm', 'GWAS', '泛基因组', '转座子', '单细
           if (filterPillsContainer) filterPillsContainer.style.display = 'flex';
 
           let visibleCount = 0;
+          const totalMatches = resultItems.length;
 
           resultItems.forEach((item) => {
             // 彻底移除任何图片或占位节点
@@ -279,7 +280,7 @@ const popularKeywords = ['Hifiasm', 'GWAS', '泛基因组', '转座子', '单细
             }
           });
 
-          // 格式化顶部结果数量显示 (与设计图一致，使用安全 DOM 构建)
+          // 格式化顶部结果数量显示 (与设计图一致，区分全部匹配与当前分类筛选数量，使用安全 DOM 构建)
           if (messageEl && query) {
             messageEl.textContent = '';
             messageEl.appendChild(document.createTextNode('找到 '));
@@ -291,6 +292,13 @@ const popularKeywords = ['Hifiasm', 'GWAS', '泛基因组', '转座子', '单细
             queryStrong.textContent = query;
             messageEl.appendChild(queryStrong);
             messageEl.appendChild(document.createTextNode('” 相关的结果'));
+
+            if (currentActiveFilter !== 'all' && totalMatches !== visibleCount) {
+              const scopeHint = document.createElement('span');
+              scopeHint.className = 'search-count-scope-hint';
+              scopeHint.textContent = `（全站共 ${totalMatches} 项匹配）`;
+              messageEl.appendChild(scopeHint);
+            }
           }
         } finally {
           setTimeout(() => {
@@ -640,6 +648,13 @@ const popularKeywords = ['Hifiasm', 'GWAS', '泛基因组', '转座子', '单细
 :global(.pagefind-ui__message strong) {
   font-weight: 700 !important;
   color: var(--color-text-main, #0f172a) !important;
+}
+
+:global(.search-count-scope-hint) {
+  font-size: 0.85rem;
+  color: var(--color-text-muted, #64748b);
+  margin-left: 0.35rem;
+  font-weight: normal;
 }
 
 /* 2. 彻底移除所有图片与嵌套子标题 */

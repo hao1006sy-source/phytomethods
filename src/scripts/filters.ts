@@ -16,7 +16,9 @@ function initPapersFilters(): void {
   const targetForm: HTMLFormElement = form;
   const totalCount = items.length;
 
-  function syncUrl(): void {
+  let syncTimeout: number | undefined;
+
+  function syncUrlNow(): void {
     const params = new URLSearchParams();
     const values = new FormData(targetForm);
 
@@ -34,7 +36,19 @@ function initPapersFilters(): void {
     }
   }
 
-  function update(): void {
+  function syncUrl(immediate = false): void {
+    if (syncTimeout) {
+      window.clearTimeout(syncTimeout);
+      syncTimeout = undefined;
+    }
+    if (immediate) {
+      syncUrlNow();
+    } else {
+      syncTimeout = window.setTimeout(syncUrlNow, 120);
+    }
+  }
+
+  function update(shouldSyncUrl = true, immediateSync = false): void {
     const values = new FormData(targetForm);
     let matchCount = 0;
 
@@ -73,45 +87,53 @@ function initPapersFilters(): void {
       }
     }
 
-    syncUrl();
+    if (shouldSyncUrl) {
+      syncUrl(immediateSync);
+    }
   }
 
   function restoreFromUrl(): void {
     const params = new URLSearchParams(window.location.search);
-    for (const [key, value] of params.entries()) {
-      const control = form?.elements.namedItem(key);
-      if (control instanceof HTMLInputElement || control instanceof HTMLSelectElement) {
-        control.value = value;
+    const elements = Array.from(targetForm.elements);
+    for (const el of elements) {
+      if (el instanceof HTMLInputElement || el instanceof HTMLSelectElement) {
+        const name = el.name;
+        if (!name) continue;
+        if (params.has(name)) {
+          el.value = params.get(name) || '';
+        } else {
+          el.value = '';
+        }
       }
     }
   }
 
-  form.addEventListener('input', update);
-  form.addEventListener('change', update);
+  form.addEventListener('input', () => update(true, false));
+  form.addEventListener('change', () => update(true, true));
   form.addEventListener('reset', () => {
     setTimeout(() => {
-      update();
+      update(true, true);
     }, 0);
   });
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    update();
+    update(true, true);
   });
 
   for (const control of document.querySelectorAll<HTMLInputElement>('[form="filters"]')) {
-    control.addEventListener('input', update);
-    control.addEventListener('change', update);
+    control.addEventListener('input', () => update(true, false));
+    control.addEventListener('change', () => update(true, true));
   }
 
   window.addEventListener('popstate', () => {
     restoreFromUrl();
-    update();
+    update(false);
   });
 
   // 页面初次加载恢复 URL 参数并筛选
   restoreFromUrl();
-  update();
+  update(false);
 }
 
 if (document.readyState === 'loading') {

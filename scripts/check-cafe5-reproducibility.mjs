@@ -1,5 +1,4 @@
 import fs from 'node:fs';
-import path from 'node:path';
 import crypto from 'node:crypto';
 import assert from 'node:assert/strict';
 const root='examples/cafe5';
@@ -24,4 +23,5 @@ assert.match(markdown,/耗时约 188 秒/);assert.match(markdown,/耗时约 828 
 const testDatasets=fs.readFileSync('src/data/tutorial-test-datasets.ts','utf8');
 assert.ok(testDatasets.includes('188 秒') && testDatasets.includes('828 秒'),'tutorial-test-datasets.ts must record actual verified 188s and 828s');
 assert.ok(!testDatasets.includes('1 分 18 秒'),'tutorial-test-datasets.ts must not contain unverified 1 分 18 秒');
+assert.ok(testDatasets.includes('CAFE5_BIN'),'tutorial-test-datasets.ts quickStartCommand must reference CAFE5_BIN');
 console.log(`CAFE5 evidence passed: ${manifest.files.length} hashes; 2 model runs; 12653 input / 10956 retained; 8 verified / 2 template`);
