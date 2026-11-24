@@ -1,22 +1,427 @@
 ---
 import Base from '../../layouts/Base.astro';
-import {species,assemblies,annotations,files,fileLabels,accessLabels,databases} from '../../lib/genomes/registry';
-import {datasetsCommand} from '../../lib/genomes/downloads';
+import { species, assemblies, annotations, files, fileLabels, accessLabels, databases } from '../../lib/genomes/registry';
+import { compatibility, compatibilityLabels } from '../../lib/genomes/compatibility';
+import { datasetsCommand } from '../../lib/genomes/downloads';
 import '../../styles/genome-hub.css';
-export function getStaticPaths(){return species.map(s=>({params:{species:s.id},props:{species:s}}));}
-const {species:s}=Astro.props;const versions=assemblies.filter(a=>a.speciesId===s.id);const base=import.meta.env.BASE_URL;
+
+export function getStaticPaths() {
+  return species.map(s => ({
+    params: { species: s.id },
+    props: { species: s }
+  }));
+}
+
+const { species: s } = Astro.props;
+const versions = assemblies.filter(a => a.speciesId === s.id);
+const base = import.meta.env.BASE_URL;
+
+// 计算物种收录的全部数据库
+const relatedDatabases = s.databaseIds.map(id => databases.find(d => d.id === id)).filter(Boolean);
 ---
-<Base title={`${s.chineseName}参考基因组 | Plant Genome Hub`}><div class="gh" id="genome-detail" data-species={s.id}>
-<nav><a href={`${base}genomes/`}>Plant Genome Hub</a> / {s.chineseName}</nav>
-<section class="gh-hero"><div class="eyebrow">SPECIES · ASSEMBLY · ANNOTATION</div><h1>{s.chineseName}</h1><p><i>{s.scientificName}</i> · {s.strain}</p><p>Taxonomy ID：<a href={`https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=${s.taxonomyId}`}>{s.taxonomyId}</a> · 组装记录分类 ID：{s.assemblyTaxonomyId}</p><div class="gh-tags">{s.databaseIds.map(id=>{const d=databases.find(d=>d.id===id);return d&&<a href={d.url}>{d.name} ↗</a>})}</div></section>
-<label>选择参考组装 <select id="assembly-select">{versions.map(a=><option value={a.id}>{a.assemblyName} · {a.accession}</option>)}</select></label>
-{s.id==='arabidopsis'&&<p class="gh-warning">TAIR12 / Col-CC.v2（GCA_028009825.2）与 TAIR10 / Araport11（GCA_000001735.1）坐标不兼容。复现旧研究应保留原坐标，AGI 标识相同也不代表位置相同。</p>}
-{s.id==='rice'&&<p class="gh-warning">RGAP / MSU Release 7 基于 Os-Nipponbare-Reference-IRGSP-1.0。这里使用包含 TE 和非 TE 模型的全部基因模型，不混用 representative、籼稻或 NCBI 注释。</p>}
-{versions.map((a,index)=>{const ann=annotations.find(n=>n.assemblyId===a.id)!;const resource=files.filter(f=>f.assemblyId===a.id);return <section data-assembly-panel={a.id} hidden={index!==0}>
-<section class="gh-block"><h2>参考组装与注释版本</h2><dl class="gh-meta"><dt>Assembly</dt><dd>{a.assemblyName} · <strong>{a.accession}</strong> · accession 版本 {a.assemblyVersion}</dd><dt>来源 / 等级</dt><dd>{a.sourceDatabase} / {a.assemblyLevel}</dd><dt>组装发布日期</dt><dd>{'releaseDate'in a&&a.releaseDate?a.releaseDate:'未核实'}</dd><dt>品系 / 坐标</dt><dd>{a.strain} / {a.coordinateSystem}</dd><dt>数据库发布</dt><dd>{a.databaseRelease}</dd><dt>注释版本 / 机构</dt><dd>{ann.releaseName} · {ann.provider}</dd><dt>注释发布日期</dt><dd>{'releaseDate'in ann&&ann.releaseDate?ann.releaseDate:'未核实'}</dd><dt>文件命名核实</dt><dd>{ann.chromosomeNamespace||'尚未核实，配套状态保持未确认'}</dd><dt>核实日期</dt><dd>{a.verifiedAt}</dd></dl><p>{a.note}</p><p>{ann.note}</p><div class="gh-actions"><a href={a.sourceUrl}>官方组装记录 ↗</a><a href={ann.sourceUrl}>注释原始出处 ↗</a></div></section>
-<section class="gh-block"><h2>配套文件下载中心</h2><p class="gh-muted">直链通过小段 gzip 文件头验证；页面入口需在原站选择对应发布，未核实文件不参与默认选择。窄屏可横向滑动表格查看下载操作。</p><div class="gh-scroll"><table class="gh-files"><thead><tr><th>选择</th><th>资源</th><th>获取方式</th><th>操作</th></tr></thead><tbody>{resource.map(f=><tr><td><input aria-label={`选择 ${fileLabels[f.type]}`} type="checkbox" data-resource-id={f.id} checked={(f.type==='genome'&&f.accessType!=='unverified')||(f.accessType==='direct'&&['gff3','cds','protein'].includes(f.type))} disabled={f.accessType==='unverified'}/></td><td>{fileLabels[f.type]}<br/><small>{f.format} · {ann.releaseName}</small></td><td>{accessLabels[f.accessType]}</td><td>{f.accessType!=='unverified'&&<><a href={'downloadUrl'in f&&f.downloadUrl?f.downloadUrl:f.sourceUrl} target="_blank" rel="noreferrer">{f.accessType==='direct'?'下载文件 ↗':'打开官方页面 ↗'}</a> <button data-copy-url={'downloadUrl'in f&&f.downloadUrl?f.downloadUrl:f.sourceUrl}>{f.accessType==='direct'?'复制下载链接':'复制入口'}</button>{f.accessType==='direct'&&<button data-copy-url={`curl --fail --location --retry 3 -O '${'downloadUrl'in f?f.downloadUrl:''}'`}>复制命令</button>}</>}<details><summary>文件说明</summary><p>{f.note}</p><a href={f.sourceUrl}>来源依据</a></details></td></tr>)}</tbody></table></div><div class="gh-status" data-selection-status role="status"></div><div class="gh-actions"><button class="primary" data-export-manifest>导出 reference-manifest.json</button><button data-copy-citation>复制 Markdown 引用清单</button></div></section>
-<section class="gh-block"><h2>NCBI Datasets 命令</h2><pre data-cli>{datasetsCommand(a)}</pre><button data-copy-cli disabled={a.sourceDatabase==='ensembl'}>复制 NCBI 命令</button><p class="gh-warning">这是独立的 NCBI 数据包入口，TAIR、RGAP、Ensembl 注释不通过此命令获取。NCBI 序列命名不能与外部注释自动混配。下载包不保证包含缺失文件，请核对 assembly_data_report.json 的实际注释发布。</p></section>
-</section>})}
-<section class="gh-block"><h2>跨版本配套检查</h2><p>比较当前组装的 Genome 与其他注释记录。</p><label>比较注释 <select id="annotation-compare">{annotations.map(n=><option value={n.id}>{species.find(s=>s.id===assemblies.find(a=>a.id===n.assemblyId)?.speciesId)?.chineseName} · {n.releaseName} · {assemblies.find(a=>a.id===n.assemblyId)?.accession}</option>)}</select></label><p class="gh-status" id="comparison-status" role="status"></p></section>
-<p id="genome-feedback" role="status" aria-live="polite"></p><p><a href={`${base}genomes/databases/`}>官方数据库导航</a> · <a href={`${base}tutorials/`}>分析教程</a> · <a href={`${base}topics/`}>研究领域</a></p>
-</div><script src="../../scripts/genome-detail.ts"></script></Base>
+
+<Base title={`${s.chineseName} 参考基因组与官方注释下载 | Plant Genome Hub`}>
+  <div class="gh" id="genome-detail" data-species={s.id}>
+    <!-- 面包屑导航 -->
+    <nav class="gh-breadcrumb" aria-label="Breadcrumb">
+      <a href={base}>首页</a>
+      <span class="gh-breadcrumb-sep">/</span>
+      <a href={`${base}genomes/`}>Plant Genome Hub</a>
+      <span class="gh-breadcrumb-sep">/</span>
+      <span>{s.chineseName}</span>
+    </nav>
+
+    <!-- 顶部卡片：物种概览与参考版本切换器 -->
+    <section class="gh-detail-header-card">
+      <div class="gh-detail-top-row">
+        <div class="gh-detail-title-group">
+          <p class="gh-overline">SPECIES REFERENCE OVERVIEW</p>
+          <h1>{s.chineseName}</h1>
+          <p class="gh-detail-subtitle">
+            <em>{s.scientificName}</em> · 品系：<strong>{s.strain}</strong> · 类别：{s.category}
+          </p>
+          <div style="font-size: 0.85rem; color: var(--gh-text-muted); margin-top: 0.35rem;">
+            Taxonomy ID: <a href={`https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=${s.taxonomyId}`} target="_blank" rel="noreferrer">{s.taxonomyId} ↗</a>
+            &nbsp;·&nbsp;
+            组装记录分类 ID: {s.assemblyTaxonomyId}
+          </div>
+        </div>
+
+        <!-- 参考版本切换器 -->
+        <div class="gh-version-select-box">
+          <label for="assembly-select">切换参考组装版本 ({versions.length} 套)</label>
+          <select id="assembly-select">
+            {versions.map(a => (
+              <option value={a.id}>{a.assemblyName} · {a.accession}</option>
+            ))}
+          </select>
+        </div>
+      </div>
+
+      <!-- 来源数据库快速标签 -->
+      <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-top: 1rem; align-items:center;">
+        <span style="font-size:0.8rem; color:var(--gh-text-muted);">官方数据来源：</span>
+        {relatedDatabases.map(d => (
+          <a class="gh-badge gh-badge-source" href={d?.url} target="_blank" rel="noreferrer" style="text-decoration:none;">
+            {d?.name} &nearr;
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- 版本科学警示说明 (Alert) -->
+    {s.id === 'arabidopsis' && (
+      <div class="gh-alert warning" role="alert">
+        <strong>⚠️ 拟南芥坐标体系重要提醒：</strong>
+        TAIR12 / Col-CC.v2（GCA_028009825.2）与历史经典的 TAIR10 / Araport11（GCA_000001735.1）坐标<strong>不兼容</strong>。复现旧有文献研究应保留原坐标系统，AGI 基因标识符相同亦不代表实际物理坐标一致。
+      </div>
+    )}
+    {s.id === 'rice' && (
+      <div class="gh-alert warning" role="alert">
+        <strong>⚠️ 水稻参考模型版本说明：</strong>
+        RGAP / MSU Release 7 基于 Os-Nipponbare-Reference-IRGSP-1.0。本站收录包含转座子 (TE) 和非 TE 模型的全部基因模型，请勿与 representative 单一转录本模型、籼稻 (93-11) 或 NCBI RefSeq 注释混用。
+      </div>
+    )}
+
+    <!-- 各 Assembly 对应的详细面板 (由 JS 切换隐藏/显示) -->
+    {versions.map((a, index) => {
+      const ann = annotations.find(n => n.assemblyId === a.id)!;
+      const resource = files.filter(f => f.assemblyId === a.id);
+
+      // 提取四大核心常用下载资源
+      const coreGenome = resource.find(f => f.type === 'genome');
+      const coreGff = resource.find(f => f.type === 'gff3');
+      const coreCds = resource.find(f => f.type === 'cds');
+      const coreProtein = resource.find(f => f.type === 'protein');
+
+      const coreList = [
+        { label: 'Genome FASTA', file: coreGenome, desc: '全基因组核酸参考序列 (FASTA)' },
+        { label: 'Gene Annotation GFF3', file: coreGff, desc: '全基因组基因结构模型注释 (GFF3)' },
+        { label: 'CDS FASTA', file: coreCds, desc: '编码区核苷酸序列 (FASTA)' },
+        { label: 'Protein FASTA', file: coreProtein, desc: '代表性蛋白质氨基酸序列 (FASTA)' }
+      ];
+
+      // 计算初始配套状态
+      let compState = { status: 'unverified', reason: '请核实配套文件。' };
+      if (coreGenome && coreGff) {
+        compState = compatibility(coreGenome, coreGff);
+      }
+
+      return (
+        <div data-assembly-panel={a.id} hidden={index !== 0}>
+          <!-- 配套状态指示横幅 -->
+          <div class={`gh-status-banner ${compState.status}`}>
+            <span class="gh-status-icon">
+              {compState.status === 'confirmed' ? '✓' : (compState.status === 'incompatible' ? '✕' : 'ℹ')}
+            </span>
+            <div class="gh-status-body">
+              <strong>当前参考数据配套状态：{compatibilityLabels[compState.status as keyof typeof compatibilityLabels]}</strong>
+              <span>{compState.reason}</span>
+            </div>
+          </div>
+
+          <!-- B2: 首屏优先展示 4 大最常用下载资源 (最高优先级) -->
+          <section>
+            <div class="gh-section-title-wrap">
+              <h2 class="gh-section-title">常用核心下载资源</h2>
+              <span class="gh-section-note">Genome · GFF3 · CDS · Protein 官方快速获取入口</span>
+            </div>
+
+            <div class="gh-core-downloads-grid">
+              {coreList.map(item => {
+                const f = item.file;
+                if (!f) return null;
+                const isDirect = f.accessType === 'direct';
+                const hasUrl = 'downloadUrl' in f && f.downloadUrl;
+                const targetUrl = hasUrl ? f.downloadUrl : f.sourceUrl;
+
+                return (
+                  <div class="gh-download-card">
+                    <div>
+                      <div class="gh-download-card-header">
+                        <h3 class="gh-card-file-type">{item.label}</h3>
+                        <span class={`gh-badge ${isDirect ? 'gh-badge-level' : 'gh-badge-strain'}`}>
+                          {accessLabels[f.accessType]}
+                        </span>
+                      </div>
+                      <div class="gh-card-file-meta">
+                        <div>{item.desc}</div>
+                        <div style="font-size:0.78rem; margin-top:0.25rem;">
+                          格式：{f.format} &nbsp;·&nbsp; 注释：<strong>{ann.releaseName}</strong>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="gh-card-file-actions">
+                      {f.accessType !== 'unverified' ? (
+                        <>
+                          <a
+                            href={targetUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                            class="gh-btn-download-primary"
+                          >
+                            {isDirect ? '下载文件 ↗' : '官方页面 ↗'}
+                          </a>
+                          <button
+                            type="button"
+                            class="gh-btn-copy-small"
+                            data-copy-url={targetUrl}
+                          >
+                            {isDirect ? '复制直链' : '复制入口'}
+                          </button>
+                          {isDirect && (
+                            <button
+                              type="button"
+                              class="gh-btn-copy-small"
+                              data-copy-url={`curl --fail --location --retry 3 -O '${targetUrl}'`}
+                            >
+                              复制 curl
+                            </button>
+                          )}
+                        </>
+                      ) : (
+                        <span style="font-size:0.8rem; color:var(--gh-text-muted);">暂无核验下载链接</span>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </section>
+
+          <!-- 元数据结构化网格卡片 -->
+          <section>
+            <div class="gh-section-title-wrap">
+              <h2 class="gh-section-title">组装与官方注释元数据</h2>
+              <span class="gh-section-note">正式发布版本与坐标体系档案</span>
+            </div>
+
+            <div class="gh-meta-grid">
+              <!-- 参考组装信息 -->
+              <div class="gh-meta-box">
+                <h3>参考组装元数据 (Assembly)</h3>
+                <dl class="gh-meta-dl">
+                  <dt>Assembly 名称</dt>
+                  <dd><strong>{a.assemblyName}</strong></dd>
+                  <dt>Accession</dt>
+                  <dd class="gh-mono">{a.accession} (v{a.assemblyVersion})</dd>
+                  <dt>组装等级</dt>
+                  <dd>{a.assemblyLevel}</dd>
+                  <dt>发布日期</dt>
+                  <dd>{'releaseDate' in a && a.releaseDate ? a.releaseDate : '未明确'}</dd>
+                  <dt>品系</dt>
+                  <dd>{a.strain}</dd>
+                  <dt>坐标体系</dt>
+                  <dd>{a.coordinateSystem}</dd>
+                  <dt>数据库发布</dt>
+                  <dd>{a.databaseRelease}</dd>
+                  <dt>核实日期</dt>
+                  <dd>{a.verifiedAt}</dd>
+                </dl>
+                <div style="margin-top:0.85rem;">
+                  <a href={a.sourceUrl} target="_blank" rel="noreferrer" style="font-size:0.85rem; font-weight:600;">
+                    查看官方组装记录 &nearr;
+                  </a>
+                </div>
+              </div>
+
+              <!-- 基因注释信息 -->
+              <div class="gh-meta-box">
+                <h3>官方基因注释元数据 (Annotation)</h3>
+                <dl class="gh-meta-dl">
+                  <dt>注释发布版本</dt>
+                  <dd><strong>{ann.releaseName}</strong></dd>
+                  <dt>提供机构</dt>
+                  <dd>{ann.provider}</dd>
+                  <dt>来源数据库</dt>
+                  <dd>{ann.sourceDatabase}</dd>
+                  <dt>发布日期</dt>
+                  <dd>{'releaseDate' in ann && ann.releaseDate ? ann.releaseDate : '未明确'}</dd>
+                  <dt>染色体命名</dt>
+                  <dd>{ann.chromosomeNamespace || '尚未核实，配套状态保持未确认'}</dd>
+                  <dt>核验日期</dt>
+                  <dd>{ann.verifiedAt}</dd>
+                </dl>
+                <p style="font-size:0.82rem; color:var(--gh-text-muted); margin:0.5rem 0 0;">
+                  {ann.note}
+                </p>
+                <div style="margin-top:0.85rem;">
+                  <a href={ann.sourceUrl} target="_blank" rel="noreferrer" style="font-size:0.85rem; font-weight:600;">
+                    查看注释原始出处 &nearr;
+                  </a>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 全部配套文件清单表格 (带选择与 Manifest 导出) -->
+          <section>
+            <div class="gh-section-title-wrap">
+              <h2 class="gh-section-title">全量配套文件清单与导出</h2>
+              <span class="gh-section-note">勾选需要的文件，批量校验兼容性并导出标准引用清单</span>
+            </div>
+
+            <div class="gh-table-container">
+              <table class="gh-data-table">
+                <thead>
+                  <tr>
+                    <th style="width: 48px; text-align:center;">选择</th>
+                    <th>资源类型</th>
+                    <th>文件格式 / 注释版本</th>
+                    <th>获取方式</th>
+                    <th>操作</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {resource.map(f => (
+                    <tr>
+                      <td style="text-align:center;">
+                        <input
+                          aria-label={`选择 ${fileLabels[f.type]}`}
+                          type="checkbox"
+                          data-resource-id={f.id}
+                          checked={
+                            (f.type === 'genome' && f.accessType !== 'unverified') ||
+                            (f.accessType === 'direct' && ['gff3', 'cds', 'protein'].includes(f.type))
+                          }
+                          disabled={f.accessType === 'unverified'}
+                        />
+                      </td>
+                      <td>
+                        <strong>{fileLabels[f.type]}</strong>
+                      </td>
+                      <td>
+                        <span class="gh-mono">{f.format}</span> · {ann.releaseName}
+                      </td>
+                      <td>
+                        <span class={`gh-badge ${f.accessType === 'direct' ? 'gh-badge-level' : 'gh-badge-strain'}`}>
+                          {accessLabels[f.accessType]}
+                        </span>
+                      </td>
+                      <td>
+                        {f.accessType !== 'unverified' && (
+                          <div style="display:flex; gap:0.4rem; align-items:center; flex-wrap:wrap;">
+                            <a
+                              href={'downloadUrl' in f && f.downloadUrl ? f.downloadUrl : f.sourceUrl}
+                              target="_blank"
+                              rel="noreferrer"
+                              style="font-weight:600;"
+                            >
+                              {f.accessType === 'direct' ? '下载文件 ↗' : '打开官方页面 ↗'}
+                            </a>
+                            <button
+                              type="button"
+                              class="gh-btn-copy-small"
+                              data-copy-url={'downloadUrl' in f && f.downloadUrl ? f.downloadUrl : f.sourceUrl}
+                            >
+                              {f.accessType === 'direct' ? '复制下载链接' : '复制入口'}
+                            </button>
+                            {f.accessType === 'direct' && (
+                              <button
+                                type="button"
+                                class="gh-btn-copy-small"
+                                data-copy-url={`curl --fail --location --retry 3 -O '${'downloadUrl' in f ? f.downloadUrl : ''}'`}
+                              >
+                                复制命令
+                              </button>
+                            )}
+                          </div>
+                        )}
+                        <details style="margin-top:0.35rem; font-size:0.8rem; color:var(--gh-text-muted);">
+                          <summary style="cursor:pointer;">文件依据与说明</summary>
+                          <p style="margin:0.25rem 0 0.15rem;">{f.note}</p>
+                          <a href={f.sourceUrl} target="_blank" rel="noreferrer">官方来源记录 &nearr;</a>
+                        </details>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            <!-- 选择状态动态反馈 -->
+            <div class="gh-status" data-selection-status role="status"></div>
+
+            <!-- 批量导出工具条 -->
+            <div class="gh-manifest-actions">
+              <button type="button" class="gh-btn-download-primary" data-export-manifest>
+                导出 reference-manifest.json
+              </button>
+              <button type="button" class="gh-btn-copy-small" style="padding:0.5rem 1rem;" data-copy-citation>
+                复制 Markdown 引用清单
+              </button>
+            </div>
+          </section>
+
+          <!-- NCBI Datasets 命令行工具 -->
+          <section>
+            <div class="gh-section-title-wrap">
+              <h2 class="gh-section-title">NCBI Datasets 官方命令行工具</h2>
+              <span class="gh-section-note">使用 NCBI 官方 CLI 批量拉取组装与元数据报告</span>
+            </div>
+
+            <div class="gh-cli-box">
+              <p style="font-size:0.88rem; margin:0 0 0.5rem;">
+                可通过 NCBI 官方 <code>datasets</code> 命令行快速下载该参考组装：
+              </p>
+              <pre class="gh-cli-pre" data-cli>{datasetsCommand(a)}</pre>
+              <button
+                type="button"
+                class="gh-btn-copy-small"
+                data-copy-cli
+                disabled={a.sourceDatabase === 'ensembl'}
+              >
+                复制 NCBI 命令
+              </button>
+              <div class="gh-alert warning" style="margin-top:1rem;">
+                <strong>注意事项：</strong>这是独立的 NCBI 数据包入口，TAIR、RGAP、Ensembl 注释不通过此命令获取。NCBI 序列命名不能与外部注释自动混配。下载包不保证包含缺失文件，请核对 assembly_data_report.json 的实际注释发布。
+              </div>
+            </div>
+          </section>
+        </div>
+      );
+    })}
+
+    <!-- 跨版本配套检查 (比较当前组装与全库其他注释) -->
+    <section style="margin-top: 2rem;">
+      <div class="gh-section-title-wrap">
+        <h2 class="gh-section-title">跨版本配套规则检查器</h2>
+        <span class="gh-section-note">实时校验当前 Genome 与不同版本注释的兼容性与科学证据</span>
+      </div>
+
+      <div class="gh-meta-box">
+        <div style="margin-bottom: 0.75rem;">
+          <label for="annotation-compare" style="font-size:0.85rem; font-weight:700; color:var(--gh-text-muted);">
+            选择需要比对的注释版本：
+          </label>
+          <select id="annotation-compare" class="gh-filter-select" style="margin-top:0.35rem;">
+            {annotations.map(n => {
+              const annAssembly = assemblies.find(a => a.id === n.assemblyId);
+              const annSpecies = species.find(sp => sp.id === annAssembly?.speciesId);
+              return (
+                <option value={n.id}>
+                  {annSpecies?.chineseName} · {n.releaseName} · {annAssembly?.accession}
+                </option>
+              );
+            })}
+          </select>
+        </div>
+        <div class="gh-status" id="comparison-status" role="status"></div>
+      </div>
+    </section>
+
+    <!-- 交互提示状态与底部快速导航 -->
+    <p id="genome-feedback" role="status" aria-live="polite" style="font-size:0.85rem; color:var(--gh-primary); min-height:1.2rem; margin:1rem 0; font-weight:600;"></p>
+
+    <div class="gh-nav-strip" style="border-top:1px solid var(--gh-border); padding-top:1rem; margin-top:2rem;">
+      <div class="gh-nav-links">
+        <a href={`${base}genomes/`}>&larr; 返回 Plant Genome Hub 目录</a>
+        <a href={`${base}genomes/databases/`}>官方数据库导航 &rarr;</a>
+        <a href={`${base}tutorials/`}>实战教程 &rarr;</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../scripts/genome-detail.ts"></script>
+</Base>

@@ -1,30 +1,476 @@
 ---
 import Base from '../../layouts/Base.astro';
-import {species,assemblies,annotations,files,databases} from '../../lib/genomes/registry';
+import { species, assemblies, annotations, files, databases } from '../../lib/genomes/registry';
+import { compatibility, compatibilityLabels } from '../../lib/genomes/compatibility';
 import '../../styles/genome-hub.css';
-const base=import.meta.env.BASE_URL;
-const verifiedDates=[...new Set(assemblies.map(a=>a.verifiedAt))].sort().join(' / ');
+
+const base = import.meta.env.BASE_URL;
+
+// 动态统计数据计算
+const totalSpecies = species.length;
+const totalAssemblies = assemblies.length;
+
+// 计算已确认配套组合数
+const bundleStates = assemblies.map(a => {
+  const g = files.find(f => f.assemblyId === a.id && f.type === 'genome');
+  const ann = files.find(f => f.assemblyId === a.id && f.type === 'gff3');
+  if (!g || !ann) return 'unverified';
+  return compatibility(g, ann).status;
+});
+const confirmedBundlesCount = bundleStates.filter(s => s === 'confirmed').length;
+
+// 计算已核实直接下载直链数
+const directFilesCount = files.filter(f => f.accessType === 'direct').length;
+
+const verifiedDates = [...new Set(assemblies.map(a => a.verifiedAt))].sort().join(' / ');
 ---
-<Base title="Plant Genome Hub" description="按 Assembly accession 查找植物参考基因组、官方注释与配套下载资源。">
-<div class="gh">
-<section class="gh-hero"><div class="eyebrow">REFERENCE GENOMES · VERSION-AWARE DISCOVERY</div><h1>Plant Genome Hub</h1><p>查找植物参考基因组、官方注释及配套序列文件。</p><div class="gh-tags"><span class="gh-tag">{species.length} 个物种</span><span class="gh-tag">{assemblies.length} 套参考组装</span><span class="gh-tag">按坐标体系核对配套关系</span><a href={`${base}genomes/databases/`}>官方数据库导航 →</a></div></section>
-<form class="gh-controls" id="genome-search" role="search">
-<label class="search">搜索物种 / 品系 / accession / Taxonomy ID<input type="search" id="genome-query" placeholder="拟南芥、Nipponbare、B73、GCA_028009825.2…" /></label>
-<label>物种类别<select id="genome-category"><option value="">全部类别</option>{[...new Set(species.map(s=>s.category))].map(v=><option>{v}</option>)}</select></label>
-<label>来源<select id="genome-source"><option value="">全部来源</option>{databases.map(d=><option value={d.id}>{d.name}</option>)}</select></label>
-<label>组装级别<select id="genome-level"><option value="">全部级别</option>{['Complete Genome','Chromosome','Scaffold','Contig'].map(v=><option>{v}</option>)}</select></label>
-<label>组装版本<select id="genome-version"><option value="">全部版本</option>{assemblies.map(a=><option value={a.id}>{a.assemblyName} · {a.accession}</option>)}</select></label>
-<label>获取方式<select id="genome-access"><option value="">全部方式</option><option value="direct">直接下载</option><option value="portal">官方页面</option><option value="login_required">需要登录</option></select></label>
-{[['gff3','有 GFF3'],['protein','有 Protein'],['cds','有 CDS']].map(([type,label])=><label><span><input type="checkbox" data-file-filter={type} /> {label}</span></label>)}<button type="reset">重置筛选</button>
-</form>
-<p class="gh-muted" id="genome-result-count" role="status">{assemblies.length} 套参考组装。核实日期：{verifiedDates}；历史版本保留用于复现。</p>
-<div class="gh-grid">{assemblies.map(a=>{const s=species.find(s=>s.id===a.speciesId)!;const f=files.filter(f=>f.assemblyId===a.id);const search=[s.chineseName,s.scientificName,...s.aliases,s.strain,s.taxonomyId,s.assemblyTaxonomyId,a.accession,a.assemblyName,...a.searchAliases,...annotations.filter(n=>n.assemblyId===a.id).map(n=>n.releaseName),a.sourceDatabase,...s.databaseIds.map(id=>databases.find(d=>d.id===id)?.name??id)].join(' ');return <article class="gh-card" data-genome-card data-search={search} data-category={s.category} data-source={[a.sourceDatabase,...f.map(f=>annotations.find(n=>n.id===f.annotationId)?.sourceDatabase??'')].join(' ')} data-level={a.assemblyLevel} data-version={a.id} data-access={f.map(f=>f.accessType).join(' ')} data-files={f.filter(f=>f.accessType!=='unverified').map(f=>f.type).join(' ')}><div class="gh-tags"><span class="gh-tag">{s.category}</span><span class="gh-tag">{a.assemblyLevel}</span></div><h2><a href={`${base}genomes/${s.id}/?assembly=${a.id}`}>{s.chineseName} <span aria-hidden="true">↗</span></a></h2><p><i>{s.scientificName}</i><br/>{s.strain}</p><strong>{a.assemblyName}</strong><p class="gh-muted">{a.accession}<br/>来源：{databases.find(d=>d.id===a.sourceDatabase)?.name}<br/>Taxonomy ID：{s.taxonomyId}</p><a href={`${base}genomes/${s.id}/?assembly=${a.id}`}>版本、配套与下载 →</a></article>})}</div>
-<div class="gh-empty" id="genome-empty" hidden>没有匹配的参考组装。请尝试学名或清除筛选条件。</div>
-</div>
-<script>
-const form=document.querySelector<HTMLFormElement>('#genome-search')!;
-const normalize=(s:string)=>s.normalize('NFKC').toLowerCase().replace(/[\s\p{P}]+/gu,'');
-function filter(){const q=normalize((document.querySelector('#genome-query') as HTMLInputElement).value);let count=0;document.querySelectorAll<HTMLElement>('[data-genome-card]').forEach(card=>{let show=normalize(card.dataset.search??'').includes(q);for(const key of ['category','source','level','version','access']){const value=(document.querySelector(`#genome-${key}`)as HTMLSelectElement).value;if(value)show=show&&(card.dataset[key]??'').split(['access','source'].includes(key)?' ':'\u0000').includes(value);}document.querySelectorAll<HTMLInputElement>('[data-file-filter]:checked').forEach(input=>{show=show&&(card.dataset.files??'').split(' ').includes(input.dataset.fileFilter!);});card.hidden=!show;if(show)count++;});document.querySelector('#genome-result-count')!.textContent=`找到 ${count} 套参考组装 · 组装版本、注释版本与数据库发布版本分别记录`; (document.querySelector('#genome-empty') as HTMLElement).hidden=count>0;}
-form.addEventListener('submit',e=>e.preventDefault());form.addEventListener('input',filter);form.addEventListener('reset',()=>setTimeout(filter,0));
-</script>
+
+<Base title="Plant Genome Hub 植物参考基因组资源库" description="植物基因组科研资源数据库：高密度检索植物参考组装、官方注释与配套序列文件。">
+  <div class="gh">
+    <!-- 面包屑导航 -->
+    <nav class="gh-breadcrumb" aria-label="Breadcrumb">
+      <a href={base}>首页</a>
+      <span class="gh-breadcrumb-sep">/</span>
+      <span>Plant Genome Hub</span>
+    </nav>
+
+    <!-- 顶部紧凑 Hero 与真实动态统计 -->
+    <section class="gh-hero-compact">
+      <div class="gh-hero-info">
+        <p class="gh-overline">PLANT GENOME HUB</p>
+        <h1>植物参考基因组资源库</h1>
+        <p class="gh-hero-lead">快速查找植物参考组装、官方注释与配套序列文件。按坐标体系严格核对配套关系。</p>
+      </div>
+
+      <div class="gh-hero-stats">
+        <div class="gh-stat-card">
+          <span class="gh-stat-num">{totalSpecies}</span>
+          <span class="gh-stat-label">已收录物种</span>
+        </div>
+        <div class="gh-stat-card">
+          <span class="gh-stat-num">{totalAssemblies}</span>
+          <span class="gh-stat-label">参考组装版本</span>
+        </div>
+        <div class="gh-stat-card">
+          <span class="gh-stat-num">{confirmedBundlesCount}</span>
+          <span class="gh-stat-label">已确认配套组合</span>
+        </div>
+        <div class="gh-stat-card">
+          <span class="gh-stat-num">{directFilesCount}</span>
+          <span class="gh-stat-label">已核实下载直链</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 顶部导航小条 -->
+    <div class="gh-nav-strip">
+      <div class="gh-nav-links">
+        <a href={`${base}genomes/databases/`}>官方数据库导航（6 大数据库对比） &rarr;</a>
+        <a href={`${base}workflows/`}>端到端工作流路线图 &rarr;</a>
+        <a href={`${base}tutorials/`}>实战分析教程 &rarr;</a>
+      </div>
+      <div class="gh-text-muted" style="font-size: 0.82rem;">
+        最近核验日期：{verifiedDates}
+      </div>
+    </div>
+
+    <!-- 宽大搜索输入框 -->
+    <form class="gh-search-bar" id="genome-search" role="search" onsubmit="return false;">
+      <div class="gh-search-input-wrap">
+        <svg class="gh-search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+        </svg>
+        <input
+          type="search"
+          id="genome-query"
+          class="gh-search-input"
+          placeholder="搜索物种中文名、拉丁学名、品系、Assembly 名称、Accession (如 GCA_028009825.2) 或 Taxonomy ID…"
+          autocomplete="off"
+        />
+        <button type="button" id="genome-search-clear" class="gh-search-clear" aria-label="清空搜索词" style="display:none;">
+          &times;
+        </button>
+      </div>
+      <button type="button" class="gh-mobile-filter-btn" id="gh-mobile-filter-toggle">
+        <span>筛选条件</span>
+        <span id="gh-filter-badge">▾</span>
+      </button>
+    </form>
+
+    <!-- 已选条件标签胶囊栏 (支持单独移除与一键清除) -->
+    <div class="gh-active-tags-wrap" id="gh-active-tags" style="display:none;">
+      <span style="font-size: 0.8rem; color: var(--gh-text-muted);">已选条件：</span>
+      <div id="gh-tags-container" style="display:inline-flex; flex-wrap:wrap; gap:0.4rem;"></div>
+      <button type="button" class="gh-clear-all-btn" id="gh-clear-all-filters">清除全部</button>
+    </div>
+
+    <!-- 左右两栏布局：左侧紧凑筛选区 + 右侧高密度主列表 -->
+    <div class="gh-two-col">
+      <!-- 左侧紧凑筛选栏 -->
+      <aside class="gh-filter-sidebar" id="gh-filter-sidebar">
+        <div class="gh-filter-header">
+          <h2>多维筛选条件</h2>
+          <button type="reset" form="genome-search" class="gh-clear-all-btn" id="gh-reset-sidebar-btn">重置全部</button>
+        </div>
+
+        <div class="gh-filter-group">
+          <label class="gh-filter-label" for="genome-category">物种类别</label>
+          <select id="genome-category" class="gh-filter-select">
+            <option value="">全部类别</option>
+            {[...new Set(species.map(s => s.category))].map(v => (
+              <option value={v}>{v}</option>
+            ))}
+          </select>
+        </div>
+
+        <div class="gh-filter-group">
+          <label class="gh-filter-label" for="genome-source">官方数据来源</label>
+          <select id="genome-source" class="gh-filter-select">
+            <option value="">全部来源</option>
+            {databases.map(d => (
+              <option value={d.id}>{d.name}</option>
+            ))}
+          </select>
+        </div>
+
+        <div class="gh-filter-group">
+          <label class="gh-filter-label" for="genome-level">组装等级 (Level)</label>
+          <select id="genome-level" class="gh-filter-select">
+            <option value="">全部级别</option>
+            {['Complete Genome', 'Chromosome', 'Scaffold', 'Contig'].map(v => (
+              <option value={v}>{v}</option>
+            ))}
+          </select>
+        </div>
+
+        <div class="gh-filter-group">
+          <label class="gh-filter-label" for="genome-version">组装版本</label>
+          <select id="genome-version" class="gh-filter-select">
+            <option value="">全部版本</option>
+            {assemblies.map(a => (
+              <option value={a.id}>{a.assemblyName} · {a.accession}</option>
+            ))}
+          </select>
+        </div>
+
+        <div class="gh-filter-group">
+          <label class="gh-filter-label" for="genome-access">文件获取方式</label>
+          <select id="genome-access" class="gh-filter-select">
+            <option value="">全部方式</option>
+            <option value="direct">直接下载直链</option>
+            <option value="portal">官方页面</option>
+            <option value="login_required">需要登录</option>
+          </select>
+        </div>
+
+        <div class="gh-filter-group">
+          <span class="gh-filter-label">配套文件提供情况</span>
+          <div class="gh-filter-checkboxes">
+            {[
+              ['gff3', '提供 GFF3 注释'],
+              ['protein', '提供 Protein 序列'],
+              ['cds', '提供 CDS 序列']
+            ].map(([type, label]) => (
+              <label class="gh-checkbox-label">
+                <input type="checkbox" data-file-filter={type} />
+                <span>{label}</span>
+              </label>
+            ))}
+          </div>
+        </div>
+      </aside>
+
+      <!-- 右侧主列表区 -->
+      <main class="gh-main">
+        <div class="gh-results-header">
+          <span class="gh-results-count" id="genome-result-count" role="status">
+            共收录 <strong>{assemblies.length}</strong> 套参考组装 · 组装版本、注释版本与数据库发布版本分别记录
+          </span>
+          <span style="font-size: 0.8rem; color: var(--gh-text-muted);">
+            高密度学术目录 V2
+          </span>
+        </div>
+
+        <!-- 高密度纯文字学术资源列表 -->
+        <div class="gh-resource-list" id="genome-resource-list">
+          {assemblies.map(a => {
+            const s = species.find(sp => sp.id === a.speciesId)!;
+            const ann = annotations.find(n => n.assemblyId === a.id);
+            const aFiles = files.filter(f => f.assemblyId === a.id);
+            const genomeFile = aFiles.find(f => f.type === 'genome');
+            const gffFile = aFiles.find(f => f.type === 'gff3');
+            const proteinFile = aFiles.find(f => f.type === 'protein');
+
+            // 计算当前 Assembly 的配套状态
+            let compStatus = 'unverified';
+            if (genomeFile && gffFile) {
+              compStatus = compatibility(genomeFile, gffFile).status;
+            }
+
+            // 搜索文本全量构建 (支持中英文、别名、品系、TaxID、Accession、组装名、注释名、数据库名)
+            const searchTerms = [
+              s.chineseName,
+              s.scientificName,
+              ...s.aliases,
+              s.strain,
+              s.taxonomyId,
+              s.assemblyTaxonomyId,
+              a.accession,
+              a.assemblyName,
+              ...a.searchAliases,
+              ...annotations.filter(n => n.assemblyId === a.id).map(n => n.releaseName),
+              a.sourceDatabase,
+              ...s.databaseIds.map(id => databases.find(d => d.id === id)?.name ?? id)
+            ].join(' ');
+
+            const sourceDatabaseObj = databases.find(d => d.id === a.sourceDatabase);
+
+            return (
+              <article
+                class="gh-species-card"
+                data-genome-card
+                data-search={searchTerms}
+                data-category={s.category}
+                data-source={[a.sourceDatabase, ...aFiles.map(f => annotations.find(n => n.id === f.annotationId)?.sourceDatabase ?? '')].join(' ')}
+                data-level={a.assemblyLevel}
+                data-version={a.id}
+                data-access={aFiles.map(f => f.accessType).join(' ')}
+                data-files={aFiles.filter(f => f.accessType !== 'unverified').map(f => f.type).join(' ')}
+              >
+                <div class="gh-assembly-entry">
+                  <!-- 第一行：中文名、拉丁学名、品系 Badge、等级 Badge -->
+                  <div class="gh-entry-row-1">
+                    <div class="gh-name-group">
+                      <h2 class="gh-species-name">
+                        <a href={`${base}genomes/${s.id}/?assembly=${a.id}`}>
+                          {s.chineseName}
+                        </a>
+                      </h2>
+                      <span class="gh-scientific-name">{s.scientificName}</span>
+                    </div>
+
+                    <div class="gh-badges-group">
+                      <span class="gh-badge gh-badge-strain">{s.strain}</span>
+                      <span class="gh-badge gh-badge-level">{a.assemblyLevel}</span>
+                      <span class="gh-badge gh-badge-source">{sourceDatabaseObj?.name || a.sourceDatabase}</span>
+                    </div>
+                  </div>
+
+                  <!-- 第二行：Assembly 名称、Accession（等宽）、注释版本 -->
+                  <div class="gh-entry-row-2">
+                    <span class="gh-assembly-name">{a.assemblyName}</span>
+                    <span class="gh-accession-code">{a.accession}</span>
+                    <span class="gh-annotation-tag">
+                      注释：<strong>{ann?.releaseName || '未收录'}</strong> ({ann?.provider || '官方'})
+                    </span>
+                    <span style="font-size: 0.8rem; color: var(--gh-text-soft);">
+                      Taxonomy ID: {s.taxonomyId}
+                    </span>
+                  </div>
+
+                  <!-- 第三行：4 项状态标签 + 右侧查看详情入口 -->
+                  <div class="gh-entry-row-3">
+                    <div class="gh-statuses-group">
+                      <!-- Genome FASTA 状态 -->
+                      <span class={`gh-file-status-pill ${genomeFile?.accessType === 'direct' ? 'is-direct' : 'is-portal'}`}>
+                        FASTA {genomeFile?.accessType === 'direct' ? '直链已核实' : '官方入口'}
+                      </span>
+                      <!-- GFF3 状态 -->
+                      <span class={`gh-file-status-pill ${gffFile?.accessType === 'direct' ? 'is-direct' : 'is-portal'}`}>
+                        GFF3 {gffFile?.accessType === 'direct' ? '直链已核实' : '官方入口'}
+                      </span>
+                      <!-- Protein 状态 -->
+                      {proteinFile && (
+                        <span class={`gh-file-status-pill ${proteinFile.accessType === 'direct' ? 'is-direct' : 'is-portal'}`}>
+                          Protein {proteinFile.accessType === 'direct' ? '直链' : '入口'}
+                        </span>
+                      )}
+                      <!-- 配套状态 -->
+                      <span class={`gh-compatibility-pill ${compStatus}`}>
+                        {compatibilityLabels[compStatus as keyof typeof compatibilityLabels]}
+                      </span>
+                    </div>
+
+                    <a class="gh-entry-action-link" href={`${base}genomes/${s.id}/?assembly=${a.id}`}>
+                      查看版本与下载 &rarr;
+                    </a>
+                  </div>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+
+        <!-- 无匹配结果空状态 -->
+        <div class="gh-empty-notice" id="genome-empty" hidden>
+          <p style="font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--gh-text-main);">
+            未找到匹配的植物参考基因组组装
+          </p>
+          <p style="margin: 0 0 1rem; font-size: 0.9rem;">
+            请尝试缩短关键词、输入拉丁学名、品系或清除部分筛选条件。
+          </p>
+          <button type="button" id="gh-empty-reset-btn" class="gh-btn-download-primary" style="font-size:0.85rem; padding: 0.4rem 0.85rem;">
+            重置全部筛选条件
+          </button>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    const form = document.querySelector<HTMLFormElement>('#genome-search')!;
+    const searchInput = document.querySelector<HTMLInputElement>('#genome-query')!;
+    const clearBtn = document.querySelector<HTMLButtonElement>('#genome-search-clear')!;
+    const sidebar = document.querySelector<HTMLElement>('#gh-filter-sidebar')!;
+    const mobileToggleBtn = document.querySelector<HTMLButtonElement>('#gh-mobile-filter-toggle')!;
+    const tagsContainer = document.querySelector<HTMLElement>('#gh-tags-container')!;
+    const activeTagsWrap = document.querySelector<HTMLElement>('#gh-active-tags')!;
+    const clearAllBtn = document.querySelector<HTMLButtonElement>('#gh-clear-all-filters')!;
+    const emptyResetBtn = document.querySelector<HTMLButtonElement>('#gh-empty-reset-btn')!;
+    const countEl = document.querySelector<HTMLElement>('#genome-result-count')!;
+    const emptyNotice = document.querySelector<HTMLElement>('#genome-empty')!;
+
+    const normalize = (s: string) => s.normalize('NFKC').toLowerCase().replace(/[\s\p{P}]+/gu, '');
+
+    // 移动端筛选面板折叠/展开
+    mobileToggleBtn?.addEventListener('click', () => {
+      sidebar?.classList.toggle('is-open');
+    });
+
+    // 清空搜索框
+    clearBtn?.addEventListener('click', () => {
+      searchInput.value = '';
+      clearBtn.style.display = 'none';
+      filter();
+      searchInput.focus();
+    });
+
+    // 渲染已选条件标签
+    function updateActiveTags() {
+      if (!tagsContainer || !activeTagsWrap) return;
+      tagsContainer.innerHTML = '';
+      const tags: Array<{ label: string; onRemove: () => void }> = [];
+
+      const q = searchInput.value.trim();
+      if (q) {
+        tags.push({
+          label: `搜索: ${q}`,
+          onRemove: () => {
+            searchInput.value = '';
+            clearBtn.style.display = 'none';
+            filter();
+          }
+        });
+      }
+
+      const selectKeys: Array<{ id: string; label: string }> = [
+        { id: 'genome-category', label: '类别' },
+        { id: 'genome-source', label: '来源' },
+        { id: 'genome-level', label: '级别' },
+        { id: 'genome-version', label: '版本' },
+        { id: 'genome-access', label: '获取' }
+      ];
+
+      selectKeys.forEach(({ id, label }) => {
+        const sel = document.querySelector<HTMLSelectElement>(`#${id}`);
+        if (sel && sel.value) {
+          const text = sel.options[sel.selectedIndex]?.text || sel.value;
+          tags.push({
+            label: `${label}: ${text}`,
+            onRemove: () => {
+              sel.value = '';
+              filter();
+            }
+          });
+        }
+      });
+
+      document.querySelectorAll<HTMLInputElement>('[data-file-filter]:checked').forEach(cb => {
+        const val = cb.dataset.fileFilter;
+        const text = cb.closest('label')?.textContent?.trim() || val;
+        tags.push({
+          label: text || '',
+          onRemove: () => {
+            cb.checked = false;
+            filter();
+          }
+        });
+      });
+
+      if (tags.length > 0) {
+        activeTagsWrap.style.display = 'flex';
+        tags.forEach(t => {
+          const tagEl = document.createElement('span');
+          tagEl.className = 'gh-active-tag';
+          tagEl.innerHTML = `<span>${t.label}</span><button type="button" class="gh-tag-remove" aria-label="移除此条件">&times;</button>`;
+          tagEl.querySelector('button')?.addEventListener('click', t.onRemove);
+          tagsContainer.appendChild(tagEl);
+        });
+      } else {
+        activeTagsWrap.style.display = 'none';
+      }
+    }
+
+    // 全量联动过滤逻辑
+    function filter() {
+      const qRaw = searchInput.value;
+      const q = normalize(qRaw);
+      clearBtn.style.display = qRaw.trim() ? 'block' : 'none';
+
+      let count = 0;
+      document.querySelectorAll<HTMLElement>('[data-genome-card]').forEach(card => {
+        let show = normalize(card.dataset.search ?? '').includes(q);
+
+        for (const key of ['category', 'source', 'level', 'version', 'access']) {
+          const value = (document.querySelector(`#genome-${key}`) as HTMLSelectElement).value;
+          if (value) {
+            show = show && (card.dataset[key] ?? '').split(['access', 'source'].includes(key) ? ' ' : '\u0000').includes(value);
+          }
+        }
+
+        document.querySelectorAll<HTMLInputElement>('[data-file-filter]:checked').forEach(input => {
+          show = show && (card.dataset.files ?? '').split(' ').includes(input.dataset.fileFilter!);
+        });
+
+        card.hidden = !show;
+        if (show) count++;
+      });
+
+      if (countEl) {
+        countEl.innerHTML = `找到 <strong>${count}</strong> 套参考组装 · 组装版本、注释版本与数据库发布版本分别记录`;
+      }
+      if (emptyNotice) {
+        emptyNotice.hidden = count > 0;
+      }
+
+      updateActiveTags();
+    }
+
+    // 重置全部事件
+    function resetAll() {
+      searchInput.value = '';
+      clearBtn.style.display = 'none';
+      ['category', 'source', 'level', 'version', 'access'].forEach(k => {
+        const sel = document.querySelector<HTMLSelectElement>(`#genome-${k}`);
+        if (sel) sel.value = '';
+      });
+      document.querySelectorAll<HTMLInputElement>('[data-file-filter]').forEach(cb => (cb.checked = false));
+      filter();
+    }
+
+    clearAllBtn?.addEventListener('click', resetAll);
+    emptyResetBtn?.addEventListener('click', resetAll);
+    document.querySelector('#gh-reset-sidebar-btn')?.addEventListener('click', (e) => {
+      e.preventDefault();
+      resetAll();
+    });
+
+    form.addEventListener('submit', e => e.preventDefault());
+    form.addEventListener('input', filter);
+    form.addEventListener('change', filter);
+    form.addEventListener('reset', () => setTimeout(filter, 0));
+
+    sidebar?.addEventListener('change', filter);
+    sidebar?.addEventListener('input', filter);
+  </script>
 </Base>
