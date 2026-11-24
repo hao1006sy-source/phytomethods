@@ -153,6 +153,32 @@
         "https://hao1006sy-source.github.io/phytomethods/methods/rqtl2/",
         "https://hao1006sy-source.github.io/phytomethods/methods/dnngp/"
       ]
+    },
+    {
+      "milestone": "M07",
+      "domainId": "epigenomics-3d-genome",
+      "prNumber": 59,
+      "prTitle": "docs(v2.3): M07 表观基因组与三维基因组科研知识深度建设与学术矢量图解",
+      "mergeCommit": "8ff37b0",
+      "mergedAt": "2026-11-24T18:30:49Z",
+      "githubPagesRunId": 45460325238,
+      "deployedAt": "2026-11-24T18:31:40Z",
+      "deploymentStatus": "SUCCESS",
+      "liveUrl": "https://hao1006sy-source.github.io/phytomethods/topics/epigenomics-3d-genome/",
+      "verifiedPages": [
+        "https://hao1006sy-source.github.io/phytomethods/topics/epigenomics-3d-genome/m07-topic-01/",
+        "https://hao1006sy-source.github.io/phytomethods/topics/epigenomics-3d-genome/m07-topic-02/",
+        "https://hao1006sy-source.github.io/phytomethods/topics/epigenomics-3d-genome/m07-topic-03/",
+        "https://hao1006sy-source.github.io/phytomethods/topics/epigenomics-3d-genome/m07-topic-04/",
+        "https://hao1006sy-source.github.io/phytomethods/topics/epigenomics-3d-genome/m07-topic-05/",
+        "https://hao1006sy-source.github.io/phytomethods/topics/epigenomics-3d-genome/m07-topic-06/",
+        "https://hao1006sy-source.github.io/phytomethods/topics/epigenomics-3d-genome/m07-topic-07/",
+        "https://hao1006sy-source.github.io/phytomethods/methods/bismark/",
+        "https://hao1006sy-source.github.io/phytomethods/methods/dss/",
+        "https://hao1006sy-source.github.io/phytomethods/methods/macs3/",
+        "https://hao1006sy-source.github.io/phytomethods/methods/hicexplorer/",
+        "https://hao1006sy-source.github.io/phytomethods/methods/meme-suite/"
+      ]
     }
   ]
 }

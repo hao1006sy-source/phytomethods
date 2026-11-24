@@ -30,7 +30,7 @@ PhytoMethods 经过此前基础架构、数据注册表、计算画像核验与�
 | **M04** | 比较基因组与系统发育 | `docs/v2.3-m04-comparative-genomics` | #56 | 已合并 (`ec98daa`) | 已发布 (Run 45450999621) |
 | **M05** | 群体遗传学与演化 | `docs/v2.3-m05-population-genetics` | #57 | 已合并 (`ec72b5e`) | 已发布 (Run 45453852275) |
 | **M06** | GWAS 与全基因组选择 | `docs/v2.3-m06-gwas-breeding` | #58 | 已合并 (`0d395cf`) | 已发布 (Run 45456818404) |
-| **M07** | 表观与三维基因组学 | `docs/v2.3-m07-epigenomics-3d` | #59 | 待合并 | 待验证 |
+| **M07** | 表观与三维基因组学 | `docs/v2.3-m07-epigenomics-3d` | #59 | 已合并 (`8ff37b0`) | 已发布 (Run 45460325238) |
 | **M08** | 单细胞与空间组学 | `docs/v2.3-m08-single-cell` | 待开始 | 待合并 | 待验证 |
 | **M09** | 基因调控网络与 AI | `docs/v2.3-m09-networks-ai` | 待开始 | 待合并 | 待验证 |
 | **M10** | 全局收尾与持续发布总结 | `docs/v2.3-m10-final-review` | 待开始 | 待合并 | 待验证 |
@@ -137,8 +137,8 @@ PhytoMethods 经过此前基础架构、数据注册表、计算画像核验与�
 - **全量测试验证**: `npm run validate`、`npm run test:methods-index-v4`、`npm run test:platform-browser` 100% 通过（13,291 链接 0 死链，63 篇专题 0 语法报错，多端 7 视口 0 溢出）；
 - **部署发布验证**: PR #58 Squash 合并入 main，Pages 部署成功上线。
 
-### M07：表观基因组与三维基因组学 (待合并验证)
-- **分支**: `docs/v2.3-m07-epigenomics-3d` | **PR**: #59 | **状态**: 已完成全量开发与本地三套测试
+### M07：表观基因组与三维基因组学 (已合并上线)
+- **分支**: `docs/v2.3-m07-epigenomics-3d` | **PR**: #59 (`8ff37b0`) | **CI Run ID**: 45459755076 | **Pages Run ID**: 45460325238
 - **图解建设**: 绘制 3 幅原创学术 SVG 矢量图解置于 `public/images/topics/m07/`：
   1. `plant-dna-methylation-contexts-and-rddm.svg`: 植物特异性 mCG、mCHG、mCHH 三大胞嘧啶甲基化序列环境、维持酶系（MET1、CMT3、CMT2、DRM2）、CMT3-H3K9me2 自催化正反馈循环与经典 RNA 指导的 DNA 甲基化（RdDM）双通路架构；
   2. `atac-seq-tn5-chromatin-accessibility.svg`: ATAC-seq 染色质可及性测序分子原理、高活性突变型 Tn5 转座酶 +4/-5 bp 单碱基空间移位校正机制、文库片段核小体周期性阶梯分布与 TSSE 转录起始位点富集得分质控评估；
@@ -153,7 +153,8 @@ PhytoMethods 经过此前基础架构、数据注册表、计算画像核验与�
   - `m07-topic-07`: 表观调控与植物环境响应、拟南芥与冬小麦春化作用 *FLC* 基因 H3K27me3 逐步成核扩散沉默与胚胎期 *ELF6*/*REF6* 擦除重置机制、转座子驱动的自发旁系表观等位基因（番茄 *Cnr*、油棕 *Karma* mantled 畸形花）、干旱与热胁迫转录启动表观记忆。
 - **选型矩阵完善**: 在 `src/data/method-comparison-matrices.ts` 扩充 `hicexplorer` 与 `meme-suite` 选型及全套决策树；
 - **文献出处索引**: 在 `source-review.json` 中新增 7 条权威文献追踪记录；
-- **全量测试验证**: `npm run validate`、`npm run test:methods-index-v4`、`npm run test:platform-browser` 100% 通过（13,291 链接 0 死链，63 篇专题 0 语法报错，多端 7 视口 0 溢出）。
+- **全量测试验证**: `npm run validate`、`npm run test:methods-index-v4`、`npm run test:platform-browser` 100% 通过（13,291 链接 0 死链，63 篇专题 0 语法报错，多端 7 视口 0 溢出）；
+- **部署发布验证**: PR #59 Squash 合并入 main，Pages 部署成功上线。
 
 
 
