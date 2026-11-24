@@ -707,6 +707,36 @@ export const methodComparisonMatrices: Record<string, DomainComparisonMatrix> = 
         advantages: 'DREAM 挑战赛常胜算法，输出带权重的有向调控边列表',
         limitations: '运算复杂度随基因数递增，极大规模建议用 GRNBoost2',
         recommendedScenario: '从头推断植物转录调控网络 (GRN) 与靶基因调控层次'
+      },
+      {
+        methodId: 'mofa-plus',
+        name: 'MOFA+',
+        inputType: '配对样本的多组学数据视图 (转录组、蛋白质组、代谢组、表观组)',
+        corePrinciple: '广义概率贝叶斯矩阵分解 + 跨视图方差分解 + Spike-and-Slab 稀疏先验',
+        computeProfile: '8~16 线程 (推荐 GPU 加速, ≥ 16 GB RAM)',
+        advantages: '自然容忍随机缺失视图，将高维异质组学解耦为可解释的共享或特异隐因子',
+        limitations: '样本量需足够充分 (建议样本数 ≥ 15)，因子解释需结合生物学背景深入富集分析',
+        recommendedScenario: '植物多组学跨层级数据整合、协同调控通路发现与隐藏生理协变量识别'
+      },
+      {
+        methodId: 'agront',
+        name: 'AgroNT',
+        inputType: '未标注的植物 DNA 基因组 FASTA 序列 (支持长达 6,000 bp 窗口)',
+        corePrinciple: '6-mer 分词 + 32 层双向 Transformer 编码器 + 掩码语言模型 (MLM) 预训练',
+        computeProfile: '必须 GPU 推理 (推荐 NVIDIA A100/H100 或 RTX 4090, ≥ 24 GB VRAM)',
+        advantages: '覆盖 48 种被子植物逾百亿核苷酸预训练，捕获远端跨尺度调控长程依赖',
+        limitations: '模型参数量达 10 亿 (1B)，微调需高端显卡支持，且基于 6-mer 分词单碱基定位需平滑映射',
+        recommendedScenario: '启动子强度定量预测、植物非编码变异零样本致病性打分与顺式调控元件挖掘'
+      },
+      {
+        methodId: 'plantcad2',
+        name: 'PlantCAD2',
+        inputType: '单碱基植物 DNA 序列 (原生支持高达 8,192 bp 上下文)',
+        corePrinciple: '双向 Mamba2 状态空间模型 (SSM) + 反向互补等变性 (RC Equivariance)',
+        computeProfile: 'GPU 显存占用相比同规模 Transformer 降低 4~8 倍，支持超长上下文线性推断',
+        advantages: '计算复杂度随序列长度呈线性严格扩展，单碱基精准定位，反向互补双链物理对称严格一致',
+        limitations: '基于最新状态空间深度学习框架，依赖专用 CUDA 内核扩展支持',
+        recommendedScenario: '超长顺式调控区间序列表征、植物选择性剪接位点识别与全基因组变异效应预测'
       }
     ],
     decisionTrees: [
@@ -724,6 +754,16 @@ export const methodComparisonMatrices: Record<string, DomainComparisonMatrix> = 
         condition: '想要从表达数据中挖掘核心转录因子究竟调控了哪些下游靶基因',
         recommendation: '首选 GENIE3 或 GRNBoost2',
         rationale: '利用集成树模型量化转录因子对靶基因表达的预测贡献度。'
+      },
+      {
+        condition: '同步测定了转录组、蛋白质组与代谢组，希望寻找多层级协同调控分子群',
+        recommendation: '首选 MOFA+',
+        rationale: '贝叶斯因子分析有效解耦全局跨组学变异与组学特异性变异，自然兼容缺失样本。'
+      },
+      {
+        condition: '对作物基因组启动子强度或 GWAS 非编码变异效应进行全基因组 AI 零样本评估',
+        recommendation: '首选 AgroNT 或 PlantCAD2',
+        rationale: '海量植物自监督预训练赋予其深刻的基因组语法理解能力，支持极速变异致病性评分。'
       }
     ]
   }

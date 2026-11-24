@@ -1,0 +1,149 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 550" width="100%" height="100%">
+  <defs>
+    <style>
+      .bg { fill: #f8fafc; }
+      .box { fill: #ffffff; stroke: #cbd5e1; stroke-width: 1.5; rx: 8; }
+      .box-highlight { fill: #f0fdf4; stroke: #22c55e; stroke-width: 2; rx: 8; }
+      .box-blue { fill: #eff6ff; stroke: #3b82f6; stroke-width: 1.5; rx: 8; }
+      .box-red { fill: #fef2f2; stroke: #ef4444; stroke-width: 1.5; rx: 8; }
+      .title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 18px; font-weight: 700; fill: #0f172a; }
+      .subtitle { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 13px; font-weight: 600; fill: #475569; }
+      .txt { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 12px; fill: #1e293b; }
+      .txt-sm { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; fill: #64748b; }
+      .txt-mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 11px; fill: #0f172a; }
+      .arrow { stroke: #64748b; stroke-width: 1.5; marker-end: url(#arrowhead); fill: none; }
+      .arrow-blue { stroke: #2563eb; stroke-width: 2; marker-end: url(#arrowhead-blue); fill: none; }
+    </style>
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#64748b" />
+    </marker>
+    <marker id="arrowhead-blue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#2563eb" />
+    </marker>
+  </defs>
+
+  <rect width="1000" height="550" class="bg" />
+
+  <!-- 头部大标题 -->
+  <text x="30" y="38" class="title">DESeq2 差异表达分析：经验贝叶斯离散度收缩与稳健 MA 模型</text>
+  <text x="30" y="60" class="txt-sm">RNA-seq Negative Binomial GLM, Empirical Bayes Dispersion Shrinkage &amp; Log2 Fold Change Moderation</text>
+
+  <!-- 左侧: 离散度收缩机制示意图 (Dispersion vs. Normalized Mean) -->
+  <g transform="translate(30, 80)">
+    <rect width="450" height="440" class="box" />
+    <text x="20" y="28" class="subtitle">1. 经验贝叶斯离散度收缩 (Dispersion Shrinkage)</text>
+
+    <!-- 坐标图主体 -->
+    <g transform="translate(45, 50)">
+      <rect width="360" height="230" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1" rx="4" />
+
+      <!-- 坐标轴 -->
+      <line x1="40" y1="200" x2="340" y2="200" stroke="#475569" stroke-width="1.5" />
+      <line x1="40" y1="20" x2="40" y2="200" stroke="#475569" stroke-width="1.5" />
+      <text x="190" y="222" class="txt-sm" text-anchor="middle" font-weight="600">标准归一化平均计数 (Mean of Normalized Counts, μ)</text>
+      <text x="-110" y="16" class="txt-sm" text-anchor="middle" font-weight="600" transform="rotate(-90 -110 16)">离散度 (Dispersion, α)</text>
+
+      <!-- 拟合趋势线 (红曲线) -->
+      <path d="M 50 40 Q 100 120 180 150 T 330 170" fill="none" stroke="#ef4444" stroke-width="2.5" />
+
+      <!-- 模拟散点: 原始估计 (黑圈/灰圈) -->
+      <circle cx="80" cy="50" r="3.5" fill="#94a3b8" />
+      <circle cx="95" cy="160" r="3.5" fill="#94a3b8" />
+      <circle cx="120" cy="80" r="3.5" fill="#94a3b8" />
+      <circle cx="140" cy="180" r="3.5" fill="#94a3b8" />
+      <circle cx="170" cy="110" r="3.5" fill="#94a3b8" />
+      <circle cx="210" cy="190" r="3.5" fill="#94a3b8" />
+      <circle cx="250" cy="140" r="3.5" fill="#94a3b8" />
+      <circle cx="290" cy="155" r="3.5" fill="#94a3b8" />
+
+      <!-- 收缩箭头与收缩后点 (蓝色点与蓝色连线向红线靠拢) -->
+      <line x1="95" y1="160" x2="95" y2="128" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="2 2" />
+      <circle cx="95" cy="128" r="4" fill="#2563eb" />
+
+      <line x1="120" y1="80" x2="120" y2="135" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="2 2" />
+      <circle cx="120" cy="135" r="4" fill="#2563eb" />
+
+      <line x1="170" y1="110" x2="170" y2="148" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="2 2" />
+      <circle cx="170" cy="148" r="4" fill="#2563eb" />
+
+      <line x1="210" y1="190" x2="210" y2="162" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="2 2" />
+      <circle cx="210" cy="162" r="4" fill="#2563eb" />
+
+      <!-- 离群值保护 (高离散度突变基因不向红线强行收缩) -->
+      <circle cx="150" cy="30" r="5" fill="#f59e0b" stroke="#b45309" stroke-width="1.5" />
+      <text x="165" y="34" class="txt-sm" font-weight="600" fill="#b45309">离群值保护 (Outlier)</text>
+    </g>
+
+    <!-- 图例与数学解释 -->
+    <g transform="translate(25, 295)">
+      <rect width="400" height="125" class="box-blue" />
+      <text x="15" y="22" class="txt" font-weight="600" fill="#1d4ed8">经验贝叶斯信息借用 (Information Sharing)</text>
+      <text x="15" y="44" class="txt-sm">• <tspan font-weight="600">小样本痛点</tspan>：植物实验通常仅 3 个生物学重复，单基因方差估计极其不稳定</text>
+      <text x="15" y="66" class="txt-sm">• <tspan font-weight="600">全局经验先验</tspan>：全基因组拟合红线趋势，各基因向先验均值强力收缩</text>
+      <text x="15" y="88" class="txt-sm">• <tspan font-weight="600">最大后验估计 (MAP)</tspan>：大幅压缩低表达虚假方差，消除极小方差假阳性</text>
+      <text x="15" y="108" class="txt-mono">Var(Y) = μ + α·μ²  (负二项分布过度离散方差方程)</text>
+    </g>
+  </g>
+
+  <!-- 右侧: 差异表达稳健 MA 图与收缩效应 -->
+  <g transform="translate(510, 80)">
+    <rect width="460" height="440" class="box" />
+    <text x="20" y="28" class="subtitle">2. 表达量与对数倍数变化 MA 诊断图 (MA-Plot)</text>
+
+    <!-- MA 图散点网格 -->
+    <g transform="translate(45, 50)">
+      <rect width="370" height="230" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1" rx="4" />
+
+      <!-- 坐标轴 -->
+      <line x1="40" y1="115" x2="350" y2="115" stroke="#475569" stroke-width="1.5" /> <!-- LFC = 0 中线 -->
+      <line x1="40" y1="20" x2="40" y2="210" stroke="#475569" stroke-width="1.5" />
+      <text x="195" y="224" class="txt-sm" text-anchor="middle" font-weight="600">平均归一化计数 (A = log10(Mean Count))</text>
+      <text x="-115" y="16" class="txt-sm" text-anchor="middle" font-weight="600" transform="rotate(-90 -115 16)">对数倍数变化 (M = log2 Fold Change)</text>
+
+      <!-- 阈值虚线 LFC = +1, -1 -->
+      <line x1="40" y1="70" x2="350" y2="70" stroke="#94a3b8" stroke-dasharray="3 3" />
+      <line x1="40" y1="160" x2="350" y2="160" stroke="#94a3b8" stroke-dasharray="3 3" />
+      <text x="355" y="74" class="txt-sm" fill="#64748b">LFC = +1</text>
+      <text x="355" y="164" class="txt-sm" fill="#64748b">LFC = -1</text>
+
+      <!-- 散点: 灰色无差异基因 (聚集在中轴周围) -->
+      <circle cx="80" cy="115" r="2.5" fill="#94a3b8" opacity="0.6" />
+      <circle cx="100" cy="108" r="2.5" fill="#94a3b8" opacity="0.6" />
+      <circle cx="130" cy="122" r="2.5" fill="#94a3b8" opacity="0.6" />
+      <circle cx="170" cy="112" r="2.5" fill="#94a3b8" opacity="0.6" />
+      <circle cx="220" cy="118" r="2.5" fill="#94a3b8" opacity="0.6" />
+      <circle cx="280" cy="114" r="2.5" fill="#94a3b8" opacity="0.6" />
+      <circle cx="320" cy="116" r="2.5" fill="#94a3b8" opacity="0.6" />
+
+      <!-- 显著上调 (红色散点) -->
+      <circle cx="110" cy="55" r="3.5" fill="#ef4444" />
+      <circle cx="150" cy="40" r="3.5" fill="#ef4444" />
+      <circle cx="190" cy="48" r="3.5" fill="#ef4444" />
+      <circle cx="240" cy="35" r="3.5" fill="#ef4444" />
+      <circle cx="280" cy="50" r="3.5" fill="#ef4444" />
+      <text x="290" y="35" class="txt-sm" font-weight="700" fill="#dc2626">显著上调 (Up)</text>
+
+      <!-- 显著下调 (蓝色散点) -->
+      <circle cx="120" cy="175" r="3.5" fill="#3b82f6" />
+      <circle cx="160" cy="190" r="3.5" fill="#3b82f6" />
+      <circle cx="210" cy="180" r="3.5" fill="#3b82f6" />
+      <circle cx="260" cy="195" r="3.5" fill="#3b82f6" />
+      <circle cx="300" cy="178" r="3.5" fill="#3b82f6" />
+      <text x="290" y="200" class="txt-sm" font-weight="700" fill="#2563eb">显著下调 (Down)</text>
+
+      <!-- 漏斗型收缩漏斗线 -->
+      <path d="M 40 45 Q 120 70 200 90" stroke="#cbd5e1" stroke-width="1.5" fill="none" />
+      <path d="M 40 185 Q 120 160 200 140" stroke="#cbd5e1" stroke-width="1.5" fill="none" />
+    </g>
+
+    <!-- 说明文本 -->
+    <g transform="translate(25, 295)">
+      <rect width="410" height="125" class="box-highlight" />
+      <text x="15" y="22" class="txt" font-weight="600" fill="#15803d">apeglm 对数倍数变化 (LFC) 收缩优势</text>
+      <text x="15" y="44" class="txt-sm">• <tspan font-weight="600">低表达区漏斗收缩</tspan>：极低计数基因因随机抽样易产生高达 100 倍虚假差异</text>
+      <text x="15" y="66" class="txt-sm">• 经验贝叶斯 LFC 收缩自动将低可信度极值拉回中线，稳定基因效应排序</text>
+      <text x="15" y="88" class="txt-sm">• 严格控制假发现率（Benjamini-Hochberg FDR），规避全基因组多重检验假阳性</text>
+      <text x="15" y="108" class="txt-mono">典型阈值标准: padj &lt; 0.05 且 |log2FoldChange| ≥ 1.0 (2 倍真实变动)</text>
+    </g>
+  </g>
+</svg>

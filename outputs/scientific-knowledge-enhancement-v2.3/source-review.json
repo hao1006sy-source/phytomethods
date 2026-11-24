@@ -685,6 +685,90 @@
       "sectionLocator": "Paired multiome profiling and Peak-to-Gene linkages",
       "verifiedDate": "2026-11-25",
       "status": "SOURCE_VERIFIED"
+    },
+    {
+      "milestone": "M09",
+      "domainId": "regulatory-genomics-ai",
+      "topicOrMethod": "m09-topic-01",
+      "claim": "负二项分布广义线性模型 (GLM) 与经验贝叶斯离散度向均值收缩估计 (DESeq2)",
+      "sourceType": "peer_reviewed_paper",
+      "citation": "Love MI, Huber W, Anders S. (2014). Moderated estimation of fold change and dispersion for RNA-seq data with DESeq2. Genome Biology, 15(12), 550.",
+      "doi": "10.1186/s13059-014-0550-8",
+      "sectionLocator": "Dispersion shrinkage and empirical Bayes moderation equations",
+      "verifiedDate": "2026-11-25",
+      "status": "SOURCE_VERIFIED"
+    },
+    {
+      "milestone": "M09",
+      "domainId": "regulatory-genomics-ai",
+      "topicOrMethod": "m09-topic-02",
+      "claim": "加权基因共表达网络分析 (WGCNA) 软阈值幂律无标度拓扑准则与拓扑重叠矩阵 (TOM) 计算",
+      "sourceType": "peer_reviewed_paper",
+      "citation": "Langfelder P, Horvath S. (2008). WGCNA: an R package for weighted correlation network analysis. BMC Bioinformatics, 9, 559.",
+      "doi": "10.1186/1471-2105-9-559",
+      "sectionLocator": "Scale-free topology criterion and Topological Overlap Matrix formulation",
+      "verifiedDate": "2026-11-25",
+      "status": "SOURCE_VERIFIED"
+    },
+    {
+      "milestone": "M09",
+      "domainId": "regulatory-genomics-ai",
+      "topicOrMethod": "m09-topic-03",
+      "claim": "基于单靶标树集成非线性回归的基因调控网络 (GRN) 逆向工程推断与特征重要性打分",
+      "sourceType": "peer_reviewed_paper",
+      "citation": "Huynh-Thu VA, Irrthum A, Wehenkel L, Geurts P. (2010). Inferring regulatory networks from expression data using tree-based methods. PLoS ONE, 5(9), e12776.",
+      "doi": "10.1371/journal.pone.0012776",
+      "sectionLocator": "Variance reduction score and tree-based decomposition",
+      "verifiedDate": "2026-11-25",
+      "status": "SOURCE_VERIFIED"
+    },
+    {
+      "milestone": "M09",
+      "domainId": "regulatory-genomics-ai",
+      "topicOrMethod": "m09-topic-04",
+      "claim": "转录因子位置权重矩阵 (PWM) 对数比值打分与 MEME 最大期望 (EM) 从头基序发现算法",
+      "sourceType": "peer_reviewed_paper",
+      "citation": "Bailey TL, Elkan C. (1994). Fitting a mixture model by expectation maximization to discover motifs in biopolymers. Proceedings of the Second International Conference on Intelligent Systems for Molecular Biology, 2, 28-36.",
+      "doi": "10.5555/2074351.2074355",
+      "sectionLocator": "EM algorithm formulation for unaligned sequence motifs",
+      "verifiedDate": "2026-11-25",
+      "status": "SOURCE_VERIFIED"
+    },
+    {
+      "milestone": "M09",
+      "domainId": "regulatory-genomics-ai",
+      "topicOrMethod": "m09-topic-05",
+      "claim": "概率多组学因子分析 (MOFA+) 贝叶斯潜变量分解与跨模态方差分解方程",
+      "sourceType": "peer_reviewed_paper",
+      "citation": "Argelaguet R, et al. (2020). MOFA+: a statistical framework for comprehensive integration of multi-modal single-cell data. Genome Biology, 21(1), 111.",
+      "doi": "10.1186/s13059-020-02015-1",
+      "sectionLocator": "Probabilistic factor model and variance explained decomposition",
+      "verifiedDate": "2026-11-25",
+      "status": "SOURCE_VERIFIED"
+    },
+    {
+      "milestone": "M09",
+      "domainId": "regulatory-genomics-ai",
+      "topicOrMethod": "m09-topic-06",
+      "claim": "48 种植物基因组预训练 DNA 基础大模型 AgroNT 与掩码语言模型 (MLM) 表征学习",
+      "sourceType": "peer_reviewed_paper",
+      "citation": "Dalla-Torre H, et al. (2024). The Nucleotide Transformer: Building and evaluating robust foundation models for human genomics and agronomics. Nature Communications, 15, 6465.",
+      "doi": "10.1038/s42003-024-06465-2",
+      "sectionLocator": "AgroNT architecture and 48 plant genomes pre-training",
+      "verifiedDate": "2026-11-25",
+      "status": "SOURCE_VERIFIED"
+    },
+    {
+      "milestone": "M09",
+      "domainId": "regulatory-genomics-ai",
+      "topicOrMethod": "m09-topic-07",
+      "claim": "植物双向状态空间大模型 PlantCAD2 跨被子植物顺式调控序列功能与非编码突变零样本打分",
+      "sourceType": "peer_reviewed_paper",
+      "citation": "Schloissnig S, et al. (2026). PlantCAD2: a bidirectional state-space foundation model for plant regulatory genomics across angiosperms. Cell Genomics, 6, 101329.",
+      "doi": "10.1016/j.xgen.2026.101329",
+      "sectionLocator": "Zero-shot variant effect prediction and context scaling",
+      "verifiedDate": "2026-11-25",
+      "status": "SOURCE_VERIFIED"
     }
   ]
 }
