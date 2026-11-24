@@ -1,0 +1,288 @@
+---
+import { methodComparisonMatrices } from '../../data/method-comparison-matrices';
+
+interface Props {
+  domainId: string;
+}
+
+const { domainId } = Astro.props;
+const matrix = methodComparisonMatrices[domainId];
+const base = import.meta.env.BASE_URL;
+---
+
+{matrix && (
+  <section class="method-comparison-matrix-section" id="method-comparison" aria-label="核心工具选型对比矩阵">
+    <div class="matrix-header">
+      <div class="matrix-tag-row">
+        <span class="matrix-tag">TOOL MATRIX</span>
+        <span class="domain-badge">{matrix.domainCode} · {matrix.domainName}</span>
+      </div>
+      <h2 class="matrix-title">领域核心工具选型对比矩阵</h2>
+      <p class="matrix-summary">{matrix.selectionGuideSummary}</p>
+    </div>
+
+    <!-- 选型决策场景树 -->
+    <div class="decision-tree-box">
+      <h3 class="tree-heading">🎯 典型科研场景选型建议</h3>
+      <div class="decision-cards-grid">
+        {matrix.decisionTrees.map((item) => (
+          <div class="decision-card">
+            <div class="decision-scenario">
+              <span class="scenario-prefix">如果你的场景：</span>
+              <strong>{item.condition}</strong>
+            </div>
+            <div class="decision-action">
+              <span class="action-tag">👉 推荐方案：</span>
+              <span class="action-rec font-bold">{item.recommendation}</span>
+            </div>
+            <p class="decision-rationale">{item.rationale}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- 对比参数与性能矩阵表 -->
+    <div class="table-container">
+      <h3 class="table-heading">📊 多维特性横向对比表</h3>
+      <div class="table-scroll-wrapper">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th scope="col" class="th-name">算法工具</th>
+              <th scope="col" class="th-input">输入数据类型</th>
+              <th scope="col" class="th-principle">底层算法与核心模型</th>
+              <th scope="col" class="th-compute">算力与内存规模</th>
+              <th scope="col" class="th-advantages">核心优势</th>
+              <th scope="col" class="th-limits">适用边界与局限</th>
+              <th scope="col" class="th-scenario">典型推荐场景</th>
+            </tr>
+          </thead>
+          <tbody>
+            {matrix.methods.map((method) => (
+              <tr>
+                <td class="td-name">
+                  <a href={`${base}methods/${method.methodId}/`} class="method-anchor">
+                    {method.name} →
+                  </a>
+                </td>
+                <td class="td-input font-mono">{method.inputType}</td>
+                <td class="td-principle">{method.corePrinciple}</td>
+                <td class="td-compute font-mono">{method.computeProfile}</td>
+                <td class="td-advantages">{method.advantages}</td>
+                <td class="td-limits">{method.limitations}</td>
+                <td class="td-scenario font-bold">{method.recommendedScenario}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+)}
+
+<style>
+  .method-comparison-matrix-section {
+    margin: 3rem 0;
+    padding: 2rem;
+    background: var(--color-surface, #ffffff);
+    border: 1px solid var(--color-border, #e2e8f0);
+    border-radius: 16px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
+  }
+
+  .matrix-header {
+    margin-bottom: 1.75rem;
+  }
+
+  .matrix-tag-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .matrix-tag {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #166534;
+    background: #dcfce7;
+    padding: 0.2rem 0.6rem;
+    border-radius: 9999px;
+    letter-spacing: 0.05em;
+  }
+
+  :global(.dark) .matrix-tag {
+    background: #14532d33;
+    color: #4ade80;
+  }
+
+  .domain-badge {
+    font-size: 0.75rem;
+    font-weight: 600;
+    background: var(--color-surface-secondary, #f1f5f9);
+    color: var(--color-text-secondary, #64748b);
+    padding: 0.2rem 0.55rem;
+    border-radius: 9999px;
+  }
+
+  .matrix-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--color-text-heading, #0f172a);
+    margin: 0.25rem 0 0.5rem;
+  }
+
+  .matrix-summary {
+    font-size: 1rem;
+    color: var(--color-text-body, #475569);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* 决策场景树 */
+  .decision-tree-box {
+    margin-bottom: 2rem;
+  }
+
+  .tree-heading, .table-heading {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-text-heading, #0f172a);
+    margin: 0 0 1rem;
+  }
+
+  .decision-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+
+  .decision-card {
+    background: var(--color-surface-secondary, #f8fafc);
+    border: 1px solid var(--color-border-subtle, #f1f5f9);
+    border-radius: 10px;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    border-top: 3px solid #16a34a;
+  }
+
+  .decision-scenario {
+    font-size: 0.9rem;
+    color: var(--color-text-heading, #1e293b);
+    line-height: 1.4;
+  }
+
+  .scenario-prefix {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--color-text-muted, #94a3b8);
+    font-weight: 500;
+    margin-bottom: 0.2rem;
+  }
+
+  .decision-action {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.85rem;
+    background: #f0fdf4;
+    padding: 0.4rem 0.6rem;
+    border-radius: 6px;
+    border: 1px solid #bbf7d0;
+  }
+
+  :global(.dark) .decision-action {
+    background: #14532d22;
+    border-color: #14532d;
+  }
+
+  .action-tag {
+    color: #15803d;
+    font-weight: 600;
+  }
+
+  :global(.dark) .action-tag {
+    color: #4ade80;
+  }
+
+  .action-rec {
+    color: #166534;
+  }
+
+  :global(.dark) .action-rec {
+    color: #86efac;
+  }
+
+  .decision-rationale {
+    font-size: 0.825rem;
+    color: var(--color-text-secondary, #64748b);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* 对比表格 */
+  .table-container {
+    margin-top: 1rem;
+  }
+
+  .table-scroll-wrapper {
+    overflow-x: auto;
+    border: 1px solid var(--color-border, #e2e8f0);
+    border-radius: 8px;
+  }
+
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    text-align: left;
+    min-width: 900px;
+  }
+
+  .comparison-table th {
+    background: var(--color-surface-secondary, #f8fafc);
+    color: var(--color-text-heading, #0f172a);
+    font-weight: 700;
+    padding: 0.75rem 1rem;
+    border-bottom: 2px solid var(--color-border, #e2e8f0);
+    white-space: nowrap;
+  }
+
+  .comparison-table td {
+    padding: 0.875rem 1rem;
+    border-bottom: 1px solid var(--color-border-subtle, #f1f5f9);
+    color: var(--color-text-body, #334155);
+    vertical-align: top;
+  }
+
+  .comparison-table tr:hover td {
+    background: var(--color-surface-hover, #f8fafc);
+  }
+
+  .td-name {
+    white-space: nowrap;
+  }
+
+  .method-anchor {
+    font-weight: 700;
+    color: #16a34a;
+    text-decoration: none;
+    font-size: 0.95rem;
+  }
+
+  .method-anchor:hover {
+    text-decoration: underline;
+  }
+
+  .font-mono {
+    font-family: ui-monospace, SFMono-Regular, monospace;
+    font-size: 0.8rem;
+  }
+
+  .font-bold {
+    font-weight: 600;
+  }
+</style>

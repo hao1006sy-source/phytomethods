@@ -1,0 +1,338 @@
+---
+import { tutorialTestDatasets } from '../../data/tutorial-test-datasets';
+
+interface Props {
+  tutorialId: string;
+}
+
+const { tutorialId } = Astro.props;
+const dataset = tutorialTestDatasets.find((d) => d.tutorialId === tutorialId);
+---
+
+{dataset && (
+  <section class="tutorial-quickstart-card" id="quickstart-dataset" aria-label="经典测试数据与极速上手">
+    <div class="quickstart-header">
+      <div class="quickstart-badge-group">
+        <span class="quickstart-tag-main">经典测试数据与极速上手</span>
+        <span class={`status-badge ${dataset.verificationStatus === 'executed' ? 'is-verified' : 'is-documented'}`}>
+          {dataset.verificationStatus === 'executed' ? '✓ 本站端到端运行验证' : '📋 官方文档核验 (待植物实测)'}
+        </span>
+      </div>
+      <h3 class="quickstart-title">{dataset.title}</h3>
+      <p class="quickstart-desc">
+        {dataset.organism && <span class="organism-pill">物种来源: {dataset.organism}</span>}
+        数据源：<a href={dataset.sourceUrl} target="_blank" rel="noopener noreferrer">{dataset.sourceName} ↗</a>
+      </p>
+    </div>
+
+    <!-- 数据集规格表格 -->
+    <div class="quickstart-meta-grid">
+      <div class="meta-item">
+        <span class="meta-label">文件名称与格式</span>
+        <span class="meta-value font-mono">{dataset.fileName ?? '按目录或归档打包'} ({dataset.format})</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">大小与耗时预估</span>
+        <span class="meta-value">
+          {dataset.compressedBytes ? `${(dataset.compressedBytes / (1024 * 1024)).toFixed(1)} MB` : '约数兆至数百兆'} · {dataset.estimatedDuration ?? '极速秒级/分钟级'}
+        </span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">推荐算力</span>
+        <span class="meta-value">{dataset.cpuRecommendation ?? '2~4 核心'} · {dataset.memoryRecommendation ?? '2~4 GB 内存'}</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">软件目标版本</span>
+        <span class="meta-value font-mono">{dataset.softwareVersion ?? '最新稳定版'}</span>
+      </div>
+    </div>
+
+    <!-- 极速三步命令区 -->
+    <div class="quickstart-steps-box">
+      <h4 class="steps-heading">极速 3 步测试体验</h4>
+
+      {dataset.installCommand && (
+        <div class="step-cmd-group">
+          <div class="step-cmd-header">
+            <span class="step-index">1</span>
+            <span class="step-action">环境准备或安装</span>
+          </div>
+          <pre class="cmd-code-block"><code>{dataset.installCommand}</code></pre>
+        </div>
+      )}
+
+      {dataset.downloadCommand && (
+        <div class="step-cmd-group">
+          <div class="step-cmd-header">
+            <span class="step-index">2</span>
+            <span class="step-action">下载微型测试数据</span>
+          </div>
+          <pre class="cmd-code-block"><code>{dataset.downloadCommand}</code></pre>
+        </div>
+      )}
+
+      {dataset.quickStartCommand && (
+        <div class="step-cmd-group">
+          <div class="step-cmd-header">
+            <span class="step-index">{dataset.installCommand && dataset.downloadCommand ? '3' : '2'}</span>
+            <span class="step-action">快速运行测试分析</span>
+          </div>
+          <pre class="cmd-code-block"><code>{dataset.quickStartCommand}</code></pre>
+        </div>
+      )}
+    </div>
+
+    <!-- 预期产出与证据 -->
+    {dataset.expectedOutputs && dataset.expectedOutputs.length > 0 && (
+      <div class="quickstart-outputs">
+        <span class="outputs-title">预期核心产出文件：</span>
+        <ul class="outputs-list">
+          {dataset.expectedOutputs.map((out) => (
+            <li><code>{out}</code></li>
+          ))}
+        </ul>
+      </div>
+    )}
+
+    <!-- 适用边界与警示 -->
+    <div class="quickstart-boundary-alert">
+      <span class="boundary-icon">⚠️</span>
+      <div class="boundary-text">
+        <strong>科研边界与代表性说明：</strong>
+        <span>{dataset.limitations}</span>
+        {dataset.verificationEvidence && dataset.verificationEvidence.length > 0 && (
+          <div class="evidence-list">
+            <span>实测日志存档：</span>
+            {dataset.verificationEvidence.map((ev) => (
+              <span class="evidence-pill font-mono">{ev}</span>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+)}
+
+<style>
+  .tutorial-quickstart-card {
+    margin: 1.5rem 0 2rem;
+    padding: 1.5rem;
+    background: var(--color-surface, #ffffff);
+    border: 1px solid var(--color-border, #e2e8f0);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+
+  .quickstart-header {
+    margin-bottom: 1.25rem;
+  }
+
+  .quickstart-badge-group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .quickstart-tag-main {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #15803d;
+    background: #dcfce7;
+    padding: 0.2rem 0.6rem;
+    border-radius: 9999px;
+    letter-spacing: 0.02em;
+  }
+
+  .status-badge {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.2rem 0.6rem;
+    border-radius: 9999px;
+  }
+
+  .status-badge.is-verified {
+    background: #e0f2fe;
+    color: #0369a1;
+  }
+
+  .status-badge.is-documented {
+    background: #fef3c7;
+    color: #b45309;
+  }
+
+  .quickstart-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-text-heading, #0f172a);
+    margin: 0.25rem 0 0.5rem;
+  }
+
+  .quickstart-desc {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary, #64748b);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+  }
+
+  .organism-pill {
+    background: var(--color-neutral-bg, #f1f5f9);
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+  }
+
+  .quickstart-meta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.75rem;
+    background: var(--color-surface-secondary, #f8fafc);
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--color-border-subtle, #f1f5f9);
+    margin-bottom: 1.25rem;
+  }
+
+  .meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .meta-label {
+    font-size: 0.75rem;
+    color: var(--color-text-muted, #94a3b8);
+    font-weight: 500;
+  }
+
+  .meta-value {
+    font-size: 0.85rem;
+    color: var(--color-text-body, #1e293b);
+    font-weight: 600;
+  }
+
+  .font-mono {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  }
+
+  .quickstart-steps-box {
+    margin-bottom: 1.25rem;
+  }
+
+  .steps-heading {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin: 0 0 0.75rem;
+    color: var(--color-text-heading, #0f172a);
+  }
+
+  .step-cmd-group {
+    margin-bottom: 0.75rem;
+  }
+
+  .step-cmd-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .step-index {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #15803d;
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+
+  .step-action {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-text-heading, #334155);
+  }
+
+  .cmd-code-block {
+    margin: 0;
+    padding: 0.75rem 1rem;
+    background: var(--color-code-bg, #0f172a);
+    color: var(--color-code-text, #f8fafc);
+    border-radius: 6px;
+    font-size: 0.825rem;
+    overflow-x: auto;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    line-height: 1.4;
+  }
+
+  .quickstart-outputs {
+    background: var(--color-surface-secondary, #f8fafc);
+    border-left: 3px solid #15803d;
+    padding: 0.75rem 1rem;
+    border-radius: 0 6px 6px 0;
+    margin-bottom: 1rem;
+    font-size: 0.85rem;
+  }
+
+  .outputs-title {
+    font-weight: 600;
+    color: var(--color-text-heading, #1e293b);
+    display: block;
+    margin-bottom: 0.35rem;
+  }
+
+  .outputs-list {
+    margin: 0;
+    padding-left: 1.25rem;
+    color: var(--color-text-body, #334155);
+  }
+
+  .outputs-list li {
+    margin-bottom: 0.25rem;
+  }
+
+  .quickstart-boundary-alert {
+    display: flex;
+    gap: 0.75rem;
+    padding: 0.875rem 1rem;
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    border-radius: 8px;
+    font-size: 0.825rem;
+    color: #92400e;
+    line-height: 1.5;
+  }
+
+  :global(.dark) .quickstart-boundary-alert {
+    background: #78350f22;
+    border-color: #78350f;
+    color: #fde68a;
+  }
+
+  .boundary-icon {
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    margin-top: -1px;
+  }
+
+  .evidence-list {
+    margin-top: 0.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    align-items: center;
+  }
+
+  .evidence-pill {
+    background: rgba(0, 0, 0, 0.05);
+    padding: 0.1rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+  }
+</style>

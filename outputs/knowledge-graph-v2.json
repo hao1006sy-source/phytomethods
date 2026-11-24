@@ -5805,10 +5805,10 @@
       "label": "使用 CAFE 5 分析基因家族大小变化",
       "slug": "cafe5-intro",
       "href": "/tutorials/cafe5-intro/",
-      "summary": "以官方示例演示家族计数表、物种树和生灭模型的基本运行。",
+      "summary": "使用固定官方哺乳动物示例，运行基础与 Gamma 生灭模型并核查实际输出。",
       "meta": {
         "methodId": "cafe5",
-        "tested": "template"
+        "tested": "verified"
       }
     },
     {

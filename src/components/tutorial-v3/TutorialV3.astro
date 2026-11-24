@@ -7,6 +7,8 @@ import TutorialStep from './TutorialStep.astro';
 import TutorialMarkdown from './TutorialMarkdown.astro';
 import TutorialWorkflowGeneric from './TutorialWorkflowGeneric.astro';
 import TutorialResourceCards from './TutorialResourceCards.astro';
+import TutorialQuickStart from './TutorialQuickStart.astro';
+import ContentFeedback from '../ContentFeedback.astro';
 import { splitTutorialMarkdown, tutorialWorkflows } from './tutorial-data';
 
 const { entry, method, paper } = Astro.props as { entry: any; method: any; paper?: any };
@@ -76,6 +78,7 @@ const caption = entry.data.tested === 'template'
       </div>
       <TutorialWorkflowGeneric steps={workflow} id={entry.id} caption={caption} />
     </div>
+    <TutorialQuickStart tutorialId={entry.id} />
   </TutorialStep>
 
   {sections.map((section, index) => <TutorialStep id={section.id} title={section.title} number={index > 0 ? index : undefined}>
@@ -94,5 +97,8 @@ const caption = entry.data.tested === 'template'
       {paper && <li><a href={`${base}papers/${paper.id}/`}>{paper.data.title} →</a></li>}
       {topics.map(topic => <li><a href={`${base}topics/${topic.domainId}/${topic.id}/`}>{topic.title} →</a></li>)}
     </ul>
+    <div style="margin-top: 2rem;">
+      <ContentFeedback pageTitle={entry.data.title} sourcePath={`src/content/tutorials/${entry.id}.md`} />
+    </div>
   </TutorialStep>
 </TutorialPageLayout>
