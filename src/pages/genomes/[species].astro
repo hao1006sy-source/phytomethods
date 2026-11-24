@@ -79,7 +79,13 @@ const relatedDatabases = s.databaseIds.map(id => databases.find(d => d.id === id
     {s.id === 'rice' && (
       <div class="gh-alert warning" role="alert">
         <strong>⚠️ 水稻参考模型版本说明：</strong>
-        RGAP / MSU Release 7 基于 Os-Nipponbare-Reference-IRGSP-1.0。本站收录包含转座子 (TE) 和非 TE 模型的全部基因模型，请勿与 representative 单一转录本模型、籼稻 (93-11) 或 NCBI RefSeq 注释混用。
+        RGAP / MSU Release 7 基于 Os-Nipponbare-Reference-IRGSP-1.0。本站收录包含转座子 (TE) 和非 TE模型的全部基因模型，请勿与 representative 单一转录本模型、籼稻 (93-11) 或 NCBI RefSeq 注释混用。
+      </div>
+    )}
+    {s.id === 'tomato' && (
+      <div class="gh-alert warning" role="alert">
+        <strong>⚠️ 番茄参考基因组与注释版本说明：</strong>
+        Heinz 1706 SL4.0（GCA_000188115.5）为经典大果栽培番茄标准参考基因组；Micro-Tom（GCF_036512215.1）为实验室矮生模式品种。两者物理坐标与变异背景不同，请勿直接混用。SGN ITAG4.0 官方 FTP 目录 404 下线，需通过门户检索或等待镜像更新。
       </div>
     )}
 

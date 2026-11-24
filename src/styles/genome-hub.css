@@ -38,6 +38,7 @@
 }
 
 /* 全站深色模式适配 (联动 html[data-theme="dark"] 与系统深色) */
+html[data-theme="dark"] .gh,
 [data-theme="dark"] .gh,
 .dark .gh {
   --gh-primary: #22c55e;
@@ -71,9 +72,10 @@
   --gh-status-incompatible-border: #b91c1c;
 }
 
-/* 兼容当未显式选择 data-theme 时的原生系统深色 */
+/* 兼容当未显式选择 data-theme 时的原生系统深色（明确排除手动 light） */
 @media (prefers-color-scheme: dark) {
-  :not([data-theme="light"]) .gh {
+  html:not([data-theme="light"]) .gh,
+  :root:not([data-theme="light"]) .gh {
     --gh-primary: #22c55e;
     --gh-primary-hover: #4ade80;
     --gh-primary-light: #14532d33;
@@ -104,6 +106,106 @@
     --gh-status-incompatible-text: #fca5a5;
     --gh-status-incompatible-border: #b91c1c;
   }
+}
+
+/* 手动浅色模式强制覆盖（解决系统为深色但用户手动选浅色时的样式冲突） */
+html[data-theme="light"] .gh,
+[data-theme="light"] .gh,
+.light .gh {
+  --gh-primary: #166534;
+  --gh-primary-hover: #14532d;
+  --gh-primary-light: #f0fdf4;
+  --gh-primary-border: #bbf7d0;
+  
+  --gh-bg: #ffffff;
+  --gh-surface: #ffffff;
+  --gh-surface-alt: #f8fafc;
+  --gh-surface-soft: #f1f5f9;
+  
+  --gh-border: #e2e8f0;
+  --gh-border-light: #cbd5e1;
+  --gh-border-subtle: #f1f5f9;
+  
+  --gh-text-main: #0f172a;
+  --gh-text-muted: #64748b;
+  --gh-text-soft: #94a3b8;
+  
+  --gh-status-confirmed-bg: #dcfce7;
+  --gh-status-confirmed-text: #14532d;
+  --gh-status-confirmed-border: #86efac;
+  
+  --gh-status-unverified-bg: #fef9c3;
+  --gh-status-unverified-text: #854d0e;
+  --gh-status-unverified-border: #fde047;
+  
+  --gh-status-incompatible-bg: #fee2e2;
+  --gh-status-incompatible-text: #991b1b;
+  --gh-status-incompatible-border: #fca5a5;
+}
+
+/* 物种归组样式 */
+.gh-species-group {
+  margin-bottom: 1.25rem;
+}
+.gh-species-group[hidden] {
+  display: none !important;
+}
+.gh-species-group-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0.85rem;
+  background: var(--gh-surface-soft);
+  border: 1px solid var(--gh-border);
+  border-bottom: none;
+  border-radius: 8px 8px 0 0;
+  font-size: 0.85rem;
+}
+.gh-species-group-title {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.gh-species-group-name {
+  font-weight: 700;
+  color: var(--gh-text-main);
+}
+.gh-species-group-latin {
+  color: var(--gh-text-muted);
+  font-style: italic;
+  font-size: 0.82rem;
+}
+.gh-species-group-badge {
+  font-size: 0.78rem;
+  color: var(--gh-text-muted);
+}
+.gh-species-group-cards .gh-species-card {
+  margin-bottom: 0.5rem;
+}
+.gh-species-group:has(.gh-species-group-header) .gh-species-group-cards .gh-species-card:first-child {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+.gh-badge-version-type {
+  font-size: 0.7rem;
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+  font-weight: 600;
+}
+.gh-badge-version-type.current {
+  background: var(--gh-status-confirmed-bg);
+  color: var(--gh-status-confirmed-text);
+  border: 1px solid var(--gh-status-confirmed-border);
+}
+.gh-badge-version-type.historical {
+  background: var(--gh-surface-soft);
+  color: var(--gh-text-muted);
+  border: 1px solid var(--gh-border);
+}
+.gh-badge-version-type.alternative {
+  background: var(--gh-primary-light);
+  color: var(--gh-primary);
+  border: 1px solid var(--gh-primary-border);
 }
 
 /* ==========================================================================

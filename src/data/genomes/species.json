@@ -99,13 +99,13 @@
     "scientificName": "Solanum lycopersicum",
     "aliases": [
       "tomato",
-      "Micro-Tom",
-      "SLM_r2.1"
+      "番茄",
+      "西红柿"
     ],
     "taxonomyId": 4081,
     "assemblyTaxonomyId": 4081,
     "category": "双子叶",
-    "strain": "Micro-Tom",
+    "strain": "Heinz 1706",
     "databaseIds": [
       "ncbi",
       "ensembl"

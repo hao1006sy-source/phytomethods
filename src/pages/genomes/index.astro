@@ -191,112 +191,144 @@ const verifiedDates = [...new Set(assemblies.map(a => a.verifiedAt))].sort().joi
           </span>
         </div>
 
-        <!-- 高密度纯文字学术资源列表 -->
+        <!-- 高密度纯文字学术资源列表 (按物种归组呈现) -->
         <div class="gh-resource-list" id="genome-resource-list">
-          {assemblies.map(a => {
-            const s = species.find(sp => sp.id === a.speciesId)!;
-            const ann = annotations.find(n => n.assemblyId === a.id);
-            const aFiles = files.filter(f => f.assemblyId === a.id);
-            const genomeFile = aFiles.find(f => f.type === 'genome');
-            const gffFile = aFiles.find(f => f.type === 'gff3');
-            const proteinFile = aFiles.find(f => f.type === 'protein');
-
-            // 计算当前 Assembly 的配套状态
-            let compStatus = 'unverified';
-            if (genomeFile && gffFile) {
-              compStatus = compatibility(genomeFile, gffFile).status;
-            }
-
-            // 搜索文本全量构建 (支持中英文、别名、品系、TaxID、Accession、组装名、注释名、数据库名)
-            const searchTerms = [
-              s.chineseName,
-              s.scientificName,
-              ...s.aliases,
-              s.strain,
-              s.taxonomyId,
-              s.assemblyTaxonomyId,
-              a.accession,
-              a.assemblyName,
-              ...a.searchAliases,
-              ...annotations.filter(n => n.assemblyId === a.id).map(n => n.releaseName),
-              a.sourceDatabase,
-              ...s.databaseIds.map(id => databases.find(d => d.id === id)?.name ?? id)
-            ].join(' ');
-
-            const sourceDatabaseObj = databases.find(d => d.id === a.sourceDatabase);
+          {species.map(s => {
+            const sAssemblies = assemblies.filter(a => a.speciesId === s.id);
+            if (!sAssemblies.length) return null;
 
             return (
-              <article
-                class="gh-species-card"
-                data-genome-card
-                data-search={searchTerms}
-                data-category={s.category}
-                data-source={[a.sourceDatabase, ...aFiles.map(f => annotations.find(n => n.id === f.annotationId)?.sourceDatabase ?? '')].join(' ')}
-                data-level={a.assemblyLevel}
-                data-version={a.id}
-                data-access={aFiles.map(f => f.accessType).join(' ')}
-                data-files={aFiles.filter(f => f.accessType !== 'unverified').map(f => f.type).join(' ')}
-              >
-                <div class="gh-assembly-entry">
-                  <!-- 第一行：中文名、拉丁学名、品系 Badge、等级 Badge -->
-                  <div class="gh-entry-row-1">
-                    <div class="gh-name-group">
-                      <h2 class="gh-species-name">
-                        <a href={`${base}genomes/${s.id}/?assembly=${a.id}`}>
-                          {s.chineseName}
-                        </a>
-                      </h2>
-                      <span class="gh-scientific-name">{s.scientificName}</span>
+              <section class="gh-species-group" data-species-group={s.id}>
+                {sAssemblies.length > 1 && (
+                  <div class="gh-species-group-header">
+                    <div class="gh-species-group-title">
+                      <span class="gh-species-group-name">{s.chineseName}</span>
+                      <em class="gh-species-group-latin">{s.scientificName}</em>
+                      <span class="gh-badge gh-badge-category">{s.category}</span>
                     </div>
-
-                    <div class="gh-badges-group">
-                      <span class="gh-badge gh-badge-strain">{s.strain}</span>
-                      <span class="gh-badge gh-badge-level">{a.assemblyLevel}</span>
-                      <span class="gh-badge gh-badge-source">{sourceDatabaseObj?.name || a.sourceDatabase}</span>
-                    </div>
-                  </div>
-
-                  <!-- 第二行：Assembly 名称、Accession（等宽）、注释版本 -->
-                  <div class="gh-entry-row-2">
-                    <span class="gh-assembly-name">{a.assemblyName}</span>
-                    <span class="gh-accession-code">{a.accession}</span>
-                    <span class="gh-annotation-tag">
-                      注释：<strong>{ann?.releaseName || '未收录'}</strong> ({ann?.provider || '官方'})
-                    </span>
-                    <span style="font-size: 0.8rem; color: var(--gh-text-soft);">
-                      Taxonomy ID: {s.taxonomyId}
+                    <span class="gh-species-group-badge">
+                      共收录 <strong>{sAssemblies.length}</strong> 套组装版本（可切换比对）
                     </span>
                   </div>
+                )}
 
-                  <!-- 第三行：4 项状态标签 + 右侧查看详情入口 -->
-                  <div class="gh-entry-row-3">
-                    <div class="gh-statuses-group">
-                      <!-- Genome FASTA 状态 -->
-                      <span class={`gh-file-status-pill ${genomeFile?.accessType === 'direct' ? 'is-direct' : 'is-portal'}`}>
-                        FASTA {genomeFile?.accessType === 'direct' ? '直链已核实' : '官方入口'}
-                      </span>
-                      <!-- GFF3 状态 -->
-                      <span class={`gh-file-status-pill ${gffFile?.accessType === 'direct' ? 'is-direct' : 'is-portal'}`}>
-                        GFF3 {gffFile?.accessType === 'direct' ? '直链已核实' : '官方入口'}
-                      </span>
-                      <!-- Protein 状态 -->
-                      {proteinFile && (
-                        <span class={`gh-file-status-pill ${proteinFile.accessType === 'direct' ? 'is-direct' : 'is-portal'}`}>
-                          Protein {proteinFile.accessType === 'direct' ? '直链' : '入口'}
-                        </span>
-                      )}
-                      <!-- 配套状态 -->
-                      <span class={`gh-compatibility-pill ${compStatus}`}>
-                        {compatibilityLabels[compStatus as keyof typeof compatibilityLabels]}
-                      </span>
-                    </div>
+                <div class="gh-species-group-cards">
+                  {sAssemblies.map(a => {
+                    const ann = annotations.find(n => n.assemblyId === a.id);
+                    const aFiles = files.filter(f => f.assemblyId === a.id);
+                    const genomeFile = aFiles.find(f => f.type === 'genome');
+                    const gffFile = aFiles.find(f => f.type === 'gff3');
+                    const proteinFile = aFiles.find(f => f.type === 'protein');
 
-                    <a class="gh-entry-action-link" href={`${base}genomes/${s.id}/?assembly=${a.id}`}>
-                      查看版本与下载 &rarr;
-                    </a>
-                  </div>
+                    // 计算当前 Assembly 的配套状态
+                    let compStatus = 'unverified';
+                    if (genomeFile && gffFile) {
+                      compStatus = compatibility(genomeFile, gffFile).status;
+                    }
+
+                    // 搜索文本全量构建 (支持中英文、别名、品系、TaxID、Accession、组装名、注释名、数据库名)
+                    const searchTerms = [
+                      s.chineseName,
+                      s.scientificName,
+                      ...s.aliases,
+                      a.strain || s.strain,
+                      s.taxonomyId,
+                      s.assemblyTaxonomyId,
+                      a.accession,
+                      a.assemblyName,
+                      ...a.searchAliases,
+                      ...annotations.filter(n => n.assemblyId === a.id).map(n => n.releaseName),
+                      a.sourceDatabase,
+                      ...s.databaseIds.map(id => databases.find(d => d.id === id)?.name ?? id)
+                    ].join(' ');
+
+                    const sourceDatabaseObj = databases.find(d => d.id === a.sourceDatabase);
+
+                    return (
+                      <article
+                        class="gh-species-card"
+                        data-genome-card
+                        data-search={searchTerms}
+                        data-category={s.category}
+                        data-source={[a.sourceDatabase, ...aFiles.map(f => annotations.find(n => n.id === f.annotationId)?.sourceDatabase ?? '')].join(' ')}
+                        data-level={a.assemblyLevel}
+                        data-version={a.id}
+                        data-access={aFiles.map(f => f.accessType).join(' ')}
+                        data-files={aFiles.filter(f => f.accessType !== 'unverified').map(f => f.type).join(' ')}
+                      >
+                        <div class="gh-assembly-entry">
+                          <!-- 第一行：中文名、拉丁学名、版本类型Badge、品系 Badge、等级 Badge -->
+                          <div class="gh-entry-row-1">
+                            <div class="gh-name-group">
+                              <h2 class="gh-species-name">
+                                <a href={`${base}genomes/${s.id}/?assembly=${a.id}`}>
+                                  {s.chineseName}
+                                </a>
+                              </h2>
+                              <span class="gh-scientific-name">{s.scientificName}</span>
+                              {a.status === 'current' && sAssemblies.length > 1 && (
+                                <span class="gh-badge-version-type current">★ 主参考组装</span>
+                              )}
+                              {a.status === 'historical' && (
+                                <span class="gh-badge-version-type historical">历史版本</span>
+                              )}
+                              {a.status === 'alternative' && (
+                                <span class="gh-badge-version-type alternative">备选品系</span>
+                              )}
+                            </div>
+
+                            <div class="gh-badges-group">
+                              <span class="gh-badge gh-badge-strain">品系：{a.strain || s.strain}</span>
+                              <span class="gh-badge gh-badge-level">{a.assemblyLevel}</span>
+                              <span class="gh-badge gh-badge-source">{sourceDatabaseObj?.name || a.sourceDatabase}</span>
+                            </div>
+                          </div>
+
+                          <!-- 第二行：Assembly 名称、Accession（等宽）、注释版本 -->
+                          <div class="gh-entry-row-2">
+                            <span class="gh-assembly-name">{a.assemblyName}</span>
+                            <span class="gh-accession-code">{a.accession}</span>
+                            <span class="gh-annotation-tag">
+                              注释：<strong>{ann?.releaseName || '未收录'}</strong> ({ann?.provider || '官方'})
+                            </span>
+                            <span style="font-size: 0.8rem; color: var(--gh-text-soft);">
+                              Taxonomy ID: {s.taxonomyId}
+                            </span>
+                          </div>
+
+                          <!-- 第三行：4 项状态标签 + 右侧查看详情入口 -->
+                          <div class="gh-entry-row-3">
+                            <div class="gh-statuses-group">
+                              <!-- Genome FASTA 状态 -->
+                              <span class={`gh-file-status-pill ${genomeFile?.accessType === 'direct' ? 'is-direct' : 'is-portal'}`}>
+                                FASTA {genomeFile?.accessType === 'direct' ? '直链已核实' : '官方入口'}
+                              </span>
+                              <!-- GFF3 状态 -->
+                              <span class={`gh-file-status-pill ${gffFile?.accessType === 'direct' ? 'is-direct' : 'is-portal'}`}>
+                                GFF3 {gffFile?.accessType === 'direct' ? '直链已核实' : '官方入口'}
+                              </span>
+                              <!-- Protein 状态 -->
+                              {proteinFile && (
+                                <span class={`gh-file-status-pill ${proteinFile.accessType === 'direct' ? 'is-direct' : 'is-portal'}`}>
+                                  Protein {proteinFile.accessType === 'direct' ? '直链' : '入口'}
+                                </span>
+                              )}
+                              <!-- 配套状态 -->
+                              <span class={`gh-compatibility-pill ${compStatus}`}>
+                                {compatibilityLabels[compStatus as keyof typeof compatibilityLabels]}
+                              </span>
+                            </div>
+
+                            <a class="gh-entry-action-link" href={`${base}genomes/${s.id}/?assembly=${a.id}`}>
+                              查看版本与下载 &rarr;
+                            </a>
+                          </div>
+                        </div>
+                      </article>
+                    );
+                  })}
                 </div>
-              </article>
+              </section>
             );
           })}
         </div>
@@ -442,6 +474,11 @@ const verifiedDates = [...new Set(assemblies.map(a => a.verifiedAt))].sort().joi
       if (emptyNotice) {
         emptyNotice.hidden = count > 0;
       }
+
+      document.querySelectorAll<HTMLElement>('[data-species-group]').forEach(group => {
+        const visibleCards = group.querySelectorAll<HTMLElement>('[data-genome-card]:not([hidden])').length;
+        group.hidden = visibleCards === 0;
+      });
 
       updateActiveTags();
     }

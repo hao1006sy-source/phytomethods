@@ -92,7 +92,7 @@ async function runGenomeHubTests() {
   }
 
   const browser = await chromium.launch({
-    executablePath: process.env.EDGE_PATH ?? 'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe',
+    executablePath: process.env.EDGE_PATH ?? (process.platform === 'win32' && fs.existsSync('C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe') ? 'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe' : undefined),
     headless: true,
     args: ['--no-sandbox']
   });
@@ -114,19 +114,25 @@ async function runGenomeHubTests() {
     await page.setViewportSize({ width: 1600, height: 900 });
     await page.goto(`${base}/genomes/`, { waitUntil: 'networkidle' });
 
-    // 校验总收录组装数严格等于 11
+    // 校验总收录组装数严格等于 12 (新增番茄 Heinz 1706 SL4.0)
     const totalCards = await page.locator('[data-genome-card]').count();
-    assert.equal(totalCards, 11, '目录页应精准收录 11 套参考组装卡片');
+    assert.equal(totalCards, 12, '目录页应精准收录 12 套参考组装卡片');
 
     // 校验顶部 Hero 动态统计指标
     const statsNums = await page.locator('.gh-stat-num').allTextContents();
     assert.ok(statsNums.length >= 4, 'Hero 应展示 4 项动态指标');
     assert.equal(statsNums[0], '10', '已收录物种应为 10');
-    assert.equal(statsNums[1], '11', '参考组装版本应为 11');
-    assert.equal(statsNums[2], '1', '已确认配套组合应为 1 (RGAP7)');
-    assert.ok(parseInt(statsNums[3], 10) >= 7, '已核实下载直链应 >= 7');
+    assert.equal(statsNums[1], '12', '参考组装版本应为 12');
+    assert.equal(statsNums[2], '5', '已确认配套组合应为 5 套');
+    assert.ok(parseInt(statsNums[3], 10) >= 20, '已核实下载直链应 >= 20');
     console.log(`  -> 动态统计校验通过: 物种=${statsNums[0]}, 组装=${statsNums[1]}, 配套=${statsNums[2]}, 直链=${statsNums[3]}`);
-    console.log('✓ Test 1 通过: 目录页初始渲染与统计指标完全正确。\n');
+
+    // 校验物种归组结构
+    const speciesGroups = await page.locator('[data-species-group]').count();
+    assert.equal(speciesGroups, 10, '应归组为 10 个独立物种大组');
+    assert.equal(await page.locator('[data-species-group="arabidopsis"] [data-genome-card]').count(), 2, '拟南芥组应包含 2 套组装版本');
+    assert.equal(await page.locator('[data-species-group="tomato"] [data-genome-card]').count(), 2, '番茄组应包含 2 套组装版本 (SL4.0 & Micro-Tom)');
+    console.log('✓ Test 1 通过: 目录页初始渲染、动态统计指标与物种归组完全正确。\n');
 
     // ----------------------------------------------------
     // 测试 2: 目录页核心关键词搜索与组合筛选
@@ -135,6 +141,8 @@ async function runGenomeHubTests() {
     const searchCases = [
       ['拟南芥', 2],
       ['Arabidopsis thaliana', 2],
+      ['Heinz 1706', 1],
+      ['SL4.0', 1],
       ['B73', 1],
       ['TAIR12', 1],
       ['Col-CC.v2', 1],
@@ -195,7 +203,7 @@ async function runGenomeHubTests() {
     // 切换参考组装为 TAIR10 (GCA_000001735.1)
     await page.locator('#assembly-select').selectOption('gca_000001735.1');
     const compStatusAfter = await page.locator('#comparison-status').innerText();
-    assert.match(compStatusAfter, /尚未确认/, 'TAIR10 与 Araport11 配套未完成小段核验时应严格提示尚未确认');
+    assert.match(compStatusAfter, /已确认配套/, 'TAIR10 与 Araport11 配套完成真实核验后应准确提示已确认配套');
 
     // 验证 URL query 参数同步
     assert.equal(new URL(page.url()).searchParams.get('assembly'), 'gca_000001735.1', '切换后 URL 参数应同步为 gca_000001735.1');
@@ -273,15 +281,56 @@ async function runGenomeHubTests() {
     console.log('✓ Test 7 通过: 全站搜索可精准召回植物参考基因组组装。\n');
 
     // ----------------------------------------------------
-    // 测试 8: 深色模式变量一致性与标题对比度
+    // 测试 8: 深色模式三态优先级、变量一致性与标题对比度
     // ----------------------------------------------------
-    console.log('[Test 8] 校验全站深色模式变量一致性与文本对比度...');
-    // 1. 系统深色模拟
+    console.log('[Test 8] 校验全站深色模式变量一致性、三态冲突修复与文本对比度...');
+    const setTheme = async (theme) => {
+      await page.evaluate((t) => {
+        if (t === 'system') {
+          localStorage.removeItem('pm-theme');
+          document.documentElement.removeAttribute('data-theme');
+        } else {
+          localStorage.setItem('pm-theme', t);
+          document.documentElement.setAttribute('data-theme', t);
+        }
+      }, theme);
+      await page.waitForTimeout(50);
+    };
+
+    const isWhite = (c) => ['#ffffff', '#fff', 'rgb(255, 255, 255)'].includes(c.toLowerCase());
+    const isDarkBg = (c) => ['#0b131e', 'rgb(11, 19, 30)'].includes(c.toLowerCase());
+
+    // 状态 1: 手动浅色 + 系统深色 (必须呈现纯白背景，不可残留系统深色)
     await page.emulateMedia({ colorScheme: 'dark' });
     await page.goto(`${base}/genomes/rice/`, { waitUntil: 'networkidle' });
+    await setTheme('light');
+    const lightBg = await page.evaluate(() => getComputedStyle(document.querySelector('.gh')).getPropertyValue('--gh-bg').trim());
+    assert.ok(isWhite(lightBg), `手动浅色在系统深色下必须强制生效为白色，实际为 ${lightBg}`);
+
+    // 状态 2: 手动深色 + 系统浅色 (必须呈现深色背景)
+    await page.emulateMedia({ colorScheme: 'light' });
+    await setTheme('dark');
+    const darkBg = await page.evaluate(() => getComputedStyle(document.querySelector('.gh')).getPropertyValue('--gh-bg').trim());
+    assert.ok(isDarkBg(darkBg), `手动深色在系统浅色下必须强制生效为 #0b131e，实际为 ${darkBg}`);
+
+    // 状态 3: 跟随系统 + 系统主题变化
+    await setTheme('system');
+    // 系统深色
+    await page.emulateMedia({ colorScheme: 'dark' });
+    await page.waitForTimeout(50);
+    const sysDarkBg = await page.evaluate(() => getComputedStyle(document.querySelector('.gh')).getPropertyValue('--gh-bg').trim());
+    assert.ok(isDarkBg(sysDarkBg), `跟随系统在系统深色下应自动变为 #0b131e，实际为 ${sysDarkBg}`);
+    // 系统浅色
+    await page.emulateMedia({ colorScheme: 'light' });
+    await page.waitForTimeout(50);
+    const sysLightBg = await page.evaluate(() => getComputedStyle(document.querySelector('.gh')).getPropertyValue('--gh-bg').trim());
+    assert.ok(isWhite(sysLightBg), `跟随系统在系统浅色下应自动变为白色，实际为 ${sysLightBg}`);
+
+    // 保存深色模式截图
+    await page.emulateMedia({ colorScheme: 'dark' });
     await page.screenshot({ path: path.join(out, 'genomes-rice-dark-1600.png'), fullPage: false });
 
-    // 2. 检查深色下标题与背景对比度 (>= 4.5:1)
+    // 检查深色下标题与背景对比度 (>= 4.5:1)
     const contrastPassed = await page.locator('.gh h1').evaluate(el => {
       const luminance = (value) => {
         const rgb = value.match(/[\d.]+/g).slice(0, 3).map(Number).map(v => {

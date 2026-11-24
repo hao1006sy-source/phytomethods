@@ -57,7 +57,7 @@
     "verifiedAt": "2026-11-24",
     "strain": "B73",
     "coordinateSystem": "GCF_902167145.1",
-    "chromosomeNamespace": "NCBI sequence accession",
+    "chromosomeNamespace": "NCBI sequence accession (NC_050096.1等)",
     "databaseRelease": "NCBI metadata snapshot 2026-11-24",
     "status": "current",
     "note": "配对 GCA/GCF 不自动等价；Added chromosomes MT and Pltd",
@@ -76,7 +76,7 @@
     "verifiedAt": "2026-11-24",
     "strain": "Chinese Spring",
     "coordinateSystem": "GCF_018294505.1",
-    "chromosomeNamespace": "NCBI sequence accession",
+    "chromosomeNamespace": "NCBI sequence accession (NC_057794.1等)",
     "databaseRelease": "NCBI metadata snapshot 2026-11-24",
     "status": "current",
     "note": "配对 GCA/GCF 不自动等价；Added chromosome MT",
@@ -95,11 +95,34 @@
     "verifiedAt": "2026-11-24",
     "strain": "Williams 82",
     "coordinateSystem": "GCF_000004515.6",
-    "chromosomeNamespace": "NCBI sequence accession",
+    "chromosomeNamespace": "NCBI sequence accession (NC_016088.4等)",
     "databaseRelease": "NCBI metadata snapshot 2026-11-24",
     "status": "current",
     "note": "配对 GCA/GCF 不自动等价；Added chromosomes MT and Pltd",
     "searchAliases": []
+  },
+  {
+    "id": "gca_000188115.5",
+    "speciesId": "tomato",
+    "accession": "GCA_000188115.5",
+    "assemblyName": "SL4.0",
+    "assemblyVersion": "5",
+    "sourceDatabase": "ncbi",
+    "assemblyLevel": "Chromosome",
+    "releaseDate": "2025-02-28",
+    "sourceUrl": "https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_000188115.5/",
+    "verifiedAt": "2026-11-24",
+    "strain": "Heinz 1706",
+    "coordinateSystem": "GCA_000188115.5",
+    "chromosomeNamespace": "NCBI sequence accession (CM001064.4等)",
+    "databaseRelease": "NCBI GenBank snapshot 2026-11-24",
+    "status": "current",
+    "note": "番茄标准参考基因组 Heinz 1706 SL4.0；经 PacBio 长读段与 Hi-C 组装。配套 ITAG 注释原由 SGN 维护。",
+    "searchAliases": [
+      "SL4.0",
+      "Heinz 1706",
+      "ITAG4.0"
+    ]
   },
   {
     "id": "gcf_036512215.1",
@@ -116,9 +139,12 @@
     "coordinateSystem": "GCF_036512215.1",
     "chromosomeNamespace": "NCBI sequence accession",
     "databaseRelease": "NCBI metadata snapshot 2026-11-24",
-    "status": "current",
+    "status": "alternative",
     "note": "配对 GCA/GCF 不自动等价；Added chromosomes MT and Pltd",
-    "searchAliases": []
+    "searchAliases": [
+      "Micro-Tom",
+      "SLM_r2.1"
+    ]
   },
   {
     "id": "gcf_000226075.1",
@@ -208,7 +234,7 @@
     "verifiedAt": "2026-11-24",
     "strain": "Col-0",
     "coordinateSystem": "GCA_000001735.1",
-    "chromosomeNamespace": "Ensembl TAIR10 sequence names",
+    "chromosomeNamespace": "Ensembl sequence names (1..5)",
     "databaseRelease": "Ensembl page snapshot 2026-11-24",
     "status": "historical",
     "note": "旧研究复现保留 TAIR10 坐标；不能与 Col-CC.v2 混配。",

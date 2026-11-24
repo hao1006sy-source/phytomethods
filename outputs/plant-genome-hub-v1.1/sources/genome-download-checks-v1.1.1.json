@@ -1,0 +1,206 @@
+[
+  {
+    "url": "https://ftp.ensemblgenomes.ebi.ac.uk/pub/plants/release-60/fasta/arabidopsis_thaliana/dna/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa.gz",
+    "status": 206,
+    "contentLength": "10241",
+    "contentType": "application/x-gzip",
+    "gzip": true,
+    "verifiedAt": "2026-11-24",
+    "firstBytesSample": ">1 dna:chromosome chromosome:TAIR10:1:1:30427671:1 REF CCCTAAACCCTAAACCCTAAACCCTAAACCTCTGAATCCTTAATCCCTAAATCCCTAAAT CTTTAAATCCTACATCCATGAATCCCTAAATACC"
+  },
+  {
+    "url": "https://ftp.ensemblgenomes.ebi.ac.uk/pub/plants/release-60/gff3/arabidopsis_thaliana/Arabidopsis_thaliana.TAIR10.60.gff3.gz",
+    "status": 206,
+    "contentLength": "10241",
+    "contentType": "application/x-gzip",
+    "gzip": true,
+    "verifiedAt": "2026-11-24",
+    "firstBytesSample": "##gff-version 3 ##sequence-region   1 1 30427671 ##sequence-region   2 1 19698289 ##sequence-region   3 1 23459830 ##sequence-region   4 1 18585056 ##"
+  },
+  {
+    "url": "https://ftp.ensemblgenomes.ebi.ac.uk/pub/plants/release-60/fasta/arabidopsis_thaliana/cds/Arabidopsis_thaliana.TAIR10.cds.all.fa.gz",
+    "status": 206,
+    "contentLength": "10241",
+    "contentType": "application/x-gzip",
+    "gzip": true,
+    "verifiedAt": "2026-11-24",
+    "firstBytesSample": ">AT5G16970.1 cds chromosome:TAIR10:5:5575973:5578086:-1 gene:AT5G16970 gene_biotype:protein_coding transcript_biotype:protein_coding gene_symbol:AER d"
+  },
+  {
+    "url": "https://ftp.ensemblgenomes.ebi.ac.uk/pub/plants/release-60/fasta/arabidopsis_thaliana/pep/Arabidopsis_thaliana.TAIR10.pep.all.fa.gz",
+    "status": 206,
+    "contentLength": "10241",
+    "contentType": "application/x-gzip",
+    "gzip": true,
+    "verifiedAt": "2026-11-24",
+    "firstBytesSample": ">AT5G16970.1 pep chromosome:TAIR10:5:5575973:5578086:-1 gene:AT5G16970 transcript:AT5G16970.1 gene_biotype:protein_coding transcript_biotype:protein_c"
+  },
+  {
+    "url": "https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/028/009/825/GCA_028009825.2_Col-CC/GCA_028009825.2_Col-CC_genomic.fna.gz",
+    "status": 206,
+    "contentLength": "10241",
+    "contentType": "application/x-gzip",
+    "gzip": true,
+    "verifiedAt": "2026-11-24",
+    "firstBytesSample": ">CP116280.1 Arabidopsis thaliana chromosome 1 ccctaaaccctaaaccctaaaccctaaaccctaaaccctaaaccctaaaccctaaaccctaaaccctaaaccctaaaccc taaaccctaaaccctaaacccta"
+  },
+  {
+    "url": "https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/902/167/145/GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0/GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0_genomic.fna.gz",
+    "status": 206,
+    "contentLength": "10241",
+    "contentType": "application/x-gzip",
+    "gzip": true,
+    "verifiedAt": "2026-11-24",
+    "firstBytesSample": ">NC_050096.1 Zea mays cultivar B73 chromosome 1, Zm-B73-REFERENCE-NAM-5.0, whole genome shotgun sequence tcatggctattttcataaaaaatgggggttgtgtggccatttatc"
+  },
+  {
+    "url": "https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/902/167/145/GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0/GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0_genomic.gff.gz",
+    "status": 206,
+    "contentLength": "10241",
+    "contentType": "application/x-gzip",
+    "gzip": true,
+    "verifiedAt": "2026-11-24",
+    "firstBytesSample": "##gff-version 3 #!gff-spec-version 1.21 #!processor NCBI annotwriter #!genome-build Zm-B73-REFERENCE-NAM-5.0 #!genome-build-accession NCBI_Assembly:GC"
+  },
+  {
+    "url": "https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/902/167/145/GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0/GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0_cds_from_genomic.fna.gz",
+    "status": 206,
+    "contentLength": "10241",
+    "contentType": "application/x-gzip",
+    "gzip": true,
+    "verifiedAt": "2026-11-24",
+    "firstBytesSample": ">lcl|NC_050096.1_cds_XP_020400304.1_1 [gene=LOC103644366] [db_xref=GeneID:103644366] [protein=uncharacterized protein] [protein_id=XP_020400304.1] [lo"
+  },
+  {
+    "url": "https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/902/167/145/GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0/GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0_protein.faa.gz",
+    "status": 206,
+    "contentLength": "10241",
+    "contentType": "application/x-gzip",
+    "gzip": true,
+    "verifiedAt": "2026-11-24",
+    "firstBytesSample": ">NP_001104837.2 ferredoxin-6, chloroplastic [Zea mays] MRVPGTAQHPSSIDPPNHLLRPALRLGTGVRRAPSRPGTGRAVTHPPIHRGSPGEQDVDCHRRKIARSQIRGKLSLSDRG SGGQHPLLRRPREA"
+  },
+  {
+    "url": "https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/018/294/505/GCF_018294505.1_IWGSC_CS_RefSeq_v2.1/GCF_018294505.1_IWGSC_CS_RefSeq_v2.1_genomic.fna.gz",
+    "status": 206,
+    "contentLength": "10241",
+    "contentType": "application/x-gzip",
+    "gzip": true,
+    "verifiedAt": "2026-11-24",
+    "firstBytesSample": ">NC_057794.1 Triticum aestivum cultivar Chinese Spring chromosome 1A, IWGSC CS RefSeq v2.1, whole genome shotgun sequence ctaaaccctaaaccctaaaccctaaacc"
+  },
+  {
+    "url": "https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/018/294/505/GCF_018294505.1_IWGSC_CS_RefSeq_v2.1/GCF_018294505.1_IWGSC_CS_RefSeq_v2.1_genomic.gff.gz",
+    "status": 206,
+    "contentLength": "10241",
+    "contentType": "application/x-gzip",
+    "gzip": true,
+    "verifiedAt": "2026-11-24",
+    "firstBytesSample": "##gff-version 3 #!gff-spec-version 1.21 #!processor NCBI annotwriter #!genome-build IWGSC CS RefSeq v2.1 #!genome-build-accession NCBI_Assembly:GCF_01"
+  },
+  {
+    "url": "https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/018/294/505/GCF_018294505.1_IWGSC_CS_RefSeq_v2.1/GCF_018294505.1_IWGSC_CS_RefSeq_v2.1_cds_from_genomic.fna.gz",
+    "status": 206,
+    "contentLength": "10241",
+    "contentType": "application/x-gzip",
+    "gzip": true,
+    "verifiedAt": "2026-11-24",
+    "firstBytesSample": ">lcl|NC_057794.1_cds_XP_044452222.1_1 [gene=LOC123183831] [db_xref=GeneID:123183831] [protein=50S ribosomal protein L28, chloroplastic] [protein_id=XP"
+  },
+  {
+    "url": "https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/018/294/505/GCF_018294505.1_IWGSC_CS_RefSeq_v2.1/GCF_018294505.1_IWGSC_CS_RefSeq_v2.1_protein.faa.gz",
+    "status": 206,
+    "contentLength": "10241",
+    "contentType": "application/x-gzip",
+    "gzip": true,
+    "verifiedAt": "2026-11-24",
+    "firstBytesSample": ">NP_001388617.1 acetyl-CoA carboxylase 1 [Triticum aestivum] MVESDQINGTPNRMSSVDEFCKALGGDSPIHSVLVANNGMAAVKFMRSIRTWALETFGNEKAILLVAMATPEDLRINAEH IRIADQFL"
+  },
+  {
+    "url": "https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/004/515/GCF_000004515.6_Glycine_max_v4.0/GCF_000004515.6_Glycine_max_v4.0_genomic.fna.gz",
+    "status": 206,
+    "contentLength": "10241",
+    "contentType": "application/x-gzip",
+    "gzip": true,
+    "verifiedAt": "2026-11-24",
+    "firstBytesSample": ">NC_016088.4 Glycine max cultivar Williams 82 chromosome 1, Glycine_max_v4.0, whole genome shotgun sequence GGTTTGGTGTTTGGGTTTTAGGTTTTAGGTTTTAGGTTTTac"
+  },
+  {
+    "url": "https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/004/515/GCF_000004515.6_Glycine_max_v4.0/GCF_000004515.6_Glycine_max_v4.0_genomic.gff.gz",
+    "status": 206,
+    "contentLength": "10241",
+    "contentType": "application/x-gzip",
+    "gzip": true,
+    "verifiedAt": "2026-11-24",
+    "firstBytesSample": "##gff-version 3 #!gff-spec-version 1.21 #!processor NCBI annotwriter #!genome-build Glycine_max_v4.0 #!genome-build-accession NCBI_Assembly:GCF_000004"
+  },
+  {
+    "url": "https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/004/515/GCF_000004515.6_Glycine_max_v4.0/GCF_000004515.6_Glycine_max_v4.0_cds_from_genomic.fna.gz",
+    "status": 206,
+    "contentLength": "10241",
+    "contentType": "application/x-gzip",
+    "gzip": true,
+    "verifiedAt": "2026-11-24",
+    "firstBytesSample": ">lcl|NC_016088.4_cds_XP_040871501.1_1 [gene=LOC102661143] [db_xref=GeneID:102661143] [protein=uncharacterized protein isoform X1] [protein_id=XP_04087"
+  },
+  {
+    "url": "https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/004/515/GCF_000004515.6_Glycine_max_v4.0/GCF_000004515.6_Glycine_max_v4.0_protein.faa.gz",
+    "status": 206,
+    "contentLength": "10241",
+    "contentType": "application/x-gzip",
+    "gzip": true,
+    "verifiedAt": "2026-11-24",
+    "firstBytesSample": ">NP_001234941.2 ER-binding immunoglobulin protein BIP2 precursor [Glycine max] MACSFSRGSLLPLAIIVSLGCLFAISIAKEEATKLGTVIGIDLGTTYSCVGVYKNGHVEIIANDQGNRITP"
+  },
+  {
+    "url": "https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/188/115/GCA_000188115.5_SL4.0/GCA_000188115.5_SL4.0_genomic.fna.gz",
+    "status": 206,
+    "contentLength": "10241",
+    "contentType": "application/x-gzip",
+    "gzip": true,
+    "verifiedAt": "2026-11-24",
+    "firstBytesSample": ">CM001064.4 Solanum lycopersicum cultivar Heinz 1706 chromosome 1, whole genome shotgun sequence aaggtcaaatgagccctgaagcgagcatacgctcatttcgatgatttttcgtg"
+  },
+  {
+    "gzip": true,
+    "url": "https://rice.uga.edu/osa1r7_download/osa1_r7.asm.fa.gz",
+    "status": 206,
+    "contentType": "application/x-gzip"
+  },
+  {
+    "gzip": true,
+    "url": "https://rice.uga.edu/osa1r7_download/osa1_r7.all_models.gff3.gz",
+    "status": 206,
+    "contentType": "application/x-gzip"
+  },
+  {
+    "gzip": true,
+    "url": "https://rice.uga.edu/osa1r7_download/osa1_r7.all_models.cds.fa.gz",
+    "status": 206,
+    "contentType": "application/x-gzip"
+  },
+  {
+    "gzip": true,
+    "url": "https://rice.uga.edu/osa1r7_download/osa1_r7.all_models.pep.fa.gz",
+    "status": 206,
+    "contentType": "application/x-gzip"
+  },
+  {
+    "gzip": true,
+    "url": "https://rice.uga.edu/osa1r7_download/osa1_r7.all_models.cdna.fa.gz",
+    "status": 206,
+    "contentType": "application/x-gzip"
+  },
+  {
+    "gzip": true,
+    "url": "https://rice.uga.edu/osa1r7_download/osa1_r7.all_models.functional_annotation.txt.gz",
+    "status": 206,
+    "contentType": "application/x-gzip"
+  },
+  {
+    "gzip": true,
+    "url": "https://rice.uga.edu/osa1r7_download/osa1_r7.asm.repeat_masked.gff3.gz",
+    "status": 206,
+    "contentType": "application/x-gzip"
+  }
+]

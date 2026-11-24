@@ -24,7 +24,7 @@ const verifiedDates = [...new Set(databases.map(d => d.verifiedAt))].sort().join
         <p class="gh-overline">OFFICIAL DATABASES DIRECTORY</p>
         <h1>植物参考基因组官方数据库导航</h1>
         <p class="gh-hero-lead">
-          系统梳理 6 大核心植物基因组数据库。帮助学者快速判断：“收录了哪些物种？能下载什么格式？是否需要注册登录？”
+          系统梳理 6 大核心植物基因组数据库。客观呈现各库覆盖物种范围、资源文件类型与真实访问政策（区分免登录直取、需注册账号与商业/学术订阅限制）。
         </p>
       </div>
 
@@ -34,8 +34,8 @@ const verifiedDates = [...new Set(databases.map(d => d.verifiedAt))].sort().join
           <span class="gh-stat-label">收录官方库</span>
         </div>
         <div class="gh-stat-card">
-          <span class="gh-stat-num">全部公开</span>
-          <span class="gh-stat-label">科研公益访问</span>
+          <span class="gh-stat-num">{databases.filter(d => d.account.includes('无需') || d.account.includes('免')).length} / {databases.length}</span>
+          <span class="gh-stat-label">支持免登录直取</span>
         </div>
       </div>
     </section>
