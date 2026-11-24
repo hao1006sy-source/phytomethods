@@ -105,12 +105,25 @@ const popularKeywords = ['Hifiasm', 'GWAS', '泛基因组', '转座子', '单细
         if (matched) {
           synonymHint.style.display = 'flex';
           synonymTerms.innerHTML = matched.terms
-            .map(t => `<a href="${base}search/?q=${encodeURIComponent(t)}" class="synonym-link">${t}</a>`)
+            .map(t => `<a href="${base}search/?q=${encodeURIComponent(t)}" data-term="${t}" class="synonym-link">${t}</a>`)
             .join(' · ');
         } else {
           synonymHint.style.display = 'none';
         }
       }
+
+      // 点击同义词免刷新直接填入搜索框并触发实时检索
+      synonymTerms?.addEventListener('click', (e) => {
+        const target = e.target;
+        if (target && target.tagName === 'A') {
+          e.preventDefault();
+          const term = target.getAttribute('data-term') || target.textContent;
+          if (term && inputEl) {
+            inputEl.value = term;
+            inputEl.dispatchEvent(new Event('input', { bubbles: true }));
+          }
+        }
+      });
 
       // 输入联动与 URL 同步
       inputEl?.addEventListener('input', () => {
