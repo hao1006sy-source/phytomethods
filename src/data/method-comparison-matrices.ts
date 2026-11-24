@@ -620,6 +620,26 @@ export const methodComparisonMatrices: Record<string, DomainComparisonMatrix> = 
         advantages: '比传统单向拟时间序列更具物理方向性，准确指出分化起点与终点终态',
         limitations: '需要高比例未剪接前体 RNA (Unspliced reads) 支撑',
         recommendedScenario: '植物分生组织干细胞分化方向与器官发育时序动态推断'
+      },
+      {
+        methodId: 'cell2location',
+        name: 'Cell2location',
+        inputType: '空间转录组原始计数矩阵 + 匹配的单细胞参考表达特征谱',
+        corePrinciple: '层次贝叶斯负二项回归模型 + 自动微分变分推断 (ADVI)',
+        computeProfile: '推荐 GPU 加速 (NVIDIA CUDA, ≥ 8 GB VRAM) 或 16 线程 CPU, ≥ 32 GB RAM',
+        advantages: '能精准解离单个 Spot 内部混合的多细胞类型，输出空间绝对细胞丰度与后验置信区间',
+        limitations: '高度依赖高质量且覆盖全面的纯净单细胞参考图谱，模型训练需 GPU 计算资源',
+        recommendedScenario: '植物器官切片 Spot 多细胞混合解析与维管束/皮层细胞类型空间绝对丰度绘制'
+      },
+      {
+        methodId: 'archr',
+        name: 'ArchR',
+        inputType: 'scATAC-seq 片段文件 (Fragments) 或 10x Multiome 染色质可及性数据',
+        corePrinciple: '基于 Arrow 文件的单细胞染色质分析 + TF-IDF/LSI 降维 + 距离衰减基因活性评分',
+        computeProfile: '8~16 线程, ≥ 32 GB RAM (支持流式 HDF5/Arrow 极速读取数万至数十万单细胞)',
+        advantages: '大规模单细胞 ATAC 内存与速度表现顶尖，支持转录因子基序富集与 Peak-to-Gene 调控关联',
+        limitations: '基于 R 语言环境，植物自定义参考基因组与非模式物种注释包需手动格式化构建',
+        recommendedScenario: '植物单细胞染色质开放可及性全景解析、顺式调控元件预测与跨模态多组学整合'
       }
     ],
     decisionTrees: [
@@ -632,6 +652,21 @@ export const methodComparisonMatrices: Record<string, DomainComparisonMatrix> = 
         condition: '研究作物组织切片上的基因原位表达与空间细胞微区',
         recommendation: '首选 Squidpy',
         rationale: '直接计算空间富集度与组织结构域边界。'
+      },
+      {
+        condition: '空间转录组 Spot 包含多个细胞混杂，需推断单细胞类型绝对丰度',
+        recommendation: '首选 Cell2location',
+        rationale: '层次贝叶斯模型能根据单细胞参考图谱对每个 Spot 进行精准反卷积解离。'
+      },
+      {
+        condition: '探索分生区干细胞向成熟组织分化的内在时间箭头与命运终点',
+        recommendation: '首选 CellRank',
+        rationale: '利用 RNA Velocity 微分方程与吸收马尔可夫链客观量化细胞谱系分化概率。'
+      },
+      {
+        condition: '单细胞染色质可及性 (scATAC) 与转录调控网络 (Peak-to-Gene) 挖掘',
+        recommendation: '首选 ArchR',
+        rationale: '流式 Arrow 文件架构处理效率高，结合基因活性评分支持多模态顺式调控网络构建。'
       }
     ]
   },

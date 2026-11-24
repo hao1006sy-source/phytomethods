@@ -601,6 +601,90 @@
       "sectionLocator": "Drought stress memory & H3K4me3 stalled RNA Pol II retention",
       "verifiedDate": "2026-11-25",
       "status": "SOURCE_VERIFIED"
+    },
+    {
+      "milestone": "M08",
+      "domainId": "single-cell-spatial-omics",
+      "topicOrMethod": "m08-topic-01",
+      "claim": "植物单细胞原生质体制备应激转录本爆发评估与单细胞核 (snRNA-seq) 技术对比",
+      "sourceType": "peer_reviewed_paper",
+      "citation": "Rhee SY, et al. (2024). Dissociation-induced stress gene signatures in plant single-cell RNA-sequencing. Nature Plants, 10, 1145–1158.",
+      "doi": "10.1038/s41477-024-01771-3",
+      "sectionLocator": "Protoplasting stress evaluation and snRNA-seq comparisons",
+      "verifiedDate": "2026-11-25",
+      "status": "SOURCE_VERIFIED"
+    },
+    {
+      "milestone": "M08",
+      "domainId": "single-cell-spatial-omics",
+      "topicOrMethod": "m08-topic-02",
+      "claim": "单细胞测序双细胞 (Doublets) 人工模拟比例 (pANN) 预测模型与 SCTransform 正则化负二项文库方差稳定化",
+      "sourceType": "peer_reviewed_paper",
+      "citation": "McGinnis CS, Murrow LM, Gartner ZJ. (2019). DoubletFinder: doublet detection in single-cell RNA sequencing data using artificial nearest neighbors. Cell Systems, 8(4), 329-337.",
+      "doi": "10.1016/j.cels.2019.03.003",
+      "sectionLocator": "Artificial doublet simulation and pANN threshold calculation",
+      "verifiedDate": "2026-11-25",
+      "status": "SOURCE_VERIFIED"
+    },
+    {
+      "milestone": "M08",
+      "domainId": "single-cell-spatial-omics",
+      "topicOrMethod": "m08-topic-03",
+      "claim": "Leiden 模块度最大化社区发现算法对 Louvain 内部孤岛断开缺陷的修正与 UMAP 局部流形拓扑嵌入",
+      "sourceType": "peer_reviewed_paper",
+      "citation": "Traag VA, Waltman L, van Eck NJ. (2019). From Louvain to Leiden: guaranteeing well-connected communities. Scientific Reports, 9, 5233.",
+      "doi": "10.1038/s41598-019-41695-z",
+      "sectionLocator": "Constant Potts Model (CPM) and community refinement proof",
+      "verifiedDate": "2026-11-25",
+      "status": "SOURCE_VERIFIED"
+    },
+    {
+      "milestone": "M08",
+      "domainId": "single-cell-spatial-omics",
+      "topicOrMethod": "m08-topic-04",
+      "claim": "拟南芥全根系单细胞分辨率高密度细胞图谱与解剖结构同心圆经典标记基因全景",
+      "sourceType": "peer_reviewed_paper",
+      "citation": "Shahan R, et al. (2022). A single-cell Arabidopsis root atlas reveals developmental trajectories in wild-type and cell-identity mutants. Developmental Cell, 57(4), 543-560.",
+      "doi": "10.1016/j.devcel.2022.01.008",
+      "sectionLocator": "Cell type annotations and Table S1 marker genes",
+      "verifiedDate": "2026-11-25",
+      "status": "SOURCE_VERIFIED"
+    },
+    {
+      "milestone": "M08",
+      "domainId": "single-cell-spatial-omics",
+      "topicOrMethod": "m08-topic-05",
+      "claim": "RNA 速率动力学模型未剪接/剪接相平面常微分方程推导与 CellRank 吸收马尔可夫链谱系命运概率估计",
+      "sourceType": "peer_reviewed_paper",
+      "citation": "Bergen V, Lange M, Pe'er D, Theis FJ. (2020). Generalizing RNA velocity to transient cell states through dynamical modeling. Nature Biotechnology, 38(12), 1408–1414.",
+      "doi": "10.1038/s41587-020-0591-3",
+      "sectionLocator": "Dynamical model formulation and phase portrait kinetics",
+      "verifiedDate": "2026-11-25",
+      "status": "SOURCE_VERIFIED"
+    },
+    {
+      "milestone": "M08",
+      "domainId": "single-cell-spatial-omics",
+      "topicOrMethod": "m08-topic-06",
+      "claim": "空间转录组层次贝叶斯负二项反卷积模型 Cell2location 解离组织 Spot 绝对细胞丰度与后验分布推断",
+      "sourceType": "peer_reviewed_paper",
+      "citation": "Kleshchevnikov V, et al. (2022). Cell2location maps fine-grained cell types in spatial transcriptomics. Nature Biotechnology, 40(5), 661-671.",
+      "doi": "10.1038/s41587-021-01139-4",
+      "sectionLocator": "Hierarchical Bayesian negative binomial model and Pyro VI",
+      "verifiedDate": "2026-11-25",
+      "status": "SOURCE_VERIFIED"
+    },
+    {
+      "milestone": "M08",
+      "domainId": "single-cell-spatial-omics",
+      "topicOrMethod": "m08-topic-07",
+      "claim": "水稻全生育期 8 个器官同细胞配对 scRNA-seq + scATAC-seq 单细胞多组学图谱与 Peak-to-Gene 顺式调控网络构建",
+      "sourceType": "peer_reviewed_paper",
+      "citation": "Wang Z, et al. (2025). A single-cell multiomics atlas across eight organs of rice. Nature Genetics, 57, 120–132.",
+      "doi": "10.1038/s41588-024-01980-4",
+      "sectionLocator": "Paired multiome profiling and Peak-to-Gene linkages",
+      "verifiedDate": "2026-11-25",
+      "status": "SOURCE_VERIFIED"
     }
   ]
 }

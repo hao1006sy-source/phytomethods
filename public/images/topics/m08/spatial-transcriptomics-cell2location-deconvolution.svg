@@ -1,0 +1,152 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 550" width="100%" height="100%">
+  <defs>
+    <style>
+      .bg { fill: #f8fafc; }
+      .box { fill: #ffffff; stroke: #cbd5e1; stroke-width: 1.5; rx: 8; }
+      .box-highlight { fill: #f0fdf4; stroke: #22c55e; stroke-width: 2; rx: 8; }
+      .box-blue { fill: #eff6ff; stroke: #3b82f6; stroke-width: 1.5; rx: 8; }
+      .box-orange { fill: #fff7ed; stroke: #f97316; stroke-width: 1.5; rx: 8; }
+      .title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 18px; font-weight: 700; fill: #0f172a; }
+      .subtitle { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 13px; font-weight: 600; fill: #475569; }
+      .txt { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 12px; fill: #1e293b; }
+      .txt-sm { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; fill: #64748b; }
+      .txt-mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 11px; fill: #0f172a; }
+      .arrow { stroke: #64748b; stroke-width: 1.5; marker-end: url(#arrowhead); fill: none; }
+      .arrow-blue { stroke: #2563eb; stroke-width: 2; marker-end: url(#arrowhead-blue); fill: none; }
+    </style>
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#64748b" />
+    </marker>
+    <marker id="arrowhead-blue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#2563eb" />
+    </marker>
+  </defs>
+
+  <rect width="1000" height="550" class="bg" />
+
+  <!-- 头部大标题 -->
+  <text x="30" y="38" class="title">空间转录组学原位捕获机制与 Cell2location 贝叶斯反卷积模型</text>
+  <text x="30" y="60" class="txt-sm">Spatial Transcriptomics In Situ Capture, Spot Resolution Limits &amp; Cell2location Hierarchical Bayesian Deconvolution</text>
+
+  <!-- 左侧: 空间转录组原位捕获与 Spot 混杂效应 -->
+  <g transform="translate(30, 80)">
+    <rect width="320" height="440" class="box" />
+    <text x="20" y="28" class="subtitle">1. 空间芯片捕获与 Spot 混杂</text>
+
+    <!-- 空间芯片与组织切片 -->
+    <g transform="translate(20, 45)">
+      <rect width="280" height="150" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1" rx="6" />
+      <text x="15" y="22" class="txt-sm" font-weight="600">组织切片覆盖于阵列玻片 (Array Spots)</text>
+
+      <!-- 阵列圆点模拟 -->
+      <g transform="translate(20, 35)">
+        <circle cx="20" cy="20" r="14" fill="#fee2e2" stroke="#ef4444" stroke-width="1.5" />
+        <circle cx="65" cy="20" r="14" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5" />
+        <circle cx="110" cy="20" r="14" fill="#e0e7ff" stroke="#6366f1" stroke-width="1.5" />
+        <circle cx="155" cy="20" r="14" fill="#dcfce7" stroke="#22c55e" stroke-width="1.5" />
+        <circle cx="200" cy="20" r="14" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5" />
+
+        <circle cx="20" cy="65" r="14" fill="#f3e8ff" stroke="#a855f7" stroke-width="1.5" />
+        <circle cx="65" cy="65" r="14" fill="#ffedd5" stroke="#f97316" stroke-width="2" />
+        <circle cx="110" cy="65" r="14" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5" />
+        <circle cx="155" cy="65" r="14" fill="#fee2e2" stroke="#ef4444" stroke-width="1.5" />
+        <circle cx="200" cy="65" r="14" fill="#dcfce7" stroke="#22c55e" stroke-width="1.5" />
+      </g>
+      <text x="15" y="135" class="txt-sm" fill="#b91c1c">• 每个 Spot 直径 ~55 μm，覆盖 5~20 个植物细胞</text>
+    </g>
+
+    <!-- 单 Spot 内部细胞异质性放大 -->
+    <g transform="translate(20, 210)">
+      <rect width="280" height="205" class="box-orange" />
+      <text x="15" y="24" class="txt" font-weight="600" fill="#c2410c">物理局限：单点多细胞混合信号</text>
+
+      <!-- 放大单个 Spot 内部 -->
+      <g transform="translate(25, 40)">
+        <circle cx="50" cy="50" r="45" fill="#ffffff" stroke="#ea580c" stroke-width="2" stroke-dasharray="4 2" />
+        <!-- 内部不同颜色小细胞 -->
+        <circle cx="35" cy="35" r="10" fill="#22c55e" />
+        <circle cx="58" cy="32" r="10" fill="#22c55e" />
+        <circle cx="40" cy="60" r="11" fill="#3b82f6" />
+        <circle cx="68" cy="55" r="9" fill="#a855f7" />
+        <text x="50" y="110" class="txt-sm" text-anchor="middle" font-weight="600">Spot #s 混合微环境</text>
+      </g>
+
+      <text x="140" y="65" class="txt-sm">• 导管细胞 × 1</text>
+      <text x="140" y="85" class="txt-sm">• 薄壁细胞 × 2</text>
+      <text x="140" y="105" class="txt-sm">• 伴胞细胞 × 1</text>
+      <text x="15" y="160" class="txt-sm">• 测序读取的是该区域多细胞混合的总体表达量</text>
+      <text x="15" y="180" class="txt-sm">• 必须依赖计算反卷积算法解离细胞组成</text>
+    </g>
+  </g>
+
+  <!-- 中间: 单细胞参考图谱 + 层次贝叶斯模型架构 -->
+  <g transform="translate(370, 80)">
+    <rect width="320" height="440" class="box" />
+    <text x="20" y="28" class="subtitle">2. 单细胞参考与 Cell2location 模型</text>
+
+    <!-- 单细胞参考图谱 -->
+    <g transform="translate(20, 45)">
+      <rect width="280" height="95" class="box-blue" />
+      <text x="15" y="22" class="txt" font-weight="600" fill="#1d4ed8">输入 A: 单细胞参考图谱 (scRNA-seq)</text>
+      <text x="15" y="44" class="txt-sm">• 纯净单细胞分群获得的基因表达签名</text>
+      <text x="15" y="64" class="txt-mono">• 细胞类型特征表达谱: $g_{e, f}$</text>
+      <text x="15" y="82" class="txt-sm">  (基因 $e$ 在细胞类型 $f$ 中的特异丰度)</text>
+    </g>
+
+    <!-- 空间观测数据 -->
+    <g transform="translate(20, 150)">
+      <rect width="280" height="75" class="box" />
+      <text x="15" y="22" class="txt" font-weight="600">输入 B: 空间转录组表达计数</text>
+      <text x="15" y="44" class="txt-mono">• 观测计数矩阵: $y_{s, e}$</text>
+      <text x="15" y="64" class="txt-sm">  (位置 $s$ 上基因 $e$ 的原始 UMI 计数)</text>
+    </g>
+
+    <!-- 层次贝叶斯负二项模型核心方程 -->
+    <g transform="translate(20, 235)">
+      <rect width="280" height="185" class="box-highlight" />
+      <text x="15" y="24" class="txt" font-weight="600" fill="#15803d">层次贝叶斯反卷积推断 (MCMC / VI)</text>
+      <text x="15" y="50" class="txt-mono">y_{s,e} ~ NegBinomial(μ_{s,e}, α_e)</text>
+      <text x="15" y="75" class="txt-mono">μ_{s,e} = m_s · (Σ_f w_{s,f}·g_{e,f} + b_{s,e})</text>
+
+      <text x="15" y="105" class="txt-sm">• <tspan font-weight="700">w_{s,f}</tspan>：Spot $s$ 处细胞类型 $f$ 的绝对细胞丰度</text>
+      <text x="15" y="125" class="txt-sm">• <tspan font-weight="700">m_s</tspan>：Spot 特异性测序灵敏度因子</text>
+      <text x="15" y="145" class="txt-sm">• <tspan font-weight="700">b_{s,e}</tspan>：非特异性物理结合背景扩散底噪</text>
+      <text x="15" y="165" class="txt-sm">• <tspan font-weight="700">α_e</tspan>：基因特异性离散度参数</text>
+    </g>
+  </g>
+
+  <!-- 箭头: 中间 -> 右侧 -->
+  <path d="M 690 300 L 710 300" class="arrow-blue" />
+
+  <!-- 右侧: 反卷积输出产物与空间微环境互作 -->
+  <g transform="translate(710, 80)">
+    <rect width="260" height="440" class="box" />
+    <text x="20" y="28" class="subtitle">3. 原位细胞图谱与微环境</text>
+
+    <!-- 产物 1: 绝对丰度空间图 -->
+    <g transform="translate(15, 45)">
+      <rect width="230" height="170" class="box-highlight" />
+      <text x="15" y="24" class="txt" font-weight="600" fill="#15803d">产物 A: 单细胞类型绝对丰度分布</text>
+      <text x="15" y="46" class="txt-sm">• 绘制 $w_{s,f}$ 空间原位热图</text>
+      <text x="15" y="66" class="txt-sm">• 解密厚壁组织、原生木质部与韧皮薄壁细胞的同心圆环状排列</text>
+      <!-- 小示意热图 -->
+      <rect x="25" y="85" width="180" height="70" fill="#f0fdf4" stroke="#86efac" rx="4" />
+      <circle cx="50" cy="120" r="16" fill="#16a34a" />
+      <circle cx="95" cy="120" r="12" fill="#4ade80" />
+      <circle cx="140" cy="120" r="8" fill="#bbf7d0" />
+      <circle cx="180" cy="120" r="4" fill="#dcfce7" />
+    </g>
+
+    <!-- 产物 2: 空间邻域互作 Squidpy -->
+    <g transform="translate(15, 230)">
+      <rect width="230" height="190" class="box" />
+      <text x="15" y="24" class="txt" font-weight="600">产物 B: 空间微环境与邻域分析</text>
+      <text x="15" y="46" class="txt-sm">• Squidpy 空间邻近图 (Spatial Graph)</text>
+      <text x="15" y="68" class="txt-sm">• 细胞类型空间共富集 (Co-occurrence)</text>
+      <text x="15" y="90" class="txt-sm">• 配体-受体原位空间通讯预测</text>
+      <text x="15" y="112" class="txt-sm">• 空间可变基因 (SVG) 空间自相关统计</text>
+      <text x="15" y="132" class="txt-mono">  Moran's I &gt; 0.4 (显著空间聚集)</text>
+      <text x="15" y="165" class="txt-sm" font-weight="600" fill="#475569">突破传统单细胞无空间坐标痛点</text>
+    </g>
+  </g>
+</svg>

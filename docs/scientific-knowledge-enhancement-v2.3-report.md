@@ -31,7 +31,7 @@ PhytoMethods 经过此前基础架构、数据注册表、计算画像核验与�
 | **M05** | 群体遗传学与演化 | `docs/v2.3-m05-population-genetics` | #57 | 已合并 (`ec72b5e`) | 已发布 (Run 45453852275) |
 | **M06** | GWAS 与全基因组选择 | `docs/v2.3-m06-gwas-breeding` | #58 | 已合并 (`0d395cf`) | 已发布 (Run 45456818404) |
 | **M07** | 表观与三维基因组学 | `docs/v2.3-m07-epigenomics-3d` | #59 | 已合并 (`8ff37b0`) | 已发布 (Run 45460325238) |
-| **M08** | 单细胞与空间组学 | `docs/v2.3-m08-single-cell` | 待开始 | 待合并 | 待验证 |
+| **M08** | 单细胞与空间组学 | `docs/v2.3-m08-single-cell` | #60 | 待合并 | 待验证 |
 | **M09** | 基因调控网络与 AI | `docs/v2.3-m09-networks-ai` | 待开始 | 待合并 | 待验证 |
 | **M10** | 全局收尾与持续发布总结 | `docs/v2.3-m10-final-review` | 待开始 | 待合并 | 待验证 |
 
@@ -155,6 +155,25 @@ PhytoMethods 经过此前基础架构、数据注册表、计算画像核验与�
 - **文献出处索引**: 在 `source-review.json` 中新增 7 条权威文献追踪记录；
 - **全量测试验证**: `npm run validate`、`npm run test:methods-index-v4`、`npm run test:platform-browser` 100% 通过（13,291 链接 0 死链，63 篇专题 0 语法报错，多端 7 视口 0 溢出）；
 - **部署发布验证**: PR #59 Squash 合并入 main，Pages 部署成功上线。
+
+### M08：单细胞与空间组学 (待合并验证)
+- **分支**: `docs/v2.3-m08-single-cell` | **PR**: #60 | **状态**: 已完成全量开发与本地三套测试
+- **图解建设**: 绘制 3 幅原创学术 SVG 矢量图解置于 `public/images/topics/m08/`：
+  1. `single-cell-rna-seq-workflow-and-sparse-matrix.svg`: 植物单细胞原生质体制备 vs. 单细胞核抽提双路线对比、液滴微流控油包水微胶滴（GEMs）、Cell Barcode 汉明纠错与 UMI 去重分子计数机制，以及超稀疏表达矩阵的 CSR 压缩存储结构；
+  2. `single-cell-clustering-umap-and-rna-velocity.svg`: 高维表达空间到 PCA 截断奇异值分解、 $k$-NN 细胞邻近图、Leiden 模块度最优化社区发现、UMAP 低维流形空间投影，以及未剪接/剪接 mRNA 相平面微分方程与 RNA Velocity 动力学流速场；
+  3. `spatial-transcriptomics-cell2location-deconvolution.svg`: 空间转录组原位阵列玻片捕获机制、多细胞 Spot 组织混杂效应、单细胞 scRNA-seq 参考图谱特征字典、Cell2location 层次贝叶斯负二项空间反卷积模型，以及 Squidpy 空间邻近微环境共富集分析。
+- **核心专题深度建设**: 覆盖 M08 全部 7 篇核心专题：
+  - `m08-topic-01`: 植物单细胞与单核转录组基础、原生质体消化诱发的人工应激转录伪影、snRNA-seq 物理匀浆解离优势、微流控泊松捕获模型、Cell Barcode 汉明距离纠错与 UMI 绝对计数原理、EmptyDrops 游离背景 RNA 判别与 CSR 稀疏矩阵存储；
+  - `m08-topic-02`: 单细胞质控、文库归一化与批次校正、中位数绝对偏差（MAD）自适应过滤模型、DoubletFinder 人工双细胞模拟与 pANN 泊松阈值截断、Shifted Logarithm vs. SCTransform 正则化负二项回归残差方差稳定化、Harmony 软聚类与 Scanorama 相互最近邻（MNN）跨批次流形对齐，以及植物光合组织与地下根系细胞器比例组织异质性；
+  - `m08-topic-03`: 单细胞流形降维与图聚类、高变基因（HVGs）均值-方差对数拟合筛选、PCA 截断奇异值分解与碎石图拐点判定、 $k$-NN 模糊单纯形网络构建、Leiden 模块度 CPM 质量函数最优化（解决 Louvain 内部孤岛断开缺陷），以及 UMAP 交叉熵损失函数推导；
+  - `m08-topic-04`: 标记基因与细胞类型注释、Wilcoxon 秩和检验统计量推导与 AUC 细胞特异性打分、Pseudobulk 样本级聚合规避细胞伪重复、拟南芥与水稻根系由外向内解剖同心圆经典标记基因全景（根冠 *SMB*、表皮 *COBL9*/*GL2*、内皮层 *SCR*/*MYB36*、中柱鞘 *GATA23*、木质部 *VND7*、韧皮部 *APL*/*SUC2*、静止中心 *WOX5*）；
+  - `m08-topic-05`: 单细胞拟时序与细胞命运决定、扩散图（Diffusion Maps）马尔可夫转移算子与 DPT 扩散伪时间、RNA 速率（RNA Velocity）两室生化反应常微分方程与相平面瞬时速度矢量 $v = \beta u - \gamma s$、CellRank 吸收马尔可夫链第一步代数方程 $(\mathbf{I} - \mathbf{Q})\mathbf{B} = \mathbf{R}$ 求解谱系分化吸收概率；
+  - `m08-topic-06`: 空间转录组与细胞组成反卷积、原位芯片 Spot 组织多细胞混杂物理局限、Moran's $I$ 空间自相关系数方程、Cell2location 层次贝叶斯负二项反卷积推断每个 Spot 的单细胞类型绝对丰度 $w_{s, f}$、Squidpy 空间邻近图与微环境共富集置换检验；
+  - `m08-topic-07`: 单细胞多组学与跨模态整合、配对 10x Multiome vs. 非配对跨模态对齐、scATAC-seq TF-IDF 潜语义索引（LSI，剔除测序深度伪影 LSI-1）、ArchR 物理距离指数衰减基因活性评分（Gene Score）、Seurat v4 WNN 加权最近邻多模态整合，以及 Peak-to-Gene 顺式调控网络预测。
+- **选型矩阵完善**: 在 `src/data/method-comparison-matrices.ts` 扩充 `cell2location` 与 `archr` 选型档案及全套决策树；
+- **文献出处索引**: 在 `source-review.json` 中新增 7 条权威文献追踪记录；
+- **全量测试验证**: `npm run validate`、`npm run test:methods-index-v4`、`npm run test:platform-browser` 100% 通过（13,172 链接 0 死链，63 篇专题 0 语法报错，多端 7 视口 0 溢出）。
+
 
 
 
