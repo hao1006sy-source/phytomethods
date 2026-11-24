@@ -128,6 +128,31 @@
         "https://hao1006sy-source.github.io/phytomethods/methods/msmc/",
         "https://hao1006sy-source.github.io/phytomethods/methods/msmc2/"
       ]
+    },
+    {
+      "milestone": "M06",
+      "domainId": "gwas-breeding",
+      "prNumber": 58,
+      "prTitle": "docs(v2.3): M06 全基因组关联分析与分子育种科研知识深度建设与学术矢量图解",
+      "mergeCommit": "0d395cf",
+      "mergedAt": "2026-11-24T18:11:38Z",
+      "githubPagesRunId": 45456818404,
+      "deployedAt": "2026-11-24T18:12:40Z",
+      "deploymentStatus": "SUCCESS",
+      "liveUrl": "https://hao1006sy-source.github.io/phytomethods/topics/gwas-breeding/",
+      "verifiedPages": [
+        "https://hao1006sy-source.github.io/phytomethods/topics/gwas-breeding/m06-topic-01/",
+        "https://hao1006sy-source.github.io/phytomethods/topics/gwas-breeding/m06-topic-02/",
+        "https://hao1006sy-source.github.io/phytomethods/topics/gwas-breeding/m06-topic-03/",
+        "https://hao1006sy-source.github.io/phytomethods/topics/gwas-breeding/m06-topic-04/",
+        "https://hao1006sy-source.github.io/phytomethods/topics/gwas-breeding/m06-topic-05/",
+        "https://hao1006sy-source.github.io/phytomethods/topics/gwas-breeding/m06-topic-06/",
+        "https://hao1006sy-source.github.io/phytomethods/topics/gwas-breeding/m06-topic-07/",
+        "https://hao1006sy-source.github.io/phytomethods/methods/gapit/",
+        "https://hao1006sy-source.github.io/phytomethods/methods/rrblup/",
+        "https://hao1006sy-source.github.io/phytomethods/methods/rqtl2/",
+        "https://hao1006sy-source.github.io/phytomethods/methods/dnngp/"
+      ]
     }
   ]
 }

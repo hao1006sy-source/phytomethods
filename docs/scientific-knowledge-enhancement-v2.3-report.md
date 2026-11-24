@@ -29,8 +29,8 @@ PhytoMethods 经过此前基础架构、数据注册表、计算画像核验与�
 | **M03** | 泛基因组与结构变异 | `docs/v2.3-m03-pangenomics` | #55 | 已合并 (`aece25d`) | 已发布 (Run 45447742843) |
 | **M04** | 比较基因组与系统发育 | `docs/v2.3-m04-comparative-genomics` | #56 | 已合并 (`ec98daa`) | 已发布 (Run 45450999621) |
 | **M05** | 群体遗传学与演化 | `docs/v2.3-m05-population-genetics` | #57 | 已合并 (`ec72b5e`) | 已发布 (Run 45453852275) |
-| **M06** | GWAS 与全基因组选择 | `docs/v2.3-m06-gwas-breeding` | 待提交 | 待合并 | 待验证 |
-| **M07** | 表观与三维基因组学 | `docs/v2.3-m07-epigenomics-3d` | 待开始 | 待合并 | 待验证 |
+| **M06** | GWAS 与全基因组选择 | `docs/v2.3-m06-gwas-breeding` | #58 | 已合并 (`0d395cf`) | 已发布 (Run 45456818404) |
+| **M07** | 表观与三维基因组学 | `docs/v2.3-m07-epigenomics-3d` | 待提交 | 待合并 | 待验证 |
 | **M08** | 单细胞与空间组学 | `docs/v2.3-m08-single-cell` | 待开始 | 待合并 | 待验证 |
 | **M09** | 基因调控网络与 AI | `docs/v2.3-m09-networks-ai` | 待开始 | 待合并 | 待验证 |
 | **M10** | 全局收尾与持续发布总结 | `docs/v2.3-m10-final-review` | 待开始 | 待合并 | 待验证 |
@@ -118,8 +118,8 @@ PhytoMethods 经过此前基础架构、数据注册表、计算画像核验与�
 - **全量测试验证**: `npm run validate`、`npm run test:methods-index-v4`、`npm run test:platform-browser` 100% 通过（13,291 链接 0 死链，63 篇专题 0 语法报错，多端 7 视口 0 溢出）；
 - **部署发布验证**: PR #57 Squash 合并入 main，Pages 部署成功上线。
 
-### M06：GWAS 与全基因组选择 (本地测试全量通过)
-- **分支**: `docs/v2.3-m06-gwas-breeding`
+### M06：GWAS 与全基因组选择 (已合并上线)
+- **分支**: `docs/v2.3-m06-gwas-breeding` | **PR**: #58 (`0d395cf`) | **CI Run ID**: 45456306650 | **Pages Run ID**: 45456818404
 - **图解建设**: 绘制 3 幅原创学术 SVG 矢量图解置于 `public/images/topics/m06/`：
   1. `gwas-manhattan-qq-plot-architecture.svg`: 曼哈顿图（全基因组位点定位、显著性红线与建议线、候选区间 LD 判定）与 Q-Q 图（群体分层假阳性诊断、膨胀因子 $\lambda_{GC}$ 评估）双联科学架构；
   2. `gwas-mixed-linear-model-farmcpu.svg`: 传统 $Q+K$ 混合线性模型方程、全基因组亲缘矩阵假阴性过度惩罚与多位点 FarmCPU 固定效应（FEM）与随机效应（REM）循环交替机制；

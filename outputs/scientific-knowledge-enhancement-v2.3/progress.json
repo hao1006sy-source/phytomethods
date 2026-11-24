@@ -2,7 +2,7 @@
   "version": "2.3.0",
   "project": "PhytoMethods Scientific Knowledge Enhancement & Continuous Delivery",
   "startedAt": "2026-11-25T00:20:00+08:00",
-  "currentMilestone": "M06",
+  "currentMilestone": "M07",
   "milestones": {
     "M01": {
       "name": "测序与基因组组装",
@@ -53,10 +53,10 @@
       "name": "全基因组关联分析与分子育种",
       "domainId": "gwas-breeding",
       "branch": "docs/v2.3-m06-gwas-breeding",
-      "status": "pending",
-      "prNumber": null,
-      "deployedUrl": null,
-      "completedAt": null
+      "status": "completed",
+      "prNumber": 58,
+      "deployedUrl": "https://hao1006sy-source.github.io/phytomethods/topics/gwas-breeding/",
+      "completedAt": "2026-11-25T02:12:40+08:00"
     },
     "M07": {
       "name": "表观基因组与三维基因组",
