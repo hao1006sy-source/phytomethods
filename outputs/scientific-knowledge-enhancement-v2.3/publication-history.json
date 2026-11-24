@@ -234,6 +234,28 @@
         "https://hao1006sy-source.github.io/phytomethods/methods/agront/",
         "https://hao1006sy-source.github.io/phytomethods/methods/plantcad2/"
       ]
+    },
+    {
+      "milestone": "M10",
+      "domainId": "global-synthesis",
+      "prNumber": 62,
+      "prTitle": "docs(v2.3): M10 全局学术协同梳理与 V2.3 终期持续发布交付",
+      "mergeCommit": "98f812b",
+      "mergedAt": "2026-11-24T19:09:22Z",
+      "githubPagesRunId": 45467195270,
+      "deployedAt": "2026-11-24T19:10:33Z",
+      "deploymentStatus": "SUCCESS",
+      "liveUrl": "https://hao1006sy-source.github.io/phytomethods/",
+      "verifiedPages": [
+        "https://hao1006sy-source.github.io/phytomethods/",
+        "https://hao1006sy-source.github.io/phytomethods/topics/",
+        "https://hao1006sy-source.github.io/phytomethods/methods/",
+        "https://hao1006sy-source.github.io/phytomethods/papers/",
+        "https://hao1006sy-source.github.io/phytomethods/tutorials/",
+        "https://hao1006sy-source.github.io/phytomethods/workflows/",
+        "https://hao1006sy-source.github.io/phytomethods/genomes/",
+        "https://hao1006sy-source.github.io/phytomethods/about/"
+      ]
     }
   ]
 }
