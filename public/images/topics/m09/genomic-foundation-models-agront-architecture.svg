@@ -1,0 +1,155 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 550" width="100%" height="100%">
+  <defs>
+    <style>
+      .bg { fill: #f8fafc; }
+      .box { fill: #ffffff; stroke: #cbd5e1; stroke-width: 1.5; rx: 8; }
+      .box-highlight { fill: #f0fdf4; stroke: #22c55e; stroke-width: 2; rx: 8; }
+      .box-blue { fill: #eff6ff; stroke: #3b82f6; stroke-width: 1.5; rx: 8; }
+      .box-purple { fill: #faf5ff; stroke: #a855f7; stroke-width: 1.5; rx: 8; }
+      .title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 18px; font-weight: 700; fill: #0f172a; }
+      .subtitle { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 13px; font-weight: 600; fill: #475569; }
+      .txt { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 12px; fill: #1e293b; }
+      .txt-sm { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; fill: #64748b; }
+      .txt-mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 11px; fill: #0f172a; }
+      .arrow { stroke: #64748b; stroke-width: 1.5; marker-end: url(#arrowhead); fill: none; }
+      .arrow-purple { stroke: #9333ea; stroke-width: 2; marker-end: url(#arrowhead-purple); fill: none; }
+      .badge { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 10px; font-weight: 700; fill: #ffffff; }
+    </style>
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#64748b" />
+    </marker>
+    <marker id="arrowhead-purple" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#9333ea" />
+    </marker>
+  </defs>
+
+  <rect width="1000" height="550" class="bg" />
+
+  <!-- 头部大标题 -->
+  <text x="30" y="38" class="title">植物基因组基础大模型 (AgroNT / PlantCAD2) 架构与下游微调</text>
+  <text x="30" y="60" class="txt-sm">Plant Genomic Foundation Models, 6-mer Tokenization, Masked Language Modeling &amp; Variant Effect Prediction</text>
+
+  <!-- 阶段 1: 序列分词与嵌入 (Tokenization & Embedding) -->
+  <g transform="translate(30, 80)">
+    <rect width="250" height="440" class="box" />
+    <text x="15" y="28" class="subtitle">1. 序列分词与嵌入表征</text>
+
+    <!-- 原始 DNA 序列 -->
+    <g transform="translate(15, 45)">
+      <rect width="220" height="60" fill="#f8fafc" stroke="#cbd5e1" rx="4" />
+      <text x="10" y="20" class="txt-sm" font-weight="600">输入未标注双链 DNA 序列</text>
+      <text x="10" y="44" class="txt-mono" fill="#15803d">5'-ATGCGATTCAGTAAGTC...-3'</text>
+    </g>
+
+    <!-- 6-mer 分词 -->
+    <g transform="translate(15, 120)">
+      <rect width="220" height="110" class="box-blue" />
+      <text x="10" y="22" class="txt" font-weight="600" fill="#1d4ed8">6-mer 重叠滑动分词 (Tokenization)</text>
+      <text x="10" y="44" class="txt-mono">• Token 1: [ATGCGA]</text>
+      <text x="10" y="64" class="txt-mono">• Token 2: [TGCGAT]</text>
+      <text x="10" y="84" class="txt-mono">• Token 3: [GCGATT]</text>
+      <text x="10" y="102" class="txt-sm">词表容量: 4⁶ = 4,096 种核心词元</text>
+    </g>
+
+    <!-- 掩码处理 (MLM 15% 随机掩码) -->
+    <g transform="translate(15, 245)">
+      <rect width="220" height="100" class="box-purple" />
+      <text x="10" y="22" class="txt" font-weight="600" fill="#7e22ce">15% 随机掩码处理 (MLM)</text>
+      <text x="10" y="44" class="txt-mono">[Token 1] [MASK] [Token 3] ...</text>
+      <text x="10" y="68" class="txt-sm">• 80% 替换为 [MASK] 符号</text>
+      <text x="10" y="88" class="txt-sm">• 10% 随机替换为任意 6-mer</text>
+    </g>
+
+    <!-- 位置编码 -->
+    <g transform="translate(15, 360)">
+      <rect width="220" height="60" fill="#f1f5f9" stroke="#cbd5e1" rx="4" />
+      <text x="10" y="22" class="txt-sm" font-weight="600">嵌入叠加 (Token + Pos Embed)</text>
+      <text x="10" y="44" class="txt-mono">E = Token_Emb + RoPE(pos)</text>
+    </g>
+  </g>
+
+  <!-- 箭头 1 -> 2 -->
+  <path d="M 280 300 L 320 300" class="arrow" />
+
+  <!-- 阶段 2: 基础大模型 Transformer 骨架架构 (AgroNT 1B Backbone) -->
+  <g transform="translate(320, 80)">
+    <rect width="330" height="440" class="box" />
+    <text x="20" y="28" class="subtitle">2. 预训练 Transformer 骨干网络 (AgroNT 1B)</text>
+
+    <!-- 多层自注意力堆叠 -->
+    <g transform="translate(20, 45)">
+      <rect width="290" height="235" class="box-highlight" />
+      <text x="15" y="24" class="txt" font-weight="600" fill="#15803d">多层双向自注意力编码器 (Stack of 32 Layers)</text>
+
+      <!-- 注意力层示意 -->
+      <g transform="translate(15, 40)">
+        <rect width="260" height="50" fill="#ffffff" stroke="#22c55e" stroke-width="1.5" rx="4" />
+        <text x="130" y="30" class="txt" text-anchor="middle" font-weight="600">Multi-Head Self-Attention (48 Heads)</text>
+      </g>
+
+      <text x="145" y="105" class="txt-mono" fill="#15803d" text-anchor="middle">Attention(Q,K,V) = softmax(QKᵀ/√d)V</text>
+
+      <g transform="translate(15, 120)">
+        <rect width="260" height="45" fill="#ffffff" stroke="#22c55e" stroke-width="1.5" rx="4" />
+        <text x="130" y="28" class="txt" text-anchor="middle" font-weight="600">前馈全连接神经网络 (FFN, 4096 维)</text>
+      </g>
+
+      <g transform="translate(15, 175)">
+        <rect width="260" height="45" fill="#ffffff" stroke="#22c55e" stroke-width="1.5" rx="4" />
+        <text x="130" y="28" class="txt" text-anchor="middle" font-weight="600">层归一化与残差连接 (LayerNorm + Residual)</text>
+      </g>
+    </g>
+
+    <!-- 预训练数据集与目标说明 -->
+    <g transform="translate(20, 295)">
+      <rect width="290" height="125" class="box-blue" />
+      <text x="15" y="22" class="txt" font-weight="600" fill="#1d4ed8">48+ 种植物基因组无监督自监督预训练</text>
+      <text x="15" y="44" class="txt-sm">• 涵盖水稻、玉米、小麦、大豆等 48 种被子植物</text>
+      <text x="15" y="64" class="txt-sm">• 学习超过 100 亿个核苷酸的长程跨尺度语法</text>
+      <text x="15" y="84" class="txt-sm">• 彻底捕获启动子-增强子远端长程注意力依赖</text>
+      <text x="15" y="106" class="txt-mono">预训练损失: Cross-Entropy (恢复 MASK 词元)</text>
+    </g>
+  </g>
+
+  <!-- 箭头 2 -> 3 -->
+  <path d="M 650 300 L 690 300" class="arrow-purple" />
+
+  <!-- 阶段 3: 下游生物学微调任务与非编码突变效应预测 -->
+  <g transform="translate(690, 80)">
+    <rect width="280" height="440" class="box" />
+    <text x="20" y="28" class="subtitle">3. 下游微调与变异效应预测</text>
+
+    <!-- 任务 A: 启动子强度定量回归 -->
+    <g transform="translate(15, 45)">
+      <rect width="250" height="85" class="box-blue" />
+      <text x="12" y="22" class="txt" font-weight="600" fill="#1d4ed8">A. 启动子活性定量预测 (Promoter Strength)</text>
+      <text x="12" y="44" class="txt-sm">• 拟合 MPRA 高通量启动子报告表达量</text>
+      <text x="12" y="64" class="txt-sm">• 预测准确度 Pearson r &gt; 0.75</text>
+    </g>
+
+    <!-- 任务 B: 转录因子结合峰预测 -->
+    <g transform="translate(15, 140)">
+      <rect width="250" height="85" class="box-highlight" />
+      <text x="12" y="22" class="txt" font-weight="600" fill="#15803d">B. 转录因子结合峰识别 (ChIP / Peak Calling)</text>
+      <text x="12" y="44" class="txt-sm">• 预测 WRKY、NAC 等植物核心 TF 结合位点</text>
+      <text x="12" y="64" class="txt-sm">• ROC AUC &gt; 0.88 (优于传统 k-mer SVM)</text>
+    </g>
+
+    <!-- 任务 C: 剪接位点预测 -->
+    <g transform="translate(15, 235)">
+      <rect width="250" height="85" class="box-purple" />
+      <text x="12" y="22" class="txt" font-weight="600" fill="#7e22ce">C. 植物特异性选择性剪接位点识别</text>
+      <text x="12" y="44" class="txt-sm">• 精确判别 GT-AG 供体/受体非经典位点</text>
+      <text x="12" y="64" class="txt-sm">• 捕获内含子保留 (IR) 植物高发剪接事件</text>
+    </g>
+
+    <!-- 任务 D: 零样本突变打分 -->
+    <g transform="translate(15, 330)">
+      <rect width="250" height="90" fill="#fef2f2" stroke="#ef4444" stroke-width="1.5" rx="6" />
+      <text x="12" y="22" class="txt" font-weight="600" fill="#dc2626">D. 非编码变异效应零样本预测 (Zero-shot)</text>
+      <text x="12" y="44" class="txt-mono">ΔLLR = log P(alt) - log P(ref)</text>
+      <text x="12" y="64" class="txt-sm">• 负值越大表明突变破坏关键调控语法</text>
+      <text x="12" y="82" class="txt-sm">• 农艺有益等位基因与致病 SNP 极速筛选</text>
+    </g>
+  </g>
+</svg>

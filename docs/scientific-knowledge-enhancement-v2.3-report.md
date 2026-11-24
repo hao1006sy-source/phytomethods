@@ -32,7 +32,7 @@ PhytoMethods 经过此前基础架构、数据注册表、计算画像核验与�
 | **M06** | GWAS 与全基因组选择 | `docs/v2.3-m06-gwas-breeding` | #58 | 已合并 (`0d395cf`) | 已发布 (Run 45456818404) |
 | **M07** | 表观与三维基因组学 | `docs/v2.3-m07-epigenomics-3d` | #59 | 已合并 (`8ff37b0`) | 已发布 (Run 45460325238) |
 | **M08** | 单细胞与空间组学 | `docs/v2.3-m08-single-cell` | #60 | 已合并 (`c042e73`) | 已发布 (Run 45463177981) |
-| **M09** | 基因调控网络与 AI | `docs/v2.3-m09-networks-ai` | 待开始 | 待合并 | 待验证 |
+| **M09** | 基因调控网络与 AI | `docs/v2.3-m09-networks-ai` | #61 | 待合并 | 待验证 |
 | **M10** | 全局收尾与持续发布总结 | `docs/v2.3-m10-final-review` | 待开始 | 待合并 | 待验证 |
 
 ---
@@ -174,6 +174,25 @@ PhytoMethods 经过此前基础架构、数据注册表、计算画像核验与�
 - **文献出处索引**: 在 `source-review.json` 中新增 7 条权威文献追踪记录；
 - **全量测试验证**: `npm run validate`、`npm run test:methods-index-v4`、`npm run test:platform-browser` 100% 通过（13,172 链接 0 死链，63 篇专题 0 语法报错，多端 7 视口 0 溢出）；
 - **部署发布验证**: PR #60 Squash 合并入 main，Pages 部署成功上线。
+
+### M09：调控网络与组学人工智能 (待合并验证)
+- **分支**: `docs/v2.3-m09-networks-ai` | **PR**: #61 | **状态**: 已完成全量开发与本地三套测试
+- **图解建设**: 绘制 3 幅原创学术 SVG 矢量图解置于 `public/images/topics/m09/`：
+  1. `deseq2-dispersion-shrinkage-and-ma-plot.svg`: 负二项分布过度离散方差方程、经验贝叶斯局部离散度向均值趋势线强力收缩机制、离群值保护以及稳健对数倍数变化（LFC）漏斗型 MA 诊断图；
+  2. `wgcna-scale-free-network-and-tom-matrix.svg`: 软阈值幂律连续加权无标度拓扑准则（$R^2 \ge 0.85$）、拓扑重叠矩阵（TOM）二阶共享近邻计算、动态混合树剪枝模块划分，以及模块特征基因（ME）与作物生理表型相关性热图；
+  3. `genomic-foundation-models-agront-architecture.svg`: 植物 DNA 6-mer 重叠滑动分词、AgroNT 1B 32 层多头双向自注意力 Transformer 骨架网络、掩码语言模型（MLM）自监督预训练目标，以及启动子强度回归、转录因子结合峰与非编码变异效应零样本（$\Delta \text{LLR}$）打分微调任务。
+- **核心专题深度建设**: 覆盖 M09 全部 7 篇核心专题：
+  - `m09-topic-01`: RNA-seq 差异表达分析、计数过度离散性生物学成因、负二项分布广义线性模型（GLM）、中位数比值法（Median of Ratios）抗干扰文库因子估计、经验贝叶斯离散度最大后验（MAP）收缩模型、Wald 检验与 Benjamini-Hochberg FDR 校正；
+  - `m09-topic-02`: 加权基因共表达网络分析（WGCNA）、无标度网络节点度幂律分布 $P(k) \sim k^{-\gamma}$、软阈值 $\beta$ 连续加权矩阵 $a_{ij} = |s_{ij}|^\beta$、TOM 拓扑重叠相似度与相异度矩阵方程、动态树剪枝色块划分、模块特征基因（ME）SVD 第一主成分提取及农艺性状皮尔逊相关性检验；
+  - `m09-topic-03`: 基因调控网络推断、网络逆向解耦为单靶基因非线性多输入回归任务、GENIE3 随机森林与极度随机树节点方差减少量打分方程、GRNBoost2 梯度提升树（GBDT）与 Arboreto 分布式并行加速、调控符号（`+`/`-`）校准与结合顺式结合位点（ChIP/DAP-seq）的间接边剪枝；
+  - `m09-topic-04`: 顺式调控元件与序列基序、位置频率矩阵（PFM）到位置概率矩阵（PPM）的 Laplace 伪计数平滑、位置权重矩阵（PWM）对数比值打分方程、MEME 最大期望（EM）无监督从头基序发现算法、FIMO 动态规划双链位点扫描，以及植物核心转录因子家族（WRKY、bZIP、NAC、MYB、TCP）经典顺式基序图谱；
+  - `m09-topic-05`: 植物多组学数据整合、中心法则多尺度组学（转录、蛋白、代谢、表观）量纲与噪声异质性、MOFA+ 广义概率因子分析矩阵分解方程 $\mathbf{Y}_m = \mathbf{Z} \mathbf{W}_m^T + \boldsymbol{\epsilon}_m$、跨模态方差分解（解耦共享因子与组学特异因子）、Spike-and-Slab 双层稀疏性先验与变分贝叶斯推断；
+  - `m09-topic-06`: 植物基因组基础大模型、6-mer 与单碱基分词技术路线、RoPE 旋转位置编码、掩码语言模型（MLM）预训练交叉熵损失函数、AgroNT 1B 双向自注意力 Transformer 架构与 PlantCAD2 双向 Mamba2 状态空间模型（SSM）超长 8,192 bp 单碱基线性复杂度与反向互补等变性对比；
+  - `m09-topic-07`: AI 序列功能与变异效应预测、基于预训练大模型的零样本（Zero-Shot）对数似然比差（$\Delta \text{LLR}$）演化约束打分方程、监督任务头定量表达扰动预测、染色体物理空间留出（Leave-one-chromosome-out）与旁系同源基因家族隔离（Paralogy-aware split）三大防泄漏准则。
+- **选型矩阵完善**: 在 `src/data/method-comparison-matrices.ts` 扩充 `mofa-plus`, `agront`, `plantcad2` 选型档案及全套决策树；
+- **文献出处索引**: 在 `source-review.json` 中新增 7 条权威文献追踪记录；
+- **全量测试验证**: `npm run validate`、`npm run test:methods-index-v4`、`npm run test:platform-browser` 100% 通过（13,172 链接 0 死链，63 篇专题 0 语法报错，多端 7 视口 0 溢出）。
+
 
 
 
