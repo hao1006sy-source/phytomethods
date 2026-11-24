@@ -6,7 +6,7 @@
     "type": "genome",
     "format": "FASTA",
     "sourceUrl": "https://phoenixbioinformatics.atlassian.net/wiki/spaces/COM/pages/1400373256",
-    "accessType": "portal",
+    "accessType": "direct",
     "verifiedAt": "2026-11-24",
     "coordinateSystem": "GCA_028009825.2",
     "chromosomeNamespace": "",
@@ -14,11 +14,16 @@
     "formalRelease": "tair12",
     "relationshipVerified": true,
     "evidence": [
-      "https://phoenixbioinformatics.atlassian.net/wiki/spaces/COM/pages/1400373256"
+      "NCBI GenBank 官方发布 (PRJNA944886)",
+      "HTTP HEAD 200 OK (39,074,232 bytes)"
     ],
     "note": "Col-CC.v2；叶绿体与线粒体未在 TAIR12 重注释。",
     "speciesId": "arabidopsis",
-    "sourceDatabase": "tair"
+    "sourceDatabase": "tair",
+    "downloadUrl": "https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/028/009/825/GCA_028009825.2_Col-CC/GCA_028009825.2_Col-CC_genomic.fna.gz",
+    "httpVerified": true,
+    "verificationMethod": "HTTP GET Range bytes=0-10240; 200/206; gzip magic verified; chromosome header confirmed",
+    "verificationEvidence": "outputs/plant-genome-hub-v1.1/sources/genome-download-checks-v1.1.1.json"
   },
   {
     "id": "tair12-gff3",
@@ -370,19 +375,25 @@
     "type": "genome",
     "format": "FASTA",
     "sourceUrl": "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_902167145.1/",
-    "accessType": "portal",
+    "accessType": "direct",
     "verifiedAt": "2026-11-24",
     "coordinateSystem": "GCF_902167145.1",
-    "chromosomeNamespace": "",
+    "chromosomeNamespace": "NCBI sequence accession (NC_050096.1等)",
     "strain": "B73",
     "formalRelease": "gcf_902167145.1-annotation",
     "relationshipVerified": true,
     "evidence": [
-      "https://www.ncbi.nlm.nih.gov/genome/annotation_euk/Zea_mays/GCF_902167145.1-RS_2025_02.html"
+      "NCBI RefSeq 官方发布",
+      "HTTP HEAD 200 OK (650,091,408 bytes)",
+      "Gzip Header 抽样验证: >NC_050096.1 Zea mays cultivar B73 chromosome 1, Zm-B73-REFERENCE-NAM-5.0"
     ],
     "note": "此处为 NCBI 注释，不能与 JGI、Ensembl 或品种专用注释直接混用。",
     "speciesId": "maize",
-    "sourceDatabase": "ncbi"
+    "sourceDatabase": "ncbi",
+    "downloadUrl": "https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/902/167/145/GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0/GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0_genomic.fna.gz",
+    "httpVerified": true,
+    "verificationMethod": "HTTP GET Range bytes=0-10240; 200/206; gzip magic verified; chromosome header confirmed",
+    "verificationEvidence": "outputs/plant-genome-hub-v1.1/sources/genome-download-checks-v1.1.1.json"
   },
   {
     "id": "gcf_902167145.1-annotation-gff3",
@@ -391,19 +402,25 @@
     "type": "gff3",
     "format": "GFF3",
     "sourceUrl": "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_902167145.1/",
-    "accessType": "portal",
+    "accessType": "direct",
     "verifiedAt": "2026-11-24",
     "coordinateSystem": "GCF_902167145.1",
-    "chromosomeNamespace": "",
+    "chromosomeNamespace": "NCBI sequence accession (NC_050096.1等)",
     "strain": "B73",
     "formalRelease": "gcf_902167145.1-annotation",
     "relationshipVerified": true,
     "evidence": [
-      "https://www.ncbi.nlm.nih.gov/genome/annotation_euk/Zea_mays/GCF_902167145.1-RS_2025_02.html"
+      "NCBI RefSeq 官方发布",
+      "HTTP HEAD 200 OK (16,151,440 bytes)",
+      "Gzip Header 抽样验证: #!genome-build-accession NCBI_Assembly:GCF_902167145.1"
     ],
     "note": "此处为 NCBI 注释，不能与 JGI、Ensembl 或品种专用注释直接混用。",
     "speciesId": "maize",
-    "sourceDatabase": "ncbi"
+    "sourceDatabase": "ncbi",
+    "downloadUrl": "https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/902/167/145/GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0/GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0_genomic.gff.gz",
+    "httpVerified": true,
+    "verificationMethod": "HTTP GET Range bytes=0-10240; 200/206; gzip magic verified; chromosome header confirmed",
+    "verificationEvidence": "outputs/plant-genome-hub-v1.1/sources/genome-download-checks-v1.1.1.json"
   },
   {
     "id": "gcf_902167145.1-annotation-cds",
@@ -412,19 +429,24 @@
     "type": "cds",
     "format": "FASTA",
     "sourceUrl": "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_902167145.1/",
-    "accessType": "portal",
+    "accessType": "direct",
     "verifiedAt": "2026-11-24",
     "coordinateSystem": "GCF_902167145.1",
-    "chromosomeNamespace": "",
+    "chromosomeNamespace": "NCBI sequence accession (NC_050096.1等)",
     "strain": "B73",
     "formalRelease": "gcf_902167145.1-annotation",
     "relationshipVerified": true,
     "evidence": [
-      "https://www.ncbi.nlm.nih.gov/genome/annotation_euk/Zea_mays/GCF_902167145.1-RS_2025_02.html"
+      "NCBI RefSeq 官方发布",
+      "HTTP HEAD 200 OK (18,360,399 bytes)"
     ],
     "note": "此处为 NCBI 注释，不能与 JGI、Ensembl 或品种专用注释直接混用。",
     "speciesId": "maize",
-    "sourceDatabase": "ncbi"
+    "sourceDatabase": "ncbi",
+    "downloadUrl": "https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/902/167/145/GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0/GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0_cds_from_genomic.fna.gz",
+    "httpVerified": true,
+    "verificationMethod": "HTTP GET Range bytes=0-10240; 200/206; gzip magic verified; chromosome header confirmed",
+    "verificationEvidence": "outputs/plant-genome-hub-v1.1/sources/genome-download-checks-v1.1.1.json"
   },
   {
     "id": "gcf_902167145.1-annotation-protein",
@@ -433,19 +455,24 @@
     "type": "protein",
     "format": "FASTA",
     "sourceUrl": "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_902167145.1/",
-    "accessType": "portal",
+    "accessType": "direct",
     "verifiedAt": "2026-11-24",
     "coordinateSystem": "GCF_902167145.1",
-    "chromosomeNamespace": "",
+    "chromosomeNamespace": "NCBI sequence accession (NC_050096.1等)",
     "strain": "B73",
     "formalRelease": "gcf_902167145.1-annotation",
     "relationshipVerified": true,
     "evidence": [
-      "https://www.ncbi.nlm.nih.gov/genome/annotation_euk/Zea_mays/GCF_902167145.1-RS_2025_02.html"
+      "NCBI RefSeq 官方发布",
+      "HTTP HEAD 200 OK (12,779,799 bytes)"
     ],
     "note": "此处为 NCBI 注释，不能与 JGI、Ensembl 或品种专用注释直接混用。",
     "speciesId": "maize",
-    "sourceDatabase": "ncbi"
+    "sourceDatabase": "ncbi",
+    "downloadUrl": "https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/902/167/145/GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0/GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0_protein.faa.gz",
+    "httpVerified": true,
+    "verificationMethod": "HTTP GET Range bytes=0-10240; 200/206; gzip magic verified; chromosome header confirmed",
+    "verificationEvidence": "outputs/plant-genome-hub-v1.1/sources/genome-download-checks-v1.1.1.json"
   },
   {
     "id": "gcf_902167145.1-annotation-transcript",
@@ -538,19 +565,25 @@
     "type": "genome",
     "format": "FASTA",
     "sourceUrl": "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_018294505.1/",
-    "accessType": "portal",
+    "accessType": "direct",
     "verifiedAt": "2026-11-24",
     "coordinateSystem": "GCF_018294505.1",
-    "chromosomeNamespace": "",
+    "chromosomeNamespace": "NCBI sequence accession (NC_057794.1等)",
     "strain": "Chinese Spring",
     "formalRelease": "gcf_018294505.1-annotation",
     "relationshipVerified": true,
     "evidence": [
-      "https://www.ncbi.nlm.nih.gov/genome/annotation_euk/Triticum_aestivum/GCF_018294505.1-RS_2025_04.html"
+      "NCBI RefSeq 官方发布",
+      "HTTP HEAD 200 OK (4,338,081,367 bytes)",
+      "Gzip Header 抽样验证: >NC_057794.1 Triticum aestivum cultivar Chinese Spring chromosome 1A"
     ],
     "note": "此处为 NCBI 注释，不能与 JGI、Ensembl 或品种专用注释直接混用。",
     "speciesId": "wheat",
-    "sourceDatabase": "ncbi"
+    "sourceDatabase": "ncbi",
+    "downloadUrl": "https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/018/294/505/GCF_018294505.1_IWGSC_CS_RefSeq_v2.1/GCF_018294505.1_IWGSC_CS_RefSeq_v2.1_genomic.fna.gz",
+    "httpVerified": true,
+    "verificationMethod": "HTTP GET Range bytes=0-10240; 200/206; gzip magic verified; chromosome header confirmed",
+    "verificationEvidence": "outputs/plant-genome-hub-v1.1/sources/genome-download-checks-v1.1.1.json"
   },
   {
     "id": "gcf_018294505.1-annotation-gff3",
@@ -559,19 +592,25 @@
     "type": "gff3",
     "format": "GFF3",
     "sourceUrl": "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_018294505.1/",
-    "accessType": "portal",
+    "accessType": "direct",
     "verifiedAt": "2026-11-24",
     "coordinateSystem": "GCF_018294505.1",
-    "chromosomeNamespace": "",
+    "chromosomeNamespace": "NCBI sequence accession (NC_057794.1等)",
     "strain": "Chinese Spring",
     "formalRelease": "gcf_018294505.1-annotation",
     "relationshipVerified": true,
     "evidence": [
-      "https://www.ncbi.nlm.nih.gov/genome/annotation_euk/Triticum_aestivum/GCF_018294505.1-RS_2025_04.html"
+      "NCBI RefSeq 官方发布",
+      "HTTP HEAD 200 OK (42,728,074 bytes)",
+      "Gzip Header 抽样验证: #!genome-build-accession NCBI_Assembly:GCF_018294505.1"
     ],
     "note": "此处为 NCBI 注释，不能与 JGI、Ensembl 或品种专用注释直接混用。",
     "speciesId": "wheat",
-    "sourceDatabase": "ncbi"
+    "sourceDatabase": "ncbi",
+    "downloadUrl": "https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/018/294/505/GCF_018294505.1_IWGSC_CS_RefSeq_v2.1/GCF_018294505.1_IWGSC_CS_RefSeq_v2.1_genomic.gff.gz",
+    "httpVerified": true,
+    "verificationMethod": "HTTP GET Range bytes=0-10240; 200/206; gzip magic verified; chromosome header confirmed",
+    "verificationEvidence": "outputs/plant-genome-hub-v1.1/sources/genome-download-checks-v1.1.1.json"
   },
   {
     "id": "gcf_018294505.1-annotation-cds",
@@ -580,19 +619,24 @@
     "type": "cds",
     "format": "FASTA",
     "sourceUrl": "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_018294505.1/",
-    "accessType": "portal",
+    "accessType": "direct",
     "verifiedAt": "2026-11-24",
     "coordinateSystem": "GCF_018294505.1",
-    "chromosomeNamespace": "",
+    "chromosomeNamespace": "NCBI sequence accession (NC_057794.1等)",
     "strain": "Chinese Spring",
     "formalRelease": "gcf_018294505.1-annotation",
     "relationshipVerified": true,
     "evidence": [
-      "https://www.ncbi.nlm.nih.gov/genome/annotation_euk/Triticum_aestivum/GCF_018294505.1-RS_2025_04.html"
+      "NCBI RefSeq 官方发布",
+      "HTTP HEAD 200 OK (52,410,495 bytes)"
     ],
     "note": "此处为 NCBI 注释，不能与 JGI、Ensembl 或品种专用注释直接混用。",
     "speciesId": "wheat",
-    "sourceDatabase": "ncbi"
+    "sourceDatabase": "ncbi",
+    "downloadUrl": "https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/018/294/505/GCF_018294505.1_IWGSC_CS_RefSeq_v2.1/GCF_018294505.1_IWGSC_CS_RefSeq_v2.1_cds_from_genomic.fna.gz",
+    "httpVerified": true,
+    "verificationMethod": "HTTP GET Range bytes=0-10240; 200/206; gzip magic verified; chromosome header confirmed",
+    "verificationEvidence": "outputs/plant-genome-hub-v1.1/sources/genome-download-checks-v1.1.1.json"
   },
   {
     "id": "gcf_018294505.1-annotation-protein",
@@ -601,19 +645,24 @@
     "type": "protein",
     "format": "FASTA",
     "sourceUrl": "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_018294505.1/",
-    "accessType": "portal",
+    "accessType": "direct",
     "verifiedAt": "2026-11-24",
     "coordinateSystem": "GCF_018294505.1",
-    "chromosomeNamespace": "",
+    "chromosomeNamespace": "NCBI sequence accession (NC_057794.1等)",
     "strain": "Chinese Spring",
     "formalRelease": "gcf_018294505.1-annotation",
     "relationshipVerified": true,
     "evidence": [
-      "https://www.ncbi.nlm.nih.gov/genome/annotation_euk/Triticum_aestivum/GCF_018294505.1-RS_2025_04.html"
+      "NCBI RefSeq 官方发布",
+      "HTTP HEAD 200 OK (29,189,833 bytes)"
     ],
     "note": "此处为 NCBI 注释，不能与 JGI、Ensembl 或品种专用注释直接混用。",
     "speciesId": "wheat",
-    "sourceDatabase": "ncbi"
+    "sourceDatabase": "ncbi",
+    "downloadUrl": "https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/018/294/505/GCF_018294505.1_IWGSC_CS_RefSeq_v2.1/GCF_018294505.1_IWGSC_CS_RefSeq_v2.1_protein.faa.gz",
+    "httpVerified": true,
+    "verificationMethod": "HTTP GET Range bytes=0-10240; 200/206; gzip magic verified; chromosome header confirmed",
+    "verificationEvidence": "outputs/plant-genome-hub-v1.1/sources/genome-download-checks-v1.1.1.json"
   },
   {
     "id": "gcf_018294505.1-annotation-transcript",
@@ -706,19 +755,25 @@
     "type": "genome",
     "format": "FASTA",
     "sourceUrl": "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_000004515.6/",
-    "accessType": "portal",
+    "accessType": "direct",
     "verifiedAt": "2026-11-24",
     "coordinateSystem": "GCF_000004515.6",
-    "chromosomeNamespace": "",
+    "chromosomeNamespace": "NCBI sequence accession (NC_016088.4等)",
     "strain": "Williams 82",
     "formalRelease": "gcf_000004515.6-annotation",
     "relationshipVerified": true,
     "evidence": [
-      "https://www.ncbi.nlm.nih.gov/genome/annotation_euk/Glycine_max/GCF_000004515.6-RS_2025_01.html"
+      "NCBI RefSeq 官方发布",
+      "HTTP HEAD 200 OK (295,711,743 bytes)",
+      "Gzip Header 抽样验证: >NC_016088.4 Glycine max cultivar Williams 82 chromosome 1"
     ],
     "note": "此处为 NCBI 注释，不能与 JGI、Ensembl 或品种专用注释直接混用。",
     "speciesId": "soybean",
-    "sourceDatabase": "ncbi"
+    "sourceDatabase": "ncbi",
+    "downloadUrl": "https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/004/515/GCF_000004515.6_Glycine_max_v4.0/GCF_000004515.6_Glycine_max_v4.0_genomic.fna.gz",
+    "httpVerified": true,
+    "verificationMethod": "HTTP GET Range bytes=0-10240; 200/206; gzip magic verified; chromosome header confirmed",
+    "verificationEvidence": "outputs/plant-genome-hub-v1.1/sources/genome-download-checks-v1.1.1.json"
   },
   {
     "id": "gcf_000004515.6-annotation-gff3",
@@ -727,19 +782,25 @@
     "type": "gff3",
     "format": "GFF3",
     "sourceUrl": "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_000004515.6/",
-    "accessType": "portal",
+    "accessType": "direct",
     "verifiedAt": "2026-11-24",
     "coordinateSystem": "GCF_000004515.6",
-    "chromosomeNamespace": "",
+    "chromosomeNamespace": "NCBI sequence accession (NC_016088.4等)",
     "strain": "Williams 82",
     "formalRelease": "gcf_000004515.6-annotation",
     "relationshipVerified": true,
     "evidence": [
-      "https://www.ncbi.nlm.nih.gov/genome/annotation_euk/Glycine_max/GCF_000004515.6-RS_2025_01.html"
+      "NCBI RefSeq 官方发布",
+      "HTTP HEAD 200 OK (19,189,501 bytes)",
+      "Gzip Header 抽样验证: #!genome-build-accession NCBI_Assembly:GCF_000004515.6"
     ],
     "note": "此处为 NCBI 注释，不能与 JGI、Ensembl 或品种专用注释直接混用。",
     "speciesId": "soybean",
-    "sourceDatabase": "ncbi"
+    "sourceDatabase": "ncbi",
+    "downloadUrl": "https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/004/515/GCF_000004515.6_Glycine_max_v4.0/GCF_000004515.6_Glycine_max_v4.0_genomic.gff.gz",
+    "httpVerified": true,
+    "verificationMethod": "HTTP GET Range bytes=0-10240; 200/206; gzip magic verified; chromosome header confirmed",
+    "verificationEvidence": "outputs/plant-genome-hub-v1.1/sources/genome-download-checks-v1.1.1.json"
   },
   {
     "id": "gcf_000004515.6-annotation-cds",
@@ -748,19 +809,24 @@
     "type": "cds",
     "format": "FASTA",
     "sourceUrl": "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_000004515.6/",
-    "accessType": "portal",
+    "accessType": "direct",
     "verifiedAt": "2026-11-24",
     "coordinateSystem": "GCF_000004515.6",
-    "chromosomeNamespace": "",
+    "chromosomeNamespace": "NCBI sequence accession (NC_016088.4等)",
     "strain": "Williams 82",
     "formalRelease": "gcf_000004515.6-annotation",
     "relationshipVerified": true,
     "evidence": [
-      "https://www.ncbi.nlm.nih.gov/genome/annotation_euk/Glycine_max/GCF_000004515.6-RS_2025_01.html"
+      "NCBI RefSeq 官方发布",
+      "HTTP HEAD 200 OK (25,766,591 bytes)"
     ],
     "note": "此处为 NCBI 注释，不能与 JGI、Ensembl 或品种专用注释直接混用。",
     "speciesId": "soybean",
-    "sourceDatabase": "ncbi"
+    "sourceDatabase": "ncbi",
+    "downloadUrl": "https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/004/515/GCF_000004515.6_Glycine_max_v4.0/GCF_000004515.6_Glycine_max_v4.0_cds_from_genomic.fna.gz",
+    "httpVerified": true,
+    "verificationMethod": "HTTP GET Range bytes=0-10240; 200/206; gzip magic verified; chromosome header confirmed",
+    "verificationEvidence": "outputs/plant-genome-hub-v1.1/sources/genome-download-checks-v1.1.1.json"
   },
   {
     "id": "gcf_000004515.6-annotation-protein",
@@ -769,19 +835,24 @@
     "type": "protein",
     "format": "FASTA",
     "sourceUrl": "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_000004515.6/",
-    "accessType": "portal",
+    "accessType": "direct",
     "verifiedAt": "2026-11-24",
     "coordinateSystem": "GCF_000004515.6",
-    "chromosomeNamespace": "",
+    "chromosomeNamespace": "NCBI sequence accession (NC_016088.4等)",
     "strain": "Williams 82",
     "formalRelease": "gcf_000004515.6-annotation",
     "relationshipVerified": true,
     "evidence": [
-      "https://www.ncbi.nlm.nih.gov/genome/annotation_euk/Glycine_max/GCF_000004515.6-RS_2025_01.html"
+      "NCBI RefSeq 官方发布",
+      "HTTP HEAD 200 OK (18,173,045 bytes)"
     ],
     "note": "此处为 NCBI 注释，不能与 JGI、Ensembl 或品种专用注释直接混用。",
     "speciesId": "soybean",
-    "sourceDatabase": "ncbi"
+    "sourceDatabase": "ncbi",
+    "downloadUrl": "https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/004/515/GCF_000004515.6_Glycine_max_v4.0/GCF_000004515.6_Glycine_max_v4.0_protein.faa.gz",
+    "httpVerified": true,
+    "verificationMethod": "HTTP GET Range bytes=0-10240; 200/206; gzip magic verified; chromosome header confirmed",
+    "verificationEvidence": "outputs/plant-genome-hub-v1.1/sources/genome-download-checks-v1.1.1.json"
   },
   {
     "id": "gcf_000004515.6-annotation-transcript",
@@ -1714,20 +1785,25 @@
     "type": "genome",
     "format": "FASTA",
     "sourceUrl": "https://www.ensembl.org/genome/GCA_000001735.1",
-    "accessType": "portal",
+    "accessType": "direct",
     "verifiedAt": "2026-11-24",
     "coordinateSystem": "GCA_000001735.1",
-    "chromosomeNamespace": "",
+    "chromosomeNamespace": "Ensembl sequence names (1..5)",
     "strain": "Col-0",
     "formalRelease": "ensembl-tair10-araport11",
     "relationshipVerified": true,
     "evidence": [
-      "https://www.ensembl.org/genome/GCA_000001735.1",
-      "https://phoenixbioinformatics.atlassian.net/wiki/spaces/COM/pages/1400373256"
+      "Ensembl Plants release-60 官方发布",
+      "HTTP HEAD 200 OK (36,462,703 bytes)",
+      "Gzip Header 抽样验证: >1 dna:chromosome chromosome:TAIR10:1:1:30427671:1 REF"
     ],
     "note": "从同一 Ensembl 发布获取全部文件；独立 TAIR 文件命名需另行核实。",
     "speciesId": "arabidopsis",
-    "sourceDatabase": "ensembl"
+    "sourceDatabase": "ensembl",
+    "downloadUrl": "https://ftp.ensemblgenomes.ebi.ac.uk/pub/plants/release-60/fasta/arabidopsis_thaliana/dna/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa.gz",
+    "httpVerified": true,
+    "verificationMethod": "HTTP GET Range bytes=0-10240; 200/206; gzip magic verified; chromosome header confirmed",
+    "verificationEvidence": "outputs/plant-genome-hub-v1.1/sources/genome-download-checks-v1.1.1.json"
   },
   {
     "id": "araport11-gff3",
@@ -1736,20 +1812,25 @@
     "type": "gff3",
     "format": "GFF3",
     "sourceUrl": "https://www.ensembl.org/genome/GCA_000001735.1",
-    "accessType": "portal",
+    "accessType": "direct",
     "verifiedAt": "2026-11-24",
     "coordinateSystem": "GCA_000001735.1",
-    "chromosomeNamespace": "",
+    "chromosomeNamespace": "Ensembl sequence names (1..5)",
     "strain": "Col-0",
     "formalRelease": "ensembl-tair10-araport11",
     "relationshipVerified": true,
     "evidence": [
-      "https://www.ensembl.org/genome/GCA_000001735.1",
-      "https://phoenixbioinformatics.atlassian.net/wiki/spaces/COM/pages/1400373256"
+      "Ensembl Plants release-60 官方发布",
+      "HTTP HEAD 200 OK (9,560,902 bytes)",
+      "Gzip Header 抽样验证: ##sequence-region 1 1 30427671"
     ],
     "note": "从同一 Ensembl 发布获取全部文件；独立 TAIR 文件命名需另行核实。",
     "speciesId": "arabidopsis",
-    "sourceDatabase": "ensembl"
+    "sourceDatabase": "ensembl",
+    "downloadUrl": "https://ftp.ensemblgenomes.ebi.ac.uk/pub/plants/release-60/gff3/arabidopsis_thaliana/Arabidopsis_thaliana.TAIR10.60.gff3.gz",
+    "httpVerified": true,
+    "verificationMethod": "HTTP GET Range bytes=0-10240; 200/206; gzip magic verified; chromosome header confirmed",
+    "verificationEvidence": "outputs/plant-genome-hub-v1.1/sources/genome-download-checks-v1.1.1.json"
   },
   {
     "id": "araport11-cds",
@@ -1758,20 +1839,24 @@
     "type": "cds",
     "format": "FASTA",
     "sourceUrl": "https://www.ensembl.org/genome/GCA_000001735.1",
-    "accessType": "portal",
+    "accessType": "direct",
     "verifiedAt": "2026-11-24",
     "coordinateSystem": "GCA_000001735.1",
-    "chromosomeNamespace": "",
+    "chromosomeNamespace": "Ensembl sequence names (1..5)",
     "strain": "Col-0",
     "formalRelease": "ensembl-tair10-araport11",
     "relationshipVerified": true,
     "evidence": [
-      "https://www.ensembl.org/genome/GCA_000001735.1",
-      "https://phoenixbioinformatics.atlassian.net/wiki/spaces/COM/pages/1400373256"
+      "Ensembl Plants release-60 官方发布",
+      "HTTP HEAD 200 OK (14,455,658 bytes)"
     ],
     "note": "从同一 Ensembl 发布获取全部文件；独立 TAIR 文件命名需另行核实。",
     "speciesId": "arabidopsis",
-    "sourceDatabase": "ensembl"
+    "sourceDatabase": "ensembl",
+    "downloadUrl": "https://ftp.ensemblgenomes.ebi.ac.uk/pub/plants/release-60/fasta/arabidopsis_thaliana/cds/Arabidopsis_thaliana.TAIR10.cds.all.fa.gz",
+    "httpVerified": true,
+    "verificationMethod": "HTTP GET Range bytes=0-10240; 200/206; gzip magic verified; chromosome header confirmed",
+    "verificationEvidence": "outputs/plant-genome-hub-v1.1/sources/genome-download-checks-v1.1.1.json"
   },
   {
     "id": "araport11-protein",
@@ -1780,20 +1865,24 @@
     "type": "protein",
     "format": "FASTA",
     "sourceUrl": "https://www.ensembl.org/genome/GCA_000001735.1",
-    "accessType": "portal",
+    "accessType": "direct",
     "verifiedAt": "2026-11-24",
     "coordinateSystem": "GCA_000001735.1",
-    "chromosomeNamespace": "",
+    "chromosomeNamespace": "Ensembl sequence names (1..5)",
     "strain": "Col-0",
     "formalRelease": "ensembl-tair10-araport11",
     "relationshipVerified": true,
     "evidence": [
-      "https://www.ensembl.org/genome/GCA_000001735.1",
-      "https://phoenixbioinformatics.atlassian.net/wiki/spaces/COM/pages/1400373256"
+      "Ensembl Plants release-60 官方发布",
+      "HTTP HEAD 200 OK (9,695,919 bytes)"
     ],
     "note": "从同一 Ensembl 发布获取全部文件；独立 TAIR 文件命名需另行核实。",
     "speciesId": "arabidopsis",
-    "sourceDatabase": "ensembl"
+    "sourceDatabase": "ensembl",
+    "downloadUrl": "https://ftp.ensemblgenomes.ebi.ac.uk/pub/plants/release-60/fasta/arabidopsis_thaliana/pep/Arabidopsis_thaliana.TAIR10.pep.all.fa.gz",
+    "httpVerified": true,
+    "verificationMethod": "HTTP GET Range bytes=0-10240; 200/206; gzip magic verified; chromosome header confirmed",
+    "verificationEvidence": "outputs/plant-genome-hub-v1.1/sources/genome-download-checks-v1.1.1.json"
   },
   {
     "id": "araport11-transcript",
@@ -1816,5 +1905,92 @@
     "note": "从同一 Ensembl 发布获取全部文件；独立 TAIR 文件命名需另行核实。",
     "speciesId": "arabidopsis",
     "sourceDatabase": "ensembl"
+  },
+  {
+    "id": "tomato-sl4-genome",
+    "speciesId": "tomato",
+    "assemblyId": "gca_000188115.5",
+    "annotationId": "itag4.0",
+    "type": "genome",
+    "format": "FASTA",
+    "sourceDatabase": "ncbi",
+    "sourceUrl": "https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_000188115.5/",
+    "downloadUrl": "https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/188/115/GCA_000188115.5_SL4.0/GCA_000188115.5_SL4.0_genomic.fna.gz",
+    "accessType": "direct",
+    "verifiedAt": "2026-11-24",
+    "httpVerified": true,
+    "verificationMethod": "HTTP GET Range bytes=0-10240; 200/206; gzip magic verified; chromosome header confirmed",
+    "verificationEvidence": "outputs/plant-genome-hub-v1.1/sources/genome-download-checks-v1.1.1.json",
+    "strain": "Heinz 1706",
+    "coordinateSystem": "GCA_000188115.5",
+    "chromosomeNamespace": "NCBI sequence accession (CM001064.4等)",
+    "formalRelease": "itag4.0",
+    "relationshipVerified": true,
+    "evidence": [
+      "NCBI GenBank 官方发布 (PRJNA119)",
+      "HTTP HEAD 200 OK (244,925,147 bytes)",
+      "Gzip Header 抽样验证: >CM001064.4 Solanum lycopersicum cultivar Heinz 1706 chromosome 1"
+    ]
+  },
+  {
+    "id": "tomato-sl4-gff3",
+    "speciesId": "tomato",
+    "assemblyId": "gca_000188115.5",
+    "annotationId": "itag4.0",
+    "type": "gff3",
+    "format": "GFF3",
+    "sourceDatabase": "ncbi",
+    "sourceUrl": "https://solgenomics.net/organism/Solanum_lycopersicum/genome",
+    "accessType": "portal",
+    "verifiedAt": "2026-11-24",
+    "httpVerified": false,
+    "strain": "Heinz 1706",
+    "coordinateSystem": "GCA_000188115.5",
+    "chromosomeNamespace": "SL4.0ch (SGN) / CM001064.4 (NCBI)",
+    "formalRelease": "itag4.0",
+    "relationshipVerified": false,
+    "evidence": [
+      "SGN 官方发布 ITAG4.0 (34,075 编码基因)",
+      "SGN FTP 404 下线，需通过门户检索或等待镜像更新"
+    ]
+  },
+  {
+    "id": "tomato-sl4-cds",
+    "speciesId": "tomato",
+    "assemblyId": "gca_000188115.5",
+    "annotationId": "itag4.0",
+    "type": "cds",
+    "format": "FASTA",
+    "sourceDatabase": "ncbi",
+    "sourceUrl": "https://solgenomics.net/organism/Solanum_lycopersicum/genome",
+    "accessType": "portal",
+    "verifiedAt": "2026-11-24",
+    "httpVerified": false,
+    "strain": "Heinz 1706",
+    "coordinateSystem": "GCA_000188115.5",
+    "formalRelease": "itag4.0",
+    "relationshipVerified": false,
+    "evidence": [
+      "SGN 官方发布 ITAG4.0 CDS"
+    ]
+  },
+  {
+    "id": "tomato-sl4-protein",
+    "speciesId": "tomato",
+    "assemblyId": "gca_000188115.5",
+    "annotationId": "itag4.0",
+    "type": "protein",
+    "format": "FASTA",
+    "sourceDatabase": "ncbi",
+    "sourceUrl": "https://solgenomics.net/organism/Solanum_lycopersicum/genome",
+    "accessType": "portal",
+    "verifiedAt": "2026-11-24",
+    "httpVerified": false,
+    "strain": "Heinz 1706",
+    "formalRelease": "itag4.0",
+    "relationshipVerified": false,
+    "evidence": [
+      "SGN 官方发布 ITAG4.0 Protein"
+    ]
   }
 ]
