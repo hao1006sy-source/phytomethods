@@ -27,6 +27,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Install Playwright Chromium dependencies
+        run: npx playwright install --with-deps chromium
+
       - name: Validate site, content, search index, and links
         run: npm run validate
 
@@ -35,3 +38,14 @@ jobs:
 
       - name: Check CAFE5 reproducibility evidence
         run: npm run check:cafe5
+
+      - name: Run platform browser regressions in headless Chromium
+        run: npm run test:platform-browser
+
+      - name: Upload browser regression test artifacts and failure evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: platform-browser-test-evidence
+          path: outputs/platform-v1-test/
+          if-no-files-found: ignore

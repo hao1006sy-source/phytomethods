@@ -150,17 +150,44 @@ async function runPlatformV1Tests() {
     console.log('✓ Test 2 通过: 深色模式三态切换与持久化逻辑完全正确。\n');
 
     // ----------------------------------------------------
-    // 测试 3: 搜索页面同义词推荐 (Search Synonyms)
+    // 测试 3: 搜索页面同义词推荐与真实检索召回 (Search Synonyms Recall)
     // ----------------------------------------------------
-    console.log('[Test 3] 校验搜索页中英文同义词快捷标签...');
-    await page.goto(`${url}/search/`, { waitUntil: 'domcontentloaded' });
+    console.log('[Test 3] 校验搜索页中英文同义词快捷标签与真实 Pagefind 召回能力...');
+    await page.goto(`${url}/search/`, { waitUntil: 'networkidle' });
     const synonymBox = page.locator('.search-suggestions');
     assert.strictEqual(await synonymBox.count(), 1, '应存在同义词推荐模块');
 
     const gwasTag = page.locator('.suggestion-pill', { hasText: 'GWAS' });
     assert.strictEqual(await gwasTag.count(), 1, '应包含 GWAS 同义词快捷标签');
     assert.ok((await gwasTag.getAttribute('href'))?.includes('GWAS'), '标签应链接到带参检索');
-    console.log('✓ Test 3 通过: 检索同义词与快速建议功能正常。\n');
+
+    const input = page.locator('.pagefind-ui__search-input');
+    await input.waitFor({ state: 'visible', timeout: 5000 });
+
+    // 核心 5 组双向中英文同义词召回断言
+    const synonymPairs = [
+      ['GWAS', '全基因组关联分析'],
+      ['TE', '转座子'],
+      ['Ortholog', '直系同源'],
+      ['Gene Family', '基因家族'],
+      ['scRNA-seq', '单细胞 RNA 测序']
+    ];
+
+    for (const [enTerm, zhTerm] of synonymPairs) {
+      // 测试英文缩写/全称检索
+      await input.fill(enTerm);
+      await page.waitForTimeout(500);
+      const enResults = await page.locator('.pagefind-ui__result').count();
+      assert.ok(enResults > 0, `英文词条 [${enTerm}] 应在 Pagefind 中检索到实际结果，实际为 ${enResults}`);
+
+      // 测试中文学术全称检索
+      await input.fill(zhTerm);
+      await page.waitForTimeout(500);
+      const zhResults = await page.locator('.pagefind-ui__result').count();
+      assert.ok(zhResults > 0, `中文词条 [${zhTerm}] 应在 Pagefind 中检索到实际结果，实际为 ${zhResults}`);
+    }
+
+    console.log('✓ Test 3 通过: 5 组核心学术同义词 (中英双向) 全部实现 Pagefind 真实高召回。\n');
 
     // ----------------------------------------------------
     // 测试 4: 教程经典测试数据 (TutorialQuickStart)
@@ -186,10 +213,12 @@ async function runPlatformV1Tests() {
     console.log('✓ Test 4 通过: 教程经典测试数据集展示与科研真实性状态完全一致。\n');
 
     // ----------------------------------------------------
-    // 测试 5: 端到端分析工作流路线图 (/workflows/)
+    // 测试 5: 端到端分析工作流路线图与本地 Mermaid 渲染 (/workflows/)
     // ----------------------------------------------------
-    console.log('[Test 5] 校验端到端科研工作流路线图交互与阶段...');
-    await page.goto(`${url}/workflows/`, { waitUntil: 'domcontentloaded' });
+    console.log('[Test 5] 校验端到端科研工作流路线图交互、阶段与本地 Mermaid SVG 渲染...');
+    // 阻断外部 CDN，验证本地依赖渲染能力
+    await page.route('**/*jsdelivr.net/**', route => route.abort());
+    await page.goto(`${url}/workflows/`, { waitUntil: 'networkidle' });
 
     const tabs = page.locator('.workflow-tab-btn');
     assert.strictEqual(await tabs.count(), 3, '应包含 3 个核心端到端工作流选项卡');
@@ -197,6 +226,11 @@ async function runPlatformV1Tests() {
     // 验证当前默认激活路线一 (assembly-pangenome)
     const activePanel = page.locator('.workflow-detail-panel.active');
     assert.ok((await activePanel.locator('.overview-heading').textContent())?.includes('长读段测序到植物泛基因组'));
+
+    // 验证 Mermaid 流程图在零外部 CDN 下成功渲染出实际 SVG
+    await page.waitForSelector('.diagram-box .mermaid svg', { timeout: 10000 });
+    const svgCount = await page.locator('.diagram-box .mermaid svg').count();
+    assert.ok(svgCount >= 1, `本地 Mermaid 应在零外部网络下成功渲染出 SVG 流程图，实际渲染 ${svgCount} 个`);
 
     // 点击切换至路线二 (population-gwas)
     await tabs.nth(1).click();
@@ -213,7 +247,8 @@ async function runPlatformV1Tests() {
     assert.ok(await firstPhase.locator('.io-input').isVisible(), '应展示输入数据规格');
     assert.ok(await firstPhase.locator('.io-output').isVisible(), '应展示输出数据规格');
     assert.ok(await firstPhase.locator('.qc-checkpoints-box').isVisible(), '应展示关键质控标准');
-    console.log('✓ Test 5 通过: 端到端工作流路线图切换、拓扑图与阶段详解交互良好。\n');
+    await page.unroute('**/*jsdelivr.net/**');
+    console.log('✓ Test 5 通过: 端到端工作流路线图切换、本地 Mermaid 零 CDN SVG 渲染与阶段详解交互良好。\n');
 
     // ----------------------------------------------------
     // 测试 6: 方法详情计算资源与报错排查 (/methods/hifiasm/)
