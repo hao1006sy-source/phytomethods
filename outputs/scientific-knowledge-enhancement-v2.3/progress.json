@@ -2,7 +2,7 @@
   "version": "2.3.0",
   "project": "PhytoMethods Scientific Knowledge Enhancement & Continuous Delivery",
   "startedAt": "2026-11-25T00:20:00+08:00",
-  "currentMilestone": "M02",
+  "currentMilestone": "M03",
   "milestones": {
     "M01": {
       "name": "测序与基因组组装",
@@ -17,16 +17,16 @@
       "name": "基因组注释与重复序列",
       "domainId": "genome-annotation",
       "branch": "docs/v2.3-m02-genome-annotation",
-      "status": "in_progress",
-      "prNumber": null,
-      "deployedUrl": null,
-      "completedAt": null
+      "status": "completed",
+      "prNumber": 54,
+      "deployedUrl": "https://hao1006sy-source.github.io/phytomethods/topics/genome-annotation/",
+      "completedAt": "2026-11-25T01:02:30+08:00"
     },
     "M03": {
       "name": "泛基因组与结构变异",
       "domainId": "pangenomics-structural-variation",
       "branch": "docs/v2.3-m03-pangenomics",
-      "status": "pending",
+      "status": "in_progress",
       "prNumber": null,
       "deployedUrl": null,
       "completedAt": null

@@ -26,6 +26,30 @@
         "https://hao1006sy-source.github.io/phytomethods/methods/merqury/",
         "https://hao1006sy-source.github.io/phytomethods/methods/yahs/"
       ]
+    },
+    {
+      "milestone": "M02",
+      "domainId": "genome-annotation",
+      "prNumber": 54,
+      "prTitle": "docs(v2.3): M02 基因组注释与重复序列科研知识深度建设",
+      "mergeCommit": "fd58d00",
+      "mergedAt": "2026-11-24T17:01:23Z",
+      "githubPagesRunId": 45443833879,
+      "deployedAt": "2026-11-24T17:02:23Z",
+      "deploymentStatus": "SUCCESS",
+      "liveUrl": "https://hao1006sy-source.github.io/phytomethods/topics/genome-annotation/",
+      "verifiedPages": [
+        "https://hao1006sy-source.github.io/phytomethods/topics/genome-annotation/m02-topic-01/",
+        "https://hao1006sy-source.github.io/phytomethods/topics/genome-annotation/m02-topic-02/",
+        "https://hao1006sy-source.github.io/phytomethods/topics/genome-annotation/m02-topic-03/",
+        "https://hao1006sy-source.github.io/phytomethods/topics/genome-annotation/m02-topic-04/",
+        "https://hao1006sy-source.github.io/phytomethods/topics/genome-annotation/m02-topic-05/",
+        "https://hao1006sy-source.github.io/phytomethods/topics/genome-annotation/m02-topic-06/",
+        "https://hao1006sy-source.github.io/phytomethods/topics/genome-annotation/m02-topic-07/",
+        "https://hao1006sy-source.github.io/phytomethods/methods/edta/",
+        "https://hao1006sy-source.github.io/phytomethods/methods/braker3/",
+        "https://hao1006sy-source.github.io/phytomethods/methods/interproscan/"
+      ]
     }
   ]
 }

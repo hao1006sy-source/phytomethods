@@ -25,8 +25,8 @@ PhytoMethods 经过此前基础架构、数据注册表、计算画像核验与�
 | 里程碑 | 领域模块 | 分支名称 | PR 编号 | 合并状态 | Pages 部署验证 |
 | :--- | :--- | :--- | :---: | :---: | :---: |
 | **M01** | 测序与基因组组装 | `docs/v2.3-m01-genome-assembly` | #53 | 已合并 (`fb0d733`) | 已发布 (Run 45440095694) |
-| **M02** | 基因组注释与重复序列 | `docs/v2.3-m02-genome-annotation` | 待提交 | 待合并 | 待验证 |
-| **M03** | 泛基因组与结构变异 | `docs/v2.3-m03-pangenomics` | 待开始 | 待合并 | 待验证 |
+| **M02** | 基因组注释与重复序列 | `docs/v2.3-m02-genome-annotation` | #54 | 已合并 (`fd58d00`) | 已发布 (Run 45443833879) |
+| **M03** | 泛基因组与结构变异 | `docs/v2.3-m03-pangenomics` | 进行中 | 待合并 | 待验证 |
 | **M04** | 比较基因组与系统发育 | `docs/v2.3-m04-comparative-genomics` | 待开始 | 待合并 | 待验证 |
 | **M05** | 群体遗传学与演化 | `docs/v2.3-m05-population-genetics` | 待开始 | 待合并 | 待验证 |
 | **M06** | GWAS 与全基因组选择 | `docs/v2.3-m06-gwas-breeding` | 待开始 | 待合并 | 待验证 |
