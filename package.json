@@ -28,7 +28,8 @@
     "check:tutorial-science": "node scripts/check-tutorial-scientific-quality.mjs",
     "check:cafe5": "node scripts/check-cafe5-reproducibility.mjs",
     "check:genome-hub": "node scripts/check-genome-hub-data.mjs",
-    "test:genome-hub": "node scripts/browser-test-genome-hub.mjs"
+    "test:genome-hub": "node scripts/browser-test-genome-hub.mjs",
+    "test:search-v2": "node scripts/browser-test-search-v2.mjs"
   },
   "dependencies": {
     "@astrojs/markdown-remark": "^7.3.10",
