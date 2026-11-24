@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 460" width="100%" height="100%" style="background:#ffffff; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;">
+  <!-- 标题与副标题 -->
+  <text x="30" y="32" font-size="16" font-weight="bold" fill="#0f172a">植物特异性 DNA 甲基化三序列环境与经典 RdDM 通路架构</text>
+  <text x="30" y="52" font-size="12" fill="#64748b">mCG / mCHG / mCHH 维持机制、CMT3-H3K9me2 正反馈环与 Pol IV/Pol V 引导的从头甲基化</text>
+
+  <!-- 左侧：三大胞嘧啶序列环境与维持酶系 (x: 30 ~ 430, y: 70 ~ 430) -->
+  <g id="methylation-contexts">
+    <rect x="30" y="70" width="400" height="360" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+    <rect x="42" y="82" width="180" height="24" rx="4" fill="#e0e7ff"/>
+    <text x="132" y="98" font-size="11" font-weight="bold" fill="#3730a3" text-anchor="middle">1. 三大甲基化环境与维持酶系</text>
+
+    <!-- CG 甲基化 (对称) -->
+    <g transform="translate(45, 118)">
+      <rect width="370" height="72" rx="6" fill="#ffffff" stroke="#3b82f6" stroke-width="1.2"/>
+      <rect x="8" y="8" width="60" height="18" rx="3" fill="#dbeafe"/>
+      <text x="38" y="21" font-size="10" font-weight="bold" fill="#1d4ed8" text-anchor="middle">mCG (对称)</text>
+      
+      <text x="75" y="21" font-size="11" font-weight="bold" fill="#0f172a">5'-<tspan fill="#dc2626">C</tspan>G-3' / 3'-G<tspan fill="#dc2626">C</tspan>-5'</text>
+      <text x="220" y="21" font-size="10" fill="#15803d" font-weight="bold">维持酶：MET1 (DNMT1 同源)</text>
+      <text x="12" y="44" font-size="9" fill="#475569">• 半保留DNA复制后由 VIM1/2/3 识别半甲基化双链；</text>
+      <text x="12" y="60" font-size="9" fill="#475569">• 普遍分布于基因体区 (Gene Body Methylation) 与转座子异染色质区。</text>
+    </g>
+
+    <!-- CHG 甲基化 (对称，与 H3K9me2 环路) -->
+    <g transform="translate(45, 200)">
+      <rect width="370" height="85" rx="6" fill="#ffffff" stroke="#10b981" stroke-width="1.2"/>
+      <rect x="8" y="8" width="70" height="18" rx="3" fill="#dcfce7"/>
+      <text x="43" y="21" font-size="10" font-weight="bold" fill="#166534" text-anchor="middle">mCHG (对称)</text>
+      
+      <text x="85" y="21" font-size="11" font-weight="bold" fill="#0f172a">5'-<tspan fill="#dc2626">C</tspan>HG-3' / 3'-GHD-5'</text>
+      <text x="220" y="21" font-size="10" fill="#15803d" font-weight="bold">维持酶：CMT3 (植物特有)</text>
+      <text x="12" y="44" font-size="9" fill="#166534" font-weight="bold">★ CMT3 ↔ KYP (SUVH4/5/6) 自催化正反馈增强环：</text>
+      <text x="12" y="60" font-size="8" fill="#475569">CMT3 结合 H3K9me2 催化 mCHG；KYP 识别 mCHG 进一步甲基化 H3K9；</text>
+      <text x="12" y="74" font-size="8" fill="#475569">二者相互锁定，是植物维持常染色质转座子强沉默的核心机制。</text>
+    </g>
+
+    <!-- CHH 甲基化 (非对称) -->
+    <g transform="translate(45, 295)">
+      <rect width="370" height="80" rx="6" fill="#ffffff" stroke="#f59e0b" stroke-width="1.2"/>
+      <rect x="8" y="8" width="75" height="18" rx="3" fill="#fef3c7"/>
+      <text x="45" y="21" font-size="10" font-weight="bold" fill="#b45309" text-anchor="middle">mCHH (非对称)</text>
+      
+      <text x="90" y="21" font-size="11" font-weight="bold" fill="#0f172a">5'-<tspan fill="#dc2626">C</tspan>HH-3' (互补链无C)</text>
+      <text x="220" y="21" font-size="10" fill="#b45309" font-weight="bold">催化酶：DRM2 (RdDM) / CMT2</text>
+      <text x="12" y="44" font-size="9" fill="#475569">• 非对称序列，无法通过复制叉半保留遗传，每代必须从头建立；</text>
+      <text x="12" y="60" font-size="9" fill="#475569">• 短转座子边缘由 RdDM 通路维持；深层长转座子核心由 CMT2 维持。</text>
+    </g>
+
+    <text x="50" y="405" font-size="9" fill="#64748b">* 符号说明：H = A, T, 或 C；D = A, T, 或 G（即非 C 碱基）</text>
+  </g>
+
+  <!-- 右侧：RdDM 经典分子通路流程 (x: 450 ~ 890, y: 70 ~ 430) -->
+  <g id="rddm-pathway">
+    <rect x="450" y="70" width="440" height="360" rx="8" fill="#f0fdf4" stroke="#86efac" stroke-width="1.2"/>
+    <rect x="462" y="82" width="220" height="24" rx="4" fill="#dcfce7"/>
+    <text x="572" y="98" font-size="11" font-weight="bold" fill="#166534" text-anchor="middle">2. RNA 介导的 DNA 甲基化 (RdDM)</text>
+
+    <!-- 步骤 1: Pol IV 转录与 24-nt siRNA 生成 -->
+    <g transform="translate(465, 118)">
+      <rect width="410" height="72" rx="6" fill="#ffffff" stroke="#22c55e" stroke-width="1"/>
+      <text x="12" y="20" font-size="11" font-weight="bold" fill="#15803d">阶段 A：Pol IV 转录与 24-nt siRNA 生物合成</text>
+      <text x="12" y="38" font-size="9" fill="#0f172a">• <tspan font-weight="bold" fill="#2563eb">Pol IV</tspan> 招募至异染色质与转座子，转录生成 30~50 nt 短单链 RNA 前体；</text>
+      <text x="12" y="52" font-size="9" fill="#0f172a">• <tspan font-weight="bold" fill="#059669">RDR2</tspan> (RNA依赖的RNA聚合酶) 催化合成互补链，形成双链 dsRNA；</text>
+      <text x="12" y="66" font-size="9" fill="#0f172a">• <tspan font-weight="bold" fill="#d97706">DCL3</tspan> (Dicer-like 3) 精确切割为 <tspan font-weight="bold" fill="#dc2626">24-nt siRNA</tspan> 双链分子并甲基化保护。</text>
+    </g>
+
+    <!-- 流程下行连接箭头 -->
+    <path d="M 670 195 L 670 215" stroke="#16a34a" stroke-width="2" marker-end="url(#arrow-green-m07)"/>
+
+    <!-- 步骤 2: Pol V 支架 lncRNA 招募与靶向配对 -->
+    <g transform="translate(465, 220)">
+      <rect width="410" height="82" rx="6" fill="#ffffff" stroke="#0ea5e9" stroke-width="1"/>
+      <text x="12" y="20" font-size="11" font-weight="bold" fill="#0284c7">阶段 B：Pol V 支架 RNA 招募与 AGO4 互补配对</text>
+      <text x="12" y="38" font-size="9" fill="#0f172a">• 24-nt 单链 siRNA 加载至 <tspan font-weight="bold" fill="#7c3aed">AGO4 / AGO6</tspan> 效应复合物；</text>
+      <text x="12" y="52" font-size="9" fill="#0f172a">• <tspan font-weight="bold" fill="#0284c7">Pol V</tspan> 在目标染色质位点转录生成长链非编码支架 RNA (Scaffold lncRNA)；</text>
+      <text x="12" y="68" font-size="9" fill="#0f172a">• AGO4-siRNA 复合物通过 RNA-RNA 碱基互补精确结合至 Pol V 支架转录本。</text>
+    </g>
+
+    <!-- 流程下行连接箭头 -->
+    <path d="M 670 307 L 670 327" stroke="#0284c7" stroke-width="2" marker-end="url(#arrow-blue-m07)"/>
+
+    <!-- 步骤 3: DRM2 从头甲基化与转座子沉默 -->
+    <g transform="translate(465, 332)">
+      <rect width="410" height="78" rx="6" fill="#ffffff" stroke="#dc2626" stroke-width="1.2"/>
+      <text x="12" y="20" font-size="11" font-weight="bold" fill="#b91c1c">阶段 C：DRM2 从头甲基化建立与转座子沉默</text>
+      <text x="12" y="38" font-size="9" fill="#0f172a">• AGO4 复合物招募从头 DNA 甲基转移酶 <tspan font-weight="bold" fill="#dc2626">DRM2</tspan> 至目标基因组位点；</text>
+      <text x="12" y="52" font-size="9" fill="#0f172a">• DRM2 催化胞嘧啶从头甲基化 (全序列环境，以 <tspan font-weight="bold" fill="#dc2626">mCHH</tspan> 为典型特征)；</text>
+      <text x="12" y="68" font-size="9" fill="#15803d" font-weight="bold">✓ 结果：异染色质浓缩、RNA Pol II 转录受阻、转座子转座活性永久冻结。</text>
+    </g>
+  </g>
+
+  <!-- 箭头定义 -->
+  <defs>
+    <marker id="arrow-green-m07" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#16a34a"/>
+    </marker>
+    <marker id="arrow-blue-m07" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#0284c7"/>
+    </marker>
+  </defs>
+</svg>

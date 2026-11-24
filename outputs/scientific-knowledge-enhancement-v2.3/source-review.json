@@ -517,6 +517,90 @@
       "sectionLocator": "DNNGP architecture & Multi-omics integration benchmarks",
       "verifiedDate": "2026-11-25",
       "status": "SOURCE_VERIFIED"
+    },
+    {
+      "milestone": "M07",
+      "domainId": "epigenomics-3d-genome",
+      "topicOrMethod": "m07-topic-01",
+      "claim": "植物特有 mCG、mCHG、mCHH 三大序列环境生化维持通路、CMT3-H3K9me2 自催化正反馈增强环与经典 RdDM 通路架构",
+      "sourceType": "peer_reviewed_paper",
+      "citation": "Cokus SJ, Feng S, Zhang X, et al. (2008). Shotgun bisulphite sequencing of the Arabidopsis genome reveals DNA methylation patterning. Nature, 452(7184), 215–219.",
+      "doi": "10.1038/nature06745",
+      "sectionLocator": "Single-base methylome & Sequence context distribution",
+      "verifiedDate": "2026-11-25",
+      "status": "SOURCE_VERIFIED"
+    },
+    {
+      "milestone": "M07",
+      "domainId": "epigenomics-3d-genome",
+      "topicOrMethod": "m07-topic-02",
+      "claim": "重亚硫酸氢盐脱氨基化学原理、Bismark 四条转化链比对算法、叶绿体基因组非转化率校正模型与二项分布单碱基检验",
+      "sourceType": "peer_reviewed_paper",
+      "citation": "Krueger F, Andrews SR. (2011). Bismark: a flexible aligner and methylation caller for Bisulfite-Seq applications. Bioinformatics, 27(11), 1571–1572.",
+      "doi": "10.1093/bioinformatics/btr167",
+      "sectionLocator": "Bismark algorithm: 4-strand alignment and methylation extraction",
+      "verifiedDate": "2026-11-25",
+      "status": "SOURCE_VERIFIED"
+    },
+    {
+      "milestone": "M07",
+      "domainId": "epigenomics-3d-genome",
+      "topicOrMethod": "m07-topic-03",
+      "claim": "差异甲基化区域 (DMR) 统计建模、DSS Beta-二项分层模型、经验贝叶斯离散度收缩、空间平滑移动窗口与植物差异阈值标准",
+      "sourceType": "peer_reviewed_paper",
+      "citation": "Feng H, Conneely KN, Wu H. (2014). A Bayesian hierarchical model to detect differentially methylated loci from single nucleotide resolution sequencing data. Nucleic Acids Research, 42(8), e69.",
+      "doi": "10.1093/nar/gku154",
+      "sectionLocator": "DSS statistical framework: Beta-binomial model & Dispersion shrinkage",
+      "verifiedDate": "2026-11-25",
+      "status": "SOURCE_VERIFIED"
+    },
+    {
+      "milestone": "M07",
+      "domainId": "epigenomics-3d-genome",
+      "topicOrMethod": "m07-topic-04",
+      "claim": "ATAC-seq 染色质可及性原理、Tn5 转座酶 +4/-5 bp 空间移位校正、文库片段周期性分布、MACS3 动态泊松 Peak Calling 与 TSSE 质控",
+      "sourceType": "peer_reviewed_paper",
+      "citation": "Buenrostro JD, Giresi PG, Zaba LC, et al. (2013). Transposition of native chromatin for fast and sensitive epigenomic profiling of open chromatin, DNA-binding sites and nucleosome positions. Nature Methods, 10(12), 1213–1218.",
+      "doi": "10.1038/nmeth.2688",
+      "sectionLocator": "ATAC-seq methodology & Tn5 transposition mechanics",
+      "verifiedDate": "2026-11-25",
+      "status": "SOURCE_VERIFIED"
+    },
+    {
+      "milestone": "M07",
+      "domainId": "epigenomics-3d-genome",
+      "topicOrMethod": "m07-topic-05",
+      "claim": "微量原位 CUT&Tag 技术对比、MACS3 双峰移位模型与片段长度 d 估计、宽峰/窄峰参数适配、PWM 权重矩阵与 MEME 期望最大化基序发现",
+      "sourceType": "peer_reviewed_paper",
+      "citation": "Kaya-Okur HS, Wu SJ, Codomo CA, et al. (2019). CUT&Tag for efficient epigenomic profiling of small samples and single cells. Nature Communications, 10, 1930.",
+      "doi": "10.1038/s41467-019-09982-5",
+      "sectionLocator": "CUT&Tag protocol, low background & In situ tagmentation",
+      "verifiedDate": "2026-11-25",
+      "status": "SOURCE_VERIFIED"
+    },
+    {
+      "milestone": "M07",
+      "domainId": "epigenomics-3d-genome",
+      "topicOrMethod": "m07-topic-06",
+      "claim": "Hi-C 原位构象捕获原理、ICE 矩阵迭代平衡算法、接触概率幂律衰减模型、Insulation Score 边界探测与植物 Rabl 极性构象及 KNOT 纽状体",
+      "sourceType": "peer_reviewed_paper",
+      "citation": "Wolff J, Bhardwaj V, Nothjunge S, et al. (2018). Galaxy HiCExplorer: a web server for reproducible Hi-C data analysis, quality control and visualization. Nucleic Acids Research, 46(W1), W11–W16.",
+      "doi": "10.1093/nar/gky504",
+      "sectionLocator": "HiCExplorer matrix correction, TAD calling & Compartment analysis",
+      "verifiedDate": "2026-11-25",
+      "status": "SOURCE_VERIFIED"
+    },
+    {
+      "milestone": "M07",
+      "domainId": "epigenomics-3d-genome",
+      "topicOrMethod": "m07-topic-07",
+      "claim": "植物春化作用 FLC 基因 H3K27me3 沉默与胚胎重置、转座子自发旁系表观等位基因 (Epialleles) 形成与拟南芥干旱表观启动记忆",
+      "sourceType": "peer_reviewed_paper",
+      "citation": "Ding Y, Fromm M, Avramova Z. (2012). Multiple exposures to drought 'train' transcriptional responses in Arabidopsis. Nature Communications, 3, 740.",
+      "doi": "10.1038/ncomms1732",
+      "sectionLocator": "Drought stress memory & H3K4me3 stalled RNA Pol II retention",
+      "verifiedDate": "2026-11-25",
+      "status": "SOURCE_VERIFIED"
     }
   ]
 }
