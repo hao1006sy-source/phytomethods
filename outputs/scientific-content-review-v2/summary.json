@@ -1,6 +1,8 @@
 {
-  "reviewVersion": "Scientific Content Review V2 & V2.1",
-  "reviewedAt": "2026-11-24",
+  "reviewVersion": "Scientific Content Review V2.1.1 (Honest Evidence Integrity)",
+  "auditTimestamp": "2026-11-24T13:20:59.356Z",
+  "auditPrinciple": "严禁批量赋予科学通过状态；实事求是记录结构检查与深度审核进展；所有未审核条目纳入未决跟踪清单",
+  "auditConclusion": "AUDIT_IN_PROGRESS_EVIDENCE_INTEGRITY_DISCLOSED",
   "scopeCounts": {
     "topics": 63,
     "methods": 59,
@@ -9,42 +11,62 @@
     "computeProfiles": 12,
     "workflows": 3,
     "genomeSpecies": 10,
-    "taxonomyAudited": 59,
-    "taxonomyCorrected": 3,
-    "computeDisputesCorrected": 2,
-    "workflowThresholdsAudited": 3,
-    "crossPageChecks": 4,
-    "inventoryTotal": 292
+    "genomeFiles": 89,
+    "totalInventoryItems": 287
   },
-  "evidenceIntegrity": {
-    "totalGraphEdges": 743,
+  "statusDistribution": {
+    "structurallyChecked": 287,
+    "sourceChecked": 86,
+    "corrected": 9,
+    "notReviewed": 180,
+    "templatePendingVerification": 2,
+    "unverifiedPendingVerification": 28
+  },
+  "unresolvedTracking": {
+    "totalUnresolvedItems": 210,
+    "unreviewedMethodsCount": 19,
+    "unreviewedTopicsCount": 63,
+    "unreviewedPapersCount": 98,
+    "templateTutorialsCount": 2,
+    "unverifiedGenomeFilesCount": 28
+  },
+  "computeProfilesIntegrity": {
+    "actualProfilesAudited": 12,
+    "profilesList": [
+      "hifiasm",
+      "orthofinder",
+      "edta",
+      "cafe5",
+      "plink",
+      "gapit",
+      "syri",
+      "minigraph-cactus",
+      "deseq2",
+      "wgcna",
+      "bismark",
+      "scanpy"
+    ],
+    "empiricallyVerifiedLogsCount": 1,
+    "publishedBenchmarksCount": 11,
+    "cafe5DiscrepancyResolved": "CONFIRMED_12653_INPUT_FAMILIES_AND_UNCERTIFIED_RAM",
+    "orthofinderSpeedupCleaned": "CONFIRMED_CLEANED_UNFOUNDED_PERCENTAGES"
+  },
+  "genomeHubIntegrity": {
+    "totalSpecies": 10,
+    "totalAssemblies": 12,
+    "totalAnnotations": 12,
+    "totalFiles": 89,
+    "directDownloadFiles": 25,
+    "httpVerifiedFiles": 25,
+    "relationshipVerifiedFiles": 58,
+    "portalFiles": 36,
+    "unverifiedFiles": 28
+  },
+  "knowledgeGraphIntegrity": {
     "totalGraphNodes": 305,
+    "totalGraphEdges": 743,
     "totalEvidenceRecords": 801,
     "sourceCheckedRecords": 600,
-    "structurallyValidRecords": 201,
-    "unresolvedCount": 0
-  },
-  "tutorialVerification": {
-    "verifiedCount": 8,
-    "templateCount": 2,
-    "cafe5PathFix": "CONFIRMED_UNIFIED",
-    "cafe5DiscrepancyResolved": "CONFIRMED_12653_INPUT_FAMILIES_AND_UNCERTIFIED_RAM"
-  },
-  "searchAndInteraction": {
-    "searchPureTextResult": "CONFIRMED_ZERO_THUMBS",
-    "searchCountScopeSplit": "CONFIRMED_DISTINGUISHED",
-    "paperFiltersHistoryRestore": "CONFIRMED_DEBOUNCED_AND_RESTORED"
-  },
-  "scientificRefinementsV21": {
-    "dnngpCorrected": "deep-learning-genomic-prediction",
-    "rrblupCorrected": "ridge-regression-blup",
-    "scKbCopilotCorrected": "pseudoalignment, barcode-filtering",
-    "orthofinderSpeedupCleaned": "heuristic clustering and normalized distance",
-    "workflowsStandardsIntegrated": [
-      "EBP/VGP Q40",
-      "Bonferroni Manhattan Formula",
-      "Sample-specific DEG Note"
-    ]
-  },
-  "overallConclusion": "ALL_PASS"
+    "structurallyValidRecords": 201
+  }
 }
