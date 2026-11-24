@@ -1,0 +1,22 @@
+{
+  "version": "2.3.0",
+  "description": "PhytoMethods V2.3 科学未决项与待实测参数清单",
+  "pendingItems": [
+    {
+      "milestone": "M01",
+      "domainId": "genome-assembly",
+      "target": "hifiasm-intro",
+      "item": "Hifiasm 在真实植物大基因组（如玉米/水稻）上的端到端本地运算",
+      "reason": "严格遵守本地计算负载红线，禁止在本地执行数十小时的高内存大基因组组装；当前采用官方 documented 核验标准并保留小规模测试数据 chr11-2M",
+      "status": "OPEN_TRACKED"
+    },
+    {
+      "milestone": "M01",
+      "domainId": "genome-assembly",
+      "target": "merqury",
+      "item": "植物大基因组 Meryl 数据库构建与 Spectra-cn 本地实测渲染",
+      "reason": "同上，暂无本地超大 FASTQ 处理条件，页面采用学术规范的原理示意矢量图",
+      "status": "OPEN_TRACKED"
+    }
+  ]
+}

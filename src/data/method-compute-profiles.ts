@@ -97,7 +97,7 @@ export const methodComputeProfiles: Record<string, MethodComputeProfile> = {
     verifiedDate: '2026-11-24',
     benchmarkSectionOrTable: 'examples/cafe5/verified-20261123/execution.json',
     scenario: '基因家族收缩与扩张演化分析 (官方 12 物种基准，12,653 原始家族，Base 单 λ 与 2 类别 Gamma 离散模型)',
-    hardware: 'WSL Ubuntu 24.04, 4 CPU 线程, 16 GB 宿主物理内存',
+    hardware: 'WSL2 Ubuntu 26.04 LTS, 4 CPU 线程, 16 GB 宿主物理内存',
     peakMemory: '暂无峰值内存实测记录 (推荐配置 ≥ 4 GB RAM)',
     runtime: 'Base 模型实测 187.99 秒 (3分08秒)；Gamma 模型实测 828.50 秒 (13分48秒)',
     cpuScalability: '支持 `-c` 多核 OpenMP 似然计算加速，推荐 4~8 线程',

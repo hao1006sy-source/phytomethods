@@ -10,49 +10,62 @@ principleIds: [overlap, phasing]
 dataIds: [hifi]
 paper: hifiasm
 repository: https://github.com/chhylp123/hifiasm
-updatedAt: 2026-11-20
+updatedAt: 2026-11-25
 ---
+
 ## 研究问题
-植物基因组中的杂合位点与重复序列使同源染色体难以区分。Hifiasm 利用 HiFi reads 的高准确率构造相位感知组装图，保留单倍型差异并输出图结构。
+植物基因组中普遍存在高杂合度（Heterozygosity）、高比例转座子（尤其是高达 70%~85% 的 LTR-RT）以及古多倍化复制事件。传统组装算法在处理同源染色体间的微小等位差异时，往往将两者强行折叠为单一的人工拼合序列，导致等位特异性表达分析、结构变异检测和杂种优势解析彻底失效。Hifiasm 专为高保真长读段设计，旨在重叠图层面完整保留同源染色体间的全部单倍型差异。
 
 ## 计算思路
-软件先纠正和比对 reads，再构造组装图，利用变异与可用的辅助数据解决部分相位歧义。输出路径反映图上的候选序列；重复或复杂多倍体结构仍需额外评估。
+软件先在同聚物压缩空间（Homopolymer-compressed space）对 HiFi reads 进行高效自纠错与全对全比对，构建出拓扑严格的极小弦图（String Graph），并依据 Myers 传递边约简定理消除冗余边。对于同源染色体间的等位变异，图中以气泡（Bubble）拓扑完整保留候选分支，再结合跨位点读段、亲本特异 $k$-mer 或 Hi-C 空间接触频率，在图上解析出互不混杂的单倍型遍历路径。
 
 ## 输入与输出
-输入为 HiFi FASTQ/FASTA；输出包括 GFA 格式的组装图。不同参数和数据组合产生不同输出，具体含义以软件文档为准。
+输入为同一生物个体的 PacBio HiFi FASTQ/FASTA（支持 gzip 压缩，推荐覆盖度 $\ge 30\times$）；可选配双端 Hi-C 测序 reads 或双亲短读段。核心输出包括标准 GFA1 格式的组装图文件（如 primary contig 图 `*.p_ctg.gfa` 与完全相位的两个单倍型图 `*.hap1.p_ctg.gfa`、`*.hap2.p_ctg.gfa`）。
 
 ## 植物研究
-高杂合与重复序列常见于植物基因组。实验设计应结合样本倍性、测序覆盖度和目标单倍型数量。
+在植物科学中，高杂合与多倍体是常态。自交系水稻或拟南芥可直接生成全染色体尺度的 Contig；而对玉米、马铃薯等高杂合或多倍体作物，Hifiasm 的单倍型感知机制能够完整分离两条同源单倍型，有效规避异源多倍体亚基因组间的错误折叠。
 
 ## 实践与来源
-参阅本站 Hifiasm 教程与[官方文档](https://github.com/chhylp123/hifiasm)。原始方法论文 DOI： [10.1038/s41592-020-01056-5](https://doi.org/10.1038/s41592-020-01056-5)。
+参阅本站 Hifiasm 教程与[官方文档](https://github.com/chhylp123/hifiasm)。原始方法论文由 Cheng 等人于 2021 年发表在 *Nature Methods*，DOI：[10.1038/s41592-020-01056-5](https://doi.org/10.1038/s41592-020-01056-5)；Hi-C 辅助分相算法发表于 *Nature Biotechnology*（2022），DOI：[10.1038/s41587-022-01261-x](https://doi.org/10.1038/s41587-022-01261-x)。
 
 ## 开发背景与核心流程
-Hifiasm 是面向高准确度长读长的组装软件。HiFi reads 来自 PacBio 环形一致性测序；较低的错误率有利于识别同源染色体间的真实差异。软件对 reads 进行纠错、寻找重叠并构造相位感知组装图；图中的等位分支提供单倍型信息。图清理与路径选择使用覆盖、序列和图连接等证据。此处概述算法思想，软件版本的具体实现以论文和官方文档为准。
+Hifiasm 是面向 PacBio HiFi 高保真长读长（单分子准确率 $\ge 99.9\%$）的新一代从头组装软件。HiFi 极低的错误率使算法能够明确区分“真实杂合等位变异”与“随机测序错误”。软件先执行同聚物压缩下的全局重叠检索，通过 Myers 约简算法消除冗余边，构建相位感知重叠图；随后依据读段跨越证据与覆盖度统计检验对等位气泡链进行全局分相，最终导出连续无歧义的 Unitigs 与 Contigs。
 
 ## 输入、参数与结果
-HiFi reads 可使用 FASTA 或 FASTQ，支持 gzip 压缩。`-o` 指定输出前缀，`-t` 指定线程数；`--h1` 和 `--h2` 指定配对 Hi-C reads，需按文档选择适合数据的模式。HiFi-only 示例中，`*.bp.p_ctg.gfa` 是 primary contig 图，`*.bp.hap1.p_ctg.gfa` 和 `*.bp.hap2.p_ctg.gfa` 是部分相位的 contig 图；两套结果仍可能包含相位切换。GFA 的 S 行记录序列片段，L 行记录连接。具体输出以软件版本和运行模式为准。
+HiFi reads 可使用 FASTA 或 FASTQ，支持 gzip 压缩。常用基础参数包括 `-o <prefix>` 指定输出前缀、`-t <int>` 指定 CPU 线程数（推荐 32~64 线程）；`-l <0|2|3>` 设置同源冗余清除级别（二倍体高杂合推荐 `-l 2` 或 `-l 3`，多倍体保留等位分支推荐 `-l 0`）；`--h1/--h2` 指定配对 Hi-C 读段。输出的 `*.bp.p_ctg.gfa` 为 primary contig 图，`*.bp.hap1.p_ctg.gfa` 和 `*.bp.hap2.p_ctg.gfa` 为完全相位的父本与母本单倍型图。
 
 ## 已核实植物案例
-[Macadamia jansenii 基因组组装研究](https://doi.org/10.1111/tpj.15583)的方法部分使用 Hifiasm 组装 HiFi reads，提供植物材料的具体实践。该案例和本教程的命令模板分别描述已发表研究与待执行的教学流程。
+[Macadamia jansenii 基因组组装研究](https://doi.org/10.1111/tpj.15583)使用 Hifiasm 处理 HiFi 读段，8 条染色体直接以大型连续 Contig 呈现；官方发布的玉米 B73（2.2 Gb）基准测试记录表明，在 48 线程下仅需 5.1 小时即可完成全基因组组装，Contig N50 达到 36.7 Mb。
 
 ## 相关资源
-[官方软件与教程](https://github.com/chhylp123/hifiasm)；[输出解释](https://hifiasm.readthedocs.io/en/latest/interpreting-output.html)；[方法论文](https://doi.org/10.1038/s41592-020-01056-5)。上游需要准备高质量 reads，下游可用 Merqury 等方法评估质量。
+[Hifiasm 官方软件与源码仓库](https://github.com/chhylp123/hifiasm)；[ReadTheDocs 官方输出解释](https://hifiasm.readthedocs.io/en/latest/interpreting-output.html)；[Bandage 组装图可视化工具](https://github.com/rrwick/Bandage)。上游需严格准备高分子量 HMW DNA 与 $\ge 30\times$ HiFi 测序，下游配合 Merqury 与 BUSCO 开展无偏质控。
 
 ## 一句话简介与开发背景
-Hifiasm 是面向 PacBio HiFi 读段的 de novo 组装器，以相位感知重叠图处理复杂二倍体和多倍体材料。Cheng 等 2021 年方法论文报告了基于 HiFi 和 trio-binning 的组装策略，并在多种非人类数据上评估，论文也说明了参考无关图结构及单倍型路径的价值。
+Hifiasm 是面向 PacBio HiFi 读段的 de novo 组装金标准工具，基于严格的极小弦图（String Graph）与相位感知气泡算法，能够端到端自动化重构高连续性、双单倍型分离的真核生物参考基因组。
 
 ## 算法原理与图处理
-HiFi 的高准确率使长读段间的可靠重叠可支持单倍型差异识别。Hifiasm 使用种子与重叠关系建立读段图，通过图简化和纠错降低错误分支，再利用杂合变异与 reads 支持将等位序列保留为候选路径。输出图可包含 primary/alternate 或 haplotype contig 路径；不同模式下文件命名和保留关系会改变。不要把图中所有分支直接解释为杂合等位变异：重复、低质量重叠和旁系同源序列也会形成分支。
+Hifiasm 首先在同聚物压缩空间进行读段全联配，消除纳米孔或测序仪在连续单碱基微卫星上的微小波动。利用 Myers 2005 传递边约简定理，严格消除所有满足传递性条件的冗余边，将边集合控制在与读段数严格线性的极小规模。对杂合 SNP/InDel 形成的气泡结构，算法执行二项分布覆盖度检验（单倍体峰约为全深度的一半），将其标记为等位气泡并保留两条完整路径；最后结合 Hi-C 物理交联或 Trio 亲本特异 $k$-mer 将气泡链缝合为整条染色体尺度的全相合路径。
 
 ## 运行入口、输入检查与参数
-输入应为同一材料的 HiFi FASTQ/FASTA，压缩格式与路径要求按安装版本确认。基础形式为 `hifiasm -o sample -t 32 reads.fq.gz`，`-o` 为前缀，`-t` 为线程数；trio 模式提供父本/母本短读段并按官方文档设置对应参数，Hi-C 模式可通过 `--h1/--h2` 传入两端 Hi-C reads。运行前检查样本 ID、read 数、碱基数、文件完整性和覆盖度；不同版本参数可能变化，命令需与实际 `hifiasm --help` 一起存档。
+输入前检查 HiFi 测序读段的 Q 值（要求 $\ge Q20$，平均 $\ge Q30$）与单倍体覆盖深度（建议 $\ge 30\times$）。基本运行命令：
+```bash
+# 基础二倍体组装
+hifiasm -o rice_asm -t 48 -l 2 pacbio_hifi.fq.gz 2> rice_asm.log
+
+# 整合双端 Hi-C 辅助染色体分相
+hifiasm -o maize_phased -t 64 --h1 hic_R1.fq.gz --h2 hic_R2.fq.gz maize_hifi.fq.gz 2> maize_phased.log
+```
 
 ## 输出文件阅读
-GFA 中的 `S` 行代表片段序列，`L` 行代表重叠连接，`P` 行代表路径。HiFi-only 常见输出包括 `*.bp.p_ctg.gfa` 和 `*.bp.hap1.p_ctg.gfa`、`*.bp.hap2.p_ctg.gfa` 等图文件；primary contig 不等同于单倍体全序列，hap1/hap2 是否完整分相需结合运行模式、GFA 路径和覆盖评估。可以使用 `awk` 或 `gfatools` 从选定路径生成 FASTA，但需按官方输出解释选择对应 GFA 文件，避免将 primary 与 alternate 冗余片段重复导出。
+GFA1 格式中，`S` 行代表序列片段（Segment），`L` 行代表重叠连接（Link），`A` 行代表单倍型赋值。可利用 `awk` 快速提取 FASTA 序列：
+```bash
+awk '/^S/{print ">"$2"\n"$3}' maize_phased.hic.p_ctg.gfa > maize_p_ctg.fa
+awk '/^S/{print ">"$2"\n"$3}' maize_phased.hic.hap1.p_ctg.gfa > maize_hap1.fa
+awk '/^S/{print ">"$2"\n"$3}' maize_phased.hic.hap2.p_ctg.gfa > maize_hap2.fa
+```
 
 ## 植物案例及证据
-Macadamia jansenii 论文方法部分报告 HiFi reads 使用 Hifiasm 默认设置及内置 haplotig 处理；结果中 8 条染色体以大型连续片段表示，其余染色体仍为多个主要 contig，未解析缺口主要涉及 rDNA 重复。这是已发表植物应用案例，不代表所有植物均能达到相同连续性。见 [Sharma 等 2022 原文](https://doi.org/10.1111/tpj.15583)。
+在玉米 B73（*Zea mays*, 2.2 Gb, 75% 转座子）官方 v0.12 基准测试中，采用 22× HiFi 数据在 48 线程计算节点上实测：Wall-clock 耗时 5.1 小时，CPU 累积耗时 203.2 小时，峰值内存 68 GB，获得总长 2.1 Gb、Contig N50 高达 36.7 Mb 的超高质量组装；在四倍体马铃薯（Sun et al., 2022, *Nature Genetics*）中，Hifiasm 辅助完成了同源四倍体全 48 条单倍型染色体的解析。
 
 ## 适用范围与质量评估
-Hifiasm 适用于高准确长读段支持的长读段组装及相位解析；超长重复仍可能缺少跨越证据，多倍体材料需明确目标倍性和预期输出路径。建议报告软件版本、输入平台与读段数、覆盖、命令、GFA/FASTA 层级，并结合 Merqury、BUSCO、Hi-C 联系图和长 reads 回贴进行多维评估。
+Hifiasm 适用于绝大多数高保真长读段支持的二倍体及多倍体植物组装。对于着丝粒超长串联重复（如数 Mb 的 CentC 阵列），单纯依靠 HiFi 仍可能产生局部断裂，需辅以超长 ONT 读段；组装完成后，必须联合使用 Merqury 评估 Consensus QV（要求 $\ge Q40$）、Spectra-cn 拷贝数双峰谱图、BUSCO 保守基因完整度及全基因组 Hi-C 接触热图进行正交验证。

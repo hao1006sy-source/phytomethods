@@ -1,0 +1,98 @@
+{
+  "version": "2.3.0",
+  "project": "PhytoMethods Scientific Knowledge Enhancement & Continuous Delivery",
+  "startedAt": "2026-11-25T00:20:00+08:00",
+  "currentMilestone": "M01",
+  "milestones": {
+    "M01": {
+      "name": "测序与基因组组装",
+      "domainId": "sequencing-assembly",
+      "branch": "docs/v2.3-m01-genome-assembly",
+      "status": "in_progress",
+      "prNumber": null,
+      "deployedUrl": null,
+      "completedAt": null
+    },
+    "M02": {
+      "name": "基因组注释与重复序列",
+      "domainId": "genome-annotation",
+      "branch": "docs/v2.3-m02-genome-annotation",
+      "status": "pending",
+      "prNumber": null,
+      "deployedUrl": null,
+      "completedAt": null
+    },
+    "M03": {
+      "name": "泛基因组与结构变异",
+      "domainId": "pangenome-sv",
+      "branch": "docs/v2.3-m03-pangenomics",
+      "status": "pending",
+      "prNumber": null,
+      "deployedUrl": null,
+      "completedAt": null
+    },
+    "M04": {
+      "name": "比较基因组与系统发育",
+      "domainId": "comparative-genomics",
+      "branch": "docs/v2.3-m04-comparative-genomics",
+      "status": "pending",
+      "prNumber": null,
+      "deployedUrl": null,
+      "completedAt": null
+    },
+    "M05": {
+      "name": "群体遗传学与演化",
+      "domainId": "population-genetics",
+      "branch": "docs/v2.3-m05-population-genetics",
+      "status": "pending",
+      "prNumber": null,
+      "deployedUrl": null,
+      "completedAt": null
+    },
+    "M06": {
+      "name": "GWAS 与全基因组选择",
+      "domainId": "gwas-breeding",
+      "branch": "docs/v2.3-m06-gwas-breeding",
+      "status": "pending",
+      "prNumber": null,
+      "deployedUrl": null,
+      "completedAt": null
+    },
+    "M07": {
+      "name": "表观与三维基因组学",
+      "domainId": "epigenomics-3d",
+      "branch": "docs/v2.3-m07-epigenomics-3d",
+      "status": "pending",
+      "prNumber": null,
+      "deployedUrl": null,
+      "completedAt": null
+    },
+    "M08": {
+      "name": "单细胞与空间组学",
+      "domainId": "single-cell",
+      "branch": "docs/v2.3-m08-single-cell",
+      "status": "pending",
+      "prNumber": null,
+      "deployedUrl": null,
+      "completedAt": null
+    },
+    "M09": {
+      "name": "基因调控网络与 AI",
+      "domainId": "gene-regulatory-networks",
+      "branch": "docs/v2.3-m09-networks-ai",
+      "status": "pending",
+      "prNumber": null,
+      "deployedUrl": null,
+      "completedAt": null
+    },
+    "M10": {
+      "name": "全局收尾与持续发布总结",
+      "domainId": "global-synthesis",
+      "branch": "docs/v2.3-m10-final-review",
+      "status": "pending",
+      "prNumber": null,
+      "deployedUrl": null,
+      "completedAt": null
+    }
+  }
+}

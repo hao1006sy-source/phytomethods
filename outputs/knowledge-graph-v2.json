@@ -650,11 +650,11 @@
       "domainIds": [
         "genome-assembly"
       ],
-      "summary": "基于 k-mer 对组装进行无需参考基因组的质量评估。",
+      "summary": "基于无参考偏倚 k-mer 频数谱图的现代基因组质量评估工具，精确量化单碱基 QV、k-mer 完整度、拷贝数谱图与单倍型相位纯度。",
       "meta": {
         "repository": "https://github.com/marbl/merqury",
-        "dataType": "高准确度 reads / 组装序列",
-        "principle": "k-mer 集合比较",
+        "dataType": "高保真短读段 / HiFi 读段 / 组装序列",
+        "principle": "参考无关 k-mer 集合分析与对数 QV 统计推导",
         "canonicalPaperId": "merqury"
       }
     },
@@ -1093,11 +1093,11 @@
       "domainIds": [
         "genome-assembly"
       ],
-      "summary": "整合高准确度与超长读长进行二倍体基因组组装。",
+      "summary": "创新性整合 PacBio HiFi 高保真度与 Oxford Nanopore 超长读段（Ultra-long）的混合图组装管线，专攻着丝粒、端粒及复杂异染色质 T2T 闭合。",
       "meta": {
         "repository": "https://github.com/marbl/verkko",
-        "dataType": "HiFi / ONT",
-        "principle": "多数据组装图",
+        "dataType": "HiFi / ONT Ultra-long",
+        "principle": "多重德布鲁因图与图对齐路径解析",
         "canonicalPaperId": "verkko"
       }
     },
@@ -1178,11 +1178,11 @@
       "domainIds": [
         "genome-assembly"
       ],
-      "summary": "使用 Hi-C 配对联系将单倍型组装 contig 排序、定向并连接为染色体级 scaffold。",
+      "summary": "使用 Hi-C 配对空间接触信息将 Contig 排序、定向并连接为染色体级假分子的超高速现代挂载引擎，支持多分辨率迭代与自动纠错。",
       "meta": {
         "repository": "https://github.com/c-zhou/yahs",
-        "dataType": "contig FASTA 与 Hi-C BAM、BED、PA5 或 BIN 比对数据",
-        "principle": "基于多分辨率 Hi-C 接触矩阵和加权连接图的 scaffold 构建",
+        "dataType": "Contig FASTA 与 Hi-C 比对文件 (BAM / BED / BIN)",
+        "principle": "多分辨率接触矩阵与端点加权图遍历",
         "canonicalPaperId": "yahs"
       }
     },

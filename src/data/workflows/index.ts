@@ -124,7 +124,7 @@ export const researchWorkflows: ResearchWorkflow[] = [
           '基因 BUSCO 评分接近组装水平 BUSCO，平均内含子长度与外显子分布正常'
         ],
         tutorialId: 'edta-tutorial',
-        estimatedDuration: 'EDTA: 12~36 小时；BRAKER3: 1~3 天'
+        estimatedDuration: '视基因组大小与重复序列丰度而定（小型植物数小时，大型高重复基因组数十小时）'
       },
       {
         id: 'pangenome-graph',
@@ -205,7 +205,7 @@ export const researchWorkflows: ResearchWorkflow[] = [
           '比对率与覆盖度：同质近交系重测序经验上推荐 mapping rate > 90%~95%，全基因组覆盖率 > 90%（分化较大或富含转座子/PAV 的材料应结合局部结构变异解释实际覆盖）',
           '重复序列标记比例正常（避免 PCR 过度扩增）'
         ],
-        estimatedDuration: '根据样本量，数百样本通常需 1~3 天'
+        estimatedDuration: '视测序深度与样本量而定（数十至数百样本通常需数小时至数天）'
       },
       {
         id: 'vcf-qc-filtering',

@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 480" width="100%" height="100%">
+  <defs>
+    <style>
+      .title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-weight: 700; font-size: 17px; fill: #0f172a; }
+      .subtitle { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 12px; fill: #475569; }
+      .axis { stroke: #94a3b8; stroke-width: 1.5; }
+      .grid { stroke: #e2e8f0; stroke-width: 1; stroke-dasharray: 3,3; }
+      .axis-label { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; fill: #64748b; font-weight: 500; }
+      .panel { fill: #ffffff; stroke: #e2e8f0; stroke-width: 1.5; rx: 12px; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="960" height="480" rx="16" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5"/>
+
+  <!-- Left Panel: P(s) Power-law Decay Model -->
+  <g transform="translate(24, 24)">
+    <rect width="430" height="432" class="panel"/>
+    <text x="20" y="32" class="title">A. 空间构象：Hi-C 接触概率幂律衰减模型</text>
+    <text x="20" y="52" class="subtitle">聚合物物理学：顺式接触概率 P(s) 随基因组线性距离 s 呈指数衰减</text>
+
+    <g transform="translate(45, 80)">
+      <!-- Axes -->
+      <line x1="0" y1="240" x2="350" y2="240" class="axis"/>
+      <line x1="0" y1="0" x2="0" y2="240" class="axis"/>
+
+      <text x="350" y="258" text-anchor="end" class="axis-label">基因组物理距离 s (log 尺度, 10 kb → 100 Mb)</text>
+      <text x="-10" y="10" text-anchor="end" class="axis-label">接触概率 P(s) (log 尺度)</text>
+
+      <!-- Grid lines -->
+      <line x1="0" y1="60" x2="350" y2="60" class="grid"/>
+      <line x1="0" y1="120" x2="350" y2="120" class="grid"/>
+      <line x1="0" y1="180" x2="350" y2="180" class="grid"/>
+
+      <!-- Decay Curves -->
+      <!-- Curve 1: Fractal Globule alpha ≈ 1.0 -->
+      <path d="M 20 20 L 330 190" fill="none" stroke="#2563eb" stroke-width="3"/>
+      <text x="210" y="115" font-family="sans-serif" font-size="11" font-weight="700" fill="#2563eb">分形球模型 (α ≈ 1.0)</text>
+      <text x="210" y="130" font-family="sans-serif" font-size="10" fill="#64748b">天然染色质折叠无打结结构</text>
+
+      <!-- Curve 2: Equilibrium Globule alpha ≈ 1.5 -->
+      <path d="M 20 20 L 260 230" fill="none" stroke="#dc2626" stroke-width="2.5" stroke-dasharray="4,4"/>
+      <text x="130" y="195" font-family="sans-serif" font-size="11" font-weight="700" fill="#dc2626">平衡球模型 (α ≈ 1.5)</text>
+
+      <!-- Metric Box -->
+      <g transform="translate(10, 275)">
+        <rect width="330" height="64" rx="6" fill="#f1f5f9" stroke="#cbd5e1"/>
+        <text x="12" y="22" font-family="sans-serif" font-size="11" font-weight="700" fill="#1e293b">文库质量关键黄金指标：</text>
+        <text x="12" y="42" font-family="sans-serif" font-size="10.5" fill="#334155">• <tspan font-weight="600" fill="#047857">Cis/Trans 接触比率</tspan>: 建议 ≥ 4.0~8.0（顺式远高于反式）</text>
+        <text x="12" y="58" font-family="sans-serif" font-size="10.5" fill="#334155">• <tspan font-weight="600" fill="#dc2626">异常信号警示</tspan>: 若比率 &lt; 2.5，通常存在未裂解杂质或交联失效</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Right Panel: Scaffolding Heatmap Pattern -->
+  <g transform="translate(480, 24)">
+    <rect width="456" height="432" class="panel"/>
+    <text x="20" y="32" class="title">B. 染色体级 Contact Map 交互模式与病态诊断</text>
+    <text x="20" y="52" class="subtitle">YaHS 挂载矩阵：对角线连续性、方向反转（倒位）与易位判读</text>
+
+    <g transform="translate(45, 80)">
+      <!-- Main Heatmap Frame -->
+      <rect x="0" y="0" width="240" height="240" fill="#fef2f2" stroke="#cbd5e1" stroke-width="1.5"/>
+
+      <!-- Diagonal Contact Bands (Chr 1, Chr 2, Chr 3) -->
+      <!-- Chr 1 Block (0 to 110) -->
+      <polygon points="0,0 110,0 110,110 0,110" fill="#fee2e2"/>
+      <path d="M 0 0 L 110 110" stroke="#b91c1c" stroke-width="12" opacity="0.8"/>
+      
+      <!-- Chr 1 Inversion Glitch (Butterfly pattern at 60-90) -->
+      <line x1="60" y1="90" x2="90" y2="60" stroke="#dc2626" stroke-width="6"/>
+      <rect x="58" y="58" width="34" height="34" fill="none" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="2,2"/>
+      <text x="100" y="78" font-family="sans-serif" font-size="10.5" font-weight="700" fill="#dc2626">倒位断裂 (需定向翻转)</text>
+
+      <!-- Chr 2 Block (110 to 180) -->
+      <polygon points="110,110 180,110 180,180 110,180" fill="#fee2e2"/>
+      <path d="M 110 110 L 180 180" stroke="#b91c1c" stroke-width="10" opacity="0.8"/>
+
+      <!-- Chr 3 Block (180 to 240) -->
+      <polygon points="180,180 240,180 240,240 180,240" fill="#fee2e2"/>
+      <path d="M 180 180 L 240 240" stroke="#b91c1c" stroke-width="8" opacity="0.8"/>
+
+      <!-- Chromosome Boundary Grid Lines -->
+      <line x1="110" y1="0" x2="110" y2="240" stroke="#64748b" stroke-width="1.5"/>
+      <line x1="0" y1="110" x2="240" y2="110" stroke="#64748b" stroke-width="1.5"/>
+      
+      <line x1="180" y1="0" x2="180" y2="240" stroke="#64748b" stroke-width="1.5"/>
+      <line x1="0" y1="180" x2="240" y2="180" stroke="#64748b" stroke-width="1.5"/>
+
+      <!-- Chromosome Labels -->
+      <text x="55" y="-6" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#334155">Chr 1</text>
+      <text x="145" y="-6" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#334155">Chr 2</text>
+      <text x="210" y="-6" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#334155">Chr 3</text>
+
+      <!-- Side Explanations -->
+      <g transform="translate(255, 10)">
+        <text x="0" y="20" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#0f172a">热图质控判读法则：</text>
+        
+        <rect x="0" y="32" width="125" height="46" rx="4" fill="#ecfdf5" stroke="#a7f3d0"/>
+        <text x="6" y="50" font-family="sans-serif" font-size="10" font-weight="700" fill="#065f46">✔ 正常对角线</text>
+        <text x="6" y="66" font-family="sans-serif" font-size="9.5" fill="#047857">信号沿对角平滑衰减</text>
+
+        <rect x="0" y="86" width="125" height="46" rx="4" fill="#fef2f2" stroke="#fecaca"/>
+        <text x="6" y="104" font-family="sans-serif" font-size="10" font-weight="700" fill="#b91c1c">✖ 倒位蝴蝶结</text>
+        <text x="6" y="120" font-family="sans-serif" font-size="9.5" fill="#dc2626">信号垂直于对角对冲</text>
+
+        <rect x="0" y="140" width="125" height="46" rx="4" fill="#eff6ff" stroke="#bfdbfe"/>
+        <text x="6" y="158" font-family="sans-serif" font-size="10" font-weight="700" fill="#1d4ed8">✖ 异位离群斑块</text>
+        <text x="6" y="174" font-family="sans-serif" font-size="9.5" fill="#2563eb">非同源染色体异常强块</text>
+      </g>
+
+      <!-- Bottom summary box -->
+      <g transform="translate(0, 260)">
+        <rect width="380" height="75" rx="6" fill="#f8fafc" stroke="#e2e8f0"/>
+        <text x="12" y="20" font-family="sans-serif" font-size="11" font-weight="700" fill="#1e293b">YaHS 核心算法流程 (Zhou et al., 2023)：</text>
+        <text x="12" y="38" font-family="sans-serif" font-size="10.5" fill="#334155">1. 从 500kb 至 10kb 多轮分辨率迭代加权拟合最佳 Contig 排序</text>
+        <text x="12" y="54" font-family="sans-serif" font-size="10.5" fill="#334155">2. 依据 Contig 内部接触骤降（Contact density drop）自动侦测并切断错组装</text>
+        <text x="12" y="70" font-family="sans-serif" font-size="10.5" fill="#334155">3. 最终输出标准化 AGP 坐标文件与 Juicebox (.hic/.assembly) 渲染档案</text>
+      </g>
+    </g>
+  </g>
+</svg>
