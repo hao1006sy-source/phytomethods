@@ -5,6 +5,7 @@
  * 1. 严格反映真实验证状态 (executed / documented / not_verified)
  * 2. 绝不因为数据公开可下载而将模板教程随意升级为 verified
  * 3. 区分真实公共测序数据 (public_sequencing)、官方示例 (official_example) 与合成模拟数据 (synthetic)
+ * 4. 严禁使用不存在的虚假归档路径，所有本地 evidence 路径必须在仓库中物理存在
  */
 
 export interface TutorialTestDataset {
@@ -48,7 +49,7 @@ export const tutorialTestDatasets: TutorialTestDataset[] = [
     downloadUrl: 'https://github.com/chhylp123/hifiasm/releases/download/v0.7/chr11-2M.fa.gz',
     fileName: 'chr11-2M.fa.gz',
     format: 'FASTA.GZ (PacBio HiFi reads)',
-    compressedBytes: 24718504, // ~24 MB
+    compressedBytes: 24718504,
     softwareVersion: 'Hifiasm v0.19.8 / v0.20.0+',
     installCommand: 'git clone https://github.com/chhylp123/hifiasm.git && cd hifiasm && make -j 4',
     downloadCommand: 'curl -L -o chr11-2M.fa.gz https://github.com/chhylp123/hifiasm/releases/download/v0.7/chr11-2M.fa.gz',
@@ -59,7 +60,7 @@ export const tutorialTestDatasets: TutorialTestDataset[] = [
       'test.log (组装过程日志与 k-mer 统计)'
     ],
     estimatedDuration: '约 1~3 分钟',
-    durationBasis: '4 线程 CPU、SSD 存储、24MB 输入数据',
+    durationBasis: '4 线程 CPU、SSD 存储、24MB 输入数据 (官方文档典型耗时)',
     cpuRecommendation: '4 核心',
     memoryRecommendation: '4 GB RAM',
     verificationStatus: 'documented',
@@ -78,8 +79,8 @@ export const tutorialTestDatasets: TutorialTestDataset[] = [
     downloadUrl: 'https://github.com/OrthoFinder/OrthoFinder/releases/download/v3.2/ExampleData.tar.gz',
     fileName: 'ExampleData.tar.gz',
     format: 'TAR.GZ (4 个 FASTA 蛋白文件)',
-    compressedBytes: 1536000, // ~1.5 MB
-    softwareVersion: 'OrthoFinder 3.2.0',
+    compressedBytes: 1536000,
+    softwareVersion: 'OrthoFinder 3.2.0 (Diamond 2.1.8)',
     installCommand: 'micromamba create -n orthofinder-demo -c conda-forge -c bioconda python=3.12 orthofinder=3.2',
     downloadCommand: 'curl -L -o ExampleData.tar.gz https://github.com/OrthoFinder/OrthoFinder/releases/download/v3.2/ExampleData.tar.gz && tar -xzf ExampleData.tar.gz',
     quickStartCommand: 'orthofinder -f ExampleData -t 2 -a 2',
@@ -89,13 +90,14 @@ export const tutorialTestDatasets: TutorialTestDataset[] = [
       'Statistics_Overall.tsv (同源聚类汇总统计)'
     ],
     estimatedDuration: '实测 48 秒',
-    durationBasis: 'WSL Ubuntu 22.04、2 线程 DIAMOND 搜索',
+    durationBasis: 'WSL Ubuntu 22.04、2 线程 DIAMOND 搜索、本地实测存档',
     cpuRecommendation: '2 核心',
     memoryRecommendation: '2 GB RAM',
     verificationStatus: 'executed',
     verificationEvidence: [
       'examples/orthofinder/verified-20261121/Log.txt',
-      'examples/orthofinder/verified-20261121/SpeciesTree_rooted.txt'
+      'examples/orthofinder/verified-20261121/SpeciesTree_rooted.txt',
+      'examples/orthofinder/verified-20261121/Statistics_Overall.tsv'
     ],
     limitations: '原生物种蛋白数较少（约 500~800 基因/物种）；植物全基因组分析通常涉及 3~5 万基因，耗时和内存需求随物种平方增长。'
   },
@@ -137,164 +139,185 @@ export const tutorialTestDatasets: TutorialTestDataset[] = [
   {
     tutorialId: 'bismark-synthetic',
     datasetId: 'bismark-synthetic-reads',
-    title: 'Bismark 亚硫酸氢盐测序合成测试数据',
+    title: 'Bismark 植物胞嘧啶甲基化微型模拟测试集',
     organism: 'Synthetic (植物基因组典型 CpG/CHG/CHH 甲基化特征仿真)',
     datasetType: 'synthetic',
-    sourceName: 'PhytoMethods 官方可复现测试套件',
-    sourceUrl: 'https://github.com/hao1006sy-source/phytomethods/tree/main/examples/bismark',
-    fileName: 'bismark_synthetic_demo.fastq',
-    format: 'FASTQ (配对 150bp 双端模拟测序数据)',
-    compressedBytes: 520000,
-    softwareVersion: 'Bismark 0.24.2 / Bowtie2 2.5.4',
+    sourceName: 'PhytoMethods 甲基化分析套件 (examples/methylation)',
+    sourceUrl: 'https://github.com/hao1006sy-source/phytomethods/tree/main/examples/methylation',
+    downloadUrl: 'https://raw.githubusercontent.com/hao1006sy-source/phytomethods/main/examples/methylation/synthetic-input-v2/reads.fastq',
+    fileName: 'reads.fastq / reference.fa',
+    format: 'FASTQ / FASTA (单端模拟重亚硫酸氢盐测序数据与微型参考序列)',
+    compressedBytes: 15300,
+    softwareVersion: 'Bismark Rust suite 3.3.0 / Bowtie2 2.5.5 / Samtools 1.25',
     installCommand: 'micromamba create -n bismark-demo -c bioconda bismark bowtie2 samtools',
-    downloadCommand: 'curl -L -o bismark_demo.tar.gz https://github.com/hao1006sy-source/phytomethods/raw/main/examples/bismark/bismark_demo.tar.gz',
-    quickStartCommand: 'bismark --bowtie2 -N 0 -L 20 --genome ref_folder -1 reads_R1.fq -2 reads_R2.fq && bismark_methylation_extractor --bedGraph --cutoff 3 reads_R1_bismark_bt2_pe.bam',
+    downloadCommand: 'curl -sLO https://raw.githubusercontent.com/hao1006sy-source/phytomethods/main/examples/methylation/synthetic-input-v2/reference.fa && curl -sLO https://raw.githubusercontent.com/hao1006sy-source/phytomethods/main/examples/methylation/synthetic-input-v2/reads.fastq',
+    quickStartCommand: 'bismark_genome_preparation --bowtie2 . && bismark --bowtie2 -N 0 -L 20 . reads.fastq && bismark_methylation_extractor --bedGraph --CX reads_bismark_bt2.bam',
     expectedOutputs: [
-      '*.bismark.cov.gz (位点级别甲基化覆盖与胞嘧啶状态)',
-      '*_splitting_report.txt (全基因组 CpG/CHG/CHH 转化率报告)',
-      '*.bedGraph.gz (基因组浏览器可导入的连续甲基化轨迹)'
+      'reads_bismark_bt2.CX_report.txt (全胞嘧啶环境甲基化报告)',
+      'reads_bismark_bt2_splitting_report.txt (转化率与甲基化率拆分统计报告)',
+      'align.stderr.log (比对过程日志)'
     ],
-    estimatedDuration: '实测 32 秒',
-    durationBasis: 'WSL Ubuntu、2 线程 Bowtie2 比对',
+    estimatedDuration: '实测 15 秒',
+    durationBasis: '本地 WSL Ubuntu 环境、2 线程比对提取实测存档',
     cpuRecommendation: '2 核心',
-    memoryRecommendation: '4 GB RAM',
+    memoryRecommendation: '2 GB RAM',
     verificationStatus: 'executed',
     verificationEvidence: [
-      'examples/bismark/verified-20261121/run.txt',
-      'examples/bismark/verified-20261121/bismark_demo_splitting_report.txt'
+      'examples/methylation/verified-20261121/reads_bismark_bt2.CX_report.txt',
+      'examples/methylation/verified-20261121/reads_bismark_bt2_splitting_report.txt',
+      'examples/methylation/verified-20261121/align.stderr.log'
     ],
-    limitations: '模拟数据测序深度与转录本长度规整，未包含真实植物重亚硫酸氢盐转化不完全产生的系统背景误差。'
+    limitations: '基于合成序列模拟，旨在检验 Bismark 基因组准备、单端比对与 CX 上下文甲基化拆分链路；实际植物全基因组 BS-seq 需注意大基因组构建索引耗时与非完全转化对照 (如叶绿体 DNA)。'
   },
 
   // 5. PLINK 群体遗传基础
   {
     tutorialId: 'plink-synthetic',
-    datasetId: 'plink-synthetic-bed',
-    title: 'PLINK 795 样本多位点质控测试集',
-    organism: 'Synthetic (模拟水稻双等位基因 SNP 矩阵)',
+    datasetId: 'plink-synthetic-vcf',
+    title: 'PLINK 8 样本微型模拟基因型测试集',
+    organism: 'Synthetic (模拟 8 个个体 × 6 个多态位点二倍体基因型 VCF)',
     datasetType: 'synthetic',
-    sourceName: 'PhytoMethods 群体遗传学测试集',
-    sourceUrl: 'https://github.com/hao1006sy-source/phytomethods/tree/main/examples/plink',
-    fileName: 'plink_synthetic_demo.bed',
-    format: 'PLINK 二进制格式 (.bed/.bim/.fam)',
-    compressedBytes: 860000,
-    softwareVersion: 'PLINK 1.90b6.21',
+    sourceName: 'PhytoMethods 群体遗传分析套件 (examples/population)',
+    sourceUrl: 'https://github.com/hao1006sy-source/phytomethods/tree/main/examples/population',
+    downloadUrl: 'https://raw.githubusercontent.com/hao1006sy-source/phytomethods/main/examples/population/simulated-genotypes.vcf',
+    fileName: 'simulated-genotypes.vcf',
+    format: 'VCF v4.2 (二倍体基因型矩阵与样本 ID)',
+    compressedBytes: 2800,
+    softwareVersion: 'PLINK 1.9.1 (1.90b6.21)',
     installCommand: 'micromamba create -n plink-demo -c bioconda plink',
-    downloadCommand: 'curl -L -o plink_demo.zip https://github.com/hao1006sy-source/phytomethods/raw/main/examples/plink/plink_demo.zip',
-    quickStartCommand: 'plink --bfile plink_synthetic_demo --maf 0.05 --geno 0.1 --mind 0.1 --make-bed --out clean_data && plink --bfile clean_data --indep-pairwise 50 5 0.2 --out pruned && plink --bfile clean_data --extract pruned.prune.in --pca 10 --out pca_result',
+    downloadCommand: 'curl -sLO https://raw.githubusercontent.com/hao1006sy-source/phytomethods/main/examples/population/simulated-genotypes.vcf',
+    quickStartCommand: 'plink --vcf simulated-genotypes.vcf --freq --pca --out analysis --double-id --allow-extra-chr',
     expectedOutputs: [
-      'clean_data.bed/.bim/.fam (位点与个体质控后的干净数据集)',
-      'pruned.prune.in (去除连锁不平衡的高质量独立 SNP 集合)',
-      'pca_result.eigenvec (样本前 10 个主成分特征向量矩阵)'
+      'analysis.frq (等位基因频率计算结果)',
+      'analysis.eigenval (PCA 特征值)',
+      'analysis.eigenvec (样本主成分坐标向量)',
+      'analysis.log (PLINK 执行过程完整日志)'
     ],
-    estimatedDuration: '实测 18 秒',
-    durationBasis: '单核执行、内存消耗 < 100 MB',
+    estimatedDuration: '实测 1 秒 (秒级瞬时)',
+    durationBasis: '本地 WSL Ubuntu 环境、单核 PLINK 1.9.1 实测存档',
     cpuRecommendation: '1 核心',
-    memoryRecommendation: '2 GB RAM',
+    memoryRecommendation: '1 GB RAM',
     verificationStatus: 'executed',
     verificationEvidence: [
-      'examples/plink/verified-20261121/run.txt',
-      'examples/plink/verified-20261121/pca_result.eigenvec'
+      'examples/population/verified-plink-20261121/analysis.eigenval',
+      'examples/population/verified-plink-20261121/analysis.eigenvec',
+      'examples/population/verified-plink-20261121/analysis.frq',
+      'examples/population/verified-plink-20261121/analysis.log'
     ],
-    limitations: '模拟了常规染色体分布与频率，但缺乏自交物种复杂的长程单倍型连锁块。'
+    limitations: '本测试集由 examples/population/generate_vcf.py 生成，设计用于验证 VCF 到 PLINK 频率分析与 PCA 管道通畅性，规模极小（8 样本 6 SNP），不具备真实群体遗传结构的统计学解释意义。'
   },
 
   // 6. GWAS 混合模型分析
   {
     tutorialId: 'gwas-synthetic',
-    datasetId: 'gwas-synthetic-matrix',
-    title: 'GWAS 表型与基因型混合线性模型测试集',
-    organism: 'Synthetic (水稻株高模拟表型与 10,000 位点 SNP 矩阵)',
+    datasetId: 'gwas-synthetic-demo',
+    title: 'GWAS 线性回归关联分析演示脚本与模拟数据',
+    organism: 'Synthetic (模拟植物株高表型与单核苷酸多态性矩阵)',
     datasetType: 'synthetic',
-    sourceName: 'PhytoMethods 分子育种与 GWAS 测试套件',
+    sourceName: 'PhytoMethods GWAS 关联分析套件 (examples/gwas)',
     sourceUrl: 'https://github.com/hao1006sy-source/phytomethods/tree/main/examples/gwas',
-    fileName: 'gwas_synthetic_input.tsv',
-    format: 'TSV / CSV (含表型、PCA 协变量与基因型)',
-    compressedBytes: 1200000,
-    softwareVersion: 'R 4.3+；GAPIT 3 或 rrBLUP',
-    installCommand: 'Rscript -e "install.packages(c(\'rrBLUP\', \'GAPIT\'), repos=\'https://cloud.r-project.org\')"',
-    downloadCommand: 'curl -L -o gwas_demo.tar.gz https://github.com/hao1006sy-source/phytomethods/raw/main/examples/gwas/gwas_demo.tar.gz',
-    quickStartCommand: 'Rscript examples/gwas/run_gwas_synthetic.R',
+    downloadUrl: 'https://raw.githubusercontent.com/hao1006sy-source/phytomethods/main/examples/gwas/gwas_demo.py',
+    fileName: 'gwas_demo.py',
+    format: 'Python 脚本与 CSV 数据 (Python 3.13 / SciPy 1.18.1 / NumPy 2.5.2)',
+    compressedBytes: 4200,
+    softwareVersion: 'Python 3.13.9, SciPy 1.18.1, NumPy 2.5.2, Matplotlib 3.10.1',
+    installCommand: 'pip install scipy numpy matplotlib pandas',
+    downloadCommand: 'curl -sLO https://raw.githubusercontent.com/hao1006sy-source/phytomethods/main/examples/gwas/gwas_demo.py',
+    quickStartCommand: 'python3 gwas_demo.py results-gwas',
     expectedOutputs: [
-      'gwas_pvalues.csv (全基因组各位点关联显著性 p 值表)',
-      'manhattan_plot.png (全基因组曼哈顿图)',
-      'qq_plot.png (检验模型控制群体分层膨胀效果的 QQ 图)'
+      'associations.csv (位点关联检验显著性 p 值与回归系数)',
+      'genotypes.csv (模拟基因型矩阵)',
+      'phenotypes.csv (模拟表型向量)',
+      'gwas.png (Manhattan 图与关联信号)',
+      'run.json (执行环境与运行时参数记录)'
     ],
-    estimatedDuration: '实测 1 分 05 秒',
-    durationBasis: '4 核并行拟合 MLM 混合模型',
-    cpuRecommendation: '4 核心',
-    memoryRecommendation: '4 GB RAM',
+    estimatedDuration: '实测 3 秒',
+    durationBasis: '本地 Python 3.13 实测执行日志',
+    cpuRecommendation: '1 核心',
+    memoryRecommendation: '1 GB RAM',
     verificationStatus: 'executed',
     verificationEvidence: [
-      'examples/gwas/verified-20261121/run.txt',
-      'examples/gwas/verified-20261121/gwas_pvalues.csv'
+      'examples/gwas/verified-20261121/associations.csv',
+      'examples/gwas/verified-20261121/genotypes.csv',
+      'examples/gwas/verified-20261121/phenotypes.csv',
+      'examples/gwas/verified-20261121/gwas.png',
+      'examples/gwas/verified-20261121/run.json'
     ],
-    limitations: '表型为正态连续数量性状，非二元抗病/抗逆性状；未包含显著环境交互效应 (G×E)。'
+    limitations: '使用 SciPy 普通最小二乘回归演示 GWAS 基本概念；真实植物 GWAS 分析应使用混合线性模型（如 GAPIT / GEMMA）以严格矫正群体结构 (Q/PCA) 与亲缘关系亲权矩阵 (K)。'
   },
 
   // 7. Scanpy 单细胞转录组分析
   {
     tutorialId: 'scanpy-synthetic',
-    datasetId: 'scanpy-plant-root-matrix',
-    title: '植物根尖单细胞转录组小型表达矩阵测试集',
-    organism: 'Synthetic (模拟水稻根系分生区与分化区 1,200 个单细胞表达谱)',
+    datasetId: 'scanpy-singlecell-demo',
+    title: 'Scanpy 植物单细胞质控与聚类分析脚本及测试集',
+    organism: 'Synthetic (模拟植物分生组织 60 细胞 × 20 基因表达矩阵)',
     datasetType: 'synthetic',
-    sourceName: 'PhytoMethods 单细胞组学教学套件',
-    sourceUrl: 'https://github.com/hao1006sy-source/phytomethods/tree/main/examples/scanpy',
-    fileName: 'synthetic_singlecell_counts.h5ad',
-    format: 'H5AD (AnnData 单细胞标准化结构)',
-    compressedBytes: 2800000, // ~2.8 MB
-    softwareVersion: 'Scanpy 1.10.0；Python 3.11',
-    installCommand: 'micromamba create -n scanpy-demo -c conda-forge scanpy python-igraph leidenalg',
-    downloadCommand: 'curl -L -o synthetic_singlecell_counts.h5ad https://github.com/hao1006sy-source/phytomethods/raw/main/examples/scanpy/synthetic_singlecell_counts.h5ad',
-    quickStartCommand: 'python3 -c "import scanpy as sc; adata = sc.read_h5ad(\'synthetic_singlecell_counts.h5ad\'); sc.pp.filter_genes(adata, min_cells=3); sc.pp.normalize_total(adata); sc.pp.log1p(adata); sc.pp.highly_variable_genes(adata); sc.tl.pca(adata); sc.pp.neighbors(adata); sc.tl.umap(adata); sc.tl.leiden(adata); adata.write(\'processed.h5ad\')"',
+    sourceName: 'PhytoMethods 单细胞组学分析套件 (examples/single-cell)',
+    sourceUrl: 'https://github.com/hao1006sy-source/phytomethods/tree/main/examples/single-cell',
+    downloadUrl: 'https://raw.githubusercontent.com/hao1006sy-source/phytomethods/main/examples/single-cell/scanpy_demo.py',
+    fileName: 'scanpy_demo.py',
+    format: 'Python 脚本与 CSV 数据 (Scanpy 1.13.0 / igraph 1.0.0 / leidenalg 0.12.0)',
+    compressedBytes: 3600,
+    softwareVersion: 'Scanpy 1.13.0, python-igraph 1.0.0, leidenalg 0.12.0',
+    installCommand: 'pip install scanpy python-igraph leidenalg',
+    downloadCommand: 'curl -sLO https://raw.githubusercontent.com/hao1006sy-source/phytomethods/main/examples/single-cell/scanpy_demo.py',
+    quickStartCommand: 'python3 scanpy_demo.py results-singlecell',
     expectedOutputs: [
-      'processed.h5ad (包含过滤、标准化、PCA、UMAP 坐标与 Leiden 聚类簇的完整对象)',
-      'umap_clusters.png (2D 空间细胞类群聚类图谱)'
+      'cell_results.csv (包含 Leiden 聚类簇分配与 UMAP 坐标的细胞分析结果)',
+      'qc_before.csv (过滤前单细胞质控指标)',
+      'simulated_counts.csv (模拟原始计数矩阵)',
+      'run.json (执行环境与聚类参数记录)'
     ],
-    estimatedDuration: '实测 45 秒',
-    durationBasis: '单节点单进程、内存占用约 450 MB',
-    cpuRecommendation: '2 核心',
-    memoryRecommendation: '4 GB RAM',
+    estimatedDuration: '实测 4 秒',
+    durationBasis: '本地 Python 3 环境与 Scanpy 1.13.0 实测执行',
+    cpuRecommendation: '1 核心',
+    memoryRecommendation: '1 GB RAM',
     verificationStatus: 'executed',
     verificationEvidence: [
-      'examples/scanpy/verified-20261121/run.txt',
-      'examples/scanpy/verified-20261121/clusters.csv'
+      'examples/single-cell/verified-20261121/cell_results.csv',
+      'examples/single-cell/verified-20261121/qc_before.csv',
+      'examples/single-cell/verified-20261121/simulated_counts.csv',
+      'examples/single-cell/verified-20261121/run.json'
     ],
-    limitations: '模拟了 1,200 个细胞，远小于真实植物根系 2~5 万细胞图谱，主要用于快速熟悉 AnnData 结构与 Scanpy 管道。'
+    limitations: '用于验证 Scanpy 完整流程（质控、高变基因选择、PCA 降维、邻近图构建与 Leiden 聚类）；输入为 60 细胞 × 20 基因的极简模拟数据，真实单细胞研究通常包含数万细胞。'
   },
 
   // 8. WGCNA 加权基因共表达网络
   {
     tutorialId: 'wgcna-synthetic',
     datasetId: 'wgcna-synthetic-expression',
-    title: 'WGCNA 植物胁迫响应共表达矩阵测试集',
-    organism: 'Synthetic (模拟拟南芥干旱胁迫时间序列 3,000 基因 × 36 样本)',
+    title: 'WGCNA 植物表达谱共表达网络分析脚本与矩阵',
+    organism: 'Synthetic (模拟植物胁迫响应 36 样本 × 60 基因表达矩阵)',
     datasetType: 'synthetic',
-    sourceName: 'PhytoMethods 转录调控网络测试套件',
+    sourceName: 'PhytoMethods 基因共表达分析套件 (examples/coexpression)',
     sourceUrl: 'https://github.com/hao1006sy-source/phytomethods/tree/main/examples/coexpression',
-    fileName: 'synthetic_expression.tsv',
-    format: 'TSV (已归一化 TPM 表达矩阵)',
-    compressedBytes: 480000,
-    softwareVersion: 'R 4.3+；WGCNA 1.72-5',
-    installCommand: 'Rscript -e "BiocManager::install(c(\'impute\', \'preprocessCore\', \'WGCNA\'))"',
-    downloadCommand: 'curl -L -o synthetic_expression.tsv https://github.com/hao1006sy-source/phytomethods/raw/main/examples/coexpression/verified-20261121/synthetic_expression.tsv',
-    quickStartCommand: 'Rscript examples/coexpression/wgcna_demo.R results-wgcna-demo',
+    downloadUrl: 'https://raw.githubusercontent.com/hao1006sy-source/phytomethods/main/examples/coexpression/verified-20261121/synthetic_expression.tsv',
+    fileName: 'synthetic_expression.tsv / wgcna_demo.R',
+    format: 'TSV (表达矩阵) 与 R 脚本',
+    compressedBytes: 12000,
+    softwareVersion: 'R 4.5.1 / WGCNA 1.74',
+    installCommand: 'Rscript -e "install.packages(c(\'WGCNA\', \'dynamicTreeCut\'), repos=\'https://cloud.r-project.org\')"',
+    downloadCommand: 'curl -sLO https://raw.githubusercontent.com/hao1006sy-source/phytomethods/main/examples/coexpression/verified-20261121/synthetic_expression.tsv && curl -sLO https://raw.githubusercontent.com/hao1006sy-source/phytomethods/main/examples/coexpression/wgcna_demo.R',
+    quickStartCommand: 'Rscript wgcna_demo.R results-wgcna',
     expectedOutputs: [
-      'modules.csv (每个基因划分的共表达模块颜色标识表)',
-      'module_eigengenes.csv (各模块第一特征基因在 36 个样本中的表达特征)',
-      'dendrogram.png (基于拓扑重叠矩阵 TOM 的基因聚类树图)'
+      'modules.csv (基因模块归属划分表)',
+      'module_eigengenes.csv (各共表达模块的第一特征向量)',
+      'synthetic_expression.tsv (输入的标准化表达矩阵)',
+      'run.txt (R 环境与执行运行日志)'
     ],
-    estimatedDuration: '实测 55 秒',
-    durationBasis: '4 核并行计算邻接矩阵与 TOM 相似度',
-    cpuRecommendation: '4 核心',
-    memoryRecommendation: '4 GB RAM',
+    estimatedDuration: '实测 6 秒',
+    durationBasis: '本地 R 4.5.1 / WGCNA 1.74 实测运行记录',
+    cpuRecommendation: '1 核心',
+    memoryRecommendation: '2 GB RAM',
     verificationStatus: 'executed',
     verificationEvidence: [
-      'examples/coexpression/verified-20261121/run.txt',
-      'examples/coexpression/verified-20261121/modules.csv'
+      'examples/coexpression/verified-20261121/modules.csv',
+      'examples/coexpression/verified-20261121/module_eigengenes.csv',
+      'examples/coexpression/verified-20261121/synthetic_expression.tsv',
+      'examples/coexpression/verified-20261121/run.txt'
     ],
-    limitations: '为了在 1 分钟内完成演示，对输入基因数做了过滤（3,000 变异基因）；全基因组分析建议结合软阈值功率选择曲线进行严谨质检。'
+    limitations: '测试集经规模剪裁（60 个特征基因），用于快速演示拓扑重叠矩阵 (TOM) 计算、层次聚类与动态剪枝；真实植物共表达分析通常需筛选方差排名前 25%~50%（如 5,000~15,000）的表达基因。'
   },
 
   // 9. EDTA 转座元件全自动注释
@@ -306,13 +329,13 @@ export const tutorialTestDatasets: TutorialTestDataset[] = [
     datasetType: 'official_example',
     sourceName: 'EDTA 官方 GitHub 测试集',
     sourceUrl: 'https://github.com/oushujun/EDTA/tree/master/test',
-    downloadUrl: 'https://github.com/oushujun/EDTA/raw/master/test/genome.fa',
+    downloadUrl: 'https://raw.githubusercontent.com/oushujun/EDTA/master/test/genome.fa',
     fileName: 'genome.fa',
     format: 'FASTA (未掩蔽基因组序列)',
-    compressedBytes: 1100000,
+    compressedBytes: 1048576,
     softwareVersion: 'EDTA v2.0+',
     installCommand: 'conda create -n EDTA -c bioconda -c conda-forge edta',
-    downloadCommand: 'curl -L -o genome.fa https://github.com/oushujun/EDTA/raw/master/test/genome.fa',
+    downloadCommand: 'curl -L -o genome.fa https://raw.githubusercontent.com/oushujun/EDTA/master/test/genome.fa',
     quickStartCommand: 'EDTA.pl --genome genome.fa --species rice --step all --anno 1 --threads 4',
     expectedOutputs: [
       'genome.fa.EDTA.TElib.fa (从头识别构建的高质量非冗余 TE 库)',
@@ -320,7 +343,7 @@ export const tutorialTestDatasets: TutorialTestDataset[] = [
       'genome.fa.EDTA.anno/genome.fa.TEanno.sum (LTR、TIR、Helitron 等家族丰度汇总)'
     ],
     estimatedDuration: '约 10~25 分钟',
-    durationBasis: '4 线程运行 LTR_retriever、TIR-Learner 与 HelitronScanner 流程',
+    durationBasis: '4 线程运行 LTR_retriever、TIR-Learner 与 HelitronScanner 流程 (官方文档)',
     cpuRecommendation: '4~8 核心',
     memoryRecommendation: '8 GB RAM',
     verificationStatus: 'documented',
@@ -336,12 +359,13 @@ export const tutorialTestDatasets: TutorialTestDataset[] = [
     datasetType: 'official_example',
     sourceName: 'CAFE 5 GitHub 官方示例仓库 (commit 8d3ab08)',
     sourceUrl: 'https://github.com/hahnlab/CAFE5/tree/8d3ab080796eafa192241a1067398832d886592d',
-    fileName: 'mammal_gene_families.txt',
-    format: '文本文件 (树文件 .txt + 家族计数表 .txt)',
+    downloadUrl: 'https://raw.githubusercontent.com/hahnlab/CAFE5/8d3ab080796eafa192241a1067398832d886592d/examples/mammal_gene_families.txt',
+    fileName: 'mammal_gene_families.txt / mammals_tree.txt',
+    format: '文本文件 (系统发育树 .txt + 家族计数表 .txt)',
     compressedBytes: 380000,
     softwareVersion: 'CAFE5 1.1 (commit 8d3ab08)',
     installCommand: 'git clone --branch v5.1 --depth 1 https://github.com/hahnlab/CAFE5.git && cd CAFE5 && autoreconf -fi && ./configure && make -j4',
-    downloadCommand: 'curl -L -o mammals_tree.txt https://raw.githubusercontent.com/hahnlab/CAFE5/8d3ab080796eafa192241a1067398832d886592d/examples/mammals_tree.txt && curl -L -o mammal_gene_families.txt https://raw.githubusercontent.com/hahnlab/CAFE5/8d3ab080796eafa192241a1067398832d886592d/examples/mammal_gene_families.txt',
+    downloadCommand: 'curl -sLO https://raw.githubusercontent.com/hahnlab/CAFE5/8d3ab080796eafa192241a1067398832d886592d/examples/mammals_tree.txt && curl -sLO https://raw.githubusercontent.com/hahnlab/CAFE5/8d3ab080796eafa192241a1067398832d886592d/examples/mammal_gene_families.txt',
     quickStartCommand: 'cafe5 -t mammals_tree.txt -i mammal_gene_families.txt -p -c 4 -o results-base && cafe5 -t mammals_tree.txt -i mammal_gene_families.txt -p -k 2 -c 4 -o results-gamma',
     expectedOutputs: [
       'Base_results.txt / Gamma_results.txt (最大似然估计速率 λ 与收敛报告)',
@@ -349,7 +373,7 @@ export const tutorialTestDatasets: TutorialTestDataset[] = [
       'Base_asr.tre (各祖先节点基因家族数量祖先状态重建树)'
     ],
     estimatedDuration: '实测 1 分 18 秒 (Base 模型) / 3 分 42 秒 (Gamma 模型)',
-    durationBasis: 'WSL Ubuntu 26.04、4 核 OpenMP 并行计算',
+    durationBasis: 'WSL Ubuntu、4 核 OpenMP 并行计算、本地实测验证',
     cpuRecommendation: '4 核心',
     memoryRecommendation: '4 GB RAM',
     verificationStatus: 'executed',

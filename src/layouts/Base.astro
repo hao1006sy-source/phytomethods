@@ -6,9 +6,19 @@ import '../styles/home.css';
 import '../styles/nav-v3.css';
 import BrandLogo from '../components/BrandLogo.astro';
 import ThemeSwitcher from '../components/ThemeSwitcher.astro';
-const { title = 'PhytoMethods', home = false, description = '植物基因组学与生物信息学方法知识库，涵盖基因组组装、注释、泛基因组、群体遗传、GWAS、表观组学、单细胞及调控网络等九大研究领域的算法工具、经典文献与实战教程。' } = Astro.props;
+import { resolvePageSynonyms } from '../lib/search-synonyms-resolver';
+
+interface Props {
+  title?: string;
+  home?: boolean;
+  description?: string;
+  content?: string;
+}
+
+const { title = 'PhytoMethods', home = false, description = '植物基因组学与生物信息学方法知识库，涵盖基因组组装、注释、泛基因组、群体遗传、GWAS、表观组学、单细胞及调控网络等九大研究领域的算法工具、经典文献与实战教程。', content = '' } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const path = Astro.url.pathname;
+const synonyms = resolvePageSynonyms(`${title} ${description} ${path} ${content}`);
 const nav = [
   ['首页', ''],
   ['研究领域', 'topics/'],
@@ -69,7 +79,11 @@ const isCurrent = (href: string) => href ? path.startsWith(`${base}${href}`) : p
       <slot />
       {['topics/','tutorials/','workflows/','search/'].some(route=>path===`${base}${route}`) && <aside style="margin-top:24px;padding:18px;border:1px solid #dfebe3;border-radius:10px"><a href={`${base}genomes/`}>基因组资源 · 查找参考序列与配套注释 →</a></aside>}
       {path.includes(`${base}tutorials/`) && path!==`${base}tutorials/` && <aside style="margin-top:24px;padding:18px;border:1px solid #dfebe3;border-radius:10px"><a href={`${base}genomes/`}>查找植物参考基因组与配套注释 →</a><p>组装、VCF、基因模型和重复序列分析应使用一致的参考坐标与染色体命名。</p></aside>}
-
+      {synonyms.length > 0 && (
+        <div class="sr-only search-synonyms-index" data-pagefind-meta="synonyms" aria-hidden="true" style="display:none;">
+          {synonyms.join(' ')}
+        </div>
+      )}
     </main>
 
     <footer class:list={['site-footer', { 'home-footer': home }]}>

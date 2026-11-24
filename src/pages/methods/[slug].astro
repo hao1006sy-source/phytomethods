@@ -16,7 +16,7 @@ const papers = await getCollection('papers', ({ data }) => data.status === 'publ
 const tutorials = await getCollection('tutorials', ({ data }) => data.status === 'published' || import.meta.env.DEV);
 ---
 
-<Base title={entry.data.title} description={entry.data.summary}>
+<Base title={entry.data.title} description={entry.data.summary} content={entry.body}>
   <DraftPreview status={entry.data.status} />
   {entry.id === 'hifiasm'
     ? <HifiasmPageV3 entry={entry} papers={papers} tutorials={tutorials} methods={allMethods} />

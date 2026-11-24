@@ -15,7 +15,7 @@ const papers = await getCollection('papers');
 const method = methods.find(item => item.id === entry.data.method);
 const paper = method ? papers.find(item => item.id === method.data.paper) : undefined;
 ---
-<Base title={entry.data.title} description={entry.data.summary}>
+<Base title={entry.data.title} description={entry.data.summary} content={entry.body}>
   {entry.id === 'hifiasm-intro'
     ? <HifiasmTutorial entry={entry} method={method} paper={paper} />
     : <TutorialV3 entry={entry} method={method} paper={paper} />}
