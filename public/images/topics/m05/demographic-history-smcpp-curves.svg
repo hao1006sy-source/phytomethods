@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 520" width="100%" height="100%" style="background: transparent; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <linearGradient id="bg-grad-m05-3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" stop-opacity="0.03" />
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0.08" />
+    </linearGradient>
+    <filter id="shadow-m05" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.08" />
+    </filter>
+  </defs>
+
+  <!-- 总体画框与标题 -->
+  <rect x="15" y="15" width="970" height="490" rx="16" fill="url(#bg-grad-m05-3)" stroke="#cbd5e1" stroke-width="1.5" />
+  <text x="40" y="48" font-size="18" font-weight="700" fill="#0f172a">历史有效群体大小（Ne）动态波动推断：SMC++ 溯祖演化模型</text>
+  <text x="40" y="70" font-size="12" fill="#64748b">从全基因组等位基因位点频谱与局部杂合块长度分布，推演植物驯化瓶颈、末次盛冰期（LGM）与群体分化时间</text>
+
+  <!-- 左板块：对数坐标系演化轨迹图解 -->
+  <g transform="translate(40, 95)">
+    <rect x="0" y="0" width="470" height="380" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" filter="url(#shadow-m05)" />
+    <path d="M 0 12 Q 0 0 12 0 L 458 0 Q 470 0 470 12 L 470 40 L 0 40 Z" fill="#f0fdf4" />
+    <text x="16" y="26" font-size="14" font-weight="700" fill="#15803d">1. 有效种群规模 (Ne) 演化历史轨迹 (对数坐标)</text>
+
+    <!-- 坐标系 -->
+    <g transform="translate(65, 55)">
+      <!-- 坐标轴 -->
+      <line x1="0" y1="230" x2="380" y2="230" stroke="#334155" stroke-width="2" />
+      <line x1="0" y1="10" x2="0" y2="230" stroke="#334155" stroke-width="2" />
+
+      <!-- X轴对数刻度 (从过去到现代，反向刻度) -->
+      <text x="385" y="235" font-size="10" font-weight="700" fill="#334155">年代 (年)</text>
+      <line x1="40" y1="230" x2="40" y2="235" stroke="#334155" stroke-width="1.5" />
+      <text x="40" y="248" font-size="9" fill="#64748b" text-anchor="middle">10^6 (1Ma)</text>
+      <line x1="140" y1="230" x2="140" y2="235" stroke="#334155" stroke-width="1.5" />
+      <text x="140" y="248" font-size="9" fill="#64748b" text-anchor="middle">10^5 (10万)</text>
+      <line x1="240" y1="230" x2="240" y2="235" stroke="#334155" stroke-width="1.5" />
+      <text x="240" y="248" font-size="9" fill="#64748b" text-anchor="middle">10^4 (1万)</text>
+      <line x1="340" y1="230" x2="340" y2="235" stroke="#334155" stroke-width="1.5" />
+      <text x="340" y="248" font-size="9" fill="#64748b" text-anchor="middle">10^3 (千年前)</text>
+
+      <!-- Y轴对数刻度 (有效种群大小 Ne) -->
+      <text x="-40" y="10" font-size="10" font-weight="700" fill="#334155">Ne (个体数)</text>
+      <line x1="-5" y1="40" x2="0" y2="40" stroke="#334155" stroke-width="1.5" />
+      <text x="-10" y="44" font-size="8.5" fill="#64748b" text-anchor="end">10^6</text>
+      <line x1="-5" y1="100" x2="0" y2="100" stroke="#334155" stroke-width="1.5" />
+      <text x="-10" y="104" font-size="8.5" fill="#64748b" text-anchor="end">10^5</text>
+      <line x1="-5" y1="160" x2="0" y2="160" stroke="#334155" stroke-width="1.5" />
+      <text x="-10" y="164" font-size="8.5" fill="#64748b" text-anchor="end">10^4</text>
+      <line x1="-5" y1="210" x2="0" y2="210" stroke="#334155" stroke-width="1.5" />
+      <text x="-10" y="214" font-size="8.5" fill="#64748b" text-anchor="end">10^3</text>
+
+      <!-- 阴影地质事件区：末次盛冰期 (LGM, 约 2 万年前) -->
+      <rect x="210" y="10" width="35" height="220" fill="#e0f2fe" opacity="0.6" />
+      <text x="227" y="25" font-size="8.5" font-weight="700" fill="#0284c7" text-anchor="middle">LGM (冰期)</text>
+
+      <!-- 阴影地质事件区：农业驯化期 (约 1 万年前 ~ 8000 年前) -->
+      <rect x="250" y="10" width="50" height="220" fill="#fef2f2" opacity="0.6" />
+      <text x="275" y="25" font-size="8.5" font-weight="700" fill="#dc2626" text-anchor="middle">驯化瓶颈</text>
+
+      <!-- 曲线 1：野生稻种群演化轨迹 (绿色实线，平缓回升) -->
+      <path d="M 20 80 Q 80 85 130 90 Q 180 100 220 135 Q 240 145 280 120 Q 320 115 360 110" fill="none" stroke="#16a34a" stroke-width="2.5" />
+      <circle cx="360" cy="110" r="3.5" fill="#15803d" />
+      <text x="365" y="108" font-size="9" font-weight="700" fill="#15803d">野生祖先种 (Rufipogon)</text>
+
+      <!-- 曲线 2：栽培稻种群演化轨迹 (红色实线，经历剧烈驯化瓶颈下跌) -->
+      <path d="M 20 80 Q 80 85 130 90 Q 170 95 200 110 Q 230 145 270 205 Q 310 200 360 185" fill="none" stroke="#dc2626" stroke-width="2.5" />
+      <circle cx="360" cy="185" r="3.5" fill="#b91c1c" />
+      <text x="365" y="185" font-size="9" font-weight="700" fill="#b91c1c">栽培稻 (Sativa)</text>
+
+      <!-- 谱系分化交汇点 -->
+      <circle cx="160" cy="94" r="5" fill="#f59e0b" stroke="#78350f" stroke-width="1.5" />
+      <text x="160" y="80" font-size="9" font-weight="700" fill="#b45309" text-anchor="middle">谱系分化启动 (约 15 万年前)</text>
+    </g>
+
+    <text x="235" y="355" font-size="10" fill="#475569" text-anchor="middle">时间尺度通过突变率 $\mu$ 与世代时间 $g$ 标定：$T_{\text{years}} = g \times \frac{t_{\text{coal}}}{2\mu}$</text>
+  </g>
+
+  <!-- 右板块：SMC++ 隐式马尔可夫数学模型与参数转换 -->
+  <g transform="translate(530, 95)">
+    <rect x="0" y="0" width="430" height="380" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" filter="url(#shadow-m05)" />
+    <path d="M 0 12 Q 0 0 12 0 L 418 0 Q 430 0 430 12 L 430 40 L 0 40 Z" fill="#ecfeff" />
+    <text x="16" y="26" font-size="14" font-weight="700" fill="#0891b2">2. 数学推导与时间参数换算模型</text>
+
+    <!-- 公式 1：TMRCA 与突变率换算 -->
+    <g transform="translate(18, 55)">
+      <rect x="0" y="0" width="395" height="90" rx="8" fill="#f0fdfa" stroke="#99f6e4" stroke-width="1" />
+      <text x="14" y="20" font-size="11" font-weight="700" fill="#0f766e">溯祖时间与有效种群参数换算:</text>
+      <text x="14" y="44" font-size="13" font-weight="700" fill="#0d9488">N_e(t) = \frac{\theta(t)}{4\mu}, \quad T = g \times \frac{\lambda}{2\mu}</text>
+      <text x="14" y="70" font-size="9.5" fill="#134e4a">其中 $\mu$ 为单碱基单世代突变率（水稻约 $6.5 \times 10^{-9}$），$g$ 为世代时间（年/代）</text>
+    </g>
+
+    <!-- 模型 2：SMC++ 相比 PSMC 的飞跃 -->
+    <g transform="translate(18, 155)">
+      <rect x="0" y="0" width="395" height="110" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1" />
+      <text x="14" y="20" font-size="11" font-weight="700" fill="#0f172a">SMC++ 对传统 PSMC 的核心突破：</text>
+      <text x="14" y="42" font-size="10" fill="#334155">• <tspan font-weight="700">突破单个体限制:</tspan> 结合等位基因位点频谱 (SFS) 与全基因组隐马尔可夫模型</text>
+      <text x="14" y="64" font-size="10" fill="#334155">• <tspan font-weight="700">解析近代历史:</tspan> 传统 PSMC 在 &lt; 2 万年完全失真，SMC++ 可高精度解析至数千年前</text>
+      <text x="14" y="86" font-size="10" fill="#334155">• <tspan font-weight="700">支持双群体分化模型 (`smc++ split`):</tspan> 精确定位两群体基因流完全中断的隔离年代</text>
+    </g>
+
+    <!-- 实践质控 -->
+    <g transform="translate(18, 275)">
+      <rect x="0" y="0" width="395" height="85" rx="8" fill="#fffbeb" stroke="#fef08a" stroke-width="1" />
+      <text x="14" y="20" font-size="11" font-weight="700" fill="#854d0e">植物群体历史分析核心质控：</text>
+      <text x="14" y="40" font-size="9.5" fill="#713f12">1. <tspan font-weight="700">掩码屏蔽 (Masking):</tspan> 必须去除高重复转座子区与极高读深拷贝数异常区</text>
+      <text x="14" y="58" font-size="9.5" fill="#713f12">2. <tspan font-weight="700">样条平滑 (Spline):</tspan> 使用正则化惩罚样条曲线防止过度拟合局部噪声</text>
+      <text x="14" y="76" font-size="9.5" fill="#713f12">3. <tspan font-weight="700">自交校正:</tspan> 严格自花授粉植物（如拟南芥、大豆）需校正近交系数 $F$</text>
+    </g>
+  </g>
+</svg>

@@ -1,103 +1,107 @@
 ---
-title: SNP 检测、过滤与 VCF
-summary: 从测序比对证据到标准化变异记录和群体基因型矩阵，理解植物 SNP 与 InDel 流程。
+title: SNP 检测、过滤与 VCF：从比对证据到高质量群体基因型矩阵
+summary: 系统推导基因型似然贝叶斯模型、GATK/BCFtools 变异质控统计量（QD/FS/SOR/AB）、多倍体等位基因剂量与植物高重复基因组硬过滤标准。
 domain: population-genetics
 methods: [bcftools, plink]
 status: published
-updatedAt: 2026-11-22
+updatedAt: 2026-11-25
 ---
 
-## 研究问题与流程边界
+## 核心科学问题：从测序噪声中提取真实遗传变异
 
-植物群体遗传、驯化和育种研究通常需要为多个材料建立可比较的基因型集合。变异分析包含彼此衔接的环节：测序读段质控、比对至参考、变异检测与基因型推断、标准化、过滤、格式转换和下游群体分析。参考版本、倍性、测序深度、群体采样和过滤规则都会影响最终保留的记录。
+全基因组重测序（WGS）是植物群体遗传学与育种研究的核心数据源。然而，从短读长（Illumina PE150）原始比对 BAM 文件到最终可用于群体结构与 GWAS 分析的基因型矩阵，中间跨越了变异识别（Variant Calling）与质量控制（Quality Control, QC）两大关口。
 
-变异调用（variant calling）利用读段与参考的比对证据推断候选位点及样本基因型；质量控制（quality control，QC）评估调用可靠性并定义分析集合；PLINK 等群体工具从已得到的基因型开始，处理数据集、筛选位点并计算群体统计。PLINK 不承担原始 reads 比对或变异发现。一个工具的输出格式也不等于它完成了整个研究流程。
+在植物基因组中，由于转座子序列高达 $70\% \sim 85\%$（如玉米、大麦、小麦）以及古多倍化旁系同源基因高度相似，错误比对（Misalignment）极其普遍。大量来自不同重复拷贝的读长错配至同一参考位点，会产生虚假的高深度“杂合”假突变。
 
-## SNP、InDel 与基因型证据
+因此，建立严谨的概率基因型似然模型（Genotype Likelihoods），并在多维质量指标空间中实施客观的统计过滤，是确保整个群体演化结论真实可靠的生命线。
 
-单核苷酸变异（single-nucleotide variant，SNV）表示相对于指定参考的单碱基差异；群体遗传中常称 SNP。插入或缺失（insertion/deletion，InDel）表示相对于参考的短序列插入或缺失。参考序列是比较坐标系，REF 并非跨所有个体都更常见的祖先等位基因。
+---
 
-变异检测器依据碱基质量、比对质量、读段深度、读段方向、等位基因支持及倍性模型计算基因型证据。基因型似然（genotype likelihood）刻画观测读段在不同基因型假设下的支持；硬调用 GT 则给出一个离散基因型。低深度下保留似然或剂量可保存不确定性，后续软件能否读取和使用这些信息需分别检查。位点级 QUAL 与样本级 GQ 是不同字段；DP、AD 等的计算范围和定义应查文件头及调用器文档。
+## 算法数学推导：基因型似然与变异质控指标
 
-## VCF 记录结构
+### 1. 基因型似然（Genotype Likelihood, GL）与贝叶斯分型
 
-VCF（Variant Call Format）以文本形式记录变异和样本基因型；BCF 是其二进制对应格式。文件开头的 `##` 元信息行声明参考、contig 和 INFO、FILTER、FORMAT 标签定义；`#CHROM` 表头后是数据列。标准固定字段为 8 列；若包含样本基因型，还会出现 `FORMAT` 与每个样本列。[HTS 规范](https://samtools.github.io/hts-specs/)
+设某单样本在特定基因组位点覆盖了 $k$ 条有效 Reads，观测到的碱基向量为 $\mathbf{R} = \{r_1, r_2, \dots, r_k\}$，各碱基测序错误率为 $e_i$（由 Phred 测序质量值换算：$e_i = 10^{-Q_i/10}$）。在二倍体候选基因型 $G \in \{A_1A_1, A_1A_2, A_2A_2\}$ 条件下，该样本数据的似然函数为各位点读长独立条件概率的乘积：
 
-| 字段 | 含义 | 阅读要点 |
-| --- | --- | --- |
-| `CHROM`, `POS` | 参考序列与位置 | VCF 的 POS 从 1 开始；与 BED 等区间格式互换时核对坐标约定 |
-| `ID` | 变异标识 | `.` 表示当前记录未提供 ID |
-| `REF`, `ALT` | 参考等位基因及一个或多个备选等位基因 | ALT 顺序决定 GT 中非参考等位基因编号 |
-| `QUAL`, `FILTER` | 记录级质量分数与过滤状态 | QUAL 不是样本级 GQ；FILTER 的标签需结合调用流程解释 |
-| `INFO` | 位点级注释 | 字段结构及每个值的数量由元信息声明 |
-| `FORMAT` 与样本列 | 每个样本的基因型和证据字段 | GT、DP、GQ、AD、PL 等按 FORMAT 顺序解析 |
+$$P(\mathbf{R} \mid G = A_1A_2) = \prod_{i=1}^k \left( \frac{1}{2} P(r_i \mid A_1) + \frac{1}{2} P(r_i \mid A_2) \right)$$
 
-例如，二倍体 `GT=0/1` 表示一个 REF 和一个第一个 ALT 等位基因；`1/2` 表示两个不同 ALT；`|` 表示记录了相位，`/` 表示未定相或相位未提供。多倍体基因型可以包含更多等位基因拷贝，缺失编码也取决于倍性。VCF 规范规定 `POS`、INFO/FORMAT 结构及基因型等位基因编号；具体字段语义以该文件头的声明为准。
+其中单个碱基在给定真实等位基因 $A$ 下的观测概率定义为：
 
-## 从 BAM/CRAM 到 VCF/BCF
+$$P(r_i \mid A) = \begin{cases} 1 - e_i & \text{若 } r_i = A \\ \frac{e_i}{3} & \text{若 } r_i \ne A \end{cases}$$
 
-BCFtools 的官方基础流程由 `mpileup` 汇集比对证据并计算基因型似然，再由 `call` 在所选模型下输出候选变异与基因型。[官方变异检测流程](https://samtools.github.io/bcftools/howtos/variant-calling.html)
+结合群体先验等位基因频率 $\pi(G)$，通过贝叶斯定理计算各基因型的**后验概率**（Posterior Probability），并取最大后验对应的基因为硬基因型（Hard-call GT），同时将非最优基因型的对数几率差转化为**基因型质量值（Genotype Quality, GQ）**：
 
-```bash
-# 输入 BAM/CRAM 应与参考版本一致，并具有可读取的索引
-bcftools mpileup -Ou -f reference.fa sample1.bam sample2.bam \
-  | bcftools call -m -v -Ob -o cohort.raw.bcf
-bcftools index cohort.raw.bcf
+$$\text{GQ} = -10 \log_{10} \left( 1 - \max_G P(G \mid \mathbf{R}) \right)$$
+
+---
+
+## GATK 与 BCFtools 核心质控指标数学体系
+
+在 VCF 文件的 `INFO` 字段中，一系列标准化统计量用于从不同物理维度剥离系统误差：
+
+```
+VCF 质量控制核心六维指标体系：
+├── 1. 深度标准化质量 (QD, Qual By Depth): QD = QUAL / DP，消除深读长人为堆叠的高 QUAL 假象
+├── 2. 链偏好性检验 (Strand Bias):
+│   ├── Fisher 链偏好 (FS): 基于 2x2 列联表检验正反向比对 Reads 偏向性
+│   └── 链让步比 (SOR): 平滑链偏倚，在超高深度或单链极端缺失时更为稳健
+├── 3. 比对质量偏倚 (MQ & MQRankSum):
+│   ├── 均方根比对质量 (MQ): 全部位点比对质量 RMS，评估是否落入低比对度重复区
+│   └── 比对质量秩和检验 (MQRankSum): 比较支持 REF 与 ALT 的比对质量秩和差异
+└── 4. 读长物理位置偏倚 (ReadPosRankSum): 检验变异是否系统性富集在 Reads 末端 (易受测序酶末端错误污染)
 ```
 
-`-Ou` 在管道中输出未压缩 BCF，避免转成 VCF 文本后再解析；`call -m` 使用多等位调用模型，`-v` 只写变异位点，`-Ob` 输出压缩 BCF。单个样本或多样本的调用策略、先逐样本检测再联合分型等方案需根据数据设计与软件文档选择。官方文档指出 `mpileup` 对每个输入文件单个位点默认最多考虑 250 条 reads；超高深度数据需要评估 `--max-depth` 设置。该默认值是实现参数，不是适用于所有实验的深度建议。
+### 1. 深度标准化质量（Qual By Depth, QD）
+原始比对质量总和 `QUAL` 会随覆盖深度线性上升，导致低质量重复区因深度极大而获得虚假的高分。$QD = \text{QUAL} / \text{DP}$ 实现了单位深度的置信度归一化，植物重测序标准推荐过滤阈值：$QD < 2.0$。
 
-## 标准化、过滤与分析集合
+### 2. 等位基因平衡度（Allele Balance, AB）
+对于真正的二倍体杂合变异（$0/1$），支持 ALT 碱基的读数比例理论上应当服从均值为 0.5 的二项分布：
 
-插入缺失在重复序列附近可能有多个等价表示。若要跨样本或数据库比较，常用参考序列进行左对齐和规范化，并核对 REF 等位基因是否与参考一致。BCFtools `norm` 可执行参考引导的 InDel 左对齐，也可按需拆分多等位记录；拆分会改变记录表示和某些注释/基因型字段的结构，因此只有在下游工具或比较规则要求时才实施。[BCFtools `norm` 手册](https://samtools.github.io/bcftools/bcftools-man.html#norm)
+$$AB = \frac{\text{AD}_{\text{ALT}}}{\text{DP}}$$
 
-```bash
-# 参考引导规范化；输入、输出和参考索引需匹配
-bcftools norm -f reference.fa -Oz -o cohort.norm.vcf.gz cohort.raw.bcf
-bcftools index -t cohort.norm.vcf.gz
+若实测 $AB < 0.2$ 或 $AB > 0.8$，表明该位点大概率源自旁系同源基因错配或严重的 PCR 扩增偏倚，必须强制标记为缺失或剔除。
 
-# 如分析流程要求双等位记录，可另行拆分并单独留档
-bcftools norm -f reference.fa -m -any -Oz \
-  -o cohort.norm.biallelic.vcf.gz cohort.raw.bcf
-```
+---
 
-过滤应分清记录级和样本级信息。位点 QUAL/FILTER 用来筛选记录；FORMAT/DP 或 FORMAT/GQ 用于评估具体样本调用。`bcftools view` 对多样本 FORMAT 条件的逻辑按记录筛选，常见表达式中的 `&`、`&&` 和对缺失 GT 的筛除方式会产生不同结果；先写清分析单位，再查看保留样本数和位点数。[BCFtools 过滤说明](https://samtools.github.io/bcftools/howtos/filtering.html)
+## 植物高重复基因组硬过滤标准规范
+
+结合植物高重复、转座子密布的基因组学特征，推荐采用以下生产级硬过滤准则：
 
 ```bash
-# 教学示例：删除任一样本 GT 缺失的整条记录
-bcftools view -e 'GT="mis"' -Oz \
-  -o cohort.complete-sites.vcf.gz cohort.norm.vcf.gz
+# 1. 针对 SNP 位点的标准 GATK/BCFtools 统计量硬过滤
+bcftools filter -Oz -o cohort.snps.filtered.vcf.gz \
+  -e 'QD < 2.0 || FS > 60.0 || MQ < 40.0 || MQRankSum < -12.5 || ReadPosRankSum < -8.0 || SOR > 3.0' \
+  cohort.snps.raw.vcf.gz
+
+# 2. 针对植物转座子多拷贝区：过滤异常超高深度位点 (DP > 2.5 * 平均全基因组深度)
+# 防止将未组装分相的古加倍拷贝误判为假杂合 SNP
+bcftools filter -Oz -o cohort.snps.normdp.vcf.gz \
+  -e 'INFO/DP > 2.5 * MEAN_DEPTH || INFO/DP < 0.3 * MEAN_DEPTH' \
+  cohort.snps.filtered.vcf.gz
+
+# 3. 提取严格双等位位点 (Biallelic) 并过滤缺失率与 MAF
+bcftools view -m2 -M2 -v snps \
+  -e 'F_MISSING > 0.1 || MAF < 0.05' \
+  -Oz -o cohort.snps.final.vcf.gz \
+  cohort.snps.normdp.vcf.gz
 ```
 
-该 complete-case 示例会因为任一材料缺失而删除整个变异位点；大群体中可能显著减少数据量，且留下的位点集合可能偏向更易调用的区域。它只演示表达式语义，不是默认过滤方案。MAF、样本缺失率、位点缺失率、深度、杂合度和重复区域过滤都需依据科学问题、倍性、群体结构、可调用区域与经验校准报告。过严的频率筛选会减少稀有变异，HWE 过滤在自交或群体混合材料中也不能直接作为普遍规则。
+---
 
-## 转入群体基因型工具
+## 实践规范与质控要点
 
-完成调用和基本质控后，可将适合的 VCF 导入 PLINK 2 的 PGEN 文件集：
+| 过滤阶段 | 核心参数与阈值 | 常见陷阱与科学纠正 |
+| :--- | :--- | :--- |
+| **基因型样本级过滤** | 将个体 $\text{DP} < 4$ 或 $\text{GQ} < 20$ 的单元格重置为缺失 (`./.`) | 直接使用硬调用 0/1，导致低深度（如 1 条 read）被轻率认定为纯合 |
+| **超高深度截断** | 必须设定最大深度（如全基因组平均深度的 2 ~ 2.5 倍） | 忽略超高深度过滤，将大量转座子反转录多拷贝错配误当作高多态性热点 |
+| **InDel 邻域屏蔽** | 剔除位于 InDel 左右 5 bp 范围内的 SNP 位点 | 插入缺失附近的局部比对错位会造成密集的人工伪假 SNP 簇 |
+| **多倍体基因型** | 异源多倍体推荐使用 FreeBayes 或 updog 设置真实染色体倍性 | 强行按二倍体分型四倍体油菜或六倍体小麦，丢失亚基因组特异性多态 |
 
-```bash
-plink2 --vcf cohort.norm.vcf.gz --make-pgen --out cohort
-```
+---
 
-该转换适合后续 PLINK 支持的群体统计、连锁剪枝和关联工作。PLINK 2 从 VCF 只读取其内部格式能够表示的内容，部分每样本测序深度和质量字段会被舍弃；如需依据 GQ、DP 等过滤，应在转换前完成。官方手册还指出 PLINK 2 文件格式不支持大于二倍体的基因型调用；`--polyploid-mode` 默认 `error`，也可选择 `missing`，后者会把整条多倍体调用转为缺失并丢弃剂量信息。多倍体分析需选用支持目标倍性和剂量语义的工具链。[PLINK 2 VCF/BCF 输入说明](https://www.cog-genomics.org/plink/2.0/input)
+## 延伸阅读与前置依赖
 
-## 植物数据的关键控制点
-
-- **参考和比对。** 参考缺失、重复区、多拷贝基因和同源亚基因组可能造成错配或等位基因偏倚；先核对可调用区域与映射质量。
-- **自交与近交。** 杂合度和频率谱受繁殖方式影响；HWE、MAF 和杂合度过滤的阈值须对应样本来源和研究设计。
-- **倍性和剂量。** 多倍体的剂量状态可能超出二倍体编码。确定检测器、文件格式和下游软件对目标倍性的共同支持情况。
-- **变异表示。** 参考版本、染色体命名、多等位拆分、REF/ALT 顺序和坐标转换要保持一致；合并前检查样本重复、参考不匹配及表示差异。
-- **数据筛选影响。** 每一步记录样本数、位点数、过滤原因、缺失与深度分布；群体结构、关联和选择扫描可以使用不同的分析子集，并说明构建方式。
-
-## 水稻植物案例与方法比较
-
-Wang 等的 3,010 份亚洲栽培稻研究以 BWA-MEM 0.7.10 比对，使用 GATK 3.2-2 进行 SNP/InDel 检测，并对 3,010 份材料识别约 2,939.99 万个 SNP 与 246.70 万个短 InDel。PLINK 用于 LD 剪枝和核心 SNP 集构建，ADMIXTURE 用于群体结构分析；这些下游软件不是其变异调用器。[原始论文与步骤记录](../../../papers/rice-3010-pangenome/)
-
-Balimponya 等对水稻杂合变异检测比较了 Bowtie2 或 BWA-MEM2 与 GATK4.3 HaplotypeCaller 或 BCFtools mpileup 的组合，并以相同 DNA 的独立测序结果评估一致性。该研究选定 BWA-MEM2 + GATK4.3 HaplotypeCaller：四项实验报告的相似度为 99.74%、99.63%、99.02% 和 99.37%；BWA-MEM2 + BCFtools mpileup 对应为 71.52%、71.43%、70.97% 和 66.51%。这是该研究材料、过滤和验证设定下的比较，不构成跨物种或跨数据集的调用器排名。[论文记录](../../../papers/rice-variant-comparison/)；[Plant Methods 原文](https://doi.org/10.1186/s13007-025-01437-x)
-
-## 延伸阅读与关联资源
-
-- 工具：[BCFtools](../../../methods/bcftools/)负责变异数据处理与基于比对的调用；[PLINK](../../../methods/plink/)处理已调用的基因型数据。
-- 案例：[3,010 份栽培稻变异与群体分析](../../../papers/rice-3010-pangenome/)；[水稻杂合 SNP 调用组合比较](../../../papers/rice-variant-comparison/)。
-- 教程：[PLINK 模拟数据分析](../../../tutorials/plink-synthetic/)实际使用虚构二倍体样本验证格式转换和统计输出；不代表真实植物数据复现。
-- 延伸专题：[群体遗传学基本概念](../m05-topic-01/)、[PCA 与群体结构](../m05-topic-03/)、[多样性、分化与 LD](../m05-topic-04/)和[驯化与环境适应案例](../m05-topic-07/)。
+- **前置依赖**：短读长回帖比对与 BAM 排序索引（详见 [M01 测序与组装](../../genome-assembly/assembly-basics/)）。
+- **核心算法工具**：[BCFtools 官方指南与高效数据流处理](../../../methods/bcftools/)。
+- **群体处理工具**：[PLINK 基因型矩阵质控与 LD 剪枝实操](../../../methods/plink/)。
+- **后续承接专题**：群体结构降维与主成分分析（详见 [M05-Topic-03 PCA、群体结构与祖先成分](../../population-genetics/m05-topic-03/)）。

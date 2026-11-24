@@ -1,0 +1,134 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 520" width="100%" height="100%" style="background: transparent; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <linearGradient id="bg-grad-m05-2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" stop-opacity="0.03" />
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0.08" />
+    </linearGradient>
+    <filter id="shadow-m05" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.08" />
+    </filter>
+  </defs>
+
+  <!-- 总体画框与标题 -->
+  <rect x="15" y="15" width="970" height="490" rx="16" fill="url(#bg-grad-m05-2)" stroke="#cbd5e1" stroke-width="1.5" />
+  <text x="40" y="48" font-size="18" font-weight="700" fill="#0f172a">群体结构解析：主成分分析（PCA）与 ADMIXTURE 祖先成分推断</text>
+  <text x="40" y="70" font-size="12" fill="#64748b">从高维 SNP 基因型 Patterson 矩阵奇异值分解（SVD），到极大似然拟牛顿优化与交叉验证误差（CV）最低点判定</text>
+
+  <!-- 左板块：PCA 基因型降维投影 -->
+  <g transform="translate(40, 95)">
+    <rect x="0" y="0" width="450" height="380" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" filter="url(#shadow-m05)" />
+    <path d="M 0 12 Q 0 0 12 0 L 438 0 Q 450 0 450 12 L 450 40 L 0 40 Z" fill="#f0f9ff" />
+    <text x="16" y="26" font-size="14" font-weight="700" fill="#0284c7">1. 主成分分析 (PCA) 协方差谱分解投影</text>
+
+    <!-- 数学推导框 -->
+    <g transform="translate(20, 50)">
+      <rect x="0" y="0" width="410" height="60" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1" />
+      <text x="12" y="18" font-size="10" font-weight="700" fill="#0f172a">Patterson 基因型标准化矩阵:</text>
+      <text x="12" y="36" font-size="12" font-weight="700" fill="#0284c7">M_{ij} = \frac{g_{ij} - 2p_i}{\sqrt{2p_i(1 - p_i)}} \implies \text{Cov} = \frac{1}{m} M^T M = V \Lambda V^T</text>
+      <text x="12" y="52" font-size="9" fill="#64748b">其中 $g_{ij} \in \{0,1,2\}$ 为等位基因剂量，$p_i$ 为次等位基因频率 (MAF)</text>
+    </g>
+
+    <!-- 二维散点坐标图 (PC1 vs PC2) -->
+    <g transform="translate(45, 130)">
+      <line x1="0" y1="180" x2="350" y2="180" stroke="#475569" stroke-width="1.5" />
+      <line x1="170" y1="10" x2="170" y2="180" stroke="#475569" stroke-width="1.5" />
+
+      <!-- 坐标轴标签 -->
+      <text x="355" y="184" font-size="10" font-weight="700" fill="#334155">PC1 (解释方差 28.5%)</text>
+      <text x="170" y="2" font-size="10" font-weight="700" fill="#334155" text-anchor="middle">PC2 (解释方差 14.2%)</text>
+
+      <!-- 亚群 1：粳稻群 (Japonica) 聚集在左侧 (蓝色) -->
+      <circle cx="50" cy="110" r="4.5" fill="#0284c7" opacity="0.8" />
+      <circle cx="65" cy="100" r="4" fill="#0284c7" opacity="0.8" />
+      <circle cx="60" cy="125" r="4.5" fill="#0284c7" opacity="0.8" />
+      <circle cx="75" cy="115" r="4" fill="#0284c7" opacity="0.8" />
+      <circle cx="85" cy="130" r="4" fill="#0284c7" opacity="0.8" />
+      <ellipse cx="68" cy="116" rx="35" ry="25" fill="#bae6fd" opacity="0.4" stroke="#0284c7" stroke-width="1" stroke-dasharray="2,2" />
+      <text x="68" y="155" font-size="9" font-weight="700" fill="#0369a1" text-anchor="middle">粳稻亚群 (Jap)</text>
+
+      <!-- 亚群 2：籼稻群 (Indica) 聚集在右侧 (橙色) -->
+      <circle cx="280" cy="120" r="4.5" fill="#ea580c" opacity="0.8" />
+      <circle cx="295" cy="105" r="4" fill="#ea580c" opacity="0.8" />
+      <circle cx="310" cy="125" r="4.5" fill="#ea580c" opacity="0.8" />
+      <circle cx="270" cy="135" r="4" fill="#ea580c" opacity="0.8" />
+      <circle cx="320" cy="110" r="4" fill="#ea580c" opacity="0.8" />
+      <ellipse cx="295" cy="120" rx="38" ry="25" fill="#fed7aa" opacity="0.4" stroke="#ea580c" stroke-width="1" stroke-dasharray="2,2" />
+      <text x="295" y="160" font-size="9" font-weight="700" fill="#c2410c" text-anchor="middle">籼稻亚群 (Ind)</text>
+
+      <!-- 亚群 3：野生祖先种 (Wild Rufipogon) 散布在上部与中间 (绿色) -->
+      <circle cx="160" cy="40" r="4" fill="#16a34a" opacity="0.8" />
+      <circle cx="180" cy="50" r="4.5" fill="#16a34a" opacity="0.8" />
+      <circle cx="140" cy="65" r="4" fill="#16a34a" opacity="0.8" />
+      <circle cx="200" cy="70" r="4.5" fill="#16a34a" opacity="0.8" />
+      <circle cx="175" cy="85" r="4" fill="#16a34a" opacity="0.8" />
+      <ellipse cx="170" cy="62" rx="45" ry="30" fill="#dcfce7" opacity="0.4" stroke="#16a34a" stroke-width="1" stroke-dasharray="2,2" />
+      <text x="170" y="28" font-size="9" font-weight="700" fill="#15803d" text-anchor="middle">野生祖先种 (Ruf)</text>
+    </g>
+
+    <text x="225" y="360" font-size="10" fill="#475569" text-anchor="middle">• 运行前必须进行 LD 剪枝（如 `plink --indep-pairwise 50 10 0.2`）</text>
+  </g>
+
+  <!-- 右板块：ADMIXTURE 祖先成分与 CV 交叉验证误差 -->
+  <g transform="translate(515, 95)">
+    <rect x="0" y="0" width="445" height="380" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" filter="url(#shadow-m05)" />
+    <path d="M 0 12 Q 0 0 12 0 L 433 0 Q 445 0 445 12 L 445 40 L 0 40 Z" fill="#faf5ff" />
+    <text x="16" y="26" font-size="14" font-weight="700" fill="#7e22ce">2. ADMIXTURE 祖先成分堆叠图与最佳 K 判定</text>
+
+    <!-- 堆叠图 K = 2 -->
+    <g transform="translate(30, 50)">
+      <text x="0" y="14" font-size="10" font-weight="700" fill="#334155">K = 2 (粗分化：籼粳主谱系分离)</text>
+      <!-- 样本堆叠条 -->
+      <rect x="0" y="20" width="160" height="22" fill="#0284c7" />
+      <rect x="160" y="20" width="40" height="15" fill="#0284c7" />
+      <rect x="160" y="35" width="40" height="7" fill="#ea580c" />
+      <rect x="200" y="20" width="180" height="22" fill="#ea580c" />
+      <rect x="0" y="20" width="380" height="22" fill="none" stroke="#64748b" stroke-width="1" />
+    </g>
+
+    <!-- 堆叠图 K = 3 (最优 K) -->
+    <g transform="translate(30, 105)">
+      <text x="0" y="14" font-size="10" font-weight="700" fill="#15803d">K = 3 ★ 最优模型 (粳稻、籼稻与野生祖先成分独立解析)</text>
+      <rect x="0" y="20" width="150" height="22" fill="#0284c7" />
+      <rect x="150" y="20" width="70" height="22" fill="#16a34a" />
+      <rect x="220" y="20" width="160" height="22" fill="#ea580c" />
+      <rect x="0" y="20" width="380" height="22" fill="none" stroke="#16a34a" stroke-width="1.5" />
+      <text x="385" y="35" font-size="9" font-weight="700" fill="#16a34a">CV 最低点</text>
+    </g>
+
+    <!-- 堆叠图 K = 4 -->
+    <g transform="translate(30, 160)">
+      <text x="0" y="14" font-size="10" font-weight="700" fill="#334155">K = 4 (过拟合：出现亚群内部微细随机切分)</text>
+      <rect x="0" y="20" width="90" height="22" fill="#0284c7" />
+      <rect x="90" y="20" width="60" height="22" fill="#f59e0b" />
+      <rect x="150" y="20" width="70" height="22" fill="#16a34a" />
+      <rect x="220" y="20" width="160" height="22" fill="#ea580c" />
+      <rect x="0" y="20" width="380" height="22" fill="none" stroke="#64748b" stroke-width="1" />
+    </g>
+
+    <!-- CV 交叉验证误差曲线图 (底部嵌入) -->
+    <g transform="translate(50, 240)">
+      <line x1="0" y1="80" x2="330" y2="80" stroke="#64748b" stroke-width="1.5" />
+      <line x1="0" y1="10" x2="0" y2="80" stroke="#64748b" stroke-width="1.5" />
+      <text x="-5" y="16" font-size="9" font-weight="700" fill="#475569" text-anchor="end">CV 误差</text>
+
+      <!-- 刻度点 -->
+      <circle cx="50" cy="58" r="3.5" fill="#64748b" />
+      <text x="50" y="93" font-size="9" fill="#475569" text-anchor="middle">K=2</text>
+
+      <circle cx="120" cy="30" r="5" fill="#16a34a" />
+      <text x="120" y="93" font-size="10" font-weight="700" fill="#15803d" text-anchor="middle">K=3 (谷底)</text>
+
+      <circle cx="190" cy="45" r="3.5" fill="#64748b" />
+      <text x="190" y="93" font-size="9" fill="#475569" text-anchor="middle">K=4</text>
+
+      <circle cx="260" cy="65" r="3.5" fill="#64748b" />
+      <text x="260" y="93" font-size="9" fill="#475569" text-anchor="middle">K=5</text>
+
+      <!-- 连接线 -->
+      <path d="M 50 58 L 120 30 L 190 45 L 260 65" fill="none" stroke="#7c3aed" stroke-width="2" />
+      <text x="120" y="20" font-size="9" font-weight="700" fill="#15803d" text-anchor="middle">最优 K 值判定准则</text>
+    </g>
+
+    <text x="222" y="360" font-size="10" fill="#475569" text-anchor="middle">运行命令：`admixture --cv=5 input.bed 3` 提取 `CV error`</text>
+  </g>
+</svg>
