@@ -1,4 +1,4 @@
-"workflowId","title","phasesCount","recommendedCompute","plantCases","status"
-"assembly-pangenome","从长读段测序到植物泛基因组构建端到端路线","5","64+ CPU 线程，256 GB~1 TB RAM，NVMe SSD","水稻;玉米;拟南芥;小麦","AUDITED_PASS"
-"population-gwas","植物群体变异检测与全基因组关联分析路线","5","32+ CPU 线程，128 GB RAM，多节点集群支持","玉米;水稻;拟南芥;大豆","AUDITED_PASS"
-"expression-network","植物发育与逆境胁迫转录调控网络解析路线","5","16~32 CPU 线程，64~128 GB RAM","水稻根系;拟南芥幼苗;玉米花序","AUDITED_PASS"
+"workflowId","title","phasesCount","recommendedCompute","plantCases","scientificReviewStatus","thresholdStandard"
+"assembly-pangenome","从长读段测序到植物泛基因组构建端到端路线","5","64+ CPU 线程，256 GB~1 TB RAM，NVMe SSD","水稻;玉米;拟南芥;小麦","source_checked","EBP / VGP Q40 标准 (QV ≥ 40, 挂载率 90%~95%, BUSCO > 95%)"
+"population-gwas","植物群体变异检测与全基因组关联分析路线","5","32+ CPU 线程，128 GB RAM，多节点集群支持","玉米;水稻;拟南芥;大豆","source_checked","Bonferroni 全基因组显著性模型 P = alpha / M 及 Meff 校正"
+"expression-network","植物发育与逆境胁迫转录调控网络解析路线","5","16~32 CPU 线程，64~128 GB RAM","水稻根系;拟南芥幼苗;玉米花序","source_checked","明确标注常规差异表达阈值 (padj<0.05, |log2FC|≥1) 为分析示例筛选条件"
