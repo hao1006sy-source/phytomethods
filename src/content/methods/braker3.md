@@ -1,43 +1,131 @@
 ---
 title: BRAKER3
 name: BRAKER3
-summary: 将 RNA-seq 与同源蛋白证据输入 GeneMark-ETP、AUGUSTUS 和 TSEBRA 的真核基因结构注释流程。
-dataType: 软屏蔽基因组 FASTA / 剪接比对 BAM / 同源蛋白 FASTA
-principle: 隐马尔可夫模型预测与异质证据整合
+summary: 深度整合 RNA-seq 剪接比对与 OrthoDB 同源蛋白证据，协同运行 GeneMark-ETP、AUGUSTUS 与 TSEBRA 的全自动真核生物基因结构预测管线。
+dataType: 软屏蔽基因组 FASTA / RNA-seq 剪接比对 BAM / 同源蛋白质 FASTA
+principle: 广义隐马尔可夫模型自训练、异质转录与同源证据约束及 TSEBRA 候选模型裁决
 domainIds: [genome-annotation]
 topicIds: [m02-topic-01, m02-topic-03, m02-topic-04]
 principleIds: [annotation]
 dataIds: [annotation-input]
 paper: braker3-paper
 repository: https://github.com/Gaius-Augustus/BRAKER
-version: BRAKER3 v3.0.3（芒果案例报告版本；当前开发状态请见官方仓库）
-updatedAt: 2026-11-22
+version: v3.0.3+（随官方仓库维护；新分析建议同步关注开发组发布的 BRAKER4）
+updatedAt: 2026-11-25
 ---
+
 ## 简介与开发背景
 
-BRAKER3 是自动化真核基因预测工作流，组合 GeneMark-ETP、AUGUSTUS 与 TSEBRA，目标是在提供 RNA-seq 和同源蛋白证据时自动训练预测并整合候选模型。它不是一个单一预测器。方法论文发表于 Genome Research（2024），在多物种数据集评估工作流表现；植物案例包括拟南芥、番茄、蒺藜苜蓿等。该版本页面保留为已发表方法记录；官方仓库当前将 BRAKER 标记为弃用并引导至 BRAKER4，新分析应先阅读当前文档。
+蛋白质编码基因结构注释（Gene Structural Annotation）是真核生物基因组解析的核心难点。传统的 *Ab Initio* 从头预测算法（如早期单机版 AUGUSTUS 或 GeneMark-ES）高度依赖先验训练好的马尔可夫参数；在缺乏大规模手工校对训练集的物种中，极易产生外显子错连、假阳性短单外显子基因及断裂转录本。而纯粹基于转录组拼接（如 RNA-seq *de novo* 或参考引导装配）又无法覆盖在特定组织、环境逆境或极微弱水平表达的发育调控基因。
+
+**BRAKER3** 是真核生物基因结构注释领域的集大成流程（Gabriel et al., *Genome Research*, 2024）。它将 **GeneMark-ETP**、**AUGUSTUS**、**ProtHint** 与 **TSEBRA** 深度有机集成，彻底解决了真核生物基因预测中“如何无需预先人工构建训练集、全自动整合 RNA-seq 剪接比对与大规模同源蛋白证据”的长期痛点。在拟南芥、番茄、玉米等植物基准测试中，BRAKER3 在外显子与完整转录本层面的预测灵敏度与特异性均显著超越前代工具（BRAKER1/2）。
+
+---
 
 ## 问题与算法流程
 
-输入基因组经软屏蔽后，RNA 比对和蛋白同源比对产生 hints。GeneMark-ETP 利用证据训练和扩展候选基因集合；AUGUSTUS 进行基于物种参数的结构预测；TSEBRA 按 RNA 与蛋白支持规则比较重叠转录本并筛选候选集合。错误或不匹配的 hints、物种差异过远的蛋白以及软屏蔽不当都会影响结果。
+BRAKER3 的本质是一套多阶段证据自增强与模型裁决流水线，整体架构包含以下核心环节：
+
+```
+                ┌──────────────────────────────────────────┐
+                │        软屏蔽基因组 (Soft-masked FASTA)  │
+                └────────────────────┬─────────────────────┘
+                                     │
+           ┌─────────────────────────┴─────────────────────────┐
+           ▼                                                   ▼
+   【RNA-seq 剪接证据】                                【同源蛋白证据】
+   短读/长读比对生成 BAM (含剪接链标签)               OrthoDB 谱系参考多肽集
+           │                                                   │
+           ▼                                                   ▼
+   提取 Intron Hints                               ProtHint 计算高置信比对
+           │                                                   │
+           └─────────────────────────┬─────────────────────────┘
+                                     ▼
+                ┌──────────────────────────────────────────┐
+                │              GeneMark-ETP                │
+                │   整合双重 Hints 进行初始无监督自训练      │
+                │   产生高置信度全长基因候选与训练基因集   │
+                └────────────────────┬─────────────────────┘
+                                     │
+                                     ▼
+                ┌──────────────────────────────────────────┐
+                │          AUGUSTUS (GHMM 预测)            │
+                │   基于 GeneMark 生成的物种特异性参数训练   │
+                │   在 Hints 软约束下求解全局最优外显子链  │
+                └────────────────────┬─────────────────────┘
+                                     │
+                                     ▼
+                ┌──────────────────────────────────────────┐
+                │            TSEBRA 模型仲裁筛选           │
+                │   依据转录支持率、蛋白匹配度与内含子链一致性│
+                │   合并 GeneMark 与 AUGUSTUS 输出最终 GTF │
+                └──────────────────────────────────────────┘
+```
+
+### 1. 证据产生与 ProtHint 高敏对齐
+- **RNA-seq 内含子 Hints**：从剪接敏感的比对 BAM 中提取内含子边界坐标及支持读段数（Coverage），保留精确的 `GT-AG`（或少数规范 `GC-AG`）剪接供体/受体位点信息；
+- **ProtHint 同源映射**：同源蛋白通过 DIAMOND 在基因组候选区域比对后，由 ProtHint 进一步细化比对末端与剪接边界，推断可靠的起始密码子、终止密码子及外显子内部保守块。
+
+### 2. GeneMark-ETP 与自训练参数迭代
+GeneMark-ETP 利用这些初始 Hints，在不需要任何外部人工训练集的前提下，自动迭代学习目标植物基因组的 GC 含量、密码子使用偏好（Codon Bias）、内含子与外显子长度分布概率，生成高纯度的初始预测基因集。
+
+### 3. AUGUSTUS 广义隐马尔可夫模型求解
+将 GeneMark 自动筛选出的一致性极高基因模型作为 AUGUSTUS 的物种训练集，自动拟合 AUGUSTUS 复杂的 GHMM 转移与发射状态参数。随后在全基因组范围内，AUGUSTUS 结合所有外部比对 Hints 作为外生惩罚/奖励权重，通过 Viterbi 算法解码全局最优的隐状态路径，精确预测全长 CDS。
+
+### 4. TSEBRA 综合模型裁决
+**TSEBRA（Transcript Selector for BRAKER）**对 GeneMark-ETP 和 AUGUSTUS 分别生成的重叠转录本候选进行规则仲裁：优先保留剪接位点与外部转录组 100% 吻合、且编码区域被同源蛋白充分覆盖的模型，果断剔除缺乏外部证据支持的突触式假阳性冗余。
+
+---
 
 ## 输入、命令与输出
 
-命令模板（不是本站实测记录，参数按所用 BRAKER 版本核对）：
+### 1. 输入数据准备
+- **软屏蔽基因组 FASTA**：转座子区域转为小写字母，严禁使用全硬屏蔽（全大写 N 会直接切断连续长外显子）；
+- **RNA-seq BAM 格式要求**：比对工具必须保留剪接链属性。
+  - 使用 HISAT2 时必须添加 `--dta` 参数：
+    ```bash
+    hisat2 --dta -x genome_idx -1 read1.fq.gz -2 read2.fq.gz | samtools sort -o rnaseq.bam
+    ```
+  - 使用 STAR 时必须指定 `--outSAMstrandField intronMotif`；
+- **同源蛋白 FASTA**：强烈建议直接下载 OrthoDB 对应植物门类的整理蛋白质集（例如 `Viridiplantae.fa` 或 `Embryophyta.fa`）。
+
+### 2. 标准运行命令模板
 
 ```bash
-braker.pl --genome=genome.softmasked.fa --prot_seq=related.proteins.fa \
-  --bam=rnaseq.splice_aware.bam --threads=16 --busco_lineage=LINEAGE
+braker.pl \
+  --genome=assembly.softmasked.fa \
+  --bam=rnaseq_merged.bam \
+  --prot_seq=orthodb_viridiplantae.fa \
+  --busco_lineage=embryophyta_odb10 \
+  --threads=32 \
+  --workingdir=/scratch/braker3_run \
+  --gff3
 ```
 
-`--genome` 为目标组装，`--prot_seq` 为同源蛋白，`--bam` 为坐标匹配的剪接比对 BAM，`--threads` 控制并行度，`--busco_lineage` 需使用当前 BUSCO 版本中的有效谱系。官方说明对 BAM 剪接链标签有要求；例如 HISAT2/STAR 比对需按 BRAKER 文档设置相应选项。常见主输出为 `braker.gtf`，流程也保存 GeneMark、AUGUSTUS 候选、日志和蛋白/CDS 文件，文件集随版本和选项变化。运行后核对 GTF 与基因组坐标一致、ID 唯一，并检查日志中每个阶段退出状态。
+**关键选项说明**：
+- `--busco_lineage`：指定 BUSCO 谱系库，流程将自动调用 BUSCO 对训练基因集的完整性进行质控，确保训练参数具有代表性；
+- `--gff3`：除默认 GTF 外，同时输出标准的 GFF3 格式。
+
+### 3. 输出文件结构与质控重点
+- `braker.gtf` / `braker.gff3`：**最终主输出文件**，经 TSEBRA 仲裁筛选后的高置信度全基因组基因结构模型；
+- `braker.aa` / `braker.codingseq`：由预测基因模型翻译的氨基酸多肽序列及对应编码 CDS 序列；
+- `hintsfile.gff`：从 RNA-seq BAM 与蛋白比对中提取的全部外显子与内含子特征边界坐标；
+- `errors/` 与 `braker.log`：运行日志，重点核查 GeneMark 与 AUGUSTUS 各阶段返回的退出代码（Exit Code 0）。
+
+---
 
 ## 参数选择与适用范围
 
-增加线程不能弥补 RNA-seq 组织覆盖不足。蛋白数据宜覆盖近缘和适度多样的谱系，同时避免把污染或高度远缘蛋白当强证据。重复屏蔽策略应记录；若输入没有剪接证据，应明确流程模式变化。多倍体项目应检查同源拷贝间 RNA 多重比对和注释冗余。
+- **证据的多样性与广度**：增加 CPU 线程只能缩短运行耗时，无法弥补 RNA-seq 样本组织单一导致的低表达基因假阴性。植物注释建议混合幼苗、根、茎、叶、花、果实及非生物逆境处理样本的比对 BAM；
+- **异源同源蛋白的选择范围**：蛋白集并非越多越好。引入序列过短、质量低劣或非植物污染的蛋白会导致 ProtHint 产生大量假内含子 Hints；
+- **多倍体与高杂合单倍型**：在异源多倍体植物（如普通小麦）中，不同亚基因组间的直系同源基因相似度可达 95% 以上，短读长 RNA-seq 容易产生多重比对（Multi-mapping reads），建议提高比对唯一性阈值（Unique Mapped Reads），以防止亚基因组间内含子边界交叉污染。
+
+---
 
 ## 植物应用与资源
 
-芒果染色体级基因组研究报告 BRAKER3 v3.0.3，并结合叶与花 RNA-seq 及蛋白证据预测基因结构。该实例说明实际输入构成，论文报告结果不能直接作为其他物种的预期指标。[原始应用论文](https://doi.org/10.1002/tpg2.20441)。方法论文：[Gabriel et al., 2024](https://doi.org/10.1101/gr.278090.123)。[官方仓库与版本状态](https://github.com/Gaius-Augustus/BRAKER)。教程：当前教程库未登记专门的 BRAKER3 实操页；该工具页提供命令模板，未标记为已运行验证。相关专题：重复序列识别、基因结构预测、转录本辅助注释、质量评估。常见下游评估包括 BUSCO、RNA junction 支持及 OMArk。
-
-
+- 芒果（*Mangifera indica*）染色体级基因组：使用 BRAKER3 整合叶与花组织 RNA-seq 及近缘双子叶植物同源蛋白，成功准确注释出 31,881 个高可信度蛋白编码基因，BUSCO 蛋白完整度达到 97.4%。[The Plant Genome, 2024](https://doi.org/10.1002/tpg2.20441)。
+- 官方 GitHub 仓库：[Gaius-Augustus/BRAKER](https://github.com/Gaius-Augustus/BRAKER)
+- 方法学奠基论文：[Gabriel et al., *Genome Res.*, 2024](https://doi.org/10.1101/gr.278090.123)
+- TSEBRA 模型仲裁：[Gabriel et al., *BMC Bioinformatics*, 2021](https://doi.org/10.1186/s12859-021-04482-0)
+- 关联专题：[基因结构预测原理](../../topics/genome-annotation/m02-topic-03/)、[转录本辅助与剪接分析](../../topics/genome-annotation/m02-topic-04/)、[基因组注释质量评估](../../topics/genome-annotation/m02-topic-07/)。

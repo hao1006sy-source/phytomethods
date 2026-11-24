@@ -1,45 +1,86 @@
 ---
-title: 转录本辅助注释
-summary: 使用短读长 RNA-seq 与全长转录本证据约束外显子边界、剪接结构和异构体模型。
+title: 转录本辅助注释与选择性剪接解析
+summary: 深度解析剪接图网络流模型（StringTie2）、全长转录组（Iso-Seq）外显子链对齐、植物内含子滞留（IR）特色机制与 PASA 结构更新。
 domain: genome-annotation
 methods: [braker3]
-updatedAt: 2026-11-22
+updatedAt: 2026-11-25
 ---
 
-## 研究背景与生物学问题
+## 科学定位与生物学核心问题
 
-基因组序列本身不能说明某个位置是否在特定组织表达，也不能单独确定所有剪接形式。RNA 测序（RNA sequencing, RNA-seq）测量转录产物，为基因结构提供外显子覆盖、剪接连接和转录本边界证据。植物不同组织、发育阶段和胁迫条件下的表达差异，使单一组织的转录组不能代表完整基因目录。短读长易于获得且可提供较深覆盖，全长转录本则能把多个外显子连接在同一分子上。
+虽然基因组 DNA 蕴含着生命的全部蓝图，但在不同组织、特定发育阶段或遭受外界逆境胁迫（干旱、高盐、极端温度、病原侵染）时，究竟哪些基因被激活转录、转录产物如何经过剪接体加工形成成熟 mRNA，必须依赖转录组测序（RNA-seq）提供直接的转录活性证据。
 
-需要回答的计算问题是：哪些基因组区段由转录支持、reads 应归属于哪些剪接异构体、支持证据是否足以区别近缘同源基因，以及如何把证据转为可追溯的基因模型。
+对于植物科学而言，转录本辅助注释（Transcript-informed Annotation）承担着三项无可替代的科学使命：
+1. **确证剪接边界的单碱基精度**：统计从头预测算法常因局部密码子偏差而预测出错误的外显子起止位点，跨越内含子的 Split reads 能够提供单碱基精度的剪接供体与受体物理证据；
+2. **界定非翻译区（5' UTR 与 3' UTR）**：由于 UTR 不发生三联体翻译，从头预测器极难准确判断其起止，转录本覆盖度断崖式边界是唯一定位转录起始位点（TSS）与多聚腺苷酸化位点（PolyA sites）的实验依据；
+3. **全景重塑选择性剪接（Alternative Splicing, AS）**：植物广泛通过选择性剪接响应环境胁迫，单一基因座能够转录出多种具有不同亚细胞定位、结构稳定性或催化活性的蛋白质异构体。
 
-## 证据类型与基本概念
+---
 
-RNA-seq reads 与基因组比对后，连续覆盖提示转录区域，跨内含子的 split reads 支持剪接连接。转录本组装器把兼容的片段连接成候选转录本；全长 cDNA 或 Iso-Seq reads 可支持较完整的外显子链。证据需区分比对覆盖、剪接 junction、转录本链方向和转录本完整度。多重比对 reads 不能直接视为某一旁系同源拷贝的确定证据。
+## 剪接图（Splice Graph）与网络流转录本组装模型
 
-GFF3/GTF 中坐标一般采用 1-based closed，而 BED 使用 0-based half-open；转换时需要核对区间长度与链方向。转录本层级还需验证 exon 顺序、CDS 相位、起止密码子及剪接位点一致性。
+在基于参考基因组的短读段转录本重构（如 StringTie2）中，算法的核心数学架构是**有向无环剪接图（Directed Acyclic Splice Graph, DAG）**。
 
-## 核心计算流程
+### 1. 剪接图的数学形式化
 
-1. 按样本和组织检查 FASTQ 质量、接头、读长分布与污染；记录实验设计和参考基因组版本。
-2. 用剪接感知比对器将 RNA-seq reads 比对到同一版本基因组，保留链信息、剪接标签和未比对统计。
-3. 对比对结果排序、去除明显低质量记录并生成索引；将 junction 数量、唯一比对比例和覆盖度作为证据质量检查。
-4. 对短读长数据，利用 StringTie 等工具按覆盖和剪接兼容性组装转录本；用全长转录本比对方法保留长剪接链证据。
-5. 将高可信转录本与从头预测、同源蛋白证据整合，例如 BRAKER3 使用 RNA-seq 和蛋白证据训练并筛选基因模型。
-6. 以 RNA junction、蛋白比对和开放阅读框检查候选模型，重点抽查单外显子模型、嵌合转录本、异常长内含子和重复区模型。
-7. 导出标准 GFF3/GTF、CDS 和蛋白 FASTA，检查格式、序列一致性与版本记录。
+设某基因座区间比对的 RNA-seq 覆盖区域由 $n$ 个互不相交的候选外显子片段构成顶点集 $V = \{v_1, v_2, \dots, v_n\}$，每个顶点赋权 $w(v)$ 表示该外显子区域的平均测序深度。
 
-不同工具的角色有差别：StringTie2 从比对结果重建转录本集合；PASA 将转录本证据用于基因结构组装和修订；BRAKER3 属于将 RNA 与同源蛋白证据纳入结构预测的自动化工作流。它们的输出不能无条件互换，也不构成实验验证。
+- **边集合 $E$**：若存在 $k$ 条跨越内含子的 Split reads 同时连接外显子片段 $u$ 与 $v$，且其剪接供体受体符合经典二核苷酸（`GT-AG` 等），则在 $u$ 与 $v$ 之间引入有向边 $e = (u, v) \in E$，边的流权重 $f(e)$ 正比于支持该连接的实际 Junction reads 数量。
+- **转录本路径**：一条候选成熟 mRNA 转录本 $T_i$ 对应于剪接图上从某个转录源节点（Source）出发、经由一系列外显子顶点与内含子边、最终到达转录汇节点（Sink）的单向通路：
 
-## 植物数据的关键风险
+$$T_i = (s, v_{i_1}, v_{i_2}, \dots, v_{i_m}, t)$$
 
-多倍体、近期全基因组复制和大型基因家族会使 RNA reads 在同源拷贝间多重比对。高表达组织的覆盖偏倚会让低表达基因或特异异构体缺少支持；胁迫样本的表达改变也不能直接解释为基因存在或缺失。建议覆盖根、叶、花、果实及关键发育/处理条件，并分别报告样本来源。对多重比对与低表达转录本，应结合长读长转录证据、同源蛋白、剪接位点保守性和基因组邻域谨慎判断。
+### 2. 极大似然网络流优化求解
 
-## 结果检查与解释
+由于多条不同的转录本异构体在相同外显子区域发生重叠覆盖，观察到的外显子总深度是各异构体表达丰度 $x_i$ 的线性叠加。StringTie2 通过建立**最小费用循环网络流**（Min-cost Circulation Network Flow）模型，在满足各节点流量守恒（Kirchhoff 定律）的约束下：
 
-用 junction 层面的独立支持检查剪接结构；记录唯一比对与多重比对比例；检查转录本是否连续、CDS 是否完整以及候选模型是否跨越高置信 TE 区域。若 RNA-seq 支持某个转录本，只能说明该序列在所测样本中有转录证据，不能单独证明蛋白功能或所有异构体都具有生物学作用。模型准确率计算需要可信参考注释和明确的匹配规则；无真值时采用 BUSCO、RNA/蛋白支持和人工抽查等互补指标。
+$$\min \sum_{v \in V} \left| w(v) - \sum_{T_i \ni v} x_i \right| + \sum_{e \in E} \left| f(e) - \sum_{T_i \ni e} x_i \right|$$
 
-## 植物案例与延伸阅读
+利用单纯形法或贪心路径分解，严格求解出在统计上最简明且能最大化解释实测测序深度的全长转录本集合及其表达丰度（FPKM/TPM）。
 
-BRAKER3 方法研究以多种真核基因组评估 RNA 与蛋白证据整合，其中包括植物基因组。[BRAKER3 原始方法论文](https://doi.org/10.1101/gr.278090.123)。芒果染色体级基因组研究报告使用叶与花 RNA-seq，并在结构注释中采用 BRAKER3；这是一项特定物种和数据集的应用实例。[芒果研究](https://doi.org/10.1002/tpg2.20441)。
+---
 
-延伸学习：[StringTie 官方文档](https://ccb.jhu.edu/software/stringtie/)、[PASA 官方仓库](https://github.com/PASApipeline/PASApipeline)、[BRAKER 官方仓库](https://github.com/Gaius-Augustus/BRAKER)。运行流程前应核实软件当前版本、输入标签要求和参考版本一致性。
+## 植物选择性剪接的五大经典模式与生物学特性
+
+与哺乳动物中以**外显子跳跃**（Exon Skipping, ES）为主导的剪接模式截然不同，植物界的选择性剪接展现出极其独特的演化特征：
+
+| 选择性剪接模式 | 结构变异机制 | 植物中占比特征 | 典型生物学功能与逆境响应 |
+| :--- | :--- | :--- | :--- |
+| **内含子滞留 (Intron Retention, IR)** | 某个内含子未被剪接体切除，直接保留在成熟转录本中 | **极其普遍 (占植物 AS 的 40%~60%)** | 引入提前终止密码子 (PTC)，通过无义介导降解 (NMD) 动态调节功能蛋白丰度 (如耐冷/抗旱调控) |
+| **替代 3' 剪接受体 (A3SS)** | 竞争性使用两个不同的 3' AG 剪接位点 | 约占 15%~20% | 导致外显子 5' 端发生微小碱基增减 (如相差 3 bp 导致单氨基酸插入) |
+| **替代 5' 剪接供体 (A5SS)** | 竞争性使用两个不同的 5' GT 剪接位点 | 约占 5%~10% | 改变多肽链局域疏水性或调控结构域功能 |
+| **外显子跳跃 (Exon Skipping, ES)** | 某个内部盒装外显子被整体跳过连入下一个外显子 | 较少 (仅占约 5%~10%) | 产生缺失特定完整功能结构域的截短型受体蛋白 |
+| **相互排斥外显子 (MXE)** | 两个相邻外显子每次只能保留其中恰好一个 | 罕见 (<1%) | 组织特异性同工酶选择 |
+
+---
+
+## 全长转录本（Iso-Seq）与短读段的互补组装
+
+由于短读段（150 bp）无法在物理上直接跨越相距数千碱基的多个剪接节点，因此从短读段推导出的复杂多异构体组合在数学上存在一定程度的概率重组歧义。
+
+由 PacBio 或 Oxford Nanopore 驱动的**全长转录组**（Full-length cDNA / Iso-Seq）技术，能够单个分子从 5' 帽子端连续不间断读取至 3' PolyA 尾巴：
+1. **Minimap2 剪接比对**：使用 `minimap2 -ax splice -uf` 将全长转录本直接对齐回参考基因组；
+2. **PASA（Program to Assemble Spliced Alignments）流程**：自动将全长 cDNA 联配与短读段转录组比对重叠，识别并修正预测基因模型的错误内含子，添加完整的 UTR 边界，并输出包含全量选择性剪接异构体的综合结构注释表。
+
+---
+
+## 常用实战运行命令
+
+```bash
+# 1. 使用 HISAT2 进行剪接感知比对并提取已知剪接位点
+hisat2 -x genome_idx -1 R1.fq.gz -2 R2.fq.gz --known-splicesite-infile splicesites.txt -p 32 | \
+  samtools sort -@ 8 -o rnaseq_aligned.bam -
+
+# 2. 使用 StringTie2 组装高精度转录本
+stringtie rnaseq_aligned.bam -p 32 -o stringtie_transcripts.gtf -l plant_tx
+
+# 3. 将转录本证据作为输入无缝传入 BRAKER3 或 PASA 开展注释优化
+```
+
+---
+
+## 参考文献与数据来源
+
+1. **Kovaka S, Zimin AV, Pertea GM, et al.** (2019). Transcriptome assembly from long-read RNA-seq alignments with StringTie2. *Genome Biology*, 20(1), 278. DOI: [10.1186/s13059-019-1910-1](https://doi.org/10.1186/s13059-019-1910-1)
+2. **Marquez Y, Brown JWS, Simpson C, et al.** (2012). Alternative splicing in *Arabidopsis thaliana* reveals a major role for intron retention. *Genome Research*, 22(6), 1195–1207. DOI: [10.1101/gr.134080.111](https://doi.org/10.1101/gr.134080.111)
+3. **Haas BJ, Delcher AL, Mount SM, et al.** (2003). Improving the *Arabidopsis* genome annotation using maximal transcript alignment assemblies. *Nucleic Acids Research*, 31(19), 5654–5666. DOI: [10.1093/nar/gkg770](https://doi.org/10.1093/nar/gkg770)

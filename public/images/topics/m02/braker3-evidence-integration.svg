@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 480" width="100%" height="100%">
+  <defs>
+    <style>
+      .title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-weight: 700; font-size: 17px; fill: #0f172a; }
+      .subtitle { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 12px; fill: #475569; }
+      .panel { fill: #ffffff; stroke: #e2e8f0; stroke-width: 1.5; rx: 12px; }
+      .node-text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11.5px; font-weight: 600; text-anchor: middle; dominant-baseline: central; fill: #ffffff; }
+      .edge { stroke-width: 2; fill: none; marker-end: url(#arrow-blue); }
+    </style>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#0284c7"/>
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#10b981"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="960" height="480" rx="16" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5"/>
+
+  <!-- Left Panel: Multi-source Evidence Inputs -->
+  <g transform="translate(24, 24)">
+    <rect width="430" height="432" class="panel"/>
+    <text x="20" y="32" class="title">A. 多源生物学证据输入与初步特征提取</text>
+    <text x="20" y="52" class="subtitle">转录组剪接信号与跨物种同源蛋白外显子证据提取</text>
+
+    <g transform="translate(25, 75)">
+      <!-- Input 1: Genome FASTA -->
+      <rect x="0" y="0" width="380" height="48" rx="6" fill="#334155"/>
+      <text x="190" y="16" class="node-text" font-size="12">1. 重复序列软屏蔽基因组 (Soft-masked Genome FASTA)</text>
+      <text x="190" y="34" class="node-text" font-size="10" fill="#94a3b8">由 EDTA 预先挖掘并将转座子小写化处理，严禁硬屏蔽覆盖真基因</text>
+
+      <!-- Input 2: RNA-seq (Iso-Seq) -->
+      <rect x="0" y="65" width="380" height="60" rx="6" fill="#0284c7"/>
+      <text x="190" y="83" class="node-text" font-size="12">2. 多组织植物转录组 (RNA-seq / 全长 Iso-Seq)</text>
+      <text x="190" y="103" class="node-text" font-size="10.5" fill="#bae6fd">HISAT2 比对提取内含子精细剪接接头 (Splice Junctions: GT-AG / GC-AG)</text>
+
+      <!-- Input 3: OrthoDB Proteins -->
+      <rect x="0" y="142" width="380" height="60" rx="6" fill="#059669"/>
+      <text x="190" y="160" class="node-text" font-size="12">3. 跨物种同源蛋白数据库 (OrthoDB / Viridiplantae)</text>
+      <text x="190" y="180" class="node-text" font-size="10.5" fill="#a7f3d0">ProtHint 算法进行氨基酸局部对齐，精确定位进化保守外显子起止边界</text>
+
+      <!-- Bottom Principle Card -->
+      <g transform="translate(0, 220)">
+        <rect width="380" height="110" rx="6" fill="#f1f5f9" stroke="#cbd5e1"/>
+        <text x="14" y="24" font-family="sans-serif" font-size="11" font-weight="700" fill="#0f172a">为什么植物基因预测必须双轨证据协同？</text>
+        <text x="14" y="46" font-family="sans-serif" font-size="10.5" fill="#334155">• <tspan font-weight="600" fill="#0284c7">仅凭 RNA-seq</tspan>: 无法覆盖低表达、特定发育期或逆境特异基因</text>
+        <text x="14" y="66" font-family="sans-serif" font-size="10.5" fill="#059669">• <tspan font-weight="600" fill="#059669">仅凭同源蛋白</tspan>: 无法识别物种特异性孤儿基因（Orphan genes）与选择剪接</text>
+        <text x="14" y="86" font-family="sans-serif" font-size="10.5" fill="#6d28d9">• <tspan font-weight="600" fill="#6d28d9">BRAKER3 创新</tspan>: 实现了 RNA-seq 与大同源蛋白库的完全端到端互补融合！</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Right Panel: BRAKER3 GHMM Engine & TSEBRA -->
+  <g transform="translate(480, 24)">
+    <rect width="456" height="432" class="panel"/>
+    <text x="20" y="32" class="title">B. GeneMark-ETP + AUGUSTUS 迭代自训练模型</text>
+    <text x="20" y="52" class="subtitle">Gabriel et al. (2024) Genome Research 最新算法流水线</text>
+
+    <g transform="translate(25, 75)">
+      <!-- Stage 1 -->
+      <rect x="0" y="0" width="405" height="50" rx="6" fill="#4f46e5"/>
+      <text x="202" y="18" class="node-text" font-size="12">阶段 1: GeneMark-ETP 统计自训练</text>
+      <text x="202" y="35" class="node-text" font-size="10" fill="#c7d2fe">利用转录本外显子与蛋白锚点自动生成高可信训练集 (无需手动整理)</text>
+
+      <!-- Stage 2 -->
+      <rect x="0" y="65" width="405" height="50" rx="6" fill="#7c3aed"/>
+      <text x="202" y="83" class="node-text" font-size="12">阶段 2: AUGUSTUS 广义隐马尔可夫模型 (GHMM)</text>
+      <text x="202" y="100" class="node-text" font-size="10" fill="#ddd6fe">将外显子得分作为先验外在特征 (Extrinsic hints) 指导概率路径解码</text>
+
+      <!-- Stage 3 -->
+      <rect x="0" y="130" width="405" height="50" rx="6" fill="#047857"/>
+      <text x="202" y="148" class="node-text" font-size="12">阶段 3: TSEBRA 转录本选择器与模型择优</text>
+      <text x="202" y="165" class="node-text" font-size="10" fill="#a7f3d0">按剪接位点一致性与外显子重叠惩罚规则，筛选全局帕累托最优模型</text>
+
+      <!-- Output Deliverable -->
+      <g transform="translate(0, 195)">
+        <rect width="405" height="135" rx="6" fill="#f8fafc" stroke="#e2e8f0"/>
+        <text x="16" y="24" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#0f172a">标准化最终交付文件：</text>
+        <text x="16" y="46" font-family="sans-serif" font-size="10.5" fill="#334155">• <tspan font-weight="600" fill="#0284c7">braker.gff3</tspan>: 标准结构基因注释表 (含 mRNA, CDS, exon, UTR)</text>
+        <text x="16" y="66" font-family="sans-serif" font-size="10.5" fill="#059669">• <tspan font-weight="600" fill="#059669">braker.aa</tspan>: 全基因组预测蛋白氨基酸多肽序列 (FASTA)</text>
+        <text x="16" y="86" font-family="sans-serif" font-size="10.5" fill="#8b5cf6">• <tspan font-weight="600" fill="#8b5cf6">braker.codingseq</tspan>: 编码区核苷酸序列 (CDS FASTA)</text>
+        <text x="16" y="108" font-family="sans-serif" font-size="10.5" fill="#b91c1c" font-weight="600">✔ 下游无缝对接 InterProScan 5 进行全量蛋白结构域与功能注释！</text>
+      </g>
+    </g>
+  </g>
+</svg>

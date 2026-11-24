@@ -150,6 +150,11 @@ export const methodComparisonMatrices: Record<string, DomainComparisonMatrix> = 
         condition: '需要开展全基因组基因结构预测，且有近缘种蛋白库和组织转录组',
         recommendation: '首选 BRAKER3',
         rationale: '结合实验表达证据与进化同源信息，假阳性最低。'
+      },
+      {
+        condition: '需要对海量预测蛋白质序列批量注释保守结构域、GO 术语及代谢通路',
+        recommendation: '首选 InterProScan',
+        rationale: '集成 14 大权威成员数据库，提供全景结构域拓扑与受控词表自动映射。'
       }
     ]
   },
