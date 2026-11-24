@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 460" width="100%" height="100%" style="background:#ffffff; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;">
+  <!-- 标题与副标题 -->
+  <text x="30" y="32" font-size="16" font-weight="bold" fill="#0f172a">全基因组选择（GS）与 GBLUP 育种值预测及交叉验证机制</text>
+  <text x="30" y="52" font-size="12" fill="#64748b">从 VanRaden 亲缘矩阵、混合模型方程组求解到作物分子育种世代大幅压缩</text>
+
+  <!-- 上方：训练群体与模型求解 (y: 70 ~ 245) -->
+  <g id="training-and-mme">
+    <!-- 步骤 1: 训练群体卡片 (x: 30 ~ 290) -->
+    <rect x="30" y="70" width="260" height="175" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+    <rect x="42" y="82" width="110" height="22" rx="4" fill="#dbeafe"/>
+    <text x="97" y="97" font-size="11" font-weight="bold" fill="#1e40af" text-anchor="middle">1. 训练群体 (TS)</text>
+    <text x="45" y="122" font-size="10" fill="#475569">已获得全基因组 SNP 与田间实测表型：</text>
+    
+    <g transform="translate(45, 132)">
+      <rect x="0" y="0" width="105" height="42" rx="4" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+      <text x="52" y="16" font-size="9" fill="#1e293b" text-anchor="middle" font-weight="bold">基因型矩阵 M</text>
+      <text x="52" y="32" font-size="8" fill="#64748b" text-anchor="middle">n 个体 × m 标记</text>
+
+      <text x="115" y="24" font-size="12" fill="#94a3b8" font-weight="bold">+</text>
+
+      <rect x="130" y="0" width="95" height="42" rx="4" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+      <text x="177" y="16" font-size="9" fill="#1e293b" text-anchor="middle" font-weight="bold">真实表型 y</text>
+      <text x="177" y="32" font-size="8" fill="#64748b" text-anchor="middle">多年多点田间测量</text>
+    </g>
+
+    <text x="45" y="196" font-size="9" fill="#1e40af" font-weight="bold">VanRaden (2008) 基因组亲缘矩阵 G：</text>
+    <rect x="45" y="204" width="230" height="28" rx="4" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
+    <text x="160" y="222" font-size="10" font-weight="bold" fill="#1d4ed8" text-anchor="middle">G = (Z Z') / [ 2 ∑ pᵢ(1 - pᵢ) ]</text>
+
+    <!-- 连接箭头 1 -> 2 -->
+    <path d="M 290 157 L 330 157" stroke="#3b82f6" stroke-width="2" marker-end="url(#arrow-blue)"/>
+
+    <!-- 步骤 2: 混合模型方程组 MME 求解 (x: 335 ~ 630) -->
+    <rect x="335" y="70" width="295" height="175" rx="8" fill="#f0fdf4" stroke="#86efac" stroke-width="1.2"/>
+    <rect x="347" y="82" width="130" height="22" rx="4" fill="#dcfce7"/>
+    <text x="412" y="97" font-size="11" font-weight="bold" fill="#166534" text-anchor="middle">2. GBLUP / rrBLUP 求解</text>
+    
+    <text x="350" y="122" font-size="10" fill="#475569">构建并求解 Henderson 混合模型方程组 (MME)：</text>
+    
+    <rect x="350" y="132" width="265" height="52" rx="4" fill="#ffffff" stroke="#22c55e" stroke-width="1"/>
+    <text x="482" y="152" font-size="10" font-weight="bold" fill="#0f172a" text-anchor="middle">[ X'X      X'Z ] [ β̂ ] = [ X'y ]</text>
+    <text x="482" y="172" font-size="10" font-weight="bold" fill="#0f172a" text-anchor="middle">[ Z'X   Z'Z+G⁻¹λ ] [ û ]   [ Z'y ]</text>
+
+    <text x="350" y="202" font-size="9" fill="#15803d">• 岭参数惩罚项：λ = σ_e² / σ_g² (控制过拟合收缩)</text>
+    <text x="350" y="218" font-size="9" fill="#15803d">• 获得最优个体育种值 (û) 与标记加性效应估值</text>
+
+    <!-- 连接箭头 2 -> 3 -->
+    <path d="M 630 157 L 665 157" stroke="#10b981" stroke-width="2" marker-end="url(#arrow-green)"/>
+
+    <!-- 步骤 3: 5-Fold 交叉验证评估准确度 (x: 670 ~ 890) -->
+    <rect x="670" y="70" width="220" height="175" rx="8" fill="#fffbeb" stroke="#fde68a" stroke-width="1.2"/>
+    <rect x="682" y="82" width="125" height="22" rx="4" fill="#fef3c7"/>
+    <text x="744" y="97" font-size="11" font-weight="bold" fill="#92400e" text-anchor="middle">3. 5-Fold 交叉验证</text>
+
+    <g transform="translate(685, 118)">
+      <rect x="0" y="0" width="36" height="20" fill="#3b82f6" rx="2"/><text x="18" y="14" font-size="8" fill="#fff" text-anchor="middle">Train</text>
+      <rect x="40" y="0" width="36" height="20" fill="#3b82f6" rx="2"/><text x="58" y="14" font-size="8" fill="#fff" text-anchor="middle">Train</text>
+      <rect x="80" y="0" width="36" height="20" fill="#3b82f6" rx="2"/><text x="98" y="14" font-size="8" fill="#fff" text-anchor="middle">Train</text>
+      <rect x="120" y="0" width="36" height="20" fill="#3b82f6" rx="2"/><text x="138" y="14" font-size="8" fill="#fff" text-anchor="middle">Train</text>
+      <rect x="160" y="0" width="36" height="20" fill="#ef4444" rx="2"/><text x="178" y="14" font-size="8" fill="#fff" text-anchor="middle">Test</text>
+    </g>
+
+    <text x="685" y="162" font-size="10" font-weight="bold" fill="#0f172a">预测准确度 (Prediction Ability)：</text>
+    <rect x="685" y="170" width="190" height="28" rx="4" fill="#ffffff" stroke="#d97706" stroke-width="1"/>
+    <text x="780" y="188" font-size="11" font-weight="bold" fill="#b45309" text-anchor="middle">r_pred = Cor(y_true, ŷ_pred)</text>
+
+    <text x="685" y="215" font-size="8" fill="#78350f">• 水稻/玉米抗病产量性状：r_pred ≈ 0.55 ~ 0.85</text>
+    <text x="685" y="228" font-size="8" fill="#78350f">• 准确度由遗传力 h²、群体亲缘与标记密度决定</text>
+  </g>
+
+  <!-- 下方：育种群体预测与世代压缩 (y: 265 ~ 430) -->
+  <g id="breeding-application">
+    <rect x="30" y="265" width="860" height="165" rx="8" fill="#fdf4ff" stroke="#f0abfc" stroke-width="1.2"/>
+    <rect x="42" y="277" width="180" height="22" rx="4" fill="#fae8ff"/>
+    <text x="132" y="292" font-size="11" font-weight="bold" fill="#86198f" text-anchor="middle">4. 智慧育种实践：世代大幅压缩</text>
+
+    <!-- 流程对比：传统育种 vs 全基因组选择 -->
+    <!-- 传统育种 -->
+    <g transform="translate(50, 312)">
+      <rect width="360" height="42" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+      <text x="10" y="18" font-size="10" font-weight="bold" fill="#64748b">传统表型选择 (PS)：</text>
+      <text x="10" y="32" font-size="9" fill="#64748b">亲本杂交 → F2-F6 世代自交固定 → 多年多点种植成株鉴定 (需 5~8 年/代)</text>
+    </g>
+
+    <!-- GS 育种 -->
+    <g transform="translate(450, 312)">
+      <rect width="420" height="42" rx="4" fill="#ffffff" stroke="#d946ef" stroke-width="1.2"/>
+      <text x="10" y="18" font-size="10" font-weight="bold" fill="#a21caf">全基因组选择 (GS)：</text>
+      <text x="10" y="32" font-size="9" fill="#1e293b"><tspan fill="#d946ef" font-weight="bold">幼苗提取 DNA 测序</tspan> → 输入模型直接预测 GEBV → 优良单株定向聚合 (<tspan fill="#16a34a" font-weight="bold">仅需 1~2 年</tspan>)</text>
+    </g>
+
+    <!-- 核心优势与植物经典案例 -->
+    <g transform="translate(50, 370)">
+      <rect width="820" height="45" rx="4" fill="#ffffff" stroke="#f5d0fe" stroke-width="1"/>
+      <text x="15" y="18" font-size="10" font-weight="bold" fill="#701a75">🌱 植物育种前沿案例与选型定位：</text>
+      <text x="15" y="34" font-size="9" fill="#475569"><tspan font-weight="bold">rrBLUP / GBLUP</tspan>：适用于大样本、多微效多基因农艺性状（如玉米穗行数、水稻单株生物量）；<tspan font-weight="bold">BayesA/B</tspan> 与 <tspan font-weight="bold">DNNGP</tspan>：可自适应大效应主效抗性基因与复杂上位性互作。</text>
+    </g>
+  </g>
+
+  <!-- 箭头定义 -->
+  <defs>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#3b82f6"/>
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#10b981"/>
+    </marker>
+  </defs>
+</svg>

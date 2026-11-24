@@ -115,7 +115,27 @@ PhytoMethods 经过此前基础架构、数据注册表、计算画像核验与�
   - `m05-topic-07`: 作物驯化与性状演化基因组学、全基因组选择清除扫描定位水稻 *sh4*/*PROG1*/*Wx*、玉米 *tb1*/*tga1* 与大豆 *GmHs1-1*/*GmLHY* 等关键驯化基因的分子机制
 - **选型矩阵完善**: 在 `src/data/method-comparison-matrices.ts` 扩充 `msmc2` 与 `psmc` 选型及全套决策树；
 - **文献出处索引**: 在 `source-review.json` 中新增 7 条权威文献追踪记录；
+- **全量测试验证**: `npm run validate`、`npm run test:methods-index-v4`、`npm run test:platform-browser` 100% 通过（13,291 链接 0 死链，63 篇专题 0 语法报错，多端 7 视口 0 溢出）；
+- **部署发布验证**: PR #57 Squash 合并入 main，Pages 部署成功上线。
+
+### M06：GWAS 与全基因组选择 (本地测试全量通过)
+- **分支**: `docs/v2.3-m06-gwas-breeding`
+- **图解建设**: 绘制 3 幅原创学术 SVG 矢量图解置于 `public/images/topics/m06/`：
+  1. `gwas-manhattan-qq-plot-architecture.svg`: 曼哈顿图（全基因组位点定位、显著性红线与建议线、候选区间 LD 判定）与 Q-Q 图（群体分层假阳性诊断、膨胀因子 $\lambda_{GC}$ 评估）双联科学架构；
+  2. `gwas-mixed-linear-model-farmcpu.svg`: 传统 $Q+K$ 混合线性模型方程、全基因组亲缘矩阵假阴性过度惩罚与多位点 FarmCPU 固定效应（FEM）与随机效应（REM）循环交替机制；
+  3. `genomic-selection-gblup-and-cross-validation.svg`: 全基因组选择（GS）工作流、VanRaden 亲缘矩阵、Henderson 混合模型方程组（MME）、5 折交叉验证预测准确度与育种世代大幅压缩效应。
+- **核心专题深度建设**: 覆盖 M06 全部 7 篇核心专题：
+  - `m06-topic-01`: 数量遗传学与表型变异分解、Fisher 无穷小模型、等位基因替代效应 $\alpha$、加性/显性方差解析、广义与狭义遗传力、自交系加性方差翻倍证明与品系均值遗传力；
+  - `m06-topic-02`: QTL 定位与遗传连锁、Haldane 与 Kosambi 交叉干涉图距函数推导、HMM 多位点基因型概率推断、区间作图（IM）与复合区间作图（CIM）、LOD 分数与置换检验（Permutation Test）；
+  - `m06-topic-03`: GWAS 关联检验基础与一般线性模型（GLM）、单标记最小二乘回归、植物地理生态亚群分层致假阳性机理、PCA/Q 矩阵固定协变量校正、Bonferroni 与 FDR 多重假设校正；
+  - `m06-topic-04`: GWAS 模型演进、Yu 2006 统一混合模型（$Q+K$）、VanRaden 亲缘关系矩阵算法、EMMA 谱分解加速、全基因组因果变异过度吸收缺陷、FarmCPU 循环解耦算法与 BLINK 贝叶斯迭代优化；
+  - `m06-topic-05`: GWAS 结果解读与候选基因精细定位、基因组膨胀因子 $\lambda_{GC}$ 诊断公式、局部连锁不平衡（LD block, $r^2 \ge 0.6$）边界判定、变异生物学功能三级分级、单倍型效应方差分析与水稻 *GS3* 提前终止密码子（C-to-A）及 *sd1* 383bp 缺失证据链；
+  - `m06-topic-06`: 全基因组选择（GS）理论基石、GBLUP 与 rrBLUP 数学等价性严格证明、Henderson MME 方程组求解、贝叶斯字母表（BayesA/B/C）多元先验模型对比、5 折交叉验证与数据泄漏规避；
+  - `m06-topic-07`: 机器学习预测与基因型×环境互作（G×E）、反应规范（Reaction Norm）与交叉互作、多环境 GBLUP Kronecker 积协方差结构（$\boldsymbol{\Omega}_E \otimes \mathbf{G}$）、DNNGP 深度学习多组学网络架构、CV1/CV2/CV0 跨环境交叉验证范式。
+- **选型矩阵完善**: 在 `src/data/method-comparison-matrices.ts` 扩充 `dnngp` 选型档案与复杂多组学非线性预测决策树；
+- **文献出处索引**: 在 `source-review.json` 中新增 7 条顶级文献追踪记录；
 - **全量测试验证**: `npm run validate`、`npm run test:methods-index-v4`、`npm run test:platform-browser` 100% 通过（13,291 链接 0 死链，63 篇专题 0 语法报错，多端 7 视口 0 溢出）。
+
 
 
 

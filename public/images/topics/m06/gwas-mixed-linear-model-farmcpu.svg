@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 460" width="100%" height="100%" style="background:#ffffff; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;">
+  <!-- 标题与副标题 -->
+  <text x="30" y="32" font-size="16" font-weight="bold" fill="#0f172a">混合线性模型（MLM）与多位点 FarmCPU 循环迭代算法架构</text>
+  <text x="30" y="52" font-size="12" fill="#64748b">从全基因组亲缘吸收 (Over-correction) 到固定-随机模型循环概率统一 (Circulating Probability Unification)</text>
+
+  <!-- 左侧：传统 Q+K 混合线性模型 (x: 30 ~ 430, y: 70 ~ 430) -->
+  <g id="traditional-mlm">
+    <rect x="30" y="70" width="410" height="360" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+    <rect x="42" y="82" width="140" height="24" rx="4" fill="#e0e7ff"/>
+    <text x="112" y="98" font-size="11" font-weight="bold" fill="#3730a3" text-anchor="middle">传统 Q+K 混合线性模型</text>
+
+    <!-- 数学方程卡片 -->
+    <rect x="45" y="118" width="380" height="60" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+    <text x="235" y="142" font-size="14" font-weight="bold" fill="#0f172a" text-anchor="middle">y = Xβ + Sᵢαᵢ + Zu + e</text>
+    <text x="235" y="162" font-size="10" fill="#475569" text-anchor="middle">Var(u) = 2K σ_g²,   Var(e) = I σ_e²</text>
+
+    <!-- 组成项详解 -->
+    <g transform="translate(45, 190)">
+      <circle cx="10" cy="10" r="4" fill="#3b82f6"/>
+      <text x="22" y="14" font-size="11" fill="#1e293b"><tspan font-weight="bold">Xβ (固定效应)</tspan>：群体结构 Q 矩阵 / 前两主成分 (PCA)</text>
+
+      <circle cx="10" cy="35" r="4" fill="#10b981"/>
+      <text x="22" y="39" font-size="11" fill="#1e293b"><tspan font-weight="bold">Sᵢαᵢ (测试位点)</tspan>：第 i 个候选 SNP 的加性基因效应</text>
+
+      <circle cx="10" cy="60" r="4" fill="#f59e0b"/>
+      <text x="22" y="64" font-size="11" fill="#1e293b"><tspan font-weight="bold">Zu (随机效应)</tspan>：基于全基因组 SNP 构建的亲缘关系 K</text>
+
+      <circle cx="10" cy="85" r="4" fill="#64748b"/>
+      <text x="22" y="89" font-size="11" fill="#1e293b"><tspan font-weight="bold">e (随机残差)</tspan>：不可解释的环境与测量随机误差</text>
+    </g>
+
+    <!-- 固有瓶颈警示卡片 -->
+    <rect x="45" y="300" width="380" height="115" rx="6" fill="#fef2f2" stroke="#fecaca" stroke-width="1"/>
+    <text x="60" y="322" font-size="11" font-weight="bold" fill="#991b1b">⚠️ 传统 MLM 的两大理论困境：</text>
+    <text x="60" y="342" font-size="10" fill="#b91c1c">1. <tspan font-weight="bold">真阳性过度吸收 (Over-correction)</tspan>：全基因组 K 矩阵不可避免地包含主效因果位点自身的遗传变异，导致因果信号被当做随机背景剔除，检验功效严重下降。</text>
+    <text x="60" y="378" font-size="10" fill="#b91c1c">2. <tspan font-weight="bold">计算复杂度高 (O(m·n³))</tspan>：尽管有 EMMA/FaST-LMM 谱分解对角化加速，但在数千万标记下仍极为耗时。</text>
+  </g>
+
+  <!-- 右侧：FarmCPU 创新解耦与循环迭代 (x: 460 ~ 890, y: 70 ~ 430) -->
+  <g id="farmcpu-circulating">
+    <rect x="460" y="70" width="430" height="360" rx="8" fill="#f0fdf4" stroke="#86efac" stroke-width="1.2"/>
+    <rect x="472" y="82" width="160" height="24" rx="4" fill="#dcfce7"/>
+    <text x="552" y="98" font-size="11" font-weight="bold" fill="#166534" text-anchor="middle">FarmCPU 多位点循环解耦机制</text>
+
+    <!-- 固定效应模型 (FEM) 框 -->
+    <rect x="475" y="118" width="400" height="90" rx="6" fill="#ffffff" stroke="#22c55e" stroke-width="1.2"/>
+    <text x="490" y="138" font-size="12" font-weight="bold" fill="#15803d">1. 固定效应模型（Fixed Effect Model, FEM）</text>
+    <text x="490" y="158" font-size="12" font-weight="bold" fill="#0f172a">y = Xβ + Sᵢαᵢ + ∑ₖ S_pseudo(k)·γₖ + e</text>
+    <text x="490" y="178" font-size="10" fill="#475569">• 逐一扫描全基因组每一个候选 SNP (Sᵢ)；</text>
+    <text x="490" y="194" font-size="10" fill="#15803d">• 纳入已锁定的伪辅因子 (Pseudo-QTNs) 作为协变量，精准清除局部 LD 假阳性。</text>
+
+    <!-- 循环箭头组 -->
+    <g transform="translate(640, 215)">
+      <!-- 下行箭头 -->
+      <path d="M 40 0 L 40 25" stroke="#0ea5e9" stroke-width="2.5" marker-end="url(#arrow-down)"/>
+      <text x="50" y="16" font-size="9" fill="#0284c7" font-weight="bold">输出候选显著位点</text>
+
+      <!-- 上行箭头 -->
+      <path d="M -40 25 L -40 0" stroke="#16a34a" stroke-width="2.5" marker-end="url(#arrow-up)"/>
+      <text x="-135" y="16" font-size="9" fill="#15803d" font-weight="bold">更新伪辅因子集 (收敛退出)</text>
+    </g>
+
+    <!-- 随机效应模型 (REM) 框 -->
+    <rect x="475" y="250" width="400" height="90" rx="6" fill="#ffffff" stroke="#0ea5e9" stroke-width="1.2"/>
+    <text x="490" y="270" font-size="12" font-weight="bold" fill="#0369a1">2. 随机效应模型（Random Effect Model, REM）</text>
+    <text x="490" y="290" font-size="12" font-weight="bold" fill="#0f172a">y = μ + Zu* + e,   Var(u*) = 2 K_pseudo σ_g²</text>
+    <text x="490" y="310" font-size="10" fill="#475569">• 仅利用当前迭代选出的伪辅因子构建稀疏亲缘矩阵 K_pseudo；</text>
+    <text x="490" y="326" font-size="10" fill="#0369a1">• 采用 SUPER 算法与最大似然估计优化方差分量，消除全基因组过度惩罚。</text>
+
+    <!-- 优势总结条 -->
+    <rect x="475" y="355" width="400" height="60" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+    <text x="490" y="375" font-size="10" font-weight="bold" fill="#0f172a">核心突破：实现检验功效（Power）与假阳性（FDR）最佳平衡</text>
+    <text x="490" y="392" font-size="9" fill="#475569">✓ 杜绝混杂假阳性与主效因果假阴性；计算速度达传统 MLM 的数十倍；</text>
+    <text x="490" y="405" font-size="9" fill="#475569">✓ 已在水稻、玉米、大豆与油菜群体 GWAS 中被广泛证实为黄金标准算法之一。</text>
+  </g>
+
+  <!-- 箭头标记定义 -->
+  <defs>
+    <marker id="arrow-down" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#0ea5e9"/>
+    </marker>
+    <marker id="arrow-up" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#16a34a"/>
+    </marker>
+  </defs>
+</svg>
