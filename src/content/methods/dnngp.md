@@ -6,7 +6,7 @@ dataType: 基因型、表型及可选多组学特征
 principle: 深度神经网络与监督式基因组预测
 domainIds: [gwas-breeding]
 topicIds: [m06-topic-07]
-principleIds: [gwas-mixed-model]
+principleIds: [deep-learning-genomic-prediction]
 dataIds: [variant-data, phenotype, expression-matrix]
 paper: dnngp-paper
 repository: https://github.com/AIBreeding/DNNGP

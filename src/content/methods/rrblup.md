@@ -6,7 +6,7 @@ dataType: SNP 基因型、表型与育种试验设计
 principle: 岭回归与线性混合模型
 domainIds: [gwas-breeding]
 topicIds: [m06-topic-06, m06-topic-07]
-principleIds: [gwas-mixed-model]
+principleIds: [ridge-regression-blup]
 dataIds: [variant-data, phenotype]
 paper: rrblup-paper
 repository: https://cran.r-project.org/web/packages/rrBLUP/index.html
@@ -25,6 +25,11 @@ rrBLUP 是用于基因组选择和数量遗传分析的 R 软件包。它以标�
 
 ## 植物应用与方法边界
 rrBLUP 的方法论文以植物基因组选择为应用背景。跨研究比较时需报告训练群体、标记密度、性状遗传力、验证策略及预测准确度定义。它与 GWAS 的目标不同：基因组选择关注预测，标记效应不自动构成单个位点的显著性证据。本文未将 rrBLUP 声称为任何特定植物案例的独占工具；实际案例应以原文方法部分核对模型和软件版本。
+
+在植物育种数量遗传学中，需严格区分三个不同层面的概念：
+- **全基因组关联分析 (GWAS)**：以统计假设检验（如混合线性模型 MLM、FarmCPU）评估单个位点与表型性状之间的统计关联，核心在于发掘因果变异与候选基因；
+- **基因组预测 (Genomic Prediction)**：基于全基因组标记及惩罚收缩（如岭回归 BLUP）将微效多基因效应联合建模，以最大化个体目标性状表型值或育种值的预测准确度；
+- **基因组选择 (Genomic Selection)**：基于基因组预测所得育种值 (GEBV) 直接开展育种材料的早期筛选与亲本选拔，旨在缩短世代周期并加速遗传增益。
 
 ## 版本、代码与关联资源
 CRAN 当前索引列出 rrBLUP 4.6.3，包页面提供源代码、手册和依赖信息。可由 R 环境安装：

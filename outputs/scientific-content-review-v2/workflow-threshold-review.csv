@@ -1,0 +1,4 @@
+"workflowId","phaseId","stepName","originalMetric","standardOrFormula","revisionNote","status"
+"assembly-pangenome","phase-03","基因组组装质量与连续性评估","高连通性与高准确度","Earth BioGenome Project (EBP) / VGP 规范: Contig N50 > 1 Mb, 染色体挂载率 90%~95%, 碱基准确度 Q40 (QV >= 40, 错误率 <= 0.01%), BUSCO > 95%","注明国际大型基因组计划标准，提供定量基线","STANDARDIZED"
+"population-gwas","phase-04","全基因组关联分析与显著性位点判定","全基因组显著性水平","Bonferroni 校正公式 P_threshold = alpha / M (对应曼哈顿图阈线 -log10(alpha / M))，配合有效标记数估计 (如 SimpleM / LD-pruning 得到的 M_eff)","引入数学检验模型与曼哈顿图阈线公式，避免直接使用经验常数","STANDARDIZED"
+"expression-network","phase-03","基因表达定量与差异表达分析","显著差异基因 padj < 0.05 且 |log2FC| >= 1.0","差异表达示例筛选标准: padj < 0.05 且 |log2FC| >= 1.0 (注: 实际应根据生物学重复数、测序深度与 FDR 经验分布动态确定)","明确标注为分析示例筛选条件，非强制通用标准","STANDARDIZED"

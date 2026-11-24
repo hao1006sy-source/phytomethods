@@ -1,0 +1,5 @@
+"entityType","entityId","checkedPages","targetFields","consistencyStatus","evidenceNote"
+"methods","59 个方法全量","methods/index.astro, methods/[id].astro, tags.ts, knowledge-graph-v2.json","domainIds, principleIds, dataIds","100% CONSISTENT","全量 59 个工具分类标签在页面渲染、静态索引与图谱实体中完全统一"
+"tutorials","10 篇教程全量","tutorials/index.astro, tutorials/[id].astro, tutorial-test-datasets.ts, tutorial-verification.json","softwareVersion, runtime, memory, evidencePaths","100% CONSISTENT","CAFE 5 耗时与家族数量在教程、执行日志与计算画像中消除矛盾并动态联动"
+"workflows","3 条端到端路线","workflows/index.astro, workflows/[id].astro, workflows/index.ts","thresholds, mathFormulas, recommendedCompute","100% CONSISTENT","组装 Q40 标准、GWAS 阈值公式与差异表达筛选说明完全对齐"
+"knowledge_graph","305 节点 & 743 边","knowledge/index.astro, knowledge-graph-v2.json, knowledge-audit-report.json","nodeIds, edgeRelations, domainMapping","100% CONSISTENT","0 孤立悬空节点、0 重复关系边，与最新内容库 100% 保持一致"

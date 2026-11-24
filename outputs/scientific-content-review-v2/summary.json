@@ -1,5 +1,5 @@
 {
-  "reviewVersion": "Scientific Content Review V2",
+  "reviewVersion": "Scientific Content Review V2 & V2.1",
   "reviewedAt": "2026-11-24",
   "scopeCounts": {
     "topics": 63,
@@ -9,11 +9,16 @@
     "computeProfiles": 12,
     "workflows": 3,
     "genomeSpecies": 10,
-    "inventoryTotal": 287
+    "taxonomyAudited": 59,
+    "taxonomyCorrected": 3,
+    "computeDisputesCorrected": 2,
+    "workflowThresholdsAudited": 3,
+    "crossPageChecks": 4,
+    "inventoryTotal": 292
   },
   "evidenceIntegrity": {
     "totalGraphEdges": 743,
-    "totalGraphNodes": 304,
+    "totalGraphNodes": 305,
     "totalEvidenceRecords": 801,
     "sourceCheckedRecords": 600,
     "structurallyValidRecords": 201,
@@ -22,12 +27,24 @@
   "tutorialVerification": {
     "verifiedCount": 8,
     "templateCount": 2,
-    "cafe5PathFix": "CONFIRMED_UNIFIED"
+    "cafe5PathFix": "CONFIRMED_UNIFIED",
+    "cafe5DiscrepancyResolved": "CONFIRMED_12653_INPUT_FAMILIES_AND_UNCERTIFIED_RAM"
   },
   "searchAndInteraction": {
     "searchPureTextResult": "CONFIRMED_ZERO_THUMBS",
     "searchCountScopeSplit": "CONFIRMED_DISTINGUISHED",
     "paperFiltersHistoryRestore": "CONFIRMED_DEBOUNCED_AND_RESTORED"
+  },
+  "scientificRefinementsV21": {
+    "dnngpCorrected": "deep-learning-genomic-prediction",
+    "rrblupCorrected": "ridge-regression-blup",
+    "scKbCopilotCorrected": "pseudoalignment, barcode-filtering",
+    "orthofinderSpeedupCleaned": "heuristic clustering and normalized distance",
+    "workflowsStandardsIntegrated": [
+      "EBP/VGP Q40",
+      "Bonferroni Manhattan Formula",
+      "Sample-specific DEG Note"
+    ]
   },
   "overallConclusion": "ALL_PASS"
 }
