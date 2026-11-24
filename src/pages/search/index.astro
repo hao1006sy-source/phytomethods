@@ -26,6 +26,7 @@ const popularKeywords = ['Hifiasm', 'GWAS', '泛基因组', '转座子', '单细
         <button type="button" class="filter-pill" data-type="method">方法与工具</button>
         <button type="button" class="filter-pill" data-type="paper">文献</button>
         <button type="button" class="filter-pill" data-type="tutorial">教程</button>
+        <button type="button" class="filter-pill" data-type="genome">基因组资源</button>
         <button type="button" class="filter-pill" data-type="workflow">路线图</button>
       </div>
 
@@ -79,8 +80,14 @@ const popularKeywords = ['Hifiasm', 'GWAS', '泛基因组', '转座子', '单细
   <link href={`${base}pagefind-search/pagefind-ui.css`} rel="stylesheet" />
 
   <script is:inline define:vars={{ base, synonymsList: synonymsData.synonyms }}>
-    const script = document.createElement('script');
-    script.src = base + 'pagefind-search/pagefind-ui.js';
+    (function() {
+      if (window.__pagefindScriptLoaded) {
+        return;
+      }
+      window.__pagefindScriptLoaded = true;
+
+      const script = document.createElement('script');
+      script.src = base + 'pagefind-search/pagefind-ui.js';
     
     script.onload = () => {
       // 9 大研究领域中英文映射表
@@ -250,7 +257,7 @@ const popularKeywords = ['Hifiasm', 'GWAS', '泛基因组', '转座子', '单细
                   const detailBtn = document.createElement('a');
                   detailBtn.className = 'result-details-link';
                   detailBtn.href = url;
-                  detailBtn.innerHTML = '查看详情 &rarr;';
+                  detailBtn.textContent = '查看详情 →';
                   detailBtn.setAttribute('aria-label', `查看 ${title} 详情`);
 
                   const headerRow = document.createElement('div');
@@ -272,12 +279,18 @@ const popularKeywords = ['Hifiasm', 'GWAS', '泛基因组', '转座子', '单细
             }
           });
 
-          // 格式化顶部结果数量显示 (与设计图一致)
+          // 格式化顶部结果数量显示 (与设计图一致，使用安全 DOM 构建)
           if (messageEl && query) {
-            const formatted = `找到 <strong>${visibleCount}</strong> 个与 “<strong>${query}</strong>” 相关的结果`;
-            if (messageEl.innerHTML !== formatted) {
-              messageEl.innerHTML = formatted;
-            }
+            messageEl.textContent = '';
+            messageEl.appendChild(document.createTextNode('找到 '));
+            const countStrong = document.createElement('strong');
+            countStrong.textContent = String(visibleCount);
+            messageEl.appendChild(countStrong);
+            messageEl.appendChild(document.createTextNode(' 个与 “'));
+            const queryStrong = document.createElement('strong');
+            queryStrong.textContent = query;
+            messageEl.appendChild(queryStrong);
+            messageEl.appendChild(document.createTextNode('” 相关的结果'));
           }
         } finally {
           setTimeout(() => {
@@ -332,9 +345,18 @@ const popularKeywords = ['Hifiasm', 'GWAS', '泛基因组', '转座子', '单细
         }
         if (matched) {
           synonymHint.style.display = 'flex';
-          synonymTerms.innerHTML = matched.terms
-            .map(t => `<a href="${base}search/?q=${encodeURIComponent(t)}" data-term="${t}" class="synonym-link">${t}</a>`)
-            .join(' · ');
+          synonymTerms.textContent = '';
+          matched.terms.forEach((t, idx) => {
+            if (idx > 0) {
+              synonymTerms.appendChild(document.createTextNode(' · '));
+            }
+            const a = document.createElement('a');
+            a.href = `${base}search/?q=${encodeURIComponent(t)}`;
+            a.setAttribute('data-term', t);
+            a.className = 'synonym-link';
+            a.textContent = t;
+            synonymTerms.appendChild(a);
+          });
         } else {
           synonymHint.style.display = 'none';
         }
@@ -379,7 +401,8 @@ const popularKeywords = ['Hifiasm', 'GWAS', '泛基因组', '转座子', '单细
       }
     };
 
-    document.body.appendChild(script);
+      document.body.appendChild(script);
+    })();
   </script>
 </Base>
 

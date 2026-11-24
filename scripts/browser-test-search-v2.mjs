@@ -98,15 +98,18 @@ async function runSearchV2Tests() {
   const { server, url } = await startStaticServer();
   console.log(`[Test Server] 启动就绪: ${url}\n`);
 
+  const launchOptions = {
+    headless: true,
+    args: ['--no-sandbox']
+  };
   const executablePath = process.env.BROWSER_PATH || 
     process.env.EDGE_PATH || 
-    (fs.existsSync('C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe') ? 'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe' : undefined);
+    (process.platform === 'win32' && fs.existsSync('C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe') ? 'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe' : undefined);
+  if (executablePath) {
+    launchOptions.executablePath = executablePath;
+  }
 
-  const browser = await chromium.launch({
-    headless: true,
-    executablePath,
-    args: ['--no-sandbox']
-  });
+  const browser = await chromium.launch(launchOptions);
 
   const context = await browser.newContext();
   const page = await context.newPage();
@@ -218,11 +221,14 @@ async function runSearchV2Tests() {
     console.log('✓ Test 2 通过: 「泛基因组」检索与纯文字学术目录样式完全达标。\n');
 
     // ----------------------------------------------------
-    // 测试 3: 资源类型筛选胶囊栏交互验证
+    // 测试 3: 资源类型筛选胶囊栏交互验证 (含基因组资源 genome)
     // ----------------------------------------------------
-    console.log('[Test 3] 校验资源类型筛选胶囊栏实时过滤与即时统计更新...');
+    console.log('[Test 3] 校验资源类型筛选胶囊栏实时过滤与即时统计更新 (含 genome)...');
     const filterPills = page.locator('.search-filter-pills .filter-pill');
-    assert.ok(await filterPills.count() >= 7, '应存在全部、研究领域、专题、方法与工具、文献、教程、路线图 7 类筛选胶囊');
+    assert.ok(await filterPills.count() >= 8, '应存在全部、研究领域、专题、方法与工具、文献、教程、基因组资源、路线图 8 类筛选胶囊');
+
+    const genomePill = page.locator('.filter-pill[data-type="genome"]');
+    assert.strictEqual(await genomePill.count(), 1, '筛选栏中必须存在「基因组资源」胶囊');
 
     // 点击「专题」胶囊
     const topicPill = page.locator('.filter-pill[data-type="topic"]');
@@ -249,7 +255,7 @@ async function runSearchV2Tests() {
     const allPill = page.locator('.filter-pill[data-type="all"]');
     await allPill.click();
     await page.waitForTimeout(300);
-    console.log('✓ Test 3 通过: 资源类型筛选胶囊即时前端过滤工作正常。\n');
+    console.log('✓ Test 3 通过: 资源类型筛选胶囊 (含基因组资源) 即时前端过滤工作正常。\n');
 
     // ----------------------------------------------------
     // 测试 4: 关键词「GWAS」检索与同义词智能扩展
@@ -319,7 +325,26 @@ async function runSearchV2Tests() {
     }
     console.log('✓ Test 6 通过: 7 种屏幕视口均实现严格 0 横向溢出，移动端纯文字体验优秀。\n');
 
-    console.log('🎉 全部 6 项核心自动化测试均 100% 验证通过！');
+    // ----------------------------------------------------
+    // 测试 7: 搜索安全与恶意 HTML 字符串 / XSS 防注入测试
+    // ----------------------------------------------------
+    console.log('[Test 7] 校验搜索特殊字符与恶意 HTML / XSS 注入防护...');
+    const maliciousPayload = '<script>window.__xssPwned=true;</script><img src=x onerror="window.__xssPwned=true">';
+    await searchInput.click();
+    await searchInput.fill(maliciousPayload);
+    await searchInput.dispatchEvent('input');
+    await page.waitForTimeout(600);
+
+    const isXssInjected = await page.evaluate(() => (window).__xssPwned);
+    assert.strictEqual(isXssInjected, undefined, '恶意脚本与标签决不能执行，XSS 防护必须 100% 生效');
+
+    const rawMessageHtml = await page.locator('.pagefind-ui__message').innerHTML();
+    assert.ok(!rawMessageHtml.includes('<script>'), '统计消息中严禁存在未经转义的 <script> 标签');
+    assert.ok(!rawMessageHtml.includes('<img'), '统计消息中严禁存在注入的 <img> 标签');
+
+    console.log('✓ Test 7 通过: 搜索框输入特殊字符与 HTML 标签安全过滤，无任何 DOM XSS 风险。\n');
+
+    console.log('🎉 全部 7 项核心自动化测试均 100% 验证通过！');
 
   } finally {
     await browser.close();

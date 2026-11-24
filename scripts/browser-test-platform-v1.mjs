@@ -95,15 +95,18 @@ async function runPlatformV1Tests() {
   const { server, url } = await startStaticServer();
   console.log(`[Test Server] 启动就绪: ${url}\n`);
 
+  const launchOptions = {
+    headless: true,
+    args: ['--no-sandbox']
+  };
   const executablePath = process.env.BROWSER_PATH || 
     process.env.EDGE_PATH || 
-    (fs.existsSync('C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe') ? 'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe' : undefined);
+    (process.platform === 'win32' && fs.existsSync('C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe') ? 'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe' : undefined);
+  if (executablePath) {
+    launchOptions.executablePath = executablePath;
+  }
 
-  const browser = await chromium.launch({
-    headless: true,
-    executablePath,
-    args: ['--no-sandbox']
-  });
+  const browser = await chromium.launch(launchOptions);
 
   const context = await browser.newContext();
   const page = await context.newPage();
@@ -127,27 +130,56 @@ async function runPlatformV1Tests() {
     console.log('✓ Test 1 通过: About 页面作者背景与公益承诺完整生效。\n');
 
     // ----------------------------------------------------
-    // 测试 2: 全站深色模式切换 (ThemeSwitcher)
+    // 测试 2: 全站深色模式切换 (多实例 ThemeSwitcher)
     // ----------------------------------------------------
-    console.log('[Test 2] 校验深色模式切换与持久化...');
-    const themeBtn = page.locator('.site-nav .theme-switch-btn');
-    assert.strictEqual(await themeBtn.count(), 1, 'Header 桌面导航中应存在主题切换器按钮');
+    console.log('[Test 2] 校验桌面与移动端双实例主题控制器联动与持久化...');
+    const desktopBtn = page.locator('.site-nav .theme-switch-btn');
+    const mobileBtn = page.locator('.mobile-nav .theme-switch-btn');
+    assert.strictEqual(await desktopBtn.count(), 1, 'Header 桌面导航中应存在主题切换器按钮');
+    assert.strictEqual(await mobileBtn.count(), 1, '移动端抽屉导航中亦应存在主题切换器按钮');
 
-    // 点击切换为浅色/深色
-    await themeBtn.click();
+    // 1. 点击桌面端按钮切换主题
+    await desktopBtn.click();
     let themeAttr = await page.evaluate(() => document.documentElement.getAttribute('data-theme'));
     let savedTheme = await page.evaluate(() => localStorage.getItem('pm-theme'));
-    assert.ok(themeAttr === 'light' || themeAttr === 'dark', '点击后应应用指定主题');
+    assert.ok(themeAttr === 'light' || themeAttr === 'dark', '桌面端点击后应应用指定主题');
     assert.ok(savedTheme === 'light' || savedTheme === 'dark', '主题偏好应正确持久化至 localStorage');
 
-    // 再次点击切换
-    await themeBtn.click();
-    themeAttr = await page.evaluate(() => document.documentElement.getAttribute('data-theme'));
-    if (themeAttr === 'dark') {
+    // 2. 校验移动端按钮状态是否同步更新
+    let desktopLabel = await desktopBtn.locator('.js-theme-label').textContent();
+    let mobileLabel = await mobileBtn.locator('.js-theme-label').textContent();
+    assert.strictEqual(desktopLabel, mobileLabel, '桌面端与移动端切换按钮必须显示完全相同的状态标签');
+
+    // 3. 切换至移动端视口并展开抽屉导航，点击移动端按钮再次切换
+    await page.setViewportSize({ width: 390, height: 844 });
+    const mobileToggle = page.locator('.mobile-nav-toggle');
+    await mobileToggle.click();
+    await mobileBtn.waitFor({ state: 'visible', timeout: 5000 });
+    await mobileBtn.click();
+    await page.evaluate(() => document.documentElement.getAttribute('data-theme'));
+    let savedTheme2 = await page.evaluate(() => localStorage.getItem('pm-theme'));
+    assert.notStrictEqual(savedTheme2, savedTheme, '移动端按钮点击亦能成功触发主题循环切换');
+    let desktopLabel2 = await desktopBtn.locator('.js-theme-label').textContent();
+    let mobileLabel2 = await mobileBtn.locator('.js-theme-label').textContent();
+    assert.strictEqual(desktopLabel2, mobileLabel2, '移动端切换后桌面端标签必须保持实时同步');
+
+    // 恢复桌面视口
+    await page.setViewportSize({ width: 1440, height: 900 });
+
+    // 4. 刷新页面，验证持久化保留
+    await page.reload({ waitUntil: 'domcontentloaded' });
+    let reloadedTheme = await page.evaluate(() => localStorage.getItem('pm-theme'));
+    let reloadedAttr = await page.evaluate(() => document.documentElement.getAttribute('data-theme'));
+    assert.strictEqual(reloadedTheme, savedTheme2, '页面刷新后主题偏好必须完全保留');
+    if (savedTheme2 !== 'system') {
+      assert.strictEqual(reloadedAttr, savedTheme2, '页面刷新后 data-theme 属性必须正确恢复');
+    }
+
+    if (reloadedAttr === 'dark') {
       await page.screenshot({ path: path.join(outputsDir, 'about-dark-1440.png') });
     }
 
-    console.log('✓ Test 2 通过: 深色模式三态切换与持久化逻辑完全正确。\n');
+    console.log('✓ Test 2 通过: 双实例多端主题控制器联动、三态切换与刷新持久化逻辑完全正确。\n');
 
     // ----------------------------------------------------
     // 测试 3: 搜索页面同义词推荐与真实检索召回 (Search Synonyms Recall)

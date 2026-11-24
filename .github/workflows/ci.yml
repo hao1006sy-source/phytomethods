@@ -42,14 +42,19 @@ jobs:
       - name: Install Playwright Chromium
         run: npx playwright install --with-deps chromium
 
-      - name: Run Genome Hub browser regression tests
-        run: npm run test:genome-hub
+      - name: Run Core Browser Regression Tests
+        run: |
+          npm run test:search-v2
+          npm run test:methods-index-v4
+          npm run test:genome-hub
+          npm run test:knowledge-v2
+          npm run test:platform-browser
 
-      - name: Upload Genome Hub test artifacts on failure
+      - name: Upload browser test artifacts on failure
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: genome-hub-test-artifacts
+          name: browser-test-artifacts
           path: |
-            outputs/plant-genome-hub-v1.1/
+            outputs/
           if-no-files-found: ignore

@@ -117,7 +117,17 @@ export function initMethodsFilters(): void {
     for (const tag of tags) {
       const tagEl = document.createElement('span');
       tagEl.className = 'filter-tag';
-      tagEl.innerHTML = `${tag.label} <button type="button" class="filter-tag-remove" data-key="${tag.key}" aria-label="移除 ${tag.label}">×</button>`;
+
+      const labelText = document.createTextNode(`${tag.label} `);
+      const removeBtn = document.createElement('button');
+      removeBtn.type = 'button';
+      removeBtn.className = 'filter-tag-remove';
+      removeBtn.dataset.key = tag.key;
+      removeBtn.setAttribute('aria-label', `移除 ${tag.label}`);
+      removeBtn.textContent = '×';
+
+      tagEl.appendChild(labelText);
+      tagEl.appendChild(removeBtn);
       activeTagsList.appendChild(tagEl);
     }
   }
@@ -217,9 +227,18 @@ export function initMethodsFilters(): void {
       }
     });
 
-    // 更新结果统计
+    // 更新结果统计 (安全 DOM 操作)
     if (resultsCountEl) {
-      resultsCountEl.innerHTML = `找到 <strong>${matchCount}</strong> 条结果 <span style="color:#668576;font-weight:normal;">（共 ${totalCount} 条）</span>`;
+      resultsCountEl.textContent = '';
+      const prefixText = document.createTextNode('找到 ');
+      const strongCount = document.createElement('strong');
+      strongCount.textContent = String(matchCount);
+      const suffixText = document.createTextNode(' 条结果 ');
+      const totalSpan = document.createElement('span');
+      totalSpan.style.color = '#668576';
+      totalSpan.style.fontWeight = 'normal';
+      totalSpan.textContent = `（共 ${totalCount} 条）`;
+      resultsCountEl.append(prefixText, strongCount, suffixText, totalSpan);
     }
 
     // 空状态提示

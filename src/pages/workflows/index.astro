@@ -11,7 +11,7 @@ const workflows = researchWorkflows;
   title="端到端科研工作流 (Workflows) · PhytoMethods"
   description="植物基因组学与生物信息学经典端到端分析路线图：从基因组组装、泛基因组构建，到群体变异检测、GWAS 关联分析及转录调控网络 WGCNA。"
 >
-  <main class="workflows-page">
+  <div class="workflows-page">
     <!-- 顶部 Banner -->
     <header class="workflows-hero">
       <div class="hero-container">
@@ -84,7 +84,7 @@ const workflows = researchWorkflows;
               <div class="diagram-section">
                 <h3 class="diagram-title">阶段流向全景图</h3>
                 <div class="diagram-box">
-                  <pre class="mermaid">{wf.mermaidDiagram}</pre>
+                  <pre class="mermaid" data-source={wf.mermaidDiagram}>{wf.mermaidDiagram}</pre>
                 </div>
               </div>
             </section>
@@ -205,7 +205,7 @@ const workflows = researchWorkflows;
         />
       </section>
     </div>
-  </main>
+  </div>
 </Base>
 
 <!-- 客户端标签页交互与 Mermaid 图形渲染脚本 (零外部 CDN 本地依赖) -->
@@ -236,6 +236,9 @@ const workflows = researchWorkflows;
       if (history.replaceState) {
         history.replaceState(null, '', `#${targetId}`);
       }
+
+      // 切换选项卡后重新渲染以校正可见尺寸
+      setTimeout(renderMermaidCharts, 60);
     });
   });
 
@@ -248,24 +251,43 @@ const workflows = researchWorkflows;
     }
   }
 
-  // 渲染 Mermaid (完全基于本地 bundle，零外部网络依赖)
+  let isRendering = false;
+
+  // 渲染 Mermaid (完全基于本地 bundle，零外部网络依赖，支持主题联动与 strict 安全级别)
   async function renderMermaidCharts() {
+    if (isRendering) return;
     const mermaidNodes = document.querySelectorAll<HTMLElement>('.mermaid');
     if (mermaidNodes.length === 0) return;
 
+    isRendering = true;
     try {
-      const isDark = document.documentElement.classList.contains('dark');
+      const dataTheme = document.documentElement.getAttribute('data-theme');
+      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const isDark = dataTheme === 'dark' || ((!dataTheme || dataTheme === 'system') && systemPrefersDark);
+
       mermaid.initialize({
         startOnLoad: false,
         theme: isDark ? 'dark' : 'neutral',
         fontFamily: 'Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif',
-        securityLevel: 'loose'
+        securityLevel: 'strict'
       });
+
+      // 还原原始内容以供 Mermaid 重新解析生成 SVG
+      for (const node of mermaidNodes) {
+        const source = node.getAttribute('data-source');
+        if (source) {
+          node.removeAttribute('data-processed');
+          node.textContent = source;
+        }
+      }
+
       await mermaid.run({
         nodes: mermaidNodes
       });
     } catch (e) {
       console.warn('Mermaid 本地渲染失败，降级回退至文本展示', e);
+    } finally {
+      isRendering = false;
     }
   }
 
@@ -278,12 +300,22 @@ const workflows = researchWorkflows;
   // 监听主题切换，支持深浅模式热切换
   const themeObserver = new MutationObserver((mutations) => {
     for (const mutation of mutations) {
-      if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+      if (mutation.type === 'attributes' && (mutation.attributeName === 'data-theme' || mutation.attributeName === 'class')) {
         renderMermaidCharts();
       }
     }
   });
   themeObserver.observe(document.documentElement, { attributes: true });
+
+  const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+  if (typeof mediaQuery.addEventListener === 'function') {
+    mediaQuery.addEventListener('change', () => {
+      const dataTheme = document.documentElement.getAttribute('data-theme');
+      if (!dataTheme || dataTheme === 'system') {
+        renderMermaidCharts();
+      }
+    });
+  }
 </script>
 
 <style>
@@ -599,12 +631,17 @@ const workflows = researchWorkflows;
     border-radius: 8px;
     padding: 1.5rem;
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    max-width: 100%;
     text-align: center;
   }
 
-  .diagram-box pre.mermaid {
+  .diagram-box pre.mermaid,
+  .diagram-box svg {
     margin: 0 auto;
     display: inline-block;
+    max-width: 100%;
+    height: auto;
   }
 
   /* 阶段时间线列表 */

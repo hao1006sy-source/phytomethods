@@ -372,12 +372,13 @@ export const tutorialTestDatasets: TutorialTestDataset[] = [
       'Base_family_results.txt (全基因组显著扩张/收缩基因家族判定表)',
       'Base_asr.tre (各祖先节点基因家族数量祖先状态重建树)'
     ],
-    estimatedDuration: '实测 1 分 18 秒 (Base 模型) / 3 分 42 秒 (Gamma 模型)',
-    durationBasis: 'WSL Ubuntu、4 核 OpenMP 并行计算、本地实测验证',
+    estimatedDuration: '实测约 188 秒 (Base 模型) / 约 828 秒 (Gamma 模型)',
+    durationBasis: 'WSL Ubuntu、4 核 OpenMP 并行计算、本地实测验证 (Base 188s / Gamma 828s)',
     cpuRecommendation: '4 核心',
     memoryRecommendation: '4 GB RAM',
     verificationStatus: 'executed',
     verificationEvidence: [
+      'examples/cafe5/verified-20261123/execution.json',
       'examples/cafe5/verified-20261123/base-stdout.log',
       'examples/cafe5/verified-20261123/gamma-stdout.log',
       'examples/cafe5/verified-20261123/validation-results.json'
