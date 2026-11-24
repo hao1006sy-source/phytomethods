@@ -2,7 +2,7 @@
   "version": "2.3.0",
   "project": "PhytoMethods Scientific Knowledge Enhancement & Continuous Delivery",
   "startedAt": "2026-11-25T00:20:00+08:00",
-  "currentMilestone": "M08",
+  "currentMilestone": "M09",
   "milestones": {
     "M01": {
       "name": "测序与基因组组装",
@@ -71,10 +71,10 @@
       "name": "单细胞与空间组学",
       "domainId": "single-cell-spatial-omics",
       "branch": "docs/v2.3-m08-single-cell",
-      "status": "pending",
-      "prNumber": null,
-      "deployedUrl": null,
-      "completedAt": null
+      "status": "completed",
+      "prNumber": 60,
+      "deployedUrl": "https://hao1006sy-source.github.io/phytomethods/topics/single-cell-spatial-omics/",
+      "completedAt": "2026-11-25T02:47:45+08:00"
     },
     "M09": {
       "name": "调控网络与组学人工智能",

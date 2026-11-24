@@ -179,6 +179,33 @@
         "https://hao1006sy-source.github.io/phytomethods/methods/hicexplorer/",
         "https://hao1006sy-source.github.io/phytomethods/methods/meme-suite/"
       ]
+    },
+    {
+      "milestone": "M08",
+      "domainId": "single-cell-spatial-omics",
+      "prNumber": 60,
+      "prTitle": "docs(v2.3): M08 单细胞与空间组学科研知识深度建设与学术矢量图解",
+      "mergeCommit": "c042e73",
+      "mergedAt": "2026-11-24T18:46:47Z",
+      "githubPagesRunId": 45463177981,
+      "deployedAt": "2026-11-24T18:47:45Z",
+      "deploymentStatus": "SUCCESS",
+      "liveUrl": "https://hao1006sy-source.github.io/phytomethods/topics/single-cell-spatial-omics/",
+      "verifiedPages": [
+        "https://hao1006sy-source.github.io/phytomethods/topics/single-cell-spatial-omics/m08-topic-01/",
+        "https://hao1006sy-source.github.io/phytomethods/topics/single-cell-spatial-omics/m08-topic-02/",
+        "https://hao1006sy-source.github.io/phytomethods/topics/single-cell-spatial-omics/m08-topic-03/",
+        "https://hao1006sy-source.github.io/phytomethods/topics/single-cell-spatial-omics/m08-topic-04/",
+        "https://hao1006sy-source.github.io/phytomethods/topics/single-cell-spatial-omics/m08-topic-05/",
+        "https://hao1006sy-source.github.io/phytomethods/topics/single-cell-spatial-omics/m08-topic-06/",
+        "https://hao1006sy-source.github.io/phytomethods/topics/single-cell-spatial-omics/m08-topic-07/",
+        "https://hao1006sy-source.github.io/phytomethods/methods/scanpy/",
+        "https://hao1006sy-source.github.io/phytomethods/methods/doubletfinder/",
+        "https://hao1006sy-source.github.io/phytomethods/methods/cellrank/",
+        "https://hao1006sy-source.github.io/phytomethods/methods/cell2location/",
+        "https://hao1006sy-source.github.io/phytomethods/methods/squidpy/",
+        "https://hao1006sy-source.github.io/phytomethods/methods/archr/"
+      ]
     }
   ]
 }

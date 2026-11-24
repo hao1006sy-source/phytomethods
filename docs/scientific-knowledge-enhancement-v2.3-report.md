@@ -31,7 +31,7 @@ PhytoMethods 经过此前基础架构、数据注册表、计算画像核验与�
 | **M05** | 群体遗传学与演化 | `docs/v2.3-m05-population-genetics` | #57 | 已合并 (`ec72b5e`) | 已发布 (Run 45453852275) |
 | **M06** | GWAS 与全基因组选择 | `docs/v2.3-m06-gwas-breeding` | #58 | 已合并 (`0d395cf`) | 已发布 (Run 45456818404) |
 | **M07** | 表观与三维基因组学 | `docs/v2.3-m07-epigenomics-3d` | #59 | 已合并 (`8ff37b0`) | 已发布 (Run 45460325238) |
-| **M08** | 单细胞与空间组学 | `docs/v2.3-m08-single-cell` | #60 | 待合并 | 待验证 |
+| **M08** | 单细胞与空间组学 | `docs/v2.3-m08-single-cell` | #60 | 已合并 (`c042e73`) | 已发布 (Run 45463177981) |
 | **M09** | 基因调控网络与 AI | `docs/v2.3-m09-networks-ai` | 待开始 | 待合并 | 待验证 |
 | **M10** | 全局收尾与持续发布总结 | `docs/v2.3-m10-final-review` | 待开始 | 待合并 | 待验证 |
 
@@ -156,8 +156,8 @@ PhytoMethods 经过此前基础架构、数据注册表、计算画像核验与�
 - **全量测试验证**: `npm run validate`、`npm run test:methods-index-v4`、`npm run test:platform-browser` 100% 通过（13,291 链接 0 死链，63 篇专题 0 语法报错，多端 7 视口 0 溢出）；
 - **部署发布验证**: PR #59 Squash 合并入 main，Pages 部署成功上线。
 
-### M08：单细胞与空间组学 (待合并验证)
-- **分支**: `docs/v2.3-m08-single-cell` | **PR**: #60 | **状态**: 已完成全量开发与本地三套测试
+### M08：单细胞与空间组学 (已合并上线)
+- **分支**: `docs/v2.3-m08-single-cell` | **PR**: #60 (`c042e73`) | **CI Run ID**: 45462624994 | **Pages Run ID**: 45463177981
 - **图解建设**: 绘制 3 幅原创学术 SVG 矢量图解置于 `public/images/topics/m08/`：
   1. `single-cell-rna-seq-workflow-and-sparse-matrix.svg`: 植物单细胞原生质体制备 vs. 单细胞核抽提双路线对比、液滴微流控油包水微胶滴（GEMs）、Cell Barcode 汉明纠错与 UMI 去重分子计数机制，以及超稀疏表达矩阵的 CSR 压缩存储结构；
   2. `single-cell-clustering-umap-and-rna-velocity.svg`: 高维表达空间到 PCA 截断奇异值分解、 $k$-NN 细胞邻近图、Leiden 模块度最优化社区发现、UMAP 低维流形空间投影，以及未剪接/剪接 mRNA 相平面微分方程与 RNA Velocity 动力学流速场；
@@ -172,7 +172,8 @@ PhytoMethods 经过此前基础架构、数据注册表、计算画像核验与�
   - `m08-topic-07`: 单细胞多组学与跨模态整合、配对 10x Multiome vs. 非配对跨模态对齐、scATAC-seq TF-IDF 潜语义索引（LSI，剔除测序深度伪影 LSI-1）、ArchR 物理距离指数衰减基因活性评分（Gene Score）、Seurat v4 WNN 加权最近邻多模态整合，以及 Peak-to-Gene 顺式调控网络预测。
 - **选型矩阵完善**: 在 `src/data/method-comparison-matrices.ts` 扩充 `cell2location` 与 `archr` 选型档案及全套决策树；
 - **文献出处索引**: 在 `source-review.json` 中新增 7 条权威文献追踪记录；
-- **全量测试验证**: `npm run validate`、`npm run test:methods-index-v4`、`npm run test:platform-browser` 100% 通过（13,172 链接 0 死链，63 篇专题 0 语法报错，多端 7 视口 0 溢出）。
+- **全量测试验证**: `npm run validate`、`npm run test:methods-index-v4`、`npm run test:platform-browser` 100% 通过（13,172 链接 0 死链，63 篇专题 0 语法报错，多端 7 视口 0 溢出）；
+- **部署发布验证**: PR #60 Squash 合并入 main，Pages 部署成功上线。
 
 
 
