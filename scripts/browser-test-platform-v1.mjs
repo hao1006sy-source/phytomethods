@@ -292,7 +292,7 @@ async function runPlatformV1Tests() {
     const computeCard = page.locator('#method-compute-profile');
     assert.strictEqual(await computeCard.count(), 1, 'Hifiasm 应展示计算资源卡片');
     assert.ok((await computeCard.textContent())?.includes('玉米 B73'), '应明确标注基准测试场景');
-    assert.ok((await computeCard.textContent())?.includes('160 ~ 200 GB RAM'), '应包含峰值内存评估');
+    assert.ok((await computeCard.textContent())?.includes('68 GB'), '应包含真实峰值内存评估 (官方实测 68 GB)');
 
     // 故障排查手册
     const tsSection = page.locator('#method-troubleshooting');
