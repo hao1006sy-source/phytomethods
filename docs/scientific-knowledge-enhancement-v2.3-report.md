@@ -175,8 +175,8 @@ PhytoMethods 经过此前基础架构、数据注册表、计算画像核验与�
 - **全量测试验证**: `npm run validate`、`npm run test:methods-index-v4`、`npm run test:platform-browser` 100% 通过（13,172 链接 0 死链，63 篇专题 0 语法报错，多端 7 视口 0 溢出）；
 - **部署发布验证**: PR #60 Squash 合并入 main，Pages 部署成功上线。
 
-### M09：调控网络与组学人工智能 (待合并验证)
-- **分支**: `docs/v2.3-m09-networks-ai` | **PR**: #61 | **状态**: 已完成全量开发与本地三套测试
+### M09：调控网络与组学人工智能 (已合并上线)
+- **分支**: `docs/v2.3-m09-networks-ai` | **PR**: #61 (`6935e02`) | **CI Run ID**: 45465241907 | **Pages Run ID**: 45465767628
 - **图解建设**: 绘制 3 幅原创学术 SVG 矢量图解置于 `public/images/topics/m09/`：
   1. `deseq2-dispersion-shrinkage-and-ma-plot.svg`: 负二项分布过度离散方差方程、经验贝叶斯局部离散度向均值趋势线强力收缩机制、离群值保护以及稳健对数倍数变化（LFC）漏斗型 MA 诊断图；
   2. `wgcna-scale-free-network-and-tom-matrix.svg`: 软阈值幂律连续加权无标度拓扑准则（$R^2 \ge 0.85$）、拓扑重叠矩阵（TOM）二阶共享近邻计算、动态混合树剪枝模块划分，以及模块特征基因（ME）与作物生理表型相关性热图；
@@ -191,7 +191,16 @@ PhytoMethods 经过此前基础架构、数据注册表、计算画像核验与�
   - `m09-topic-07`: AI 序列功能与变异效应预测、基于预训练大模型的零样本（Zero-Shot）对数似然比差（$\Delta \text{LLR}$）演化约束打分方程、监督任务头定量表达扰动预测、染色体物理空间留出（Leave-one-chromosome-out）与旁系同源基因家族隔离（Paralogy-aware split）三大防泄漏准则。
 - **选型矩阵完善**: 在 `src/data/method-comparison-matrices.ts` 扩充 `mofa-plus`, `agront`, `plantcad2` 选型档案及全套决策树；
 - **文献出处索引**: 在 `source-review.json` 中新增 7 条权威文献追踪记录；
-- **全量测试验证**: `npm run validate`、`npm run test:methods-index-v4`、`npm run test:platform-browser` 100% 通过（13,172 链接 0 死链，63 篇专题 0 语法报错，多端 7 视口 0 溢出）。
+- **全量测试验证**: `npm run validate`、`npm run test:methods-index-v4`、`npm run test:platform-browser` 100% 通过（13,172 链接 0 死链，63 篇专题 0 语法报错，多端 7 视口 0 溢出）；
+- **部署发布验证**: PR #61 Squash 合并入 main，Pages 部署成功上线。
+
+### M10：全局收尾与持续发布总结 (推进中)
+- **分支**: `docs/v2.3-m10-final-review` | **状态**: 启动全局学术协同梳理与终期归档
+- **目标与范围**:
+  1. 全站 63 篇专题、59 个工具、130 篇文献、3 条端到端工作流、9 大领域选型矩阵、计算资源基准画像与排错指南的学术协同与全局链路核对；
+  2. 验证全站 13,000+ 链接零死链、全量专题数学公式与 CommonMark 语法零报错、多端多视口响应式排版零溢出；
+  3. 完成全流程自动交付闭环与终期发布审计报告。
+
 
 
 

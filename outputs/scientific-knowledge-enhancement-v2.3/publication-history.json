@@ -206,6 +206,34 @@
         "https://hao1006sy-source.github.io/phytomethods/methods/squidpy/",
         "https://hao1006sy-source.github.io/phytomethods/methods/archr/"
       ]
+    },
+    {
+      "milestone": "M09",
+      "domainId": "regulatory-genomics-ai",
+      "prNumber": 61,
+      "prTitle": "docs(v2.3): M09 调控网络与组学人工智能科研知识深度建设与学术矢量图解",
+      "mergeCommit": "6935e02",
+      "mergedAt": "2026-11-24T19:01:26Z",
+      "githubPagesRunId": 45465767628,
+      "deployedAt": "2026-11-24T19:02:35Z",
+      "deploymentStatus": "SUCCESS",
+      "liveUrl": "https://hao1006sy-source.github.io/phytomethods/topics/regulatory-genomics-ai/",
+      "verifiedPages": [
+        "https://hao1006sy-source.github.io/phytomethods/topics/regulatory-genomics-ai/m09-topic-01/",
+        "https://hao1006sy-source.github.io/phytomethods/topics/regulatory-genomics-ai/m09-topic-02/",
+        "https://hao1006sy-source.github.io/phytomethods/topics/regulatory-genomics-ai/m09-topic-03/",
+        "https://hao1006sy-source.github.io/phytomethods/topics/regulatory-genomics-ai/m09-topic-04/",
+        "https://hao1006sy-source.github.io/phytomethods/topics/regulatory-genomics-ai/m09-topic-05/",
+        "https://hao1006sy-source.github.io/phytomethods/topics/regulatory-genomics-ai/m09-topic-06/",
+        "https://hao1006sy-source.github.io/phytomethods/topics/regulatory-genomics-ai/m09-topic-07/",
+        "https://hao1006sy-source.github.io/phytomethods/methods/deseq2/",
+        "https://hao1006sy-source.github.io/phytomethods/methods/wgcna/",
+        "https://hao1006sy-source.github.io/phytomethods/methods/genie3/",
+        "https://hao1006sy-source.github.io/phytomethods/methods/meme-suite/",
+        "https://hao1006sy-source.github.io/phytomethods/methods/mofa-plus/",
+        "https://hao1006sy-source.github.io/phytomethods/methods/agront/",
+        "https://hao1006sy-source.github.io/phytomethods/methods/plantcad2/"
+      ]
     }
   ]
 }

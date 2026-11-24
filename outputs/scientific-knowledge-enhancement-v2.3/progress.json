@@ -2,7 +2,7 @@
   "version": "2.3.0",
   "project": "PhytoMethods Scientific Knowledge Enhancement & Continuous Delivery",
   "startedAt": "2026-11-25T00:20:00+08:00",
-  "currentMilestone": "M09",
+  "currentMilestone": "M10",
   "milestones": {
     "M01": {
       "name": "测序与基因组组装",
@@ -80,10 +80,10 @@
       "name": "调控网络与组学人工智能",
       "domainId": "regulatory-genomics-ai",
       "branch": "docs/v2.3-m09-networks-ai",
-      "status": "pending",
-      "prNumber": null,
-      "deployedUrl": null,
-      "completedAt": null
+      "status": "completed",
+      "prNumber": 61,
+      "deployedUrl": "https://hao1006sy-source.github.io/phytomethods/topics/regulatory-genomics-ai/",
+      "completedAt": "2026-11-25T03:02:35+08:00"
     },
     "M10": {
       "name": "全局收尾与持续发布总结",
