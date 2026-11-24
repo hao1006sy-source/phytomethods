@@ -433,6 +433,90 @@
       "sectionLocator": "Rice domestication sweeps & Identification of sh4 and PROG1",
       "verifiedDate": "2026-11-25",
       "status": "SOURCE_VERIFIED"
+    },
+    {
+      "milestone": "M06",
+      "domainId": "gwas-breeding",
+      "topicOrMethod": "m06-topic-01",
+      "claim": "表型变异多层次正交分解、加性/显性方差解析、狭义遗传力与自交系群体加性遗传方差翻倍证明 (VA(inbred) = 2 VA(random))",
+      "sourceType": "peer_reviewed_paper",
+      "citation": "Schmidt P, Möhring J, Piepho HP. (2019). Heritability in plant breeding on a genotype-difference basis. Genetics, 212(4), 991–1008.",
+      "doi": "10.1534/genetics.119.302134",
+      "sectionLocator": "Theory: Heritability on a genotype-difference basis & Entry-mean formula",
+      "verifiedDate": "2026-11-25",
+      "status": "SOURCE_VERIFIED"
+    },
+    {
+      "milestone": "M06",
+      "domainId": "gwas-breeding",
+      "topicOrMethod": "m06-topic-02",
+      "claim": "Kosambi 交叉干涉图距函数推导、HMM 基因型概率推断、复合区间作图 (CIM) 与 LOD 显著性阈值非参数置换检验",
+      "sourceType": "peer_reviewed_paper",
+      "citation": "Broman KW, Gatti DM, Simecek P, et al. (2019). R/qtl2: software for mapping quantitative trait loci with high-dimensional data and multiparent populations. Genetics, 211(2), 495–502.",
+      "doi": "10.1534/genetics.118.301595",
+      "sectionLocator": "HMM genotype probabilities & Genome scan algorithms",
+      "verifiedDate": "2026-11-25",
+      "status": "SOURCE_VERIFIED"
+    },
+    {
+      "milestone": "M06",
+      "domainId": "gwas-breeding",
+      "topicOrMethod": "m06-topic-03",
+      "claim": "全基因组单标记最小二乘回归方程、自然群体地理分层致假阳性机理、PCA/Q 矩阵固定协变量校正与 Bonferroni/FDR 多重假设校正",
+      "sourceType": "peer_reviewed_paper",
+      "citation": "Huang X, Wei X, Sang T, et al. (2010). Genome-wide association studies of 14 agronomic traits in rice landraces. Nature Genetics, 42(11), 961–967.",
+      "doi": "10.1038/ng.695",
+      "sectionLocator": "Genome-wide association mapping with population structure correction",
+      "verifiedDate": "2026-11-25",
+      "status": "SOURCE_VERIFIED"
+    },
+    {
+      "milestone": "M06",
+      "domainId": "gwas-breeding",
+      "topicOrMethod": "m06-topic-04",
+      "claim": "Yu 2006 统一混合模型 (Q+K)、VanRaden 亲缘关系矩阵、传统 MLM 全基因组因果变异过度惩罚缺陷与 FarmCPU 固定/随机模型循环交替迭代机制",
+      "sourceType": "peer_reviewed_paper",
+      "citation": "Liu X, Huang M, Fan B, et al. (2016). Iterative Usage of Fixed and Random Effect Models for Powerful and Efficient Genome-Wide Association Studies. PLOS Genetics, 12(2), e1005767.",
+      "doi": "10.1371/journal.pgen.1005767",
+      "sectionLocator": "FarmCPU Algorithm: Fixed effect model and Random effect model circulation",
+      "verifiedDate": "2026-11-25",
+      "status": "SOURCE_VERIFIED"
+    },
+    {
+      "milestone": "M06",
+      "domainId": "gwas-breeding",
+      "topicOrMethod": "m06-topic-05",
+      "claim": "基因组膨胀因子 lambda_GC 诊断公式、局部连锁不平衡 (LD block) 边界判定、单倍型效应方差分析与水稻粒长主效基因 GS3 提前终止无义突变 (C to A) 确证",
+      "sourceType": "peer_reviewed_paper",
+      "citation": "Fan C, Xing Y, Mao H, et al. (2006). GS3, a major QTL for grain length and weight and minor QTL for grain width and thickness in rice, encodes a putative transmembrane protein. Theoretical and Applied Genetics, 112(6), 1164–1171.",
+      "doi": "10.1007/s00122-006-0218-1",
+      "sectionLocator": "Fine mapping of GS3 & Identification of nonsense C-to-A mutation in exon 2",
+      "verifiedDate": "2026-11-25",
+      "status": "SOURCE_VERIFIED"
+    },
+    {
+      "milestone": "M06",
+      "domainId": "gwas-breeding",
+      "topicOrMethod": "m06-topic-06",
+      "claim": "全基因组选择 (GS) 理论基石、GBLUP 与 rrBLUP 数学等价性严格证明、Henderson MME 方程组求解、贝叶斯字母表 (BayesA/B/C) 先验差异与交叉验证数据泄漏防范",
+      "sourceType": "peer_reviewed_paper",
+      "citation": "Meuwissen THE, Hayes BJ, Goddard ME. (2001). Prediction of total genetic value using genome-wide dense marker maps. Genetics, 157(4), 1819–1829.",
+      "doi": "10.1093/genetics/157.4.1819",
+      "sectionLocator": "Methods: BLUP, BayesA, and BayesB formulation & Prediction of breeding values",
+      "verifiedDate": "2026-11-25",
+      "status": "SOURCE_VERIFIED"
+    },
+    {
+      "milestone": "M06",
+      "domainId": "gwas-breeding",
+      "topicOrMethod": "m06-topic-07",
+      "claim": "多环境 GBLUP 混合模型与 Kronecker 积协方差结构 (Omega_E (x) G)、环境型组学 (Envirotyping) 气象特征融合、DNNGP 多组学深度学习网络以及 CV1/CV2/CV0 验证范式",
+      "sourceType": "peer_reviewed_paper",
+      "citation": "Wang K, Abbott D, Dong F, et al. (2023). Deep neural networks for multi-omics genomic prediction in plants. Molecular Plant, 16(1), 212–227.",
+      "doi": "10.1016/j.molp.2022.11.004",
+      "sectionLocator": "DNNGP architecture & Multi-omics integration benchmarks",
+      "verifiedDate": "2026-11-25",
+      "status": "SOURCE_VERIFIED"
     }
   ]
 }

@@ -1,0 +1,160 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 460" width="100%" height="100%" style="background:#ffffff; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;">
+  <!-- 标题与副标题 -->
+  <text x="30" y="32" font-size="16" font-weight="bold" fill="#0f172a">全基因组关联分析（GWAS）双联统计图解：曼哈顿图与 Q-Q 图协同判读</text>
+  <text x="30" y="52" font-size="12" fill="#64748b">Manhattan Plot（全基因组位点定位）与 Quantile-Quantile Plot（群体分层与假阳性检验）</text>
+
+  <!-- 左侧：曼哈顿图容器 (x: 30 ~ 590, y: 70 ~ 430) -->
+  <g id="manhattan-plot">
+    <rect x="30" y="70" width="560" height="360" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+    <text x="45" y="95" font-size="13" font-weight="bold" fill="#1e293b">A. 曼哈顿图（Manhattan Plot）</text>
+    
+    <!-- Y 轴标签与刻度 -->
+    <line x1="80" y1="110" x2="80" y2="390" stroke="#94a3b8" stroke-width="1.5"/>
+    <line x1="80" y1="390" x2="570" y2="390" stroke="#94a3b8" stroke-width="1.5"/>
+    
+    <text x="42" y="240" font-size="11" fill="#475569" font-weight="600" transform="rotate(-90 42 240)">-log10(p-value)</text>
+    
+    <!-- Y 刻度线 -->
+    <text x="72" y="394" font-size="10" fill="#64748b" text-anchor="end">0</text>
+    <text x="72" y="334" font-size="10" fill="#64748b" text-anchor="end">3</text>
+    <line x1="77" y1="330" x2="80" y2="330" stroke="#94a3b8"/>
+    <text x="72" y="274" font-size="10" fill="#64748b" text-anchor="end">6</text>
+    <line x1="77" y1="270" x2="80" y2="270" stroke="#94a3b8"/>
+    <text x="72" y="214" font-size="10" fill="#64748b" text-anchor="end">9</text>
+    <line x1="77" y1="210" x2="80" y2="210" stroke="#94a3b8"/>
+    <text x="72" y="154" font-size="10" fill="#64748b" text-anchor="end">12</text>
+    <line x1="77" y1="150" x2="80" y2="150" stroke="#94a3b8"/>
+
+    <!-- 阈值线 -->
+    <!-- 全基因组显著性阈值 Bonferroni (0.05 / M ≈ -log10(p)=7.3) -->
+    <line x1="80" y1="244" x2="570" y2="244" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5,4"/>
+    <text x="565" y="238" font-size="10" fill="#dc2626" font-weight="bold" text-anchor="end">全基因组显著性红线 (p &lt; 5×10⁻⁸, Bonferroni)</text>
+
+    <!-- 建议性阈值 (Suggestive threshold ≈ 1×10⁻⁵ => 5.0) -->
+    <line x1="80" y1="290" x2="570" y2="290" stroke="#3b82f6" stroke-width="1.2" stroke-dasharray="3,3"/>
+    <text x="565" y="302" font-size="9" fill="#2563eb" text-anchor="end">建议性阈值线 (p &lt; 1×10⁻⁵)</text>
+
+    <!-- 染色体背景区分与散点分布 (Chr 1 ~ Chr 7 简化展示) -->
+    <!-- Chr 1 (80-145) -->
+    <text x="112" y="405" font-size="10" fill="#475569" text-anchor="middle" font-weight="bold">Chr 1</text>
+    <!-- 背景点散布 -->
+    <circle cx="95" cy="370" r="1.5" fill="#3b82f6" opacity="0.6"/><circle cx="102" cy="355" r="1.5" fill="#3b82f6" opacity="0.6"/>
+    <circle cx="110" cy="380" r="1.5" fill="#3b82f6" opacity="0.6"/><circle cx="125" cy="360" r="1.5" fill="#3b82f6" opacity="0.6"/>
+    <circle cx="135" cy="340" r="1.5" fill="#3b82f6" opacity="0.6"/><circle cx="118" cy="310" r="2" fill="#3b82f6" opacity="0.7"/>
+    <!-- 经典峰 1: sd1 矮秆位点 -->
+    <circle cx="120" cy="285" r="2.2" fill="#2563eb"/>
+    <circle cx="121" cy="255" r="2.5" fill="#2563eb"/>
+    <circle cx="122" cy="220" r="3" fill="#dc2626"/>
+    <circle cx="122" cy="180" r="3.5" fill="#ef4444"/>
+    <circle cx="122" cy="145" r="4" fill="#b91c1c"/>
+    <path d="M 122 140 L 122 120" stroke="#b91c1c" stroke-width="1.2"/>
+    <rect x="95" y="105" width="55" height="18" rx="4" fill="#fee2e2" stroke="#ef4444" stroke-width="1"/>
+    <text x="122" y="118" font-size="10" fill="#991b1b" font-weight="bold" text-anchor="middle">sd1 (矮秆)</text>
+
+    <!-- Chr 2 (145-210) -->
+    <rect x="145" y="110" width="65" height="280" fill="#f1f5f9" opacity="0.5"/>
+    <text x="177" y="405" font-size="10" fill="#475569" text-anchor="middle" font-weight="bold">Chr 2</text>
+    <circle cx="155" cy="365" r="1.5" fill="#0d9488" opacity="0.6"/><circle cx="165" cy="375" r="1.5" fill="#0d9488" opacity="0.6"/>
+    <circle cx="178" cy="350" r="1.5" fill="#0d9488" opacity="0.6"/><circle cx="190" cy="360" r="1.5" fill="#0d9488" opacity="0.6"/>
+    <circle cx="170" cy="325" r="2" fill="#0d9488" opacity="0.7"/><circle cx="185" cy="305" r="2" fill="#0d9488" opacity="0.7"/>
+
+    <!-- Chr 3 (210-275) -->
+    <text x="242" y="405" font-size="10" fill="#475569" text-anchor="middle" font-weight="bold">Chr 3</text>
+    <circle cx="220" cy="360" r="1.5" fill="#3b82f6" opacity="0.6"/><circle cx="230" cy="375" r="1.5" fill="#3b82f6" opacity="0.6"/>
+    <circle cx="250" cy="365" r="1.5" fill="#3b82f6" opacity="0.6"/><circle cx="265" cy="355" r="1.5" fill="#3b82f6" opacity="0.6"/>
+    <!-- 经典峰 2: GS3 粒长主效位点 -->
+    <circle cx="240" cy="315" r="2.2" fill="#2563eb"/>
+    <circle cx="241" cy="265" r="2.5" fill="#2563eb"/>
+    <circle cx="242" cy="215" r="3" fill="#dc2626"/>
+    <circle cx="242" cy="165" r="3.5" fill="#ef4444"/>
+    <circle cx="242" cy="130" r="4" fill="#b91c1c"/>
+    <path d="M 242 125 L 242 110" stroke="#b91c1c" stroke-width="1.2"/>
+    <rect x="215" y="95" width="55" height="18" rx="4" fill="#fee2e2" stroke="#ef4444" stroke-width="1"/>
+    <text x="242" y="108" font-size="10" fill="#991b1b" font-weight="bold" text-anchor="middle">GS3 (粒长)</text>
+
+    <!-- Chr 4 (275-340) -->
+    <rect x="275" y="110" width="65" height="280" fill="#f1f5f9" opacity="0.5"/>
+    <text x="307" y="405" font-size="10" fill="#475569" text-anchor="middle" font-weight="bold">Chr 4</text>
+    <circle cx="285" cy="365" r="1.5" fill="#0d9488" opacity="0.6"/><circle cx="300" cy="370" r="1.5" fill="#0d9488" opacity="0.6"/>
+    <circle cx="315" cy="355" r="1.5" fill="#0d9488" opacity="0.6"/><circle cx="330" cy="380" r="1.5" fill="#0d9488" opacity="0.6"/>
+    <circle cx="310" cy="330" r="2" fill="#0d9488" opacity="0.7"/>
+
+    <!-- Chr 5 (340-405) -->
+    <text x="372" y="405" font-size="10" fill="#475569" text-anchor="middle" font-weight="bold">Chr 5</text>
+    <circle cx="350" cy="375" r="1.5" fill="#3b82f6" opacity="0.6"/><circle cx="365" cy="360" r="1.5" fill="#3b82f6" opacity="0.6"/>
+    <circle cx="380" cy="368" r="1.5" fill="#3b82f6" opacity="0.6"/><circle cx="395" cy="372" r="1.5" fill="#3b82f6" opacity="0.6"/>
+    <circle cx="370" cy="320" r="2" fill="#3b82f6" opacity="0.7"/>
+
+    <!-- Chr 6 (405-470) -->
+    <rect x="405" y="110" width="65" height="280" fill="#f1f5f9" opacity="0.5"/>
+    <text x="437" y="405" font-size="10" fill="#475569" text-anchor="middle" font-weight="bold">Chr 6</text>
+    <circle cx="415" cy="370" r="1.5" fill="#0d9488" opacity="0.6"/><circle cx="430" cy="375" r="1.5" fill="#0d9488" opacity="0.6"/>
+    <circle cx="445" cy="360" r="1.5" fill="#0d9488" opacity="0.6"/><circle cx="460" cy="365" r="1.5" fill="#0d9488" opacity="0.6"/>
+
+    <!-- Chr 7 (470-535) -->
+    <text x="502" y="405" font-size="10" fill="#475569" text-anchor="middle" font-weight="bold">Chr 7</text>
+    <circle cx="480" cy="375" r="1.5" fill="#3b82f6" opacity="0.6"/><circle cx="495" cy="365" r="1.5" fill="#3b82f6" opacity="0.6"/>
+    <circle cx="510" cy="370" r="1.5" fill="#3b82f6" opacity="0.6"/><circle cx="525" cy="378" r="1.5" fill="#3b82f6" opacity="0.6"/>
+    <!-- 经典峰 3: GW7/GL7 -->
+    <circle cx="505" cy="320" r="2.2" fill="#2563eb"/>
+    <circle cx="505" cy="270" r="2.5" fill="#2563eb"/>
+    <circle cx="505" cy="230" r="3" fill="#dc2626"/>
+    <circle cx="505" cy="195" r="3.5" fill="#ef4444"/>
+
+    <!-- 局部 LD 衰减与候选区间浮层 -->
+    <g transform="translate(360, 140)">
+      <rect width="180" height="70" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1" filter="drop-shadow(0 2px 4px rgba(0,0,0,0.06))"/>
+      <text x="10" y="18" font-size="10" font-weight="bold" fill="#0f172a">局部候选区间定位机制</text>
+      <text x="10" y="34" font-size="9" fill="#475569">1. 确定前导 SNP (Lead SNP, 最高 -logP)</text>
+      <text x="10" y="48" font-size="9" fill="#475569">2. 扫描连锁不平衡区 (r² ≥ 0.6)</text>
+      <text x="10" y="62" font-size="9" fill="#2563eb" font-weight="bold">3. 抓取区间内注释外显子/启动子</text>
+    </g>
+  </g>
+
+  <!-- 右侧：Q-Q 图容器 (x: 610 ~ 890, y: 70 ~ 430) -->
+  <g id="qq-plot">
+    <rect x="610" y="70" width="280" height="360" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+    <text x="625" y="95" font-size="13" font-weight="bold" fill="#1e293b">B. 分位数-分位数图（Q-Q Plot）</text>
+
+    <!-- 坐标轴 -->
+    <line x1="660" y1="120" x2="660" y2="380" stroke="#94a3b8" stroke-width="1.5"/>
+    <line x1="660" y1="380" x2="860" y2="380" stroke="#94a3b8" stroke-width="1.5"/>
+
+    <text x="622" y="250" font-size="11" fill="#475569" font-weight="600" transform="rotate(-90 622 250)">Observed -log10(p)</text>
+    <text x="760" y="405" font-size="11" fill="#475569" font-weight="600" text-anchor="middle">Expected -log10(p)</text>
+
+    <!-- 刻度 -->
+    <text x="652" y="384" font-size="10" fill="#64748b" text-anchor="end">0</text>
+    <text x="652" y="318" font-size="10" fill="#64748b" text-anchor="end">3</text>
+    <text x="652" y="252" font-size="10" fill="#64748b" text-anchor="end">6</text>
+    <text x="652" y="186" font-size="10" fill="#64748b" text-anchor="end">9</text>
+    <text x="652" y="124" font-size="10" fill="#64748b" text-anchor="end">12</text>
+
+    <text x="660" y="394" font-size="10" fill="#64748b" text-anchor="middle">0</text>
+    <text x="726" y="394" font-size="10" fill="#64748b" text-anchor="middle">3</text>
+    <text x="792" y="394" font-size="10" fill="#64748b" text-anchor="middle">6</text>
+    <text x="858" y="394" font-size="10" fill="#64748b" text-anchor="middle">9</text>
+
+    <!-- 理论零假设参考对角线 (y = x) -->
+    <line x1="660" y1="380" x2="850" y2="190" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,4"/>
+    <text x="855" y="195" font-size="9" fill="#64748b">y = x</text>
+
+    <!-- 曲线 1: 未控制群体分层的 GLM 模型（严重膨胀，假阳性泛滥） -->
+    <path d="M 660 380 Q 710 320 780 180 T 840 120" fill="none" stroke="#f43f5e" stroke-width="2"/>
+    <circle cx="840" cy="120" r="3" fill="#f43f5e"/>
+    <text x="760" y="165" font-size="9" fill="#e11d48" font-weight="bold">未控制群体结构 (GLM)</text>
+    <text x="760" y="177" font-size="8" fill="#e11d48">λ_GC = 1.72 (假阳性严重)</text>
+
+    <!-- 曲线 2: 混合线性模型 MLM / FarmCPU（理想拟合：低区完全贴合，高区真实因果信号翘起） -->
+    <path d="M 660 380 L 750 290 Q 780 260 800 210 T 820 135" fill="none" stroke="#10b981" stroke-width="2.2"/>
+    <circle cx="820" cy="135" r="3.5" fill="#059669"/>
+    <text x="720" y="275" font-size="9" fill="#047857" font-weight="bold">亲缘控制 (MLM/FarmCPU)</text>
+    <text x="720" y="287" font-size="8" fill="#047857">λ_GC = 1.02 (理想中性基线)</text>
+
+    <!-- 图例与说明卡片 -->
+    <rect x="630" y="315" width="160" height="50" rx="4" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="638" y="330" font-size="9" font-weight="bold" fill="#0f172a">基因组膨胀因子 λ_GC</text>
+    <text x="638" y="344" font-size="8" fill="#475569">λ_GC ≈ 1.00 ~ 1.05: 控制良好</text>
+    <text x="638" y="356" font-size="8" fill="#475569">λ_GC &gt; 1.10: 存在未纠正群体分层</text>
+  </g>
+</svg>

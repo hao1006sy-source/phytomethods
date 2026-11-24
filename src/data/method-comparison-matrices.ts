@@ -466,6 +466,16 @@ export const methodComparisonMatrices: Record<string, DomainComparisonMatrix> = 
         advantages: '双亲与多亲（MAGIC、NAM）分离群体 QTL 定位首选',
         limitations: '仅限于已知杂交系谱的受控家系，不可用于多样性自然群体',
         recommendedScenario: '高分辨率遗传连锁图谱构建与双亲分离群体 QTL 精细定位'
+      },
+      {
+        methodId: 'dnngp',
+        name: 'DNNGP',
+        inputType: '多组学数据 (SNP 基因型 + 转录组表达谱) 与表型',
+        corePrinciple: '端到端深度神经网络 (1D-CNN + 全连接网络) 拟合非线性调控响应',
+        computeProfile: '推荐 GPU 加速 (PyTorch 环境, 8~16 GB 显存, 支持 CPU 训练但耗时较长)',
+        advantages: '突破线性假说限制，有效捕获高阶上位性非线性互作与复杂性状表现',
+        limitations: '训练参数量大，需大样本量防过拟合，模型生物学可解释性相对较弱',
+        recommendedScenario: '作物复杂性状多组学整合预测与非线性基因组育种值估计'
       }
     ],
     decisionTrees: [
@@ -483,6 +493,11 @@ export const methodComparisonMatrices: Record<string, DomainComparisonMatrix> = 
         condition: '面向智慧育种，需要通过历史品系预测未测表型后代的育种值',
         recommendation: '首选 rrBLUP',
         rationale: 'GS 领域经典标准，快速计算个体基因组估计育种值 (GEBV)。'
+      },
+      {
+        condition: '拥有基因组与转录组等多组学数据，表型受复杂非加性上位性调控',
+        recommendation: '首选 DNNGP (配合 GPU 加速)',
+        rationale: '利用深度神经网络直接捕捉多组学非线性交互特征，提升复合性状预测准确度。'
       }
     ]
   },
