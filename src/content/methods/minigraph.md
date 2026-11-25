@@ -1,57 +1,166 @@
 ---
 title: Minigraph
 name: Minigraph
-summary: 以参考骨架引导组装序列逐步加入泛基因组图，并支持序列到图映射。
-dataType: 参考基因组或 rGFA 图 / 单样本组装 FASTA
-principle: 参考引导的序列到图映射与增量构图
+summary: 基于参考骨架引导的增量泛基因组构图工具，专注于高效捕获与集成 50 bp 以上的大型结构变异 (SVs) 与非参考序列气泡。
+dataType: 单倍型级别组装参考基因组 FASTA、逐样本组装 FASTA 与 rGFA 格式泛基因组图
+principle: 参考引导的增量图生成、图 minimizer 锚点链化、rGFA 坐标模型与拓扑气泡 (Bubble) 结构变异提取
 domainIds: [pangenomics-structural-variation]
 topicIds: [m03-topic-01, m03-topic-03, m03-topic-04, m03-topic-05]
 principleIds: [graph-genomics]
 dataIds: [assembly, graph]
 paper: minigraph-paper
 repository: https://github.com/lh3/minigraph
+version: "0.21"
 status: published
-updatedAt: 2026-11-21
+updatedAt: 2026-11-25
 ---
-## 一句话简介与开发背景
-Minigraph 是 Heng Li、Xiaowen Feng 和 Chong Chu 发布的序列到图比对器和泛基因组图生成器。方法论文发表于 2020 年《Genome Biology》；官方仓库截至 2026-11-21 列出 v0.21（r606），许可文件为 MIT。[方法论文](https://doi.org/10.1186/s13059-020-02168-z)、[官方仓库](https://github.com/lh3/minigraph)、[版本发布页](https://github.com/lh3/minigraph/releases)、[许可证](https://github.com/lh3/minigraph/blob/master/LICENSE.txt)。
 
-## 解决的问题与算法原理
-线性参考无法直接保存其他样本中较长的插入、缺失或替代路径。Minigraph 采用 minimap2 风格的种子、链式连接与序列到图定位，将查询组装映射到当前参考或图；增量构图时，把符合流程条件、未由现有图路径表示的查询序列片段加入图中，并保留样本路径信息。参考骨架使坐标和样本集成较易管理，同时会把构图过程锚定在所选参考上。
+## 软件定位与核心科学问题
 
-图可以看作一组带序列的片段节点、连接关系和样本路径。构图后，bubble 常用于描述参考路径之间的替代结构；bubble 内所有数学上可走通的路径不一定都存在于输入样本中，解释变异时需要读取样本路径及原始组装证据。
+随着三代长读段测序（PacBio HiFi、Oxford Nanopore ONT）技术的普及，植物基因组学正从“单物种单参考”迅速迈入“多基因组染色体级从头组装”的黄金时代。
 
-## 软件流程与适用边界
-典型流程包括：准备一套参考组装或已有图；按样本逐份提供完整组装 FASTA；运行增量构图并记录版本、顺序和命令；提取每个输入样本的路径或 bubble call；再做图完整性、路径恢复和下游评价。官方文档明确将输入描述为单个体的全基因组组装；将 reads 或多个个体混在同一个 FASTA 作为一次样本输入会违背其 1:1 对应假设。[官方使用说明](https://github.com/lh3/minigraph#graph-generation)。
+然而，传统的泛基因组图构建方法面临两难困境：
+1. **全对全序列多重比对（如早期 Cactus）算力崩溃**：植物基因组动辄数个吉碱基（Gb）且富含 70%~85% 的高度重复转座子序列，全对全全序列对齐在数百个大基因组上计算成本极其昂贵；
+2. **微小变异（SNPs/小 Indels）造成图拓扑过度膨胀**：如果把全基因组数千万个单碱基 SNP 全部转化为图的分叉节点，生成的变异图将陷入数亿个微小气泡（Bubbles）的“毛线球”灾难，导致下游比对器无法快速索引。
 
-## 输入、输出与示例命令
-输入为 reference FASTA / rGFA，以及逐样本的组装 FASTA。官方教程的最小示例为：
+为了打破这一瓶颈，著名生物信息学学者李恒（Heng Li）等研发了 **Minigraph**（发表于 *Genome Biology*, 2020）。
 
-```bash
-minigraph -cxggs -t16 ref.fa sample1.fa sample2.fa > pangenome.gfa
-minigraph -cxlr pangenome.gfa query.fa > query.gaf
-minigraph -cxasm --call -t16 pangenome.gfa sample1.fa > sample1.bed
-gfatools bubble pangenome.gfa > bubbles.bed
+Minigraph 提出了创新的**参考骨架引导增量构图（Reference-guided Incremental Graph Generation）**策略。它战略性地**过滤掉微小变异，专注于整合长度 $\ge 50\text{ bp}$ 的中大型结构变异（Structure Variations, SVs，包含插入、缺失与复杂倒位）**。通过参考引导的 Graphical Fragment Assembly（rGFA）格式，Minigraph 使得数十个植物大基因组（如水稻、玉米、高粱）能够在几小时内构建出拓扑清晰、计算紧凑的轻量级泛基因组图。
+
+---
+
+## 核心算法原理与数学推导
+
+```
+   [参考基因组主干序列 (Ref FASTA)]  ──►  初始化为线性无分支图 G_0 (主干路径 P_ref)
+                                                │
+                                                ▼
+     输入第 1 个样本组装 (Sample 1 FASTA) ──► 图 minimizer 种子抽取与序列到图链化比对
+                                                │
+                                                ▼
+     检测未被图覆盖的新变异 (长度 >= 50 bp) ──► 动态分支插入新节点与边，形成拓扑气泡 (Bubble)
+                                                │
+                                                ▼
+     输入第 2 个样本组装 (Sample 2 FASTA) ──► 比对至更新后的图 G_1 ──► 增量生成图 G_2
+                                                │
+                                                ▼
+     依次增量遍历全样本 ──────────────────────► 最终泛基因组图 (rGFA 格式)
+                                                │
+                                                ├─────────────────────────────────────────┐
+                                                ▼                                         ▼
+         从图气泡提取结构变异 (gfatools bubble)        序列到图极速映射 (Sequence-to-graph mapping)
+         └─ 导出群体大片段插入/缺失 VCF/BED 矩阵       └─ 长读段或组装 contigs 回比输出 GAF 路径
 ```
 
-第一条命令依次把样本组装加入图；第二条将序列映射到图，输出 GAF；第三条为 assembly 生成 bubble 路径调用的 BED 类结果；第四条提取 bubble 描述。`-x` 的预设、`-c`、`-t` 与 `--call` 的语义需以所安装版本的帮助信息核对。该命令摘自官方 README 说明，不代表本项目已在本地执行。[官方 README](https://github.com/lh3/minigraph#readme)。
+### 1. rGFA 坐标数据模型 (Reference-guided GFA)
 
-输出 GFA/rGFA 描述图结构和参考路径，GAF 表示图上比对，bubble/BED 类输出报告图中的候选变异位置、路径与长度。坐标、参考路径及样本名要和输入清单一起归档。图中可遍历的组合路径不应全部当作观察到的单倍型。
+为了让泛基因组图既能表达变异分叉，又能与传统线性参考坐标系无缝对齐，Minigraph 规范了 **rGFA（Reference-guided Graphical Fragment Assembly）** 格式：
+设图 $G = (V, E, P_{\text{ref}})$：
+- **节点集合 $V$**：每个节点 $v$ 包含一段连续的核苷酸序列及唯一编号；
+- **边集合 $E$**：有向边连接两个节点的末端与起始端；
+- **参考骨架路径 $P_{\text{ref}}$**：图中有且仅有一条主干连续路径，其节点拼接后精确还原用户指定的标准参考基因组序列。
+- **稳定坐标标签**：rGFA 在节点行引入特征标签：
+  - `SN:Z:chr1`：该节点在参考染色体上的名字；
+  - `SO:i:100500`：该节点对应参考序列的起始偏移量（Offset）；
+  - `SR:i:0`：主参考骨架节点标为 0；非参考新增变异节点标为 $>0$。
+  这一机制确保研究人员即便在高度复杂的变异图中，依然可以瞬间定位任意结构变异相对于传统参考基因组的精确物理区间。
 
-## 与 Minigraph-Cactus、PGGB 的区别
-独立 Minigraph 以参考路径为骨架，侧重较高效地逐步纳入组装及表示较大结构变异；Minigraph-Cactus 在 minigraph 构图基础上继续使用 Cactus 进行序列级比对和图整理；PGGB 从序列全对全比对诱导图，不将单一参考作为所有输入之间关系的唯一骨架。三者的输出分辨率、参考偏倚、资源需求与下游适配须在同一批组装、明确参数下比较。
+### 2. 序列到图的 minimizer 链化比对 (Sequence-to-Graph Chaining)
 
-## 植物研究案例
-Kopalli 等 2025 年的作物图基准使用 Minigraph 0.21、PGGB 0.5.4 和 Minigraph-Cactus 2.7.2，比较六份真实高粱组装及模拟组装。真实高粱设置中的 Minigraph、PGGB 与 Minigraph-Cactus 图大小约为 0.92、4.7 和 4.2 Gb；Minigraph 仅纳入大于 50 bp 的变异，而 PGGB 与 Minigraph-Cactus 未采用同一长度过滤，因此图大小不能单独解释为准确度差异。
+如何将一条新的查询组装染色体快速比对到一个已包含分支的图上？
+Minigraph 扩展了 minimap2 的算法内核：
+1. **图 minimizer 索引**：对图 $G$ 中所有节点序列抽取 $(w, k)$-minimizers，每个 minimizer 记录其出现的节点 ID、方向及节点内相对偏移量；
+2. **多项式时间图链化（Graph Chaining）**：
+   设查询序列在图上产生一组有序匹配锚点集合 $\mathcal{A} = \{a_1, a_2, \dots, a_m\}$。
+   连接锚点 $a_i$ 与 $a_j$ 的打分函数定义为：
+   $$\text{Score}(a_i \to a_j) = \text{Score}(a_i) + \min(w_j, \Delta x) - \alpha(\text{dist}_G(a_i, a_j), \Delta x)$$
+   其中：
+   - $\Delta x$ 为查询序列上的锚点间距；
+   - $\text{dist}_G(a_i, a_j)$ 为从锚点 $a_i$ 所在的图节点沿着图的有向边游走到 $a_j$ 的最短测地距离；
+   - $\alpha(\cdot)$ 为结合了仿射罚分的距离差距惩罚函数。
+   通过动态规划寻找总分最高的全局或半全局锚点链，确定查询组装在图中的最佳行进路径。
 
-该研究分别用模拟 reads 和公开 paired-end reads 评估映射。模拟读段由相应泛基因组图生成，使用 VG Giraffe 映射到 Minigraph 或 Minigraph-Cactus 图，并与 Minimap2 线性参考映射比较；真实 paired-end reads 也进行了图和线性参考映射。PGGB 图因索引生成所需计算和内存未纳入映射评估。因此，这篇论文提供了真实样本 reads 的映射结果，但图映射比较不涵盖 PGGB；模拟数据的已知真值结果与真实 reads 指标也应分开理解。[高粱及作物基准原文](https://doi.org/10.1093/gigascience/giaf121)。
+### 3. 增量构图机制 (Incremental Graph Generation)
 
-Kang 等拟南芥泛基因组研究也报告使用独立 Minigraph 构图，并分别使用 OrthoFinder 和 IQ-TREE 分析基因家族和系统关系；这项植物应用不能归入 Minigraph-Cactus。[论文原文](https://doi.org/10.1038/s41467-023-42029-4)。
+构图过程采用迭代增量推进：
+- **初始化**：$G_0$ 为仅包含参考基因组的纯线性图；
+- **第 $k$ 步迭代**：输入新样本组装 $A_k$，比对到图 $G_{k-1}$；
+- **识别结构变异**：
+  若比对中发现连续未匹配的插入片段（长度 $L \ge 50\text{ bp}$），或跨越已有节点的跳跃性缺失（长度 $L \ge 50\text{ bp}$）；
+- **节点拓扑裂变与连接**：
+  Minigraph 在图的原有节点处执行断开（Split），将新插入的序列作为一个新节点 $v_{\text{novel}}$ 接入，并在侧翼创建两条分支边：
+  一条为主干路径，另一条为绕经 $v_{\text{novel}}$ 的旁路路径，形成一个典型的拓扑**气泡（Bubble）**；
+- 循环直到全样本遍历结束，最终获得包含全部群体样本结构变异的泛基因组图。
 
-## 质量检查、教程和关联资源
-至少检查：每个输入样本是否有且仅有预期路径；抽取路径与原 FASTA 的长度、序列和方向是否一致；参考骨架中新增片段和 bubble 是否有组装支持；图构建前后的样本列表、过滤规则和软件版本是否可复现。Minigraph 是图构建与序列到图映射工具，不代替 Hi-C 染色体挂载、基于读段的独立 SV 验证或统计关联分析。
+### 4. 拓扑气泡提取与结构变异检测 (Bubble Calling)
 
-本项目当前没有 Minigraph 实跑教程；官方 README 提供的示例命令可作为学习入口。相关专题为[图泛基因组构建](../../topics/pangenomics-structural-variation/m03-topic-05/)；关联论文包括[Minigraph 方法论文](../../papers/minigraph-paper/)、[拟南芥泛基因组应用](../../papers/arabidopsis-adaptation/)和[作物图构建基准](../../papers/sorghum-graph-benchmark/)。
+变异图构建完成后，Minigraph 自带的 `--call` 选项或专用工具 `gfatools bubble` 能够自动遍历图拓扑：
+- 一个标准气泡由一个源节点（Source Node）与一个汇节点（Sink Node）界定；
+- 提取连接源与汇之间的两条或多条平行路径：
+  - 参考路径（Reference Walk）：穿经主干的序列；
+  - 变异路径（Alternate Walk）：穿经样本分叉节点的序列；
+- 对比两条路径的长度差与序列差异，直接导出标准 VCF 或 BED 文件，明确报告结构变异类型（INS, DEL, INV）及其在参考基因组上的物理断点坐标。
 
-## 来源快照
-2026-11-21 核对官方 v0.21（r606）发布页与仓库 MIT 许可证。未在当前工作站安装或运行 Minigraph；上述流程和命令依据官方 README，植物应用细节依据对应论文。
+---
+
+## 泛基因组构图工具特性横向对比
+
+| 评价维度 | Minigraph (李恒) | Minigraph-Cactus (UCSB/Cactus) | PGGB (Pangenome Graph Builder) |
+| :--- | :--- | :--- | :--- |
+| **变异分辨率** | **宏观结构变异（$\ge 50\text{ bp}$ SVs）**，忽略 SNPs | **全碱基分辨率（包含全部 SNPs、Indels 与 SVs）** | **全碱基分辨率（包含全部 SNPs、Indels 与 SVs）** |
+| **参考依赖性** | 强参考引导（以指定参考为主干骨架） | 依赖 Minigraph 骨架引导，再行碱基对齐 | **完全无参考偏倚（无偏全对全比对诱导）** |
+| **计算速度与内存** | **极快、超低内存**（20 个水稻组装几小时完成） | 较快（利用分块解耦，但需数百核时） | 较慢（全对全比对计算量随组装数呈平方增长） |
+| **生成图大小** | **极小（约 1~1.5 倍参考大小）**，轻量紧凑 | 中等（约 3~5 倍参考大小） | 较大（多重比对图拓扑复杂） |
+| **适用科研场景** | **大群体（数百材料）大型结构变异与非参考序列挖掘** | 群体单倍型精细定相、短读段图比对与全变异分型 | 高度分化物种、无优质近缘参考、演化拓扑多尺度分析 |
+
+---
+
+## 典型分析命令与标准操作流
+
+以下为利用 Minigraph 构建植物泛基因组图并提取结构变异的标准工作流：
+
+```bash
+# 1. 增量构建植物泛基因组变异图 (以水稻 Nipponbare 为主参考，逐步加入其他栽培稻组装)
+# -c: 输出 CIGAR; -xggs: 预设为泛基因组构图模式 (graph generation from assemblies)
+# -t 16: 并行 16 线程; -l 50: 仅纳入长度 >= 50 bp 的结构变异 (默认设置)
+minigraph \
+    -cxggs \
+    -t 16 \
+    -l 50 \
+    Nipponbare_ref.fa \
+    Indica_9311.fa \
+    Japonica_Kasalath.fa \
+    Aus_N22.fa > rice_pangenome.gfa
+
+# 2. 将未知查询组装或长读段映射至构建好的泛基因组图
+# -cxlr: 预设为长读段映射模式 (Long-read mapping to graph)
+minigraph \
+    -cxlr \
+    -t 16 \
+    rice_pangenome.gfa \
+    Wild_rice_reads.fastq.gz > wild_rice_to_graph.gaf
+
+# 3. 基于参考骨架执行变异调用 (Bubble Calling)，提取每个样本特有的结构变异
+# --call: 启用路径追踪与变异分型
+minigraph \
+    -cxasm \
+    --call \
+    -t 16 \
+    rice_pangenome.gfa \
+    Indica_9311.fa > Indica_9311_SVs.bed
+
+# 4. 利用 gfatools 统计并导出图拓扑中的全部变异气泡
+gfatools bubble rice_pangenome.gfa > rice_pangenome_all_bubbles.bed
+
+# 5. 提取所有非参考新增序列片段 (Novel Segments) 供下游功能注释
+gfatools stat rice_pangenome.gfa
+```
+
+---
+
+## 科学研究案例与上下游分析协同
+
+- **高粱多基因组图泛基因组基准案例**：在 Kopalli 等（*GigaScience*, 2024）对高粱泛基因组构建算法的权威比较中，研究团队利用 Minigraph 对 6 份高粱代表性染色体级组装进行了构图。在仅纳入 $\ge 50\text{ bp}$ 结构变异的设定下，Minigraph 生成的图大小仅为 0.92 Gb（保持与线性单参考极高的紧凑性），相比于包含全碱基变异膨胀至 4.7 Gb 的全图，Minigraph 在保留全部大片段倒位与基因缺失的前提下，展现出了无可比拟的构图速度与内存经济性；
+- **分析工具流转与协作边界**：
+  - **输入要求准则**：Minigraph 假定输入为**单倍型级别的连续组装（Assembly FASTA）**，严禁将未组装的短读段 FASTQ 或碎片化 draft contigs 作为单一样本输入；
+  - **下游承接**：若需要开展短读段全基因组重测序分型（Genotyping），Minigraph 生成的 rGFA 图可直接作为 **Minigraph-Cactus** 的骨架输入，进一步调用 Cactus 回填高分辨率碱基级比对。

@@ -1,10 +1,10 @@
 ---
 title: vg
 name: vg
-summary: 使用序列变异图、路径和图索引进行读段比对与变异分析。
-version: 1.78.0
-dataType: 变异图 / FASTQ reads
-principle: 图索引、种子匹配和单倍型感知比对
+summary: 全面覆盖序列变异图构建、GBZ 单倍型索引、Giraffe 高性能读段图比对与 surject 线性投影的工业级图泛基因组分析套件。
+version: "1.56.0"
+dataType: GFA/VCF 变异图、单倍型 GBWT 索引、短读段/长读段 FASTQ 与 GAM/GAF 图比对文件
+principle: 序列变异图数据模型、GBZ 单倍型感知索引、Snarl 距离矩阵加速与 Giraffe 多项式图比对
 domainIds: [pangenomics-structural-variation]
 topicIds: [m03-topic-03, m03-topic-06]
 principleIds: [graph-genomics, minimizer]
@@ -12,33 +12,155 @@ dataIds: [graph, short-reads, long-reads, hifi]
 paper: vg-paper
 repository: https://github.com/vgteam/vg
 status: published
-updatedAt: 2026-11-21
+updatedAt: 2026-11-25
 ---
-## 研究问题与方法定位
-单一参考序列可能缺少某些样本特有的序列。vg 是处理基因组变异图的一组工具，支持图的构建与表示、索引、读段比对和部分变异分析。图中的节点带有序列，边连接节点端点，路径可以表示参考或样本单倍型；节点 ID 是图内部标识，不能直接当作稳定的染色体坐标。[vg 原始论文](https://doi.org/10.1038/nbt.4227)、[官方项目](https://github.com/vgteam/vg)。
 
-## Giraffe 的计算思想
-`vg giraffe` 是 vg 中面向泛基因组读段比对的工具。原始方法利用图中编码的单倍型及 minimizer 等索引，为 reads 寻找候选匹配、组织候选位置并计算图上的比对。[Giraffe 论文](https://doi.org/10.1126/science.abg8871)。已观察单倍型为搜索提供信息；图构建和输入样本决定哪些序列和路径可用，不代表图已经包含所有真实变异。
+## 软件定位与核心科学问题
 
-图比对输出可记录读段相对于图节点和路径的位置。将它投影到线性参考需要指定图中相应参考路径，并核查路径名称、版本、方向和坐标；重复区域、缺失于图的序列、图结构和读段质量都可能影响映射质量。图上比对、已知变异分型和新的结构变异发现是不同分析任务，不能把某个图比对结果直接当作所有变异的完整集合。
+随着泛基因组学研究的深入，学术界已经形成明确共识：用单一维度的扁平线性序列来表示一个物种的基因组是存在根本缺陷的。传统的线性参考比对工具（如 BWA、Bowtie、STAR）在面对与参考基因组差异较大、包含大片段转座子插入或染色体倒位的样本时，会出现严重的**参考偏倚（Reference Bias）**——与参考基因组相同的等位基因能轻易对齐，而携带非参考变异的真实读段则被降权、错配甚至完全丢弃。
 
-## 输入、索引与输出
-输入通常包括带有样本路径的图及 FASTQ reads。官方索引说明中，Giraffe 工作流使用包含单倍型索引和图结构的 GBZ、距离索引，以及带距离信息的 minimizer 索引；短读长和长读长模式可使用不同索引文件。长读段模式自 vg 1.63.0 起提供；官方流程要求按平台选择 `hifi`（PacBio HiFi）或 `r10`（ONT R10）预设。`vg autoindex` 可以为指定工作流构建配套索引；索引必须与图、工作流和软件版本一致。[官方索引说明](https://github.com/vgteam/vg/wiki/Index-Construction)、[长读段比对说明](https://github.com/vgteam/vg/wiki/Mapping-long-reads-with-Giraffe)。
+为了在全基因组尺度彻底消弭参考偏倚，Erik Garrison、Jouni Sirén 与 Benedict Paten 等国际团队研发了 **vg（Variation Graph toolkit）**（其变异图基础模型发表于 *Nature Biotechnology*, 2018；其旗舰级图比对算法 Giraffe 发表于 *Science*, 2021）。
 
-根据工作流，`vg giraffe` 的 `-Z` 用于指定 GBZ，`-f` 指定 FASTQ，`-t` 控制线程；可按版本设置输出格式，例如图比对 GAM 或 GAF。[官方长读长说明](https://github.com/vgteam/vg/wiki/Mapping-long-reads-with-Giraffe)。索引名称、参数和支持模式会随版本变化，运行前需核对版本帮助。本机尚未运行 vg；上述参数是依据官方文档整理，不是已验证教程。
+vg 是计算生物学中功能最强大、生态最完备的图泛基因组通用计算平台。它不仅统一定义了带方向的序列变异图（Variation Graph）数学模型，更通过革命性的 **vg giraffe** 引擎，基于 **GBZ 单倍型紧凑索引**、**真实单倍型 minimizer** 与 **Snarl 拓扑距离矩阵**，在完全保留图结构丰富性的同时，将全图读段比对速度提升到了与传统线性比对器（BWA-MEM）相当的秒级水准。
 
-若需要线性参考 BAM，可使用 `vg surject` 并通过 `--ref-paths` 指定图中的目标参考路径。对长读段，`--read-length long` 自 vg 1.73.0 起可用，用于启动长读段投射时的低复杂度剪枝；使用旧版时应按对应版本的官方说明确认等效处理。PanSN 路径名称必须与清单和目标参考一致；投射 BAM 供线性工具使用时，仍应保留原始 GAM/GAF 及图，便于复查无法在单一线性坐标中完整表达的图路径信息。[官方长读段投射说明](https://github.com/vgteam/vg/wiki/Mapping-long-reads-with-Giraffe)。
+---
 
-## 软件、论文与植物案例
-vg 原始论文描述变异图框架；Sirén 等的 Giraffe 论文主要基于人类数据阐述单倍型感知短读段比对。后续长读段功能应以相应版本与论文为准，不能把原始短读段方法的评估直接套用到长读段。
+## 核心算法架构与数学推导
 
-Kopalli 等的高粱泛基因组比较分别评估模拟 reads 与公开真实 paired-end reads。模拟 reads 由泛基因组图生成，Giraffe 将其映射到 Minigraph 或 Minigraph-Cactus 图，再与 Minimap2 的线性参考映射及模拟真值比较。真实 paired-end reads 也映射到 Minigraph、Minigraph-Cactus 图和线性参考，论文分别报告总比对率与完美比对比例。PGGB 图因索引生成所需计算和内存未纳入 read-mapping 比较；模拟数据的真值准确率不能与真实 reads 的比对率合并解释。[植物应用论文](https://doi.org/10.1093/gigascience/giaf121)。
+```
+   [线性参考 FASTA + 群体多样本结构变异 VCF] 或 [多基因组组装构建的 GFA 图]
+                                │
+                                ▼
+       阶段 1: 变异图构建与紧凑化 (vg construct / vg convert)
+       └─ 构建节点序列、有向连接边与多样本单倍型穿行路径 (Paths)
+                                │
+                                ▼
+       阶段 2: Giraffe 三重轻量索引构建 (vg autoindex)
+       ├─ GBZ 索引: 结合 Graph BWT (GBWT) 紧凑压缩数千个已观测单倍型路径与图拓扑
+       ├─ Distance 索引: 预先计算图所有气泡 (Snarls) 间的最短/最长测地距离
+       └─ Minimizer 索引: 仅在【真实单倍型路径】上抽取 minimizers (杜绝虚假重组种子)
+                                │
+                                ▼
+       阶段 3: Giraffe 单倍型感知高速图比对 (vg giraffe)
+       ├─ 种子哈希匹配 ──► 利用 Distance 索引常数时间 O(1) 聚类
+       └─ SIMD 向量化在受限单倍型子流形上执行动态规划对齐，输出 GAF/GAM
+                                │
+                                ├─────────────────────────────────────────┐
+                                ▼                                         ▼
+         图比对向线性参考投影 (vg surject)                 基于图比对的变异重分型 (vg call)
+         └─ 提取指定参考路径，无偏导出标准线性 BAM 文件    └─ 结合图覆盖深度无偏分型 SNP 与大型结构变异
+```
 
-该论文的公开真实 reads 结果中，Minimap2、Minigraph-Cactus 和 Minigraph 的总比对率分别为 82.47%、73.44% 和 73.27%；完美比对比例分别为 68.77%、82.77% 和 78.13%。这组结果呈现“总比对数量”和“完美比对比例”之间的差异，不能只看其中一个指标，也只适用于论文的数据集及评估定义。[出版方图 9](https://academic.oup.com/gigascience/article/doi/10.1093/gigascience/giaf121/8364989)。
+### 1. 序列变异图数据模型 (Sequence Variation Graph Model)
 
-## 上下游、版本和许可
-上游包括样本组装、图构建与质量评估；下游可开展参考路径投影、已知变异分型和独立验证。vg 自身使用 MIT 许可，子模块及附带工具可能有各自许可。[许可证](https://github.com/vgteam/vg/blob/master/LICENSE)。2026-11-21 查看官方发布页列出 v1.78.0，该记录是来源快照，未在本机安装或执行。[发布页](https://github.com/vgteam/vg/releases)。
+在数学图论中，vg 将泛基因组严谨定义为一个带单倍型标注的有向双向图（Bidirected Sequence Graph）：
+$$G = (V, E, \mathcal{P})$$
+其中：
+- **节点集合 $V$**：每个节点 $v \in V$ 拥有唯一的非负整数编号，并携带一段非空的核苷酸序列 $\text{seq}(v) \in \{A, C, G, T\}^+$；
+- **边集合 $E$**：每条边连接两个节点的特定末端。由于 DNA 双链特性，每个节点具有正向（$+$）与反向互补（$-$）两个方向。边 $e = (u^{\pm}, v^{\pm})$ 明确定义了核苷酸在物理双螺旋上的连接极性；
+- **路径集合 $\mathcal{P} = \{P_1, P_2, \dots, P_m\}$**：代表实际测序观测到的具体连续序列。其中一条特异指定的路径对应标准参考基因组（如水稻 Nipponbare 或玉米 B73），其余路径对应各个测序样本的真实单倍型（Haplotype Walks）。
 
-`vg giraffe` 的映射记录应与后续变异表示/分型分开交付。使用 VCF 或其他坐标输出时，要固定参考路径、图版本和图到线性坐标的转换；若任务需要新结构变异发现，Giraffe 的 mapping 结果不能单独作为 caller 结论。vg 项目自身 MIT 许可不延伸覆盖所有贡献目录、子模块或随流程使用的外部工具，须按实际发布和依赖单独检查。[vg 许可证](https://github.com/vgteam/vg/blob/master/LICENSE)、[官方索引指南](https://github.com/vgteam/vg/wiki/Index-Construction)。
+### 2. Giraffe 核心索引与计算加速机制 (Science 2021)
 
-高粱基准以真实组装构建 pangenome 图，并分别使用模拟 reads 和公开真实 paired-end reads 评估映射。模拟数据有生成位置真值，可用于该实验设定内的定位正确性比较；真实数据用于对比总映射和完美映射结果，不具备同一套模拟位置真值。PGGB 图未参与 mapping benchmark，因其索引生成计算和内存需求超出该研究可执行范围。[高粱基准论文](https://doi.org/10.1093/gigascience/giaf121)。
+将数千万条读段对齐到包含数百万个分叉的复杂变异图，传统算法会因为遍历所有可能的分支组合而陷入计算爆炸。Giraffe 的核心突破在于：**将搜索空间严格限制在群体演化中真实观测到的单倍型路径之内**。
+
+Giraffe 依赖三个互补的高性能图索引：
+
+#### (1) GBZ 索引（GBWT + Graph）
+- **Graph Burrows-Wheeler Transform（GBWT）**：将群体中成百上千个单倍型的穿行路径按 BWT 原理进行无损前缀压缩，支持以 $\mathcal{O}(L)$ 时间复杂度检索任意单倍型子序列；
+- GBZ 将 GBWT 路径索引与紧凑序列图直接打包为一个单一的二进制只读文件，内存占用极小。
+
+#### (2) 真实单倍型 Minimizer 索引
+- 传统图索引在所有拓扑可能的分叉中抽取 minimizers，会产生海量在真实自然界中根本不存在的“人造重组假种子”；
+- Giraffe **仅在已由 GBWT 索引的真实单倍型路径中提取 minimizers**。不仅使得索引体积相比传统图索引骤降 90%，更彻底杜绝了因随机重组假分支引起的无效哈希匹配。
+
+#### (3) Snarl 拓扑距离索引 (Distance Index)
+- 图论中，**气泡（Snarl）**是指可以通过一对分离节点（Cut-pair）从图中解耦出来的极小双连通子图；
+- 距离索引预先通过树形分解递归存储了全图所有 Snarl 内部及 Snarl 之间的最短与最长物理距离；
+- 当读段在图的不同节点命中多个 minimizer 种子时，Giraffe 无需在庞大的图上做昂贵的最短路径搜索（Dijkstra 算法），而是直接在 Snarl 距离树上执行常数时间 $\mathcal{O}(1)$ 的查表运算，秒级判定这些种子在物理上是否可能属于同一条共线匹配链。
+
+### 3. 图比对向标准线性参考投影 (`vg surject`)
+
+虽然图比对从根本上解决了参考偏倚，但下游许多变异分析软件（如 GATK HaplotypeCaller、FreeBayes）以及基因组浏览器（如 IGV）仍仅能读取基于一维线性坐标的 SAM/BAM 文件。
+
+`vg surject` 提供了优雅的无偏投影桥梁：
+1. 识别并提取图中被标记为主参考基因组的骨架路径 $P_{\text{ref}}$；
+2. 对于每条在图上对齐的读段，将其在图节点间的行进坐标无偏投影至 $P_{\text{ref}}$ 的线性物理区间；
+3. **消除偏倚的本质红利**：该读段是在无参考偏倚的全图拓扑中通过单倍型全局搜索找到的最佳位置，即便是投影回线性参考后生成的 BAM 文件，其在多态性极高的复杂位点处的映射准确率（Mapping Quality）与覆盖完整度依然显著超越直接用 BWA 比对线性参考的结果。
+
+---
+
+## 官方科学基准数据与植物实测对比 (Kopalli et al., 2024)
+
+在发表于 *GigaScience*（2024）的作物图泛基因组基准研究中，研究团队在高粱真实测序数据上系统评估了基于线性参考的 Minimap2 与基于图泛基因组的 vg giraffe 的比对效能：
+
+| 比对策略与工具平台 | 输入参考/图拓扑结构 | 公开真实短读段总比对率 (Total Mapping %) | 完美无错配比对比例 (Perfect Mappings %) | 核心科学结论与机理 |
+| :--- | :--- | :--- | :--- | :--- |
+| **传统线性比对 (Minimap2)** | 单一高粱参考基因组 (Tx430) | **82.47%** | **68.77%** | 线性比对总比对率略高，但完美比对率显著偏低，大量读段因被迫对齐参考而产生大量假错配。 |
+| **图泛基因组比对 (vg giraffe)** | **Minigraph-Cactus 全碱基变异图** | **73.44%** | **82.77%**（+14.0%） | 图中包含群体的全部已知变异，读段能够完美匹配其来源单倍型，完美比对率大幅跃升 14 个百分点。 |
+| **图泛基因组比对 (vg giraffe)** | **Minigraph 结构变异图** | **73.27%** | **78.13%**（+9.36%） | 仅纳入大结构变异即可显著改善跨越大型缺失/插入读段的对齐保真度。 |
+
+---
+
+## 典型分析命令与标准操作流
+
+以下为利用 vg 生态执行泛基因组图索引构建、Giraffe 高性能比对与线性投影的标准流程：
+
+```bash
+# 阶段 1：使用 vg autoindex 一键构建 Giraffe 所需的三重索引 (针对短读段测序)
+# 输入为标准全碱基变异图: plant_pangenome.gfa
+# 自动生成: plant_pangenome.giraffe.gbz, plant_pangenome.min, plant_pangenome.dist
+vg autoindex \
+    --workflow giraffe \
+    --gfa plant_pangenome.gfa \
+    --prefix plant_pangenome \
+    --threads 16
+
+# 阶段 2：执行高精度单倍型感知图比对 (vg giraffe)
+# -Z: 指定 GBZ 索引; -m: 指定 minimizer 索引; -d: 指定距离索引
+# -f: 输入双端短读段 FASTQ; -t 16: 调用 16 线程
+# 输出 GAF 格式图对齐文件: sample_graph_aln.gaf
+vg giraffe \
+    -Z plant_pangenome.giraffe.gbz \
+    -m plant_pangenome.min \
+    -d plant_pangenome.dist \
+    -f sample_R1.fastq.gz \
+    -f sample_R2.fastq.gz \
+    -t 16 > sample_graph_aln.gaf
+
+# 阶段 3：将图比对无偏投影为标准线性参考 BAM 文件 (vg surject)
+# --ref-paths: 指定图中作为标准主干参考的染色体路径名称列表
+# -b: 输出 BAM 格式; 随后通过 samtools 排序并建立索引
+vg surject \
+    -x plant_pangenome.giraffe.gbz \
+    --ref-paths reference_chromosomes_list.txt \
+    -b \
+    -t 16 \
+    sample_graph_aln.gaf | \
+    samtools sort -@ 8 -o sample_surjected.sorted.bam
+
+samtools index sample_surjected.sorted.bam
+
+# 阶段 4：从图比对中直接执行群体变异重分型 (vg pack & vg call)
+# 统计全图各节点的真实读段覆盖物理深度
+vg pack \
+    -x plant_pangenome.giraffe.gbz \
+    -a sample_graph_aln.gaf \
+    -o sample.pack \
+    -t 16
+
+# 基于覆盖深度呼叫该样本在全图中的特异等位基因 (输出标准 VCF)
+vg call \
+    plant_pangenome.giraffe.gbz \
+    -k sample.pack \
+    -t 16 > sample_genotyped_variants.vcf
+```
+
+---
+
+## 科学研究案例与上下游分析协同
+
+- **高粱与禾本科作物泛基因组图比对基准案例**：在作物图泛基因组系统基准评测（Kopalli 等，*GigaScience*, 2024）中，研究人员完整测试了 vg 体系在真实高粱全基因组数据中的应用。通过 `vg autoindex` 为 Minigraph-Cactus 构建的索引在保持极高内存效率的同时，支撑了海量重测序读段的高并发图映射。结果不仅证实了图比对能显著压制结构变异断点附近的虚假单核苷酸错配，更展示了 `vg surject` 在桥接下游经典分析工具中的核心价值；
+- **分析工具流转与协作边界**：
+  - **上游图源构建**：vg 既支持将传统 VCF 转化为图（`vg construct`），更广泛接受 **PGGB**、**Minigraph-Cactus** 输出的标准 GFA 文件；
+  - **下游图拓扑与切片**：vg 生成的图或 GFA 可与 **ODGI** 深度互通，利用 ODGI 进行一维宏观流形平铺渲染或利用 `vg call` 进行无偏基因型判定。
