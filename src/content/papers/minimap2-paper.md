@@ -57,14 +57,6 @@ Minimap2 将全序列比对解耦为三大核心计算阶段，每一阶段均�
 
 ---
 
-## 算法复杂度与计算性能
-
-- **惊人的计算吞吐率**：比传统的长读段比对器（如 BLASR、NGMLR）快一个数量级以上；在人类或常规植物全基因组 30× HiFi 数据的重测序比对中，通常仅需数十个 CPU 小时即可完成全基因组高保真比对；
-- **内存控制卓越**：在人类或玉米等大基因组中构建全基因组 minimizer 索引仅需 10~15 GB 内存，能在普通服务器上轻松运行多样本并发任务；
-- **生态主导地位**：Minimap2 的 PAF（Pairwise Alignment Format）格式现已成为计算生物学界通用的轻量比对标准交换格式。
-
----
-
 ## 植物基因组学应用场景与科研价值
 
 1. **三代长读段（HiFi 与 ONT）高保真参考比对**：植物基因组结构变异检测、全基因组重测序分析的标准比对步骤；
@@ -73,32 +65,6 @@ Minimap2 将全序列比对解耦为三大核心计算阶段，每一阶段均�
 4. **全长转录组（Iso-Seq / ONT cDNA）剪切比对**：利用 `-ax splice` 模式精准识别植物前体 mRNA 的内含子剪切位点（GT-AG 与各类非经典剪接位点）。
 
 更多比对与共线性应用可参阅 [全基因组共线性比对与重排识别](../../topics/pangenomics-structural-variation/m03-topic-04/) 及 [结构变异多方法检测](../../topics/pangenomics-structural-variation/m03-topic-03/)。
-
----
-
-## 输入输出规范与关键参数指南
-
-### 1. 核心输入输出
-- **输入**：参考基因组 FASTA，以及查询序列 FASTA/FASTQ；
-- **输出**：PAF（默认轻量文本坐标流）或带 CIGAR 比对串的 SAM/BAM 文件。
-
-### 2. 常用植物场景预设命令
-```bash
-# 场景 1: 植物单倍型组装间共线性比对 (输出供 SyRI 使用的保留等号 BAM)
-minimap2 -ax asm5 --eqx -t 32 ref.fa qry.fa | samtools sort -o align_asm.bam
-
-# 场景 2: PacBio HiFi 高保真长读段比对至参考基因组
-minimap2 -ax map-hifi -t 32 ref.fa hifi_reads.fq.gz | samtools sort -o hifi.bam
-
-# 场景 3: Oxford Nanopore 超长读段 (Ultralong ONT) 比对
-minimap2 -ax map-ont -t 32 ref.fa ont_reads.fq.gz | samtools sort -o ont.bam
-
-# 场景 4: 植物全长单分子转录组 (Iso-Seq) 剪接比对
-minimap2 -ax splice:hq -uf -C5 -t 32 ref.fa isoseq.fq.gz | samtools sort -o rna.bam
-```
-- `-ax asm5`：近缘组装间比较（分化度 <5%）；对于发散较大的植物亚种，可使用 `-ax asm10` 或 `-ax asm20`；
-- `--eqx`：在 CIGAR 串中使用 `=`（精确匹配）与 `X`（错配）替代模糊的 `M`，是共线性工具 SyRI 的强制要求；
-- `-ax splice`：启用内含子感知剪接比对模式。
 
 ---
 

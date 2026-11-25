@@ -61,14 +61,6 @@ Sniffles2 的核心架构由单样本自适应检测、复杂变异拓扑解构�
 
 ---
 
-## 算法复杂度与计算性能
-
-- **极高的执行效率**：得益于优化的 C++ 底层与算法剪枝，单样本长读段 SV 检测速度相比 Sniffles1 提升了约 3~5 倍；
-- **群体扩展无上限**：原论文基准证实，Sniffles2 能够轻松联合分型跨越数千个人类长读长全基因组队列；在植物领域，对由数十至数百个农家种组成的群体进行联合分型仅需数小时；
-- **高保真断裂点解析**：在 GIAB 权威测试集与大规模模拟中，Sniffles2 在大片段倒位与缺失的断裂点分辨率上达到了单碱基级精度。
-
----
-
 ## 植物基因组学应用场景与科研价值
 
 1. **植物育种群体长读长多样本联合 SV 检测（Joint Calling）**：对由 50~200 个自交系构成的植物核心种质库进行三代测序，使用 Sniffles2 能够无缝产出无缺失标记（No missing calls）的统一多样本变异矩阵；
@@ -76,38 +68,6 @@ Sniffles2 的核心架构由单样本自适应检测、复杂变异拓扑解构�
 3. **农艺关键基因复杂重排解析**：精准捕捉植物中由长末端重复转座子（LTR-RT）重组导致的倒位与基因拷贝数倍增事件。
 
 更多群体变异检测原理请参阅 [结构变异多方法检测](../../topics/pangenomics-structural-variation/m03-topic-03/)。
-
----
-
-## 输入输出规范与关键参数指南
-
-### 1. 核心输入输出
-- **输入**：排好序的长读段比对文件（BAM/CRAM）及参考基因组 FASTA；
-- **输出**：单样本二进制候选文件（`.snf`）、单样本 VCF，或多样本联合分型 VCF。
-
-### 2. 标准运行命令
-```bash
-# 步骤 1: 单样本快速检测并导出轻量二进制候选文件 (.snf)
-sniffles --input sample1.bam \
-  --snf sample1.snf \
-  --reference ref_genome.fa \
-  --threads 16
-
-sniffles --input sample2.bam \
-  --snf sample2.snf \
-  --reference ref_genome.fa \
-  --threads 16
-
-# 步骤 2: 群体超高速联合分型 (合并所有 .snf 文件)
-sniffles --input sample1.snf sample2.snf sample3.snf \
-  --vcf population_joint_sv.vcf.gz \
-  --reference ref_genome.fa \
-  --threads 32
-```
-- `--snf`：指定导出紧凑的二进制候选变异文件，是实现超大规模群体分型的核心步骤；
-- `--combine`：在多输入时自动启动多样本全局证据再分型；
-- `--minsvlen 50`：结构变异判定的最小碱基长度；
-- `--non-germline` / `--mosaic`：启用低频微嵌合变异检测模式（适用于杂合度极高的异花授粉植物或无性系突变）。
 
 ---
 

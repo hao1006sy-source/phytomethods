@@ -75,17 +75,6 @@ EDTA 采用模块化流水线架构，按照转座子的大分子生物学分类
 
 ---
 
-## 算法复杂度与计算性能
-
-| 维度 | 指标与实测数据 | 算法设计与工程机制 |
-| :--- | :--- | :--- |
-| **计算总耗时** | 典型水稻基因组（~400 Mb）约 2~4 小时（36 线程） | LTR_FINDER 与 RepeatMasker 经过高度并行化重构 |
-| **内存峰值占用** | 典型植物约 16~32 GB RAM | 序列分块与多进程调度优化，无巨型内存单点瓶颈 |
-| **注释精确度** | 在水稻基准测试中敏感度与准确率均超过 90% | 比纯 RepeatModeler 提升数倍，几乎消除假阳性 |
-| **标准产出配套** | 原生输出全套 FASTA 库、GFF3 注释与 LAI 评分 | 一站式解决基因组论文全部转座子图表与数据需求 |
-
----
-
 ## 植物基因组学应用场景与科研价值
 
 1. **为基因结构预测（如 BRAKER3）提供最完美的软屏蔽输入**：
@@ -94,45 +83,6 @@ EDTA 采用模块化流水线架构，按照转座子的大分子生物学分类
    基于 EDTA 鉴定的完整 LTR-RTs 两侧末端分歧度，可根据植物中性突变率精准估算每个转座子家族在历史上的插入时间谱，揭示物种形成过程中转座子爆发式扩增的驱动作用；
 3. **基因组组装质量金标准评估**：
    由于着丝粒与异染色质富集 LTR-RTs，LAI 已成为评判动植物 PacBio HiFi / ONT 组装是否达到染色体黄金级的国际通用指标。
-
----
-
-## 输入输出规范与关键参数指南
-
-### 关键运行步骤
-
-```bash
-# 1. 基础全自动植物 TE 注释流水线 (标准模式)
-EDTA.pl \
-  --genome plant_assembly.fasta \
-  --species others \
-  --step all \
-  --anno 1 \
-  --threads 36
-
-# 2. 如果包含已知的水稻近缘种 (使用针对水稻优化的特定模式)
-EDTA.pl \
-  --genome rice_contigs.fasta \
-  --species Rice \
-  --step all \
-  --anno 1 \
-  --threads 36
-
-# 3. 单独计算全基因组 LAI 组装连续性评分
-LAI -genome plant_assembly.fasta -intact plant_assembly.fasta.mod.EDTA.raw/LTR/*.pass.list -all plant_assembly.fasta.mod.EDTA.anno/*.out
-```
-
-- `--genome <file>`：输入的染色体/重叠群 FASTA 文件；
-- `--species <Rice|Maize|others>`：针对禾本科作物内置了专属的负向基因过滤模型；
-- `--step <all|filter|final|anno>`：支持断点续跑，`all` 表示全流程运行；
-- `--anno 1`：指定在构建文库后，自动调用 RepeatMasker 完成全基因组 GFF3 的注释标注。
-
-### 核心产物文件解读
-
-- `*.mod.EDTA.TElib.fa`：最终构建的高质量、非冗余物种特异性 TE 一致性文库；
-- `*.mod.EDTA.TEanno.gff3`：全基因组转座元件物理起止与超家族分类 GFF3 注释；
-- `*.mod.EDTA.anno/*.stat`：全基因组各类 TE（LTR/Copia, LTR/Gypsy, Helitron, TIR 等）长度与百分比统计表；
-- `*.mod.LAI.out`：全基因组滑动窗口 LAI 详细评分与整染色体质量总结。
 
 ---
 

@@ -53,62 +53,12 @@ Scanpy 原生集成了基于马尔可夫随机游走转移矩阵的扩散图与 
 
 ---
 
-## 3. 算法复杂度与计算性能
-
-1. **近似近邻加速**：近似 $k$-NN 图构建时间复杂度为 $O(N \log N)$，使得细胞数量从 $10^4$ 扩展到 $10^6$ 时计算耗时平缓增长。
-2. **多线程与稀疏优化**：核心矩阵归一化与代数计算高度向量化，百万级细胞的 PCA 降维与 UMAP 投影可在 10 分钟内完成，内存占用比同等规模的 R 密集对象低 70% 以上。
-3. **快速 I/O**：基于 H5AD 与 Zarr 存储格式，支持内存映射（Memory Mapping）与按需流式读取，无需一次性加载全部数据即可浏览海量图谱。
-
----
-
 ## 4. 植物基因组学应用场景与科研价值
 
 植物单细胞生物学研究面临细胞壁自发荧光、次生代谢物多以及各组织细胞大小悬殊的独特性质。Scanpy 在植物领域的广泛应用包括：
 - **植物根尖分生组织细胞异质性全景**：在水稻、玉米、拟南芥等根尖解离样本中，Scanpy 能够高灵敏度解析中柱鞘（Pericycle）、木质部（Xylem）、韧皮部（Phloem）、内皮层（Endodermis）、皮层（Cortex）与表皮/根毛等各同心圆细胞层的特征标记基因；
 - **分生组织干细胞命运决定与不对称分裂**：利用 Scanpy 的 DPT 伪时间与 PAGA（Partition-based Graph Abstraction）模块，重建由静止中心（Quiescent Center, QC）向不同分化支系演变的动态转录流；
 - **非生物胁迫应答细胞类型特异性**：揭示干旱、盐害、重金属毒害下特定细胞层（如内皮层木栓质与凯氏带形成细胞）表观应答基因的瞬时激活。
-
----
-
-## 5. 输入输出规范与关键参数指南
-
-### 5.1 核心分析流程与执行命令
-```python
-import scanpy as sc
-
-# 1. 读取 10x Genomics 原始输出或 H5AD 文件
-adata = sc.read_10x_mtx('filtered_feature_bc_matrix/', var_names='gene_symbols', cache=True)
-
-# 2. 基础质控过滤 (按基因数、计数深度与叶绿体/线粒体比例)
-sc.pp.filter_cells(adata, min_genes=200)
-sc.pp.filter_genes(adata, min_cells=3)
-adata.var['mt'] = adata.var_names.str.startswith(('MT-', 'mt-'))  # 线粒体基因
-sc.pp.calculate_qc_metrics(adata, qc_vars=['mt'], percent_top=None, log1p=False, inplace=True)
-adata = adata[adata.obs.pct_counts_mt < 5, :]
-
-# 3. 库容大小归一化与对数转换
-sc.pp.normalize_total(adata, target_sum=1e4)
-sc.pp.log1p(adata)
-
-# 4. 高变基因 (HVG) 筛选与特征降维
-sc.pp.highly_variable_genes(adata, min_mean=0.0125, max_mean=3, min_disp=0.5)
-adata = adata[:, adata.var.highly_variable]
-sc.pp.scale(adata, max_value=10)
-sc.tl.pca(adata, svd_solver='arpack')
-
-# 5. 近邻图构建与 Leiden 社区聚类
-sc.pp.neighbors(adata, n_neighbors=15, n_pcs=30)
-sc.tl.leiden(adata, resolution=0.5)
-sc.tl.umap(adata)
-
-# 6. 差异表达标记基因识别 (Marker Genes)
-sc.tl.rank_genes_groups(adata, 'leiden', method='wilcoxon')
-```
-
-### 5.2 关键参数说明
-- `target_sum=1e4`：将每个细胞的测序计数统一缩放至 10,000 UMI，消除文库覆盖度差异。
-- `n_neighbors=15, n_pcs=30`：近邻图的局部拓扑参数，控制流形平滑度与精细结构的平衡。
-- `resolution=0.5`：Leiden 聚类的分辨率阈值；植物样本探索中建议在 0.3 至 1.0 之间根据已知 Marker 基因进行微调。
 
 ---
 

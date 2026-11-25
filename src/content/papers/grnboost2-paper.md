@@ -50,64 +50,12 @@ $$w(\text{TF}_i \to \text{Target}_j) = \sum_{t=1}^T \sum_{\text{node } v \in \te
 
 ---
 
-## 3. 算法复杂度与计算性能
-
-1. **极端速度优势**：在大规模基准测试（如 5 万个细胞 $\times$ 1.5 万个基因）中，GENIE3 耗时超过 50 小时，而 GRNBoost2 在 Arboreto 框架下仅需 15–30 分钟即可全部完成，提速超 100 倍。
-2. **轻量内存占用**：借助稀疏矩阵优化与 Dask 内存分块流水线，单机 32 GB 内存即可平稳处理 10 万级单细胞表达图谱。
-3. **算法准确率卓越**：在 DREAM4 及真实生物学转录因子敲除金标准基准测试中，GRNBoost2 的受试者工作特征曲线下面积（AUROC）与精度-召回率曲线下面积（AUPRC）全面比肩乃至微幅超越随机森林。
-
----
-
 ## 4. 植物基因组学应用场景与科研价值
 
 植物单细胞转录组（如原生质体 scRNA-seq 或 snRNA-seq）具有细胞数目庞大、各分化阶段细胞连续过渡的特点：
 - **植物单细胞 Regulon 调控模块推断（pySCENIC 核心组件）**：GRNBoost2 是在植物单细胞数据中运行 pySCENIC 的第一步，能够以极高吞吐量从数万单细胞表达矩阵中筛选出潜在共表达的“TF-靶基因粗选模块（Co-expression Modules）”；
 - **后续结合 CisTarget 植物基序富集精炼**：利用拟南芥、水稻、玉米全基因组转录起始位点上下游顺式元件库，对 GRNBoost2 输出的有向边进行转录因子结合基序（Motif）正向验证，过滤无直接结合证据的间接边，形成高度可靠的单细胞物理调控子（Regulons）；
 - **细胞亚型特异性活化分析（AUCell）**：在不同根尖细胞层或气孔保卫细胞中，定量评估不同 Regulon 的调控活性分数，揭示决定细胞特化命运的核心主导转录因子。
-
----
-
-## 5. 输入输出规范与关键参数指南
-
-### 5.1 核心分析流程与执行代码 (Python / Arboreto)
-```python
-import pandas as pd
-from dask.distributed import Client, LocalCluster
-from arboreto.algo import grnboost2
-from arboreto.utils import load_tf_names
-
-# 1. 启动本地 Dask 分布式计算集群
-cluster = LocalCluster(n_workers=8, threads_per_worker=2, memory_limit='4GB')
-client = Client(cluster)
-
-# 2. 载入单细胞表达矩阵 (行: 细胞 Barcodes, 列: 基因)
-# 可以是标准的 Pandas DataFrame 或包含单细胞数据的 AnnData.to_df()
-expr_df = pd.read_parquet("plant_single_cell_expression.parquet")
-
-# 3. 载入植物已知候选转录因子列表
-tf_names = load_tf_names("plant_transcription_factors.txt")
-
-# 4. 运行 GRNBoost2 高性能网络推断
-network = grnboost2(
-    expression_data=expr_df,
-    tf_names=tf_names,
-    client_or_address=client,
-    seed=42,
-    verbose=True
-)
-
-# 5. 保存生成的有向加权调控边列表 (列: TF, target, importance)
-network.to_csv("grnboost2_network_edges.tsv", sep="\t", index=False)
-
-# 释放计算资源
-client.close()
-cluster.close()
-```
-
-### 5.2 关键参数说明
-- `expression_data`：单细胞表达矩阵。推荐传入经过常规质控与库容大小归一化的对数表达矩阵（如 `log1p(CP10K)`）。
-- `tf_names`：植物转录因子基因名称列表，限制候选调控节点，极大加速计算收敛。
-- `memory_limit='4GB'`：限制单个 Dask 工作进程的内存上限，防止高并发时内存溢出。
 
 ---
 

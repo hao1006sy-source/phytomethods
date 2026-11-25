@@ -69,17 +69,6 @@ Merqury 构建于高效的 k-mer 计数引擎 **Meryl** 之上，其数学推导
 
 ---
 
-## 算法复杂度与计算性能
-
-| 指标 | 性能表现 | 计算特征与工程实现 |
-| :--- | :--- | :--- |
-| **Meryl k-mer 计数** | $O(N)$ 线性时间（以读段总碱基计） | 基于基数排序与外排序机制，支持跨磁盘分区低内存处理 |
-| **Merqury 统计比对** | 数分钟至 30 分钟内完成 | 纯内存集合位图（Bitset）交集运算，极速高效 |
-| **内存峰值占用** | 典型 1~2 Gb 植物约 16~32 GB RAM | 适合在普通服务器或多核笔记本电脑上运行 |
-| **分辨率** | 单碱基精度与单拷贝分辨 | 可精准检测几百 bp 的局部等位基因缺失或重复过度展开 |
-
----
-
 ## 植物基因组学应用场景与科研价值
 
 1. **复杂多倍体与高杂合农作物组装验收黄金标准**：
@@ -88,36 +77,6 @@ Merqury 构建于高效的 k-mer 计数引擎 **Meryl** 之上，其数学推导
    在利用 purge_dups 剥离杂合替代重叠群时，研究人员可通过 Merqury 对比去冗余前后的 k-mer 频谱，精确确认是否误删除了真实的串联同源重复序列；
 3. **动植物杂交群体分相连续性评估**：
    对于拟南芥、水稻 F1 杂交种或自交不亲和野生品系，利用父母本特异性 Hap-mers，Merqury 能精细定位组装序列中单倍型转换错误（Switch errors）与迁移错误（Hamming errors）的物理断点坐标。
-
----
-
-## 输入输出规范与关键参数指南
-
-### 关键运行步骤
-
-```bash
-# 1. 使用 Meryl 统计测序读段的 21-mers (支持多文件)
-meryl k=21 count output read.meryl reads.fq.gz
-
-# 2. 单样本无亲本组装质量评估
-merqury.sh read.meryl assembly.fasta output_prefix
-
-# 3. 父母本双单倍型 Trio 分相评估
-# 首先构建父母本特异 k-mers:
-meryl-lookup -dump -hapmat mat.meryl -happat pat.meryl -k 21 read.meryl
-# 运行 Merqury Trio 评估:
-merqury.sh read.meryl mat.hapmer.meryl pat.hapmer.meryl hap1.fasta hap2.fasta output_trio
-```
-
-- `k=<int>`：k-mer 大小选择至关重要。对于植物 1~5 Gb 基因组，推荐选择 $k = 21$；对于大于 10 Gb 的超大基因组（如针叶树或小麦），推荐 $k = 23$ 或 $25$；
-- `--hom-cov`：自动拟合或手动指定纯合单倍型深度峰值。
-
-### 核心产物文件解读
-
-- `*.qv`：记录整体组装及各条染色体/Contig 的碱基错误率与 QV 分值；
-- `*.completeness.stats`：记录全基因组 k-mer 召回完整度比例；
-- `*.spectra-cn.fl.png`：全基因组 k-mer 拷贝数频谱分布图（核心质控图）；
-- `*.phased_block.stats`：单倍型分相块的连续性（Block N50）与正确率统计。
 
 ---
 

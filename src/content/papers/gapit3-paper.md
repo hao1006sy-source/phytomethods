@@ -54,57 +54,12 @@ $$y = X\alpha + P\beta + Zu + e$$
 
 ---
 
-## 3. 算法复杂度与计算性能
-
-1. **计算性能质的飞跃**：传统 MLM 处理 50 万标记、2000 个体需要数小时至数天；而 BLINK 算法在多核 CPU 下仅需数分钟即可完成全基因组扫描。
-2. **多模型一站式并行对比**：支持在单次运行中同时输出 GLM、MLM、CMLM、FarmCPU 与 BLINK 的关联结果，并自动生成曼哈顿图（Manhattan Plot）与分位数-分位数图（Q-Q Plot）的多模型重叠对比图。
-3. **基因组选择预测（GS）闭环**：利用最佳线性无偏预测（gBLUP）及基于标记聚类的 cBLUP 模块，直接计算个体的基因组估计育种值（GEBV）与十折交叉验证准确率。
-
----
-
 ## 4. 植物基因组学应用场景与科研价值
 
 植物多样性群体具有强烈的地理分布亚群与繁育历史近亲背景：
 - **主粮作物重要农艺性状 QTN 精细定位**：例如水稻粒型、千粒重、分蘖角度、稻瘟病抗性；玉米株高、穗位高、籽粒淀粉含量；大豆花期与蛋白质含量。FarmCPU 与 BLINK 能够精准定位紧邻功能基因核心外显子或启动子区域的单碱基 QTN；
 - **植物复杂性状候选基因挖掘与等位变异效应解析**：GAPIT 自动提取各显著标记的等位基因效应值（Effect Size），直观呈现优势等位基因在群体中的表型增益；
 - **分子标记辅助育种与基因组选择**：利用预测模块评估不同品系的育种潜力，加速优良杂交组合的早期筛选。
-
----
-
-## 5. 输入输出规范与关键参数指南
-
-### 5.1 核心分析流程与执行代码 (R / GAPIT)
-```R
-# 1. 载入 GAPIT 源码环境与依赖库
-source("http://zzlab.net/GAPIT/gapit_functions.txt")
-
-# 2. 读取表型数据与 HapMap 格式基因型数据
-myGAPIT_Y <- read.table("plant_phenotype.txt", head = TRUE)
-myGAPIT_G <- read.table("plant_genotype.hmp.txt", head = FALSE, comment.char = "")
-
-# 3. 执行多模型全基因组关联分析 (同时调用 BLINK 与 FarmCPU)
-myGAPIT <- GAPIT(
-  Y = myGAPIT_Y,
-  G = myGAPIT_G,
-  PCA.total = 3,                       # 提取前 3 个主成分控制群体结构
-  model = c("Blink", "FarmCPU"),       # 指定关联模型
-  Multiple_analysis = TRUE,            # 开启多模型联合比较
-  SNP.MAF = 0.05                       # 次要等位基因频率过滤阈值 (MAF >= 5%)
-)
-
-# 4. 运行基因组预测 (gBLUP 模式计算育种值 GEBV)
-myGAPIT_GS <- GAPIT(
-  Y = myGAPIT_Y,
-  G = myGAPIT_G,
-  PCA.total = 3,
-  model = c("gBLUP")
-)
-```
-
-### 5.2 关键参数说明
-- `model = c("Blink", "FarmCPU")`：强烈推荐使用 BLINK 或 FarmCPU，在统计功效与假阳性控制上显著优于传统单一 MLM。
-- `PCA.total = 3`：纳入主成分分析的前几个分量；根据群体分化程度可结合碎石图设定为 3 至 5。
-- `SNP.MAF = 0.05`：过滤罕见突变（MAF $< 5\%$），防止测序错误引起局部虚假关联。
 
 ---
 

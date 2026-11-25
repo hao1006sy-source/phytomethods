@@ -53,60 +53,12 @@ $$\log N_e(t) = \sum_{k} \alpha_k B_k(\log t)$$
 
 ---
 
-## 3. 算法复杂度与计算性能
-
-1. **计算性能卓越**：核心优化算法由 C++ 与 Python 混合编写，利用高斯求积（Gaussian Quadrature）加速积分运算。
-2. **轻松吞吐数百全基因组**：处理来自几百个未定相个体的全基因组 VCF 文件，在常规 16 核服务器上仅需 2–6 小时即可完成全部优化收敛。
-3. **输入格式简便**：提供一站式 `vcf2smc` 转换脚本，原生兼容标准多样本 VCF 文件与可比对性掩码 BED 文件。
-
----
-
 ## 4. 植物基因组学应用场景与科研价值
 
 植物群体全基因组重测序通常包含几十至数百个农家种或野生居群样本，往往缺乏染色体级别的定相支撑：
 - **农业作物近代驯化剧烈收缩历史还原**：在水稻、玉米、大豆的大规模群体中，SMC++ 能够从数百个未定相重测序个体中，以极高的近代分辨率准确捕捉到农业驯化早期（距今 1 万年前后）伴随的极端有效群体规模剧降；
 - **野生种群亚群分化与避难所隔离时间测定**：测定植物地理生态型（如高海拔耐冷生态型与低海拔敏感型）分化分歧的精确历法年代；
 - **免去繁琐定相的分析鲁棒性**：彻底规避了因长读长定相不准造成的近期历史伪反弹假象。
-
----
-
-## 5. 输入输出规范与关键参数指南
-
-### 5.1 核心分析流程与执行命令 (Python / SMC++)
-```bash
-# 步骤 1: 将未定相多样本 VCF 转换为 SMC++ 专用输入格式
-# 指定区分个体区分标签 (如 PopA_ind1)，其余作为背景群体
-smc++ vcf2smc \
-  --mask mappability_mask.bed.gz \
-  plant_popA.vcf.gz \
-  chr01_popA.smc.gz \
-  chr01 \
-  PopA:PopA_ind1,PopA_ind2,PopA_ind3,PopA_ind4
-
-# 步骤 2: 单群体有效群体大小历史推断 (支持传入所有染色体)
-smc++ estimate \
-  --cores 16 \
-  --spline cubic \
-  -o popA_estimate/ \
-  6.5e-9 \
-  chr01_popA.smc.gz chr02_popA.smc.gz ...
-
-# 步骤 3: 提取双群体联合数据并推断分化时间 (Clean-split)
-smc++ vcf2smc -m mappability.bed.gz joint.vcf.gz chr01_joint.smc.gz chr01 PopA:PopA1,PopA2 PopB:PopB1,PopB2
-smc++ split \
-  --cores 16 \
-  -o split_estimate/ \
-  popA_estimate/model.final.json \
-  popB_estimate/model.final.json \
-  chr*_joint.smc.gz
-
-# 步骤 4: 结果绘图输出实际历法曲线 (世代时间 g=1)
-smc++ plot -g 1 -u 6.5e-9 popA_history.png popA_estimate/model.final.json
-```
-
-### 5.2 关键参数说明
-- `6.5e-9`：物种的每代每碱基突变率，直接决定时间坐标与 $N_e$ 的绝对物理尺度。
-- `--spline cubic`：采用三次样条插值拟合连续的平滑有效群体大小曲线。
 
 ---
 

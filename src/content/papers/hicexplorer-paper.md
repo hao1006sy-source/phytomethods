@@ -54,71 +54,12 @@ HiCExplorer 采用滑动菱形窗口算法（Diamond Insulation Method）：
 
 ---
 
-## 3. 算法复杂度与计算性能
-
-1. **高效的稀疏矩阵底层存储**：原生采用 HDF5 架构的 `.cool` 格式，只存储非零接触对，使玉米（2.1 Gb）或大麦（5 Gb）级别大基因组的矩阵文件缩小 90% 以上。
-2. **多进程并行加速**：矩阵构建（`hicBuildMatrix`）与矩阵平衡纠偏（`hicCorrectMatrix`）全面支持按染色体分片并行调度。
-3. **多分辨率金字塔存储**：支持 `.mcool` 格式，可在一个文件中包含从 5 kb、10 kb、50 kb 到 1 Mb 的多级分辨率矩阵，按需快速加载。
-
----
-
 ## 4. 植物基因组学应用场景与科研价值
 
 植物三维基因组构象呈现出与哺乳动物显著不同的独特性质：
 - **缺乏典型 CTCF 介导的环挤压结构**：哺乳动物依赖 CTCF 和黏连蛋白（Cohesin）形成明显的染色质环（Loops），而高等植物基因组中缺失动物同源 CTCF。植物的三维构象主要由转录活跃岛、表观修饰富集区以及局部微结构域（Micro-TADs）主导；
 - **植物特异性 Rabl 构象与端粒/着丝粒聚集**：在许多大基因组植物（如小麦、大麦）中，着丝粒和端粒分别在细胞核相对的两极极化聚集（Rabl 构象）。HiCExplorer 的全染色体热图（`hicPlotMatrix`）能够极其清晰地展现这种大尺度极性特征；
 - **多倍体植物亚基因组空间分离与互作**：在小麦（AABBDD）、异源四倍体油菜和棉花中，HiCExplorer 被广泛用于评估同源染色体之间是否存在跨亚基因组接触抑制，以及异染色质结（KNOT）和转座子三维聚簇机制。
-
----
-
-## 5. 输入输出规范与关键参数指南
-
-### 5.1 核心分析工作流与命令
-```bash
-# 1. 独立比对双端 Hi-C reads 并生成 BAM (推荐 bwa mem -5SP)
-bwa mem -A1 -B4 -E50 -L0 -5SP plant_ref.fa sample_R1.fq.gz > sample_R1.bam
-bwa mem -A1 -B4 -E50 -L0 -5SP plant_ref.fa sample_R2.fq.gz > sample_R2.bam
-
-# 2. 构建原始 Hi-C 接触矩阵 (以 10 kb 分辨率为例)
-hicBuildMatrix \
-  --samFiles sample_R1.bam sample_R2.bam \
-  --binSize 10000 \
-  --restrictionSequence GATC \
-  --danglingSequence GATC \
-  --outFileName plant_10kb.h5 \
-  --QCfolder ./hic_qc/
-
-# 3. 诊断矩阵对角线衰减与低计数过滤
-hicCorrectMatrix diagnostic_plot -m plant_10kb.h5 -o qc_plot.png
-
-# 4. 执行 ICE 矩阵平衡归一化
-hicCorrectMatrix correct \
-  -m plant_10kb.h5 \
-  --filterThreshold -1.5 5.0 \
-  --correctionMethod ICE \
-  -o plant_10kb_corrected.h5
-
-# 5. 计算 A/B Compartment 第一主成分
-hicPCA \
-  -m plant_10kb_corrected.h5 \
-  --numberOfEigenvectors 2 \
-  --format bigwig \
-  -o pca1.bw pca2.bw
-
-# 6. 计算 TAD 绝缘分值与边界调用
-hicFindTADs \
-  -m plant_10kb_corrected.h5 \
-  --minDepth 30000 \
-  --maxDepth 100000 \
-  --step 10000 \
-  --thresholdComparisons 0.05 \
-  --outPrefix plant_tads
-```
-
-### 5.2 关键参数说明
-- `--binSize <int>`：矩阵物理分辨率（单位 bp）。浅测序（100M reads）推荐 50 kb–100 kb；深测序（500M+ reads）可达 5 kb–10 kb。
-- `--correctionMethod ICE`：推荐的迭代校正算法。
-- `--minDepth / --maxDepth`：控制滑动菱形绝缘窗口的扫描跨度，建议设置为分辨率的 3 倍至 10 倍。
 
 ---
 

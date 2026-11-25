@@ -215,7 +215,7 @@ assert.strictEqual(unknownYearResult.relation, 'uses_method', '未登记首发�
 assert.strictEqual(unknownYearResult.evidence.verificationStatus, 'structurally_valid', '无确凿首发冲突证据时不误报 needs_review');
 console.log('✓ 断言 11 通过 (V1.1.2 专项 5 & 6): 关系类型与时序警告完全解耦，未知首发年份不编造冲突');
 
-// 断言 12 (V1.2.2 证据审核动态闭环测试): 证据数量与百分比基准一致性
+// 断言 12 (V1.2.3 真实科研证据动态一致性校验): 证据统计真实自洽，解除写死数量与零待决约束
 let totalEvidenceCount = 0;
 const statusCounts = { structurally_valid: 0, source_checked: 0, needs_review: 0 };
 for (const e of graph.edges) {
@@ -227,16 +227,18 @@ for (const e of graph.edges) {
   }
 }
 assert.strictEqual(graph.stats.evidenceEntriesCount, totalEvidenceCount, '图谱统计中的证据总数必须严格等于各边证据记录数之和');
-assert.ok(totalEvidenceCount >= 700, `证据记录总数应维持在合理规模 (当前: ${totalEvidenceCount})`);
-assert.ok(statusCounts.source_checked >= 500, `source_checked 证据记录数应占核心主导地位 (当前: ${statusCounts.source_checked})`);
-assert.strictEqual(statusCounts.needs_review, 0, '经科学纠偏后，全图谱待审核 needs_review 必须为 0');
+assert.strictEqual(graph.stats.evidenceByStatus.source_checked, statusCounts.source_checked, 'source_checked 统计必须与各边证据完全一致');
+assert.strictEqual(graph.stats.evidenceByStatus.structurally_valid, statusCounts.structurally_valid, 'structurally_valid 统计必须与各边证据完全一致');
+assert.strictEqual(graph.stats.evidenceByStatus.needs_review || 0, statusCounts.needs_review, 'needs_review 统计必须与各边证据完全一致');
 
+// 证据状态比例严格以总证据数为分母动态计算，允许真实科研 needs_review 存在
 const scRatio = ((statusCounts.source_checked / totalEvidenceCount) * 100).toFixed(1) + '%';
 const svRatio = ((statusCounts.structurally_valid / totalEvidenceCount) * 100).toFixed(1) + '%';
 const nrRatio = ((statusCounts.needs_review / totalEvidenceCount) * 100).toFixed(1) + '%';
 assert.strictEqual(graph.stats.evidenceRatiosByStatus.source_checked, scRatio, 'source_checked 占比分母必须为总证据数');
 assert.strictEqual(graph.stats.evidenceRatiosByStatus.structurally_valid, svRatio, 'structurally_valid 占比分母必须为总证据数');
-console.log(`✓ 断言 12 通过 (V1.2.2 证据动态闭环体系): 证据总数与比例分母基准一致 (总证据条目: ${totalEvidenceCount}, source_checked: ${statusCounts.source_checked} (${scRatio}), structurally_valid: ${statusCounts.structurally_valid} (${svRatio}), needs_review: ${statusCounts.needs_review} (${nrRatio}))`);
+assert.strictEqual(graph.stats.evidenceRatiosByStatus.needs_review || '0.0%', nrRatio, 'needs_review 占比分母必须为总证据数');
+console.log(`✓ 断言 12 通过 (V1.2.3 动态真实证据体系): 统计闭环校验通过 (总证据数: ${totalEvidenceCount}, source_checked: ${statusCounts.source_checked} (${scRatio}), structurally_valid: ${statusCounts.structurally_valid} (${svRatio}), needs_review: ${statusCounts.needs_review} (${nrRatio}))`);
 
 // 断言 13: 反向标题关键词误判拦截断言
 const clarifiedUsesCases = [

@@ -48,68 +48,12 @@ CUT&Tag 依赖 Tn5 转座酶在结合靶标周围产生的定点切割。因为�
 
 ---
 
-## 3. 算法复杂度与计算性能
-
-1. **测序深度需求极小**：对于典型的植物二倍体基因组（如水稻、拟南芥），常规 ChIP-seq 窄峰需 2000 万条读段，宽峰需 4000 万至 5000 万条读段；而 CUT&Tag 仅需 300 万至 800 万对双端测序 reads（Paired-End 150 bp）即可实现完全饱和。
-2. **比对与处理耗时低**：由于总测序数据量降低一个数量级，采用 Bowtie 2 双端比对并过滤单核小体片段仅需 15–30 分钟。
-3. **计算内存占用小**：比对和峰值计算过程在 8 核 CPU、16 GB 内存的标准分析工作站上即可高速完成。
-
----
-
 ## 4. 植物基因组学应用场景与科研价值
 
 植物组织通常含有坚硬的纤维素细胞壁以及大量的多糖、多酚和叶绿体色素等次生代谢物，且分生组织、胚珠、精细胞等关键发育靶标的细胞数量极为稀少，传统 ChIP-seq 极难成功。CUT&Tag 为植物表观基因组学带来了革命性的科研突破：
 - **微量分生组织与生殖细胞表观解析**：能够在几百至数千个原生质体（Protoplasts）或流式分选（FACS）细胞核中稳定检测 H3K4me3（转录激活）、H3K27me3（多梳抑制）、H3K9me2（异染色质转座子抑制）动态。
 - **逆境表观快速重塑机制研究**：在干旱、高温、盐胁迫早期短时间内捕获染色质修饰与转录因子（如 DREB、bZIP、WRKY）的原位动态结合。
 - **单细胞 CUT&Tag 拓展**：结合单细胞微流控技术（如 10x Genomics），实现植物单细胞分辨率下的表观异质性聚类与细胞命运决定轨迹推断。
-
----
-
-## 5. 输入输出规范与关键参数指南
-
-### 5.1 数据预处理与比对参数
-
-CUT&Tag 测序读段必须采用双端测序（Paired-End），以准确测定 Tn5 两端转座距离：
-```bash
-# 1. Bowtie 2 高灵敏度比对（关键：必须开启 --dovetail 允许 Tn5 短片段重叠）
-bowtie2 \
-  --very-sensitive \
-  --no-mixed \
-  --no-discordant \
-  --dovetail \
-  -I 10 \
-  -X 700 \
-  -p 16 \
-  -x /path/to/plant_genome_index \
-  -1 sample_R1.fq.gz \
-  -2 sample_R2.fq.gz \
-  -S sample.sam
-
-# 2. 转换为 BAM 并严格过滤线粒体/叶绿体等细胞器污染与低质量读段
-samtools view -bS -F 0x04 -q 30 sample.sam | samtools sort -o sample.sorted.bam
-samtools index sample.sorted.bam
-
-# 3. 统计插入片段长度分布质控（判断核小体周期性）
-samtools stats sample.sorted.bam | grep ^IS | cut -f 2- > insert_size_distribution.txt
-```
-
-### 5.2 富集峰识别（Peak Calling）
-对于 CUT&Tag 数据，可选择 SEACR 或 MACS3：
-```bash
-# 方案 A: 使用专为 CUT&Tag 设计的 SEACR（需先生成 bedGraph）
-bedtools genomecov -bg -ibam sample.sorted.bam -g plant_chrom_sizes.txt > sample.bedGraph
-bash SEACR_1.3.sh sample.bedGraph 0.01 non stringent sample.seacr.peaks
-
-# 方案 B: 使用 MACS3（关闭模型，直接以真实片段中心拓展）
-macs3 callpeak \
-  -t sample.sorted.bam \
-  -c igg_control.sorted.bam \
-  -f BAMPE \
-  -g 3.7e8 \
-  -n sample_macs3 \
-  -q 0.05 \
-  --keep-dup all
-```
 
 ---
 

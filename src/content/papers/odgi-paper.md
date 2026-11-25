@@ -58,14 +58,6 @@ ODGI 采用平整、非指针的密集动态数组模型，核心数学与算法
 
 ---
 
-## 算法复杂度与计算性能
-
-- **极低的内存与磁盘开销**：将纯文本 GFA 转换为二进制 `.og` 格式后，文件体积通常缩小 5~10 倍，内存占用仅为原始文本图的数分之一；
-- **全多线程并发加速**：所有核心算法（包括排序、平滑、可视化、位点提取）全部采用 C++ 原生 OpenMP 多线程深度优化；
-- **基准表现**：原论文基准表明，ODGI 能够在常规服务器上几分钟内完成人类全基因组或小麦染色体变异图的排序与 1D 全景图绘制，彻底突破了大规模图分析的性能壁垒。
-
----
-
 ## 植物基因组学应用场景与科研价值
 
 1. **复杂农艺性状候选区间变异子图提取**：利用 `odgi extract`，科研人员可精准截取包含水稻脱粒性、耐冷性或玉米分枝数关键 QTL 区段的变异子图，用于精细分析局部等位多样性；
@@ -73,36 +65,6 @@ ODGI 采用平整、非指针的密集动态数组模型，核心数学与算法
 3. **泛基因组图构建质量审计**：利用 `odgi validate` 检查构图过程中产生的自环、未连通孤岛与测序伪影，确保图拓扑在生物学与数学逻辑上的自洽性。
 
 相关图分析方法论请参阅 [图形泛基因组构建方法](../../topics/pangenomics-structural-variation/m03-topic-02/) 与 [泛基因组与核心、可变基因组](../../topics/pangenomics-structural-variation/m03-topic-01/)。
-
----
-
-## 输入输出规范与关键参数指南
-
-### 1. 核心输入输出
-- **输入**：标准 Graphical Fragment Assembly（GFAv1）格式文本图，或 ODGI 二进制图（`.og`）；
-- **输出**：优化排序后的 `.og` 图文件、全染色体 1D 线性可视化图片（PNG）、子图 GFA、以及各类节点与路径度量统计表格。
-
-### 2. 标准运行命令
-```bash
-# 将文本 GFA 转换为紧凑二进制图并建立索引
-odgi build -g pangenome.gfa -o pangenome.og -t 16
-
-# 基于参考路径约束进行全图 1D 拓扑排序优化
-odgi sort -i pangenome.og -o pangenome.sorted.og \
-  -p -P -Y -t 16
-
-# 绘制染色体尺度多单倍型 1D 线性全景图 (直观展示 PAV 与倒位)
-odgi viz -i pangenome.sorted.og -o pangenome_viz.png \
-  -x 1920 -y 1080 -P 10 -t 8
-
-# 精确提取目标候选基因区段（如 10.5 Mb - 11.0 Mb）的局部子图
-odgi extract -i pangenome.sorted.og -o sub_qtl.og \
-  -r RefChr01:10500000-11000000 -c 1000
-```
-- `odgi build`：二进制图快速构建；
-- `odgi sort -P -Y`：启用路径引导的 SGD 排序算法；
-- `odgi viz -x -y`：指定输出图像的分辨率像素宽高；
-- `odgi extract -r -c`：按参考坐标系截取子图并向两侧延伸上下文（Context length）。
 
 ---
 

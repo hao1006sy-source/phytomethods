@@ -57,16 +57,6 @@ Bismark 原生提取三联核苷酸上下文环境：
 
 ---
 
-## 3. 算法复杂度与计算性能
-
-Bismark 的计算复杂度主要由三部分组成：
-1. **转换比对阶段**：时间复杂度为 $O(N \cdot L_{read})$，其中 $N$ 为测序 reads 总数。由于需要比对到两个或四个转换基因组，比对耗时约为常规全基因组 DNA-seq 重测序比对的 2 至 3 倍。
-2. **甲基化提取阶段**：时间复杂度为 $O(M)$，其中 $M$ 为比对成功的有效 reads 数量，逐读段回溯胞嘧啶碱基。
-3. **内存开销**：取决于参考基因组大小与底层 Bowtie 2 的 FM-index 尺寸。水稻基因组（约 380 Mb）仅需 3–5 GB 内存；玉米基因组（约 2.1 Gb）需 10–14 GB 内存。
-4. **多线程并行能力**：支持 `--parallel <int>`（并行启动多个比对子进程）与 `-p <int>`（Bowtie 2 内部多线程），在 32–64 核 HPC 节点上能够实现接近线性的加速扩展。
-
----
-
 ## 4. 植物基因组学应用场景与科研价值
 
 与哺乳动物基因组主要局限于 CpG 甲基化不同，植物具有极其复杂的三种甲基化序列上下文，在表观调控中分工明确：
@@ -75,51 +65,6 @@ Bismark 的计算复杂度主要由三部分组成：
 - **CHH 甲基化**：主要依赖 RNA 介导的 DNA 甲基化（RdDM 途径，由 DRM2 催化）或 CMT2 途径建立，专一性靶向短转座子边缘或异染色质区。
 
 Bismark 的 `bismark_methylation_extractor` 工具能够以极高的精度自动分流输出 CG、CHG 和 CHH 的全基因组单碱基甲基化深度与比例，输出的 CX 报告文件是后续分析植物转座子表观沉默、环境胁迫（干旱、盐碱、热害）表观应答、多倍化基因组亚基因组表观不对称性（Epigenomic Asymmetry）及印记基因发现不可或缺的核心数据源。
-
----
-
-## 5. 输入输出规范与关键参数指南
-
-### 5.1 输入格式规范
-- 参考基因组 FASTA 文件（未经过任何转换的原始组装序列）。
-- 单端（Single-End）或双端（Paired-End）FASTQ 文件，需提前完成接头剪切与低质量过滤（推荐使用 Trim Galore，其针对 RRBS/WGBS 进行了专门的胞嘧啶保护优化）。
-
-### 5.2 核心执行命令与参数
-```bash
-# 1. 构建双向三字母转换索引
-bismark_genome_preparation --bowtie2 /path/to/reference_genome/
-
-# 2. 双端重亚硫酸氢盐测序读段比对
-bismark \
-  --genome /path/to/reference_genome/ \
-  -1 sample_R1_val_1.fq.gz \
-  -2 sample_R2_val_2.fq.gz \
-  --bowtie2 \
-  -p 8 \
-  --parallel 2 \
-  --score_min L,0,-0.2 \
-  -o bismark_alignment_out/
-
-# 3. 比对去重（仅适用于 WGBS 全基因组文库，RRBS/扩增子严禁去重）
-deduplicate_bismark -p --bam bismark_alignment_out/sample_R1_val_1_bismark_bt2_pe.bam
-
-# 4. 全基因组胞嘧啶甲基化状态提取（植物必开 --CX 与 --cytosine_report）
-bismark_methylation_extractor \
-  -p \
-  --no_overlap \
-  --comprehensive \
-  --merge_non_CpG \
-  --CX \
-  --cytosine_report \
-  --genome_folder /path/to/reference_genome/ \
-  sample_R1_val_1_bismark_bt2_pe.deduplicated.bam
-```
-
-### 5.3 关键参数说明
-- `--score_min L,0,-0.2`：调整 Bowtie 2 的比对评分阈值，允许一定比例的测序错误与天然单核苷酸多态性（SNP）。
-- `--no_overlap`：对双端测序中相互重叠的读段区域只统计一次甲基化状态，防止重复计数人为推高局部深度。
-- `--CX` / `--cytosine_report`：强制提取全部序列环境（包括 CHG 和 CHH），对植物表观基因组学必不可少。
-- `--merge_non_CpG`：将非 CpG 维度的所有读段整合，辅助快速评估整体表观修饰概况。
 
 ---
 

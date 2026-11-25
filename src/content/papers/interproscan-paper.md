@@ -76,17 +76,6 @@ InterProScan 5 采用基于 Java Spring 框架的并行分布式管道架构，�
 
 ---
 
-## 算法复杂度与计算性能
-
-| 维度 | 指标与性能数据 | 算法设计与优化机制 |
-| :--- | :--- | :--- |
-| **计算时间** | 典型植物全蛋白质组（~3 万条蛋白）约 2~6 小时（36 线程） | 深度支持嵌入式模式与分布式 LSF / Slurm 集群调度 |
-| **I/O 与缓存机制** | 内置基于嵌入式 H2 数据库的单向哈希缓存（Lookup Service） | 对已知序列无需重新计算 HMM，数秒内直接命中历史缓存 |
-| **内存峰值需求** | 推荐 16~32 GB RAM | 各分析器以独立子进程管道执行，避免全局大内存堆积 |
-| **输出规范性** | 国际通用权威标准 | 支持标准 TSV、GFF3、XML 与 JSON 等多种标准化交付格式 |
-
----
-
 ## 植物基因组学应用场景与科研价值
 
 1. **植物防御与抗病抗逆基因超家族全景鉴定**：
@@ -95,45 +84,6 @@ InterProScan 5 采用基于 Java Spring 框架的并行分布式管道架构，�
    在植物转录组差异表达分析（RNA-seq DESeq2/WGCNA）中，研究人员依赖 InterProScan 输出的标准 GO 和通路编号，执行基于超几何分布的代谢通路显著性上调/下调检验；
 3. **作物多倍化后的功能基因旁系分化（Subfunctionalization）评估**：
    在小麦或油菜多倍体中，通过比较不同同源等位拷贝在 InterPro 结构域完整性上的微小缺失或变异，揭示亚基因组显性与假基因化演化动态。
-
----
-
-## 输入输出规范与关键参数指南
-
-### 关键运行步骤
-
-```bash
-# 1. 基础全基因组蛋白质功能注释 (启用常用植物核心模型库与 GO/通路映射)
-interproscan.sh \
-  -i plant_proteins.faa \
-  -f tsv,gff3 \
-  -dp \
-  -goterms \
-  -pactions \
-  -appl Pfam,PANTHER,SUPERFAMILY,Gene3D,SMART,CDD \
-  -cpu 36 \
-  -o plant_functional_annotation
-
-# 2. 启用在线 Lookup 预查服务加速 (仅对已有序列极速匹配)
-interproscan.sh \
-  -i plant_proteins.faa \
-  -f tsv \
-  -goterms \
-  -cpu 36 \
-  -o plant_annotation_fast
-```
-
-- `-i <file>`：输入的蛋白质多肽 FASTA 文件；
-- `-f <tsv|gff3|xml|json>`：输出格式（推荐同时生成 `tsv` 与 `gff3`）；
-- `-goterms`：开启标准 Gene Ontology 术语映射；
-- `-pactions`：开启生物代谢通路（Reactome / KEGG）映射；
-- `-appl <list>`：指定运行的应用分析器集合（推荐聚焦于植物核心库）；
-- `-cpu <int>`：指定运行 CPU 线程数。
-
-### 核心产物文件解读
-
-- `*.tsv`：标准三栏式功能注释表，包含蛋白 ID、MD5、序列长度、分析库来源、特征签名 ID、特征描述、起止坐标、E-value、InterPro Accession、InterPro 描述、GO 术语及 Pathway 注释；
-- `*.gff3`：带结构域物理坐标的特征文件，可直接载入 JBrowse / IGV 基因组浏览器可视化展示。
 
 ---
 

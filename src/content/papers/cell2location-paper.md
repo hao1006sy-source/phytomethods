@@ -52,68 +52,12 @@ $$\mu_{sg} = m_g \left( \sum_{f=1}^F w_{sf} g_{fg} + s_{sg} \right) + y_{s, \tex
 
 ---
 
-## 3. 算法复杂度与计算性能
-
-1. **GPU 深度加速**：Cell2location 采用基于 PyTorch 的变分优化，充分利用现代 GPU 的张量并行能力。包含 3000–5000 个 Spots、数万个基因以及数十个细胞类型的空间芯片，在单块标准 GPU 上仅需 15–30 分钟即可完成全参数收敛。
-2. **两阶段架构优化**：第一阶段独立估计单细胞参考签名并固定，第二阶段专心求解空间多项参数，大幅降低了解卷积优化空间的耦合度与求解耗时。
-
----
-
 ## 4. 植物基因组学应用场景与科研价值
 
 植物组织解剖结构严密且细胞壁致密，在空间芯片上各组织层紧密贴合：
 - **植物微薄组织层的高保真反卷积**：例如植物根系横截面中，内皮层（Endodermis）与中柱鞘（Pericycle）通常仅有单层细胞厚度，在 Visium Spot 中必定与皮层或维管束细胞混合。Cell2location 能够从复合信号中将内皮层特异性表达精确剥离还原；
 - **茎尖分生组织（SAM）干细胞微环境定位**：将 WUSCHEL 阳性的干细胞组织中心（OC）、CLV3 阳性干细胞区以及侧翼分生组织原基的单细胞表达谱精确锚定回植物茎尖分生组织的实际三维物理位置；
 - **植物受精胚珠与胚乳空间图谱解析**：在复杂双受精生殖器官中，解析合子、母体种皮与三倍体胚乳之间的精细空间交界互作。
-
----
-
-## 5. 输入输出规范与关键参数指南
-
-### 5.1 核心分析工作流与代码示例
-```python
-import scanpy as sc
-import cell2location
-import torch
-
-# 1. 第一阶段: 从单细胞参考 AnnData 中估计细胞类型表达签名
-from cell2location.models import RegressionModel
-RegressionModel.setup_anndata(
-    adata=adata_ref,
-    batch_key="sample",
-    labels_key="cell_type"
-)
-mod_ref = RegressionModel(adata_ref)
-mod_ref.train(max_epochs=250, use_gpu=True)
-adata_ref = mod_ref.export_posterior(adata_ref)
-inf_aver = adata_ref.varm['means_per_cluster_mu_fg']
-
-# 2. 第二阶段: 空间转录组数据对齐与解卷积模型训练
-from cell2location.models import Cell2location
-# 保持空间与单细胞基因交集一致
-intersect = adata_spatial.var_names.intersection(inf_aver.index)
-adata_spatial = adata_spatial[:, intersect]
-inf_aver = inf_aver.loc[intersect, :]
-
-Cell2location.setup_anndata(adata=adata_spatial, batch_key="sample")
-mod_spatial = Cell2location(
-    adata_spatial,
-    cell_state_df=inf_aver,
-    # 核心超参数: 根据显微组织染色评估每个 Spot 平均细胞数
-    N_cells_per_location=8,
-    detection_alpha=20
-)
-mod_spatial.train(max_epochs=30000, batch_size=None, train_size=1, use_gpu=True)
-
-# 3. 导出后验丰度矩阵并绘制空间分布图
-adata_spatial = mod_spatial.export_posterior(adata_spatial)
-# 细胞类型预测绝对丰度保存在 adata_spatial.obsm['q05_cell_abundance_w_sf']
-```
-
-### 5.2 关键参数说明
-- `N_cells_per_location`：每个空间捕获点（Spot）的**预期平均细胞数**。需根据植物组织切片 DAPI/焦木素染色进行细胞核计数估计（植物致密分生组织设为 10–20，疏松海绵组织设为 4–8）。
-- `detection_alpha=20`：技术敏感度变异正则化参数，数值越大对平台效应越稳健。
-- `q05_cell_abundance_w_sf`：推荐使用后验分布的第 5 百分位数作为保守且高置信度的细胞绝对丰度估计，有效控制假阳性。
 
 ---
 

@@ -55,69 +55,12 @@ $$p = P(X \ge k) = \sum_{x=k}^{\infty} \frac{\lambda_{local}^x e^{-\lambda_{loca
 
 ---
 
-## 3. 算法复杂度与计算性能
-
-1. **高效的滑动窗口与流式扫描**：时间复杂度为 $O(N)$，其中 $N$ 为测序 reads 总数。MACS 借助单遍基因组坐标遍历完成读段聚合与局部背景统计。
-2. **C/Cython 底层加速**：MACS3 采用 Cython 重写了核心数据结构，内存峰值控制在 2–4 GB 范围，单一样本千万级比对读段在 8 核心服务器上仅需 5–15 分钟即可完成。
-3. **宽峰（Broad Peaks）隐马尔可夫平滑**：支持 `--broad` 模式，在单碱基窄峰识别的基础上，利用局部连锁将临近低显著性边界聚类为平滑的宽结构域，专门适配大范围组蛋白修饰。
-
----
-
 ## 4. 植物基因组学应用场景与科研价值
 
 在植物基因组学研究中，MACS/MACS3 是两类核心实验的金标准分析工具：
 - **植物核心转录因子调控靶标发现**：如水稻生长发育调控因子（IPA1、MOC1）、拟南芥开花与光周期关键蛋白（SOC1、FT、PIF4）以及农艺抗逆转录因子（DREB、NAC、MYB）。借助 MACS 的窄峰模式（Narrow Peak），可锁定 200–500 bp 精确的结合峰顶（Summit），直接对接下游 MEME 基序发现。
 - **植物组蛋白修饰全景图谱构建**：针对植物中广泛分布的抑制性组蛋白标记（如 H3K27me3 由 PRC2 催化覆盖在基因区；H3K9me2 富集在转座子密集区），使用 `--broad` 模式准确勾画连续的染色质表观抑制区。
 - **ATAC-seq 染色质开放区域扫描**：通过参数 `--nomodel --shift -100 --extsize 200`，对植物根、叶、分生组织中的顺式调控元件（CREs）及转录起始位点（TSS）开放性进行高灵敏度定量。
-
----
-
-## 5. 输入输出规范与关键参数指南
-
-### 5.1 输入格式规范
-- 经过比对与排序的 BAM 文件或 BED 文件（必须去除线粒体、叶绿体等非特异性高深结合）。
-- 强烈建议提供配套的 Input DNA 阴性对照样本，以消除染色质可裂解性偏差。
-
-### 5.2 核心执行命令与参数
-```bash
-# 1. 转录因子 ChIP-seq 窄峰分析 (Narrow Peak)
-macs3 callpeak \
-  -t IP_sample.sorted.bam \
-  -c Input_control.sorted.bam \
-  -f BAM \
-  -g 3.7e8 \
-  -n Rice_TF_ChIP \
-  -q 0.05 \
-  --outdir macs3_results/
-
-# 2. 组蛋白修饰宽峰分析 (Broad Peak, 如 H3K27me3 / H3K9me2)
-macs3 callpeak \
-  -t H3K27me3.sorted.bam \
-  -c Input.sorted.bam \
-  -f BAM \
-  -g 1.2e8 \
-  -n At_H3K27me3 \
-  --broad \
-  --broad-cutoff 0.1 \
-  -q 0.05
-
-# 3. ATAC-seq 开放染色质分析 (Tn5 切割中心校正)
-macs3 callpeak \
-  -t atac_seq.sorted.bam \
-  -f BAMPE \
-  -g 2.1e9 \
-  -n Maize_ATAC \
-  -q 0.01 \
-  --nomodel \
-  --shift -100 \
-  --extsize 200
-```
-
-### 5.3 关键参数说明
-- `-g <int/str>`：**可比对基因组有效大小（Effective Genome Size）**。植物常见物种参考值：拟南芥约 `1.2e8`；水稻约 `3.7e8`；玉米约 `2.1e9`；小麦单个亚基因组约 `4.5e9`。
-- `-q 0.05`：FDR 显著性阈值（默认 0.05）。
-- `--broad`：开启宽峰模式，额外输出包含连续修饰区域的 `.broadPeak` 与 `.gappedPeak` 结果。
-- `--shift -100 --extsize 200`：针对 ATAC-seq 读段的 Tn5 剪切位点校正，将断裂点居中延伸为 200 bp 片段。
 
 ---
 

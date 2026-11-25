@@ -59,14 +59,6 @@ Minigraph-Cactus 流程整合了祖先重组图（Ancestral Recombination Graph�
 
 ---
 
-## 算法复杂度与计算性能
-
-- **时间与空间扩展性**：通过利用 Minigraph 将原本全局 $N$-way 复杂比对降维为一系列局部比对，Minigraph-Cactus 将计算复杂度从传统的 $\mathcal{O}(N^2)$ 或 $\mathcal{O}(N^3)$ 降低到接近线性或拟线性 $\mathcal{O}(N \log N)$ 级别；
-- **计算资源利用率**：支持在分布式 HPC 集群（Toil 框架）上对成千上万个局部子图进行动态任务分发与高效并行计算；
-- **官方基准数据**：在人类泛基因组参考联盟（HPRC）90 个单倍型基准测试中，Minigraph-Cactus 成功完成了全碱基级变异图构建；在植物领域，已广泛应用于拟南芥、玉米（Panzea 26 套组装）、高粱等物种，构建出的 GBZ 图文件可直接用于后续数千个样品的超高速短读长比对。
-
----
-
 ## 植物基因组学应用场景与科研价值
 
 1. **多倍体与高杂合农作物全尺度泛基因组构建**：在双二倍体甘蓝型油菜、异源四倍体花生、异源六倍体小麦中，Minigraph-Cactus 能够清晰区分亚基因组间的直系同源和部分同源关系，同时记录全单倍型多态性；
@@ -74,30 +66,6 @@ Minigraph-Cactus 流程整合了祖先重组图（Ancestral Recombination Graph�
 3. **消除短读长测序的参考基因组比对偏倚**：结合 `vg giraffe`，利用 Minigraph-Cactus 构建的泛基因组图作为比对参考，能够大幅提升富含转座子和多态区域的短读长比对准确度与变异检测灵敏度。
 
 相关构建原理与分析实操可参阅 [图形泛基因组构建方法](../../topics/pangenomics-structural-variation/m03-topic-02/) 与 [结构变异多方法检测](../../topics/pangenomics-structural-variation/m03-topic-03/)。
-
----
-
-## 输入输出规范与关键参数指南
-
-### 1. 核心输入输出
-- **输入**：一个样本配对映射表（`seqFile`），包含参考基因组及所有待分析个体的名称与 FASTA 路径；
-- **输出**：全碱基级压缩泛基因组图文件（`.gbz`）、参考变异信息（`.vcf.gz`）、距离索引（`.dist`）与最小采样索引（`.min`）。
-
-### 2. 标准运行命令
-```bash
-# 使用 Cactus-Pangenome 模式一键构建图并生成 vg giraffe 索引
-cactus-pangenome ./js ./seqFile.txt \
-  --outDir pangenome_output \
-  --outName plant_pangenome \
-  --reference RefGenome \
-  --vcf --giraffegz \
-  --maxCores 64 \
-  --maxMemory 256G
-```
-- `--reference RefGenome`：指定作为主坐标骨架的参考基因组名称；
-- `--vcf`：从构建完成的泛基因组图中，针对参考骨架生成标准化群体变异 VCF 文件；
-- `--giraffegz`：自动生成 downstream 用于快速 reads 比对的 `.gbz`、`.dist` 和 `.min` 索引体系；
-- `--filter 0`：在植物复杂基因组中，可设置过滤微小低频变异以降低图拓扑复杂性。
 
 ---
 

@@ -46,60 +46,12 @@ MSMC2 的核心算法飞跃在于摆脱了追踪所有单倍型联合首共祖�
 
 ---
 
-## 3. 算法复杂度与计算性能
-
-1. **计算性能与扩展性**：相比初代 MSMC 最多处理 8 条单倍型，MSMC2 能够轻松扩展至 16、32 乃至 64 条单倍型，分析速度提速 10 至 50 倍。
-2. **输入格式统一**：原生采用 `multihetsep.txt` 单倍型杂合位点格式，每一行记录包含染色体号、物理坐标以及各样本单倍型等位基因调用状态。
-3. **内存开销平缓**：基于成对边际解耦设计，内存占用与单倍型总数呈线性微弱增长，单台 32 GB 内存工作站即可胜任全套计算。
-
----
-
 ## 4. 植物基因组学应用场景与科研价值
 
 植物基因组往往具有高杂合度、高转座子比例以及复杂的倍性生活史，MSMC2 标准协议在植物学研究中具有决定性指导价值：
 - **非模式植物全基因组 Mask 的严苛过滤**：在玉米（TE > 80%）、大麦等大基因组复杂植物中，严格执行 MSMC2 协议中的可比对掩码过滤，是防止将非特异性转座子错配误判为杂合信号的核心防线；
 - **植物农业驯化近期精细历史还原**：利用 8 到 16 条单倍型，高分辨率重建近 1 万年来农家种在人类定向选择下的群体动态收缩；
 - **跨群体基因流与渐渗定年**：在野外同域分布的近缘植物物种间，利用多样本 RCCR 分析判定物种形成是“带有持续渐渗基因流的同域分化”还是“完全物理隔离后的异域分化”。
-
----
-
-## 5. 输入输出规范与关键参数指南
-
-### 5.1 核心分析流程与执行步骤 (MSMC2 官方标准协议)
-```bash
-# 步骤 1: 生成参考基因组可比对性掩码 (以 100 bp reads 为例)
-# 使用 genmap 或 snpable 预生成 ref_mappable_100.mask.bed.gz
-
-# 步骤 2: 利用 bamCaller.py 为每个样本生成深度掩码与 consensus
-samtools mpileup -q 20 -Q 20 -C 50 -u -r chr01 -f plant_ref.fa sample1.bam | \
-  bcftools call -c -V indels | \
-  python bamCaller.py 25 sample1_mask.bed.gz | \
-  gzip -c > sample1_consensus.vcf.gz
-
-# 步骤 3: 提取全样本联合杂合位点并合并掩码 (包含多样本定相 VCF)
-python generate_multihetsep.py \
-  --mask=ref_mappable_100.mask.bed.gz \
-  --mask=sample1_mask.bed.gz \
-  --mask=sample2_mask.bed.gz \
-  phased_snps_chr01.vcf.gz > chr01.multihetsep.txt
-
-# 步骤 4: 运行 MSMC2 执行有效群体大小推断 (16 条单倍型)
-msmc2 \
-  -t 16 \
-  -p 1*2+25*1+1*2 \
-  -o msmc2_pop_out \
-  chr01.multihetsep.txt chr02.multihetsep.txt ...
-
-# 步骤 5: 结果转换并生成年代曲线
-python msmc_runtime_plot.py \
-  -u 6.5e-9 \
-  -g 1 \
-  msmc2_pop_out.final.txt
-```
-
-### 5.2 关键参数说明
-- `-t 16`：OpenMP 并行线程数，多染色体与多单倍型对自动并行分发。
-- `-p 1*2+25*1+1*2`：时间窗口模式，根据样本单倍型数量调整，单倍型较多时可适当增加近期独立区间的数量以提升近代分辨率。
 
 ---
 

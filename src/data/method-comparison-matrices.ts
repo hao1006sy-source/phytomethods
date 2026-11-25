@@ -471,9 +471,9 @@ export const methodComparisonMatrices: Record<string, DomainComparisonMatrix> = 
         methodId: 'dnngp',
         name: 'DNNGP',
         inputType: '多组学数据 (SNP 基因型 + 转录组表达谱) 与表型',
-        corePrinciple: '端到端深度神经网络 (1D-CNN + 全连接网络) 拟合非线性调控响应',
-        computeProfile: '推荐 GPU 加速 (PyTorch 环境, 8~16 GB 显存, 支持 CPU 训练但耗时较长)',
-        advantages: '突破线性假说限制，有效捕获高阶上位性非线性互作与复杂性状表现',
+        corePrinciple: '多分支三层一维卷积 (3-layer 1D-CNN) 与全连接特征融合',
+        computeProfile: '官方基于 Python 3.9 与 TensorFlow 2.6.0 实现，支持 GPU 加速与多折交叉验证',
+        advantages: '突破线性假说限制，支持整合多组学数据探索非加性效应',
         limitations: '训练参数量大，需大样本量防过拟合，模型生物学可解释性相对较弱',
         recommendedScenario: '作物复杂性状多组学整合预测与非线性基因组育种值估计'
       }

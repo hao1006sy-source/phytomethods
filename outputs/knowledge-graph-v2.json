@@ -3,8 +3,8 @@
   "description": "PhytoMethods Scientific Knowledge Graph Schema V2.1 with Evidence & Integrity",
   "stats": {
     "nodesCount": 305,
-    "edgesCount": 742,
-    "evidenceEntriesCount": 800,
+    "edgesCount": 743,
+    "evidenceEntriesCount": 801,
     "nodesByType": {
       "domain": 9,
       "method": 59,
@@ -20,7 +20,7 @@
       "extends_method": 3,
       "introduces_method": 59,
       "studies_species": 64,
-      "uses_method": 66,
+      "uses_method": 67,
       "references_method": 1,
       "evaluates_method": 6,
       "features_method": 112,
@@ -28,7 +28,7 @@
       "guides_method": 10
     },
     "evidenceByStatus": {
-      "source_checked": 599,
+      "source_checked": 600,
       "structurally_valid": 201,
       "needs_review": 0
     },
@@ -59,7 +59,7 @@
         "needs_review": 0
       },
       "uses_method": {
-        "source_checked": 66,
+        "source_checked": 67,
         "structurally_valid": 0,
         "needs_review": 0
       },
@@ -394,11 +394,11 @@
       "domainIds": [
         "gwas-breeding"
       ],
-      "summary": "基于深度神经网络与多组学特征集成的植物前沿基因组预测软件，支持捕获非线性基因组上位性与环境互作效应。",
+      "summary": "基于深度神经网络与多组学特征集成的植物基因组预测方法，通过多分支卷积网络整合基因型与多组学数据。",
       "meta": {
         "repository": "https://github.com/AIBreeding/DNNGP",
-        "dataType": "SNP 变异矩阵 (One-hot / 连续剂量)、表型数据、多组学分子特征 (转录组表达量、甲基化谱等)",
-        "principle": "多层全连接深度神经网络 (MLP)、残差连接 (Residual Block)、多组学特征后期融合与早停正则化",
+        "dataType": "SNP 变异矩阵、表型数据、多组学分子特征 (如转录组表达量)",
+        "principle": "多分支一维卷积神经网络 (3-layer 1D-CNN)、批量归一化 (Batch Normalization)、Dropout 正则化与全连接特征融合",
         "canonicalPaperId": "dnngp-paper"
       }
     },
@@ -1237,7 +1237,7 @@
       "domainIds": [
         "population-genetics"
       ],
-      "summary": "对 246 份非洲栽培稻及其野生祖先进行全基因组重测序，揭示非洲稻驯化起源于尼日尔河内陆三角洲及其受亚洲水稻引入后的衰落历程。",
+      "summary": "对 246 份非洲栽培稻及其野生祖先进行全基因组重测序，结合 PSMC、MSMC 与 SMC++ 等溯祖分析，揭示非洲稻在尼日尔河内陆三角洲的单一起源驯化历程及近期群体规模演变。",
       "meta": {
         "authors": "Cubry P, Tranchant-Dubreuil C, Thuillet AC, et al.",
         "journal": "Current Biology",
@@ -1247,6 +1247,7 @@
           "rice"
         ],
         "methodIds": [
+          "psmc",
           "msmc",
           "smcpp"
         ]
@@ -1893,7 +1894,7 @@
       "domainIds": [
         "gwas-breeding"
       ],
-      "summary": "提出基于多分支深度神经网络（DNN）融合植物基因型与多组学非线性特征的高精度基因组预测方法 DNNGP。",
+      "summary": "提出基于多分支深度神经网络（DNNGP）整合基因型与转录组等多组学数据的植物基因组预测方法，构建三层卷积神经网络（1D-CNN）、批量归一化与 Dropout 特征提取分支，在多种植物复杂农艺性状中验证了多组学融合预测能力。",
       "meta": {
         "authors": "Wang K, Abid MA, Rasheed A, Crossa J, Hearne S, Li H",
         "journal": "Molecular Plant",
@@ -2166,7 +2167,7 @@
       "domainIds": [
         "genome-assembly"
       ],
-      "summary": "提出相位感知组装图 (Phased Assembly Graph) 算法架构，直接利用高准确度 PacBio HiFi 长读段的高保真度与连续性，在不压制等位杂合多样性的前提下原生输出两套完全分相的单倍型基因组。",
+      "summary": "提出相位感知组装图（Phased Assembly Graph）算法架构，直接利用 PacBio HiFi 高准确度长读段进行分相组装，支持 HiFi-only 模式输出 Primary/Alternate 组装，以及基于亲本标记的 Trio-binning 模式输出完全分相的双单倍型基因组。",
       "meta": {
         "authors": "Cheng H, Concepcion GT, Feng X, Zhang H, Li H",
         "journal": "Nature Methods",
@@ -6874,7 +6875,22 @@
           "sourceType": "paper",
           "sourceId": "african-rice-246-genomes",
           "doi": "10.1016/j.cub.2018.05.066",
-          "note": "Cubry 等 (Current Biology 2018) 在 STAR Methods 明确记录运行 MSMC (v1.1.0) 对水稻单倍型组合进行多序列顺序马尔可夫共祖分析，并执行 6 次 bootstrap 评估波动。 [联合分析自交纯合背景下构建的 4 条单倍型（2 个材料组合），估计非洲栽培稻与野生祖先群体分离与规模变迁。；版本: v1.1.0；出处: STAR Methods - Method Details: MSMC and PSMC]",
+          "note": "Cubry 等 (Current Biology 2018) 在 STAR Methods 明确记录运行 MSMC 对水稻单倍型组合进行多序列顺序马尔可夫共祖分析，并执行 6 次 bootstrap 评估波动。 [联合分析自交纯合背景下构建的 4 条单倍型（2 个材料组合），估计非洲栽培稻与野生祖先群体分离与规模变迁。；版本: v1.1.0；出处: STAR Methods - Method Details: MSMC and PSMC]",
+          "verificationStatus": "source_checked"
+        }
+      ]
+    },
+    {
+      "id": "paper:african-rice-246-genomes|uses_method|method:psmc",
+      "source": "paper:african-rice-246-genomes",
+      "target": "method:psmc",
+      "relation": "uses_method",
+      "evidence": [
+        {
+          "sourceType": "paper",
+          "sourceId": "african-rice-246-genomes",
+          "doi": "10.1016/j.cub.2018.05.066",
+          "note": "Cubry 等 (Current Biology 2018) 在 STAR Methods 明确记录运行 PSMC 分析单基因组杂合度，重构野生与栽培水稻的深层历史种群规模演化。 [基于单个二倍体个体的杂合位点密度分布，反演中更新世以来野生短药野生稻与非洲栽培稻群体的深层有效群体规模历史动态。；版本: original；出处: STAR Methods - Method Details: MSMC and PSMC]",
           "verificationStatus": "source_checked"
         }
       ]

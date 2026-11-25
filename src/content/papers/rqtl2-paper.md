@@ -55,65 +55,12 @@ $$\text{LOD} = \log_{10} \left( \frac{\mathcal{L}_{\text{full}}}{\mathcal{L}_{\t
 
 ---
 
-## 3. 算法复杂度与计算性能
-
-1. **核心计算完全 C++ 化**：底层矩阵运算由高效的 Eigen C++ 线性代数库提供支持，多亲本 HMM 状态转移与矩阵投影速度比初代 R/qtl 提速 20 至 50 倍。
-2. **高维表型批量流水线（High-dimensional Scan）**：针对全转录组 eQTL 或蛋白质组 pQTL，能够将数万个表型向量组成矩阵一次性与基因型概率张量相乘，在数分钟内完成数十万个分子性状的全局扫描。
-3. **内存解耦优化**：单倍型概率数据支持内存映射与稀疏压缩存储，有效解决了多亲本群体高密度标记的内存膨胀瓶颈。
-
----
-
 ## 4. 植物基因组学应用场景与科研价值
 
 植物多亲本杂交群体（如 MAGIC 与 NAM）在克服双亲群体等位基因多样性狭窄、自然关联群体假阳性高方面具有独一无二的科研优势：
 - **水稻/拟南芥/玉米 MAGIC 群体精细作图**：例如水稻 8 亲本或 16 亲本 MAGIC 群体中，R/qtl2 能够精确解析控制株高、抗倒伏性、耐热性的关键 QTL，并直接绘制各个奠基亲本在因果位点处的等位基因正负效应对比图（Founder Allele Effects）；
 - **全基因组表达性状（eQTL）顺式/反式（cis/trans）调控热点挖掘**：批量扫描全基因组数万个转录本，区分直接位于基因局部的顺式 eQTL 与调控数百个远端基因的超级反式调控热点（trans-eQTL Hotspots）；
 - **复杂双亲重组自交系（RIL）高密度单倍型重构**：即使在超高密度测序标记下，也能够平滑测序填补缺失并高精度定位重组断裂点。
-
----
-
-## 5. 输入输出规范与关键参数指南
-
-### 5.1 核心分析流程与执行代码 (R / qtl2)
-```R
-library(qtl2)
-
-# 1. 读取包含基因型、表型与物理图谱的控制 YAML 文件
-plant_cross <- read_cross2("plant_magic_cross.yaml")
-
-# 2. 插入假想标记网格并计算奠基亲本单倍型后验概率 (HMM)
-map <- insert_pseudomarkers(plant_cross$gmap, step = 1)
-pr <- calc_genoprob(plant_cross, map, error_prob = 0.002, cores = 8)
-
-# 3. 计算基于 LOCO 策略的亲缘关系矩阵
-kinship_loco <- calc_kinship(pr, type = "loco", cores = 8)
-
-# 4. 执行基于线性混合模型的全基因组 QTL 扫描
-out_lmm <- scan1(
-  genoprobs = pr,
-  pheno = plant_cross$pheno[, "GrainYield", drop = FALSE],
-  kinship = kinship_loco,
-  cores = 8
-)
-
-# 5. 排列置换检验推导全基因组 LOD 显著性阈值
-operm <- scan1perm(
-  genoprobs = pr,
-  pheno = plant_cross$pheno[, "GrainYield", drop = FALSE],
-  kinship = kinship_loco,
-  n_perm = 1000,
-  cores = 8
-)
-threshold_lod <- summary(operm, alpha = 0.05)
-
-# 6. 提取显著 QTL 峰值与可信区间
-peaks <- find_peaks(out_lmm, map, threshold = threshold_lod, drop = 1.5)
-```
-
-### 5.2 关键参数说明
-- `type = "loco"`：开启排除当前染色体模式计算亲缘关系，防止近侧抑制导致真实信号被过度抹平。
-- `error_prob = 0.002`：HMM 假定基因型测序读取错误率，在真实植物测序数据中设置 0.1%–0.5% 能极大提高对个别异常标记的容错平滑能力。
-- `drop = 1.5`：以 1.5-LOD 支撑区间（1.5-LOD Support Interval）作为 QTL 定位的 95% 物理置信区间。
 
 ---
 

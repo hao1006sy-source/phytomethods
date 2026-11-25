@@ -70,17 +70,6 @@ tRNAscan-SE 2.0 采用启发式多阶段串联工作流，兼顾搜索通量与�
 
 ---
 
-## 算法复杂度与计算性能
-
-| 维度 | 指标与性能数据 | 算法设计与工程机制 |
-| :--- | :--- | :--- |
-| **计算速度** | 典型植物全基因组（1 Gb）约 15~30 分钟（16 线程） | 相比 1.0 版本提速数十倍，支持多核并行加速 |
-| **假基因过滤率** | 假阳性报告率比传统工具降低 **95% 以上** | 基于严格的二级结构异常统计与基序检验 |
-| **内存峰值占用** | 单线程仅需数百 MB，多线程推荐 8~16 GB RAM | 内存极度轻量，对硬件要求极低 |
-| **特殊类型检出** | 100% 覆盖硒半胱氨酸（tRNA-Sec）与不规则内含子 | 内置专用扩展协方差模型库 |
-
----
-
 ## 植物基因组学应用场景与科研价值
 
 1. **植物全基因组 tRNA 库权威发布与三叶草结构可视化**：
@@ -89,49 +78,6 @@ tRNAscan-SE 2.0 采用启发式多阶段串联工作流，兼顾搜索通量与�
    植物拥有三套独立的基因组系统。利用 tRNAscan-SE 2.0 的特异模型（`-E` 真核模式、`-M chloroplast` 叶绿体模式、`-M vertmito` 线粒体模式），能够清晰解析细胞器基因组向细胞核转移的 tRNA 演化事件；
 3. **tRNA 来源非编码小 RNA（tsRNAs / tRFs）源头比对基准**：
    近年来植物抗逆调控研究发现，tRNA 在特定酶切下会产生大量功能性的小 RNA 片段（tRFs）。高质量的 tRNAscan-SE 前体基因图谱是进行此类新型表观遗传学分析的绝对前提。
-
----
-
-## 输入输出规范与关键参数指南
-
-### 关键运行步骤
-
-```bash
-# 1. 真核生物植物核基因组标准注释 (推荐模式)
-tRNAscan-SE \
-  -E \
-  -o plant_tRNA.out \
-  -f plant_tRNA_structures.txt \
-  -m plant_tRNA_summary.stats \
-  -b plant_tRNA.bed \
-  --thread 16 \
-  plant_assembly.fasta
-
-# 2. 植物叶绿体质体基因组特异模式
-tRNAscan-SE \
-  -M chloroplast \
-  -o chloroplast_tRNA.out \
-  chloroplast_genome.fasta
-
-# 3. 产生标准 GFF3 注释文件
-tRNAscan-SE \
-  -E \
-  --gff plant_tRNA.gff3 \
-  --thread 16 \
-  plant_assembly.fasta
-```
-
-- `-E`：指定真核生物专用搜索模型（Eukaryotic model）；
-- `-o <file>`：主结果输出表；
-- `-f <file>`：输出包含 ASCII 文本绘制的 tRNA 三叶草二级结构折叠对齐图；
-- `-m <file>`：输出全基因组各类同功受体与反密码子数量总结统计表；
-- `--gff <file>`：输出与 JBrowse 兼容的标准 GFF3 注释文件。
-
-### 核心产物文件解读
-
-- `*.out`：主表，包含染色体编号、tRNA 编号、起止坐标、tRNA 氨基酸类型、反密码子、内含子起止坐标、CM 评分及假基因标注（`Pseudo`）；
-- `*.structures.txt`：清晰绘制每条 tRNA 的受体臂、D 臂、反密码子臂与 T 臂的三叶草碱基配对结构；
-- `*.summary.stats`：按 20 种氨基酸分类的基因拷贝数与密码子使用率总结。
 
 ---
 

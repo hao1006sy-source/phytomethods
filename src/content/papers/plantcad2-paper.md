@@ -56,57 +56,12 @@ PlantCAD2 摒弃了基于 $k$-mer 的粗粒度分词器：
 
 ---
 
-## 3. 算法复杂度与计算性能
-
-1. **参数规模与显存优化**：模型拥有约 6.76 亿（676M）参数。相较于参数量相近的 Transformer 架构，Mamba2 在处理 8 kb 序列时的显存消耗降低 75%，推理吞吐量提升 3 至 4 倍。
-2. **长上下文消融优势**：论文实验表明，在玉米开放染色质（ATAC-seq 可及性）预测任务中，随着有效上下文窗口从 1 kb 扩展至 8 kb，受试者精度-召回率曲线下面积（AUPRC）从 0.587 显著跃升至 **0.711**，充分证明植物基因调控极其依赖长距离远端增强子信息的支撑。
-3. **零样本保守性基准领先**：在跨被子植物物种的 12 项进化保守性零样本测试中，PlantCAD2 有 10 项显著超越了参数量高达 70 亿（7B）的通用大模型 Evo2。
-
----
-
 ## 4. 植物基因组学应用场景与科研价值
 
 玉米等大基因组作物具有巨大的基因间非编码区，驯化与改良过程中的关键数量性状位点（QTL）多位于远端调控元件中：
 - **玉米全组织开放染色质与顺式调控元件图谱解析**：利用 8 kb 单碱基长上下文，精准预测植物在根、茎、叶各组织中潜在开放的染色质峰值；
 - **农艺关键基因长程增强子与启动子互作挖掘**：例如在水稻 *IPA1* 或玉米 *tb1* 等经典驯化基因周围，定位位于转录起始位点数千碱基以外的调控元件；
 - **全基因组功能性非编码自然变异优先排序**：在全基因组重测序数据中，对数百万个天然 SNPs 进行高通量单碱基突变效应打分，助力分子标记辅助选择与全基因组选择（GS）育种。
-
----
-
-## 5. 输入输出规范与关键参数指南
-
-### 5.1 核心调用规范与模型执行代码示例 (Python / PyTorch)
-```python
-import torch
-from plantcad.models import PlantCAD2Model
-from plantcad.tokenizers import SingleNucleotideTokenizer
-
-# 1. 初始化单碱基分词器并加载 PlantCAD2-676M 预训练模型
-tokenizer = SingleNucleotideTokenizer()
-model = PlantCAD2Model.from_pretrained("plantcad/plantcad2-676m")
-model.eval()
-
-# 2. 准备植物 8192 bp 单碱基基因组序列 (支持标准 A, C, G, T)
-dna_seq_8k = "ATGCGATCGATC..." * 682  # 长度扩展至 8192 bp
-tokens = tokenizer(dna_seq_8k, return_tensors="pt")
-
-# 3. 前向推理提取具有反向互补等变性的序列嵌入
-with torch.no_grad():
-    embeddings = model(tokens.input_ids)
-    # 输出形状: (Batch_size, 8192, Hidden_dim)
-
-# 4. 执行单碱基变异效应预测 (Variant Effect Prediction, VEP)
-# 针对位于第 4096 位的中心测试点突变计算 Reference 与 Alternate 的对数优势比
-ref_score = model.predict_accessibility(tokens.input_ids)
-tokens_alt = tokens.input_ids.clone()
-tokens_alt[0, 4096] = tokenizer.convert_token_to_id("G")
-alt_score = model.predict_accessibility(tokens_alt)
-delta_vep = alt_score - ref_score
-```
-
-### 5.2 关键参数说明
-- `context_length = 8192`：推荐设定的单碱基窗口跨度，能够最大化利用模型在长程调控关联上的归纳偏置。
-- `SingleNucleotideTokenizer`：输入为严格的单核苷酸字符流，无需拼接重叠 $k$-mer，对点突变物理坐标定位具备原生单碱基对齐优势。
 
 ---
 
