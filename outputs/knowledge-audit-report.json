@@ -1,11 +1,11 @@
 {
   "version": "2.1.0",
-  "generatedAt": "2026-11-25T02:59:03.479Z",
+  "generatedAt": "2026-11-25T11:52:24.402Z",
   "integrityPassed": true,
   "stats": {
     "nodesCount": 305,
-    "edgesCount": 743,
-    "evidenceEntriesCount": 801,
+    "edgesCount": 742,
+    "evidenceEntriesCount": 800,
     "nodesByType": {
       "domain": 9,
       "method": 59,
@@ -21,7 +21,7 @@
       "extends_method": 3,
       "introduces_method": 59,
       "studies_species": 64,
-      "uses_method": 67,
+      "uses_method": 66,
       "references_method": 1,
       "evaluates_method": 6,
       "features_method": 112,
@@ -29,7 +29,7 @@
       "guides_method": 10
     },
     "evidenceByStatus": {
-      "source_checked": 600,
+      "source_checked": 599,
       "structurally_valid": 201,
       "needs_review": 0
     },
@@ -60,7 +60,7 @@
         "needs_review": 0
       },
       "uses_method": {
-        "source_checked": 67,
+        "source_checked": 66,
         "structurally_valid": 0,
         "needs_review": 0
       },
@@ -145,7 +145,6 @@
         "rice"
       ],
       "methodIds": [
-        "psmc",
         "msmc",
         "smcpp"
       ],
@@ -1624,8 +1623,8 @@
       "year": 2018,
       "journal": "Nature",
       "domainIds": [
-        "pangenomics-structural-variation",
-        "population-genetics"
+        "population-genetics",
+        "pangenomics-structural-variation"
       ],
       "speciesIds": [
         "rice"
@@ -3537,15 +3536,8 @@
       "topicIds": [
         "m05-topic-06"
       ],
-      "applicationPapersCount": 3,
+      "applicationPapersCount": 2,
       "applicationPapers": [
-        {
-          "id": "african-rice-246-genomes",
-          "title": "The Rise and Fall of African Rice Cultivation Revealed by Analysis of 246 New Genomes",
-          "species": [
-            "rice"
-          ]
-        },
         {
           "id": "populus-euphratica-demography",
           "title": "Genome resequencing reveals demographic history and genetic architecture of seed salinity tolerance in Populus euphratica",

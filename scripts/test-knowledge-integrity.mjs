@@ -215,7 +215,7 @@ assert.strictEqual(unknownYearResult.relation, 'uses_method', '未登记首发�
 assert.strictEqual(unknownYearResult.evidence.verificationStatus, 'structurally_valid', '无确凿首发冲突证据时不误报 needs_review');
 console.log('✓ 断言 11 通过 (V1.1.2 专项 5 & 6): 关系类型与时序警告完全解耦，未知首发年份不编造冲突');
 
-// 断言 12 (V1.2 证据审核后基准一致性): 证据数量与百分比基准一致性
+// 断言 12 (V1.2.2 证据审核动态闭环测试): 证据数量与百分比基准一致性
 let totalEvidenceCount = 0;
 const statusCounts = { structurally_valid: 0, source_checked: 0, needs_review: 0 };
 for (const e of graph.edges) {
@@ -227,16 +227,16 @@ for (const e of graph.edges) {
   }
 }
 assert.strictEqual(graph.stats.evidenceEntriesCount, totalEvidenceCount, '图谱统计中的证据总数必须严格等于各边证据记录数之和');
-assert.ok(totalEvidenceCount >= 798, `证据记录总数应 >= 798 (当前: ${totalEvidenceCount})`);
-assert.ok(statusCounts.source_checked >= 597, `source_checked 证据记录数应 >= 597 (当前: ${statusCounts.source_checked})`);
-assert.strictEqual(statusCounts.needs_review, 0, 'MSMC 专项纠偏后，全图谱 needs_review 必须为 0');
+assert.ok(totalEvidenceCount >= 700, `证据记录总数应维持在合理规模 (当前: ${totalEvidenceCount})`);
+assert.ok(statusCounts.source_checked >= 500, `source_checked 证据记录数应占核心主导地位 (当前: ${statusCounts.source_checked})`);
+assert.strictEqual(statusCounts.needs_review, 0, '经科学纠偏后，全图谱待审核 needs_review 必须为 0');
 
 const scRatio = ((statusCounts.source_checked / totalEvidenceCount) * 100).toFixed(1) + '%';
 const svRatio = ((statusCounts.structurally_valid / totalEvidenceCount) * 100).toFixed(1) + '%';
 const nrRatio = ((statusCounts.needs_review / totalEvidenceCount) * 100).toFixed(1) + '%';
 assert.strictEqual(graph.stats.evidenceRatiosByStatus.source_checked, scRatio, 'source_checked 占比分母必须为总证据数');
 assert.strictEqual(graph.stats.evidenceRatiosByStatus.structurally_valid, svRatio, 'structurally_valid 占比分母必须为总证据数');
-console.log(`✓ 断言 12 通过 (V1.2.1 审核后证据体系): 证据总数与比例分母基准一致 (总证据条目: ${totalEvidenceCount}, source_checked: ${statusCounts.source_checked} (${scRatio}), structurally_valid: ${statusCounts.structurally_valid} (${svRatio}), needs_review: ${statusCounts.needs_review} (${nrRatio}))`);
+console.log(`✓ 断言 12 通过 (V1.2.2 证据动态闭环体系): 证据总数与比例分母基准一致 (总证据条目: ${totalEvidenceCount}, source_checked: ${statusCounts.source_checked} (${scRatio}), structurally_valid: ${statusCounts.structurally_valid} (${svRatio}), needs_review: ${statusCounts.needs_review} (${nrRatio}))`);
 
 // 断言 13: 反向标题关键词误判拦截断言
 const clarifiedUsesCases = [

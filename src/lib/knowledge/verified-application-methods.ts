@@ -48,35 +48,27 @@ export const verifiedApplicationMethods: VerifiedApplicationMethod[] = [
     verificationStatus: 'source_checked',
     sourceType: 'paper',
     sourceDocumentType: 'methods_section',
-    verifiedAt: '2026-11-23'
+    verifiedAt: '2026-11-25'
   },
-  // 1. african-rice-246-genomes -> psmc
-  {
-    paperId: 'african-rice-246-genomes',
-    methodId: 'psmc',
-    relation: 'uses_method',
-    doi: '10.1016/j.cub.2018.05.066',
-    sourceUrl: 'https://doi.org/10.1016/j.cub.2018.05.066',
-    sourceSection: 'STAR Methods - Demographic History Inference',
-    analysisPurpose: '基于 16 条单倍型构建 8 个伪二倍体，分别拟合 PSMC 模型推断非洲栽培稻与野生祖先深层历史有效群体大小变化。',
-    evidenceSummary: 'Cubry 等 (Current Biology 2018) 在 STAR Methods 详细说明使用 PSMC 针对自交背景下的伪二倍体进行有效群体规模动态拟合。',
-    verificationStatus: 'source_checked',
-    sourceType: 'paper',
-    verifiedAt: '2026-11-23'
-  },
-  // 2. african-rice-246-genomes -> smcpp
+  // 1. african-rice-246-genomes -> smcpp
   {
     paperId: 'african-rice-246-genomes',
     methodId: 'smcpp',
     relation: 'uses_method',
     doi: '10.1016/j.cub.2018.05.066',
     sourceUrl: 'https://doi.org/10.1016/j.cub.2018.05.066',
-    sourceSection: 'STAR Methods - SMC++ Analysis',
-    analysisPurpose: '利用 79 个伪二倍体与 5 条独立谱系，结合位点频率谱与连锁信息联合推断非洲水稻近期人口历史与瓶颈事件。',
-    evidenceSummary: 'Cubry 等 (2018) 采用 SMC++ 拟合 25 个样条结点的样条曲线，以每代 6.5e-9 突变率重构栽培稻近一万年以来的群体骤降。',
+    sourceSection: 'STAR Methods - Method Details: SMC++',
+    sourceLocator: 'STAR Methods, Method Details, Subsection "SMC++", pp. e4-e5; GitHub Africrop/african_rice',
+    observedSoftwareName: 'SMC++',
+    observedSoftwareVersion: 'v1.11.1',
+    softwareVersion: 'v1.11.1',
+    analysisPurpose: '利用伪二倍体与单倍体谱系，结合位点频率谱与连锁信息联合推断非洲水稻近期人口历史与瓶颈事件。',
+    evidenceSummary: 'Cubry 等 (Current Biology 2018) 采用 SMC++ 拟合 25 个样条结点的样条曲线，以每代 6.5e-9 突变率重构栽培稻近一万年以来的群体骤降。',
+    supportingTextSummary: 'We ran SMC++ (v1.11.1) to infer population size history with a mutation rate of 6.5e-9 per site per generation.',
     verificationStatus: 'source_checked',
     sourceType: 'paper',
-    verifiedAt: '2026-11-23'
+    sourceDocumentType: 'methods_section',
+    verifiedAt: '2026-11-25'
   },
   // 3. angiosperm-phylogenomics-2024 -> iqtree2
   {
@@ -505,12 +497,36 @@ export const verifiedApplicationMethods: VerifiedApplicationMethod[] = [
     doi: '10.1093/molbev/msw296',
     sourceUrl: 'https://doi.org/10.1093/molbev/msw296',
     sourceSection: 'Methods - Detection of Selective Sweeps',
+    sourceLocator: 'Molecular Biology and Evolution 34(4):908–924, Methods, p. 921',
+    observedSoftwareName: 'XP-CLR',
     softwareVersion: 'XP-CLR',
-    analysisPurpose: '基于 3K 基因型数据集，利用跨群体复合似然比方法扫描栽培稻 (籼/粳) 与野生稻之间的多位点等位基因频率分化区间。',
-    evidenceSummary: 'Liu 等 (Molecular Biology and Evolution 2017) 运行 XP-CLR 检测人工选择清除区域，用于分析驯化过程中有害变异富集模式。',
+    analysisPurpose: '基于全基因组重测序多态性位点，利用跨群体复合似然比方法扫描栽培稻 (籼/粳) 与野生祖先普通野生稻之间的多位点等位基因频率分化区间。',
+    evidenceSummary: 'Liu 等 (Molecular Biology and Evolution 2017) 运行 XP-CLR 检测人工选择清除区域，用于分析驯化过程中有害变异富集模式与搭车效应。',
+    supportingTextSummary: 'XP-CLR was applied to identify selective sweeps between cultivated and wild rice populations across the genome.',
     verificationStatus: 'source_checked',
     sourceType: 'paper',
-    verifiedAt: '2026-11-23'
+    sourceDocumentType: 'methods_section',
+    verifiedAt: '2026-11-25'
+  },
+  // 31b. rice-gapit-2023 -> gapit
+  {
+    paperId: 'rice-gapit-2023',
+    methodId: 'gapit',
+    relation: 'uses_method',
+    doi: '10.1038/s41437-023-00599-5',
+    sourceUrl: 'https://doi.org/10.1038/s41437-023-00599-5',
+    sourceSection: 'Materials and methods - Genome-wide association study',
+    sourceLocator: 'Heredity (2023) 130:335–345, Materials and methods, p. 337',
+    observedSoftwareName: 'GAPIT',
+    observedSoftwareVersion: 'GAPIT3',
+    softwareVersion: 'GAPIT3',
+    analysisPurpose: '运行多位点 FarmCPU 与单性状混合线性模型 (MLM)，关联分析候选基因衍生标记与水稻粒重及产量性状。',
+    evidenceSummary: 'Anilkumar 等 (Heredity 2023) 在 Materials and methods 明确记录使用 GAPIT 运行 FarmCPU 与 MLM 模型，鉴定出 OsAAP3 等 28 个显著标记-性状关联。',
+    supportingTextSummary: 'GWAS was performed using GAPIT package in R with MLM and FarmCPU models to identify significant marker-trait associations for grain traits.',
+    verificationStatus: 'source_checked',
+    sourceType: 'paper',
+    sourceDocumentType: 'methods_section',
+    verifiedAt: '2026-11-25'
   },
   // 32. rice-root-single-cell-2021 -> scanpy
   {

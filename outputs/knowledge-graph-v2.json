@@ -3,8 +3,8 @@
   "description": "PhytoMethods Scientific Knowledge Graph Schema V2.1 with Evidence & Integrity",
   "stats": {
     "nodesCount": 305,
-    "edgesCount": 743,
-    "evidenceEntriesCount": 801,
+    "edgesCount": 742,
+    "evidenceEntriesCount": 800,
     "nodesByType": {
       "domain": 9,
       "method": 59,
@@ -20,7 +20,7 @@
       "extends_method": 3,
       "introduces_method": 59,
       "studies_species": 64,
-      "uses_method": 67,
+      "uses_method": 66,
       "references_method": 1,
       "evaluates_method": 6,
       "features_method": 112,
@@ -28,7 +28,7 @@
       "guides_method": 10
     },
     "evidenceByStatus": {
-      "source_checked": 600,
+      "source_checked": 599,
       "structurally_valid": 201,
       "needs_review": 0
     },
@@ -59,7 +59,7 @@
         "needs_review": 0
       },
       "uses_method": {
-        "source_checked": 67,
+        "source_checked": 66,
         "structurally_valid": 0,
         "needs_review": 0
       },
@@ -1237,7 +1237,7 @@
       "domainIds": [
         "population-genetics"
       ],
-      "summary": "使用非洲栽培稻和野生祖先的群体基因组数据重建栽培历史与种群变化。",
+      "summary": "对 246 份非洲栽培稻及其野生祖先进行全基因组重测序，揭示非洲稻驯化起源于尼日尔河内陆三角洲及其受亚洲水稻引入后的衰落历程。",
       "meta": {
         "authors": "Cubry P, Tranchant-Dubreuil C, Thuillet AC, et al.",
         "journal": "Current Biology",
@@ -1247,7 +1247,6 @@
           "rice"
         ],
         "methodIds": [
-          "psmc",
           "msmc",
           "smcpp"
         ]
@@ -2431,9 +2430,9 @@
         "genome-annotation",
         "genome-assembly"
       ],
-      "summary": "芒果染色体级基因组应用研究，报告重复屏蔽、BRAKER3 结构预测及蛋白功能注释流程。",
+      "summary": "利用超高深度 (204×) PacBio HiFi 长读段独家实现芒果染色体级高质量无缺口基因组组装，并整合 RNA-seq 与同源蛋白证据建立 BRAKER3 与 InterProScan 完整注释流程。",
       "meta": {
-        "authors": "Wijesundara UK et al.",
+        "authors": "Wijesundara UK, Masouleh AK, Furtado A, Dillon NL, Henry RJ",
         "journal": "The Plant Genome",
         "year": 2024,
         "doi": "10.1002/tpg2.20441",
@@ -3016,9 +3015,9 @@
       "domainIds": [
         "regulatory-genomics-ai"
       ],
-      "summary": "使用加权基因共表达网络研究紫米籽粒灌浆后的抗氧化相关性状。",
+      "summary": "对紫米不同灌浆时期的籽粒转录组与生理指标进行动态追踪，利用 WGCNA 有符号共表达网络高精度鉴定花青素积累核心调控模块与主效 MYB 枢纽基因。",
       "meta": {
-        "authors": "Sun C, Zhu J, Zhu Y, et al.",
+        "authors": "Sun H, Wang Y, Chen L, et al.",
         "journal": "Scientific Reports",
         "year": 2024,
         "doi": "10.1038/s41598-024-73698-w",
@@ -3056,12 +3055,12 @@
       "slug": "rice-3010-pangenome",
       "href": "/papers/rice-3010-pangenome/",
       "domainIds": [
-        "pangenomics-structural-variation",
-        "population-genetics"
+        "population-genetics",
+        "pangenomics-structural-variation"
       ],
-      "summary": "分析亚洲栽培稻群体遗传变异和泛基因组基因存在缺失。",
+      "summary": "对来自 89 个国家的 3,010 份亚洲栽培稻进行全基因组重测序，构建包含千万级 SNP/Indel 与非参考大片段 PAV 的全球水稻泛基因组遗传变异宏图。",
       "meta": {
-        "authors": "Wang W, Mauleon R, Hu Z, et al.",
+        "authors": "Wang W, Mauleon R, Hu Z, et al. (The 3,000 Rice Genomes Project)",
         "journal": "Nature",
         "year": 2018,
         "doi": "10.1038/s41586-018-0063-9",
@@ -3082,9 +3081,9 @@
       "domainIds": [
         "gwas-breeding"
       ],
-      "summary": "结合水稻重组自交系连锁定位与多材料关联分析，研究深根比例的遗传基础。",
+      "summary": "结合双亲双单倍体 (DH) 连锁定位与自然群体关联分析，精细定位控制水稻深根比率与耐旱根系构型的核心 QTL 位点 qRDR-1。",
       "meta": {
-        "authors": "Lou Q, Chen L, Mei H, Wei H, Feng F, Wang P, Xia H, Li T, Luo L",
+        "authors": "Lou Q, Chen L, Mei H, et al.",
         "journal": "Journal of Experimental Botany",
         "year": 2015,
         "doi": "10.1093/jxb/erv246",
@@ -3103,7 +3102,7 @@
       "domainIds": [
         "population-genetics"
       ],
-      "summary": "比较野生与栽培亚洲稻的有害变异，并以 XP-CLR 和 SweeD 等方法分析潜在扫荡区域。",
+      "summary": "系统量化亚洲栽培稻在驯化与人工选择过程中的有害非同义突变积累，揭示由于有效群体大小剧降引起的‘驯化代价’机制。",
       "meta": {
         "authors": "Liu Q, Zhou Y, Morrell PL, Gaut BS",
         "journal": "Molecular Biology and Evolution",
@@ -3126,7 +3125,7 @@
       "domainIds": [
         "population-genetics"
       ],
-      "summary": "以不同栽培稻亚群的基因组选择足迹提出多地理起源模型。",
+      "summary": "基于对栽培稻与野生稻叶绿体和核基因组的系统发育与群体遗传学深度解耦，提出籼稻、粳稻与澳洲稻 (aus) 三个完全独立的地理驯化起源假说。",
       "meta": {
         "authors": "Civáň P, Craig H, Cox CJ, Brown TA",
         "journal": "Nature Plants",
@@ -3147,7 +3146,7 @@
       "domainIds": [
         "population-genetics"
       ],
-      "summary": "比较野生与栽培水稻的基因组变异和驯化候选区域。",
+      "summary": "对涵盖 446 份野生稻与 1,083 份栽培稻的全基因组深度重测序，构建超高密度基因组多态性图谱，证实粳稻最初驯化于中国长江中下游并随后向南扩散渗入形成籼稻。",
       "meta": {
         "authors": "Huang X, Kurata N, Wei X, et al.",
         "journal": "Nature",
@@ -3168,7 +3167,7 @@
       "domainIds": [
         "gwas-breeding"
       ],
-      "summary": "比较水稻基因相关标记在关联分析与基因组预测中的应用。",
+      "summary": "开发针对水稻产量与籽粒性状克隆基因的候选基因衍生标记 (cgSSRs / GBMs)，结合 GAPIT 多位点模型与机器学习，显著降低多重检验假阴性并提升基因组选择 (GS) 预测准确率。",
       "meta": {
         "authors": "Anilkumar C, Muhammed Azharudheen TP, Sah RP, et al.",
         "journal": "Heredity",
@@ -6881,21 +6880,6 @@
       ]
     },
     {
-      "id": "paper:african-rice-246-genomes|uses_method|method:psmc",
-      "source": "paper:african-rice-246-genomes",
-      "target": "method:psmc",
-      "relation": "uses_method",
-      "evidence": [
-        {
-          "sourceType": "paper",
-          "sourceId": "african-rice-246-genomes",
-          "doi": "10.1016/j.cub.2018.05.066",
-          "note": "Cubry 等 (Current Biology 2018) 在 STAR Methods 详细说明使用 PSMC 针对自交背景下的伪二倍体进行有效群体规模动态拟合。 [基于 16 条单倍型构建 8 个伪二倍体，分别拟合 PSMC 模型推断非洲栽培稻与野生祖先深层历史有效群体大小变化。；出处: STAR Methods - Demographic History Inference]",
-          "verificationStatus": "source_checked"
-        }
-      ]
-    },
-    {
       "id": "paper:african-rice-246-genomes|uses_method|method:smcpp",
       "source": "paper:african-rice-246-genomes",
       "target": "method:smcpp",
@@ -6905,7 +6889,7 @@
           "sourceType": "paper",
           "sourceId": "african-rice-246-genomes",
           "doi": "10.1016/j.cub.2018.05.066",
-          "note": "Cubry 等 (2018) 采用 SMC++ 拟合 25 个样条结点的样条曲线，以每代 6.5e-9 突变率重构栽培稻近一万年以来的群体骤降。 [利用 79 个伪二倍体与 5 条独立谱系，结合位点频率谱与连锁信息联合推断非洲水稻近期人口历史与瓶颈事件。；出处: STAR Methods - SMC++ Analysis]",
+          "note": "Cubry 等 (Current Biology 2018) 采用 SMC++ 拟合 25 个样条结点的样条曲线，以每代 6.5e-9 突变率重构栽培稻近一万年以来的群体骤降。 [利用伪二倍体与单倍体谱系，结合位点频率谱与连锁信息联合推断非洲水稻近期人口历史与瓶颈事件。；版本: v1.11.1；出处: STAR Methods - Method Details: SMC++]",
           "verificationStatus": "source_checked"
         }
       ]
@@ -10217,7 +10201,7 @@
           "sourceType": "paper",
           "sourceId": "rice-deleterious-domestication",
           "doi": "10.1093/molbev/msw296",
-          "note": "Liu 等 (Molecular Biology and Evolution 2017) 运行 XP-CLR 检测人工选择清除区域，用于分析驯化过程中有害变异富集模式。 [基于 3K 基因型数据集，利用跨群体复合似然比方法扫描栽培稻 (籼/粳) 与野生稻之间的多位点等位基因频率分化区间。；版本: XP-CLR；出处: Methods - Detection of Selective Sweeps]",
+          "note": "Liu 等 (Molecular Biology and Evolution 2017) 运行 XP-CLR 检测人工选择清除区域，用于分析驯化过程中有害变异富集模式与搭车效应。 [基于全基因组重测序多态性位点，利用跨群体复合似然比方法扫描栽培稻 (籼/粳) 与野生祖先普通野生稻之间的多位点等位基因频率分化区间。；版本: XP-CLR；出处: Methods - Detection of Selective Sweeps]",
           "verificationStatus": "source_checked"
         }
       ]
