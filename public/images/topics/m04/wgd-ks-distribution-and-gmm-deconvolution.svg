@@ -88,13 +88,13 @@
       <text x="14" y="75" font-size="10" fill="#134e4a">其中 $r$ 为中性同义替换速率（植物典型取值：$r \approx 6.5 \times 10^{-9}$ 次/位点/年）</text>
     </g>
 
-    <!-- 公式 2：GMM 高斯混合模型分解 -->
+    <!-- 公式 2：GMM / ELMM 混合模型分解 -->
     <g transform="translate(18, 155)">
       <rect x="0" y="0" width="405" height="110" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1" />
-      <text x="14" y="20" font-size="11" font-weight="700" fill="#0f172a">高斯混合解卷积 (GMM Deconvolution):</text>
-      <text x="14" y="45" font-size="12" font-weight="700" fill="#0284c7">P(K_s) = \pi_0 \lambda e^{-\lambda K_s} + \sum_{k=1}^K \pi_k \frac{1}{\sqrt{2\pi}\sigma_k} e^{-\frac{(K_s - \mu_k)^2}{2\sigma_k^2}}</text>
-      <text x="14" y="75" font-size="10" fill="#334155">• <tspan font-weight="700">EM 算法:</tspan> 迭代极大似然估计各峰权重 $\pi_k$、均值 $\mu_k$ 与方差 $\sigma_k^2$</text>
-      <text x="14" y="95" font-size="10" fill="#334155">• <tspan font-weight="700">模型选择:</tspan> 使用 AIC / BIC 惩罚项严格确定加倍事件峰数量 $K$</text>
+      <text x="14" y="20" font-size="11" font-weight="700" fill="#0f172a">混合模型解卷积 (ELMM / log-GMM):</text>
+      <text x="14" y="45" font-size="11" font-weight="700" fill="#0284c7">P(K_s) = \pi_0 \lambda e^{-\lambda K_s} + \sum_{k=1}^K \frac{\pi_k}{K_s \sigma_k \sqrt{2\pi}} e^{-\frac{(\ln K_s - \mu_k)^2}{2\sigma_k^2}}</text>
+      <text x="14" y="75" font-size="10" fill="#334155">• <tspan font-weight="700">EM 算法:</tspan> 迭代极大似然估计对数尺度各峰参数与权重 $\pi_k$</text>
+      <text x="14" y="95" font-size="10" fill="#334155">• <tspan font-weight="700">模型选择:</tspan> 结合 AIC / BIC 惩罚项辅助评估最佳加倍分量数 $K$</text>
     </g>
 
     <!-- 实践注意事项 -->

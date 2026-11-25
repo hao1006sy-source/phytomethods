@@ -56,12 +56,12 @@
     <!-- 软阈值邻接矩阵数学方程 -->
     <g transform="translate(25, 250)">
       <rect width="400" height="170" class="box-blue" />
-      <text x="15" y="24" class="txt" font-weight="600" fill="#1d4ed8">连续软加权取代硬截断 (Soft Power Adjacency)</text>
-      <text x="15" y="48" class="txt-mono">a_{ij} = |s_{ij}|^β = |cor(x_i, x_j)|^β</text>
-      <text x="15" y="74" class="txt-sm">• <tspan font-weight="600">硬截断缺陷</tspan>：若设阈值 0.8，相关度 0.79 变 0、0.81 变 1，造成生物信息剧烈失真</text>
-      <text x="15" y="96" class="txt-sm">• <tspan font-weight="600">软阈值优势</tspan>：连续幂函数强烈抑制弱相关技术噪声，强化强相关枢纽信号</text>
+      <text x="15" y="24" class="txt" font-weight="600" fill="#1d4ed8">加权邻接矩阵方程 (Unsigned vs. Signed Adjacency)</text>
+      <text x="15" y="48" class="txt-mono" font-size="10px">Unsigned: a_{ij}=|s_{ij}|^β  |  Signed: a_{ij}=((1+s_{ij})/2)^β</text>
+      <text x="15" y="74" class="txt-sm">• <tspan font-weight="600">硬截断缺陷</tspan>：若设阈值 0.8，相关度 0.79 变 0、0.81 变 1，造成生物信息人为割裂</text>
+      <text x="15" y="96" class="txt-sm">• <tspan font-weight="600">软阈值优势</tspan>：连续幂函数抑制弱相关噪声，Signed 模式可区分相反调控极性</text>
       <text x="15" y="118" class="txt-sm">• <tspan font-weight="600">无标度特性</tspan>：节点度服从幂律 $P(k) \sim k^{-\gamma}$，确保网络具备容错性与核心调控 Hub</text>
-      <text x="15" y="140" class="txt-sm">• 标度游离拟合度 $R^2 \ge 0.85$ 时锁定的最小 $\beta$ 即为最佳网络构建参数</text>
+      <text x="15" y="140" class="txt-sm">• 标度拟合度 $R^2 \ge 0.80 \sim 0.85$ 配合平均连接度权衡确定最优 $\beta$ 参数</text>
     </g>
   </g>
 

@@ -44,11 +44,11 @@
     <!-- 6-mer 分词 -->
     <g transform="translate(15, 120)">
       <rect width="220" height="110" class="box-blue" />
-      <text x="10" y="22" class="txt" font-weight="600" fill="#1d4ed8">6-mer 重叠滑动分词 (Tokenization)</text>
-      <text x="10" y="44" class="txt-mono">• Token 1: [ATGCGA]</text>
-      <text x="10" y="64" class="txt-mono">• Token 2: [TGCGAT]</text>
-      <text x="10" y="84" class="txt-mono">• Token 3: [GCGATT]</text>
-      <text x="10" y="102" class="txt-sm">词表容量: 4⁶ = 4,096 种核心词元</text>
+      <text x="10" y="22" class="txt" font-weight="600" fill="#1d4ed8">6-mer 非重叠切分 (Stride = 6)</text>
+      <text x="10" y="44" class="txt-mono">• Token 1: [ATGCGA] (1-6 bp)</text>
+      <text x="10" y="64" class="txt-mono">• Token 2: [TTCAGT] (7-12 bp)</text>
+      <text x="10" y="84" class="txt-mono">• Token 3: [AAGTCG] (13-18 bp)</text>
+      <text x="10" y="102" class="txt-sm">词表: 4⁶ + 5 = 4,101 (序列压缩 6 倍)</text>
     </g>
 
     <!-- 掩码处理 (MLM 15% 随机掩码) -->
@@ -103,10 +103,10 @@
     <!-- 预训练数据集与目标说明 -->
     <g transform="translate(20, 295)">
       <rect width="290" height="125" class="box-blue" />
-      <text x="15" y="22" class="txt" font-weight="600" fill="#1d4ed8">48+ 种植物基因组无监督自监督预训练</text>
-      <text x="15" y="44" class="txt-sm">• 涵盖水稻、玉米、小麦、大豆等 48 种被子植物</text>
-      <text x="15" y="64" class="txt-sm">• 学习超过 100 亿个核苷酸的长程跨尺度语法</text>
-      <text x="15" y="84" class="txt-sm">• 彻底捕获启动子-增强子远端长程注意力依赖</text>
+      <text x="15" y="22" class="txt" font-weight="600" fill="#1d4ed8">48 种可食用植物基因组自监督预训练</text>
+      <text x="15" y="44" class="txt-sm">• 涵盖水稻、玉米、小麦、大豆等 48 种植物基因组</text>
+      <text x="15" y="64" class="txt-sm">• 学习超过 100 亿个核苷酸序列上下文特征</text>
+      <text x="15" y="84" class="txt-sm">• 建模启动子与远端顺式调控序列依赖关系</text>
       <text x="15" y="106" class="txt-mono">预训练损失: Cross-Entropy (恢复 MASK 词元)</text>
     </g>
   </g>

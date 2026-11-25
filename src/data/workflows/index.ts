@@ -9,7 +9,7 @@ export const researchWorkflows: ResearchWorkflow[] = [
     summary: '面向现代植物基因组研究的完整技术路线，覆盖 PacBio HiFi/ONT 超长读长从从头组装、单倍型解析、Hi-C 染色体水平挂载、结构变异检测至图形泛基因组构建。',
     targetScenario: '二倍体/多倍体高杂合植物参考基因组构建、群体多参考基因组组装与图泛基因组学研究。',
     plantCases: ['水稻 (Oryza sativa)', '玉米 (Zea mays)', '拟南芥 (Arabidopsis thaliana)', '小麦 (Triticum aestivum)'],
-    recommendedCompute: '计算节点建议：64+ CPU 线程，256 GB~1 TB RAM，NVMe SSD 高速存储（大型复杂植物基因组需 TB 级内存）。',
+    recommendedCompute: '计算配置建议：视物种基因组规模弹性配置。拟南芥等小型基因组通常 16~32 线程、32~64 GB 内存；玉米等高重复基因组建议 32~64 线程、128~256 GB 内存；小麦等超大复杂多倍体需更高内存支持。',
     mermaidDiagram: `graph TD
   A[PacBio HiFi / ONT 超长测序数据] --> B[第一阶段: 高保真 Contig 组装]
   B --> C[第二阶段: 序列完整度与 QV 质量评估]
@@ -50,7 +50,7 @@ export const researchWorkflows: ResearchWorkflow[] = [
           'Primary 组装总长度是否接近 flow cytometry 估计的单倍体 C-value'
         ],
         tutorialId: 'hifiasm-intro',
-        estimatedDuration: '小型植物数小时；玉米等复杂植物 1~2 天'
+        estimatedDuration: '取决于基因组大小、杂合度与测序深度（参见 Hifiasm 官方实测基准）'
       },
       {
         id: 'assembly-qc',
@@ -73,7 +73,7 @@ export const researchWorkflows: ResearchWorkflow[] = [
           '单倍型分离度：k-mer 拷贝数谱 (Spectra-cn) 需明确展现单倍型纯合与杂合双峰，无未分相塌陷或嵌合',
           '基因空间完整性：经验性评估中 BUSCO (选取 Embryophyta 等对应谱系) 完整度通常应 > 95%~97%，多倍体需结合亚基因组拷贝数解释重复率'
         ],
-        estimatedDuration: '约 1~4 小时'
+        estimatedDuration: '取决于 k-mer 频数统计与基因组大小（通常随测序数据量线性扩展）'
       },
       {
         id: 'chromosome-scaffolding',
@@ -95,7 +95,7 @@ export const researchWorkflows: ResearchWorkflow[] = [
           '染色体连续性：全基因组 Hi-C 热图沿对角线呈清晰强连续带，无跨染色体异常大范围异位互作',
           '染色体挂载率：EBP 建议挂载至拟染色体序列占比通常应达到 90%~95% 以上，端粒/着丝粒超长重复缺失需视数据支撑度评估'
         ],
-        estimatedDuration: '约 2~8 小时'
+        estimatedDuration: '取决于 Hi-C 比对有效读段数与 Contig 分块数量'
       },
       {
         id: 'annotation',
@@ -159,7 +159,7 @@ export const researchWorkflows: ResearchWorkflow[] = [
           '倒位与易位断点有充分的染色质共线性与 PacBio HiFi 跨越 reads 支撑'
         ],
         tutorialId: 'syri-intro',
-        estimatedDuration: '数小时至数天（取决于基因组数量）'
+        estimatedDuration: '取决于参与比对的参考基因组数量与序列分化程度'
       }
     ]
   },
@@ -172,7 +172,7 @@ export const researchWorkflows: ResearchWorkflow[] = [
     summary: '面向作物群体遗传学、自然群体多样性、驯化选择信号扫描与农艺性状全基因组关联分析（GWAS）的标准学术路线。',
     targetScenario: '农艺性状遗传机制解析、核心种质资源分群、驯化选择基因挖掘与分子标记辅助育种。',
     plantCases: ['水稻核心种质资源', '玉米自交系群体', '大豆群体', '番茄群体'],
-    recommendedCompute: '计算节点建议：32~64 线程，128~256 GB RAM，TB 级高速并行文件系统（存储大量 BAM 与 VCF）。',
+    recommendedCompute: '计算配置建议：视群体样本量与位点密度弹性配置。数十至数百样本建议 16~32 线程、32~64 GB 内存；大规模深度重测序群体推荐 32~64 线程与 128 GB+ 内存。',
     mermaidDiagram: `graph TD
   A[大规模自然群体重测序 FASTQ] --> B[第一阶段: 质控、比对与变异检测]
   B --> C[第二阶段: 变异位点严格质控与填充]
@@ -228,7 +228,7 @@ export const researchWorkflows: ResearchWorkflow[] = [
           '剔除异常多等位基因位点与深度极端异常位点（避免旁系同源区域误调用）'
         ],
         tutorialId: 'plink-synthetic',
-        estimatedDuration: '约 1~4 小时'
+        estimatedDuration: '取决于变异位点数与样本规模（PLINK 处理二进制格式高效，详见工具画像）'
       },
       {
         id: 'pop-structure-kinship',
@@ -256,7 +256,7 @@ export const researchWorkflows: ResearchWorkflow[] = [
           'CV error 最低点提示最优 K 值；PCA 图与地理分布/已知农家种品系分类高度一致',
           '亲缘关系矩阵无大量近亲或重复测序混淆'
         ],
-        estimatedDuration: '约 2~12 小时'
+        estimatedDuration: '取决于 LD 剪枝后位点数与测试的 K 值梯度（ADMIXTURE 支持多线程并行）'
       },
       {
         id: 'gwas-association',
@@ -279,7 +279,7 @@ export const researchWorkflows: ResearchWorkflow[] = [
           '显著性阈值推导：严禁使用机械固定经验值；严格 Bonferroni 阈值取决于目标家族错误率 α 与实际独立检验数 M ($P_{\\mathrm{threshold}} = \\alpha / M$，曼哈顿图阈线为 $-\\log_{10}(\\alpha / M)$)，高密度标记群常利用 LD 剪枝估计有效标记数 $M_{\\mathrm{eff}}$ 或采用 Benjamini-Hochberg FDR 控制'
         ],
         tutorialId: 'gwas-synthetic',
-        estimatedDuration: '约 30 分钟 ~ 3 小时'
+        estimatedDuration: '取决于标记密度与关联模型（FarmCPU/Blink 通常快于全基因组 MLM 迭代）'
       },
       {
         id: 'candidate-gene-mining',
@@ -305,7 +305,7 @@ export const researchWorkflows: ResearchWorkflow[] = [
           '优异等位基因与目标性状显著正相关，并在改良品系中表现出选择性富集',
           '候选基因表达模式与表型出现的时间/组织高度契合'
         ],
-        estimatedDuration: '约 2~6 小时'
+        estimatedDuration: '取决于显著位点数量与局部连锁不平衡衰减窗口'
       }
     ]
   },
@@ -318,7 +318,7 @@ export const researchWorkflows: ResearchWorkflow[] = [
     summary: '从植物不同组织、发育时期或逆境胁迫处理（干旱、高盐、病害）多组学 RNA-seq 数据出发，开展差异表达分析、加权共表达网络模块聚类与核心调控枢纽（Hub Gene）定位。',
     targetScenario: '农作物逆境适应性分子机制、生长发育关键信号通路以及转录因子靶基因网络构建。',
     plantCases: ['水稻耐盐/抗旱转录组', '玉米籽粒发育时序转录组', '棉花纤维伸长机制', '拟南芥光周期响应'],
-    recommendedCompute: '计算节点建议：16~32 核心 CPU，64~128 GB 内存。',
+    recommendedCompute: '计算配置建议：常规转录组与网络构建通常建议 8~16 线程、16~32 GB 内存；大规模多组织或包含数万基因的共表达分析推荐 16~32 线程与 64 GB+ 内存。',
     mermaidDiagram: `graph TD
   A[植物多组织/多时期表达计数矩阵] --> B[第一阶段: 表达量质控与方差稳定变换 VST]
   B --> C[第二阶段: 差异表达基因分析 DESeq2]
@@ -351,7 +351,7 @@ export const researchWorkflows: ResearchWorkflow[] = [
           '过滤行计数和过低的假基因（通常要求每个基因在至少一组生物学重复中 count ≥ 10）',
           '生物学重复在 PCA 空间紧密聚合，不同处理或发育时期显著分离'
         ],
-        estimatedDuration: '约 5~15 分钟'
+        estimatedDuration: '取决于样本数量与基因总数（常规转录组矩阵标准化极快）'
       },
       {
         id: 'diff-expression',
@@ -373,7 +373,7 @@ export const researchWorkflows: ResearchWorkflow[] = [
           '筛选阈值科学界定：明确区分多重检验校正后统计显著性 (Benjamini-Hochberg FDR padj < 0.05) 与生物学效应幅度 (如 |log2FC| ≥ 1.0 即 2 倍表达差异)；该组合为特定分析示例设定，实际研究应依据组织异质性与生物学背景科学划定，非绝对强制标准',
           '检查离散度拟合曲线（Dispersion plot）是否呈平滑收缩，无异常离群点'
         ],
-        estimatedDuration: '约 10~30 分钟'
+        estimatedDuration: '取决于样本规模、设计公式复杂度与多核心并行配置'
       },
       {
         id: 'wgcna-network',
@@ -396,7 +396,7 @@ export const researchWorkflows: ResearchWorkflow[] = [
           '模块划分清晰，避免单个模块聚集超过全基因组 50% 基因'
         ],
         tutorialId: 'wgcna-synthetic',
-        estimatedDuration: '约 30 分钟 ~ 2 小时'
+        estimatedDuration: '取决于纳入分析的基因数量（相关矩阵计算随基因数呈平方增长，详见工具画像）'
       },
       {
         id: 'hub-functional-enrichment',
@@ -419,7 +419,7 @@ export const researchWorkflows: ResearchWorkflow[] = [
           'Hub 基因具有高 kME (> 0.8) 且表达模式与表型强同步'
         ],
         tutorialId: 'wgcna-synthetic',
-        estimatedDuration: '约 30 分钟 ~ 1 小时'
+        estimatedDuration: '取决于共表达模块数量与所选生理表型指标维度'
       },
       {
         id: 'regulatory-inference',
@@ -447,7 +447,7 @@ export const researchWorkflows: ResearchWorkflow[] = [
           '高权重 TF-Target 关联需进一步核对启动子区域对应结合基序 (Motif) 是否富集',
           '排除仅在极少数样本中表达波动的假性高权重边'
         ],
-        estimatedDuration: '约 1~3 小时'
+        estimatedDuration: '取决于候选转录因子数量与决策树规模（超大规模推荐 GRNBoost2 加速）'
       }
     ]
   }
