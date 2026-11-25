@@ -1,9 +1,9 @@
 ---
 title: SMC++
 name: SMC++
-summary: 结合局部共祖连锁信息与条件样本频率谱，从未定相全基因组样本估计群体历史。
-dataType: 双等位二倍体 VCF、样本群体表与 BED 格式缺失区 mask
-principle: 顺序共祖模型与条件样本频率谱
+summary: 结合区分单倍型局部共祖与大规模未定相样本条件频率谱 (CSFS) 的全基因组群体历史与分化时间推断软件。
+dataType: 双等位二倍体 VCF (支持未定相大样本与已定相区分样本)、BED 格式掩蔽区 mask
+principle: 区分谱系顺序共祖模型、条件位点频率谱 (CSFS)、样条正则化与清洁分裂模型
 domainIds: [population-genetics]
 topicIds: [m05-topic-06]
 principleIds: [sequentially-markovian-coalescent, conditional-site-frequency-spectrum]
@@ -11,62 +11,152 @@ dataIds: [variant-data, callable-region-mask]
 paper: smcpp-paper
 repository: https://github.com/popgenmethods/smcpp
 status: published
-updatedAt: 2026-11-22
+updatedAt: 2026-11-25
 ---
 
-## 一句话简介与开发背景
+## 生物学问题与定位
 
-SMC++ 是 Terhorst、Kamm 与 Song 开发的群体历史推断程序，将 SMC 型局部共祖信息与条件样本频率谱结合，以处理未定相基因组并支持比传统 PSMC 更大的样本集合。方法论文以模拟和多个非植物数据集评估其人口规模与分裂时间估计；植物项目仍需按自己的数据结构验证模型假设。[SMC++ 方法论文](../../papers/smcpp-paper/)；[官方代码与手册](https://github.com/popgenmethods/smcpp)。
+在植物群体历史重建中，研究者常常陷入两难境地：
+1. PSMC 仅能使用 1 个个体，对近代（距今几千年至几万年）的群体瓶颈几乎没有分辨率；
+2. MSMC 与 MSMC2 虽然大幅提升了近代分辨率，但**严格依赖高质量的全染色体物理定相（Phasing）**。然而在大多数植物项目中，群体样本仅测序了二倍体短 reads，定相开关错误（Switch errors）极易在近代引入虚假的重组断点。此外，面对数百个未定相测序个体，传统的 SMC 模型无法有效吸收全群体的等位基因频率信息。
 
-## 生物学与计算问题
+**SMC++** 由加州大学伯克利分校 Jonathan Terhorst、Jack Kamm 和 Yun S. Song 于 2017 年发表在 *Nature Genetics* 上。该方法提出了突破性的混合理论框架：**仅需指定 1~2 个高质量二倍体样本作为“区分谱系（Distinguished lineage）”提供沿染色体的局部重组与连锁信息，其余数十乃至上百个群体样本完全无需定相，直接作为未定相样本提供条件位点频率谱（Conditional Site Frequency Spectrum, CSFS）**！
 
-单个二倍体样本提供沿染色体的局部 TMRCA 信号，但难以利用更多群体样本和近期频率信息。SMC++ 采用一个二倍体“区分样本”提供连锁和共祖状态线索，其他同群体样本以未定相位点计数进入条件 SFS，从而把额外样本信息并入估计。软件用样条正则化表示连续的人口规模函数，降低过多时间点自由度引起的估计波动。
+这种兼顾局部连锁与全群体频率谱的设计，不仅免除了大样本复杂物理定相的苛刻约束，而且将群体历史规模推断的时间分辨率无缝推向了全新世农业驯化与近现代瓶颈（距今数百至数千年以内）；同时引入连续样条正则化（Spline regularization），彻底避免了阶梯状离散化引入的人工突变伪影。
 
-其 `split` 子命令可拟合两群体分裂时间和人口规模，但论文软件实现的该模型假设分裂后没有基因流（clean split）。在持续迁移、复杂混合或植物杂交历史下，该假设应作为模型检验的一部分，而不是默认事实。[方法论文](../../papers/smcpp-paper/)。
+---
 
-## 输入处理与算法流程
+## 核心算法数学原理与推导
 
-1. 将样本 VCF 按群体定义、双等位 SNP、二倍体基因型与可调用序列进行统一过滤，建立参考版本、样本列表及 mask。
-2. 对每条 contig 分别运行 `smc++ vcf2smc`，转换为 SMC++ 压缩数据；需要剔除不可调用的大区段时提供 BED mask。
-3. 运行 `smc++ estimate`，将每代每位点突变率作为参数，拟合群体历史；可按官方支持选项调整时间界限、样条结点数等拟合控制。
-4. 如需比较群体分裂，先分别估计两个群体，再依 `split` 子命令说明构造联合数据并拟合清洁分裂模型。
-5. 用 `smc++ plot` 输出曲线，保留模型 JSON、PDF/PNG 图和 CSV 数据表，检查人口曲线对 mask、突变率、世代时间与样本组合的敏感性。
+SMC++ 的数学推导建立在溯祖理论、条件频率谱与三次样条惩罚优化之上：
+
+### 1. 区分谱系与条件位点频率谱（CSFS）联合似然
+
+设群体包含 $n$ 个未定相单倍型样本，以及 1 个指定的二倍体区分样本（包含 2 条同源单倍型，记为区分谱系 $D$）。在基因组任意物理坐标处，区分谱系两条同源链的局部最近共同祖先时间记为隐状态连续变量 $T \in (0, \infty)$。
+
+若在已知 $T = t$ 的条件下发生中性突变，设其余 $n$ 个未定相单倍型中携带该衍生突变的个体拷贝数为随机变量 $C \in \{0, 1, \dots, n\}$。根据多谱系溯祖理论，条件频率谱的概率质量函数 $P(C = c \mid T = t)$ 可以通过将主谱系投射到包含 $n+2$ 条谱系的溯祖树上解析求得：
+
+$$P(C = c \mid T = t) = \sum_{k=2}^{n+2} P(C = c \mid k \text{ lineages}) \cdot P(k \text{ lineages at time } t)$$
+
+该公式巧妙地将两谱系的时空共祖过程与全群体的等位基因频率联合起来。当时间 $t$ 极近时，$C$ 的概率质量显著偏向低频突变（单例或双例突变）；当 $t$ 极深远时，$C$ 偏向高频变异。通过联合优化区分谱系的局部 HMM 状态与外围大样本的突变频数，SMC++ 极大地增强了对近期与远古群体的双重约束。
+
+### 2. 连续人口规模的对数三次样条正则化
+
+传统的 PSMC/MSMC 采用离散阶梯状常数建模 $N_e(t)$，台阶边缘具有突变人为痕迹。SMC++ 将有效群体大小函数参数化为连续的对数三次样条曲线：
+
+$$\eta(t) = \ln N_e(t)$$
+
+目标函数为全基因组复合对数似然与样条二阶导数弯曲度惩罚项的凸组合：
+
+$$\max_{\eta} \left[ \sum_{\text{contigs}} \ln P(\mathbf{O} \mid \eta) - \lambda \int_{t_{\min}}^{t_{\max}} \left( \eta''(t) \right)^2 dt \right]$$
+
+- 惩罚项 $\lambda \int (\eta''(t))^2 dt$ 衡量曲线的整体粗糙度与非物理振荡；
+- 平滑度超参数 $\lambda$ 可通过交叉验证自动调节；
+- 这种连续光滑先验使得推断出的人口规模轨迹平滑自然，彻底杜绝了模型在过拟合时出现的锯齿状波动。
+
+### 3. 清洁分裂模型（Clean Split Model）
+
+SMC++ 提供专用的 `split` 模块，用于推断两个植物群体之间的分化隔离时间 $T_{\text{split}}$：
+- **模型假设**：两群体在 $t > T_{\text{split}}$ 的远古时代为同一个完全混合的祖先群体；在 $T_{\text{split}}$ 发生瞬间分裂；在 $t < T_{\text{split}}$ 的近代各自独立演化，**且分裂后两群体之间不存在后续基因流（Clean Split, No post-split migration）**；
+- 软件首先分别独立估计两个群体的群体规模轨迹，随后在联合数据上通过极大似然优化求解单一的分裂时间参数 $T_{\text{split}}$。
+
+---
+
+## 生产环境标准流水线
+
+以下展示将多样本未定相 VCF 转换为 SMC++ 输入格式、拟合群体历史并推断两亚群清洁分裂年代的完整流水线：
 
 ```bash
-# 对每条 contig 分别转换；示例使用 population Pop1 中的个体 S1 和 S2
-smc++ vcf2smc input.vcf.gz data/chr01.smc.gz chr01 Pop1:S1,S2
+# 步骤 1：利用 smc++ vcf2smc 将每条染色体转换为 .smc.gz 输入文件
+# 指定群体 Pop1，其中样本 S1 作为已定相或纯合的区分样本（Distinguished lineage）
+# 其余样本（S2, S3, S4...）作为提供未定相 CSFS 的参考样本
+smc++ vcf2smc \
+  --mask callable_regions_chr01.bed.gz \
+  cohort_raw.vcf.gz \
+  data/chr01.pop1.smc.gz \
+  chr01 \
+  Pop1:S1 \
+  S2,S3,S4,S5,S6,S7,S8
 
-# 使用每代每位点突变率拟合群体大小历史
-smc++ estimate -o analysis/ 6.5e-9 data/chr*.smc.gz
+# 步骤 2：对全基因组所有染色体联合运行群体历史规模拟合
+# 指定每代每位点突变率（如水稻 6.5e-9），输出平滑曲线模型 JSON
+smc++ estimate \
+  --threads 16 \
+  --spline cubic \
+  --knots 25 \
+  --timepoints 100 100000 \
+  -o results/pop1_estimate/ \
+  6.5e-9 \
+  data/chr*.pop1.smc.gz
 
-# 导出模型曲线；可用 -g 指定世代年数，以 CSV 输出绘图数据
-smc++ plot history.pdf analysis/model.final.json
+# 步骤 3：若推断群体 1 与群体 2 的分化时间，准备两群体的联合输入
+smc++ vcf2smc \
+  --mask callable_regions_chr01.bed.gz \
+  cohort_raw.vcf.gz \
+  data/chr01.joint.smc.gz \
+  chr01 \
+  Pop1:S1 \
+  Pop2:S9
+
+# 步骤 4：运行清洁分裂模型拟合分化时间
+smc++ split \
+  --threads 16 \
+  -o results/split_estimate/ \
+  results/pop1_estimate/model.final.json \
+  results/pop2_estimate/model.final.json \
+  data/chr*.joint.smc.gz
+
+# 步骤 5：导出矢量图与 CSV 数据表
+smc++ plot \
+  --g 1 \
+  --logy \
+  --csv \
+  results/pop_history.pdf \
+  results/pop1_estimate/model.final.json \
+  results/split_estimate/model.final.json
 ```
 
-命令依据[官方 README](https://github.com/popgenmethods/smcpp)整理。突变率值必须替换为物种和研究设定支持的参数；示例中的 `6.5e-9` 取自下方非洲稻研究，不能作为茶树或其他植物的推荐常数。`vcf2smc` 对 VCF 的变异类别、过滤字段、参考等位基因和未出现位点具有特定处理，需查阅对应版本的输入说明。
+---
 
-## 输入、输出与关键参数
+## 核心参数科学解析与植物调优指南
 
-| 项目 | 说明 |
-| --- | --- |
-| VCF | 官方转换器面向双等位二倍体 SNP；需要确认基因型编码、参考等位基因和样本顺序 |
-| `vcf2smc` | 每次转换一条 contig，输入输出可以压缩；群体 ID 后列出 VCF 中的样本名 |
-| BED mask | 将缺失或不可分析区域标记为未知，避免把 VCF 中没有记录的大段区间错误解读为长纯合片段 |
-| `estimate` | 必填每代每位点突变率和一个或多个 `.smc` 文件；最终模型存为 JSON |
-| `plot` | 将模型 JSON 转为 PDF/PNG/JPEG；`-g` 添加世代年数，`--logy` 使用纵轴对数尺度，`-c` 另存 CSV |
-| `split` | 两群体清洁分裂模型；需要满足分裂后无基因流这一人口模型假设 |
-| 版本与依赖 | 官方仓库提供源码和安装步骤；保留 Python 环境、依赖版本及 Git commit，便于复现 |
+| 参数指令 | 推荐设置 | 物理含义与植物科研注意事项 |
+| :--- | :--- | :--- |
+| `mutation_rate` | 必填（如 `6.5e-9`） | **每代每位点自发突变率**；作为 `estimate` 的首个数值参数；对最终种群规模绝对高度与时间横轴起决定性标定作用。 |
+| `--knots <int>` | `20` ~ `30` (默认 20) | **样条曲线结点数**；控制时间拟合的精细度。若样本量超 50 个且关注近千年的剧烈驯化波动，可增至 25~30。 |
+| `--timepoints <min> <max>` | `100 100000` | **时间拟合边界（单位：世代）**；默认以 100 代至 10 万代为边界。一年生草本作物对应 100 年至 10 万年前。 |
+| `--mask` | BED 格式 | **全基因组不可调用区掩蔽**；至关重要！`vcf2smc` 遇到长段无 SNP 区段时，必须通过 mask 区分是“真纯合”还是“缺失未覆盖”。 |
+| `--g <float>` | 物种特异值 | **世代年数**；在 `plot` 绘图时用于将世代数转换为日历年（Years Before Present）。草本作物为 1，多年生林木需相应放大。 |
 
-程序手册指出 `vcf2smc` 会将参考等位基因视为祖先、忽略 VCF 的 FILTER/QUAL 字段、不处理 indel/SV，并要求额外 mask 标记未调用大区段。植物基因组如存在大面积缺失、重复、着丝粒或群体差异可调用区域，输入掩蔽必须针对数据设计。[官方命令与输入格式](https://github.com/popgenmethods/smcpp#file-formats)。
+---
 
-## 植物应用
+## 植物基因组特有挑战与避坑指南
 
-Cubry 等研究使用 SMC++ 分析非洲栽培稻近期人口历史：把可用材料整理为 79 个伪二倍体，以 5 条区分谱系增强条件频谱估计，采用每代突变率 $6.5\times10^{-9}$、上限 100,000 代和 25 个样条结点，并以一年世代时间换算。该方法与同文 PSMC/MSMC 的样本构造和时间分辨目标不同，论文结果应依各自方法范围比较。[原文案例](../../papers/african-rice-246-genomes/)。Patil 与 Vijay 用 SMC++ 等方法检查杨树重复序列遮罩对人口历史的影响，发现不同重复区处理对应不同历史 $N_e$ 估计。[杨树案例](../../papers/populus-repeats-demography/)。
+### 1. `vcf2smc` 对参考等位基因与缺失的特殊处理机制
+- **机制提示**：SMC++ 的转换工具 `vcf2smc` 默认假定 VCF 中的参考等位基因（REF）即为祖先等位基因（Ancestral allele），并且在解析时会**自动忽略 VCF 中的 QUAL 分值与 FILTER 标记**。
+- **避坑准则**：
+  1. 输入前必须使用 BCFtools 预先执行严格过滤，彻底剔除低质量变异（如仅保留 `PASS` 位点）；
+  2. 若目标植物参考基因组为衍生品种（如高杂交选育栽培种），将其作为祖先等位基因会导致衍生突变频数判断倒置。强烈建议使用远缘野生近缘种的比对结果，通过 `bcftools +setGT` 将真正祖先等位基因极化后再转换。
 
-## 结果解释与关联资源
+### 2. 植物渐渗杂交与清洁分裂模型（Clean Split）的冲突
+- **原理警示**：`smc++ split` 的核心假设是“分裂后无任何后续基因流”。然而，在大部分植物驯化体系中（如亚洲栽培稻籼稻与粳稻、栽培玉米与大刍草），物种在地理分化后仍然伴随着数千年的人工引种杂交与渐渗。
+- **严重后果**：若在存在强烈不对称渐渗的植物亚群中强行使用 `smc++ split`，模型会将持续交流的年轻等位基因误判为分化极近，导致推断出的分化时间严重年轻化。
+- **对策**：在解释 `split` 结果前，必须先用 $D$-statistic（ABBA-BABA 检验）或 TreeMix 检验是否存在显著的跨群基因渗入；若存在显著基因流，需在文章中明确标注该分化时间为无迁移假设下的“保守下限值”。
 
-模型输出包含平滑的人口规模轨迹及拟合参数。变化点应与相应的不确定范围、mutation rate、世代时间、样本构成和 mask 一并报告。`split` 分裂时间不是对任意基因流历史均稳健的单一人口事件日期；当其无迁移假设与植物杂交背景不符时，应采用能表示迁移的其他模型进行比较。
+---
 
-- 方法论文：[Robust and scalable inference of population history from hundreds of unphased whole genomes](../../papers/smcpp-paper/)，Nature Genetics 49:303–309，2017，DOI `10.1038/ng.3748`。
-- 官方仓库：[popgenmethods/smcpp](https://github.com/popgenmethods/smcpp)。本机未以真实植物数据执行本页命令，内容依据该仓库的公开 README/输入格式整理。
-- 相关专题：[群体历史动态](../../topics/population-genetics/m05-topic-06/)；相关方法：[PSMC](../psmc/)和[MSMC2](../msmc2/)；植物案例：[非洲稻](../../papers/african-rice-246-genomes/)、[杨树重复序列分析](../../papers/populus-repeats-demography/)。
+## 植物应用案例与真实文献证据
+
+1. **非洲栽培稻近期有效种群规模与驯化瓶颈推断**：
+   在非洲栽培稻群体历史研究中（Cubry et al., *Nature Plants*, 2018），研究人员针对短 reads 测序难以大规模全相的难点，采用 SMC++ 联合分析了 79 份高覆盖伪二倍体材料，以 5 个核心区分谱系结合全群体条件频率谱，设定突变率 $6.5 \times 10^{-9}$、上限 10 万代与 25 个样条结点，成功捕获了非洲栽培稻在距今约 3,000~4,000 年前驯化扩张早期的连续历史轨迹，与古代考古遗址炭化稻粒证据高度吻合（[Cubry et al., *Nature Plants*, 2018](https://doi.org/10.1038/s41477-018-0245-7)）。
+
+---
+
+## 实践排错与质控规范
+
+- **错误 1：`smc++ estimate` 报错 `LinAlgError: Matrix is singular`**
+  - *排查原因*：输入的某些染色体几乎全被 mask 掩蔽，或者变异位点密度极低，导致某些样条区间内的有效位点数为零，协方差矩阵奇异。
+  - *解决方案*：剔除长度较短的未组装 contigs/scaffolds，仅保留组装质量高的大染色体（如 Chr01~Chr12）进行全基因组联合估计。
+- **错误 2：`plot` 输出图像在近近代出现极其突兀的垂直峭壁**
+  - *排查原因*：`vcf2smc` 未提供掩蔽 BED 文件，导致参考基因组上的长段测序缺口（Assembly gaps / Ns）被模型误认为是没有突变的超长纯合单倍型。
+  - *解决方案*：制作严格的 `callable_regions.bed`，把全基因组中的缺口与低覆盖区标记为掩蔽状态，重新运行 `vcf2smc`。

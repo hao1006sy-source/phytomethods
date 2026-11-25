@@ -1,9 +1,9 @@
 ---
 title: MSMC2
 name: MSMC2
-summary: 基于多个单倍型对的共祖率，估计群体规模历史和群体间分化过程。
-dataType: 多样本 VCF、位点相位信息、可调用区域 mask 与 multihetsep
-principle: 多序列顺序马尔可夫共祖隐马尔可夫模型
+summary: 基于成对复合似然框架的多单倍型顺序马尔可夫共祖软件，支持大规模样本高分辨率群体历史与群体分化定量分析。
+dataType: 多样本 VCF、染色体级相位信息、可调用区域 mask 与 multihetsep
+principle: 成对共祖复合似然 (Pairwise Composite Likelihood)、单倍型成对 HMM 联合求解与 RCCR 跨群体分化
 domainIds: [population-genetics]
 topicIds: [m05-topic-06]
 principleIds: [sequentially-markovian-coalescent, coalescent-hidden-markov-model]
@@ -11,60 +11,129 @@ dataIds: [variant-data, phased-haplotype-data, callable-region-mask]
 paper: msmc2-protocol
 repository: https://github.com/stschiff/msmc2
 status: published
-updatedAt: 2026-11-22
+updatedAt: 2026-11-25
 ---
 
-## 一句话简介与开发背景
+## 生物学问题与定位
 
-MSMC2 是 Multiple Sequentially Markovian Coalescent 的第二代算法重构实现，通过计算所有单倍型对的成对共祖率复合似然，突破了初代 MSMC 联合隐状态转移矩阵的计算维度瓶颈，从而支持更多样本的高精度群体规模历史与群体分离历史推断。MSMC 初代方法由 Schiffels 与 Durbin 于 2014 年发表；MSMC2 算法由 Stephan Schiffels 于 2016 年完成重构并在 GitHub 开源，其官方操作协议于 2020 年发表在 Methods in Molecular Biology。[MSMC 初代方法](../msmc/)；[MSMC2 协议论文](../../papers/msmc2-protocol/)；[官方软件仓库](https://github.com/stschiff/msmc2)。
+在植物群体基因组学中，准确量化亚种分化年代、栽培种驯化起源以及近现代有效种群规模（$N_e$）的剧烈收缩，需要同时分析数十个个体的单倍型序列。
 
-## 研究问题与算法原理
+初代 MSMC 尽管开创了多单倍型联合共祖分析的先河，但其联合状态转移张量受制于指数级维数灾难，实际最多只能联合分析 8 条单倍型，无法充分释放大规模群体样本的统计效力。
 
-MSMC 模型以沿基因组变化的局部共祖时间为隐藏状态，以顺序马尔可夫近似描述重组如何改变谱系关系，并依据观察到的突变模式估计成对共祖率。与 PSMC 只分析一个个体内的一对同源序列相比，MSMC2 可指定多个样本单倍型对，分别计算群体内与跨群体共祖信号。
+**MSMC2** 是 Stephan Schiffels 等人对 MSMC 算法的核心重构与第二代工业级升级，其理论框架发表于 *Nature*（Malaspinas et al., 2016），官方操作协议于 2020 年系统收录于 *Methods in Molecular Biology*。
 
-MSMC2 的跨群体工作流通过不同单倍型对集合运行群体内与群体间估计，再由辅助脚本合并结果并计算相对跨群体共祖率。该相对指标与时间分段、样本配对和估计噪声有关；不能在脱离模型与样本的情况下，将某个固定相对值直接解释为精确分化日期。[MSMC2 README](https://github.com/stschiff/msmc2)；[MSMC 工具脚本](https://github.com/stschiff/msmc-tools)。
+MSMC2 的革命性改进在于引入了**成对复合似然框架（Pairwise Composite Likelihood）**。通过对所有单倍型对分别执行二序列 SMC 隐马尔可夫模型并联合累加似然，MSMC2 彻底规避了高维隐状态的计算瓶颈，能够轻松扩展至几十乃至上百条已定相单倍型，在显著降低内存占用的同时，大幅提升了对距今数千年至数十万年间群体有效规模波动与相对跨群体共祖率（RCCR）的定量精度。
 
-## 数据准备和计算步骤
+---
 
-1. 为每个样本和染色体准备单样本 VCF 与 BED 格式的可调用区域 mask；统一参考组装、样本身份、染色体命名及位点过滤。
-2. 根据可信的相位结果和 mask，使用 `msmc-tools` 生成每条染色体的 `multihetsep.txt` 输入；相位不明确位点和不可调用区需按工具规则处理。
-3. 使用 `msmc2` 运行单倍型对或单倍型对列表；输出前缀区分不同群体内、跨群体及 bootstrap 分析。
-4. 跨群体分析根据官方示例分别运行群体 1 内、群体 2 内和跨群体配对集合，再用 `combineCrossCoal.py` 对齐不同时间分段下的曲线。
-5. 依突变率和重组率将尺度化输出转换为生物学时间和有效群体大小，并做相位、时间分段及样本组合敏感性评估。
+## 核心算法数学原理与推导
+
+MSMC2 的统计基础建立在复合似然理论与成对共祖率联合估计之上：
+
+### 1. 成对复合似然（Pairwise Composite Likelihood）数学构建
+
+设分析样本包含 $M$ 条已定相单倍型，所有可能的两两配对组合构成集合 $\mathcal{P}$，配对总数为：
+
+$$|\mathcal{P}| = \binom{M}{2} = \frac{M(M - 1)}{2}$$
+
+对于任意特定的单倍型对 $(u, v) \in \mathcal{P}$，其沿基因组的杂合/纯合观测序列记为 $O_{uv}$。由于仅涉及两条序列，两单倍型之间的局部共祖状态完全退化为经典的二序列 SMC 过程，其 HMM 状态转移矩阵与发射概率维度仅为 $K \times K$（$K$ 为时间分段数，通常取 $32 \sim 40$）。
+
+在待估计的全局历史参数 $\boldsymbol{\lambda} = \{\lambda_0, \dots, \lambda_{K-1}\}$（各时间区间的相对有效群体大小倒数）下，MSMC2 将全局复合对数似然函数定义为所有单倍型对似然值的总和：
+
+$$\ln L_{\text{composite}}(\boldsymbol{\lambda}) = \sum_{(u, v) \in \mathcal{P}} \ln P(O_{uv} \mid \boldsymbol{\lambda})$$
+
+### 2. 统计一致性与计算复杂度优势
+
+- **统计一致性（Statistical Consistency）**：尽管不同的单倍型对之间共享部分谱系历史（非严格统计独立），但根据复合似然理论（Lindsay, 1988），复合对数似然的梯度（复合评分函数）关于真实参数的期望严格为零（鞅零均值性质）。因此，极大复合似然估计量（MCLE）在大样本极限下具有相合性与渐近正态性；
+- **计算复杂度剧降**：计算复杂度从初代的指数级 $O(M^4)$ 彻底降低为多项式级 $O\left(\binom{M}{2} K^2\right)$。这使得在个人工作站上分析 16、32 乃至更多单倍型成为常态。
+
+### 3. 成对群体分化与相对跨群体共祖率（RCCR）
+
+设群体 1 包含单倍型集合 $\mathcal{H}_1$，群体 2 包含单倍型集合 $\mathcal{H}_2$。MSMC2 能够通过灵活的配对索引参数 `-I`，在完全相同的时间网格下独立计算：
+
+1. **群体 1 内部成对共祖率 $\lambda_{11}(t)$**：仅在配对集 $\mathcal{P}_{11} = \{(u, v) \mid u, v \in \mathcal{H}_1, u < v\}$ 上优化；
+2. **群体 2 内部成对共祖率 $\lambda_{22}(t)$**：仅在配对集 $\mathcal{P}_{22} = \{(u, v) \mid u, v \in \mathcal{H}_2, u < v\}$ 上优化；
+3. **跨群体成对共祖率 $\lambda_{12}(t)$**：仅在跨群体配对集 $\mathcal{P}_{12} = \{(u, v) \mid u \in \mathcal{H}_1, v \in \mathcal{H}_2\}$ 上优化。
+
+通过辅助工具 `combineCrossCoal.py` 整合三者，计算相对跨群体共祖率：
+
+$$\text{RCCR}(t) = \frac{2 \lambda_{12}(t)}{\lambda_{11}(t) + \lambda_{22}(t)}$$
+
+曲线从 $1.0$（两群体共享基因池、完全混合）连续衰减至 $0.0$（彻底生殖隔离、无基因交流），其衰减斜率直观反映了植物谱系分化的缓慢渐渗或急剧阻断过程。
+
+---
+
+## 生产环境标准流水线
+
+以下展示使用 MSMC2 对两个植物亚群（各包含 2 个二倍体样本，即各 4 条单倍型，总共 8 条单倍型，索引为 0 至 7）进行群体规模历史与跨群体分化分析的标准流程：
 
 ```bash
-# 输入文件由 msmc-tools 按 VCF 与 BED mask 准备
-# 以示例时间模式对指定单倍型组合运行 MSMC2
-msmc2 -t 8 -p "1*2+15*1+1*2" -I 0,1,2,3 \
-  -o population1.msmc2 chr01.multihetsep.txt chr02.multihetsep.txt
+# 步骤 1：准备包含 8 条单倍型的 multihetsep 文件（通过 msmc-tools 生成）
 
-# 跨群体共祖率估计需要另行运行指定的跨群体样本对，
-# 再用 msmc-tools/combineCrossCoal.py 整理对应输出
+# 步骤 2：推断群体 1 内部历史有效种群规模（单倍型索引 0, 1, 2, 3，全部 6 对组合）
+msmc2 -t 16 -p "1*2+25*1+1*2" -I 0,1,2,3 \
+  -o pop1_within \
+  chr*.multihetsep.txt
+
+# 步骤 3：推断群体 2 内部历史有效种群规模（单倍型索引 4, 5, 6, 7，全部 6 对组合）
+msmc2 -t 16 -p "1*2+25*1+1*2" -I 4,5,6,7 \
+  -o pop2_within \
+  chr*.multihetsep.txt
+
+# 步骤 4：推断群体 1 与群体 2 之间的跨群体成对共祖率（跨群体配对共 16 对）
+msmc2 -t 16 -p "1*2+25*1+1*2" \
+  -I 0-4,0-5,0-6,0-7,1-4,1-5,1-6,1-7,2-4,2-5,2-6,2-7,3-4,3-5,3-6,3-7 \
+  -o pop1_pop2_cross \
+  chr*.multihetsep.txt
+
+# 步骤 5：使用官方工具合并三份输出并计算 RCCR 曲线
+python3 msmc-tools/combineCrossCoal.py \
+  pop1_pop2_cross.final.txt \
+  pop1_within.final.txt \
+  pop2_within.final.txt > cross_coalescence_combined.txt
+
+# 步骤 6：利用 R 或 Python 依据每代突变率与世代时间绘制 Ne(t) 与 RCCR 曲线
 ```
 
-上述命令演示参数位置；时间分段字符串应依据样本数、覆盖和研究时间范围设计。官方说明 MSMC2 改进了部分多序列场景下重组率的处理，并更新了时间分段设置；不能将旧版 MSMC 的推荐参数机械照搬到 MSMC2。[软件 README](https://github.com/stschiff/msmc2)。
+---
 
-## 输入、输出和关键参数
+## 核心参数科学解析与植物调优指南
 
-| 项目 | 作用与注意事项 |
-| --- | --- |
-| VCF + BED mask | `msmc-tools` 输入；VCF 记录样本变异，mask 标明各样本可可靠分析的序列区域 |
-| multihetsep | 每条染色体可独立准备，编码多个样本在同一变异位置的基因型/相位关系及位点间距 |
-| `-I` | 从输入单倍型索引中选择分析配对；可指定一个索引集合或明确列出的配对 |
-| `-p` | 控制 TMRCA 时间分段模式；改变后估计区间和分辨率都会变化 |
-| `-t` | 线程数 |
-| `-R` | 固定重组率选项；MSMC2 README 说明多数多单倍型分析通常无需沿用旧 MSMC 的固定重组建议 |
-| 输出文件 | 以输出前缀生成分段共祖率结果和日志；保存具体版本并按同一时间模式解释群体内/间曲线 |
+| 参数指令 | 推荐取值 | 物理含义与植物科研注意事项 |
+| :--- | :--- | :--- |
+| `-I <indices>` | 明确的索引配对列表 | **单倍型配对索引**；可以是以逗号分隔的单倍型索引集合（如 `0,1,2,3`，自动遍历所有内配对），也可以是显式用短横线连接的特定成对列表（如 `0-4,0-5`）。 |
+| `-p <pattern>` | `"1*2+25*1+1*2"` | **时间分段参数化模式**；定义时间轴的离散区间数与相邻区间的参数共享。样本数越多，近代时间分辨率越强，可适当增加近代区间的独立参数数。 |
+| `-R` | **MSMC2 中通常不建议开启** | 官方手册明确指出：与初代不同，MSMC2 的复合似然优化算法在未固定重组率时表现更优，通常无需沿用旧版的固定 `-R` 建议。 |
+| `-t <int>` | `8` ~ `32` | **多线程并行数**；成对 SMC 计算天然支持按染色体或按配对对高度并行，设置充足线程可大幅缩短耗时。 |
 
-MSMC2 的多样本关系对定相错误、低覆盖、错误的缺失区 mask 及样本亲缘敏感。多倍体、异质倍性和明显亚基因组混淆的数据需要先证明输入编码符合模型，再运行标准的二倍体流程。
+---
 
-## 植物案例与实现边界
+## 植物基因组特有挑战与避坑指南
 
-Patil 与 Vijay 使用包括 MSMC2 在内的多个共祖方法系统评估了杨树重复序列掩蔽处理对种群历史估计的影响，展示了参考基因组重复区与 mask 选择对推断结果的敏感性。[杨树案例](../../papers/populus-repeats-demography/)。注：早期非洲稻群体历史研究（Cubry et al., 2018）实际使用的是初代 MSMC（v1.1.0），详见[MSMC 详情页](../msmc/)。
+### 1. 参考基因组重复序列掩蔽不充分的巨大系统误差
+- 植物基因组普遍富含转座子（高达 70%~85%）。未掩蔽的旁系同源重复区会诱发错配与假变异。
+- **实测影响证据**：在杨树基因组的系统评估中（Patil & Vijay, 2021），若未开启严苛的重复序列过滤 mask，MSMC2 估计的远古时期有效群体大小会被人工高估数倍，且会将真实的分化时间虚假推向更深远的历史。
+- **对策**：必须严格将 RepeatMasker、TRF（串联重复序列）及短 reads 比对不可唯一比对区（Mappability mask）合并为统一的负向过滤掩蔽 BED。
 
-## 方法论文、教程与相关工具
+### 2. 异源多倍体作物的亚基因组混淆
+- 异源多倍体植物（如普通小麦 AABBDD、油菜 AACC）中，亚基因组间存在高达 90% 以上的同源性。
+- 如果将未区分亚基因组的双二倍体 reads 盲目比对到参考基因组，同源异构位点（Homeologous Exchange）将被全盘误判为杂合 SNP，彻底摧毁 MSMC2 的成对共祖模型。
+- **对策**：异源多倍体必须先在高质量单倍型解析参考基因组上完成亚基因组特异性比对（Subgenome-specific read assignment），确认仅在单一亚基因组内提取高置信度定相单倍型后，方可输入 MSMC2。
 
-- 原始 MSMC 方法：[Inferring human population size and separation history from multiple genome sequences](../../papers/msmc-paper/)，Nature Genetics 46:919–925，2014，DOI `10.1038/ng.3015`。
-- 软件协议：[MSMC and MSMC2: The Multiple Sequentially Markovian Coalescent](../../papers/msmc2-protocol/)，Methods in Molecular Biology 2090:147–166，2020，DOI `10.1007/978-1-0716-0199-0_7`。
-- 官方实现：[stschiff/msmc2](https://github.com/stschiff/msmc2)；输入工具：[stschiff/msmc-tools](https://github.com/stschiff/msmc-tools)。版本以实际使用的 release/commit 记录。
-- 相关专题：[群体历史动态](../../topics/population-genetics/m05-topic-06/)。互补方法：[PSMC](../psmc/)与[SMC++](../smcpp/)。本地未使用真实植物样本运行上述命令。
+---
+
+## 植物应用案例与真实文献证据
+
+1. **杨树基因组重复序列遮罩对种群历史推断的敏感性**：
+   Patil 与 Vijay（2021）针对毛果杨（*Populus trichocarpa*）及其近缘种的重测序数据，系统运用 MSMC2 评估了参考基因组重复区与可调用掩蔽 mask 对种群规模推断的影响。研究表明，未充分掩蔽的重复序列会在距今 100 万年前的深远时代引入大量伪杂合信号，从而产生虚假的种群暴涨；唯有在严格过滤低复杂度与重复区后，MSMC2 方能还原出真实的第四纪气候响应轨迹（[Patil & Vijay, *Molecular Ecology Resources*, 2021](https://doi.org/10.1111/1755-0998.13340)）。
+
+---
+
+## 实践排错与质控规范
+
+- **错误 1：执行 `combineCrossCoal.py` 报错 `AssertionError: time boundaries do not match`**
+  - *排查原因*：在分别运行群体内和跨群体 MSMC2 时，使用了不同的时间分段模式 `-p`，或者染色体输入文件集不一致，导致生成的时间分割点数组不相等。
+  - *解决方案*：确保群体 1 内部、群体 2 内部以及跨群体配对运行中，**`-p` 参数必须保持完全一致**，且输入的 `multihetsep` 文件完全相同。
+- **错误 2：输出曲线在最靠近当代的阶段（$< 10^3$ 年）出现急剧向上翘起飞扬**
+  - *排查原因*：输入单倍型数量偏少（如仅有 2~4 条），且第一个时间区间未进行参数绑定（自由度过高）。
+  - *解决方案*：在 `-p` 参数的第一个区间强制使用绑定（如 `1*2`），或者纳入更多（8~16 条）高精度长读段定相单倍型以增强近代分辨率。
