@@ -462,11 +462,11 @@
       "domainIds": [
         "pangenomics-structural-variation"
       ],
-      "summary": "面向真核生物大规模泛基因组分析的工具集，以参考序列和新增非冗余序列构建 pan-genome，并依据 reads 覆盖推断基因存在缺失变异。",
+      "summary": "面向真核生物超大规模群体的 Map-to-pan 泛基因组构建与测序覆盖度驱动的基因存在缺失变异 (PAV) 分析工具集。",
       "meta": {
         "repository": "https://cgm.sjtu.edu.cn/eupan/index.html",
-        "dataType": "短读段 FASTQ、参考组装 FASTA、基因注释 GFF/GTF",
-        "principle": "Map-to-pan 与覆盖度驱动的 PAV 判定",
+        "dataType": "短读段全基因组重测序 FASTQ、参考基因组 FASTA 与结构注释 GFF3/GTF",
+        "principle": "Map-to-pan 泛基因组整合、基因体/CDS 覆盖度双阈值 PAV 判定与 Heaps 定律泛基因组规模建模",
         "canonicalPaperId": "eupan-paper"
       }
     },
@@ -667,11 +667,11 @@
       "domainIds": [
         "pangenomics-structural-variation"
       ],
-      "summary": "以参考骨架引导组装序列逐步加入泛基因组图，并支持序列到图映射。",
+      "summary": "基于参考骨架引导的增量泛基因组构图工具，专注于高效捕获与集成 50 bp 以上的大型结构变异 (SVs) 与非参考序列气泡。",
       "meta": {
         "repository": "https://github.com/lh3/minigraph",
-        "dataType": "参考基因组或 rGFA 图 / 单样本组装 FASTA",
-        "principle": "参考引导的序列到图映射与增量构图",
+        "dataType": "单倍型级别组装参考基因组 FASTA、逐样本组装 FASTA 与 rGFA 格式泛基因组图",
+        "principle": "参考引导的增量图生成、图 minimizer 锚点链化、rGFA 坐标模型与拓扑气泡 (Bubble) 结构变异提取",
         "canonicalPaperId": "minigraph-paper"
       }
     },
@@ -701,11 +701,11 @@
       "domainIds": [
         "pangenomics-structural-variation"
       ],
-      "summary": "以 minimizer 种子、链化和局部碱基比对高效比对长序列、reads 与组装。",
+      "summary": "基于稀疏 minimizer 种子索引、凸仿射链化与 SIMD 向量化局部比对的高性能长读段、全基因组组装与全转录本通用对齐器。",
       "meta": {
         "repository": "https://github.com/lh3/minimap2",
-        "dataType": "长序列 FASTA/FASTQ；组装 FASTA；依预设支持短 reads 或转录本",
-        "principle": "minimizer 索引与锚点链化",
+        "dataType": "长读段 (PacBio HiFi, ONT)、全基因组染色体级组装 FASTA、短读段及全长转录组 cDNA/直接 RNA",
+        "principle": "窗口 minimizer 稀疏哈希索引、同质多聚物压缩 (HPC)、凸分段仿射 gap 链化与条带动态规划对齐",
         "canonicalPaperId": "minimap2-paper"
       }
     },
@@ -769,11 +769,11 @@
       "domainIds": [
         "pangenomics-structural-variation"
       ],
-      "summary": "通过最大精确匹配锚点、聚类和局部延伸比较近缘基因组及组装序列。",
+      "summary": "基于增强后缀数组多线程快速检索最大精确匹配 (MEMs)、聚类延伸与共线性点阵图绘制的全基因组序列比对与结构重排分析套件。",
       "meta": {
         "repository": "https://github.com/mummer4/mummer",
-        "dataType": "组装 FASTA；一个或多个核苷酸序列集合",
-        "principle": "精确匹配锚点与局部比对",
+        "dataType": "染色体级组装 FASTA、草图 Contigs/Scaffolds 与细胞器质体参考序列",
+        "principle": "增强后缀数组 (ESA) 提取最大精确匹配 (MEMs)、二分图最大权重共线性筛选 (delta-filter) 与全基因组点阵图 (Dotplot)",
         "canonicalPaperId": "mummer4-paper"
       }
     },
@@ -838,11 +838,11 @@
       "domainIds": [
         "pangenomics-structural-variation"
       ],
-      "summary": "基于全对全序列比对构建泛基因组变异图。",
+      "summary": "基于全对全序列波前比对 (wfmash)、比对图诱导 (seqwish)、局部拓扑平滑 (smoothxg) 与节点塌陷压缩 (gfaffix) 的无偏无参考泛基因组图构建套件。",
       "meta": {
         "repository": "https://github.com/pangenome/pggb",
-        "dataType": "多样本序列 FASTA",
-        "principle": "全对全比对与图规范化",
+        "dataType": "多样本单倍型级别组装 FASTA (需遵循 PanSN 命名规范)",
+        "principle": "无参考全对全多序列波前对齐、比对诱导变异图构建、SPOA 局部多重比对图平滑与单倍型无损路径追踪",
         "canonicalPaperId": "pggb-paper"
       }
     },
@@ -974,11 +974,11 @@
       "domainIds": [
         "gwas-breeding"
       ],
-      "summary": "用 Python 科学计算函数执行简单线性回归及统计检验。",
+      "summary": "利用 Python 科学计算库执行单标记普通最小二乘线性回归 (OLS)、显著性 t 检验与表型方差解释率 (PVE) 求解，剖析 GWAS 底层统计原理与群体结构混杂偏倚。",
       "meta": {
         "repository": "https://github.com/scipy/scipy",
-        "dataType": "数值型基因型与表型",
-        "principle": "线性回归与 t 检验",
+        "dataType": "离散化等位基因剂量矩阵 (0/1/2) 与连续型植物农艺表型数值向量",
+        "principle": "一元普通最小二乘法 (OLS) 解析解、学生氏 t 检验与零假设显著性推断、群体结构分化与混杂假阳性数学机理",
         "canonicalPaperId": "scipy-paper"
       }
     },
@@ -1025,11 +1025,11 @@
       "domainIds": [
         "pangenomics-structural-variation"
       ],
-      "summary": "从长读段比对中聚类结构变异信号，并支持群体联合分型和嵌合变异分析。",
+      "summary": "基于三代长读段比对的重复感知断点聚类、快速局部共识与 .snf 群体多样本联合分型的高精度全基因组结构变异 (SV) 检测工具。",
       "meta": {
         "repository": "https://github.com/fritzsedlazeck/Sniffles",
-        "dataType": "长读段 BAM/CRAM 比对；可选参考 FASTA 与多样本 SNF 文件",
-        "principle": "重复感知的信号聚类与覆盖自适应过滤",
+        "dataType": "坐标排序并建立索引的长读段 (PacBio HiFi / Oxford Nanopore) BAM/CRAM 比对文件与群体 SNF 特征文件",
+        "principle": "读段内 CIGAR 变异与补充对齐 (Split-read) 解析、重复感知断点自适应聚类、泊松覆盖度基因型推断与两阶段群体联合分型",
         "canonicalPaperId": "sniffles2-paper"
       }
     },
@@ -1110,11 +1110,11 @@
       "domainIds": [
         "pangenomics-structural-variation"
       ],
-      "summary": "使用序列变异图、路径和图索引进行读段比对与变异分析。",
+      "summary": "全面覆盖序列变异图构建、GBZ 单倍型索引、Giraffe 高性能读段图比对与 surject 线性投影的工业级图泛基因组分析套件。",
       "meta": {
         "repository": "https://github.com/vgteam/vg",
-        "dataType": "变异图 / FASTQ reads",
-        "principle": "图索引、种子匹配和单倍型感知比对",
+        "dataType": "GFA/VCF 变异图、单倍型 GBWT 索引、短读段/长读段 FASTQ 与 GAM/GAF 图比对文件",
+        "principle": "序列变异图数据模型、GBZ 单倍型感知索引、Snarl 距离矩阵加速与 Giraffe 多项式图比对",
         "canonicalPaperId": "vg-paper"
       }
     },
@@ -1127,11 +1127,11 @@
       "domainIds": [
         "regulatory-genomics-ai"
       ],
-      "summary": "使用加权相关网络识别共表达模块并研究模块与性状的关系。",
+      "summary": "基于连续幂函数软阈值无标度拓扑准则、拓扑重叠矩阵 (TOM) 动态分层聚类与第一主成分特征基因 (Eigengene) 的加权基因共表达网络分析 R 软件包。",
       "meta": {
         "repository": "https://cran.r-project.org/package=WGCNA",
-        "dataType": "样本 × 基因表达矩阵",
-        "principle": "加权相关网络与模块识别",
+        "dataType": "样本 × 基因归一化表达矩阵（要求样本数 >= 15）与样本农艺/生理表型量化表",
+        "principle": "软阈值幂函数邻接矩阵构建、无标度网络拓扑拟合、拓扑重叠矩阵 (TOM)、动态树剪枝与 SVD 模块特征基因 (ME) 分解",
         "canonicalPaperId": "wgcna-paper"
       }
     },
