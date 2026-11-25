@@ -53,53 +53,12 @@ $$\mathcal{L}(Q, F) = \sum_{i=1}^I \sum_{j=1}^J \left[ g_{ij} \log p_{ij} + (2 -
 
 ---
 
-## 3. 算法复杂度与计算性能
-
-1. **计算性能对比**：在典型的百万标记、千人规模基准测试中，STRUCTURE 需要运行数周乃至数月，而 ADMIXTURE 在单机上仅需 15–45 分钟即可完成指定 $K$ 值的全参数收敛。
-2. **直接兼容标准二进制格式**：原生读取高效的 PLINK 二进制文件（`.bed`, `.bim`, `.fam`），通过单字节存储 4 个双等位基因型，内存消耗控制在数百兆至数吉字节以内。
-3. **前置过滤关键要求**：模型理论基于标记间相互独立的统计假定。在运行 ADMIXTURE 前，**必须使用 PLINK 对全基因组标记进行严苛的连锁不平衡修剪（LD Pruning，如 `--indep-pairwise 50 10 0.1`）**，否则高 LD 染色体区块（如大倒位、强着丝粒区）会人为伪造出虚假的独立祖先成分。
-
----
-
 ## 4. 植物基因组学应用场景与科研价值
 
 植物具有极其漫长复杂的驯化历史，伴随频繁的远缘杂交与渐渗事件：
 - **水稻超级多样性群体的祖先成分解析**：在国际著名的水稻 3010 份基因组计划中，ADMIXTURE 是划分水稻主要亚群（籼稻 *indica*、粳稻 *japonica*、奥斯 *aus*、芳香稻 *aromatic*）以及鉴定中间型渗入农家种的核心标准工具；
 - **农作物驯化过程中的野生渐渗（Introgression）鉴定**：评估现代玉米自交系中是否渗入了野生大刍草（Teosinte）的基因组片段，或栽培大豆中保留的野生大豆祖先血统比例；
 - **为 GWAS 提供宏观群体结构协变量（$Q$ 矩阵）**：输出的 `.Q` 矩阵是输入经典 $Q+K$ 混合线性模型以消除全基因组关联假阳性的黄金协变量。
-
----
-
-## 5. 输入输出规范与关键参数指南
-
-### 5.1 核心分析流程与执行命令 (Bash)
-```bash
-# 步骤 1: 使用 PLINK 严格进行连锁不平衡修剪 (LD Pruning) 与质控过滤
-plink \
-  --bfile plant_raw_snps \
-  --maf 0.05 \
-  --geno 0.05 \
-  --indep-pairwise 50 10 0.1 \
-  --out plant_ld_pruned
-
-# 步骤 2: 提取修剪后的纯净独立 SNP 集合并生成子集
-plink \
-  --bfile plant_raw_snps \
-  --extract plant_ld_pruned.prune.in \
-  --make-bed \
-  --out plant_ready_for_admixture
-
-# 步骤 3: 运行 ADMIXTURE 估计祖先比例 (以设定 K=5 为例)
-admixture -j8 plant_ready_for_admixture.bed 5
-
-# 步骤 4: 输出文件说明
-# 生成 plant_ready_for_admixture.5.Q (行: 样本, 列: K 个祖先成分比例)
-# 生成 plant_ready_for_admixture.5.P (行: 标记, 列: K 个成分中的等位基因频率)
-```
-
-### 5.2 关键参数说明
-- `-j8`：指定使用 8 个 CPU 核心进行并行加速。
-- `K`：设定的祖先成分数目。常规研究中通常从 $K = 2$ 扫描至 $K = 10$，结合交叉验证误差或生物学已知亚种背景进行综合抉择。
 
 ---
 

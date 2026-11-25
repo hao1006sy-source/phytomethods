@@ -55,60 +55,12 @@ DSS 的核心算法创新在于离散度估计：
 
 ---
 
-## 3. 算法复杂度与计算性能
-
-1. **计算复杂度**：主要耗时在全基因组千万级胞嘧啶位点的空间滑动窗口平滑与 Beta-Binomial 似然拟合，计算复杂度为 $O(M \cdot W)$，其中 $M$ 为位点数，$W$ 为窗口半径。
-2. **内存与执行效率**：R/Bioconductor 封装，底层核心数值优化采用 C/C++ 编写。拟南芥全基因组（约 120 Mb，数百万胞嘧啶）在 4 核心计算机上仅需 10–20 分钟；水稻基因组（约 380 Mb）通常在 1 小时内完成。
-3. **支持多核心并行**：在 `DMLtest()` 中支持利用 `BiocParallel` 进行染色体维度的多核并行加速。
-
----
-
 ## 4. 植物基因组学应用场景与科研价值
 
 植物基因组的表观调控机制与动物具有本质区别：
 - **三种序列上下文分立**：植物具有高丰度的 CG、CHG 和 CHH 甲基化，每种上下文由截然不同的分子通路维持。DSS 支持针对这三种序列分别提取子集建立统计检验，避免不同通路信号互相稀释；
 - **环境诱导表观等位基因（Epialleles）挖掘**：在作物耐旱、耐盐碱、抗病虫害处理中，DSS 能够从微弱的背景波动中灵敏捕捉到发生稳定差异甲基化的启动子与转座子元件；
 - **多倍化亚基因组表观分化**：在小麦、棉花、油菜等异源多倍体中，利用 DSS 的多因素分析模型（`DMLfit.multiFactor`），可有效分离“亚基因组效应”、“发育时期效应”以及“环境处理交互效应”。
-
----
-
-## 5. 输入输出规范与关键参数指南
-
-### 5.1 数据准备与输入格式
-输入为经过 Bismark 等工具提取后的文本表格，需包含四列：染色体号（`chr`）、物理坐标（`pos`）、总覆盖深度（`N`）与甲基化读段数（`X`）：
-
-```R
-library(DSS)
-library(bsseq)
-
-# 读取样本数据框
-dat1 <- read.table("sample1_CpG.txt", header=TRUE) # 列: chr, pos, N, X
-dat2 <- read.table("sample2_CpG.txt", header=TRUE)
-
-# 构建 BSseq 对象
-BSobj <- makeBSseqData(list(dat1, dat2), c("Control", "Treated"))
-```
-
-### 5.2 差异甲基化检验核心工作流
-```R
-# 1. 执行位点水平差异甲基化测试（启用空间平滑）
-dmlTest <- DMLtest(BSobj, 
-                   group1=c("Control"), 
-                   group2=c("Treated"), 
-                   smoothing=TRUE, 
-                   smoothing.span=500)
-
-# 2. 提取差异甲基化位点 (DML)
-dmls <- callDML(dmlTest, p.threshold=0.001)
-
-# 3. 合并识别差异甲基化区域 (DMR)
-dmrs <- callDMR(dmlTest, 
-                p.threshold=0.01, 
-                delta=0.1,        # 甲基化差异阈值大于 10%
-                minCG=3,          # 最少包含 3 个连续胞嘧啶
-                dis.merge=100,    # 最大合并距离 100 bp
-                minlen=50)        # DMR 最小长度 50 bp
-```
 
 ---
 

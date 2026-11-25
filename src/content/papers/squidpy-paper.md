@@ -54,66 +54,12 @@ $$I = \frac{N}{W} \frac{\sum_{i=1}^N \sum_{j=1}^N w_{ij} (z_i - \bar{z})(z_j - \
 
 ---
 
-## 3. 算法复杂度与计算性能
-
-1. **图计算与空间统计高度向量化**：借助 SciPy 空间 KD-Tree 与稀疏图代数，处理单张芯片上万个 Spots 的空间图构建与 Moran's $I$ 扫描仅需数十秒。
-2. **轻量多进程支持**：基因层面的自相关检验与配体-受体空间置换检验支持多核并行分发调度。
-3. **图像与分子特征分层解耦**：采用对大尺度图像切片（Image Tiling）的高性能懒加载（Lazy Loading），在普通台式机上即可处理数百兆乃至数吉字节的高清显微成像切片。
-
----
-
 ## 4. 植物基因组学应用场景与科研价值
 
 高等植物器官（如叶片、根系、茎秆以及发育中的花与种子）具有高度严谨的同心圆向心层状结构或同轴背腹向极性：
 - **植物器官解剖层级的空间转录本梯度定位**：在植物根系横切面中，由外向内分别为表皮、外皮层、皮层、内皮层（Casparian strip）、中柱鞘及中央维管束。利用 Squidpy 的空间自相关与空间聚类，可无需先验 Marker 基因直接识别受向心径向空间梯度调控的发育关键转录因子；
 - **植物微环境细胞间通讯推断**：解析维管形成层（Cambium）干细胞与其两侧分化的木质部/韧皮部细胞之间通过多肽信号（如 CLE 多肽）与受体激酶（如 CLV1/BAM）介导的空间长程与短程分子通讯；
 - **病原菌入侵局域表观与转录防御应答**：在叶片接种真菌或细菌后，Squidpy 的条件共现与距离衰减分析能够精确定量防御应答基因在感染病灶核心区与健康外围防御环之间的空间激活扩散边界。
-
----
-
-## 5. 输入输出规范与关键参数指南
-
-### 5.1 核心分析流程与执行命令
-```python
-import squidpy as sq
-import scanpy as sc
-
-# 1. 加载包含空间坐标的 AnnData 对象 (如 10x Visium)
-adata = sq.read.visium("path/to/visium_output/")
-
-# 2. 构建空间近邻拓扑图
-sq.gr.spatial_neighbors(adata, n_rings=2, coord_type="generic")
-
-# 3. 细胞类型空间邻域富集分析 (Neighborhood Enrichment)
-sq.gr.nhood_enrichment(adata, cluster_key="cell_type")
-sq.pl.nhood_enrichment(adata, cluster_key="cell_type", figsize=(6, 5))
-
-# 4. 空间共现概率曲线计算 (Spatial Co-occurrence)
-sq.gr.co_occurrence(adata, cluster_key="cell_type")
-sq.pl.co_occurrence(adata, cluster_key="cell_type", clusters="Endodermis")
-
-# 5. 全基因组空间自相关检验识别空间可变基因 (SVGs)
-sq.gr.spatial_autocorr(
-    adata,
-    mode="moran",
-    genes=adata.var_names,
-    n_perms=100,
-    n_jobs=8
-)
-
-# 6. 配体-受体细胞间空间通讯分析
-sq.gr.ligand_receptor(
-    adata,
-    cluster_key="cell_type",
-    interactions_params={"resources": "CellChatDB"},
-    threshold=0.05
-)
-```
-
-### 5.2 关键参数说明
-- `n_rings=2`：空间邻接跳数（Ring depth），控制将邻近第几层近邻纳入局部图拓扑计算。
-- `mode="moran"`：计算 Moran's $I$ 空间自相关系数；也可选 `"geary"`（Geary's $C$）。
-- `coord_type="generic"` 或 `"grid"`：对非均匀散布点（如 Stereo-seq、MERFISH）使用 generic，对规则点阵（如 10x Visium）使用 grid。
 
 ---
 

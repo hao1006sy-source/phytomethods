@@ -49,16 +49,16 @@ $$\text{Var}(\mathbf{u}_{ge}) = (\boldsymbol{\Omega}_E \otimes \mathbf{G}) \sigm
 
 线性混合模型（GBLUP）基于加性遗传假说，难以直接捕捉基因间复杂的高阶上位性互作（High-order Epistasis）以及转录因子非线性调控网络。
 
-DNNGP（Wang et al., 2023, Molecular Plant）提出了一种端到端整合基因组、转录组等多组学数据的深度学习网络架构：
-1. **多视图输入对齐（Multi-view Inputs）**：
-   输入包含全基因组高密度 SNP 矩阵 $\mathbf{X}_{\text{SNP}}$ 与关键组织基因表达谱矩阵 $\mathbf{X}_{\text{RNA}}$；
-2. **多尺度特征提取器（Convolutional & Dense Blocks）**：
-   - 采用一维卷积（1D-CNN）捕获染色体物理邻域上的局部单倍型模式；
-   - 采用多层全连接网络（Dense Layers）与非线性激活函数（ReLU/GELU）模拟多基因非线性级联响应；
-3. **正则化与训练防过拟合**：
-   引入批归一化（Batch Normalization）、Dropout（比例 $0.2 \sim 0.4$）与 Early Stopping 策略；
-4. **性能优势**：
-   在拟南芥代谢物含量、水稻粒型与玉米株高复合性状测试中，DNNGP 相比传统 GBLUP 与随机森林，显著提升了非加性复杂性状的拟合优度与跨群体泛化能力。
+DNNGP（Kelin Wang et al., 2023, *Molecular Plant*）提出了一种整合基因组与转录组等多组学数据的深度学习网络架构：
+1. **多组学独立输入分支**：
+   输入包含全基因组高密度 SNP 矩阵 $\mathbf{X}_{\text{SNP}}$ 与关键组织基因表达谱矩阵 $\mathbf{X}_{\text{RNA}}$，分别送入独立特征提取子网络；
+2. **三层一维卷积特征提取（3-layer 1D-CNN）**：
+   - 采用 3 层一维卷积（1D-CNN）逐层提取局域特征表示；
+   - 卷积层后紧随批量归一化（Batch Normalization）稳定隐层分布，并结合 Dropout 随机失活策略防止高维小样本过拟合；
+3. **特征拼接与回归输出**：
+   各分支特征展开后经全连接层映射并在融合层进行通道拼接，最终由单神经元线性输出连续型表型预测标量；
+4. **软件实现与评估**：
+   官方实现基于 Python 3.9 与 TensorFlow 2.6.0，使用 MSE 损失函数与 Adam 优化器，在小麦杂交种产量、玉米自交系性状及拟南芥代谢物等公开数据集上通过十折交叉验证评估预测性能。
 
 ---
 

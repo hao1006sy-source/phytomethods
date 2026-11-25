@@ -56,62 +56,12 @@ PLINK 提供了全基因组单倍型连锁不平衡的黄金统计量计算：
 
 ---
 
-## 3. 算法复杂度与计算性能
-
-1. **计算性能卓越**：纯 C/C++ 底层位运算使得数万个体、数百万标记的清洗与过滤仅需数十秒至数分钟。
-2. **内存消耗极低**：直接在压缩二进制位空间进行内存映射（Memory Mapping）与按位代数操作（Bitwise Operations），内存消耗保持在常数级。
-3. **后续生态演进**：在后续的 **PLINK 1.9** 与 **PLINK 2.0** 中，进一步引入了多线程 SIMD 指令集加速（AVX2），计算吞吐量进一步提升一个数量级。
-
----
-
 ## 4. 植物基因组学应用场景与科研价值
 
 植物种质资源库中杂质、近交系重复以及测序错误不可避免，PLINK 是全套植物基因组学生信流程的第一道门户：
 - **作物品种全基因组重测序质量控制**：通过 `--geno 0.05 --mind 0.05 --maf 0.05` 彻底清除因低深度测序产生的劣质标记与污染样本；
 - **植物种质资源重复与近亲消除**：利用 `--genome` 模块快速识别种质库中由于命名混乱导致的同一品种异名重复（Duplicate Accessions），避免在后续 GWAS 中产生虚假的超高显著性；
 - **全基因组连锁不平衡衰减距离（LD Decay）评估**：计算不同物理距离下的平均 $r^2$，绘制植物群体的 LD 衰减曲线（如自交作物水稻 LD 衰减常在 100–200 kb，而异交玉米常在几千个碱基内衰减），为确定 GWAS 候选因果区段提供关键物理基准。
-
----
-
-## 5. 输入输出规范与关键参数指南
-
-### 5.1 核心操作流程与命令行执行
-```bash
-# 1. 将标准多样本 VCF 转换为 PLINK 二进制格式
-plink --vcf plant_raw.vcf.gz --make-bed --out plant_binary
-
-# 2. 严苛质量控制过滤 (缺失率 < 5%, 杂合异常过滤, MAF >= 5%)
-plink \
-  --bfile plant_binary \
-  --geno 0.05 \
-  --mind 0.05 \
-  --maf 0.05 \
-  --hwe 1e-6 \
-  --make-bed \
-  --out plant_qc_clean
-
-# 3. 计算个体成对亲缘度与重复样本诊断 (IBS/IBD)
-plink --bfile plant_qc_clean --genome --out plant_ibd_check
-# 查看 plant_ibd_check.genome 中 PI_HAT > 0.95 的疑似重复品系
-
-# 4. 全基因组连锁不平衡修剪 (LD Pruning，输出独立位点列表)
-plink \
-  --bfile plant_qc_clean \
-  --indep-pairwise 50 10 0.1 \
-  --out plant_ld_pruned
-# 生成 plant_ld_pruned.prune.in (独立位点列表)
-
-# 5. 主成分分析 (PCA) 提取前 10 个主成分
-plink \
-  --bfile plant_qc_clean \
-  --extract plant_ld_pruned.prune.in \
-  --pca 10 \
-  --out plant_pca_results
-```
-
-### 5.2 关键参数说明
-- `--geno 0.05` 与 `--mind 0.05`：分别剔除缺失率超过 5% 的标记与个体。
-- `--indep-pairwise 50 10 0.1`：滑动窗口大小为 50 个 SNP，步长为 10 个 SNP，剔除成对 $r^2 > 0.1$ 的高连锁冗余标记。
 
 ---
 

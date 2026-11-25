@@ -51,53 +51,12 @@ BCFtools 摒弃了早期将所有位点简化为双等位基因的传统做法�
 
 ---
 
-## 3. 算法复杂度与计算性能
-
-1. **极致的代码性能**：底层全部采用高度优化的纯 C 语言编写，流式 I/O 吞吐速度基本达到物理固态硬盘（SSD）的硬件读取上限。
-2. **二进制 BCF 格式存储优势**：BCF 采用纯二进制流式编码，文件体积比文本 VCF.gz 缩小 30% 以上，且解析和过滤速度提速 **4 至 6 倍**。
-3. **强大的表达式语法解析器**：内置灵活的内联过滤引擎，能够解析包含复杂逻辑（如 `INFO/DP > 10 && QUAL >= 30 && F_MISSING < 0.1`）的表达式，无需编写任何中间 Python/Perl 脚本。
-
----
-
 ## 4. 植物基因组学应用场景与科研价值
 
 植物基因组往往具有高杂合度、高度重复的转座子序列以及多倍化同源区段：
 - **植物高通量重测序 SNP/InDel 标准化清洗**：利用 `bcftools filter` 与 `bcftools view` 快速剔除测序深度过低（假阳性）或异常过高（转座子多拷贝错配堆积）的位点；
 - **多亲本与多样本群体 VCF 高效合并（Merge）**：将数百个作物品种的单样本 gVCF 或 VCF 快速合并为一个群体级矩阵，并自动正确处理缺失等位基因标记；
 - **单倍型共祖分析（PSMC / MSMC2）前置输入准备**：利用 `bcftools consensus` 生成个体的全染色体一致性 FASTA 序列，并结合深度阈值生成可调用掩码（Callable Masks）。
-
----
-
-## 5. 输入输出规范与关键参数指南
-
-### 5.1 核心操作流程与命令行执行
-```bash
-# 步骤 1: 从比对 BAM 文件执行端到端变异调用 (多等位基因模式)
-bcftools mpileup -Ou -f plant_ref.fa -q 20 -Q 20 sample.sorted.bam | \
-  bcftools call -mv -Ob -o sample.raw.bcf
-
-# 步骤 2: 变异位点严格规范化 (左对齐并分离多等位基因)
-bcftools norm -m -any -f plant_ref.fa sample.raw.bcf -Ob -o sample.norm.bcf
-
-# 步骤 3: 复杂表达式多条件过滤
-bcftools view \
-  -i 'QUAL >= 30 && DP >= 10 && DP <= 80 && MQ >= 40' \
-  -g hom \
-  -Oz -o sample.filtered.vcf.gz \
-  sample.norm.bcf
-tabix -p vcf sample.filtered.vcf.gz
-
-# 步骤 4: 多样本全基因组 VCF 合并
-bcftools merge -Oz -o plant_population.vcf.gz sample1.filtered.vcf.gz sample2.filtered.vcf.gz ...
-tabix -p vcf plant_population.vcf.gz
-
-# 步骤 5: 生成样本的全基因组一致性序列 (用于下游演化分析)
-bcftools consensus -f plant_ref.fa -m mask.bed sample.filtered.vcf.gz > sample_consensus.fa
-```
-
-### 5.2 关键参数说明
-- `-m, --multiallelic-caller`：启用现代多等位基因变异调用模型，优于过时的单等位基因假设。
-- `bcftools norm -m -any`：将具有多个替代等位基因的复合位点拆解为独立的双等位基因行，确保后续工具能够无缝解析。
 
 ---
 

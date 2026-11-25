@@ -69,14 +69,6 @@ EUPAN 架构由七大高度协作的功能模块组成，其核心计算流程�
 
 ---
 
-## 算法复杂度与计算性能
-
-- **高并发作业分发**：EUPAN 原生支持 PBS、SLURM 及 SGE 等高性能计算集群（HPC）作业调度系统，将数千个样本的组装与比对无缝分发至数百个节点；
-- **计算瓶颈与突破**：其主要算力消耗集中在前期单样本从头组装与全局 Map-to-Pan 回贴比对上；一旦生成 PAV 矩阵，下游的核心/可变基因划分与系统发育分析可在数分钟内瞬间完成；
-- **农业标杆实测**：原论文使用水稻 3,000 基因组计划的真实数据进行全面验证，成功鉴定了数千个在常规参考水稻（日本晴）中缺失但在地方品种与野生稻中特异存在的功能基因。
-
----
-
 ## 植物基因组学应用场景与科研价值
 
 1. **大规模农作物核心种质泛基因组构建与资源盘点**：在二代测序占主导的数百至数千个植物群体重测序项目中，EUPAN 提供了标准的非参考基因挖掘与 PAV 分析范式；
@@ -84,36 +76,6 @@ EUPAN 架构由七大高度协作的功能模块组成，其核心计算流程�
 3. **驱动基于 PAV 的全基因组关联分析（PAV-GWAS）**：生成的基因存在/缺失 0/1 离散矩阵，可直接作为分子标记输入 GAPIT、EMMAX 等 GWAS 软件，挖掘控制农艺性状的关键缺失基因。
 
 更多植物泛基因组建模与分析实操请参阅 [泛基因组与核心、可变基因组](../../topics/pangenomics-structural-variation/m03-topic-01/)。
-
----
-
-## 输入输出规范与关键参数指南
-
-### 1. 核心输入输出
-- **输入**：群体的双端测序 FASTQ 序列、标准参考基因组 FASTA 及对应基因注释 GFF3 文件；
-- **输出**：泛基因组非冗余序列 FASTA、群体基因存在/缺失变异矩阵（PAV 0/1 矩阵）、核心/可变基因归类列表，以及 Heaps' law 拟合曲线图。
-
-### 2. 标准运行命令
-```bash
-# 步骤 1: 运行比对并将未对齐 reads 组装成样本特异 contigs
-eupan qalign -f sample.fq1.gz -r sample.fq2.gz -d ref_genome.fa -o align_out
-eupan assem -i unmapped_reads/ -o novel_contigs/
-
-# 步骤 2: 聚类去冗余构建 Pan-genome 序列
-eupan cd-hit -i novel_contigs.fa -o novel_nonredundant.fa -c 0.90
-cat ref_genome.fa novel_nonredundant.fa > pan_genome.fa
-
-# 步骤 3: Map-to-Pan 全群体再比对与覆盖度统计
-eupan align -i all_samples/ -d pan_genome.fa -o map_to_pan_bam/
-eupan gcover -a map_to_pan_bam/ -g all_genes.gff3 -o gene_coverage.txt
-
-# 步骤 4: 基于 80% 阈值生成群体 PAV 矩阵与 Heaps' Law 拟合
-eupan pav -i gene_coverage.txt -t 0.8 -o pav_matrix.tsv
-eupan heaps -i pav_matrix.tsv -n 100 -o heaps_simulation.txt
-```
-- `cd-hit -c 0.90`：设定序列相似度阈值 90% 用于去冗余；
-- `eupan pav -t 0.8`：设置覆盖度判据阈值（默认 80%）；
-- `eupan heaps -n 100`：执行 100 次蒙特卡洛随机重抽样拟合 Heaps 幂律曲线。
 
 ---
 

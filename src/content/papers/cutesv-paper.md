@@ -64,14 +64,6 @@ cuteSV 将长读段结构变异检测拆解为特征提取、自适应聚类、�
 
 ---
 
-## 算法复杂度与计算性能
-
-- **惊人的计算速度**：cuteSV 采用纯 C/Python 底层优化，在常规植物 30× 长读段重测序数据中，全基因组 SV 检测仅需数十分钟至 1 小时，速度显著快于初代 Sniffles；
-- **超低内存驻留**：按染色体分块处理，内存开销通常低于 10 GB，非常利于在高通量计算集群上对数十至数百个样本执行高并发批处理；
-- **基准表现**：原论文在人类 HG002 黄金基准集（Genome in a Bottle, GIAB）测试中，cuteSV 在 PacBio HiFi、CLR 和 ONT 三种平台上均取得了卓越的 F1-score 与超高的断裂点精准度。
-
----
-
 ## 植物基因组学应用场景与科研价值
 
 1. **复杂农作物抗病、品质等关键性状的大片段 SV 挖掘**：在玉米、水稻、大豆等农作物中，cuteSV 能够稳定检出跨越数千碱基的转座子插入与基因缺失变异；
@@ -79,43 +71,6 @@ cuteSV 将长读段结构变异检测拆解为特征提取、自适应聚类、�
 3. **结合群体全基因组重测序进行 SV-GWAS 关联分析**：快速处理群体中数十个长读段测序材料，生成高质量的 SV 基因型矩阵，直接用于农艺表型的全基因组关联分析。
 
 更多结构变异检测实战请参阅 [结构变异多方法检测](../../topics/pangenomics-structural-variation/m03-topic-03/)。
-
----
-
-## 输入输出规范与关键参数指南
-
-### 1. 核心输入输出
-- **输入**：由 minimap2 或 ngmlr 产生的排序并建立索引的长读段 BAM 文件，以及参考基因组 FASTA；
-- **输出**：符合 VCFv4.2 标准的结构变异检测结果（包含 SVTYPE=INS/DEL/INV/DUP/BND 及基因型 GT/GQ/DR/DV）。
-
-### 2. 标准运行命令
-```bash
-# 针对 PacBio HiFi 高准确度长读段执行 SV 检测
-cuteSV align_hifi.sorted.bam ref_genome.fa output_hifi.vcf work_dir/ \
-  --max_cluster_bias_INS 100 \
-  --diff_ratio_filtering_INS 0.3 \
-  --max_cluster_bias_DEL 100 \
-  --diff_ratio_filtering_DEL 0.3 \
-  --min_support 5 \
-  --min_size 50 \
-  --genotype \
-  --threads 16
-
-# 针对 Oxford Nanopore ONT 长读段 (容错阈值适当放宽)
-cuteSV align_ont.sorted.bam ref_genome.fa output_ont.vcf work_dir/ \
-  --max_cluster_bias_INS 100 \
-  --diff_ratio_filtering_INS 0.3 \
-  --max_cluster_bias_DEL 100 \
-  --diff_ratio_filtering_DEL 0.3 \
-  --min_support 10 \
-  --min_size 50 \
-  --genotype \
-  --threads 16
-```
-- `--min_support`：支持变异的最小读段数。在 30× 测序深度下，HiFi 建议设为 3~5，ONT 建议设为 5~10；
-- `--min_size 50`：结构变异判定的最小长度截断；
-- `--genotype`：启用最大似然基因型分型；
-- `work_dir/`：指定用于多线程分块处理的临时缓存目录。
 
 ---
 

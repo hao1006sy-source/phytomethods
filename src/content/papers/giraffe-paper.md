@@ -59,14 +59,6 @@ vg Giraffe 依靠四套高度协同的超紧凑数学索引系统实现了飞跃
 
 ---
 
-## 算法复杂度与计算性能
-
-- **比对速度**：与传统 `vg map` 相比，Giraffe 的比对速度提升了近一个数量级（~10×），与目前工业界黄金标准 BWA-MEM 速度相差无几；
-- **内存占用**：在人类或典型植物基因组（如拟南芥、水稻、番茄）中，全套索引驻留内存通常仅需 20~40 GB，可在常规计算节点甚至高配工作站上平稳运行；
-- **大规模分型里程碑**：原论文在 5,202 个人类基因组短读段重测序数据集中，成功对由三代长读长技术发现的 167,000 个已知结构变异进行了超高准确度的直接基因型分型（Genotyping），奠定了群体泛基因组分型新范式。
-
----
-
 ## 植物基因组学应用场景与科研价值
 
 1. **大规模育种群体已知结构变异的低成本全息分型**：先用少数优质代表性个体（如 20~50 套核心种质）利用三代组装构建高质量泛基因组图；随后在数千个农家种、重组自交系（RIL）或育种材料的廉价常规二代重测序中，利用 Giraffe 直接获取所有结构变异与等位基因型；
@@ -74,34 +66,6 @@ vg Giraffe 依靠四套高度协同的超紧凑数学索引系统实现了飞跃
 3. **驱动基于泛基因组的图空间 GWAS 分析**：为后续基于图的变异识别（`vg pack` + `vg call`）提供高质量的比对支撑（GAF/GAM），挖掘与重要农艺性状强关联的关键结构变异。
 
 更多技术细节请参阅 [图形泛基因组构建方法](../../topics/pangenomics-structural-variation/m03-topic-02/) 与 [结构变异多方法检测](../../topics/pangenomics-structural-variation/m03-topic-03/)。
-
----
-
-## 输入输出规范与关键参数指南
-
-### 1. 核心输入输出
-- **输入**：泛基因组图压缩文件（`.gbz`）、距离索引（`.dist`）、最小采样索引（`.min`），以及二代测序 FASTQ 读段；
-- **输出**：图比对格式（`.gam` 或文本 `.gaf.gz`），可直接通过管道转换为参考坐标系 BAM 或用于变异分型。
-
-### 2. 标准运行命令
-```bash
-# 使用 vg giraffe 进行超高速单倍型感知图比对
-vg giraffe \
-  -Z pangenome.gbz \
-  -d pangenome.dist \
-  -m pangenome.min \
-  -f sample_R1.fq.gz -f sample_R2.fq.gz \
-  -t 32 \
-  -o gaf > sample.gaf
-
-# 基于图比对深度进行变异分型
-vg pack -x pangenome.gbz -a sample.gaf -Q 5 -o sample.pack
-vg call -k sample.pack -r pangenome.snarls pangenome.gbz > sample_calls.vcf
-```
-- `-Z, -d, -m`：分别指定 GBZ 泛基因组图、距离索引和 Minimizer 索引；
-- `-o gaf`：输出 Graph Alignment Format（GAF）文本比对流；
-- `vg pack`：统计图节点与边的测序读段覆盖深度；
-- `vg call -k`：基于覆盖度对图中的变异气泡进行最大似然基因型判定。
 
 ---
 

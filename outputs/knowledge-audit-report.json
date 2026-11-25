@@ -1,11 +1,11 @@
 {
   "version": "2.1.0",
-  "generatedAt": "2026-11-25T15:16:25.264Z",
+  "generatedAt": "2026-11-25T16:10:05.239Z",
   "integrityPassed": true,
   "stats": {
     "nodesCount": 305,
-    "edgesCount": 742,
-    "evidenceEntriesCount": 800,
+    "edgesCount": 743,
+    "evidenceEntriesCount": 801,
     "nodesByType": {
       "domain": 9,
       "method": 59,
@@ -21,7 +21,7 @@
       "extends_method": 3,
       "introduces_method": 59,
       "studies_species": 64,
-      "uses_method": 66,
+      "uses_method": 67,
       "references_method": 1,
       "evaluates_method": 6,
       "features_method": 112,
@@ -29,7 +29,7 @@
       "guides_method": 10
     },
     "evidenceByStatus": {
-      "source_checked": 599,
+      "source_checked": 600,
       "structurally_valid": 201,
       "needs_review": 0
     },
@@ -60,7 +60,7 @@
         "needs_review": 0
       },
       "uses_method": {
-        "source_checked": 66,
+        "source_checked": 67,
         "structurally_valid": 0,
         "needs_review": 0
       },
@@ -145,6 +145,7 @@
         "rice"
       ],
       "methodIds": [
+        "psmc",
         "msmc",
         "smcpp"
       ],
@@ -3536,8 +3537,15 @@
       "topicIds": [
         "m05-topic-06"
       ],
-      "applicationPapersCount": 2,
+      "applicationPapersCount": 3,
       "applicationPapers": [
+        {
+          "id": "african-rice-246-genomes",
+          "title": "The Rise and Fall of African Rice Cultivation Revealed by Analysis of 246 New Genomes",
+          "species": [
+            "rice"
+          ]
+        },
         {
           "id": "populus-euphratica-demography",
           "title": "Genome resequencing reveals demographic history and genetic architecture of seed salinity tolerance in Populus euphratica",

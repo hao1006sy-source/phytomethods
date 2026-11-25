@@ -59,65 +59,12 @@ $$TOM_{ij} = \frac{\sum_u a_{iu} a_{uj} + a_{ij}}{\min(k_i, k_j) + 1 - a_{ij}}$$
 
 ---
 
-## 3. 算法复杂度与计算性能
-
-1. **计算瓶颈在于大矩阵相乘**：全基因组 TOM 矩阵计算复杂度为 $O(N^3)$（基于 BLAS 矩阵乘法加速）。
-2. **块式并行策略（Blockwise Modules）**：当基因数量超过 2 万至 4 万时，WGCNA 提供了 `blockwiseModules()` 算法，先通过两步预聚类将全基因组划分为多个计算块（Blocks），在每个块内独立构建 TOM 并在最后合并模块，极大节省了物理内存。
-3. **C 级多线程支持**：通过编译优化支持 OpenMP 多线程相关系数矩阵计算。
-
----
-
 ## 4. 植物基因组学应用场景与科研价值
 
 在作物遗传改良与逆境生理学中，WGCNA 是解释转录组与宏观表型桥梁的核心分析方法：
 - **复杂农艺性状的协同基因群锁定**：例如在水稻籽粒灌浆、玉米籽粒淀粉合成或油菜种子含油量研究中，WGCNA 能够将全基因组表达数据归纳为特定的共表达模块，直接鉴定出与灌浆速率显著相关的“碳水化合物代谢模块”或“脂质转运模块”；
 - **非生物胁迫响应时空网络解析**：在干旱或低温渐进处理时序样本中，追踪模块特征基因（ME）的动态升降，发掘在特定处理时期特异性启动的胁迫早期响应 Hub 转录因子（如 DREB、NAC）；
 - **异源多倍体模块保守性比较**：利用模块保留性统计量（Module Preservation Statistics），评估全基因组复制（WGD）后同源基因网络在不同亚基因组间的功能保守性与分化。
-
----
-
-## 5. 输入输出规范与关键参数指南
-
-### 5.1 核心分析流程与执行代码 (R / CRAN)
-```R
-library(WGCNA)
-enableWPT(nThreads = 16)  # 启用多线程
-
-# 1. 载入经过标准化且去除低表达基因的表达矩阵 (行: 样本, 列: 基因)
-datExpr <- read.table("normalized_expression.txt", header = TRUE, row.names = 1)
-
-# 2. 软阈值参数客观筛选 (无标度拓扑拟合)
-powers <- c(c(1:10), seq(from = 12, to = 20, by = 2))
-sft <- pickSoftThreshold(datExpr, powerVector = powers, networkType = "signed", verbose = 5)
-
-# 3. 一步法块式模块识别与网络构建 (推荐 power 设为 sft$powerEstimate)
-net <- blockwiseModules(
-  datExpr,
-  power = 12,
-  networkType = "signed",
-  TOMType = "signed",
-  minModuleSize = 30,
-  mergeCutHeight = 0.25,        # 相似模块合并截断高度 (相关性 > 0.75 合并)
-  numericLabels = TRUE,
-  pamRespectsDendro = FALSE,
-  saveTOMs = FALSE,
-  verbose = 3
-)
-
-# 4. 计算模块特征基因 (ME) 与外部表型关联
-moduleColors <- labels2colors(net$colors)
-MEs <- net$MEs
-moduleTraitCor <- cor(MEs, traitData, use = "p")
-moduleTraitPvalue <- corPvalueStudent(moduleTraitCor, nrow(datExpr))
-
-# 5. 计算模块内基因连接度 (kME) 筛选核心 Hub 基因
-geneModuleMembership <- as.data.frame(cor(datExpr, MEs, use = "p"))
-```
-
-### 5.2 关键参数说明
-- `networkType = "signed"`：强烈推荐构建有符号网络，避免将强负相关基因错误聚集在同一功能协作模块内。
-- `mergeCutHeight = 0.25`：模块特征基因相似度阈值（$1 - 0.25 = 0.75$），将高度相关的冗余小分支进行合并。
-- `minModuleSize = 30`：设定单个模块所包含的最小基因数目。
 
 ---
 

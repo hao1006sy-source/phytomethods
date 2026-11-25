@@ -75,17 +75,6 @@ OrthoFinder 采用深度分层的计算图流程，核心数据流与数学算�
 
 ---
 
-## 算法复杂度与计算性能
-
-| 维度 | 指标与实测表现 | 算法设计与工程机制 |
-| :--- | :--- | :--- |
-| **搜索阶段提速** | 结合 DIAMOND ultra-sensitive 模式提速 **100~500 倍** | 原生无缝集成 DIAMOND / MMseqs2 并行加速 |
-| **计算耗时** | 典型 20~30 个植物基因组约 6~12 小时（48 线程） | 多重比对与建树任务采用细粒度多进程线程池并发调度 |
-| **内存峰值控制** | 典型多物种分析约 24~48 GB RAM | 采用基于磁盘的稀疏图存储与分块聚类，避免大内存溢出 |
-| **同源推断准确度** | 在 Quest for Orthologs (QfO) 国际基准中排名第一 | 兼具极高的真阳性召回率与极低的旁系同源误判率 |
-
----
-
 ## 植物基因组学应用场景与科研价值
 
 1. **植物古多倍化与全基因组复制（WGD）定位**：
@@ -94,42 +83,6 @@ OrthoFinder 采用深度分层的计算图流程，核心数据流与数学算�
    在作物多品种群体泛基因组中，OrthoFinder 是将数万个材料的预测基因聚类为 Core（核心）、Softcore、Dispensable（可变）及 Private（特有）基因家族的标准计算框架；
 3. **直系同源单拷贝系统发育基因组学（Phylogenomics）超级矩阵构建**：
    自动筛选全基因组所有严格 1:1 单拷贝直系同源基因，一键输出串联多序列比对（Concatenated Supermatrix），供 IQ-TREE 2 开展高精度物种分化时间估算。
-
----
-
-## 输入输出规范与关键参数指南
-
-### 关键运行步骤
-
-```bash
-# 1. 标准全自动系统发育直系同源推断 (采用 DIAMOND ultra-sensitive 模式)
-orthofinder \
-  -f plant_proteomes_dir/ \
-  -t 48 \
-  -a 16 \
-  -S diamond_ultra_sens \
-  -o orthofinder_results
-
-# 2. 如果已有预先推断的已知权威物种树 (跳过树推断以加速)
-orthofinder \
-  -f plant_proteomes_dir/ \
-  -s species_tree.nwk \
-  -t 48 \
-  -o orthofinder_results
-```
-
-- `-f <dir>`：包含各物种蛋白质 FASTA 文件的输入目录（每个文件命名为 `<species_id>.fa`，且每条蛋白必须是代表性最长转录本）；
-- `-t <int>`：总体搜索比对使用的 CPU 线程数；
-- `-a <int>`：基因树分析阶段并发执行的进程数；
-- `-S diamond_ultra_sens`：开启超高灵敏度 DIAMOND 模式（推荐用于植物远缘物种分析）。
-
-### 核心产物文件解读
-
-- `Orthogroups/Orthogroups.tsv`：主同源群分类大表，记录每个 Orthogroup 包含的各物种基因列表；
-- `Orthogroups/Orthogroups_UnassignedGenes.tsv`：单物种特有的未聚类孤儿基因（Orphan genes）；
-- `Comparative_Genomics_Statistics/`：包含全基因组基因保留率、物种共有基因家族比例统计表；
-- `Phylogenetic_Hierarchical_Orthogroups/`：基于物种树各个古老演化节点（N0, N1, N2...）界定的系统发育层次同源群（HOGs）；
-- `Gene_Duplication_Events/`：记录全基因组每一个基因复制事件发生在基因树上的具体节点及置信支持度。
 
 ---
 

@@ -63,14 +63,6 @@ MUMmer4 核心架构由现代后缀数组构造算法与分阶段比对流水线
 
 ---
 
-## 算法复杂度与计算性能
-
-- **后缀数组构建时间**：对于大小为 $G$ 的参考序列，构建时间为 $\mathcal{O}(G \log G)$，在现代服务器上几分钟内即可建好大豆或水稻全基因组索引；
-- **匹配时间**：查询序列在后缀数组中的精确匹配查询时间为亚线性 $\mathcal{O}(L \log G)$；
-- **内存优化基准**：原论文基准表明，比对整个人类基因组或水稻全套染色体时，MUMmer4 相比 MUMmer 3 速度提升了 3~4 倍，且峰值内存稳定控制在 10~25 GB 之间。
-
----
-
 ## 植物基因组学应用场景与科研价值
 
 1. **染色体全基因组点阵图（Dotplot）权威绘制**：配合 `mummerplot`，直观呈现染色体间倒位、易位、着丝粒重排及串联基因扩增，是植物基因组组装论文中第一张必备质量概览图；
@@ -78,35 +70,6 @@ MUMmer4 核心架构由现代后缀数组构造算法与分阶段比对流水线
 3. **SyRI 结构变异分类的可靠候选比对源**：MUMmer4 生成并经 `show-snps` 或 delta 转换后的比对结果，可直接作为共线性与重排检测工具的输入。
 
 相关共线性理论与图谱分析请参阅 [全基因组共线性比对与重排识别](../../topics/pangenomics-structural-variation/m03-topic-04/)。
-
----
-
-## 输入输出规范与关键参数指南
-
-### 1. 核心输入输出
-- **输入**：参考基因组 FASTA 与查询基因组 FASTA；
-- **输出**：包含序列比对坐标与碱基插入删除的紧凑比对文件（`.delta`）、共线比对坐标表（`show-coords`）、SNP/InDel 变异表（`show-snps`），以及染色体点阵图（`.png` 或 `.ps`）。
-
-### 2. 标准运行命令
-```bash
-# 步骤 1: 使用 nucmer 执行多线程全基因组核苷酸比对
-nucmer -t 24 --maxmatch \
-  -p plant_nucmer \
-  ref_genome.fa qry_genome.fa
-
-# 步骤 2: 过滤比对结果，保留最优 1-to-1 直系同源共线块 (过滤低质量微小重复)
-delta-filter -1 -i 90 -l 1000 plant_nucmer.delta > plant_nucmer.filter.delta
-
-# 步骤 3: 导出比对坐标表
-show-coords -r -c -l -T plant_nucmer.filter.delta > plant_nucmer.coords
-
-# 步骤 4: 绘制全染色体共线性 Dotplot 点阵图
-mummerplot --png --large --layout \
-  -p plant_dotplot plant_nucmer.filter.delta
-```
-- `--maxmatch`：不局限于唯一匹配，搜索所有最大精确匹配（适用于富含重复序列的植物）；
-- `delta-filter -1`：挑选一对一最佳共线链；`-i 90`：保留一致度 $\ge 90\%$ 的匹配；`-l 1000`：过滤长度小于 1 kb 的碎片化比对；
-- `mummerplot --layout`：自动按共线性对齐并调整染色体染色体排布顺序。
 
 ---
 

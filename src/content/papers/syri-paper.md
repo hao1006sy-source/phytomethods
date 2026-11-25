@@ -61,14 +61,6 @@ SyRI 采用**有向无环图（DAG）搜索与分层网络聚类**算法，将�
 
 ---
 
-## 算法复杂度与计算性能
-
-- **极低的计算开销**：由于比对计算已在前置比对器（如 minimap2 或 AnchorWave）中完成，SyRI 自身的拓扑图解析与变异分类算法极其高效，在常规植物全基因组染色体分析中通常仅需数分钟至半小时；
-- **内存消耗轻量**：在拟南芥、水稻等典型植物基因组中内存开销一般不超过 8~16 GB；
-- **实验与生物学验证**：原论文对拟南芥 Col-0 与经典生态型 Cvi-0、Ler 进行全基因组比对，不仅完整重构了染色体核型重排历史，且对预测出的多个大片段倒位与重复进行了 PCR 与荧光原位杂交（FISH）的严格实验验证。
-
----
-
 ## 植物基因组学应用场景与科研价值
 
 1. **物种亚种间核型重排与分化历史解析**：在水稻籼粳亚种间、拟南芥不同生态型间，SyRI 能够全面绘制染色体结构演化图景，揭示倒位介导的重组抑制效应；
@@ -76,32 +68,6 @@ SyRI 采用**有向无环图（DAG）搜索与分层网络聚类**算法，将�
 3. **Plotsr 共线性带状图可视化**：与下游绘图工具 `plotsr` 深度集成，能够绘制出版级别的多基因组染色体线性比对带状图，直观展示倒位（红色）与易位（蓝色）的染色体位置。
 
 具体实操与命令演示详见本站配套实战教程：[SyRI 染色体共线性与重排识别教程](../../tutorials/syri-intro/)；更多背景请参阅 [全基因组共线性比对与重排识别](../../topics/pangenomics-structural-variation/m03-topic-04/)。
-
----
-
-## 输入输出规范与关键参数指南
-
-### 1. 核心输入输出
-- **输入**：参考基因组 FASTA、查询基因组 FASTA，以及两者的全基因组比对文件（SAM/BAM 或由 `minimap2 -cxasm5 --eqx` 生成的比对文件）；
-- **输出**：纯文本重排分类注释表（`syri.out`）、标准化结构变异 VCF 文件（`syri.vcf`），以及 Plotsr 可视化矢量图。
-
-### 2. 标准运行命令
-```bash
-# 步骤 1: 使用 minimap2 进行全基因组长共线性比对 (保留精确等号比对标记 --eqx)
-minimap2 -ax asm5 --eqx -t 16 ref.fa qry.fa | samtools sort -O BAM -o align.bam
-samtools index align.bam
-
-# 步骤 2: 运行 SyRI 解构全基因组宏观重排与局部变异
-syri -c align.bam -r ref.fa -q qry.fa -k -F B --prefix plant_syri_
-
-# 步骤 3: 使用 plotsr 绘制精美多染色体共线性带状图
-plotsr --sr plant_syri_syri.out \
-  --genomes genomes.txt \
-  -o pangenome_rearrangements.png
-```
-- `-c align.bam`：输入的排好序的 BAM 比对文件；
-- `-k -F B`：保持中间计算缓存并指定比对输入格式为 BAM；
-- `--prefix`：输出文件命名前缀。
 
 ---
 

@@ -59,58 +59,12 @@ $$w(\text{TF}_i \to \text{Target}_j) = \sum_{T \in \text{Forest}} \sum_{S \in T,
 
 ---
 
-## 3. 算法复杂度与计算性能
-
-1. **计算复杂度**：对于 $p$ 个基因、$N$ 个样本和 $T$ 棵决策树，时间复杂度约为 $O(p \cdot T \cdot \sqrt{M} \cdot N \log N)$（$M$ 为候选调控因子数）。
-2. **天然易并行的计算架构（Embarrassingly Parallel）**：由于每个靶基因的回归模型完全相互独立，GENIE3 支持通过多核 CPU 进行分布式并行加速。
-3. **算法健壮性**：树集成方法对转录组数据中的非线性饱和、单调转换（如 log 转换与否）高度不敏感，且对离群极值具有天然的免疫力。
-
----
-
 ## 4. 植物基因组学应用场景与科研价值
 
 植物具有极其庞大且多样的转录因子家族（占植物基因组编码基因的 5%–10%），调控关系高度交织：
 - **植物核心抗逆转录回路从头重建**：例如在水稻或玉米干旱胁迫转录组数据中，输入已知的植物转录因子列表（如 bZIP、WRKY、NAC、MYB 等），GENIE3 能够无偏挖掘出位于调控层级顶端的“主调控因子（Master Regulators）”及其下游直接激活的靶基因富集网络；
 - **与非编码调控元件实验证据结合**：将 GENIE3 预测的有向边与 DAP-seq、ChIP-seq 或 ATAC-seq 结合位点进行交集验证，能够大幅过滤间接调控假象，构建出高精度的植物物理调控金标准网络；
 - **分生组织细胞分化转录级联**：解析干细胞向成熟表皮或导管分子分化过程中逐级激活的级联转录开关。
-
----
-
-## 5. 输入输出规范与关键参数指南
-
-### 5.1 核心分析流程与执行代码 (R / Bioconductor)
-```R
-library(GENIE3)
-
-# 1. 准备标准归一化的表达矩阵 (行: 基因, 列: 样本)
-exprMatrix <- as.matrix(read.table("plant_norm_expr.txt", header = TRUE, row.names = 1))
-
-# 2. 准备候选转录因子列表 (可选, 强烈建议提供以提速并聚焦调控因子)
-plant_tfs <- readLines("plant_transcription_factors.txt")
-
-# 3. 运行 GENIE3 树集成调控网络推断 (推荐使用 Random Forest 模式)
-set.seed(42)
-weightMatrix <- GENIE3(
-  exprMatrix,
-  regulators = plant_tfs,
-  treeMethod = "RF",      # 可选 "RF" (Random Forest) 或 "ET" (Extra Trees)
-  K = "sqrt",             # 每个节点分裂候选特征数
-  nTrees = 1000,          # 每个靶基因森林树数目
-  nCores = 16,            # 多线程并行核心数
-  verbose = TRUE
-)
-
-# 4. 提取全网调控边排序列表 (包含 fromNode, toNode, weight)
-linkList <- getLinkList(weightMatrix)
-
-# 5. 筛选最高置信度的 Top 5000 条调控边
-topLinks <- linkList[1:5000, ]
-```
-
-### 5.2 关键参数说明
-- `regulators`：候选调控因子 ID 向量。若不提供则将全基因组每个基因都作为其他基因的候选调控因子，计算耗时显著增加。
-- `treeMethod = "RF"`：树集成类型。`"RF"` 准确率更优；`"ET"`（Extra Trees）训练速度更快。
-- `nTrees = 1000`：树的数量，设置在 500 至 1000 能够确保特征重要性排名的统计稳定性。
 
 ---
 

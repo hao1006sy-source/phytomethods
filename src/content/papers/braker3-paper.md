@@ -81,17 +81,6 @@ BRAKER3 采用精密的分层迭代状态机流水线，各组件间的数据流
 
 ---
 
-## 算法复杂度与计算性能
-
-| 指标 | 实测参数与表现 | 算法工程优势 |
-| :--- | :--- | :--- |
-| **全自动执行时间** | 典型植物（500 Mb~1 Gb）耗时约 8~18 小时（32 线程） | 自动分染色体/分块并行处理，支持多核线程与计算节点分发 |
-| **内存峰值占用** | 典型植物基因组约 24~48 GB RAM | 相比传统人工组装流程节约 80% 以上临时中间交换开销 |
-| **敏感度与特异性** | 在拟南芥与番茄基准中外显子 F1-score > 88% | 显著超越仅依赖 RNA-seq 的 BRAKER1 或仅依赖同源蛋白的 BRAKER2 |
-| **容器化与可移植性** | 官方提供完整 Docker / Singularity 镜像支持 | 解决 AUGUSTUS、GeneMark、Perl 模块繁杂的历史依赖地狱 |
-
----
-
 ## 植物基因组学应用场景与科研价值
 
 1. **复杂植物大基因组从头注释标准流水线**：
@@ -100,43 +89,6 @@ BRAKER3 采用精密的分层迭代状态机流水线，各组件间的数据流
    在果树（如芒果、苹果）、蔬菜（番茄、辣椒）及粮食作物中，结合多组织（根、茎、叶、花、果实）混合 RNA-seq，BRAKER3 能高灵敏度解析响应生物/非生物胁迫的特定剪接异构体（Isoforms）；
 3. **远缘甚至孤儿植物（Orphan crops）注释突破**：
    对于缺乏近缘属物种高质量基因库的孤儿植物，BRAKER3 可直接借助 OrthoDB 的植物界（Viridiplantae）泛蛋白库，实现高精度的自举迭代训练。
-
----
-
-## 输入输出规范与关键参数指南
-
-### 关键运行步骤
-
-```bash
-# 1. 标准全证据运行命令 (推荐植物基因组生产环境)
-braker.pl \
-  --genome=plant_masked.fa \
-  --prot_seq=orthodb11_viridiplantae.fasta \
-  --bam=rna_seq_hisat2.bam \
-  --species=Plant_species_name \
-  --threads=48 \
-  --gff3
-
-# 2. 仅利用同源蛋白质证据 (无转录组条件)
-braker.pl \
-  --genome=plant_masked.fa \
-  --prot_seq=plant_proteins.fa \
-  --species=Plant_species_name \
-  --threads=48 \
-  --gff3
-```
-
-- `--genome=<file>`：全基因组 FASTA 文件（**必须预先执行软屏蔽**，小写字母代表转座子重复）；
-- `--prot_seq=<file>`：OrthoDB 或近缘种参考同源蛋白质 FASTA 文件；
-- `--bam=<files>`：坐标排序的短读段 RNA-seq 比对 BAM 文件；
-- `--species=<string>`：指定物种唯一名称（防止覆盖已有的训练参数）；
-- `--threads=<int>`：并行线程数。
-
-### 核心产物文件解读
-
-- `braker.gtf` / `braker.gff3`：最终官方发布的基因结构注释文件；
-- `braker.aa`：从预测基因中翻译出的全套蛋白质多肽氨基酸序列；
-- `braker.codingseq`：对应的编码序列（CDS）核苷酸序列。
 
 ---
 

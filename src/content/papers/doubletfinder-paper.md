@@ -54,64 +54,12 @@ updatedAt: 2026-11-25
 
 ---
 
-## 3. 算法复杂度与计算性能
-
-1. **计算瓶颈与优化**：耗时主要集中在 `paramSweep` 阶段多次重新计算 PCA 与构建 $k$-d tree 近邻图。
-2. **内存占用低**：在 R 环境下直接处理 Seurat 对象，对于 1 万个细胞的标准数据集，最优参数扫描与最终识别仅需 3–5 分钟，内存消耗在 2–4 GB 左右。
-3. **单样本独立性**：双细胞形成是单个微流控反应芯片的物理事件，DoubletFinder 强烈推荐对每个测序文库（Library / Sample）独立执行，确保不同批次上样浓度的物理真实性。
-
----
-
 ## 4. 植物基因组学应用场景与科研价值
 
 植物组织解离与单细胞测序相比动物组织具有更高比例的双细胞风险：
 - **植物原生质体（Protoplasts）团聚严重**：植物细胞在去除果胶质与纤维素细胞壁后极易发生自发膜融合或双核粘连；
 - **异源多倍体植物的表达复杂性**：在小麦（六倍体）、甘蓝型油菜（四倍体）等异源多倍体植物中，双细胞往往同时呈现两个亲本亚基因组的特异性转录本，极易被错误鉴定为“发生基因组协同激活的全新细胞亚型”；
 - **分生组织罕见干细胞的保真度**：在根尖静止中心（QC，通常仅占全根细胞的 0.1% 左右）的研究中，剔除双细胞假象对于防止高丰度中柱鞘细胞与表皮细胞混合伪造出的“虚假 QC 细胞”至关重要。
-
----
-
-## 5. 输入输出规范与关键参数指南
-
-### 5.1 核心分析流程与执行代码 (R / Seurat)
-```R
-library(Seurat)
-library(DoubletFinder)
-
-# 1. 准备标准分析完成的 Seurat 对象 (已完成 Normalize, Scale, PCA, UMAP)
-seu <- readRDS("plant_protoplasts.rds")
-
-# 2. 网格参数自适应扫描寻找最优 pK
-sweep.res.list <- paramSweep_v3(seu, PCs = 1:30, sct = FALSE)
-sweep.stats <- summarizeSweep(sweep.res.list, GT = FALSE)
-bcmvn <- find.pK(sweep.stats)
-# 自动提取使 BCmetric 达到最大峰值的 optimal_pK
-optimal_pK <- as.numeric(as.character(bcmvn$pK[which.max(bcmvn$BCmetric)]))
-
-# 3. 预估双细胞产生比例 (假设恢复 8000 个细胞，10x 预期双细胞率约 6.4%)
-doublet_rate <- 0.064
-homotypic.prop <- modelHomotypic(seu$seurat_clusters)
-nExp_poi <- round(doublet_rate * nrow(seu@meta.data))
-nExp_poi.adj <- round(nExp_poi * (1 - homotypic.prop))
-
-# 4. 执行 DoubletFinder 识别
-seu <- doubletFinder_v3(seu, 
-                         PCs = 1:30, 
-                         pN = 0.25, 
-                         pK = optimal_pK, 
-                         nExp = nExp_poi.adj, 
-                         reuse.pANN = FALSE, 
-                         sct = FALSE)
-
-# 5. 过滤剔除预测为 Doublet 的细胞
-col_name <- paste0("DF.classifications_0.25_", optimal_pK, "_", nExp_poi.adj)
-seu_clean <- subset(seu, subset = !!sym(col_name) == "Singlet")
-```
-
-### 5.2 关键参数说明
-- `PCs = 1:30`：用于衡量细胞低维流形距离的主成分维度，应与聚类降维时使用的 PC 数量严格一致。
-- `pN = 0.25`：生成的人工双细胞数量占真实细胞总数的比例，经验基准值 0.25 具有最优稳定性。
-- `nExp_poi.adj`：扣除同型双细胞后的调整预期异型双细胞总数，防止过度剔除真实生物学均一细胞。
 
 ---
 

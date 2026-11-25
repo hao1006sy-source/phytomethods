@@ -55,55 +55,12 @@ AgroNT 采用类似 BERT 的双向自注意力 Transformer 编码器结构（1B 
 
 ---
 
-## 3. 算法复杂度与计算性能
-
-1. **Transformer 预训练开销巨大**：全量 1B 模型在数百块专业 GPU 集群上训练数周完成；但预训练权重开源后，研究人员仅需单张消费级 GPU（如 16–24 GB 显存）即可流畅执行下游特征提取与推理。
-2. **序列上下文长度**：标准输入窗口通常支持 1000–6000 bp 的 DNA 序列片断，有效覆盖植物近端核心启动子区与 5' UTR。
-3. **开源生态无缝集成**：模型权重完全兼容 Hugging Face `transformers` 库，支持一键加载与调用。
-
----
-
 ## 4. 植物基因组学应用场景与科研价值
 
 AgroNT 为资源受限的农作物功能基因组学与智能设计育种提供了强有力的 AI 预测引擎：
 - **作物品种非编码关键调控突变高通量筛选**：在全基因组重测序（WGS）或群体 GWAS 得到的成千上万个非编码候选突变中，利用 AgroNT 的 $\Delta \text{Score}$ 快速打分，优先筛选破坏或产生转录因子结合位点的真正功能因果变异（Causal Regulatory Variants）；
 - **合成启动子（Synthetic Promoters）的理性设计**：评估人工拼接顺式作用元件时序列语境的兼容性与预期转录表达强度；
 - **跨物种零样本（Zero-shot）基因注释辅助**：在缺乏高质量转录组数据的新测序非模式热带或小宗农作物中，利用模型零样本预测潜在的转录起始位点（TSS）与高可及性开放染色质岛。
-
----
-
-## 5. 输入输出规范与关键参数指南
-
-### 5.1 核心调用流程与代码示例 (Python / Transformers)
-```python
-import torch
-from transformers import AutoTokenizer, AutoModelForMaskedLM
-
-# 1. 从 Hugging Face 载入 AgroNT 预训练分词器与模型权重
-model_name = "InstaDeepAI/agro-nucleotide-transformer-1b"
-tokenizer = AutoTokenizer.from_pretrained(model_name)
-model = AutoModelForMaskedLM.from_pretrained(model_name)
-model.eval()
-
-# 2. 准备植物候选启动子 DNA 序列 (FASTA 格式字符串)
-dna_seq = "ATGCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATC"
-
-# 3. 6-mer 快速分词与张量化
-inputs = tokenizer(dna_seq, return_tensors="pt")
-
-# 4. 获取序列的高维潜在嵌入表示 (Embeddings)
-with torch.no_grad():
-    outputs = model(**inputs, output_hidden_states=True)
-    # 提取顶层隐藏状态作为基因组特征嵌入 (Batch_size, Seq_len, Hidden_dim)
-    sequence_embeddings = outputs.hidden_states[-1]
-
-# 5. 开展针对特定点突变位点的虚拟突变效应评估 (ISM)
-# 计算参考等位基因与替换等位基因对掩码预测似然的影响
-```
-
-### 5.2 关键注意事项
-- 输入序列必须严格限制在标准碱基字符集（`A, C, G, T, N`），在预处理阶段需将小写字母统一转换为大写。
-- 由于 6-mer 分词具有固定步长，对插入/缺失（InDel）或边界坐标的变异打分需注意保持分词相位的连续性。
 
 ---
 

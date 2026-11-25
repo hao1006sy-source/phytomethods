@@ -68,17 +68,6 @@ Verkko 采用分层递进的图解缠计算架构，由 Canu、MBG、GraphAligne
 
 ---
 
-## 算法复杂度与计算性能
-
-| 维度 | 指标与性能表现 | 算法工程与硬件优化 |
-| :--- | :--- | :--- |
-| **初始构图阶段 (MBG)** | 耗时约 1~3 小时（32 线程） | 高效多线程哈希表，内存消耗与基因组大小呈线性 $O(G)$ 关系 |
-| **超长读段映射 (GraphAligner)** | 耗时约 4~12 小时（计算瓶颈） | 结合有向无环图（DAG）带状动态规划算法，高度依赖向量化指令加速 |
-| **内存峰值占用** | 典型 1~2 Gb 基因组约 120~200 GB RAM | 支持大内存多节点工作站或 Slurm 计算集群分布式调度 |
-| **终极连续性** | 染色体臂级直接成环，T2T 染色体比率极高 | 在人类及模式植物中实现着丝粒与端粒的无缝闭合 |
-
----
-
 ## 植物基因组学应用场景与科研价值
 
 1. **解决巨型复杂植物着丝粒与核糖体 rDNA 阵列**：
@@ -87,47 +76,6 @@ Verkko 采用分层递进的图解缠计算架构，由 Canu、MBG、GraphAligne
    在异源四倍体（如棉花、花生、油菜）或六倍体（如普通小麦）中，部分同源染色体间序列一致性极高。Verkko 的逐步解环流水线能有效阻断同源染色体间的错接（Inter-homoeologous chimeras）；
 3. **农艺关键大片段结构变异（Inversions & Translocations）精准定位**：
    许多控制作物抗病（如 NLR 基因簇）或耐逆性状的主效 QTL 位于复杂结构变异富集区，Verkko 的 T2T 无缺口组装使研究人员能以单碱基精度锚定全长倒位与重复扩增。
-
----
-
-## 输入输出规范与关键参数指南
-
-### 关键运行命令行
-
-```bash
-# 1. 基础无亲本辅助组装 (HiFi + ONT UL)
-verkko -d asm_out \
-  --hifi hifi_reads.fq.gz \
-  --nano ont_ultra_long.fq.gz \
-  --threads 64
-
-# 2. 亲本标记指导的完全分相组装 (Trio-Verkko)
-verkko -d asm_trio_out \
-  --hifi hifi_reads.fq.gz \
-  --nano ont_ultra_long.fq.gz \
-  --hap-kmers mat.kmer.meryl pat.kmer.meryl trio \
-  --threads 64
-
-# 3. 超大或高重复植物参数调优
-verkko -d asm_large_plant \
-  --hifi hifi_reads.fq.gz \
-  --nano ont_ultra_long.fq.gz \
-  --base-k 1001 \
-  --max-k 15001 \
-  --threads 64
-```
-
-- `--hifi <files>`：PacBio HiFi 测序数据（推荐深度 $\ge 30\times$）；
-- `--nano <files>`：ONT 读长大于 50 kb（最好大于 100 kb）的超长读段数据（推荐深度 $\ge 25\times$）；
-- `--hap-kmers <mat> <pat> trio`：使用 Meryl 预先生成的亲本特异性单倍型标记库；
-- `--base-k <int>`：MBG 初始构图 k-mer 大小（默认 `1001`）；
-- `--max-k <int>`：逐步递进解环的最大 k-mer 大小。
-
-### 核心产物文件解读
-
-- `assembly.fasta`：最终组装输出的高质量染色体 contigs；
-- `assembly.homopolymer-corrected.gfa`：纠正均聚物错误后的单倍型图结构；
-- `assembly.hap1.fasta` / `assembly.hap2.fasta`：分相模式下的双单倍型序列。
 
 ---
 

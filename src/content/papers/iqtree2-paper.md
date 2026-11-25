@@ -70,17 +70,6 @@ IQ-TREE 2 基于 Felsenstein 剪枝算法（Pruning Algorithm），核心流程�
 
 ---
 
-## 算法复杂度与计算性能
-
-| 维度 | 指标与性能数据 | 算法优势与设计机制 |
-| :--- | :--- | :--- |
-| **计算速度** | 相比传统 RAxML 或 PhyML 提速 **10~100 倍** | 结合 AVX-512 / AVX2 / SSE3 指令集多精度并行硬件加速 |
-| **并行可扩展性** | 在 64~128 核高配服务器上保持极高线性加速比 | 细粒度 OpenMP 线程级分块与 MPI 分布式跨节点集群支持 |
-| **内存管理** | 典型 100 物种串联大矩阵约 **4~16 GB RAM** | 紧凑位模式编码与位点模式（Site Patterns）唯一性去重压缩 |
-| **功能整合度** | 单一二进制程序包涵盖全套模型、分区与假设检验 | 杜绝由于第三方脚本串接导致的版本不匹配与数据转换截断 |
-
----
-
 ## 植物基因组学应用场景与科研价值
 
 1. **被子植物系统发育全景生命之树构建**：
@@ -89,44 +78,6 @@ IQ-TREE 2 基于 Felsenstein 剪枝算法（Pruning Algorithm），核心流程�
    通过提取普通小麦 A、B、D 亚基因组与近缘野生一粒小麦、节节麦的单拷贝同源基因，IQ-TREE 2 能以 100% 的 UFBoot 支持度确定各个亚基因组供体亲本的精确演化分支；
 3. **基因树与物种树拓扑冲突（Incongruence）检验**：
    借助内置的基因一致性因子（Gene Concordance Factor, gCF）与位点一致性因子（Site Concordance Factor, sCF），量化不完全谱系分选与杂交渗入在全基因组的占比。
-
----
-
-## 输入输出规范与关键参数指南
-
-### 关键运行步骤
-
-```bash
-# 1. 标准全自动最大似然系统发育推断 (包含 ModelFinder + UFBoot2 + SH-aLRT)
-iqtree2 \
-  -s plant_concatenated_alignment.phy \
-  -m MFP \
-  -B 1000 \
-  --alrt 1000 \
-  -T AUTO \
-  --prefix plant_phylogeny
-
-# 2. 针对复杂分区比对数据集 (例如将不同基因独立指定进化模型)
-iqtree2 \
-  -s supermatrix.fa \
-  -p partition_scheme.nex \
-  -m MFP+MERGE \
-  -B 1000 \
-  -T 48 \
-  --prefix plant_partitioned
-```
-
-- `-s <file>`：输入的多序列比对文件（支持 FASTA、Phylip、Nexus 等格式）；
-- `-m MFP`：启用 ModelFinder Plus 自动寻找全基因组最优替代模型；
-- `-B 1000`：执行 1,000 次超快速自展检验（UFBoot2，要求支持度 $\ge 95\%$ 为可靠）；
-- `--alrt 1000`：执行 1,000 次 SH-aLRT 近似似然比检验（要求支持度 $\ge 80\%$ 为可靠）；
-- `-T AUTO`：全自动探测并绑定最佳 CPU 核心数。
-
-### 核心产物文件解读
-
-- `*.treefile`：最终输出的格式化最佳最大似然系统发育树（Newick 格式，内部节点标注了 `SH-aLRT/UFBoot` 双重支持度分值，可直接在 iTOL / FigTree 中渲染）；
-- `*.iqtree`：全套文本分析总报告，包含选用的最优替代模型参数、碱基/氨基酸频率、各分支长度统计及 AIC/BIC 打分汇总；
-- `*.log`：完整的计算迭代收敛日志。
 
 ---
 

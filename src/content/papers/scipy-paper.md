@@ -49,52 +49,12 @@ updatedAt: 2026-11-25
 
 ---
 
-## 3. 算法复杂度与计算性能
-
-1. **直接对接硬件加速线性代数库**：SciPy 的矩阵求解与特征值分解直接链接系统底层的 BLAS（Basic Linear Algebra Subprograms）与 LAPACK（Linear Algebra Package），如 Intel MKL 或 OpenBLAS，实现现代 CPU 向量指令集（AVX-512、NEON）与多核多线程极限加速。
-2. **混合编译架构**：计算密集型内层循环均采用 Cython、C++ 或 Fortran 预编译，彻底消除了 Python 全局解释器锁（GIL）与动态类型检查带来的开销。
-3. **极高数值稳定性**：针对浮点数下溢（Underflow）与溢出（Overflow）进行了专门的对数域数值保护（如 `scipy.special.logsumexp`），确保在极大或极小极值下统计计算的自洽性。
-
----
-
 ## 4. 植物基因组学应用场景与科研价值
 
 SciPy 是构建现代植物生物信息学与分子育种软件工具链的最底层发动机：
 - **单细胞转录组（Scanpy）底层基底**：AnnData 对象的底层稀疏矩阵读写、标准差标准化、PCA 截断奇异值分解与邻居图计算全部由 `scipy.sparse` 与 `scipy.spatial` 驱动；
 - **空间转录组学（Squidpy）空间统计学实现**：Moran's $I$ 空间自相关计算中空间权重矩阵的稀疏乘积、组织切片中 Delaunay 空间三角剖分均直接依托 SciPy 空间模块；
 - **全基因组关联分析（GWAS）与分子育种统计推断**：在自主编写数量遗传学脚本时，利用 `scipy.optimize.minimize` 快速求解限制性极大似然（REML）方差比率，利用 `scipy.stats` 批量计算每个候选 SNP 的卡方统计量与渐近 $p$ 值。
-
----
-
-## 5. 输入输出规范与关键参数指南
-
-### 5.1 常用模块执行代码示例 (Python)
-```python
-import numpy as np
-import scipy.sparse as sp
-from scipy import stats
-from scipy.spatial import cKDTree
-
-# 1. 稀疏矩阵高效构建与代数计算 (CSR 格式)
-row_indices = np.array([0, 1, 2, 0])
-col_indices = np.array([0, 2, 2, 1])
-data_values = np.array([1.5, 3.0, 2.5, 4.0])
-sparse_mat = sp.csr_matrix((data_values, (row_indices, col_indices)), shape=(3, 3))
-col_sums = np.array(sparse_mat.sum(axis=0)).flatten()
-
-# 2. 空间二维物理坐标 cKDTree 快速最近邻搜索
-spatial_coords = np.random.rand(5000, 2)  # 5000 个细胞的空间物理坐标
-kdtree = cKDTree(spatial_coords)
-distances, indices = kdtree.query(spatial_coords[:10], k=15)  # 检索前 10 个细胞的 15 个最近邻
-
-# 3. 统计分布与非参数假设检验
-group_a = np.random.normal(loc=10, scale=2, size=50)
-group_b = np.random.normal(loc=12, scale=2, size=50)
-stat, p_val = stats.mannwhitneyu(group_a, group_b, alternative='two-sided')
-```
-
-### 5.2 核心最佳实践说明
-- 在涉及超大稀疏矩阵累加时，推荐使用 `COO` 格式进行逐步 append，构建完成后一次性转换为 `CSR` 执行计算，避免在循环中对 CSR 进行原位元素修改导致的大规模内存拷贝。
 
 ---
 

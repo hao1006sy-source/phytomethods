@@ -53,65 +53,12 @@ ArchR 彻底摒弃了在内存中维护超大矩阵的做法，为每个物理�
 
 ---
 
-## 3. 算法复杂度与计算性能
-
-1. **极低内存占用**：即使处理 10 万个细胞的数据集，ArchR 的峰值内存占用也稳定在 16–32 GB 以内，普通台式机即可胜任。
-2. **极速计算效率**：得益于高效的 C++ 底层实现与磁盘流式计算，ArchR 的全套分析速度（从原始片段到聚类、Peak Calling 与轨迹推断）比同类工具快 5 至 10 倍。
-3. **多核并行拓展**：质控过滤、Arrow 文件构建以及基因活性计算原生支持多线程并行分发调度。
-
----
-
 ## 4. 植物基因组学应用场景与科研价值
 
 植物基因组中非编码调控区占有极高比例，且往往被转座子紧密包围，具有高度复杂的组织特异性：
 - **植物根系与叶片分生细胞染色质开放图谱**：在拟南芥、水稻和玉米中，ArchR 能够以单细胞分辨率识别不同细胞层（如维管柱与表皮）特异性开放的增强子与启动子元件；
 - **植物核心转录因子结合足迹（TF Footprinting）分析**：利用 Tn5 切割在蛋白质真实结合核心位点产生的“保护性凹陷（Footprint）”，无偏推断特定转录因子家族（如 NAC、MYB、WRKY、bZIP）在特定细胞类型中是否真实处于结合活性状态；
 - **非编码顺式调控变异（eQTL/GWAS Hits）机制解析**：将农艺性状关联位点精准映射至 ArchR 鉴定的细胞类型特异性开放 Peaks 中，直接揭示非编码突变调控靶基因表达的表观机理。
-
----
-
-## 5. 输入输出规范与关键参数指南
-
-### 5.1 核心分析流程与执行命令 (R / ArchR)
-```R
-library(ArchR)
-
-# 1. 初始化 ArchR 环境并指定参考基因组
-addArchRGenome("hg38")  # 植物物种可通过 createGenomeAnnotation 自定义构建
-addArchRThreads(threads = 16)
-
-# 2. 从 Cell Ranger ATAC 的 fragments.tsv.gz 构建 Arrow 磁盘文件
-inputFiles <- c("sample_fragments.tsv.gz")
-ArrowFiles <- createArrowFiles(
-  inputFiles = inputFiles,
-  sampleNames = c("PlantSample"),
-  minTSS = 4,              # TSS 富集得分最小阈值
-  minFrags = 1000,          # 单细胞最小唯一片段数
-  addTileMat = TRUE,
-  addGeneScoreMat = TRUE
-)
-
-# 3. 创建 ArchRProject 并执行双细胞过滤
-proj <- ArchRProject(ArrowFiles = ArrowFiles, outputDirectory = "ArchR_Output")
-doubScores <- addDoubletScores(input = proj)
-proj <- filterDoublets(proj)
-
-# 4. 迭代潜在语义分析降维 (Iterative LSI) 与聚类
-proj <- addIterativeLSI(ArchRProj = proj, useMatrix = "TileMatrix", name = "IterativeLSI")
-proj <- addClusters(input = proj, reducedDims = "IterativeLSI", resolution = 0.8)
-proj <- addUMAP(ArchRProj = proj, reducedDims = "IterativeLSI")
-
-# 5. 可及性富集峰识别 (Peak Calling) 与 Peak-to-Gene Links
-proj <- addGroupCoverages(ArchRProj = proj, groupBy = "Clusters")
-proj <- addReproduciblePeakSet(ArchRProj = proj, groupBy = "Clusters", pathToMacs2 = "macs2")
-proj <- addPeakMatrix(proj)
-proj <- addPeak2GeneLinks(ArchRProj = proj, reducedDims = "IterativeLSI")
-```
-
-### 5.2 关键参数说明
-- `minTSS = 4`：**TSS 富集得分（TSS Enrichment Score）**。衡量 ATAC 读段在已知基因转录起始位点富集程度的黄金质控指标，植物建议结合实际信噪比微调在 3–6 之间。
-- `minFrags = 1000`：单个细胞包含的最小唯一比对片段数。
-- `useMatrix = "TileMatrix"`：使用 500 bp 全基因组网格进行初次 LSI 降维，彻底规避因样本间 Peak Calling 差异带来的偏倚。
 
 ---
 

@@ -60,14 +60,6 @@ vg 将基因组序列与已知遗传变异统一严格建模为**紧缩双向有
 
 ---
 
-## 算法复杂度与计算性能
-
-- **索引与内存开销**：GCSA2 在构建高杂合度植物全基因组图时，由于高密度变异气泡的组合爆炸，展开过程需要庞大的临时内存（通常需 100~200 GB）；后续的演进工具链（如 vg giraffe）正是针对这一开销进行了重构；
-- **比对灵敏度与准确度**：原始 `vg map` 采用严格的图空间 Smith-Waterman 动态规划比对算法，比对准确率极高，且完全消除了单参考系偏倚；
-- **历史里程碑**：论文在人类千人基因组数据集上证实，图比对使未对齐读段比例降低了约 30%，显著提升了结构变异附近读段的比对质量。
-
----
-
 ## 植物基因组学应用场景与科研价值
 
 1. **复杂农艺性状关联位点的无偏重测序比对**：将已知的大片段插入缺失（如水稻耐盐调控基因 *SKC1*、玉米株型调控基因 *tb1* 上游调控区）嵌入参考图，直接捕获杂合后代重测序数据中的等位基因表达偏倚；
@@ -75,33 +67,6 @@ vg 将基因组序列与已知遗传变异统一严格建模为**紧缩双向有
 3. **泛基因组图格式转换与全套生态接口**：vg 提供了丰富的子命令（`vg convert`, `vg snarls`, `vg deconstruct`, `vg stats` 等），是所有植物泛基因组课题处理 GFA、GBZ、VCF 与 GAM 文件的核心底座。
 
 更多关于图形泛基因组构建与变异检测的深入内容，请参阅 [图形泛基因组构建方法](../../topics/pangenomics-structural-variation/m03-topic-02/) 与 [结构变异多方法检测](../../topics/pangenomics-structural-variation/m03-topic-03/)。
-
----
-
-## 输入输出规范与关键参数指南
-
-### 1. 核心输入输出
-- **输入**：线性参考 FASTA 文件与对应群体变异 VCF 文件，或直接输入 GFA 格式泛基因组图；
-- **输出**：XG 静态图索引（`.xg`）、GCSA2 索引（`.gcsa`）、GAM 读段比对文件（`.gam`），以及从图中解码生成的 VCF 变异表。
-
-### 2. 标准运行命令
-```bash
-# 从参考序列和 VCF 构建变异图并建立基础索引
-vg construct -r plant_ref.fa -v variants.vcf.gz > pangenome.vg
-vg index -x pangenome.xg -g pangenome.gcsa -k 16 pangenome.vg
-
-# 将短读段无偏比对至泛基因组图
-vg map -x pangenome.xg -g pangenome.gcsa \
-  -f reads_R1.fq.gz -f reads_R2.fq.gz \
-  -t 32 > aligned.gam
-
-# 基于图比对结果调用全基因组变异
-vg call -x pangenome.xg aligned.gam > calls.vcf
-```
-- `vg construct -r -v`：将线性序列与 VCF 变异合并构图；
-- `vg index -k 16`：设置 GCSA2 索引的 $k$-mer 大小；
-- `vg map`：执行基于图的动态规划比对；
-- `vg call`：基于局部气泡（Snarls）支持读段数量进行基因型分型判定。
 
 ---
 

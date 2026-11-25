@@ -60,57 +60,12 @@ rrBLUP 算法的核心计算突破在于利用矩阵特征值分解（Eigen-deco
 
 ---
 
-## 3. 算法复杂度与计算性能
-
-1. **计算复杂度**：仅需在算法开始时对 $n \times n$ 的亲缘矩阵进行一次特征值分解，复杂度为 $O(n^3)$。后续任意交叉验证折数的参数优化与育种值预测复杂度均为 $O(n)$。
-2. **内存消耗极低**：在标准 R 环境下，处理 2000 个体与 10 万个标记的预测与交叉验证仅需几十兆内存，数秒钟内即可完成 100 次重复抽样验证。
-3. **支持高斯核与非加性核扩展**：原生支持再生核希尔伯特空间（RKHS）高斯核，能够灵活捕捉部分非线性微观上位效应。
-
----
-
 ## 4. 植物基因组学应用场景与科研价值
 
 植物自交系繁育、杂交种制种以及多亲本重组近交系高度适配 GBLUP 理论：
 - **作物品种田间多环境产量与农艺性状预测**：在小麦、大麦、玉米与大豆中，利用测试集品系在少数环境的表型预测其在未知环境的综合表现，大幅精简昂贵的多地点田间试验网络；
 - **全基因组选择（GS）交叉验证模型建立**：作为所有新型复杂机器学习/深度学习预测算法（如 Random Forest、LightGBM、DNNGP）的**官方标准对比基准（Benchmark Baseline）**；
 - **多亲本杂交组合优选**：计算双亲杂交后代预期均值与遗传方差，助力育种家从数万个潜在杂交组合中精准锁定优势配对。
-
----
-
-## 5. 输入输出规范与关键参数指南
-
-### 5.1 核心分析流程与执行代码 (R / rrBLUP)
-```R
-library(rrBLUP)
-
-# 1. 载入表型与基因型标记矩阵
-# 基因型矩阵编码为 -1 (AA), 0 (Aa), 1 (aa)，行: 标记, 列: 个体 (或其转置)
-genotypes <- as.matrix(read.table("plant_genotypes_num.txt", header = TRUE))
-phenotypes <- read.table("plant_phenotypes.txt", header = TRUE)
-
-# 2. 构建 VanRaden 基因组亲缘关系矩阵 (A.mat)
-# 自动执行缺失标记均值插补与 MAF 过滤
-A <- A.mat(t(genotypes), min.MAF = 0.05, impute.method = "mean")
-
-# 3. 使用 mixed.solve 求解 GBLUP 育种值
-# 掩码测试集个体的表型为 NA 以模拟未知样本
-y_train <- phenotypes$Yield
-y_train[sample(1:length(y_train), 50)] <- NA  # 模拟 50 个验证样本
-
-ans <- mixed.solve(y = y_train, K = A)
-
-# 4. 提取估计的遗传方差、残差方差与个体 GEBV
-sigma2_g <- ans$Vu
-sigma2_e <- ans$Ve
-gebv <- ans$u  # 包含所有个体 (含 NA 样本) 的预测育种值
-
-# 5. 计算预测准确率 (Pearson r)
-# cor(gebv[is.na(y_train)], phenotypes$Yield[is.na(y_train)])
-```
-
-### 5.2 关键参数说明
-- `K = A`：指定的亲缘关系协方差核矩阵；如不指定 $K$ 而传入 $Z$ 矩阵，则自动切换为标记水平的岭回归（rrBLUP）。
-- `impute.method = "mean"`：针对微量标记缺失的自动均值填充选项。
 
 ---
 

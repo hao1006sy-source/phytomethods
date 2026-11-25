@@ -58,64 +58,12 @@ $$Y_{g,m} = Z_g W_m^T + \epsilon_{g,m}$$
 
 ---
 
-## 3. 算法复杂度与计算性能
-
-1. **计算性能卓越**：采用 Python（`mofapy2` 底层优化）与 R（`MOFA2` 用户接口）双引擎，单细胞数万样本的多组学联合分解在现代服务器上仅需 10–30 分钟。
-2. **天然容忍数据缺失**：模型在推断潜在因子 $Z$ 时通过边缘化处理自动跳过缺失测量值，无需执行任何人为插补（Imputation），彻底规避了插补算法引入的系统误差。
-3. **输出多层次方差解释度分解（$R^2$ Variance Decomposition）**：模型自动量化每个因子在每一个组学视图中解释的总方差百分比，为研究人员提供清晰可解释的全局分子全景图。
-
----
-
 ## 4. 植物基因组学应用场景与科研价值
 
 植物具有极其复杂的环境适应网络，多组学联合分析是现代智慧育种与功能基因组学的核心支撑：
 - **作物基因组-转录组-蛋白质组-代谢组整合**：在玉米或水稻多亲本杂交群体中，MOFA+ 能够将重测序变异、表达谱、核糖体翻译谱（Ribo-seq）与靶向代谢组深度融合，清晰剥离出“基因型驱动的基础代谢共享因子”与“转录后翻译调控特有的抗逆因子”；
 - **植物单细胞多模态（scRNA + scATAC）对齐**：在植物根尖或叶片原生质体单细胞多组学实验中，推断跨越染色质可及性与转录激活的连续共变轨迹；
 - **全基因组关联（eQTL/pQTL）靶标降维**：将数万维度的转录组与蛋白质组压缩为少数几个具有明确生物学通路的潜在因子，作为综合表型直接对接 GWAS 关联定位。
-
----
-
-## 5. 输入输出规范与关键参数指南
-
-### 5.1 核心分析流程与执行代码 (R / MOFA2)
-```R
-library(MOFA2)
-
-# 1. 准备多组学数据矩阵列表 (例如: RNA 表达量, ATAC 可及性, 蛋白质丰度)
-# 行: 特征 (Genes/Peaks/Proteins), 列: 样本
-data_list <- list(
-  RNA = rna_matrix,
-  ATAC = atac_matrix,
-  Protein = protein_matrix
-)
-
-# 2. 创建并初始化 MOFA 对象
-mofa_obj <- create_mofa(data_list)
-
-# 3. 配置模型选项与训练参数
-model_opts <- get_default_model_options(mofa_obj)
-model_opts$num_factors <- 15  # 初始最大因子数 (ARD 先验将自动收缩)
-model_opts$likelihoods <- c("gaussian", "bernoulli", "gaussian")
-
-train_opts <- get_default_training_options(mofa_obj)
-train_opts$convergence_mode <- "medium"
-train_opts$maxiter <- 1000
-
-# 4. 准备并运行模型训练 (底层调用 Python mofapy2)
-mofa_obj <- prepare_mofa(mofa_obj, model_options = model_opts, training_options = train_opts)
-mofa_trained <- run_mofa(mofa_obj, outfile = "mofa_plant_trained.hdf5")
-
-# 5. 可视化多组学方差解释度热图 (Variance Explained)
-plot_variance_explained(mofa_trained, plot_total = TRUE)
-plot_variance_explained(mofa_trained, x = "view", y = "factor")
-
-# 6. 提取对关键因子贡献最大的 Top 特征 (Top Weights)
-plot_top_weights(mofa_trained, view = "RNA", factor = 1, nfeatures = 15)
-```
-
-### 5.2 关键参数说明
-- `num_factors = 15`：初始设定的潜在因子上限；建议根据样本规模设置为 10 至 30 之间，模型会自动将冗余因子权重归零。
-- `plot_variance_explained()`：核心诊断图表，横轴为各个组学视图，纵轴为各个因子，通过方差热图一目了然区分跨模态协同因子与单模态独有因子。
 
 ---
 

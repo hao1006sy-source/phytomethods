@@ -71,17 +71,6 @@ RepeatModeler2 采用分层递进式的结构化识别与多序列聚类架构�
 
 ---
 
-## 算法复杂度与计算性能
-
-| 维度 | 指标与性能数据 | 算法设计与工程机制 |
-| :--- | :--- | :--- |
-| **计算耗时** | 典型 1 Gb 基因组约 8~20 小时（32 线程） | LTRStruct 模块显著加速了复杂 LTR 的发现效率 |
-| **全长 LTR 恢复率** | 相比 RepeatModeler1 提升 **2~3 倍以上** | 彻底解决了全长 LTR-RT 两端断裂截断的历史缺陷 |
-| **内存峰值占用** | 典型真核基因组约 16~32 GB RAM | 采样与分块比对机制，内存需求可控 |
-| **分类准确率** | 未分类（Unknown）家族比例减少 50% 以上 | 深度结合 Dfam HMM 库与蛋白质结构域双重扫描 |
-
----
-
 ## 植物基因组学应用场景与科研价值
 
 1. **复杂农作物 RepeatMasker 官方输入文库标准**：
@@ -90,34 +79,6 @@ RepeatModeler2 采用分层递进式的结构化识别与多序列聚类架构�
    通过比较近缘物种之间经 RepeatModeler2 构建的转座子家族文库，可系统量化在物种分化后新爆发的特异转座子超家族与已灭绝的古老转座子化石；
 3. **为高质量结构基因注释提供安全护航**：
    输出的规范 TE 库可无缝衔接至 MAKER 或 BRAKER3 流程，确保基因组软屏蔽既彻底又不会过火，保护外显子不受假阳性屏蔽。
-
----
-
-## 输入输出规范与关键参数指南
-
-### 关键运行步骤
-
-```bash
-# 1. 对待测植物基因组构建专用数据库
-BuildDatabase -name plant_db -engine ncbi plant_assembly.fasta
-
-# 2. 运行 RepeatModeler2 (强烈推荐开启 -LTRStruct 模块以获得全长 LTR)
-RepeatModeler \
-  -database plant_db \
-  -threads 36 \
-  -LTRStruct \
-  > repeatmodeler.log
-```
-
-- `-database <name>`：通过 `BuildDatabase` 预处理的基因组数据库前缀；
-- `-threads <int>`：指定并行计算 CPU 核心数；
-- `-LTRStruct`：**核心参数**。启用基于 LTR_Harvest 与 LTR_retriever 的结构化 LTR 发现引擎（相比默认模式大幅提升全长 LTR-RT 的完整性）。
-
-### 核心产物文件解读
-
-- `*-families.fa`：最终重构出的物种特异性非冗余转座元件共有序列文库（包含标准分类表头，如 `>rnd-1_family-1#LTR/Copia`）；
-- `*-families.stk`：包含每个转座子家族多序列比对（Stockholm 格式）的详细比对文件；
-- `*-rm.log`：记录各阶段筛选与家族聚类统计的执行日志。
 
 ---
 

@@ -67,17 +67,6 @@ YaHS 的算法主干包含 contact 矩阵构建、纠错断点扫描、加权图
 
 ---
 
-## 算法复杂度与计算性能
-
-| 维度 | 指标与实测表现 | 算法优势分析 |
-| :--- | :--- | :--- |
-| **计算速度** | 典型植物（1~3 Gb）挂载仅需 5~20 分钟 | 相比 3D-DNA 或 SALSA2 的数十小时，提速 20 倍以上 |
-| **内存峰值占用** | 仅需 2~8 GB RAM | 采用极致的哈希桶与紧凑二进制内存对齐，避免大矩阵常驻 |
-| **输入容忍度** | 原生兼容标准坐标排序 BAM 或 BED 文件 | 无需生成数百 GB 的中间转换文本，大幅节约磁盘 I/O |
-| **挂载准确率** | 倒位错误与跨染色体错接率显著低于竞品 | 自适应多分辨率避免了粗分辨率下的过度贪心错连 |
-
----
-
 ## 植物基因组学应用场景与科研价值
 
 1. **复杂超大高杂合植物染色体挂载第一选型**：
@@ -86,38 +75,6 @@ YaHS 的算法主干包含 contact 矩阵构建、纠错断点扫描、加权图
    针对由 Hifiasm 或 Verkko 输出的双单倍型组装图，YaHS 原生能够极好地区分单倍型内的同侧接触与单倍型间的跨同源接触，大幅避免将同源染色体的不同等位片段强行串联成环；
 3. **与 Juicebox / Pretext 交互式人工审查无缝对接**：
    YaHS 自动输出生成 `.assembly` 与 `.agp` 标准文件，研究人员可直接导入 Juicebox Assembly Tools 或 Pretext-View 进行染色体接触热图的可视化人工检查与端粒/着丝粒微调。
-
----
-
-## 输入输出规范与关键参数指南
-
-### 关键运行命令行
-
-```bash
-# 1. 基础无酶切位点通用挂载模式 (推荐用于现代 HiFi + Hi-C 流程)
-yahs target_contigs.fa hic_aligned_sorted.bam
-
-# 2. 启用初始嵌合 Contig 自动检测与纠错切分 (-e 模式)
-yahs -e -o plant_scaffolding target_contigs.fa hic_aligned_sorted.bam
-
-# 3. 指定限制性内切酶识别位点 (如 DpnII 或 Arima 四酶组合)
-yahs -r GATC,GANTC -o plant_scaffolding target_contigs.fa hic_aligned_sorted.bam
-
-# 4. 生成用于 Juicebox 可视化热图审查的输入文件
-juicer pre plant_scaffolding.bin plant_scaffolding_scaffolds_final.agp target_contigs.fa.fai > out.pre.txt
-java -Xmx32G -jar juicer_tools.jar pre out.pre.txt out.hic.hic <chrom.sizes>
-```
-
-- `-e`：在挂载前执行基于 Hi-C 接触断裂的自动纠错切分（强烈推荐开启）；
-- `-r <string>`：限制性内切酶切位点序列（多个以逗号分隔；若采用无酶切构建的 Omni-C 库则无需指定）；
-- `-q <int>`：最小比对质量阈值（默认 `10`，可有效过滤重复区域的多重比对 reads）；
-- `-o <prefix>`：输出文件名前缀。
-
-### 核心产物文件解读
-
-- `*_scaffolds_final.fa`：最终挂载完毕的染色体级 FASTA 序列；
-- `*_scaffolds_final.agp`：记录每个 Contig 在伪染色体上的物理起止坐标、方向（`+` / `-`）及缺口（Gap）长度的标准 AGP 文件；
-- `*.assembly`：兼容 Juicebox Assembly Tools 的拓扑结构定义文件。
 
 ---
 

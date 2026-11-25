@@ -62,55 +62,12 @@ $$\bar{v}_{\text{diff}} = \frac{2}{n(n-1)} \sum_{i < j} \left( C_{22, ii} + C_{2
 
 ---
 
-## 3. 算法复杂度与计算性能
-
-1. **计算复杂度**：核心耗时仅取决于单次线性混合模型（LMM）的 REML 参数估计与 MME 矩阵求逆，复杂度与试验小区数或品系数呈三次幂关系。
-2. **运算时间以秒级计**：在包含数百个品系、上千个小区的田间试验中，在 R 环境（结合 `lme4`、`sommer` 或 `spats`）中计算全套 $H_{\Delta}^2$ 仅需数秒钟。
-3. **完美兼容各种空间与多环境模型**：无论残差 $R$ 采用可分离自回归矩阵（AR1 $\times$ AR1）、随机区组方差成分，还是引入基于 SNP 的基因组亲缘矩阵 $G$，均可通用套用该差异基底公式。
-
----
-
 ## 4. 植物基因组学应用场景与科研价值
 
 在现代作物多环境田间试验中，该方法是准确评估表型数据质量的坚实理论基础：
 - **非平衡多环境品种试验（MET）数据质量控制**：评估不同试验地点（如干旱环境 vs 灌溉环境）表型鉴定的有效信噪比；若某地点的 $H_{\Delta}^2 < 0.3$，提示田间环境变异过大，在后续多环境联合分析或 GWAS 中应予以剔除或降权；
 - **全基因组关联分析（GWAS）前置表型处理（BLUE/BLUP）**：在开展全基因组标记关联前，利用该框架从含有空间误差的多地点数据中提取最佳线性无偏估计（BLUE），并汇报严谨的遗传力指标；
 - **基因组选择育种方案设计**：评估在有限育种预算下，增加试验重复数与增加测试品系数之间的边际遗传增益权衡。
-
----
-
-## 5. 输入输出规范与关键参数指南
-
-### 5.1 核心计算流程与 R 语言实现代码
-```R
-library(lme4)
-library(Matrix)
-
-# 1. 拟合非平衡大田试验线性混合模型 (以 Alpha-lattice 设计为例)
-# 表型 ~ (1|Genotype) + (1|Env) + (1|Block_within_Env)
-lmm_fit <- lmer(Yield ~ (1|Genotype) + (1|Env) + (1|Rep:Env), data = field_data)
-
-# 2. 提取遗传方差分量 sigma2_g
-vc <- as.data.frame(VarCorr(lmm_fit))
-sigma2_g <- vc$vcov[vc$grp == "Genotype"]
-
-# 3. 提取基因型效应的预测误差方差协方差矩阵 (PEV / C22)
-# 使用 arm::se.ranef 或直接从混合模型矩阵提取
-library(arm)
-genotype_ranef <- ranef(lmm_fit, condVar = TRUE)$Genotype
-pev_vars <- attr(genotype_ranef, "postVar")[1, 1, ]  # 对角元
-n_geno <- length(pev_vars)
-
-# 4. 计算成对基因型差异遗传力 H2_diff
-# 针对对角假设下的极简展开 (或包含非对角完整矩阵计算):
-mean_pev_diff <- 2 * mean(pev_vars)  # 简化正交近似
-H2_diff <- (2 * sigma2_g) / (2 * sigma2_g + mean_pev_diff)
-
-cat(f"Genotype-Difference Heritability (H2): {H2_diff:.4f}\n")
-```
-
-### 5.2 关键注意事项
-- 遗传力不是脱离具体育种群体、田间试验设计与环境条件而孤立存在的物理常数。报告遗传力时必须严格配套说明试验设计、重复次数与使用的具体协方差模型。
 
 ---
 
