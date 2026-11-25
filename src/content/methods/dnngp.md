@@ -43,7 +43,7 @@ updatedAt: 2026-11-25
 ## 软件实现与运行规范
 
 - **开发语言与依赖框架**：官方开源代码基于 **Python 3.9** 与 **TensorFlow 2.6.0**；
-- **官方脚本组织**：官方代码库（GitHub: `AIBreeding/DNNGP`）提供主运行脚本及超参数优化脚本（如 `DNNGP_OPN.py`），支持交叉验证评估；
+- **官方脚本组织**：官方代码库（GitHub: `AIBreeding/DNNGP`）提供主运行脚本（如 `Scripts/dnngp_runner.py`）及基于 Nevergrad 的超参数优化脚本（`Tuning_hyperparameters/DNNGP_OPN.py`），支持 K 折交叉验证与多表型批量评估；
 - **输入数据规范**：
   - 基因型数据：样本行、标记列的数值化矩阵（CSV/TXT）；
   - 表型数据：样本 ID 与对应表型观测值表格；

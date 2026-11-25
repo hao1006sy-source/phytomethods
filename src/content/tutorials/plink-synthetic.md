@@ -74,11 +74,11 @@ plink --bfile simulated --freq --missing --pca 2 --allow-extra-chr --out analysi
 
 ## 真实结果解读（基于本地实测日志）
 
-对照 `examples/population/verified-plink-20261121/analysis.log` 记录：
+对照 `examples/population/verified-plink-20261121/analysis.log` 与 `analysis.eigenval` 实际记录：
 - 读入 8 个个体（4 个 A 组，4 个 B 组）与 6 个双等位基因位点；
 - **缺失率**：样本缺失率与位点缺失率均为 0.0000（数据完全无缺失）；
-- **等位基因频率**：6 个位点的次要等位基因频率均为 0.5000；
-- **PCA 分布**：PC1 特征值为 `0.78125`，PC2 特征值为 `0.0000`。
+- **等位基因频率**：6 个位点的次要等位基因频率均为 0.5000（`analysis.frq` 实测全部位点 MAF=0.5）；
+- **PCA 分布**：`analysis.eigenval` 实测 PC1 特征值为 `6.7448`，PC2 特征值为 `1.6044`。
   使用配套脚本 `python examples/population/plot_plink.py` 绘制散点图表明，PC1 能够将预设的 A 组与 B 组样本在水平轴上清晰分离。
 
 ---
