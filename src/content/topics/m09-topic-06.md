@@ -23,10 +23,10 @@ updatedAt: 2026-11-25
 
 DNA 双链由四种碱基构成（$\Sigma = \{A, C, G, T, N\}$）。处理 DNA 输入有两种核心技术路线：
 
-1. **$k$-mer 重叠分词（如 AgroNT 采用的 6-mer 方案）**：
-   - 以步长（Stride）为 1 或 6 将 DNA 切分为长度为 6 的重叠子串；
+1. **$k$-mer 分词（如 AgroNT 采用的非重叠 6-mer 方案）**：
+   - 以固定步长（Stride）为 6 将 DNA 切分为非重叠的 6-mer 子串（non-overlapping tokens）；
    - 词表大小严格定义为 $|\mathcal{V}| = 4^6 + \text{Special Tokens} = 4,096 + 5 = 4,101$；
-   - *优势*：将原本长达数万碱基的序列压缩了 6 倍，极大地缓解了自注意力机制二次方内存开销；
+   - *优势*：将原本序列长度有效压缩 6 倍，显著降低了自注意力机制二次方内存开销；
 2. **单碱基高分辨率分词（如 PlantCAD2 方案）**：
    - 词表大小极小（仅 5 个单碱基 Tokens），能够保持**严格的单碱基物理空间分辨率**；
 3. **嵌入叠加与旋转位置编码（RoPE）**：
@@ -47,20 +47,23 @@ DNA 双链由四种碱基构成（$\Sigma = \{A, C, G, T, N\}$）。处理 DNA �
 
 ### 3. 两大主流植物大模型架构路线深度对比
 
-#### 路线 A：AgroNT（Transformer 架构，10 亿参数，*Nature Communications, 2024*）
+#### 路线 A：AgroNT（Transformer 架构，10 亿参数，*Communications Biology, 2024*）
+- **论文与作者**：Mendoza-Revilla et al. (2024), *Communications Biology*, 7: 835 (DOI: 10.1038/s42003-024-06465-2)；
 - **骨干网络**：32 层双向 Transformer 编码器（48 个多头注意力机制，隐藏维度 $d_{\text{model}} = 1536$）；
-- **预训练语料**：涵盖水稻、玉米、小麦、大豆等 **48 种农艺作物及模式被子植物** 的高质量基因组，累计超过 100 亿个核苷酸；
+- **预训练语料**：涵盖水稻、玉米、小麦、大豆等 **48 种可食用植物基因组（涵盖 45 个植物物种）** 的高质量组装，累计超过 100 亿个核苷酸；
 - **全多头自注意力机制**（Multi-Head Self-Attention）：
   $$\text{Attention}(\mathbf{Q}, \mathbf{K}, \mathbf{V}) = \text{softmax}\left( \frac{\mathbf{Q} \mathbf{K}^T}{\sqrt{d_k}} \right) \mathbf{V}$$
   能够全面捕获全基因组所有位置对之间的全连接双向全局依赖。
 
 #### 路线 B：PlantCAD2（Mamba2 状态空间模型，6.76 亿参数，*Cell Genomics, 2026*）
+- **论文与作者**：Zhai et al. (2026), *Cell Genomics*, 6(9): 101329 (DOI: 10.1016/j.xgen.2026.101329)；
 - **架构突破**：鉴于 Transformer 复杂度随序列长度呈平方增长（$\mathcal{O}(L^2)$），PlantCAD2 采用基于 **Caduceus / Mamba2 状态空间模型（State Space Models, SSM）**；
+- **预训练语料**：涵盖 **65 个被子植物参考基因组**，覆盖主要单子叶与双子叶谱系；
 - **线性复杂度与超长上下文**：
   $$\frac{dh(t)}{dt} = \mathbf{A} h(t) + \mathbf{B} x(t), \quad y(t) = \mathbf{C} h(t) + \mathbf{D} x(t)$$
-  在离散化后通过并行关联扫描（Parallel Associative Scan）实现计算复杂度降至严格线性 $\mathcal{O}(L)$，直接在单碱基分辨率下支持长达 **8,192 bp** 的超长上下文推断；
+  在离散化后通过并行关联扫描（Parallel Associative Scan）实现计算复杂度降至线性 $\mathcal{O}(L)$，直接在单碱基分辨率下支持长达 **8,192 bp** 的超长上下文推断（实际吞吐需结合显存带宽评估）；
 - **反向互补等变性（Reverse Complement Equivariance）**：
-  DNA 具有严格的双螺旋反向互补物理对称性。PlantCAD2 架构在底层强制约束正负链对称变换，确保模型对 Watson 链与 Crick 链的预测概率严格相等。
+  DNA 具有双螺旋反向互补对称性。PlantCAD2 架构通过 Caduceus RC 模块在底层约束正负链变换，确保模型对 Watson 链与 Crick 链的预测概率保持一致。
 
 ---
 

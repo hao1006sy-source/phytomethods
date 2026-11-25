@@ -750,11 +750,11 @@
       "milestone": "M09",
       "domainId": "regulatory-genomics-ai",
       "topicOrMethod": "m09-topic-06",
-      "claim": "48 种植物基因组预训练 DNA 基础大模型 AgroNT 与掩码语言模型 (MLM) 表征学习",
+      "claim": "48 种可食用植物基因组预训练 DNA 基础大模型 AgroNT 与掩码语言模型 (MLM) 表征学习",
       "sourceType": "peer_reviewed_paper",
-      "citation": "Dalla-Torre H, et al. (2024). The Nucleotide Transformer: Building and evaluating robust foundation models for human genomics and agronomics. Nature Communications, 15, 6465.",
+      "citation": "Mendoza-Revilla J, et al. (2024). A foundational large language model for edible plant genomes. Communications Biology, 7, 835.",
       "doi": "10.1038/s42003-024-06465-2",
-      "sectionLocator": "AgroNT architecture and 48 plant genomes pre-training",
+      "sectionLocator": "AgroNT architecture pre-trained on 48 edible plant genomes and downstream evaluation",
       "verifiedDate": "2026-11-25",
       "status": "SOURCE_VERIFIED"
     },
@@ -764,9 +764,9 @@
       "topicOrMethod": "m09-topic-07",
       "claim": "植物双向状态空间大模型 PlantCAD2 跨被子植物顺式调控序列功能与非编码突变零样本打分",
       "sourceType": "peer_reviewed_paper",
-      "citation": "Schloissnig S, et al. (2026). PlantCAD2: a bidirectional state-space foundation model for plant regulatory genomics across angiosperms. Cell Genomics, 6, 101329.",
+      "citation": "Zhai J, et al. (2026). PlantCAD2: A DNA foundation model for interpreting genomes across flowering plants. Cell Genomics, 6(9), 101329.",
       "doi": "10.1016/j.xgen.2026.101329",
-      "sectionLocator": "Zero-shot variant effect prediction and context scaling",
+      "sectionLocator": "Bidirectional Mamba2/Caduceus architecture and zero-shot variant effect evaluation",
       "verifiedDate": "2026-11-25",
       "status": "SOURCE_VERIFIED"
     }
