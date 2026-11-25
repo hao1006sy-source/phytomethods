@@ -1,6 +1,6 @@
 {
   "version": "2.1.0",
-  "generatedAt": "2026-11-25T11:52:24.402Z",
+  "generatedAt": "2026-11-25T15:16:25.264Z",
   "integrityPassed": true,
   "stats": {
     "nodesCount": 305,
@@ -174,7 +174,7 @@
       "type": "method",
       "doi": "10.1073/pnas.2113075119",
       "year": 2022,
-      "journal": "PNAS",
+      "journal": "Proceedings of the National Academy of Sciences (PNAS)",
       "domainIds": [
         "pangenomics-structural-variation"
       ],
@@ -743,7 +743,7 @@
       "type": "method",
       "doi": "10.1093/bioinformatics/btx170",
       "year": 2017,
-      "journal": "Bioinformatics",
+      "journal": "Bioinformatics 33(15):2408–2410",
       "domainIds": [
         "pangenomics-structural-variation"
       ],
@@ -1606,7 +1606,7 @@
       "type": "method",
       "doi": "10.1073/pnas.1921046117",
       "year": 2020,
-      "journal": "PNAS",
+      "journal": "Proceedings of the National Academy of Sciences",
       "domainIds": [
         "genome-annotation"
       ],
