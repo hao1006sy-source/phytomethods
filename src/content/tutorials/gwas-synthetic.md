@@ -70,9 +70,9 @@ slope, intercept, r_value, p_value, std_err = stats.linregress(genotype_col, phe
 
 ## 真实结果解读（基于本地实测数据）
 
-对照 `examples/gwas/verified-20261121/run.json` 实测记录：
-- 在测试的全部 60 个标记中，**第 24 号标记（SNP_24）**表现出极强的统计显著性，其检验 $P = 6.45 \times 10^{-12}$，远超 Bonferroni 显著性阈值；
-- 其余 59 个背景中性标记的 $P$ 值均匀分布在 $0.05 \sim 1.0$ 之间；
+对照 `examples/gwas/verified-20261121/run.json` 与 `associations.csv` 实测记录：
+- 在测试的全部 60 个标记中，**第 24 号标记（SNP_24）**表现出极强的统计显著性，其实测效应值 $\beta = 1.381$，显著性 $P = 4.22 \times 10^{-10}$（对应 `smallest_p = 4.2169e-10`），远超 Bonferroni 显著性校正阈值（$\alpha = 8.33 \times 10^{-4}$）；
+- 其余 59 个背景中性标记的 $P$ 值均匀分布在 $0.029 \sim 1.0$ 之间；
 - **QQ 图呈现**：大部分中性点严格落在对角线理论线上，仅第 24 号标记在右上方显著脱离理论虚线向上突起，证实模型能够灵敏定位因果变异信号。
 - 运行配套核验脚本 `python scripts/check-gwas-example.py` 重新计算各标记关联值，数据 100% 准确复现。
 

@@ -63,19 +63,23 @@ updatedAt: 2026-11-25
 - **基因型与组学文件**：制表符或逗号分隔的数值矩阵（CSV/TXT），行为样本（个体），列为标记（如 0/1/2 编码的 SNP）或标准化后的基因表达量数值；
 - **表型文件**：包含样本标识符与目标连续表型观测值的对照表。
 
-### 5.2 官方脚本调用示例
-根据官方仓库提供的命令行规范，通过 Python 执行训练与超参数搜索：
+### 5.2 官方脚本组织与调用规范
+根据官方代码库（GitHub: `AIBreeding/DNNGP`）开源实现：
+- **超参数自动调优脚本 (`Tuning_hyperparameters/DNNGP_OPN.py`)**：基于 Nevergrad 库（`NGOpt` 算法）的多表型批量自动化超参数寻优工具。该脚本并非通过命令行直接接收数据文件，而是在脚本开头配置变量（如 `pkl_file` 基因型文件、`output_dir` 结果目录、`budget` 搜索预算与 `cvs` 交叉验证折数），自动对各表型 `.tsv` 搜索最佳学习率、批次大小（`batch_size`）、Dropout 与早停阈值，并输出 `best_params_per_tsv.json`。
+- **底层模型训练执行器 (`Scripts/dnngp_runner.py`)**：官方实际提供标准参数解析器的底层运行脚本：
 ```bash
 # 激活包含 TensorFlow 2.6.0 的 Python 环境
-# 运行 DNNGP 超参数优化与交叉验证主脚本
-python DNNGP_OPN.py \
-  --genotype genotype_data.csv \
-  --phenotype phenotype_data.csv \
-  --omics transcriptomic_data.csv \
+# 运行官方 dnngp_runner 示例（单折模型训练与评估）
+python ../Scripts/dnngp_runner.py \
+  --snp ../Input_files/genotype.pkl \
+  --pheno ../Input_files/phenotype.tsv \
+  --output ../Output_files \
+  --batch_size 128 \
+  --lr 0.001 \
   --cv 10 \
-  --out results_dnngp/
+  --part 1
 ```
-*注：具体参数名与输入通道请以官方仓库对应版本的脚本文档与示例数据为准。*
+*注：具体参数请以官方仓库对应版本的脚本定义与示例数据目录（如 `wheat599_pc95.pkl`）为准，切勿将 `DNNGP_OPN.py` 误用为命令行数据接收端。*
 
 ---
 

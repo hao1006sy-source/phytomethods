@@ -78,20 +78,25 @@ sc.tl.umap(adata)
 2. **`qc_before.csv`**：
    质控前各细胞的总 UMI 数（`total_counts`）与检出基因数（`n_genes_by_counts`）；
 3. **`cell_results.csv`**：
-   过滤后各细胞的分析矩阵，包含样本 ID、过滤后总计数、UMAP_1 与 UMAP_2 坐标、Leiden 聚类标签（`cluster`）及真实模拟组标签；
+   过滤后各细胞的分析矩阵，包含标准输出字段：`cell`（细胞 ID）、`UMAP1`、`UMAP2`（降维坐标）、`cluster`（Leiden 聚类标签）与 `simulated_group`（预设真实模拟组标签）；
 4. **`umap.png`**：
    高质量 UMAP 双散点图，左图按预设模拟组着色，右图按无监督 Leiden 聚类结果着色；
 5. **`run.json`**：
-   记录软件版本、随机种子、执行参数及细胞保留统计。
+   记录软件版本、随机种子、执行参数（如 `n_pcs: 10`, `n_neighbors: 8`, `leiden_resolution: 0.5`）及细胞保留统计。
 
 ---
 
 ## 真实结果解读（基于本地实测数据）
 
-对照 `examples/single-cell/verified-20261121/run.json` 记录：
+对照 `examples/single-cell/verified-20261121/run.json` 与 `cell_results.csv` 实际记录：
 - 原始 61 个输入观测中，1 个全零离群点被质控规则精准剔除，保留 60 个高质量细胞；
-- **Leiden 聚类（分辨率 0.5）**：将 60 个细胞自动划分为 2 个聚类群（Cluster 0 包含 31 个细胞，Cluster 1 包含 29 个细胞）；
-- **聚类与真值对照**：Leiden 聚类结果与预设的 Group 1 与 Group 2 标签完全吻合；
+- **Leiden 聚类规模（分辨率 0.5，flavor: igraph）**：
+  - **Cluster 0**：29 个细胞；
+  - **Cluster 1**：31 个细胞；
+- **聚类与模拟标签交叉列联表分析**：
+  - Cluster 0 的 29 个细胞全部属于模拟 A 组（`simulated_group = A`）；
+  - Cluster 1 的 31 个细胞中，30 个属于模拟 B 组（`simulated_group = B`），1 个属于模拟 A 组；
+  - 总体上 60 个细胞中有 59 个（98.3%）与模拟分组保持一致，但并非完全无缝吻合，存在 1 个边缘过渡细胞被无监督聚类划入 Cluster 1。这一现象在真实单细胞分析中常见于细胞亚型之间的过渡态或异质性表达；
 - **UMAP 流形呈现**：两组细胞在二维平面上形成相互独立且内部紧凑的两个点云簇。
 
 ---
