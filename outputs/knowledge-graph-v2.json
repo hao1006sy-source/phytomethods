@@ -241,11 +241,11 @@
       "domainIds": [
         "single-cell-spatial-omics"
       ],
-      "summary": "在 R 中组织和分析 scATAC-seq 数据，并支持 peak-to-gene 与 RNA 整合。",
+      "summary": "面向单细胞染色质可及性 (scATAC-seq) 的超高通量数据分析、降维聚类、转录因子足迹与表观基因组多模态整合 R 软件包。",
       "meta": {
         "repository": "https://github.com/GreenleafLab/ArchR",
-        "dataType": "scATAC-seq BAM/fragment files 与可选 scRNA-seq",
-        "principle": "LSI 表示、peak 集、顺式元件链接与跨模态映射",
+        "dataType": "scATAC-seq 片段文件 (Fragments TSV/BED)、基因组注释与单细胞元数据",
+        "principle": "基于 Arrow 分块磁盘存储、迭代潜在语义索引 (Iterative LSI)、基因活性评分 (Gene Score) 与转录因子足迹 (Footprinting)",
         "canonicalPaperId": "archr-paper"
       }
     },
@@ -275,11 +275,11 @@
       "domainIds": [
         "epigenomics-3d-genome"
       ],
-      "summary": "比对亚硫酸氢盐处理的测序 reads，并提取胞嘧啶甲基化状态。",
+      "summary": "全基因组亚硫酸氢盐测序 (WGBS) 的计算机四链转换感知比对、去重复与胞嘧啶甲基化 (CG/CHG/CHH) 提取工具。",
       "meta": {
         "repository": "https://github.com/FelixKrueger/Bismark",
-        "dataType": "BS-seq FASTQ 与参考 FASTA",
-        "principle": "亚硫酸氢盐感知比对与甲基化提取",
+        "dataType": "亚硫酸氢盐测序 FASTQ (单端/双端)、参考基因组 FASTA",
+        "principle": "计算机四链 In Silico C→T/G→A 转换、Bowtie2/HISAT2 比对引擎与胞嘧啶上下文分类提取",
         "canonicalPaperId": "bismark-paper"
       }
     },
@@ -394,11 +394,11 @@
       "domainIds": [
         "gwas-breeding"
       ],
-      "summary": "面向植物基因组预测的深度神经网络方法，支持多组学特征输入。",
+      "summary": "基于深度神经网络与多组学特征集成的植物前沿基因组预测软件，支持捕获非线性基因组上位性与环境互作效应。",
       "meta": {
         "repository": "https://github.com/AIBreeding/DNNGP",
-        "dataType": "基因型、表型及可选多组学特征",
-        "principle": "深度神经网络与监督式基因组预测",
+        "dataType": "SNP 变异矩阵 (One-hot / 连续剂量)、表型数据、多组学分子特征 (转录组表达量、甲基化谱等)",
+        "principle": "多层全连接深度神经网络 (MLP)、残差连接 (Residual Block)、多组学特征后期融合与早停正则化",
         "canonicalPaperId": "dnngp-paper"
       }
     },
@@ -428,11 +428,11 @@
       "domainIds": [
         "epigenomics-3d-genome"
       ],
-      "summary": "对 BS-seq 甲基化计数拟合 beta-binomial 模型，检测差异位点与区域。",
+      "summary": "基于贝叶斯 Beta-二项层级模型与空间平滑的单碱基差异甲基化位点 (DML) 与区域 (DMR) 鉴定 R 软件包。",
       "meta": {
-        "repository": "https://bioconductor.org/packages/DSS/",
-        "dataType": "样本级胞嘧啶甲基化 reads 计数",
-        "principle": "beta-binomial 回归与离散度收缩",
+        "repository": "https://bioconductor.org/packages/release/bioc/html/DSS.html",
+        "dataType": "胞嘧啶甲基化计数表 (chr, pos, N, X) / Bismark 胞嘧啶报告",
+        "principle": "Beta-二项层级广义线性模型 (Beta-Binomial GLM)、经验贝叶斯局部平滑与 Wald 假设检验",
         "canonicalPaperId": "dss-paper"
       }
     },
@@ -479,11 +479,11 @@
       "domainIds": [
         "gwas-breeding"
       ],
-      "summary": "整合多种 GWAS 与基因组预测方法的 R 工具。",
+      "summary": "全基因组关联分析 (GWAS) 与基因组预测 (GS) 一体化集成工具，支持 MLM、CMLM、FarmCPU 与 BLINK 等先进多位点模型。",
       "meta": {
         "repository": "https://github.com/jiabowang/GAPIT",
-        "dataType": "基因型、表型与样本协变量",
-        "principle": "混合模型与多位点关联分析",
+        "dataType": "变异基因型 (HapMap / VCF / 数值矩阵)、表型数据 (TSV/CSV)、协变量与亲缘矩阵",
+        "principle": "线性混合模型 (Q+K)、压缩混合模型 (CMLM)、固定与随机模型迭代 (FarmCPU) 及贝叶斯 LD 剪枝 (BLINK)",
         "canonicalPaperId": "gapit3-paper"
       }
     },
@@ -530,11 +530,11 @@
       "domainIds": [
         "epigenomics-3d-genome"
       ],
-      "summary": "从 Hi-C 配对数据构建接触矩阵，并执行归一化、结构分析和可视化。",
+      "summary": "全染色体高通量染色质构象捕获 (Hi-C) 接触矩阵构建、质控归一化、拓扑关联结构域 (TAD) 与 A/B 区室分析工具集。",
       "meta": {
         "repository": "https://github.com/deeptools/HiCExplorer",
-        "dataType": "Hi-C paired-end reads 或接触矩阵",
-        "principle": "接触矩阵构建、校正与多尺度结构识别",
+        "dataType": "Hi-C 双端比对 BAM / SAM、限制性酶切位点 BED、接触矩阵 (.h5 / .cool)",
+        "principle": "接触矩阵离散分箱 (Binning)、Knight-Ruiz (KR) / 迭代校正 (ICE) 矩阵平衡、方向性指数 (DI) 与特征向量主成分分解 (A/B Compartments)",
         "canonicalPaperId": "hicexplorer-paper"
       }
     },
@@ -598,11 +598,11 @@
       "domainIds": [
         "epigenomics-3d-genome"
       ],
-      "summary": "以局部背景模型识别 ChIP-seq、ATAC-seq 等实验中的富集区域。",
+      "summary": "面向 ChIP-seq、CUT&Tag 与 ATAC-seq 的模型化峰值检出 (Peak Calling)、广义泊松先验与染色质开放区识别工具。",
       "meta": {
         "repository": "https://github.com/macs3-project/MACS",
-        "dataType": "比对后的 ChIP-seq 或 ATAC-seq reads / fragments",
-        "principle": "局部背景富集检验与 peak calling",
+        "dataType": "BAM / BED 比对文件、对照组 Input / IgG 比对文件",
+        "principle": "动态局部双泊松经验检验 (Dynamic Poisson)、片段延伸移动模型 (d-shift)、隐马尔可夫模型 HMM 与宽峰/窄峰双模式",
         "canonicalPaperId": "macs-paper"
       }
     },
@@ -906,11 +906,11 @@
       "domainIds": [
         "gwas-breeding"
       ],
-      "summary": "面向实验杂交群体和多亲本设计的 R 包，用于估计 QTL 基因型概率并扫描数量性状关联。",
+      "summary": "面向双亲分离群体、多亲本重组自交系 (MAGIC) 与复杂杂交群体的 QTL 定位、基因型概率推断与 LOD 关联扫描 R 软件包。",
       "meta": {
         "repository": "https://github.com/rqtl/qtl2",
-        "dataType": "分离群体标记基因型、遗传图谱、表型与协变量",
-        "principle": "多点基因型概率与 QTL 全基因组扫描",
+        "dataType": "杂交群体标记基因型、高密度遗传图谱 (cM)、表型数据与亲本祖先单倍型",
+        "principle": "隐马尔可夫模型 (HMM) 多点单倍型概率、留一染色体亲缘校正 (LOCO)、线性混合模型单 QTL 扫描与置换检验",
         "canonicalPaperId": "rqtl2-paper"
       }
     },
@@ -923,11 +923,11 @@
       "domainIds": [
         "gwas-breeding"
       ],
-      "summary": "R 包实现岭回归 BLUP 与核方法，用于基因组育种值预测。",
+      "summary": "基于岭回归最佳线性无偏预测 (rrBLUP) 与基因组最佳线性无偏预测 (GBLUP) 的植物基因组育种值推断与跨环境预测 R 软件包。",
       "meta": {
         "repository": "https://cran.r-project.org/web/packages/rrBLUP/index.html",
-        "dataType": "SNP 基因型、表型与育种试验设计",
-        "principle": "岭回归与线性混合模型",
+        "dataType": "SNP 变异矩阵 (数值编码 -1/0/1 或 0/1/2)、表型数据 (单环境/多环境)、加性亲缘矩阵",
+        "principle": "岭回归 (Ridge Regression)、谱分解快速求解 (Spectral Decomposition)、GBLUP 与连续核方法 (RKHS)",
         "canonicalPaperId": "rrblup-paper"
       }
     },

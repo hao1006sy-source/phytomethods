@@ -1,6 +1,6 @@
 {
   "version": "2.1.0",
-  "generatedAt": "2026-11-25T02:10:18.696Z",
+  "generatedAt": "2026-11-25T02:25:59.698Z",
   "integrityPassed": true,
   "stats": {
     "nodesCount": 305,
@@ -2747,7 +2747,7 @@
       "name": "DSS",
       "canonicalPaperId": "dss-paper",
       "canonicalPaperTitle": "A Bayesian hierarchical model to detect differentially methylated loci from single nucleotide resolution sequencing data",
-      "repository": "https://bioconductor.org/packages/DSS/",
+      "repository": "https://bioconductor.org/packages/release/bioc/html/DSS.html",
       "domainIds": [
         "epigenomics-3d-genome"
       ],
