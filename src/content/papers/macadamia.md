@@ -10,22 +10,28 @@ method: hifiasm
 methodIds: [hifiasm]
 domainIds: [genome-assembly]
 speciesIds: [macadamia]
-updatedAt: 2026-11-20
+updatedAt: 2026-11-25
 ---
-## 研究解读
-该研究利用长读长数据组装 Macadamia jansenii 基因组。论文方法部分报告使用 Hifiasm 处理 HiFi reads，结合额外数据构建染色体级组装。
+## 研究问题与材料范围
+濒危植物 *Macadamia jansenii*（基因组约 800 Mb）缺乏高质量染色体级参考基因组。Sharma 等（2022）评估了仅使用 PacBio HiFi 长读段与 **Hifiasm** 组装器能否在不依赖高密度遗传图谱的情况下实现近染色体级植物基因组组装，并与 Hi-C 伪分子挂载结果进行系统比较。
 
-[期刊原文及方法](https://doi.org/10.1111/tpj.15583)。
+## 分析流程
+1. **不同深度 HiFi 从头组装**：分别测试 10×、18× 独立测序及合并 **28× PacBio HiFi** 数据，在 **24 核、120 GB 内存** 环境下运行 **Hifiasm**（默认参数、内置去重复）构建 primary contig 与 alternate haplotig GFA。
+2. **格式转换与 Hi-C 伪分子比较**：将 Hifiasm 输出的 GFA 转换为 FASTA，并与独立构建的 Hi-C 伪分子染色体进行共线性与断点比对。
+3. **连续性与完整度评估**：统计 contig N50 与 BUSCO 完整度，定位残余断点（主要位于核糖体基因等高重复区）。
 
-## 研究背景与分析目标
-Macadamia jansenii 是受威胁的澳大利亚坚果属植物，研究目标是评估 HiFi 长读段和 Hifiasm 能否在不依赖染色体图谱的情况下产生高连续植物组装，并比较其与 Hi-C 伪分子构建结果。
+## 软件明细表格
+| 软件 | 论文中的具体任务 | 结果解释与科学推论 |
+| :--- | :--- | :--- |
+| **Hifiasm** | 基于 28× HiFi 数据从头组装 primary/alternate contig | 在 24 核 120 GB 内存下实现 contig N50 达 46.1 Mb、BUSCO 99.6% |
+| **Hi-C 挂载与 BUSCO** | 验证 contig 染色体级连续性与基因区完整度 | 14 条染色体中 8 条由单个大 contig 覆盖（6 条具两端端粒重复） |
 
-## 数据与计算方法
-论文使用 PacBio HiFi 数据组装，报告 Hifiasm 默认设置、内置重复清理；高性能计算环境为 24 核与 120 GB 内存。作者将两个 haploid、primary contig 与 alternate haplotig GFA 转为 FASTA，并与 Hi-C 伪分子比较。单独使用 10× 与 18× runs 的结果较碎片化，合并 28× 得到更连续组装，报告 contig N50 46.1 Mb、BUSCO 99.6%。
+## 主要科研发现
+- 合并 28× HiFi 数据显著优于 10×/18×，最终以 **17 个主要 contig** 覆盖全部 14 条染色体（contig N50 达 **46.1 Mb**，BUSCO **99.6%**）。
+- 明确区分了 Hifiasm 原始 contig 与 Hi-C 伪分子的组装边界，指出高重复 rDNA 区域仍是少数残余断点的主因。
 
-## 主要发现与解读
-14 条染色体中有 8 条由一个大型 contig 覆盖，其中 6 条两端带端粒重复；其余 6 条由 2–4 个主要 contig 覆盖，整体共 17 个主要 contig。作者指出残余断点与核糖体基因等高重复区有关。该研究说明在约 800 Mb、其数据质量和遗传背景下 HiFi/Hifiasm 可实现近染色体级连续性，不能将其覆盖度或连续性直接作为其他物种的保证。
-
-## 方法限制与精读重点
-研究目标为近完整染色体级组装，不是全部 14 条染色体 T2T；摘要和结果需区分 Hifiasm contig 与 Hi-C pseudo-molecule。复读时关注不同数据量的组装比较、GFA 到 FASTA 的转换、重复区断点、BUSCO 对比和可复用数据 BioProject PRJNA694456。
+## 阅读与数据复现资源
+- **原始论文**：[The Plant Journal (2022)](https://doi.org/10.1111/tpj.15583)
+- **相关站内资源**：[Hifiasm 方法页](../../methods/hifiasm/)
+- **数据复现**：原始 HiFi 测序与组装数据已存放在 NCBI BioProject（`PRJNA694456`）。
 
