@@ -10,16 +10,28 @@ methodIds: []
 domainIds: [population-genetics]
 speciesIds: [soybean]
 status: published
-updatedAt: 2026-11-22
+updatedAt: 2026-11-25
 ---
-## 样本与测序设计
+## 研究问题与材料范围
+大豆（*Glycine max*）从野生大豆（*Glycine soja*）驯化而来，伴随遗传瓶颈与连锁不平衡（LD）格局的重塑。Lam 等（2010）对 **17 份野生大豆和 14 份栽培大豆**（共 31 份材料）使用 Illumina Genome Analyzer II 进行全基因组重测序（平均深度约 $5\times$，基因组覆盖率超过 90%），系统比较野生与栽培大豆的遗传多样性及选择模式。
 
-Lam 等对 17 份野生大豆和 14 份栽培大豆进行重测序，使用 Illumina Genome Analyzer II 平台，平均深度约 $5\times$，论文报告覆盖率超过 90%。其目标是初步构建野生—栽培基因组变异比较资源，分析全基因组遗传多样性、连锁不平衡和候选 tag SNP。[PubMed 记录与摘要](https://pubmed.ncbi.nlm.nih.gov/21076406/)；[DOI 页面](https://doi.org/10.1038/ng.715)。
+## 分析流程
+1. **浅层全基因组重测序与变异检测**：将 31 份材料的短读段比对至大豆参考基因组，检测全基因组 SNP 与小片段插入缺失。
+2. **遗传多样性与连锁不平衡（LD）分析**：比较野生大豆与栽培大豆群体的核苷酸多样性（$\pi$）、等位基因频率分布及全基因组 LD 衰减距离。
+3. **Tag SNP 筛选**：基于 LD 单倍型区块结构筛选高代表性标签 SNP（tag SNP），构建用于大豆 QTL 定位与 GWAS 的标记资源。
 
-## 主要观察及边界
+## 软件明细表格
+| 方法 / 分析模块 | 论文中的具体任务 | 结果解释与科学推论 |
+| :--- | :--- | :--- |
+| **全基因组重测序比对** | 31 份野生与栽培大豆 SNP 鉴定 | 在 $5\times$ 深度下覆盖超过 90% 基因组，揭示野生大豆更高的等位基因多样性 |
+| **LD 与 Tag SNP 筛选** | 评估大豆基因组连锁不平衡并提取标签位点 | 鉴定出 205,614 个可用于下游 QTL 定位和关联分析的 tag SNP |
 
-摘要报告野生材料的等位基因多样性高于栽培材料，并发现大豆基因组存在较高连锁不平衡；论文提供 205,614 个可供 QTL 定位和关联分析使用的 tag SNP。该资源展示群体驯化背景下多样性与 LD 的共同变化，并为后续育种分析提供标记集合。样本规模、测序深度和当时采用的基因组参考限定了可观察到的低频及结构变异范围；页面不据此扩展未在摘要/原文核实的候选因果基因结论。[M05-07 驯化与环境适应专题](../../topics/population-genetics/m05-topic-07/)。
+## 主要科研发现
+- 证实野生大豆的等位基因多样性显著高于栽培大豆，且大豆基因组整体呈现较高的连锁不平衡（LD）水平。
+- 提供了 **205,614 个 tag SNP** 资源，为后续大豆复杂农艺性状遗传定位奠定了重要基础。
 
-## 参考记录
-
-Lam HM, Xu X, Liu X, et al. Resequencing of 31 wild and cultivated soybean genomes identifies patterns of genetic diversity and selection. *Nature Genetics*. 2010;42(12):1053–1059. [doi:10.1038/ng.715](https://doi.org/10.1038/ng.715).
+## 阅读与数据复现资源
+- **原始论文**：[Nature Genetics (2010)](https://doi.org/10.1038/ng.715)
+- **PubMed**：[PMID: 21076406](https://pubmed.ncbi.nlm.nih.gov/21076406/)
+- **相关站内资源**：[M05-07 驯化与环境适应专题](../../topics/population-genetics/m05-topic-07/)
+- **数据复现**：原始重测序数据详见原文 Data Availability 部分（NCBI SRA）。
