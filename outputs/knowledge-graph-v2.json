@@ -190,11 +190,11 @@
       "domainIds": [
         "population-genetics"
       ],
-      "summary": "在给定成分数 K 下，以最大似然估计个体祖先成分比例与成分等位基因频率。",
+      "summary": "基于极大似然估计与块松弛优化的大规模群体多位点 SNP 祖先成分比例与等位基因频率推断软件。",
       "meta": {
         "repository": "https://dalexander.github.io/admixture/",
-        "dataType": "多位点双等位 SNP 基因型",
-        "principle": "最大似然祖先成分模型",
+        "dataType": "PLINK 二进制文件集 (BED/BIM/FAM) / 多位点双等位 SNP 基因型",
+        "principle": "二项混合极大似然模型、块松弛序列二次规划 (SQP)、拟牛顿加速与交叉验证",
         "canonicalPaperId": "admixture-paper"
       }
     },
@@ -258,11 +258,11 @@
       "domainIds": [
         "population-genetics"
       ],
-      "summary": "处理 VCF/BCF 数据并支持基于比对的变异检测。",
+      "summary": "全基因组变异检测 (mpileup/call)、格式转换、过滤质控、多样本联合分析与规范化的核心工具集。",
       "meta": {
         "repository": "https://github.com/samtools/bcftools",
-        "dataType": "BAM / CRAM / VCF / BCF",
-        "principle": "基因型似然与变异数据处理",
+        "dataType": "BAM / CRAM 比对文件、VCF / BCF 变异文件",
+        "principle": "基因型似然贝叶斯推断 (Li 2011 模型)、碱基对齐质量 (BAQ) 重校准、多等位位点联合调用与表达式动态过滤",
         "canonicalPaperId": "bcftools-paper"
       }
     },
@@ -735,11 +735,11 @@
       "domainIds": [
         "population-genetics"
       ],
-      "summary": "经典多序列顺序马尔可夫共祖模型，联合分析多个单倍型推断历史有效群体大小和群体分化时间。",
+      "summary": "经典多序列顺序马尔可夫共祖模型，联合分析 4 至 8 条定相单倍型以推断近期群体动态与群体分化隔离历程。",
       "meta": {
         "repository": "https://github.com/stschiff/msmc",
-        "dataType": "多样本 VCF、全基因组高置信度位点相位信息、可调用区域 mask 与 multihetsep",
-        "principle": "多序列顺序马尔可夫共祖隐马尔可夫模型（联合拟合多条单倍型共祖状态）",
+        "dataType": "多样本 VCF、全基因组染色体级定相信息、可调用区域 mask 与 multihetsep",
+        "principle": "多单倍型联合首次共祖 HMM、相对跨群体共祖率 (RCCR) 与极大似然估计",
         "canonicalPaperId": "msmc-paper"
       }
     },
@@ -752,11 +752,11 @@
       "domainIds": [
         "population-genetics"
       ],
-      "summary": "基于多个单倍型对的共祖率，估计群体规模历史和群体间分化过程。",
+      "summary": "基于成对复合似然框架的多单倍型顺序马尔可夫共祖软件，支持大规模样本高分辨率群体历史与群体分化定量分析。",
       "meta": {
         "repository": "https://github.com/stschiff/msmc2",
-        "dataType": "多样本 VCF、位点相位信息、可调用区域 mask 与 multihetsep",
-        "principle": "多序列顺序马尔可夫共祖隐马尔可夫模型",
+        "dataType": "多样本 VCF、染色体级相位信息、可调用区域 mask 与 multihetsep",
+        "principle": "成对共祖复合似然 (Pairwise Composite Likelihood)、单倍型成对 HMM 联合求解与 RCCR 跨群体分化",
         "canonicalPaperId": "msmc2-protocol"
       }
     },
@@ -872,11 +872,11 @@
       "domainIds": [
         "population-genetics"
       ],
-      "summary": "面向基因型数据的质量控制、遗传统计、群体结构概览与关联分析工具集。",
+      "summary": "面向全基因组变异数据的位压缩存储、质控过滤、连锁不平衡剪枝、PCA 降维与群体遗传统计工具集。",
       "meta": {
         "repository": "https://github.com/chrchang/plink-ng",
-        "dataType": "VCF / BCF / PLINK 基因型文件",
-        "principle": "基因型统计与关联分析",
+        "dataType": "VCF / BCF / PLINK 二进制文件集 (BED/BIM/FAM 与 PGEN/PVAR/PSAM)",
+        "principle": "2-bit 位运算压缩矩阵、样本协方差奇异值分解 (SVD)、连锁不平衡贪心剪枝与多态性统计",
         "canonicalPaperId": "plink-paper"
       }
     },
@@ -889,11 +889,11 @@
       "domainIds": [
         "population-genetics"
       ],
-      "summary": "从一个二倍体全基因组序列中的杂合位点分布，估计局部共祖时间与历史有效群体大小。",
+      "summary": "从单个二倍体全基因组杂合位点空间分布推断成对顺序马尔可夫共祖历史与长周期有效群体大小动态。",
       "meta": {
         "repository": "https://github.com/lh3/psmc",
-        "dataType": "二倍体共识序列、PSMCFA 与可调用区域",
-        "principle": "成对顺序马尔可夫共祖隐马尔可夫模型",
+        "dataType": "二倍体高深度共识序列 (FASTQ) / 压缩格式 (PSMCFA) / 可调用区域掩蔽 (Mask BED)",
+        "principle": "隐马尔可夫模型 (HMM)、顺序马尔可夫共祖 (SMC)、Baum-Welch 期望最大化与时间参数化",
         "canonicalPaperId": "psmc-paper"
       }
     },
@@ -991,11 +991,11 @@
       "domainIds": [
         "population-genetics"
       ],
-      "summary": "计算 EHH、iHS、XP-EHH、nSL 等基于延伸单倍型纯合性的选择扫描统计量。",
+      "summary": "计算全基因组延伸单倍型纯合性 (EHH)、iHS、XP-EHH 与 nSL 等近期正选择扫描统计量的高性能多线程工具。",
       "meta": {
         "repository": "https://github.com/szpiech/selscan",
-        "dataType": "已定相的单倍型基因型、变异坐标与遗传图谱",
-        "principle": "延伸单倍型纯合性与群体间积分比较",
+        "dataType": "染色体级已定相 VCF、物理/遗传图谱文件 (Map)",
+        "principle": "延伸单倍型纯合性 (EHH)、单倍型积分面积比值检验、跨群体单倍型衰减比较与经验正态归一化",
         "canonicalPaperId": "selscan-paper"
       }
     },
@@ -1008,11 +1008,11 @@
       "domainIds": [
         "population-genetics"
       ],
-      "summary": "结合局部共祖连锁信息与条件样本频率谱，从未定相全基因组样本估计群体历史。",
+      "summary": "结合区分单倍型局部共祖与大规模未定相样本条件频率谱 (CSFS) 的全基因组群体历史与分化时间推断软件。",
       "meta": {
         "repository": "https://github.com/popgenmethods/smcpp",
-        "dataType": "双等位二倍体 VCF、样本群体表与 BED 格式缺失区 mask",
-        "principle": "顺序共祖模型与条件样本频率谱",
+        "dataType": "双等位二倍体 VCF (支持未定相大样本与已定相区分样本)、BED 格式掩蔽区 mask",
+        "principle": "区分谱系顺序共祖模型、条件位点频率谱 (CSFS)、样条正则化与清洁分裂模型",
         "canonicalPaperId": "smcpp-paper"
       }
     },
@@ -1059,11 +1059,11 @@
       "domainIds": [
         "population-genetics"
       ],
-      "summary": "依据群体位点频率谱沿基因组的空间变化计算清除复合似然比，并可建模背景选择。",
+      "summary": "基于单群体位点频率谱 (SFS) 空间畸变与背景选择校正的全基因组选择性清除复合似然比 (CLR) 扫描软件。",
       "meta": {
         "repository": "https://github.com/mdegiorgio/SweepFinder2",
-        "dataType": "单群体 SNP 位点频率谱、祖先状态及可选重组率/B 值",
-        "principle": "位点频率谱复合似然与背景选择校正",
+        "dataType": "染色体 SNP 位点频率谱 (Position, x, n, folded)、经验全基因组中性 SFS、重组率图谱与 B 值矩阵",
+        "principle": "空间位点频率谱复合似然比检验 (CLR)、中性经验频谱背景校正与背景选择 (B 值) 解卷积",
         "canonicalPaperId": "sweepfinder2-paper"
       }
     },
@@ -1161,11 +1161,11 @@
       "domainIds": [
         "population-genetics"
       ],
-      "summary": "基于两群体多位点等位基因频率差异和连锁结构的跨群体复合似然扫描。",
+      "summary": "基于两群体多位点等位基因频率差异与连锁不平衡 (LD) 协方差加权的跨群体选择性清除复合似然扫描。",
       "meta": {
         "repository": "https://github.com/hardingnj/xpclr",
-        "dataType": "两个群体的 SNP 基因型与等位基因频率",
-        "principle": "跨群体等位基因频率复合似然",
+        "dataType": "双群体 SNP 基因型 / 等位基因频率 (VCF, HDF5, 纯文本表格)",
+        "principle": "跨群体等位基因频率扩散模型、局部 LD 相关性逆方差加权与复合似然比 (CLR)",
         "canonicalPaperId": "xpclr-paper"
       }
     },
