@@ -5826,7 +5826,7 @@
       "label": "使用 EDTA 注释植物基因组重复序列",
       "slug": "edta-tutorial",
       "href": "/tutorials/edta-tutorial/",
-      "summary": "基于官方用法准备基因组 FASTA 并生成重复序列注释。",
+      "summary": "基于官方用法准备基因组 FASTA 并生成全基因组转座子与重复序列注释。",
       "meta": {
         "methodId": "edta",
         "tested": "template"
@@ -5886,7 +5886,7 @@
       "label": "使用 Scanpy 分析模拟单细胞表达矩阵",
       "slug": "scanpy-synthetic",
       "href": "/tutorials/scanpy-synthetic/",
-      "summary": "以可重复生成的模拟数据练习质控、PCA、邻近图、聚类和 UMAP。",
+      "summary": "以可重复生成的模拟数据练习单细胞质控、PCA、邻近图构建、Leiden 聚类和 UMAP 降维。",
       "meta": {
         "methodId": "scanpy",
         "tested": "verified"
@@ -5910,7 +5910,7 @@
       "label": "使用 WGCNA 分析模拟基因表达网络",
       "slug": "wgcna-synthetic",
       "href": "/tutorials/wgcna-synthetic/",
-      "summary": "从模拟表达矩阵构建加权网络、识别模块并查看相关热图。",
+      "summary": "从模拟表达矩阵构建加权网络、计算拓扑重叠、识别共表达模块并导出特征基因与相关热图。",
       "meta": {
         "methodId": "wgcna",
         "tested": "verified"
