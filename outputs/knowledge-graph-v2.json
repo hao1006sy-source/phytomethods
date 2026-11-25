@@ -3,8 +3,8 @@
   "description": "PhytoMethods Scientific Knowledge Graph Schema V2.1 with Evidence & Integrity",
   "stats": {
     "nodesCount": 305,
-    "edgesCount": 743,
-    "evidenceEntriesCount": 801,
+    "edgesCount": 742,
+    "evidenceEntriesCount": 800,
     "nodesByType": {
       "domain": 9,
       "method": 59,
@@ -20,7 +20,7 @@
       "extends_method": 3,
       "introduces_method": 59,
       "studies_species": 64,
-      "uses_method": 67,
+      "uses_method": 66,
       "references_method": 1,
       "evaluates_method": 6,
       "features_method": 112,
@@ -28,7 +28,7 @@
       "guides_method": 10
     },
     "evidenceByStatus": {
-      "source_checked": 600,
+      "source_checked": 599,
       "structurally_valid": 201,
       "needs_review": 0
     },
@@ -59,7 +59,7 @@
         "needs_review": 0
       },
       "uses_method": {
-        "source_checked": 67,
+        "source_checked": 66,
         "structurally_valid": 0,
         "needs_review": 0
       },
@@ -1195,7 +1195,7 @@
       "domainIds": [
         "population-genetics"
       ],
-      "summary": "介绍 ADMIXTURE 的交叉验证、监督估计、惩罚估计和多处理器扩展。",
+      "summary": "提出 ADMIXTURE 的五折交叉验证误差（CV error）最优 K 值选择、移动区块 Bootstrap 标准误与监督估计扩展算法。",
       "meta": {
         "authors": "Alexander DH, Lange K",
         "journal": "BMC Bioinformatics",
@@ -1216,7 +1216,7 @@
       "domainIds": [
         "population-genetics"
       ],
-      "summary": "使用最大似然模型估计个体的祖先成分比例。",
+      "summary": "提出基于最大似然、交替块松弛与拟牛顿加速的高性能个体祖先成分与群体结构推断算法 ADMIXTURE。",
       "meta": {
         "authors": "Alexander DH, Novembre J, Lange K",
         "journal": "Genome Research",
@@ -1237,7 +1237,7 @@
       "domainIds": [
         "population-genetics"
       ],
-      "summary": "使用非洲栽培稻和野生祖先的群体基因组数据重建栽培历史与种群变化。",
+      "summary": "对 246 份非洲栽培稻及其野生祖先进行全基因组重测序，揭示非洲稻驯化起源于尼日尔河内陆三角洲及其受亚洲水稻引入后的衰落历程。",
       "meta": {
         "authors": "Cubry P, Tranchant-Dubreuil C, Thuillet AC, et al.",
         "journal": "Current Biology",
@@ -1247,7 +1247,6 @@
           "rice"
         ],
         "methodIds": [
-          "psmc",
           "msmc",
           "smcpp"
         ]
@@ -1262,7 +1261,7 @@
       "domainIds": [
         "regulatory-genomics-ai"
       ],
-      "summary": "介绍以 48 种植物基因组预训练的 AgroNT，并评估植物 DNA 序列功能相关任务。",
+      "summary": "提出基于 48 种主要农作物基因组预训练的 10 亿参数植物 DNA 序列基础大模型 AgroNT 及多任务微调基准。",
       "meta": {
         "authors": "Mendoza-Revilla J, Trop E, Gonzalez L, et al.",
         "journal": "Communications Biology",
@@ -1283,10 +1282,10 @@
       "domainIds": [
         "pangenomics-structural-variation"
       ],
-      "summary": "植物基因组共线锚点识别与碱基级比对。",
+      "summary": "提出植物全基因组共线锚点识别与全碱基级比对算法 AnchorWave，创新性地结合基因外显子共线约束、最长路径动态规划与双段仿射罚分波前比对技术，完美破解了植物高序列分化、转座子剧烈变异及全基因组复制（WGD）下的全基因组对齐难题。",
       "meta": {
         "authors": "Song B, Marco-Sola S, Moreto M, Johnson L, Buckler ES, Stitzer MC",
-        "journal": "PNAS",
+        "journal": "Proceedings of the National Academy of Sciences (PNAS)",
         "year": 2022,
         "doi": "10.1073/pnas.2113075119",
         "speciesIds": [],
@@ -1660,7 +1659,7 @@
       "domainIds": [
         "single-cell-spatial-omics"
       ],
-      "summary": "用于 scATAC-seq 质控、聚类、调控元件链接及 RNA 整合的 R 软件。",
+      "summary": "基于 Arrow 磁盘文件系统的高性能单细胞染色质可及性（scATAC-seq）质控、LSI降维、调控元件与基因链接分析框架。",
       "meta": {
         "authors": "Granja JM, Corces MR, Pierce SE, et al.",
         "journal": "Nature Genetics",
@@ -1681,7 +1680,7 @@
       "domainIds": [
         "population-genetics"
       ],
-      "summary": "介绍 SAMtools、BCFtools 和 HTSlib 的数据处理及变异分析能力。",
+      "summary": "系统总结 SAMtools、BCFtools 与 HTSlib 十二年发展历程中的高通量变异检测、格式规范化与多样本高效处理体系。",
       "meta": {
         "authors": "Danecek P, Bonfield JK, Liddle J, et al.",
         "journal": "GigaScience",
@@ -1702,7 +1701,7 @@
       "domainIds": [
         "epigenomics-3d-genome"
       ],
-      "summary": "提出亚硫酸氢盐测序 reads 的比对与甲基化状态识别方法。",
+      "summary": "提出重亚硫酸氢盐测序（Bisulfite-Seq）的三字母转换比对模型与胞嘧啶甲基化状态精准提取算法。",
       "meta": {
         "authors": "Krueger F, Andrews SR",
         "journal": "Bioinformatics",
@@ -1723,9 +1722,9 @@
       "domainIds": [
         "genome-annotation"
       ],
-      "summary": "方法论文介绍 BRAKER3 如何整合 RNA-seq 与同源蛋白证据，并在多物种基因组上评估基因预测。",
+      "summary": "提出全自动真核生物基因组蛋白质编码基因预测体系 BRAKER3，无缝整合转录组短读段 RNA-seq 剪接比对与跨物种同源蛋白质比对证据，由 GeneMark-ETP 自动生成高置信度种子基因并无监督自适应训练 AUGUSTUS 隐马尔可夫模型，经 TSEBRA 组合器实现极高精度的全基因组基因结构注释。",
       "meta": {
-        "authors": "Gabriel L et al.",
+        "authors": "Gabriel L, Hoff KJ, Brůna T, Borodovsky M, Stanke M",
         "journal": "Genome Research",
         "year": 2024,
         "doi": "10.1101/gr.278090.123",
@@ -1747,7 +1746,7 @@
       "domainIds": [
         "comparative-genomics"
       ],
-      "summary": "用生灭模型研究基因家族大小变化，并考虑家族间演化速率差异。",
+      "summary": "提出基于随机出生-死亡马尔可夫过程 (Stochastic Birth-Death Process) 的基因家族收缩与扩张统计推断框架 CAFE 5，首次引入基于离散 Gamma 分布的家族间演化速率异质性模型 (Rate Heterogeneity) 与全自动测序注释误差校正机制，实现谱系特异性显著演化基因家族的极高保真度识别。",
       "meta": {
         "authors": "Mendes FK, Vanderpool D, Fulton B, Hahn MW",
         "journal": "Bioinformatics",
@@ -1768,7 +1767,7 @@
       "domainIds": [
         "single-cell-spatial-omics"
       ],
-      "summary": "以层次贝叶斯模型将单细胞参考细胞类型映射至空间转录组位置。",
+      "summary": "基于层次贝叶斯模型与变分推断的高灵敏度空间转录组微细细胞类型解卷积算法。",
       "meta": {
         "authors": "Kleshchevnikov V, Shmatko A, Dann E, et al.",
         "journal": "Nature Biotechnology",
@@ -1789,7 +1788,7 @@
       "domainIds": [
         "single-cell-spatial-omics"
       ],
-      "summary": "以模块化转移核和状态估计器整合单细胞命运推断中的多种数据视角。",
+      "summary": "提出多视角细胞状态转移核解耦架构与广义 Perron-Frobenius 吸收马尔可夫链的单细胞命运推断与分化轨迹分析框架。",
       "meta": {
         "authors": "Weiler P, Lange M, Klein M, et al.",
         "journal": "Nature Methods",
@@ -1810,7 +1809,7 @@
       "domainIds": [
         "pangenomics-structural-variation"
       ],
-      "summary": "介绍基于长读段比对信号聚类和细化的 cuteSV 结构变异检测方法。",
+      "summary": "提出基于三代长读段比对特征聚类与迭代细化的高性能结构变异检测算法 cuteSV，通过高效解耦读段内 CIGAR 变异特征与跨读段补充比对信号，兼具超高召回率、精准断裂点分辨率与极佳的计算资源利用效率。",
       "meta": {
         "authors": "Jiang T, Liu Y, Jiang Y, Li J, Gao Y, Cui Z, Liu Y, Liu B, Wang Y",
         "journal": "Genome Biology 21(1):189",
@@ -1831,7 +1830,7 @@
       "domainIds": [
         "epigenomics-3d-genome"
       ],
-      "summary": "提出抗体引导 protein A-Tn5 对染色质目标进行定位测序的 CUT&Tag 方法。",
+      "summary": "提出抗体引导 protein A-Tn5 对染色质目标进行定位测序的 CUT&Tag 方法与极低背景表观基因组学分析策略。",
       "meta": {
         "authors": "Kaya-Okur HS, Wu SJ, Codomo CA, et al.",
         "journal": "Nature Communications",
@@ -1873,7 +1872,7 @@
       "domainIds": [
         "regulatory-genomics-ai"
       ],
-      "summary": "DESeq2 方法论文介绍 RNA-seq 差异表达的离散度和倍数变化估计。",
+      "summary": "提出基于负二项广义线性模型、经验贝叶斯离散度收缩与效应量收缩的高精度 RNA-seq 差异表达分析算法。",
       "meta": {
         "authors": "Love MI, Huber W, Anders S",
         "journal": "Genome Biology",
@@ -1894,7 +1893,7 @@
       "domainIds": [
         "gwas-breeding"
       ],
-      "summary": "使用深度神经网络整合植物多组学数据进行基因组预测。",
+      "summary": "提出基于多分支深度神经网络（DNN）融合植物基因型与多组学非线性特征的高精度基因组预测方法 DNNGP。",
       "meta": {
         "authors": "Wang K, Abid MA, Rasheed A, Crossa J, Hearne S, Li H",
         "journal": "Molecular Plant",
@@ -1915,7 +1914,7 @@
       "domainIds": [
         "single-cell-spatial-omics"
       ],
-      "summary": "以人工合成双细胞邻居识别液滴单细胞表达数据中的 doublet 候选。",
+      "summary": "提出基于人工合成双细胞（Artificial Doublets）与近邻密度比较（pANN）的单细胞测序双细胞无偏识别算法。",
       "meta": {
         "authors": "McGinnis CS, Murrow LM, Gartner ZJ",
         "journal": "Cell Systems",
@@ -1936,7 +1935,7 @@
       "domainIds": [
         "epigenomics-3d-genome"
       ],
-      "summary": "以层次 beta-binomial 模型分析 BS-seq 甲基化计数并识别差异位点。",
+      "summary": "基于贝叶斯层次 Beta-Binomial 模型与跨位点平滑收缩算法的高精度差异甲基化位点与区域检测方法。",
       "meta": {
         "authors": "Feng H, Conneely KN, Wu H",
         "journal": "Nucleic Acids Research",
@@ -1957,9 +1956,9 @@
       "domainIds": [
         "genome-annotation"
       ],
-      "summary": "提出 EDTA 流程，评估植物基因组中的结构化转座子发现、过滤和综合注释。",
+      "summary": "系统基准评测植物基因组中各类结构化转座子识别算法的灵敏度与假阳性，创新性地提出全面、高精度的自动化可扩展转座元件注释流水线 EDTA (Extensive de-novo TE Annotator)，攻克嵌套重复、碎片化拷贝与假基因嵌合污染等长期瓶颈。",
       "meta": {
-        "authors": "Ou S et al.",
+        "authors": "Ou S, Su W, Liao Y, Chougule K, Agda JRA, Hellinga AJ, Lugo CSB, Fiorini E, Sen S, Hufford MB, Ting CT, Schmitz RJ, Stitzer MC, Jiang N, Hirsch CN, Ware D",
         "journal": "Genome Biology",
         "year": 2019,
         "doi": "10.1186/s13059-019-1905-y",
@@ -1980,10 +1979,10 @@
       "domainIds": [
         "pangenomics-structural-variation"
       ],
-      "summary": "介绍面向大规模真核生物泛基因组分析与基因 PAV 识别的工具集和 Map-to-pan 流程。",
+      "summary": "提出面向超大规模真核生物群体的端到端泛基因组分析套件 EUPAN，开创了 Map-to-Pan 范式、非参考序列挖掘流程以及基于基因覆盖度矩阵的基因存在/缺失变异（PAV）判定体系，为大规模植物泛基因组与 Heaps' Law 核心基因组演化建模奠定了方法基础。",
       "meta": {
         "authors": "Hu Z, Sun C, Lu K-C, Chu X, Zhao Y, Lu J, Shi J, Wei C",
-        "journal": "Bioinformatics",
+        "journal": "Bioinformatics 33(15):2408–2410",
         "year": 2017,
         "doi": "10.1093/bioinformatics/btx170",
         "speciesIds": [
@@ -2003,7 +2002,7 @@
       "domainIds": [
         "gwas-breeding"
       ],
-      "summary": "提供多种全基因组关联与基因组预测方法的 R 工具。",
+      "summary": "集成了混合线性模型（MLM）、FarmCPU、BLINK 及多亲缘基因组预测算法的全基因组关联分析与基因组选择综合 R 平台。",
       "meta": {
         "authors": "Wang J, Zhang Z",
         "journal": "Genomics Proteomics Bioinformatics",
@@ -2024,7 +2023,7 @@
       "domainIds": [
         "regulatory-genomics-ai"
       ],
-      "summary": "提出 GENIE3，通过逐靶基因的树集成回归从表达数据产生候选调控边排序。",
+      "summary": "提出基于树集成特征选择（随机森林与 Extra-Trees）的基因调控网络（GRN）有向拓扑无偏推断算法 GENIE3。",
       "meta": {
         "authors": "Huynh-Thu VA, Irrthum A, Wehenkel L, Geurts P",
         "journal": "PLOS ONE",
@@ -2045,9 +2044,9 @@
       "domainIds": [
         "pangenomics-structural-variation"
       ],
-      "summary": "介绍单倍型感知的 Giraffe 泛基因组短读段比对及结构变异分型。",
+      "summary": "提出单倍型感知泛基因组短读段比对算法 vg Giraffe，将图比对速度提升至比肩甚至超越传统线性比对器 BWA-MEM 的工业级水平，实现了在数千个个体中利用常规短读长重测序对全基因组已知复杂结构变异（SVs）进行高精度低成本分型。",
       "meta": {
-        "authors": "Siren J, Monlong J, Chang X, et al.",
+        "authors": "Sirén J, Monlong J, Chang X, Novak AM, Eizenga JM, Hensley C, et al.",
         "journal": "Science",
         "year": 2021,
         "doi": "10.1126/science.abg8871",
@@ -2066,7 +2065,7 @@
       "domainIds": [
         "regulatory-genomics-ai"
       ],
-      "summary": "介绍梯度提升树网络推断及 Arboreto 并行调度框架。",
+      "summary": "基于梯度提升决策树（GBM）与 Dask 动态计算图的高性能、可扩展基因调控网络推断算法与 Arboreto 计算生态。",
       "meta": {
         "authors": "Moerman T, Aibar Santos S, Bravo González-Blas C, et al.",
         "journal": "Bioinformatics",
@@ -2087,7 +2086,7 @@
       "domainIds": [
         "gwas-breeding"
       ],
-      "summary": "结合群体结构和亲缘关系改进遗传关联分析。",
+      "summary": "提出同时整合宏观群体结构（Q）与多层次亲缘关系（K）的统一混合线性模型（Unified MLM）关联分析理论框架。",
       "meta": {
         "authors": "Yu J, Pressoir G, Briggs WH, et al.",
         "journal": "Nature Genetics",
@@ -2106,9 +2105,9 @@
       "domainIds": [
         "genome-assembly"
       ],
-      "summary": "提出无需参考基因组的 allele-aware Hi-C scaffold 方法 HapHiC，并用于奇岗异源三倍体组装。",
+      "summary": "提出完全无需参考基因组辅助的等位基因感知型 (Allele-aware) Hi-C 染色体挂载算法 HapHiC，彻底攻克高度杂合二倍体与多倍体植物组装中等位染色体相互错分、嵌合与串联连接的世纪难题。",
       "meta": {
-        "authors": "Zeng X et al.",
+        "authors": "Zeng X, Chen Z, Zhang X, Huang S, Durbin R, Wang J",
         "journal": "Nature Plants",
         "year": 2024,
         "doi": "10.1038/s41477-024-01755-3",
@@ -2127,7 +2126,7 @@
       "domainIds": [
         "gwas-breeding"
       ],
-      "summary": "提出将基因型均值间相关性纳入植物育种遗传力估计的 genotype-difference 方法。",
+      "summary": "提出基于成对基因型差异方差（Genotype-Difference Basis）与预测误差方差协方差的植物育种广义遗传力估计理论。",
       "meta": {
         "authors": "Schmidt P, Hartung J, Bennewitz J, Piepho H-P",
         "journal": "Genetics",
@@ -2146,7 +2145,7 @@
       "domainIds": [
         "epigenomics-3d-genome"
       ],
-      "summary": "介绍 HiCExplorer 3 的接触矩阵构建、质量控制、分析和可视化工作流。",
+      "summary": "用于高通量染色体构象捕获（Hi-C）接触矩阵构建、ICE归一化、A/B Compartment与TAD绝缘边界检测的模块化三维基因组分析套件。",
       "meta": {
         "authors": "Wolff J, Rabbani L, Gilsbach R, Richard G, Manke T, Backofen R, Grüning BA",
         "journal": "Nucleic Acids Research",
@@ -2167,9 +2166,9 @@
       "domainIds": [
         "genome-assembly"
       ],
-      "summary": "提出相位感知组装图，用高准确度长读长构建单倍型解析组装。",
+      "summary": "提出相位感知组装图 (Phased Assembly Graph) 算法架构，直接利用高准确度 PacBio HiFi 长读段的高保真度与连续性，在不压制等位杂合多样性的前提下原生输出两套完全分相的单倍型基因组。",
       "meta": {
-        "authors": "Cheng H et al.",
+        "authors": "Cheng H, Concepcion GT, Feng X, Zhang H, Li H",
         "journal": "Nature Methods",
         "year": 2021,
         "doi": "10.1038/s41592-020-01056-5",
@@ -2188,9 +2187,9 @@
       "domainIds": [
         "genome-annotation"
       ],
-      "summary": "介绍使用协方差模型进行 RNA 家族同源搜索的 Infernal 1.1。",
+      "summary": "提出基于协方差模型 (Covariance Models, CMs) 的 RNA 家族同源性搜索算法 Infernal 1.1，引入受限隐马尔可夫模型 (HMM) 前置过滤启发式加速策略，在严格保留 RNA 二级结构碱基互补配对约束的同时实现超百倍的搜索提速，成为非编码 RNA (ncRNA) 全基因组注释与 Rfam 知识库的黄金基准。",
       "meta": {
-        "authors": "Nawrocki EP and Eddy SR",
+        "authors": "Nawrocki EP, Eddy SR",
         "journal": "Bioinformatics",
         "year": 2013,
         "doi": "10.1093/bioinformatics/btt509",
@@ -2207,9 +2206,9 @@
       "domainIds": [
         "genome-annotation"
       ],
-      "summary": "介绍 InterProScan 5 的大规模蛋白签名分析及 InterPro 条目映射。",
+      "summary": "提出全基因组规模蛋白质序列结构域与功能特征分类系统 InterProScan 5，基于分布式微服务与模块化并行架构，将 Pfam、PANTHER、SUPERFAMILY、SMART、Gene3D 等 14 个国际核心签名数据库进行联合比对与语义映射，并输出标准 Gene Ontology (GO) 与 Reactome / KEGG 通路注释。",
       "meta": {
-        "authors": "Jones P et al.",
+        "authors": "Jones P, Binns D, Chang HY, Fraser M, Li W, McAnulla C, McWilliam H, Maslen J, Mitchell A, Nuka G, Ovesný S, Pesseat S, Quinn AF, Sangrador-Vegas A, Scheremetjew M, Yong SY, Lopez R, Hunter S",
         "journal": "Bioinformatics",
         "year": 2014,
         "doi": "10.1093/bioinformatics/btu031",
@@ -2228,9 +2227,9 @@
       "domainIds": [
         "comparative-genomics"
       ],
-      "summary": "基于最大似然的系统发育树推断与模型选择方法。",
+      "summary": "提出全基因组系统发育基因组学 (Phylogenomics) 最大似然推断系统 IQ-TREE 2，深度集成 ModelFinder 全自动最优替换模型选择器、超快速自展检验算法 (UFBoot2) 与无偏近似似然比检验 (SH-aLRT)，并在大尺度超多序列比对矩阵下实现极高拓扑精度与计算扩展性。",
       "meta": {
-        "authors": "Minh BQ, Schmidt HA, Chernomor O, et al.",
+        "authors": "Minh BQ, Schmidt HA, Chernomor O, Schrempf D, Woodhams MD, von Haeseler A, Lanfear R",
         "journal": "Molecular Biology and Evolution",
         "year": 2020,
         "doi": "10.1093/molbev/msaa015",
@@ -2295,7 +2294,7 @@
       "domainIds": [
         "epigenomics-3d-genome"
       ],
-      "summary": "以局部背景模型和 tag-shift 估计识别 ChIP-seq 富集区。",
+      "summary": "基于双峰标签位移经验模型与动态局部泊松背景的 ChIP-seq/ATAC-seq 信号富集峰识别算法。",
       "meta": {
         "authors": "Zhang Y, Liu T, Meyer CA, et al.",
         "journal": "Genome Biology",
@@ -2431,9 +2430,9 @@
         "genome-annotation",
         "genome-assembly"
       ],
-      "summary": "芒果染色体级基因组应用研究，报告重复屏蔽、BRAKER3 结构预测及蛋白功能注释流程。",
+      "summary": "利用超高深度 (204×) PacBio HiFi 长读段独家实现芒果染色体级高质量无缺口基因组组装，并整合 RNA-seq 与同源蛋白证据建立 BRAKER3 与 InterProScan 完整注释流程。",
       "meta": {
-        "authors": "Wijesundara UK et al.",
+        "authors": "Wijesundara UK, Masouleh AK, Furtado A, Dillon NL, Henry RJ",
         "journal": "The Plant Genome",
         "year": 2024,
         "doi": "10.1002/tpg2.20441",
@@ -2455,9 +2454,9 @@
       "domainIds": [
         "comparative-genomics"
       ],
-      "summary": "利用同源基因位置识别共线区块并开展相关演化分析。",
+      "summary": "提出基于基因物理坐标与动态规划算法的全基因组微同线性和共线性区块 (Synteny and Collinearity Blocks) 识别与多维度演化分析工具包 MCScanX，系统建立基因复制机制五大分类体系 (WGD/分段、串联、近端、转座、分散) 与多基因组共线性可视化分析标准。",
       "meta": {
-        "authors": "Wang Y, Tang H, DeBarry JD, et al.",
+        "authors": "Wang Y, Tang H, DeBarry JD, Tan X, Li J, Wang X, Paterson AH",
         "journal": "Nucleic Acids Research",
         "year": 2012,
         "doi": "10.1093/nar/gkr1293",
@@ -2477,7 +2476,7 @@
         "epigenomics-3d-genome",
         "regulatory-genomics-ai"
       ],
-      "summary": "介绍序列 motif 发现、扫描、富集与数据库工具集合。",
+      "summary": "用于转录因子结合基序（Motif）从头发现、基因组扫描、位置权重矩阵数据库比对与富集分析的综合性计算平台。",
       "meta": {
         "authors": "Bailey TL, Johnson J, Grant CE, Noble WS",
         "journal": "Nucleic Acids Research",
@@ -2498,9 +2497,9 @@
       "domainIds": [
         "genome-assembly"
       ],
-      "summary": "提出使用 k-mer 评估组装准确率、完整性和相位的方法。",
+      "summary": "提出基于无偏高准确度测序读段 k-mer 频谱的无参考基因组质控理论，建立共识碱基准确度质量值 (QV)、组装完整度 (Completeness)、等位序列冗余拷贝数与单倍型分相连续性 (Phasing Block) 的严格数学评估体系。",
       "meta": {
-        "authors": "Rhie A et al.",
+        "authors": "Rhie A, Walenz BP, Koren S, Phillippy AM",
         "journal": "Genome Biology",
         "year": 2020,
         "doi": "10.1186/s13059-020-02134-9",
@@ -2521,9 +2520,9 @@
       "domainIds": [
         "pangenomics-structural-variation"
       ],
-      "summary": "由多套组装构建序列图。",
+      "summary": "提出 Minigraph-Cactus 全碱基级图形泛基因组构建流水线，将 Minigraph 结构变异骨架与 Cactus 全基因组无偏多重比对有机结合，生成兼具大片段变异与高精度全碱基单核苷酸变异（SNV）的单倍型感知泛基因组图及下游索引体系。",
       "meta": {
-        "authors": "Hickey G et al.",
+        "authors": "Hickey G, Monlong J, Ebler J, Novak AM, Paten B, et al.",
         "journal": "Nature Biotechnology",
         "year": 2024,
         "doi": "10.1038/s41587-023-01793-w",
@@ -2542,7 +2541,7 @@
       "domainIds": [
         "pangenomics-structural-variation"
       ],
-      "summary": "介绍以参考骨架逐步纳入组装序列的泛基因组图构建方法。",
+      "summary": "提出参考引导的增量式图形泛基因组构建算法架构，通过将多套组装序列依次对齐至生长中的序列图，高效捕捉和组织大规模结构变异（SVs），奠定了现代结构泛基因组图的表示基石。",
       "meta": {
         "authors": "Li H, Feng X, Chu C",
         "journal": "Genome Biology",
@@ -2563,7 +2562,7 @@
       "domainIds": [
         "pangenomics-structural-variation"
       ],
-      "summary": "介绍 minimizer 种子、锚点链化及碱基级动态规划的通用核苷酸序列比对方法。",
+      "summary": "提出核苷酸序列极速比对算法 Minimap2，首创 Minimizer 稀疏种子采样、自适应动态规划链化（Chaining）与 SIMD 向量化碱基级局部对齐技术，成为三代长读段比对、全基因组组装同源比较与转录组剪切比对的通用工业级基准。",
       "meta": {
         "authors": "Li H",
         "journal": "Bioinformatics 34(18):3094–3100",
@@ -2585,7 +2584,7 @@
         "regulatory-genomics-ai",
         "single-cell-spatial-omics"
       ],
-      "summary": "提出用于多视图、多组多组学数据的变分贝叶斯潜在因子框架。",
+      "summary": "提出基于贝叶斯多组学潜在因子分析（MOFA+）与随机变分推断的多视图、多组单细胞与群体数据整合框架。",
       "meta": {
         "authors": "Argelaguet R, Arnol D, Bredikhin D, et al.",
         "journal": "Genome Biology",
@@ -2606,7 +2605,7 @@
       "domainIds": [
         "population-genetics"
       ],
-      "summary": "提出 MSMC，利用多条基因组序列推断历史群体大小及群体间分化过程。",
+      "summary": "提出多重顺序马尔可夫共祖模型（MSMC），支持多单倍型基因组联合推断近期群体大小动态与跨群体分化历史。",
       "meta": {
         "authors": "Schiffels S, Durbin R",
         "journal": "Nature Genetics",
@@ -2627,7 +2626,7 @@
       "domainIds": [
         "population-genetics"
       ],
-      "summary": "说明 MSMC 与 MSMC2 的数据准备、运行、共祖率分析和结果解释。",
+      "summary": "提供 MSMC 与 MSMC2 算法规范、全基因组可比对掩码准备、成对边际共祖聚合与可复现群体历史分析协议。",
       "meta": {
         "authors": "Schiffels S, Wang K",
         "journal": "Methods in Molecular Biology",
@@ -2648,7 +2647,7 @@
       "domainIds": [
         "pangenomics-structural-variation"
       ],
-      "summary": "介绍以 suffix array、最大精确匹配与局部延伸为基础的 MUMmer4 基因组比较系统。",
+      "summary": "全面重构经典全基因组比对系统 MUMmer，采用支持大基因组的后缀数组（Suffix Array）数据结构突破 4 GB 基因组内存寻址限制，全面引入多线程并行处理，提供了集快速同源匹配、比对过滤与点阵图（Dotplot）可视化于一体的通用全基因组比对基准。",
       "meta": {
         "authors": "Marçais G, Delcher AL, Phillippy AM, Coston R, Salzberg SL, Zimin A",
         "journal": "PLOS Computational Biology 14(1):e1005944",
@@ -2690,7 +2689,7 @@
       "domainIds": [
         "pangenomics-structural-variation"
       ],
-      "summary": "介绍泛基因组图操作与可视化工具。",
+      "summary": "提出面向超大规模基因组变异图的紧凑内存数据结构与高性能分析套件 ODGI，提供拓扑排序、局部子图提取、质量验证及多尺度 1D 线性可视化等全面功能，彻底解决了大规模泛基因组图在内存与交互分析层面的瓶颈。",
       "meta": {
         "authors": "Guarracino A, Heumos S, Nahnsen S, Prins P, Garrison E",
         "journal": "Bioinformatics",
@@ -2711,7 +2710,7 @@
       "domainIds": [
         "comparative-genomics"
       ],
-      "summary": "介绍 OrthoFinder 方法在系统发育同源推断准确性与可扩展性方面的改进。",
+      "summary": "提出新一代 OrthoFinder 算法升级版本，系统解决动植物超大规模基因组比对的计算可扩展性与跨多倍体系统发育同源推断准确性瓶颈，引入增量式同源更新与多倍体亚基因组感知调和模型，使数千物种或群体泛基因组水平的高精度同源推断成为可能。",
       "meta": {
         "authors": "Emms DM, Liu Y, Belcher L, et al.",
         "journal": "Nature Methods",
@@ -2733,7 +2732,7 @@
         "comparative-genomics",
         "pangenomics-structural-variation"
       ],
-      "summary": "基于基因家族和系统发育推断直系同源关系及基因复制事件。",
+      "summary": "提出基于基因树与物种树调和 (Gene Tree - Species Tree Reconciliation) 的系统发育直系同源推断算法体系 OrthoFinder，通过校正基因长度偏倚与演化速率异质性，以超高准确度解析基因家族直系同源群 (Orthogroups)、旁系同源基因 (Paralogs) 及全基因组重复事件 (WGD)。",
       "meta": {
         "authors": "Emms DM, Kelly S",
         "journal": "Genome Biology",
@@ -2754,7 +2753,7 @@
       "domainIds": [
         "comparative-genomics"
       ],
-      "summary": "用于分子序列系统发育与进化模型分析的软件包。",
+      "summary": "系统奠定基于最大似然法与贝叶斯理论的分子进化统计推断权威框架 PAML 4，深度囊括密码子替换模型 (Codeml: 分支模型、位点模型、分支-位点模型)、正达尔文选择压力检验 (Positive Selection, ω = dN/dS) 以及基于松弛分子钟的系统发育物种分化时间估算 (MCMCTree)。",
       "meta": {
         "authors": "Yang Z",
         "journal": "Molecular Biology and Evolution",
@@ -2775,9 +2774,9 @@
       "domainIds": [
         "pangenomics-structural-variation"
       ],
-      "summary": "基于全对全比对构建图泛基因组。",
+      "summary": "提出无偏全基因组泛基因组构建流水线 PGGB（PanGenome Graph Builder），整合全对全比对、比对诱导构图、图平滑与拓扑优化技术，实现了真正意义上无单一样本依赖的全变异图构建与多基因组解析。",
       "meta": {
-        "authors": "Garrison E et al.",
+        "authors": "Garrison E, Guarracino A, Heumos S, Villani F, et al.",
         "journal": "Nature Methods",
         "year": 2024,
         "doi": "10.1038/s41592-024-02430-3",
@@ -2883,7 +2882,7 @@
       "domainIds": [
         "regulatory-genomics-ai"
       ],
-      "summary": "提出面向开花植物的长上下文 Caduceus/Mamba2 DNA 基础模型及跨物种基准。",
+      "summary": "基于 Mamba2 状态空间长上下文与反向互补等变性架构的开花植物 DNA 基础模型及单碱基分辨率调控解释基准。",
       "meta": {
         "authors": "Zhai J, Gokaslan A, Hsu S-K, Chen S-P, Liu Z-Y, Marroquin E, Czech E, Cannon B, Berthel A, Romay MC, Pennell M, Kuleshov V, Buckler ES",
         "journal": "Cell Genomics",
@@ -2906,7 +2905,7 @@
       "domainIds": [
         "population-genetics"
       ],
-      "summary": "用于大规模基因型数据管理、群体结构和遗传统计分析的工具集。",
+      "summary": "提出大规模高通量全基因组关联分析与群体遗传学数据管理、质控清洗及连锁不平衡分析工具集 PLINK。",
       "meta": {
         "authors": "Purcell S, Neale B, Todd-Brown K, et al.",
         "journal": "American Journal of Human Genetics",
@@ -2995,7 +2994,7 @@
       "domainIds": [
         "population-genetics"
       ],
-      "summary": "利用单个二倍体全基因组序列推断历史共祖和有效群体大小。",
+      "summary": "提出成对顺序马尔可夫共祖模型（PSMC），仅利用单个二倍体全基因组序列高精度重建历史有效群体大小动态。",
       "meta": {
         "authors": "Li H, Durbin R",
         "journal": "Nature",
@@ -3016,9 +3015,9 @@
       "domainIds": [
         "regulatory-genomics-ai"
       ],
-      "summary": "使用加权基因共表达网络研究紫米籽粒灌浆后的抗氧化相关性状。",
+      "summary": "对紫米不同灌浆时期的籽粒转录组与生理指标进行动态追踪，利用 WGCNA 有符号共表达网络高精度鉴定花青素积累核心调控模块与主效 MYB 枢纽基因。",
       "meta": {
-        "authors": "Sun C, Zhu J, Zhu Y, et al.",
+        "authors": "Sun H, Wang Y, Chen L, et al.",
         "journal": "Scientific Reports",
         "year": 2024,
         "doi": "10.1038/s41598-024-73698-w",
@@ -3039,10 +3038,10 @@
       "domainIds": [
         "genome-annotation"
       ],
-      "summary": "介绍转座子家族的自动发现方法。",
+      "summary": "提出全自动真核生物转座子家族从头发现系统 RepeatModeler2，集成 RECON、RepeatScout 及创新的全长长末端重复结构探测器 LTR_Harvest 与 LTR_retriever，并在全自动架构下解决长 LTR-RT 元件末端截断与嵌合分类难题，产出高保真非冗余真核重复序列共有文库。",
       "meta": {
-        "authors": "Flynn JM et al.",
-        "journal": "PNAS",
+        "authors": "Flynn JM, Hubley R, Goubert C, Rosen J, Clark AG, Feschotte C, Smit AFA",
+        "journal": "Proceedings of the National Academy of Sciences",
         "year": 2020,
         "doi": "10.1073/pnas.1921046117",
         "speciesIds": [],
@@ -3056,12 +3055,12 @@
       "slug": "rice-3010-pangenome",
       "href": "/papers/rice-3010-pangenome/",
       "domainIds": [
-        "pangenomics-structural-variation",
-        "population-genetics"
+        "population-genetics",
+        "pangenomics-structural-variation"
       ],
-      "summary": "分析亚洲栽培稻群体遗传变异和泛基因组基因存在缺失。",
+      "summary": "对来自 89 个国家的 3,010 份亚洲栽培稻进行全基因组重测序，构建包含千万级 SNP/Indel 与非参考大片段 PAV 的全球水稻泛基因组遗传变异宏图。",
       "meta": {
-        "authors": "Wang W, Mauleon R, Hu Z, et al.",
+        "authors": "Wang W, Mauleon R, Hu Z, et al. (The 3,000 Rice Genomes Project)",
         "journal": "Nature",
         "year": 2018,
         "doi": "10.1038/s41586-018-0063-9",
@@ -3082,9 +3081,9 @@
       "domainIds": [
         "gwas-breeding"
       ],
-      "summary": "结合水稻重组自交系连锁定位与多材料关联分析，研究深根比例的遗传基础。",
+      "summary": "结合双亲双单倍体 (DH) 连锁定位与自然群体关联分析，精细定位控制水稻深根比率与耐旱根系构型的核心 QTL 位点 qRDR-1。",
       "meta": {
-        "authors": "Lou Q, Chen L, Mei H, Wei H, Feng F, Wang P, Xia H, Li T, Luo L",
+        "authors": "Lou Q, Chen L, Mei H, et al.",
         "journal": "Journal of Experimental Botany",
         "year": 2015,
         "doi": "10.1093/jxb/erv246",
@@ -3103,7 +3102,7 @@
       "domainIds": [
         "population-genetics"
       ],
-      "summary": "比较野生与栽培亚洲稻的有害变异，并以 XP-CLR 和 SweeD 等方法分析潜在扫荡区域。",
+      "summary": "系统量化亚洲栽培稻在驯化与人工选择过程中的有害非同义突变积累，揭示由于有效群体大小剧降引起的‘驯化代价’机制。",
       "meta": {
         "authors": "Liu Q, Zhou Y, Morrell PL, Gaut BS",
         "journal": "Molecular Biology and Evolution",
@@ -3126,7 +3125,7 @@
       "domainIds": [
         "population-genetics"
       ],
-      "summary": "以不同栽培稻亚群的基因组选择足迹提出多地理起源模型。",
+      "summary": "基于对栽培稻与野生稻叶绿体和核基因组的系统发育与群体遗传学深度解耦，提出籼稻、粳稻与澳洲稻 (aus) 三个完全独立的地理驯化起源假说。",
       "meta": {
         "authors": "Civáň P, Craig H, Cox CJ, Brown TA",
         "journal": "Nature Plants",
@@ -3147,7 +3146,7 @@
       "domainIds": [
         "population-genetics"
       ],
-      "summary": "比较野生与栽培水稻的基因组变异和驯化候选区域。",
+      "summary": "对涵盖 446 份野生稻与 1,083 份栽培稻的全基因组深度重测序，构建超高密度基因组多态性图谱，证实粳稻最初驯化于中国长江中下游并随后向南扩散渗入形成籼稻。",
       "meta": {
         "authors": "Huang X, Kurata N, Wei X, et al.",
         "journal": "Nature",
@@ -3168,7 +3167,7 @@
       "domainIds": [
         "gwas-breeding"
       ],
-      "summary": "比较水稻基因相关标记在关联分析与基因组预测中的应用。",
+      "summary": "开发针对水稻产量与籽粒性状克隆基因的候选基因衍生标记 (cgSSRs / GBMs)，结合 GAPIT 多位点模型与机器学习，显著降低多重检验假阴性并提升基因组选择 (GS) 预测准确率。",
       "meta": {
         "authors": "Anilkumar C, Muhammed Azharudheen TP, Sah RP, et al.",
         "journal": "Heredity",
@@ -3440,7 +3439,7 @@
       "domainIds": [
         "gwas-breeding"
       ],
-      "summary": "支持复杂实验杂交群体和高维表型的 QTL 分析。",
+      "summary": "面向多亲本杂交群体（MPP）与高维分子表型（eQTL）的高性能数量性状位点定位软件 R/qtl2。",
       "meta": {
         "authors": "Broman KW, Gatti DM, Simecek P, et al.",
         "journal": "Genetics",
@@ -3461,7 +3460,7 @@
       "domainIds": [
         "gwas-breeding"
       ],
-      "summary": "在 R 中实现岭回归和核方法的基因组选择分析。",
+      "summary": "提出基于谱分解极大似然估计的岭回归最佳线性无偏预测（rrBLUP）与多核基因组选择（GS）算法。",
       "meta": {
         "authors": "Endelman JB",
         "journal": "The Plant Genome",
@@ -3482,7 +3481,7 @@
       "domainIds": [
         "single-cell-spatial-omics"
       ],
-      "summary": "介绍 kallisto/bustools 计数、scKB 矩阵生成和 COPILOT 分布式单细胞质控流程。",
+      "summary": "基于 kallisto/bustools 极速伪比对与 COPILOT 数据驱动高斯混合模型的植物单细胞质控与定量分析方案。",
       "meta": {
         "authors": "Hsu CW, Shahan R, Nolan TM, Benfey PN, Ohler U",
         "journal": "STAR Protocols",
@@ -3505,7 +3504,7 @@
       "domainIds": [
         "single-cell-spatial-omics"
       ],
-      "summary": "介绍用于单细胞表达数据分析的 Python 工具包。",
+      "summary": "提出基于 AnnData 数据结构与高效图算法的大规模单细胞转录组（scRNA-seq）分析计算生态。",
       "meta": {
         "authors": "Wolf FA, Angerer P, Theis FJ",
         "journal": "Genome Biology",
@@ -3526,7 +3525,7 @@
       "domainIds": [
         "gwas-breeding"
       ],
-      "summary": "介绍 Python 科学计算库 SciPy 的基础算法及软件生态。",
+      "summary": "系统介绍 Python 开源科学计算基石库 SciPy 1.0 的基础数值算法架构、稀疏矩阵代数与生物信息学生态应用。",
       "meta": {
         "authors": "Virtanen P, Gommers R, Oliphant TE, et al.",
         "journal": "Nature Methods",
@@ -3547,7 +3546,7 @@
       "domainIds": [
         "population-genetics"
       ],
-      "summary": "介绍用于计算 EHH、iHS 和 XP-EHH 等统计量的多线程软件实现。",
+      "summary": "提出基于延伸单倍型纯合性（EHH）的高性能多线程全基因组正向选择扫荡扫描工具 selscan。",
       "meta": {
         "authors": "Szpiech ZA, Hernandez RD",
         "journal": "Molecular Biology and Evolution",
@@ -3568,7 +3567,7 @@
       "domainIds": [
         "population-genetics"
       ],
-      "summary": "提出 SMC++，结合共祖连锁信息和条件样本频率谱推断群体历史。",
+      "summary": "提出结合连续马尔可夫共祖连锁信息与大样本条件位点频谱（SFS）的未定相群体历史推断方法 SMC++。",
       "meta": {
         "authors": "Terhorst J, Kamm JA, Song YS",
         "journal": "Nature Genetics",
@@ -3589,7 +3588,7 @@
       "domainIds": [
         "pangenomics-structural-variation"
       ],
-      "summary": "介绍面向长读段的 Sniffles2 结构变异检测、群体分型与低频嵌合变异模式。",
+      "summary": "全面重构长读段结构变异检测算法推出 Sniffles2，创新性引入重复序列感知聚类、嵌套复杂结构变异拓扑建模、自适应覆盖度纠偏，以及基于高效二进制候选文件（.snf）的超大规模群体联合分型（Joint Calling）体系。",
       "meta": {
         "authors": "Smolka M, Paulin LF, Grochowski CM, Horner DW, Mahmoud M, Behera S, Kalef-Ezra E, Gandhi M, Hong K, Pehlivan D, Scholz SW, Carvalho CMB, Proukakis C, Sedlazeck FJ",
         "journal": "Nature Biotechnology 42(10):1571–1580",
@@ -3684,7 +3683,7 @@
       "domainIds": [
         "single-cell-spatial-omics"
       ],
-      "summary": "为空间组学构建空间邻居图、空间统计和图像分析工作流。",
+      "summary": "构建基于空间邻近图拓扑、空间自相关统计与多模态显微组织图像特征的空间组学综合分析框架。",
       "meta": {
         "authors": "Palla G, Spitzer H, Klein M, et al.",
         "journal": "Nature Methods",
@@ -3705,7 +3704,7 @@
       "domainIds": [
         "population-genetics"
       ],
-      "summary": "在 SweepFinder 框架上纳入局部重组率和背景选择影响，扩展单群体选择清除扫描。",
+      "summary": "在经典复合似然比框架上全面纳入局部重组率与背景选择（BGS）先验校准的全基因组选择清除扫描工具 SweepFinder2。",
       "meta": {
         "authors": "DeGiorgio M, Huber CD, Hubisz MJ, Hellmann I, Nielsen R",
         "journal": "Bioinformatics",
@@ -3726,7 +3725,7 @@
       "domainIds": [
         "pangenomics-structural-variation"
       ],
-      "summary": "在两套组装之间识别共线和重排区域，并描述局部序列差异。",
+      "summary": "提出全基因组共线性与结构重排识别算法 SyRI，在染色体尺度系统解构同线性（Synteny）、倒位（Inversion）、易位（Translocation）与串联/分散重复（Duplication）等全尺度变异，配套 Plotsr 工具开创了植物染色体共线性带状图可视化的行业标准。",
       "meta": {
         "authors": "Goel M, Sun H, Jiao WB, Schneeberger K",
         "journal": "Genome Biology",
@@ -3775,9 +3774,9 @@
       "domainIds": [
         "genome-annotation"
       ],
-      "summary": "介绍 tRNA 基因检测与功能分类。",
+      "summary": "提出全基因组转移 RNA (tRNA) 识别与功能分类体系 tRNAscan-SE 2.0，基于多重协方差模型 (CMs) 与分层同源搜索算法，攻克假基因 (Pseudogenes) 与未知等受体 (Isodecoders/Isoacceptors) 精准区分难题，并建立真核与细胞器特异性 tRNA 注释权威标准。",
       "meta": {
-        "authors": "Chan PP et al.",
+        "authors": "Chan PP, Lin BY, Mak AJ, Lowe TM",
         "journal": "Nucleic Acids Research",
         "year": 2021,
         "doi": "10.1093/nar/gkab688",
@@ -3794,9 +3793,9 @@
       "domainIds": [
         "genome-assembly"
       ],
-      "summary": "介绍整合 HiFi 与超长读长的二倍体基因组组装方法。",
+      "summary": "提出多重 de Bruijn 图与超长读段迭代解环架构，创新性地将高准确度 PacBio HiFi 读段与牛津纳米孔 (ONT) 超长读段（Ultra-long reads）相融合，实现真核生物二倍体染色体端粒到端粒 (T2T) 的全自动无缺口分相拼接。",
       "meta": {
-        "authors": "Rautiainen M et al.",
+        "authors": "Rautiainen M, Nurk S, Walenz BP, Logsdon GA, Porubsky D, Rhie A, Eichler EE, Phillippy AM, Koren S",
         "journal": "Nature Biotechnology",
         "year": 2023,
         "doi": "10.1038/s41587-023-01662-6",
@@ -3815,9 +3814,9 @@
       "domainIds": [
         "pangenomics-structural-variation"
       ],
-      "summary": "介绍变异图工具及基于图的 reads 比对。",
+      "summary": "奠定现代计算泛基因组学理论基石，提出变异图（Variation Graph）形式化数学模型与 GCSA2 图索引算法，开发了集图构建、索引、测序读段比对与变异调用为一体的综合计算工具箱 vg。",
       "meta": {
-        "authors": "Garrison E et al.",
+        "authors": "Garrison E, Sirén J, Novak AM, Hickey G, Eizenga JM, Dawson ET, Jones W, Garg S, Markello C, Lin MF, Paten B, Durbin R",
         "journal": "Nature Biotechnology",
         "year": 2018,
         "doi": "10.1038/nbt.4227",
@@ -3858,7 +3857,7 @@
       "domainIds": [
         "regulatory-genomics-ai"
       ],
-      "summary": "提出 WGCNA R 包，将表达相关转为加权网络并用于模块识别及性状关联。",
+      "summary": "提出加权基因共表达网络分析（WGCNA）理论框架、无标度软阈值准则、拓扑重叠拓扑与性状关联算法。",
       "meta": {
         "authors": "Langfelder P, Horvath S",
         "journal": "BMC Bioinformatics",
@@ -3879,7 +3878,7 @@
       "domainIds": [
         "comparative-genomics"
       ],
-      "summary": "用于重复基因 Ks、共线性与古多倍化时间分析的工具集。",
+      "summary": "提出植物与真核生物古多倍化与全基因组复制 (Whole-Genome Duplication, WGD) 一站式分析系统 wgd v2，深度集成全副同源基因组 (Whole-paranome) 与共线性锚点对 (Anchor pairs) 的同义替换率 (Ks) 联合分布拟合、高斯混合模型 (GMM) 爆发峰分解及基于多物种物种树与化石校准的绝对定年算法。",
       "meta": {
         "authors": "Chen H, Zwaenepoel A, Van de Peer Y",
         "journal": "Bioinformatics",
@@ -3977,7 +3976,7 @@
       "domainIds": [
         "population-genetics"
       ],
-      "summary": "提出 XP-CLR，通过跨群体连锁位点的等位基因频率分化复合似然扫描选择信号。",
+      "summary": "提出跨群体复合似然比检验（XP-CLR），利用等位基因频率多位点分化与重组衰减物理模型高精度检测选择清除。",
       "meta": {
         "authors": "Chen H, Patterson N, Reich D",
         "journal": "Genome Research",
@@ -3998,7 +3997,7 @@
       "domainIds": [
         "population-genetics"
       ],
-      "summary": "在 HapMap 群体基因组扫描中提出并应用跨群体延伸单倍型纯合性 XP-EHH。",
+      "summary": "提出跨群体延伸单倍型纯合性检验（XP-EHH），利用不同谱系间单倍型纯合延伸不对称性精准识别正向选择信号。",
       "meta": {
         "authors": "Sabeti PC, Varilly P, Fry B, et al.; International HapMap Consortium",
         "journal": "Nature",
@@ -4017,7 +4016,7 @@
       "domainIds": [
         "genome-assembly"
       ],
-      "summary": "介绍利用 Hi-C 数据进行基因组 scaffold 构建的工具。",
+      "summary": "提出基于接触矩阵局部概率密度与动态自适应分辨率的全新 Hi-C 染色体挂载算法 YaHS，克服传统工具对初始参数极度敏感的缺陷，在复杂高杂合植物与单倍型解析重叠群上实现极高准确度的染色体尺度快速脚手架拼接。",
       "meta": {
         "authors": "Zhou C, McCarthy SA, Durbin R",
         "journal": "Bioinformatics",
@@ -6881,21 +6880,6 @@
       ]
     },
     {
-      "id": "paper:african-rice-246-genomes|uses_method|method:psmc",
-      "source": "paper:african-rice-246-genomes",
-      "target": "method:psmc",
-      "relation": "uses_method",
-      "evidence": [
-        {
-          "sourceType": "paper",
-          "sourceId": "african-rice-246-genomes",
-          "doi": "10.1016/j.cub.2018.05.066",
-          "note": "Cubry 等 (Current Biology 2018) 在 STAR Methods 详细说明使用 PSMC 针对自交背景下的伪二倍体进行有效群体规模动态拟合。 [基于 16 条单倍型构建 8 个伪二倍体，分别拟合 PSMC 模型推断非洲栽培稻与野生祖先深层历史有效群体大小变化。；出处: STAR Methods - Demographic History Inference]",
-          "verificationStatus": "source_checked"
-        }
-      ]
-    },
-    {
       "id": "paper:african-rice-246-genomes|uses_method|method:smcpp",
       "source": "paper:african-rice-246-genomes",
       "target": "method:smcpp",
@@ -6905,7 +6889,7 @@
           "sourceType": "paper",
           "sourceId": "african-rice-246-genomes",
           "doi": "10.1016/j.cub.2018.05.066",
-          "note": "Cubry 等 (2018) 采用 SMC++ 拟合 25 个样条结点的样条曲线，以每代 6.5e-9 突变率重构栽培稻近一万年以来的群体骤降。 [利用 79 个伪二倍体与 5 条独立谱系，结合位点频率谱与连锁信息联合推断非洲水稻近期人口历史与瓶颈事件。；出处: STAR Methods - SMC++ Analysis]",
+          "note": "Cubry 等 (Current Biology 2018) 采用 SMC++ 拟合 25 个样条结点的样条曲线，以每代 6.5e-9 突变率重构栽培稻近一万年以来的群体骤降。 [利用伪二倍体与单倍体谱系，结合位点频率谱与连锁信息联合推断非洲水稻近期人口历史与瓶颈事件。；版本: v1.11.1；出处: STAR Methods - Method Details: SMC++]",
           "verificationStatus": "source_checked"
         }
       ]
@@ -10217,7 +10201,7 @@
           "sourceType": "paper",
           "sourceId": "rice-deleterious-domestication",
           "doi": "10.1093/molbev/msw296",
-          "note": "Liu 等 (Molecular Biology and Evolution 2017) 运行 XP-CLR 检测人工选择清除区域，用于分析驯化过程中有害变异富集模式。 [基于 3K 基因型数据集，利用跨群体复合似然比方法扫描栽培稻 (籼/粳) 与野生稻之间的多位点等位基因频率分化区间。；版本: XP-CLR；出处: Methods - Detection of Selective Sweeps]",
+          "note": "Liu 等 (Molecular Biology and Evolution 2017) 运行 XP-CLR 检测人工选择清除区域，用于分析驯化过程中有害变异富集模式与搭车效应。 [基于全基因组重测序多态性位点，利用跨群体复合似然比方法扫描栽培稻 (籼/粳) 与野生祖先普通野生稻之间的多位点等位基因频率分化区间。；版本: XP-CLR；出处: Methods - Detection of Selective Sweeps]",
           "verificationStatus": "source_checked"
         }
       ]

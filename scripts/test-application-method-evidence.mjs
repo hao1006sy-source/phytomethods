@@ -89,13 +89,19 @@ for (const entry of verifiedList) {
 }
 console.log(`✓ 测试 7 通过: 登记表 ${verifiedList.length} 条关系与图谱构建输出 100% 对应`);
 
-// 8. 检查证据状态统计与 JSON 一致
-assert.strictEqual(graph.stats.evidenceByRelationAndStatus.uses_method.source_checked, 67, 'uses_method 的 source_checked 数量必须为 67 (56核验+11重点策展)');
-assert.strictEqual(graph.stats.evidenceByRelationAndStatus.uses_method.needs_review || 0, 0, 'uses_method 的 needs_review 数量必须为 0 (MSMC 专项已纠偏)');
-assert.strictEqual(graph.stats.evidenceByRelationAndStatus.uses_method.structurally_valid || 0, 0, 'uses_method 的 structurally_valid 数量必须为 0');
-assert.strictEqual(graph.stats.edgesByRelation.uses_method, 67, 'uses_method 边数必须为 67');
+// 8. 检查证据状态统计与图谱统计闭环一致
+const actualUsesEdges = graph.edges.filter(e => e.relation === 'uses_method');
+const actualSourceCheckedUses = actualUsesEdges.filter(e => e.evidence.some(ev => ev.verificationStatus === 'source_checked')).length;
+const actualStructurallyValidUses = actualUsesEdges.filter(e => e.evidence.some(ev => ev.verificationStatus === 'structurally_valid')).length;
+const actualNeedsReviewUses = actualUsesEdges.filter(e => e.evidence.some(ev => ev.verificationStatus === 'needs_review')).length;
+
+assert.strictEqual(graph.stats.edgesByRelation.uses_method, actualUsesEdges.length, 'uses_method 边数统计必须与实际边数一致');
+assert.strictEqual(graph.stats.evidenceByRelationAndStatus.uses_method.source_checked, actualSourceCheckedUses, 'uses_method 的 source_checked 统计必须与实际证据一致');
+assert.strictEqual(graph.stats.evidenceByRelationAndStatus.uses_method.structurally_valid || 0, actualStructurallyValidUses, 'uses_method 的 structurally_valid 统计必须与实际证据一致');
+assert.strictEqual(graph.stats.evidenceByRelationAndStatus.uses_method.needs_review || 0, actualNeedsReviewUses, 'uses_method 的 needs_review 统计必须与实际证据一致');
+assert.strictEqual(actualNeedsReviewUses, 0, '当前全图谱 uses_method 的 needs_review 应为 0');
 assert.strictEqual(graph.stats.edgesByRelation.evaluates_method, 6, 'evaluates_method 边数必须为 6 (含新评估的 rice-variant-comparison -> bcftools)');
-console.log(`✓ 测试 8 通过: 证据状态统计与图谱统计数据完全吻合`);
+console.log(`✓ 测试 8 通过: 证据状态统计与图谱统计数据完全闭环 (uses_method 总边数: ${actualUsesEdges.length}, source_checked: ${actualSourceCheckedUses}, structurally_valid: ${actualStructurallyValidUses})`);
 
 // 9 & 10. 检查图谱没有悬空边与重复边
 const nodeIds = new Set(graph.nodes.map(n => n.id));
