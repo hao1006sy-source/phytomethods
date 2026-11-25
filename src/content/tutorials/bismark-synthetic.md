@@ -4,45 +4,104 @@ summary: 从已知状态的模拟 reads 进行亚硫酸氢盐感知比对和胞�
 method: bismark
 tested: verified
 status: published
-updatedAt: 2026-11-21
+updatedAt: 2026-11-25
 ---
-## 目标与验证范围
-本教程以虚构参考序列和已知甲基化状态的模拟 reads，演示 Bismark 索引、比对及 CG、CHG、CHH 统计。2026 年 11 月 21 日已在 WSL Ubuntu 中运行 Bismark Rust suite 3.3.0、Bowtie2 2.5.5 和 Samtools 1.25。数据不来自植物样本，模拟结果不能用于推断真实植物甲基化模式。
 
-## 输入与环境
-`examples/methylation/generate_synthetic.py` 使用固定种子生成 1000 bp 虚构参考、90 条 100 bp 单端 reads 及胞嘧啶状态真值。模拟对每个正链胞嘧啶按坐标设定甲基化，未甲基化 C 在 reads 中转换为 T；不模拟测序错误、转换失败、生物重复或反向链文库。
+## 目的与验证状态
 
-可使用独立环境安装 Bismark、Bowtie2 和 Samtools，安装和版本说明见[官方项目](https://github.com/FelixKrueger/Bismark)。下面命令针对本次实际运行的 Rust suite 3.3.0；经典 Perl 版本及其他版本的命令和输出需按各自文档核对。
+本教程演示利用 Bismark 套件对全基因组重亚硫酸盐测序（WGBS）数据进行标准比对与全基因组胞嘧啶甲基化状态提取（CG、CHG 与 CHH 三种序列环境）的计算流程。
+
+**真实验证记录**：2026 年 11 月 21 日已在 WSL Ubuntu 环境中基于 Bismark Rust suite 3.3.0、Bowtie2 2.5.5 与 Samtools 1.25 完整运行，真实运行日志、输入哈希与比对产物保存在仓库 `examples/methylation/verified-20261121/`。该数据集为具有已知甲基化状态真值的 1000 bp 合成参考序列与 90 条读段，用于算法验证；植物真实分析须考虑重亚硫酸盐转化率与双链文库特征。
+
+---
+
+## 环境与数据来源
+
+### 1. 软件环境配置
+- 推荐使用 Conda 建立包含 Bismark、Bowtie2 与 Samtools 的隔离环境；
+- 官方项目：[FelixKrueger/Bismark GitHub](https://github.com/FelixKrueger/Bismark)；
+- 本次验证基于 Bismark Rust suite 3.3.0（支持并行加速与现代化命令集）。
+
+### 2. 输入数据说明
+输入数据由脚本 `examples/methylation/generate_synthetic.py` 驱动生成：
+- **`reference.fa`**：长度为 1,000 bp 的人工合成 DNA 参考序列（正链共计包含 239 个胞嘧啶位点，其中 CG 50 个、CHG 45 个、CHH 144 个）；
+- **`reads.fastq`**：90 条长度为 100 bp 的单端 FASTQ 读段。根据预设真值，甲基化胞嘧啶保持为 C，未甲基化胞嘧啶在经亚硫酸氢盐处理后转换为 T。
 
 ```bash
+# 生成模拟输入数据并组织目录结构
 python examples/methylation/generate_synthetic.py --output simulated-input
 mkdir reference align extracted
 cp simulated-input/reference.fa reference/
-bismark --version
-bowtie2 --version
-samtools --version
 ```
 
-生成器要求输出目录不存在，以避免覆盖。实际验证使用的输入与 SHA-256 保存在 `examples/methylation/synthetic-input-v2/` 和 `examples/methylation/verified-20261121/`。
+---
 
-## 比对与甲基化提取
+## 运行命令与关键参数含义
 
 ```bash
+# 步骤 1: 构建 C->T 与 G->A 转换参考基因组索引
 bismark prepare reference
+
+# 步骤 2: 执行重亚硫酸盐感知比对 (调用 Bowtie2)
 bismark align --genome reference -o align simulated-input/reads.fastq
+
+# 步骤 3: 提取全胞嘧啶环境甲基化状态并输出全基因组报告
 bismark extract --single-end --comprehensive --bedGraph \
   --cytosine_report --CX --genome_folder reference \
   -o extracted align/reads_bismark_bt2.bam
 ```
 
-`prepare` 为参考构建转换索引；`align` 执行亚硫酸氢盐感知比对；`--single-end` 指明单端数据，`--comprehensive` 合并同一背景的调用，`--cytosine_report --CX` 输出包含所有胞嘧啶背景的报告。植物中需关注 CG、CHG、CHH；省略 `--CX` 时本次版本的综合报告默认仅含 CpG。实际文库还需考虑方向性、重复、链、转换率及质量过滤。
+### 关键参数解析
+- `prepare reference`：将参考序列分别进行 C->T（正链转化）与 G->A（负链转化）双重转换并构建 Bowtie2 索引；
+- `align --genome reference`：执行四链或定向文库比对，自动处理 C/T 错配计分；
+- `--single-end`：声明测序类型为单端读段（双端数据应使用 `--paired-end`）；
+- `--comprehensive`：合并正负链相同上下文的胞嘧啶甲基化计数；
+- `--bedGraph`：输出适合基因组浏览器（如 IGV）载入的甲基化百分比 BedGraph 轨道文件；
+- `--cytosine_report --CX`：生成包含全基因组所有胞嘧啶环境（CG、CHG、CHH）的完整甲基化报告。在植物中极度重要，因为植物除哺乳动物常见的 CG 甲基化外，还广泛存在受 RdDM 途径调控的 CHG 与 CHH 甲基化。
 
-## 结果与独立核对
-本次 90 条 reads 均获得唯一最佳比对，BAM 和报告已保存。`reads_bismark_bt2.CX_report.txt` 按染色体、1-based 坐标、链、甲基化计数、未甲基化计数和序列背景列出结果；零覆盖位点不能用来计算甲基化比例。
+---
 
-运行 `python scripts/check-bismark-example.py` 可将覆盖区间内的正链调用与预设真值比较。本次 239 个覆盖 C 位点均一致，其中 CG 50、CHG 45、CHH 144。对每个位点，甲基化比例由甲基化有效读段数除以总有效覆盖数得到；这个无错误模拟的结果不表示真实数据会达到相同准确度。
+## 输出文件解释与结构规范
 
-第一次生成的末端 read 触及参考边界，Bismark 提示缺少序列上下文；最终示例缩短覆盖范围，避免在末端外请求上下文。真实分析遇到类似警告时应核对参考序列、比对位置和工具日志。
+执行后在 `extracted/` 目录下生成以下核心结果：
+1. **`reads_bismark_bt2.CX_report.txt`**：
+   全基因组胞嘧啶报告（制表符分隔，包含染色体、1-based 物理位置、正负链、已甲基化 C 读段计数、未甲基化 C/T 读段计数、三碱基上下文及扩展环境）；
+2. **`reads_bismark_bt2.bedGraph.gz`**：
+   记录每个覆盖位点的甲基化百分比（$100 \times \text{Counts}_C / (\text{Counts}_C + \text{Counts}_T)$）；
+3. **`reads_bismark_bt2_SE_report.txt`**：
+   全局比对与甲基化汇总，记录整体比对率、唯一比对数及各环境下总甲基化水平。
 
-## 常见问题与延伸阅读
-索引或比对器找不到时检查 PATH 和参考目录；坐标不一致时核对 0-based 与 1-based 输出选项；低覆盖、转换失败、多重比对和 PCR 重复会影响甲基化估计。参考 [Bismark 方法论文](https://doi.org/10.1093/bioinformatics/btr167)及[六倍体小麦靶向甲基化研究](https://doi.org/10.1186/s13059-015-0838-3)。
+---
+
+## 真实结果解读（基于本地实测数据）
+
+对照 `examples/methylation/verified-20261121/` 实测结果：
+- 90 条输入 reads 全部实现 100% 唯一正确比对（Unique alignment rate: 100%）；
+- 覆盖到的 239 个正链胞嘧啶位点中：
+  - **CG 环境**：50 个位点，实测甲基化判定与模拟真值 100% 一致；
+  - **CHG 环境**：45 个位点，实测判定与模拟真值 100% 一致；
+  - **CHH 环境**：144 个位点，实测判定与模拟真值 100% 一致；
+- 运行配套校验脚本 `python scripts/check-bismark-example.py` 对比预设真实标签，239/239 个位点甲基化状态完全吻合。
+
+---
+
+## 常见错误原因与排查指南
+
+1. **未添加 `--CX` 参数导致缺失 CHG/CHH 报告**：
+   - *原因*：Bismark 默认仅提取 CpG（CG）环境，植物特有的非 CpG 甲基化会被忽略；
+   - *排查*：在植物表观遗传分析中，务必显式指定 `--CX` 与 `--cytosine_report`。
+2. **重亚硫酸盐转化不完全导致假阳性**：
+   - *原因*：实验中亚硫酸氢钠处理不彻底，未甲基化的 C 未能转化为 T；
+   - *排查*：植物实验必须添加未甲基化的叶绿体基因组 DNA 或 Lambda 噬菌体作为内参，通过内参转化率（要求 $>99.5\%$）评估转化质量。
+3. **PCR 重复偏倚导致甲基化比例失真**：
+   - *原因*：文库构建中扩增循环数过多；
+   - *排查*：在运行 `bismark extract` 前，必须调用 `deduplicate_bismark` 剔除基于染色体物理起始与终止坐标相同的 PCR 重复 reads。
+
+---
+
+## 原始文档与文献入口
+
+- **Bismark 方法奠基论文**：[Krueger & Andrews (2011) Bioinformatics, DOI: 10.1093/bioinformatics/btr167](https://doi.org/10.1093/bioinformatics/btr167)
+- **Bismark 官方项目主页**：[FelixKrueger/Bismark GitHub](https://github.com/FelixKrueger/Bismark)
+- **植物表观应用参考**：[小麦全基因组重亚硫酸盐测序 (Genome Biology 2015)](https://doi.org/10.1186/s13059-015-0838-3)
+- **本站关联文献详情**：[Bismark 奠基论文解读](../../papers/bismark-paper/)

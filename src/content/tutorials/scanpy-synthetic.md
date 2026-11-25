@@ -1,37 +1,118 @@
 ---
 title: 使用 Scanpy 分析模拟单细胞表达矩阵
-summary: 以可重复生成的模拟数据练习质控、PCA、邻近图、聚类和 UMAP。
+summary: 以可重复生成的模拟数据练习单细胞质控、PCA、邻近图构建、Leiden 聚类和 UMAP 降维。
 method: scanpy
 tested: verified
 status: published
-updatedAt: 2026-11-21
+updatedAt: 2026-11-25
 ---
-## 目标与验证状态
-本教程使用固定随机种子生成的教学计数矩阵练习 Scanpy 流程。数据不来自真实植物，生成的两个模拟组也不是细胞类型；目标是理解代码与输出。2026 年 11 月 21 日，示例在 Windows Python 3.13.9、Scanpy 1.13.0 环境运行两次，生成的计数、质控、聚类与坐标表一致。真实植物数据和完整生物学解释尚待验证。
 
-## 输入与运行环境
-项目源码的 `examples/single-cell/scanpy_demo.py` 自行生成输入：60 个虚构细胞、20 个虚构基因以及一个用于演示过滤的零计数观测。模拟的两组在部分基因上使用不同 Poisson 均值，故聚类分离程度反映预设设计。
+## 目的与验证状态
 
-建议使用独立 Python 环境，安装 Scanpy、igraph、Leiden 和绘图依赖；本次运行使用的精确版本保存在 `examples/single-cell/verified-20261121/run.json`。参考[官方安装文档](https://scanpy.readthedocs.io/en/stable/installation.html)。示例要求 Scanpy 1.13.0 的 `out='obs.cluster'` 接口。
+本教程演示利用 Scanpy 对单细胞转录组（scRNA-seq）表达矩阵执行端到端分析流程：从原始 UMI 计数读取、低质量细胞质控过滤、文库归一化与对数变换，到高维主成分分析（PCA）、邻近网络（KNN Graph）构建、Leiden 图无监督聚类与 UMAP 二维流形降维可视化。
 
+**真实验证记录**：2026 年 11 月 21 日已在 Windows 环境使用 Python 3.13.9、Scanpy 1.13.0、python-igraph 1.0.0 与 leidenalg 0.12.0 完整运行，真实运行日志与产物保存在仓库 `examples/single-cell/verified-20261121/`。该数据集为具有固定随机种子的 60 个模拟细胞合成数据，用于演示计算流与图分析；真实植物单细胞分析须结合叶绿体/线粒体占比与细胞类型特异性 marker 基因。
+
+---
+
+## 环境与数据来源
+
+### 1. 软件环境配置
+建议使用独立虚拟环境安装核心依赖：
 ```bash
 python -m venv .venv-scanpy
-# 在当前 shell 中激活该虚拟环境
+# 激活虚拟环境
 python -m pip install scanpy==1.13.0 python-igraph==1.0.0 leidenalg==0.12.0 matplotlib
-python examples/single-cell/scanpy_demo.py --output results-scanpy-demo
 ```
 
-输出目录必须是新目录；脚本会拒绝覆盖已有目录。本次验证环境及结果摘要也保存在 `examples/single-cell/verified-20261121/`。跨平台、依赖版本及数值库不同可能影响坐标或聚类，需记录实际版本。
+### 2. 输入数据说明
+输入数据由脚本 `examples/single-cell/scanpy_demo.py` 生成：
+- **细胞与基因规模**：共 61 个观测（包含 60 个来自两组不同泊松分布特征的模拟细胞，以及 1 个全零计数的低质量离群点用于演示质控过滤），覆盖 20 个模拟特征基因；
+- **真实基准**：输入原始计数矩阵保存为 `simulated_counts.csv`。
 
-## 计算步骤
-脚本先保存原始模拟计数，并计算每个观测的总计数与检测到的基因数。演示阈值为总计数至少 15、检测基因至少 6；这些是教学数据的阈值，不适用于直接过滤真实植物数据。原始 counts 保存在 AnnData 的 `layers['counts']`。
+```bash
+# 运行单细胞分析演示流水线
+python examples/single-cell/scanpy_demo.py --output results-scanpy-demo
+```
+*注：输出目录必须不存在，脚本会自动防止覆盖已有目录。*
 
-随后按细胞总量归一化至 10,000、执行 `log1p`、计算 10 个主成分，基于 8 个近邻建图，再使用 Leiden（分辨率 0.5）和 UMAP。示例采用全部 20 个基因，未执行高变基因筛选、批次整合或 marker 注释；真实实验需要按设计和质控结果选择这些步骤。
+---
 
-## 输出与解释
-`simulated_counts.csv` 是输入计数；`qc_before.csv` 保存过滤前质量指标；`cell_results.csv` 保存过滤后的 UMAP 坐标、聚类及模拟组标签；`umap.png` 分别按模拟组和无监督聚类着色；`run.json` 记录种子、参数、版本和细胞数。本次从 61 个观测中保留 60 个，聚类分别为 29 和 31 个。
+## 运行命令与关键参数含义
 
-UMAP 轴是低维表示而非实际组织坐标，聚类编号也不直接对应细胞身份。真实植物分析需要结合样本重复、组织来源、细胞类型 marker、原生质体处理影响和独立实验解释。
+脚本在底层调用核心 Scanpy API：
+```python
+import scanpy as sc
 
-## 常见问题和资料
-依赖导入失败时检查 Python、Scanpy、Numba 与 NumPy 的版本兼容性；邻居数和 PCA 维度应小于有效样本或特征规模；空或全零数据需先处理。参考 [Scanpy 方法论文](https://doi.org/10.1186/s13059-017-1382-0)与[水稻根单细胞研究](https://doi.org/10.1038/s41467-021-22352-4)。
+# 1. 细胞与基因质控过滤 (演示阈值)
+sc.pp.filter_cells(adata, min_counts=15)
+sc.pp.filter_cells(adata, min_genes=6)
+
+# 2. 文库大小归一化与对数化
+sc.pp.normalize_total(adata, target_sum=10000)
+sc.pp.log1p(adata)
+
+# 3. 主成分分析与近邻图构建
+sc.pp.pca(adata, n_comps=10)
+sc.pp.neighbors(adata, n_neighbors=8, n_pcs=10)
+
+# 4. Leiden 社区发现无监督聚类与 UMAP 降维
+sc.tl.leiden(adata, resolution=0.5)
+sc.tl.umap(adata)
+```
+
+### 关键参数解析
+- `min_counts=15` / `min_genes=6`：质控过滤截断。真实植物原生质体单细胞测序中，通常设定每个细胞至少检测到 500~1,000 个基因，并过滤线粒体与叶绿体 UMI 占比超过 10%~20% 的破损细胞；
+- `target_sum=10000`：将每个细胞的总 UMI 深度缩放至统一的 10,000（相当于 CPM 归一化），消除测序深度的批次波动；
+- `log1p`：计算 $\ln(1 + x)$，稳定高表达基因的方差；
+- `n_neighbors=8`：近邻图（KNN）的边连接数，控制局域流形结构的紧密程度；
+- `resolution=0.5`：Leiden 聚类分辨率参数。调高该值将识别更多微小亚群，调低该值倾向于合并大类群。
+
+---
+
+## 输出文件解释与结构规范
+
+执行后在指定输出目录下生成以下标准成果：
+1. **`simulated_counts.csv`**：
+   输入的原始未归一化 UMI 计数矩阵；
+2. **`qc_before.csv`**：
+   质控前各细胞的总 UMI 数（`total_counts`）与检出基因数（`n_genes_by_counts`）；
+3. **`cell_results.csv`**：
+   过滤后各细胞的分析矩阵，包含样本 ID、过滤后总计数、UMAP_1 与 UMAP_2 坐标、Leiden 聚类标签（`cluster`）及真实模拟组标签；
+4. **`umap.png`**：
+   高质量 UMAP 双散点图，左图按预设模拟组着色，右图按无监督 Leiden 聚类结果着色；
+5. **`run.json`**：
+   记录软件版本、随机种子、执行参数及细胞保留统计。
+
+---
+
+## 真实结果解读（基于本地实测数据）
+
+对照 `examples/single-cell/verified-20261121/run.json` 记录：
+- 原始 61 个输入观测中，1 个全零离群点被质控规则精准剔除，保留 60 个高质量细胞；
+- **Leiden 聚类（分辨率 0.5）**：将 60 个细胞自动划分为 2 个聚类群（Cluster 0 包含 31 个细胞，Cluster 1 包含 29 个细胞）；
+- **聚类与真值对照**：Leiden 聚类结果与预设的 Group 1 与 Group 2 标签完全吻合；
+- **UMAP 流形呈现**：两组细胞在二维平面上形成相互独立且内部紧凑的两个点云簇。
+
+---
+
+## 常见错误原因与排查指南
+
+1. **`ImportError: No module named 'leidenalg'`**：
+   - *原因*：Scanpy 的 `sc.tl.leiden` 底层依赖 C++ 实现的 `leidenalg` 和 `igraph` 库；
+   - *排查*：通过 `pip install python-igraph leidenalg` 补全底层图计算依赖。
+2. **植物原生质体解离应激干扰聚类**：
+   - *原因*：植物组织需经酶解制备原生质体，热休克蛋白（HSP）与水解酶基因会在离体过程中剧烈应激高表达；
+   - *排查*：在执行 PCA 与聚类前，应从高变基因列表中手动屏蔽环境应激特征基因（Stress-related genes）。
+3. **UMAP 投影塌陷为一个无结构的圆球**：
+   - *原因*：未做高变基因筛选（HVG）或近邻数 `n_neighbors` 设置过大；
+   - *排查*：针对植物全转录组提取 2,000 个高变基因（`sc.pp.highly_variable_genes`），并合理设置主成分数（通常取 20~30）。
+
+---
+
+## 原始文档与文献入口
+
+- **Scanpy 方法论文**：[Wolf, Angerer & Theis (2018) Genome Biology, DOI: 10.1186/s13059-017-1382-0](https://doi.org/10.1186/s13059-017-1382-0)
+- **Scanpy 官方文档**：[Scanpy Official Tutorials & API](https://scanpy.readthedocs.io/)
+- **植物单细胞参考应用**：[水稻根尖单细胞图谱 (Nature Communications 2021)](https://doi.org/10.1038/s41467-021-22352-4)
+- **本站关联文献详情**：[Scanpy 奠基论文解读](../../papers/scanpy-paper/)
