@@ -207,11 +207,11 @@
       "domainIds": [
         "regulatory-genomics-ai"
       ],
-      "summary": "基于植物基因组序列预训练的 Agronomic Nucleotide Transformer。",
+      "summary": "基于 48 种可食用植物全基因组预训练的 10 亿参数 Agronomic Nucleotide Transformer 基础模型，赋能植物顺式调控元件挖掘、组织特异性表达预测与农艺变异饱和突变扫描。",
       "meta": {
         "repository": "https://github.com/instadeepai/nucleotide-transformer",
-        "dataType": "DNA 序列",
-        "principle": "Transformer 与遮盖序列预测",
+        "dataType": "单碱基植物参考基因组 DNA 序列（输入长度通常为 1,000~6,000 bp）",
+        "principle": "非重叠 6-mer 分词、Transformer 编码器架构、遮蔽语言模型预训练 (MLM) 与序列计算饱和突变扫描 (ISSM)",
         "canonicalPaperId": "agro-nt-2024"
       }
     },
@@ -326,11 +326,11 @@
       "domainIds": [
         "single-cell-spatial-omics"
       ],
-      "summary": "以参考单细胞表达签名分解空间转录组 counts，估计每个位置的细胞类型丰度。",
+      "summary": "基于贝叶斯负二项层次模型与空间多分辨率反卷积的空间转录组细胞类型丰度推断软件。",
       "meta": {
         "repository": "https://github.com/BayraktarLab/cell2location",
-        "dataType": "单细胞参考表达矩阵与空间 spot/gene counts",
-        "principle": "层次贝叶斯负二项模型与细胞丰度推断",
+        "dataType": "单细胞 RNA-seq 参考表达矩阵、空间转录组 spot 原始 UMI 计数矩阵与组织空间坐标",
+        "principle": "层次贝叶斯负二项回归 (Hierarchical Bayesian Negative Binomial)、变分推断 (Variational Inference) 与多尺度细胞反卷积",
         "canonicalPaperId": "cell2location-paper"
       }
     },
@@ -343,11 +343,11 @@
       "domainIds": [
         "single-cell-spatial-omics"
       ],
-      "summary": "以细胞间转移概率和状态估计器分析单细胞动态、终末状态与命运概率。",
+      "summary": "基于马尔可夫转移核 (Transition Kernels) 与吸收马尔可夫链 (GPCCA) 的单细胞命运概率与分化动态推断软件。",
       "meta": {
         "repository": "https://github.com/scverse/cellrank",
-        "dataType": "单细胞表达、邻居图、RNA velocity 或实验时间",
-        "principle": "Markov 转移矩阵、转移核与命运估计",
+        "dataType": "单细胞表达矩阵 (AnnData)、RNA 速率 (spliced/unspliced)、拟时序或实验时序数据",
+        "principle": "广义 Perron 簇聚类分析 (GPCCA)、连续马尔可夫转移核组合、吸收概率与驱动基因关联",
         "canonicalPaperId": "cellrank2-paper"
       }
     },
@@ -377,11 +377,11 @@
       "domainIds": [
         "regulatory-genomics-ai"
       ],
-      "summary": "基于负二项广义线性模型分析 RNA-seq 计数差异表达的 R 软件包。",
+      "summary": "基于负二项广义线性模型 (NB GLM)、比率中位数尺度因子与经验贝叶斯离散度收缩的高通量测序差异表达分析 R 软件包。",
       "meta": {
         "repository": "https://github.com/thelovelab/DESeq2",
-        "dataType": "基因计数矩阵与样本信息",
-        "principle": "负二项计数模型和离散度估计",
+        "dataType": "原始无偏测序读段整数计数矩阵与多因子实验设计元数据",
+        "principle": "负二项广义线性模型、几何平均比率中位数尺度因子、经验贝叶斯离散度收缩与 Wald/似然比假设检验",
         "canonicalPaperId": "deseq2-2014"
       }
     },
@@ -411,11 +411,11 @@
       "domainIds": [
         "single-cell-spatial-omics"
       ],
-      "summary": "利用人工合成 doublet 与表达邻域识别单细胞 RNA-seq 混合捕获候选。",
+      "summary": "基于人工合成多聚体 (Artificial Doublets) 与近邻分类 (pANN) 的单细胞 RNA-seq 双胞体精准鉴定 R 软件包。",
       "meta": {
         "repository": "https://github.com/chris-mcginnis-ucsf/DoubletFinder",
-        "dataType": "QC 后的单细胞表达矩阵",
-        "principle": "人工 doublet 合成、近邻分类与 pANN 排序",
+        "dataType": "经过基础质控的单细胞表达矩阵 (Seurat / SingleCellExperiment)",
+        "principle": "人工合成双胞体混洗模拟、高维 PCA 空间近邻分类 (k-NN) 与 pANN 排序截断",
         "canonicalPaperId": "doubletfinder-paper"
       }
     },
@@ -496,11 +496,11 @@
       "domainIds": [
         "regulatory-genomics-ai"
       ],
-      "summary": "用树集成回归为候选调控因子—靶基因关系排序。",
+      "summary": "将全基因组调控网络推断解耦为逐基因树集成回归任务，利用随机森林与极端随机树的特征不纯度衰减量定量评估非线性转录调控边。",
       "meta": {
         "repository": "https://github.com/aertslab/GENIE3",
-        "dataType": "基因表达矩阵与候选调控因子列表",
-        "principle": "随机森林或 Extra-Trees 回归特征重要性",
+        "dataType": "基因表达矩阵与候选植物转录因子 (TF) 列表",
+        "principle": "树集成回归特征重要性、非线性调控解耦、MDI 方差不纯度衰减与调控权重排序",
         "canonicalPaperId": "genie3-paper"
       }
     },
@@ -513,11 +513,11 @@
       "domainIds": [
         "regulatory-genomics-ai"
       ],
-      "summary": "基于梯度提升树和可扩展任务调度的基因调控候选边推断。",
+      "summary": "基于梯度提升回归树 (GBRT) 与 Arboreto 分布式任务调度的高性能基因调控网络推断算法，专为超大规模单细胞转录组数据优化。",
       "meta": {
         "repository": "https://github.com/aertslab/arboreto",
-        "dataType": "基因表达矩阵与候选调控因子列表",
-        "principle": "梯度提升树回归特征重要性",
+        "dataType": "基因表达矩阵（Bulk 或单细胞）与候选植物转录因子 (TF) 列表",
+        "principle": "梯度提升回归树特征增益、Dask 分布式动态调度、早停机制与非线性调控边权重排序",
         "canonicalPaperId": "grnboost2-paper"
       }
     },
@@ -633,11 +633,11 @@
         "epigenomics-3d-genome",
         "regulatory-genomics-ai"
       ],
-      "summary": "执行 DNA、RNA 或蛋白序列基序发现、富集检验与 motif 扫描。",
+      "summary": "包含从头基序发现 (MEME/STREME)、已知转录因子扫描 (FIMO)、基序富集 (AME) 与数据库比对 (Tomtom) 的高精度生物序列基序综合分析套件。",
       "meta": {
         "repository": "https://github.com/meme-suite/meme",
-        "dataType": "峰区或候选调控区序列与 motif 矩阵",
-        "principle": "位置权重矩阵与序列基序统计",
+        "dataType": "表观组富集峰区/启动子 FASTA 序列与转录因子基序位置权重矩阵 (PWM/MEME 格式)",
+        "principle": "位置概率矩阵 (PPM)、对数几率位置权重矩阵 (PWM)、期望最大化 (EM) 从头发现与动态规划 FIMO 显著性检验",
         "canonicalPaperId": "meme-suite-paper"
       }
     },
@@ -718,11 +718,11 @@
       "domainIds": [
         "regulatory-genomics-ai"
       ],
-      "summary": "以多视图潜在因子分解整合多组学样本和群组。",
+      "summary": "采用贝叶斯多视图矩阵因子分解 (BMFA)、自动相关性确定 (ARD) 与随机变分推断 (SVI)，无监督整合植物多组学异质数据并定量分解跨组学共享与特异方差。",
       "meta": {
         "repository": "https://github.com/bioFAM/MOFA2",
-        "dataType": "对齐样本的多组学矩阵（多个 views，可含多个 groups）",
-        "principle": "贝叶斯多视图因子分析与变分推断",
+        "dataType": "配对的植物多组学矩阵（转录组、表观组、蛋白质组、代谢组等多视图，可分实验分组）",
+        "principle": "贝叶斯多视图低秩因子分解、自动相关性确定先验 (ARD)、随机变分推断 (SVI) 与多组学生物方差分解",
         "canonicalPaperId": "mofa-plus-paper"
       }
     },
@@ -855,11 +855,11 @@
       "domainIds": [
         "regulatory-genomics-ai"
       ],
-      "summary": "基于 Caduceus/Mamba2 的长上下文植物 DNA 基础模型。",
+      "summary": "基于 Caduceus/Mamba2 双向状态空间模型 (SSM) 构建的长上下文、单碱基分辨率被子植物 DNA 基础模型，具备严格反向互补 (RC) 等变性与卓越的跨物种零样本调控预测能力。",
       "meta": {
         "repository": "https://github.com/plantcad/plantcad",
-        "dataType": "单碱基分辨率 DNA 序列，最长 8192 bp 上下文",
-        "principle": "双向状态空间序列建模与反向互补等变性",
+        "dataType": "单碱基分辨率植物参考基因组 DNA 序列（最长支持 8,192 bp 上下文窗口）",
+        "principle": "双向状态空间模型 (Bidirectional SSM)、反向互补等变性 (RC Equivariance)、关联扫描线性序列建模与单碱基调控表征",
         "canonicalPaperId": "plantcad2-paper"
       }
     },
@@ -940,11 +940,11 @@
       "domainIds": [
         "single-cell-spatial-omics"
       ],
-      "summary": "从单细胞 FASTQ 生成剪接/未剪接 UMI 矩阵，并按条形码分布过滤低质量背景。",
+      "summary": "基于 kallisto 伪比对与 bustools 快速生成单细胞剪接/未剪接表达矩阵，并通过 COPILOT 自适应统计模型过滤植物原生质体环境游离 RNA 背景噪声。",
       "meta": {
         "repository": "https://github.com/Hsu-Che-Wei/scKB",
-        "dataType": "单细胞 FASTQ、细胞条形码白名单与参考转录本/注释",
-        "principle": "pseudoalignment、UMI 去重与条形码质量分布过滤",
+        "dataType": "单细胞短读段 FASTQ、10x 条形码白名单、物种转录本与内含子参考注释",
+        "principle": "de Bruijn 图转录本等价类伪比对、BUS 条形码纠错与 UMI 去重、环境游离 RNA 多项分布背景过滤",
         "canonicalPaperId": "sc-kb-copilot-paper"
       }
     },
@@ -957,11 +957,11 @@
       "domainIds": [
         "single-cell-spatial-omics"
       ],
-      "summary": "用 Python 对单细胞表达矩阵进行质控、降维、聚类和可视化。",
+      "summary": "基于 AnnData 架构的单细胞转录组 (scRNA-seq) 质控过滤、高维降维、k 近邻图构建、Leiden 聚类与差异表达分析 Python 库。",
       "meta": {
         "repository": "https://github.com/scverse/scanpy",
-        "dataType": "单细胞 × 基因表达矩阵",
-        "principle": "特征处理、邻近图与社区聚类",
+        "dataType": "单细胞表达矩阵 (AnnData .h5ad / 10x MTX / Loom)",
+        "principle": "局部多项式泊松高变特征选择、截断奇异值分解 (Truncated SVD)、高维模糊近邻图 (k-NN) 与 Leiden 社区发现",
         "canonicalPaperId": "scanpy-paper"
       }
     },
@@ -1042,11 +1042,11 @@
       "domainIds": [
         "single-cell-spatial-omics"
       ],
-      "summary": "为空间分子数据建立空间图并执行空间统计、图像分析和可视化。",
+      "summary": "为空间分子组学构建空间近邻拓扑图，执行空间自相关检验、微环境邻域富集与组织图像特征提取。",
       "meta": {
         "repository": "https://github.com/scverse/squidpy",
-        "dataType": "空间坐标、AnnData 表达矩阵与组织图像",
-        "principle": "空间邻居图、置换检验与空间自相关",
+        "dataType": "空间物理坐标、单细胞/Spot 空间计数矩阵与高分辨率组织切片图像",
+        "principle": "空间近邻图、Moran's I/Geary's C 空间自相关、蒙特卡洛置换检验与邻域共现分析",
         "canonicalPaperId": "squidpy-paper"
       }
     },
